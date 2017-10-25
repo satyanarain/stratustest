@@ -100,7 +100,7 @@ class PictureVideoController extends Controller {
                 $name = $name;
               }
               else {
-                $latest_name = $this->getMediaName($query+1);   
+                $latest_name = $this->getMediaName($query);   
                 //$query = $query+1;
                 $name = $name.' '.$latest_name;
               }

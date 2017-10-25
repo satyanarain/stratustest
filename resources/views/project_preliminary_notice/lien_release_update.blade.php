@@ -7,7 +7,7 @@
             <!-- page head start-->
             <div class="page-head">
                 <h3 class="m-b-less project_name" id="project_name_title"></h3><br/>
-                <h3 class="m-b-less">Update Preliminary Notice</h3>
+                <h3 class="m-b-less">Update Lien Release</h3>
                 <?php $project_id = Request::segment(2); ?>
             </div>
             <!-- page head end-->

@@ -114,7 +114,15 @@ $(document).ready(function() {
                     status = '<span class="label label-danger">Inactive</span>';
                     var single_view = '<a href="'+baseUrl+'404" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>';
                 }
-                
+                var notice_status = val.notice_status;
+                if(notice_status == 'approve'){
+                    notice_status = '<span class="label label-success">Approve</span>';
+                    var single_view = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/lien_release/'+val.ppn_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>';
+                }
+                else {
+                    notice_status = '<span class="label label-danger">Disapprove</span>';
+                    var single_view = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/lien_release/'+val.ppn_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>';
+                }
                 var t = $('#view_users_table').DataTable();
                 t.row.add([
                     count, // val.ppn_id,
@@ -126,6 +134,7 @@ $(document).ready(function() {
                     val.post_marked_date,
                     pnp_path_value,
                     status,
+                    notice_status,
                     update_permission+single_view
                 ]).draw( false );
                 count++;

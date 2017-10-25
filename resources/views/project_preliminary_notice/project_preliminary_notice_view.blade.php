@@ -38,6 +38,7 @@
                                     <th>Postmarked Date</th>
                                     <th>Preliminary Notice</th>
                                     <th>Status</th>
+                                    <th>Lien Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
