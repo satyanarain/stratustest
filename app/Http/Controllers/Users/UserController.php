@@ -862,7 +862,6 @@ class UserController extends Controller {
   */
   public function forget_username(Request $request)
   {
-    echo 'hello';die;  
     try
     {
       $email = $request['email'];

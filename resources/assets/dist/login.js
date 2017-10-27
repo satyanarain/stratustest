@@ -95,37 +95,32 @@ $(document).ready(function() {
         
         var email = $('#forget_user').val();      
         console.log(email);
-alert(baseUrl);
+
         jQuery.ajax({
             url: baseUrl + "users/request-forgot-username",
             type: "POST",
             data: {
                 "email": email
             },
-            success:function (data){
-                alert(data);
-            },error:function(jqXHR, textStatus, errorThrown)
-            {console.log(jqXHR);console.log(textStatus);console.log(errorThrown);}
-//            headers: {
-//                "Content-Type": "application/x-www-form-urlencoded"
-//            },
-            //contentType: "application/x-www-form-urlencoded",
-            //cache: false
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            contentType: "application/x-www-form-urlencoded",
+            cache: false
         })
-//        .done(function(data, textStatus, jqXHR) {
-//            console.log(data.code);
-//            html = '<div class="alert alert-block alert-success fade in">Your username has been sent to email, kindly check your inbox</div>';
-//            $("#resetUsernameFail").html(html);
-//        })
-//        .fail(function(jqXHR, textStatus, errorThrown) {
-//            console.log(errorThrown);
-//                console.log("HTTP Request Failed");
-//                var responseText, html;
-//                responseText = JSON.parse(jqXHR.responseText);
-//                html = '<div class="alert alert-block alert-danger fade in">'+responseText.email+'</div>';
-//                console.log(jqXHR);
-//                $("#resetUsernameFail").html(html);
-//        })
+        .done(function(data, textStatus, jqXHR) {
+            console.log(data.code);
+            html = '<div class="alert alert-block alert-success fade in">Your username has been sent to email, kindly check your inbox</div>';
+            $("#resetUsernameFail").html(html);
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("HTTP Request Failed");
+                var responseText, html;
+                responseText = JSON.parse(jqXHR.responseText);
+                html = '<div class="alert alert-block alert-danger fade in">'+responseText.email+'</div>';
+                console.log(jqXHR);
+                $("#resetUsernameFail").html(html);
+        })
     });
 
     $('#forgetPassword').submit(function(e) {
