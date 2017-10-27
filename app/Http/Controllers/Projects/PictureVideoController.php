@@ -115,8 +115,10 @@ class PictureVideoController extends Controller {
                 $name = $name;
               }
               else {
-                $query = $query+1;
-                $name = $name.', '.$query;
+                //$query = $query+1;
+                //$name = $name.', '.$query;
+                $latest_name = $this->getMediaName($query);   
+                $name = $name.' '.$latest_name;
               }
             }
             else {
