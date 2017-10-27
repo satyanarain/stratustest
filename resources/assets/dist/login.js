@@ -95,7 +95,7 @@ $(document).ready(function() {
         
         var email = $('#forget_user').val();      
         console.log(email);
-
+alert(baseUrl);
         jQuery.ajax({
             url: baseUrl + "users/request-forgot-username",
             type: "POST",
