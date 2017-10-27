@@ -42,7 +42,9 @@ use App\Repositories\Util\AclPolicy;
 
 class UserController extends Controller {
 
-  
+  public function abc()
+  {echo 'dsd';die;
+      return view('login');}
   /*
   --------------------------------------------------------------------------
    Get All Users
