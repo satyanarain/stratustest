@@ -1,5 +1,5 @@
 //baseUrl = "http://stratuscm-live.us-west-2.elasticbeanstalk.com/";
-baseUrl = "http://demo.com/";
+baseUrl = "http://ec2-34-236-61-80.compute-1.amazonaws.com/";
 $(document).ready(function() {
 
 	var u_id 			= localStorage.getItem('u_id');
