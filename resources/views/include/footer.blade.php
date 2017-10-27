@@ -22,8 +22,19 @@
      </div>
  </div>
 
+ <div class="modal add-company fade" id="add-company" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-md">
+         <div class="modal-content text-center">
+             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            @if(Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/standards/add")
+             @include('include/add_new_firm')
+            @endif
+         </div>
+     </div>
+ </div>
+ 
             <footer>
-                <?php echo date("Y"); ?> &copy; StratusCM.
+                <?php echo date("Y"); ?> &copy; StratusCM.<?php //echo Route::getCurrentRoute()->getPath();?>
             </footer>
             <!--footer section end-->
         </div>
@@ -285,17 +296,17 @@
     // $("#my-awesome-dropzone").click(function() {
     //   $(".first_button").prop('disabled', true);
     // });
-var unsaved = false;
-$(":input").change(function(){ //trigers change in all input fields including text type
-    unsaved = true;
-});
-function unloadPage(){ alert('ssa');
-    if(unsaved){
-        return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
+    var unsaved = false;
+    $(":input").change(function(){ //trigers change in all input fields including text type
+        unsaved = true;
+    });
+    function unloadPage(){ //alert('ssa');
+        if(unsaved){
+            return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
+        }
     }
-}
 
-window.onbeforeunload = unloadPage;
+    window.onbeforeunload = unloadPage;
 </script>
 
 </body>

@@ -12,7 +12,7 @@
             contentType: "application/json",
             cache: false
         })
-            .done(function(data, textStatus, jqXHR) {
+        .done(function(data, textStatus, jqXHR) {
             // console.log(data.data);
             // Foreach Loop 
             jQuery.each(data.data, function( i, val ) {
@@ -48,7 +48,7 @@
 
     $('.add_firm_form').click(function(e) {
         e.preventDefault();
-	    var token = localStorage.getItem('u_token');
+        var token = localStorage.getItem('u_token');
         var firm_name = $('#firm_name').val();
         var firm_description = $('#firm_description').val();
         var firm_address = $('#firm_address').val();
@@ -73,7 +73,7 @@
             contentType: "application/x-www-form-urlencoded",
             cache: false
         })
-            .done(function(data, textStatus, jqXHR) {
+        .done(function(data, textStatus, jqXHR) {
             console.log(data.description);
             $('html, body').animate({
                     scrollTop: $(".page-head").offset().top
