@@ -50,6 +50,7 @@ class UserController extends Controller {
   */
   public function get_users(Request $request)
   {
+      echo 'hello';die;  
       try
       {
           // $post = array(
