@@ -42,7 +42,8 @@ use App\Repositories\Util\AclPolicy;
 
 class UserController extends Controller {
 
-  
+  public function abc()
+  {return view('login');}
   /*
   --------------------------------------------------------------------------
    Get All Users
