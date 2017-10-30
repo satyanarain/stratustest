@@ -228,8 +228,8 @@ $(document).ready(function() {
             })
         }
     });
-    $('#company_name').change(function(){
-        var company = $('#company_name').val();
+    $('.company_name').change(function(){
+        var company = $(this).val();
         if(company=="Add New Company")
         {
             //map.clear();
@@ -263,14 +263,14 @@ $(document).ready(function() {
         // Foreach Loop 
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status == 'active'){
-                $("#company_name").append(
+                $(".company_name").append(
                     '<option value="'+val.f_id+'">'+val.f_name+'</option>'
                 )
             }else {
 
             }
         });
-        $("#company_name").append(
+        $(".company_name").append(
             '<option>Add New Company</option>'
         )
         // $( "h2" ).appendTo( $( ".container" ) );

@@ -51,50 +51,7 @@ $(document).ready(function() {
             window.location.href = baseUrl + "500";
         }
     })
-    
-    jQuery.ajax({
-        url: baseUrl+project_id+"/company_name_user",
-        type: "GET",
-        headers: {
-            "x-access-token": token
-        },
-        contentType: "application/json",
-        cache: false
-    })
-        .done(function(data, textStatus, jqXHR) {
-            // console.log(data.data);
-            // Foreach Loop
-            jQuery.each(data.data, function( i, val ) {
-                if(val.f_status == 'active'){
-                    $("#company_name").append(
-                        '<option value="'+val.f_id+'">'+val.f_name+'</option>'
-                    )
-                }else {
-
-                }
-            });
-            // $( "h2" ).appendTo( $( ".container" ) );
-
-            $(".loading_data").remove();
-            $("#company_name").show();
-        })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-            console.log("HTTP Request Failed");
-            var response = jqXHR.responseJSON.code;
-            console.log(response);
-            if(response == 403){
-            console.log('Company name 403');
-                // window.location.href = baseUrl + "403";
-            }
-            else if(response == 404){
-                console.log('Company name 404');
-                // window.location.href = baseUrl + "404";
-            }
-            else {
-                window.location.href = baseUrl + "500";
-            }
-        });
-    
+    fetchCompanyName();
     jQuery('#wdid_no').keyup(function() {
         var raw_text =  jQuery(this).val();
         var return_text = raw_text.replace(/[^a-zA-Z0-9 _]/g,'');
@@ -212,3 +169,58 @@ $('.add_swppp_form').click(function(e) {
             },5000)
         })
 });
+$('.company_name').change(function(){
+        var company = $(this).val();
+        if(company=="Add New Company")
+        {
+            $('#add-company').modal('show');
+        }
+    })
+function fetchCompanyName()
+{
+        jQuery.ajax({
+        url: baseUrl+project_id+"/company_name_user",
+        type: "GET",
+        headers: {
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+        // console.log(data);
+        // Foreach Loop 
+        jQuery.each(data.data, function( i, val ) {
+            if(val.f_status == 'active'){
+                $(".company_name").append(
+                    '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                )
+            }else {
+
+            }
+        });
+        $(".company_name").append(
+            '<option>Add New Company</option>'
+        )
+        // $( "h2" ).appendTo( $( ".container" ) );
+       
+        $(".loading_data").remove();
+        $(".company_name").show();
+    })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(jqXHR);
+        if(response == 403){
+            console.log('Company name 403');
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            console.log('Company name 404');
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
+    }

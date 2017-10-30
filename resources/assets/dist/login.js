@@ -102,10 +102,10 @@ $(document).ready(function() {
             data: {
                 "email": email
             },
-            /*headers: {
+            headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
-            },*/
-            //contentType: "application/x-www-form-urlencoded",
+            },
+            contentType: "application/x-www-form-urlencoded",
             cache: false
         })
         .done(function(data, textStatus, jqXHR) {

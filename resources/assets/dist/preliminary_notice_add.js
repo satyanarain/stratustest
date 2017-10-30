@@ -17,7 +17,7 @@ $(document).ready(function() {
         console.log('Yes Permission');
         $('.body-content .wrapper').show();
     }
-
+    fetchCompanyName();
     jQuery.ajax({
         url: baseUrl + "projects/"+project_id,
         type: "GET",
@@ -49,47 +49,7 @@ $(document).ready(function() {
         }
     })
 
-    jQuery.ajax({
-        url: baseUrl+project_id+"/company_name_user",
-        type: "GET",
-        headers: {
-            "x-access-token": token
-        },
-        contentType: "application/json",
-        cache: false
-    }).done(function(data, textStatus, jqXHR) {
-            // console.log(data.data);
-            // Foreach Loop
-            jQuery.each(data.data, function( i, val ) {
-                if(val.f_status == 'active'){
-                    $(".company_name").append(
-                        '<option value="'+val.f_id+'">'+val.f_name+'</option>'
-                    )
-                }else {
-
-                }
-            });
-            // $( "h2" ).appendTo( $( ".container" ) );
-
-            $(".loading_data").remove();
-            $("#company_name").show();
-        })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-            console.log("HTTP Request Failed");
-            var response = jqXHR.responseJSON.code;
-            console.log(response);
-            if(response == 403){
-            console.log('Company name 403');
-                // window.location.href = baseUrl + "403";
-            }
-            else if(response == 404){
-                console.log('Company name 404');
-                // window.location.href = baseUrl + "404";
-            }
-            else {
-                window.location.href = baseUrl + "500";
-            }
-        });
+    
 
 
         // Get Selected Agency
@@ -147,7 +107,7 @@ $('#sub-btn').click(function(e)
 {
     e.preventDefault();
     $('#save').hide();
-    $('#p_n_f').text($('#preliminary_notice_from').val());
+    $('#p_n_f').text($('#company_name').val());
     $('#u_c_w').text($('#under_contract_with').val());
     $('#i_t_a_o').text($('#amount').val());
     if($('#amount').val()=='' ){
@@ -201,7 +161,7 @@ $('.add_preliminary_notice').click(function(e)
   $('.loading-submit').show();
     e.preventDefault();
     var project_id = $('#project_id').val();
-    var preliminary_notice_from =  $('#preliminary_notice_from').val();
+    var company_name =  $('#company_name').val();
     var under_contract_with = $('#under_contract_with').val();
     var amount = $('#amount').val();
     var direct_contractor =$('#direct_contractor').val();
@@ -215,7 +175,7 @@ $('.add_preliminary_notice').click(function(e)
     var is_error = false;
     html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
 
-    if(preliminary_notice_from == ''){
+    if(company_name == ''){
         html += '<li>Preliminary Notice From is invalid.</li>';
         is_error = true;
     }
@@ -265,7 +225,7 @@ $('.add_preliminary_notice').click(function(e)
         type: "POST",
         data: {
             "ppn_project_id"       :project_id,
-            "preliminary_notice_from": preliminary_notice_from,
+            "company_name": company_name,
             "under_contract_with": under_contract_with,
             "amount"  : amount,
             "direct_contractor":direct_contractor,
@@ -299,3 +259,59 @@ $('.add_preliminary_notice').click(function(e)
     e.preventDefault();
 
 })
+
+$('.company_name').change(function(){
+    var company = $(this).val();
+    if(company=="Add New Company")
+    {
+        $('#add-company').modal('show');
+    }
+})
+function fetchCompanyName()
+{
+    jQuery.ajax({
+    url: baseUrl+project_id+"/company_name_user",
+    type: "GET",
+    headers: {
+      "x-access-token": token
+    },
+    contentType: "application/json",
+    cache: false
+    })
+    .done(function(data, textStatus, jqXHR) {
+    // console.log(data);
+    // Foreach Loop 
+    jQuery.each(data.data, function( i, val ) {
+        if(val.f_status == 'active'){
+            $(".company_name").append(
+                '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+            )
+        }else {
+
+        }
+    });
+    $(".company_name").append(
+        '<option>Add New Company</option>'
+    )
+    // $( "h2" ).appendTo( $( ".container" ) );
+
+    $(".loading_data").remove();
+    $(".company_name").show();
+})
+    .fail(function(jqXHR, textStatus, errorThrown) {
+    console.log("HTTP Request Failed");
+    var response = jqXHR.responseJSON.code;
+    console.log(jqXHR);
+    if(response == 403){
+        console.log('Company name 403');
+        // window.location.href = baseUrl + "403";
+    }
+    else if(response == 404){
+        console.log('Company name 404');
+        // window.location.href = baseUrl + "404";
+    }
+    else {
+        window.location.href = baseUrl + "500";
+    }
+});
+}

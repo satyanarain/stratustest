@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="name_of_report">Preliminary Notice From</label>
-                                        <select class="form-control company_name" id="preliminary_notice_from" ></select>
+                                        <select class="form-control company_name" id="company_name" ></select>
                                     </div>
 
                                     <div class="form-group col-md-12">

@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 
     // Get login user profile data
-    $("#company_name").hide();
+    $(".company_name").hide();
     var role = localStorage.getItem('u_role');
     var token = localStorage.getItem('u_token');
     var url = $(location).attr('href').split( '/' );
@@ -49,48 +49,7 @@ $(document).ready(function() {
         //     }
         // }); 
 
-    jQuery.ajax({
-    url: baseUrl+project_id+"/company_name_user",
-        type: "GET",
-        headers: {
-          "x-access-token": token
-        },
-        contentType: "application/json",
-        cache: false
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // console.log(data);
-        // Foreach Loop 
-        jQuery.each(data.data, function( i, val ) {
-            if(val.f_status == 'active'){
-                $("#company_name").append(
-                    '<option value="'+val.f_id+'">'+val.f_name+'</option>'
-                )
-            }else {
-
-            }
-        });
-        // $( "h2" ).appendTo( $( ".container" ) );
-       
-        $(".loading_data").remove();
-        $("#company_name").show();
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) {
-        console.log("HTTP Request Failed");
-        var response = jqXHR.responseJSON.code;
-        console.log(jqXHR);
-        if(response == 403){
-            console.log('Company name 403');
-            // window.location.href = baseUrl + "403";
-        }
-        else if(response == 404){
-            console.log('Company name 404');
-            // window.location.href = baseUrl + "404";
-        }
-        else {
-            window.location.href = baseUrl + "500";
-        }
-    }); 
+    fetchCompanyName();
 
     jQuery.ajax({
         url: baseUrl + "projects/"+project_id,
@@ -291,3 +250,58 @@ $(document).ready(function() {
             })
         }
     });
+    $('.company_name').change(function(){
+        var company = $(this).val();
+        if(company=="Add New Entity")
+        {
+            $('#add-company').modal('show');
+        }
+    })
+    function fetchCompanyName()
+    {
+        jQuery.ajax({
+        url: baseUrl+project_id+"/company_name_user",
+        type: "GET",
+        headers: {
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+        // console.log(data);
+        // Foreach Loop 
+        jQuery.each(data.data, function( i, val ) {
+            if(val.f_status == 'active'){
+                $(".company_name").append(
+                    '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                )
+            }else {
+
+            }
+        });
+        $(".company_name").append(
+            '<option>Add New Entity</option>'
+        )
+        // $( "h2" ).appendTo( $( ".container" ) );
+       
+        $(".loading_data").remove();
+        $(".company_name").show();
+    })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(jqXHR);
+        if(response == 403){
+            console.log('Company name 403');
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            console.log('Company name 404');
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
+    }

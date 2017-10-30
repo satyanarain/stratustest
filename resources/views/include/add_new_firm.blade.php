@@ -261,23 +261,23 @@ $(document).ready(function() {
         .done(function(data, textStatus, jqXHR) {
         // console.log(data);
         // Foreach Loop 
-        $('#company_name').empty();
+        $('.company_name').empty();
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status == 'active'){
-                $("#company_name").append(
+                $(".company_name").append(
                     '<option value="'+val.f_id+'">'+val.f_name+'</option>'
                 )
             }else {
 
             }
         });
-        $("#company_name").append(
+        $(".company_name").append(
             '<option>Add New Company</option>'
         )
         // $( "h2" ).appendTo( $( ".container" ) );
        
         $(".loading_data").remove();
-        $("#company_name").show();
+        $(".company_name").show();
         $('#add-company').modal('hide');
         $('#firm_address').val("");
         $('#project_latitude').val("");

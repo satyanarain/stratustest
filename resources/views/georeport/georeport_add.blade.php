@@ -77,7 +77,7 @@
                                         <div class="loading_data" style="text-align: center;">
                                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                         </div>
-                                        <select class="form-control select2" id="company_name">
+                                        <select class="form-control company_name" id="company_name">
                                         </select>
                                     </div>
 
