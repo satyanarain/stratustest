@@ -1,7 +1,0 @@
-vendor/*
-.idea/*
-/nbproject/private
-.env
-uploads/
-.phpintel
-
