@@ -1,5 +1,10 @@
+var host = window.location.host;
+if(host=="demo.com")
+    baseUrl = "http://demo.com/";
+else
+    baseUrl = "http://ec2-34-236-61-80.compute-1.amazonaws.com/";
 //baseUrl = "http://stratuscm-live.us-west-2.elasticbeanstalk.com/";
-baseUrl = "http://demo.com/";
+
 $(document).ready(function() {
 
 	var u_id 			= localStorage.getItem('u_id');
