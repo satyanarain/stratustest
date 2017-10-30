@@ -232,18 +232,18 @@ $(document).ready(function() {
         var company = $('#company_name').val();
         if(company=="Add New Company")
         {
-            map.clear();
-            info_Window = new google.maps.InfoWindow();
-            info_Window.close();
-            for (var i = 0; i < marker.length; i++) {
-                marker[i].setMap(null);
-            }
-            marker.length = 0;
-            for(var i=0;i<location.length;i++){
-                location[i].setMap(null);
-            }
-            location.length=0;
-            marker = [];
+            //map.clear();
+//            info_Window = new google.maps.InfoWindow();
+//            info_Window.close();
+//            for (var i = 0; i < marker.length; i++) {
+//                marker[i].setMap(null);
+//            }
+//            marker.length = 0;
+//            for(var i=0;i<location.length;i++){
+//                location[i].setMap(null);
+//            }
+//            location.length=0;
+//            marker = [];
             $('#add-company').modal('show');
         }
     })
