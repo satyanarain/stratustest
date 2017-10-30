@@ -4,13 +4,12 @@ if(host=="demo.com")
 else
     baseUrl = "http://ec2-34-236-61-80.compute-1.amazonaws.com/";
 //baseUrl = "http://stratuscm-live.us-west-2.elasticbeanstalk.com/";
-
 $(document).ready(function() {
 
-	var u_id 			= localStorage.getItem('u_id');
+	var u_id 		= localStorage.getItem('u_id');
 	var u_first_name 	= localStorage.getItem('u_first_name');
 	var u_last_name 	= localStorage.getItem('u_last_name');
-	var role 			= localStorage.getItem('u_role');
+	var role 		= localStorage.getItem('u_role');
 	$("#my_profile_link").html('<a href="'+baseUrl+'dashboard/users/'+u_id+'">Profile</a>');
 	$("#login_username").html(u_first_name+' '+u_last_name+'<span class=" fa fa-angle-down"></span>');
 
