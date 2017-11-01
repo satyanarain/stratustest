@@ -65,21 +65,22 @@ $(document).ready(function() {
         contentType: "application/json",
         cache: false
     })
-    .done(function(data, textStatus, jqXHR) {
-        $('#contractor_name_title').text("Contractor: " + data.data.preliminary_notice_firm);
-        jQuery.each(data.data.liens, function( i, val ) {
-            var pplr_path_value = '';
-            if(val.doc_path != ''){
-                pplr_path_value = '<a href="'+baseUrl+val.doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
-            }
-            $(".lien_release_list").append(
-                '<tr><td>'+val.lien_release_note+'</td><td>'+val.date_of_billed_through+'</td>\n\
-                <td>'+val.pplr_type+'</td><td>'+pplr_path_value+'</td></tr>'
-            )
-        });
-        $(".loading_data").hide();
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) {
+        .done(function(data, textStatus, jqXHR) {
+            //console.log(data);
+            $('#contractor_name_title').text("Contractor: " + data.data.preliminary_notice_firm);
+            jQuery.each(data.data.liens, function( i, val ) {
+                var pplr_path_value = '';
+                if(val.doc_path != ''){
+                    pplr_path_value = '<a href="'+baseUrl+val.doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+                }
+                $(".lien_release_list").append(
+                    '<tr><td>'+val.lien_release_note+'</td><td>'+val.date_of_billed_through+'</td>\n\
+                    <td>'+val.pplr_type+'</td><td>'+pplr_path_value+'</td></tr>'
+                )
+            });
+            $(".loading_data").hide();
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
             console.log("HTTP Request Failed");
             var response = jqXHR.responseJSON.code;
             if(response == 403){

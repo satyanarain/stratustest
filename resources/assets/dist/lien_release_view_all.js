@@ -89,7 +89,7 @@ $(document).ready(function() {
                     var update_permission = '';
                 }
                 else {
-                    var update_permission = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/lien_release/'+val.ppn_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
+                    var update_permission = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/lien_release/'+val.ppn_id+'/add" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
                 }
 
 //                var pnp_path = val.doc_path;

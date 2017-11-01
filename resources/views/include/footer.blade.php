@@ -296,17 +296,66 @@
     // $("#my-awesome-dropzone").click(function() {
     //   $(".first_button").prop('disabled', true);
     // });
-    var unsaved = false;
-    $(":input").change(function(){ //trigers change in all input fields including text type
-        unsaved = true;
-    });
-    function unloadPage(){ //alert('ssa');
-        if(unsaved){
-            return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
-        }
-    }
+//    var unsaved = false;
+//    $(":input").change(function(){ //trigers change in all input fields including text type
+//        unsaved = true;
+//        alert(unsaved);
+//    });
+//    
+//    function unloadPage(){ //alert('ssa');
+//        if(unsaved){
+//            alert("You have unsaved changes on this page.?");
+//        }
+//        alert('ddfsd');
+//    }
+//
+//    window.onbeforeunload = unloadPage;
+//    $(window).bind('beforeunload', function(){
+//        unloadPage();
+//        return 'Are ysu sure you want to leave?';
+//    });
+//    window.thisPage = window.thisPage || {};
+//window.thisPage.isDirty = false;
+//
+//window.thisPage.closeEditorWarning = function (event) {
+//    if (window.thisPage.isDirty)
+//        return 'It looks like you have been editing something' +
+//               ' - if you leave before saving, then your changes will be lost.'
+//    else
+//        return undefined;
+//};
+//
+//$("form").on('keyup', 'textarea', // You can use input[type=text] here as well.
+//             function () { 
+//                 window.thisPage.isDirty = true; 
+//             });
+//
+//$("form").submit(function () {
+//    QC.thisPage.isDirty = false;
+//});
+//window.onbeforeunload = window.thisPage.closeEditorWarning;
+$(".btn_back").on('click',function(){
+    var isValid;
+$("input").each(function() {
+   var element = $(this);
+   if (element.val() == "") {
+       isValid = false;
+   }
+});
+alert(isValid);
+//    if ($('input:checked, input[type="text"][value!=""], textarea[value!=""]')) {
+//       alert('dsfs');
+//    }
 
-    window.onbeforeunload = unloadPage;
+})
+//$(document).ready(function() {
+//    $('.form-control input').blur(function()
+//    {
+//        if(!$.trim(this.value).length) {
+//                  alert("kjdh");  //$(this).parents('p').addClass('warning');
+//        }
+//    });
+//})
 </script>
 
 </body>

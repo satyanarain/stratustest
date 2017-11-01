@@ -25,98 +25,27 @@
                             <div class="panel-body clearfix">
                                 <div class="col-md-12 nopadleft">
                                     <div class="form-group clearfix">
-                                        <label class="control-label">Contractor: ABC Construction, Inc.</label>
+                                        <label class="control-label" id="contractor_name_title"></label>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">  
-                                    <h4>PRELIMINARY NOTICES</h4>
-                                    <table class="table convert-data-table data-table mt-6" id="">
+                                <div class="col-md-12">  
+                                    <h4>RELEASES</h4>
+                                    <table class="table convert-data-table data-table mt-6 lien_release_list" id="">
                                       <thead>
                                         <tr>
-                                            <th>CLAIMANT</th>
-                                            <th>DATE</th>
+                                            <th>LIEN NOTE</th>
+                                            <th>BILLED THROUGH</th>
+                                            <th>TYPE</th>
+                                            <th>FILE</th>
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr>
-                                            <td>ABC CONSTRUCTION, INC.</td>
-                                            <td class="date_place">
-                                                <div class="loading_data" style="text-align: center;">
-                                                   <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1ST TIER SUBCONTRACTOR</td>
-                                            <td class="date_place">
-                                                <div class="loading_data" style="text-align: center;">
-                                                   <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2nd TIER SUBCONTRACTOR</td>
-                                            <td class="date_place">
-                                                <div class="loading_data" style="text-align: center;">
-                                                   <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>MATERIAL SUPPLIER, INC.</td>
-                                            <td class="date_place">
-                                                <div class="loading_data" style="text-align: center;">
-                                                   <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>DIRECT MATERIAL SUPPLIER, INC.</td>
-                                            <td class="date_place">
-                                                <div class="loading_data" style="text-align: center;">
-                                                   <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
-                                                </div>
-                                            </td>
-                                        </tr>
                                       </tbody>
                                     </table>
                                 </div>
 
-                                <div class="col-md-6">  
-                                    <h4>RELEASES</h4>
-                                    <!-- <table class="table convert-data-table data-table mt-6" id="">
-                                      <thead>
-                                        <tr>
-                                            <th>CLAIMANT</th>
-                                            <th>DATE</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr>
-                                            <td>ABC CONSTRUCTION, INC.</td>
-                                            <td>XX/XX/2015</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1ST TIER SUBCONTRACTOR</td>
-                                            <td>XX/XX/2015</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2nd TIER SUBCONTRACTOR</td>
-                                            <td>10/01/2015</td>
-                                        </tr>
-                                        <tr>
-                                            <td>MATERIAL SUPPLIER, INC.</td>
-                                            <td>XX/XX/2015</td>
-                                        </tr>
-                                        <tr>
-                                            <td>DIRECT MATERIAL SUPPLIER, INC.</td>
-                                            <td>XX/XX/2015</td>
-                                        </tr>
-                                      </tbody>
-                                    </table> -->
-                                </div>
-
+                             
                                
                                 
                             </div><!-- panel-body Close -->
@@ -132,5 +61,5 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
-<script src="{{ url('/resources/assets/dist/preliminary_single.js') }}"></script>
+<script src="{{ url('/resources/assets/dist/lien_single.js') }}"></script>
 @include('include/footer')

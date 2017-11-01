@@ -14,9 +14,11 @@
     <!-- page head start-->
     <div class="page-head">
         <h3 class="m-b-less project_name" id="project_name_title"></h3><br/>
-        <h3 class="m-b-less"> Add Preliminary Notices</h3>
+        <h3 class="m-b-less"> Add Lien Release</h3>
         <?php $project_id = Request::segment(2); ?>
+        <?php $preliminary_id = Request::segment(4); ?>
         <input type="hidden" id="project_id" value="<?php echo $project_id ?>">
+        <input type="hidden" id="preliminary_id" value="<?php echo $preliminary_id ?>">
         <div class="state-information" style="width: 200px; ">
             <!-- <div class="progress progress-striped active progress-sm m-b-20"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"><span class="sr-only">100% Complete</span></div></div> -->
 
@@ -59,52 +61,33 @@
                             <form role="form" id="add_plans_form">
                                 <div class="row">
                                     <div class="form-group col-md-12">
-                                        <h4>Contractor: <span id="contractor_name"></span></h4>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label for="name_of_report">Preliminary Notice From</label>
-                                        <select class="form-control company_name" id="company_name" ></select>
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        <label for="name_of_report">Under Contract with</label>
-
-                                        <select class="form-control company_name" id="under_contract_with" ></select>
-
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        <label for="name_of_report">In the Amount of <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="amount" onkeypress="return isNumber(event)">
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-                                        <label for="name_of_report">Direct Contractor</label>
-                                        <select class="form-control company_name" id="direct_contractor" ></select>
-
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label for="name_of_report">  Date of Notice was Signed </label>
+                                        <label for="name_of_report">  Billed Through <span class="text-danger">*</span></label>
                                         <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
-                                            <input type="text" readonly="" value="<?php echo date("Y-m-d"); ?>" size="16" class="form-control"  id="date_of_notice_signed">
+                                            <input type="text" readonly="" value="<?php echo date("Y-m-d"); ?>" size="16" class="form-control"  id="billed_through">
                                                 <span class="input-group-btn add-on">
                                                 <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
                                                 </span>
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group col-md-12">
-                                        <label for="name_of_report">   Postmarked Date </label>
-                                        <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
-                                            <input type="text" readonly="" value="<?php echo date("Y-m-d"); ?>" size="16" class="form-control"  id="post_marked_date">
-                                                <span class="input-group-btn add-on">
-                                                <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
-                                                </span>
-                                        </div>
+                                        <label for="lien_note">Note <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" name="lien_note" id="lien_release_note"></textarea>
                                     </div>
-
+                                    
+                                    <div class="form-group">
+                                        <label class="radio-custom check-success">
+                                            <input type="radio" value="partial" name="pplr_type" id="pply_partial" checked="checked">
+                                            <label for="pply_partial">Partial</label>
+                                        
+                                            <input type="radio" value="full" name="pplr_type" id="pply_full">
+                                            <label for="pply_full">Full</label>
+                                        </label>
+                                    </div>
+                                    
                                     <input type="hidden" id="upload_doc_id">
                                     <div class="form-group col-md-12">
-                                        <a data-href="{{ url('/dashboard/'.$project_id.'/preliminary_notice_log') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+                                        <a data-href="{{ url('/dashboard/'.$project_id.'/lien_release_log') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
                                         <!-- <button type="submit" class="btn btn-info sub-btn" id="sub-btn">Upload Preliminary</button> -->
                                         <!-- <button type="submit" class="add_preliminary_notice another_button btn btn-info sub-btn" id="add_preliminary_notice" style="display: none;">Save Another</button> -->
 
@@ -118,18 +101,18 @@
                         </div>
 
                         <div class="col-lg-6">
-                          <label class="m-b-2">Upload Preliminary Notice <span class="text-danger">*</span></label>
+                          <label class="m-b-2">Upload Lien Release <span class="text-danger">*</span></label>
                             <section class="panel upload_doc_panel_performance" id="upload_performance">
                                 <div class="panel-body" style="padding:0px;">
                                     <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
-                                        <input type="hidden" name="document_path" value="/uploads/preliminary_notice/">
+                                        <input type="hidden" name="document_path" value="/uploads/lien_release/">
                                     </form>
                                 </div>
                             </section>
                             <input type="hidden" name="upload_type" id="upload_type" value="single_upload">
                             <input type="hidden" name="standard_doc_id" id="upload_single_doc_id" value="">
-                            <input type="hidden" name="standard_upload" id="upload_doc_meta" value="preliminary_notice">
-                            <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $project_id; ?>">
+                            <input type="hidden" name="standard_upload" id="upload_doc_meta" value="lien_release">
+                            <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $preliminary_id; ?>">
                             <div class="clearfix"></div>
                         </div>
 
@@ -160,5 +143,5 @@
     <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
     <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
     <script src="{{ url('/resources/assets/js/dropzone.js') }}"></script>
-    <script src="{{ url('/resources/assets/dist/preliminary_notice_add.js') }}"></script>
+    <script src="{{ url('/resources/assets/dist/lien_release_add.js') }}"></script>
     @include('include/footer')

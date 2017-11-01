@@ -1153,7 +1153,7 @@ Route::get('dashboard/{project_id}/contact/{user_id}', function () {
 Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('preliminary-notice/add', 'Projects\PreliminaryNoticeController@add_preliminary_notice');
     Route::post('preliminary-notice/{preliminary_id}/update', 'Projects\PreliminaryNoticeController@update_preliminary');
-    Route::post('lien-release/{preliminary_id}/update', 'Projects\PreliminaryNoticeController@update_lienrelease');
+    Route::post('lien-release/{preliminary_id}/add', 'Projects\PreliminaryNoticeController@add_lienrelease');
     Route::get('preliminary-notice/{preliminary_id}', 'Projects\PreliminaryNoticeController@get_preliminary_single');
     Route::get('{project_id}/preliminary-notices', 'Projects\PreliminaryNoticeController@get_preliminary_notices');
     Route::get('{project_id}/lien-releases', 'Projects\PreliminaryNoticeController@get_lien_releases');
@@ -1171,8 +1171,8 @@ Route::get('dashboard/{project_id}/preliminary_notice/add', function () {
 Route::get('dashboard/{project_id}/preliminary_notice/{pre_id}/update', function () {
     return view('/project_preliminary_notice/project_preliminary_notice_update');
 });
-Route::get('dashboard/{project_id}/lien_release/{pre_id}/update', function () {
-    return view('/project_preliminary_notice/lien_release_update');
+Route::get('dashboard/{project_id}/lien_release/{pre_id}/add', function () {
+    return view('/project_preliminary_notice/lien_release_add');
 });
 Route::get('dashboard/{project_id}/preliminary_notice/{pre_id}', function () {
     return view('/project_preliminary_notice/project_preliminary_notice_single');

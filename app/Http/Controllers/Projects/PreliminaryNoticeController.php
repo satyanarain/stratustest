@@ -330,6 +330,15 @@ class PreliminaryNoticeController extends Controller {
                 }
                 else
                 {
+                    
+                    $liens = DB::table('project_preliminary_lien_release')
+                    ->leftJoin('documents', 'project_preliminary_lien_release.lien_release_path', '=', 'documents.doc_id')
+                    ->select('project_preliminary_lien_release.*', 'documents.*')
+                    ->where('pplr_preliminary_id', '=', $preliminary_id)
+                    ->get();
+                    foreach($liens as $lien)
+                        $query->liens[]=$lien;
+                    //print_r($query);die;
                     $result = array('data'=>$query,'code'=>200);
                     return response()->json($result, 200);
                 }
@@ -393,7 +402,37 @@ class PreliminaryNoticeController extends Controller {
                   }
                   else
                   {
+                    
+                    foreach($query as $key=>$res)
+                    {
+                        $query1 = DB::table('project_preliminary_lien_release')
+                        ->select('project_preliminary_lien_release.*')
+                        ->where('pplr_preliminary_id', '=', $res->ppn_id)
+                        ->where('pplr_type', '=', 'full')        
+                        ->first();
+                        if(count($query1))
+                        {
+                            $query[$key]->release_uploaded = 'Y';
+                            $query[$key]->unconditional_uploaded = 'Y';
+                        }else{
+                            $query2 = DB::table('project_preliminary_lien_release')
+                            ->select('project_preliminary_lien_release.*')
+                            ->where('pplr_preliminary_id', '=', $res->ppn_id)
+                            ->where('pplr_type', '=', 'partial')        
+                            ->first();
+                            if(count($query2))
+                            {
+                                $query[$key]->release_uploaded = 'Y';
+                                $query[$key]->unconditional_uploaded = '';
+                            }else{
+                                $query[$key]->release_uploaded = '';
+                                $query[$key]->unconditional_uploaded = '';
+                            }
+                        }
+                        
+                    }
                     $result = array('data'=>$query,'code'=>200);
+                    //print_r($result);die;
                     return response()->json($result, 200);
                   }
                 // if(count($query) < 1)
@@ -524,54 +563,43 @@ class PreliminaryNoticeController extends Controller {
      Update Notice status by passing preliminary_id
     --------------------------------------------------------------------------
     */
-    public function update_lienrelease(Request $request, $preliminary_id)
+    public function add_lienrelease(Request $request, $preliminary_id)
     {
         try
         {
-            // $user = array(
-            //     'userid'    => Auth::user()->id,
-            //     'role'      => Auth::user()->role
-            // );
-            // $user = (object) $user;
-            // $post = new Resource_Post(); // You create a new resource Post instance
-            // if (Gate::forUser($user)->denies('allow_admin', [$post,false])) {
-            //     $result = array('code'=>403, "description"=>"Access denies");
-            //     return response()->json($result, 403);
-            // }
-            // else {
-                // $date       = $request['date'];
-                // $name       = $request['name'];
-                // $approval   = $request['approval'];
-                $status     = $request['status'];
-                $project_id = $request['project_id'];
-                $user_id    = Auth::user()->id;
+            
+            $pplr_project_id       = $request['pplr_project_id'];
+            $pplr_preliminary_id = $request['pplr_preliminary_id'];
+            $date_of_billed_through       = $request['date_of_billed_through'];
+            $lien_release_note   = $request['lien_release_note'];
+            $lien_release_path  = $request['lien_release_path'];
+            $pplr_type = $request['pplr_type'];
             // Check User Permission Parameter 
             $user_id = Auth::user()->id;
-            $permission_key = 'preliminary_update';
-            $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+            $permission_key = 'preliminary_add';
+            $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($pplr_project_id, $user_id, $permission_key);
             if(count($check_single_user_permission) < 1){
               $result = array('code'=>403, "description"=>"Access Denies");
               return response()->json($result, 403);
             }
             else {
                 $information = array(
-                    // "date"        => $date,
-                    // "name"        => $name,
-                    // "approval"    => $approval,
-                    // "file_path"   => $file_path,
-                    "status"      => $status,
-                    "project_id"  => $project_id,
-                    "user_id"     => $user_id,
+                    "pplr_project_id"=> $pplr_project_id,
+                    "pplr_preliminary_id"=> $pplr_preliminary_id,
+                    "date_of_billed_through"=> $date_of_billed_through,
+                    "lien_release_note"=> $lien_release_note,
+                    "lien_release_path"=> $lien_release_path,
+                    "pplr_type"=> $pplr_type,
+                    "pplr_user_id"=>$user_id
                 );
-
                 $rules = [
-                    // 'date'        => 'required',
-                    // 'name'        => 'required',
-                    // 'approval'    => 'required',
-                    // 'file_path'   => 'required',
-                    'status'      => 'required',
-                    'project_id'  => 'required|numeric',
-                    'user_id'     => 'required|numeric'
+                    'pplr_project_id'=> 'required',
+                    'pplr_preliminary_id'=> 'required',
+                    'date_of_billed_through'    => 'required',
+                    'lien_release_note'   => 'required',
+                    'lien_release_path'  => 'required',
+                    'pplr_type'     => 'required',
+                    'pplr_user_id'=>'required'
                 ];
                 $validator = Validator::make($information, $rules);
                 if ($validator->fails())
@@ -580,65 +608,9 @@ class PreliminaryNoticeController extends Controller {
                 }
                 else
                 {
-                    $query = DB::table('project_preliminary_notice')
-                        ->where('ppn_id', '=', $preliminary_id)
-                        ->update(['notice_status' => $status, 'ppn_project_id' => $project_id, 'ppn_user_id' => $user_id]);
-                    if(count($query) < 1)
-                    {
-                        $result = array('code'=>400, "description"=>"No records found");
-                        return response()->json($result, 400);
-                    }
-                    else
-                    {
-
-                        // Start Check User Permission and send notification and email  
-                        // Get Project Users
-                      $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
-
-                      // Check User Project Permission  
-                      foreach ($check_project_users as $check_project_user) {
-                        // Check User Permission Parameter 
-                        $user_id              = $check_project_user->id;
-                        $permission_key       = 'preliminary_view_all';
-                        // Notification Parameter
-                        $project_id           = $project_id;
-                        $notification_title   = 'Update preliminary notice in Project: ' .$check_project_user->p_name;
-                        $url                  = App::make('url')->to('/');
-                        $link                 = "/dashboard/".$project_id."/preliminary_notice/".$preliminary_id;
-                        $date                 = date("M d, Y h:i a");
-                        $email_description    = 'Update preliminary notice in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
-
-                        $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
-                        if(count($check_single_user_permission) < 1){
-                          continue;
-                        }
-                        else {
-                          // Send Notification to users
-                          $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
-                       
-                          $user_detail = array(
-                            'id'              => $check_project_user->id,
-                            'name'            => $check_project_user->username,
-                            'email'           => $check_project_user->email,
-                            'link'            => $link,
-                            'date'            => $date,
-                            'project_name'    => $check_project_user->p_name,
-                            'title'           => $notification_title,
-                            'description'     => $email_description
-                          );
-                          $user_single = (object) $user_detail;
-                          Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-                              $message->from('no-reply@sw.ai', 'StratusCM');
-                              $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-                          });
-                        }
-
-                      } // End Foreach
-                      // End Check User Permission and send notification and email 
-
-                        $result = array('data'=>$query,'code'=>200);
-                        return response()->json($result, 200);
-                    }
+                    $query = DB::table('project_preliminary_lien_release')->insertGetId($information);
+                    $result = array('description'=>"Added successfully",'code'=>200);
+                    return response()->json($result, 200);
                 }
             }
         }

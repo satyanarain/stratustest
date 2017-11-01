@@ -37,8 +37,8 @@
                                     <th>Date of Notice Signed</th>
                                     <th>Postmarked Date</th>
                                     <th>Preliminary Notice</th>
-                                    <th>Status</th>
-                                    <th>Lien Status</th>
+                                    <th>Release Uploaded</th>
+                                    <th>Unconditional Uploaded</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
