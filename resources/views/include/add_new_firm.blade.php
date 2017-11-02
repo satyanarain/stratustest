@@ -143,6 +143,7 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
             // console.log(data.data);
             // Foreach Loop 
+            $("#company_type").append('<option value="">Select Company Type</option>');
             jQuery.each(data.data, function( i, val ) {
                 if(val.ct_status == 'active'){
                     $("#company_type").append(

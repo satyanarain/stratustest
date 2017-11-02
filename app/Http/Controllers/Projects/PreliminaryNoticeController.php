@@ -299,7 +299,7 @@ class PreliminaryNoticeController extends Controller {
     {
         try
         {
-            // $user = array(
+            // // $user = array(
             //     'userid'    => Auth::user()->id,
             //     'role'      => Auth::user()->role
             // );
@@ -481,7 +481,7 @@ class PreliminaryNoticeController extends Controller {
     
     /*
     ----------------------------------------------------------------------------------
-     Get Lien Releases by padding project ID
+     Get Lien Releases by passing project ID
     ----------------------------------------------------------------------------------
     */
     public function get_lien_releases(Request $request, $project_id)

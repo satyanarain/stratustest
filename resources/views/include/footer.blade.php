@@ -334,20 +334,32 @@
 //    QC.thisPage.isDirty = false;
 //});
 //window.onbeforeunload = window.thisPage.closeEditorWarning;
-$(".btn_back").on('click',function(){
-    var isValid;
-$("input").each(function() {
-   var element = $(this);
-   if (element.val() == "") {
-       isValid = false;
-   }
+$(document).ready(function() {
+    $(".btn_back").on('click',function(){
+        var isFilled = false;
+        $("input[type=text],select").each(function() {
+            //alert($(this).val());
+           if ($(this).val() != "") {
+               isFilled = true;
+               return false;
+           }
+        });
+        //alert($('input:checkbox').is(':checked'));
+        if($('input:checkbox').is(':checked'))
+        {
+            isFilled = true;
+            return false;
+        }
+//        $("input[type=text]").each(function() {
+//           alert($(this).val());
+//           if ($(this).val() != "") {
+//               isFilled = true;
+//               return false;
+//           }
+//        });
+        alert(isFilled);
+    });
 });
-alert(isValid);
-//    if ($('input:checked, input[type="text"][value!=""], textarea[value!=""]')) {
-//       alert('dsfs');
-//    }
-
-})
 //$(document).ready(function() {
 //    $('.form-control input').blur(function()
 //    {
