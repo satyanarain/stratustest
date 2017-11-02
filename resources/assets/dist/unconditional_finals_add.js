@@ -217,6 +217,9 @@ $('.company_name').change(function(){
         .done(function(data, textStatus, jqXHR) {
         // console.log(data);
         // Foreach Loop 
+        $(".company_name").append(
+            '<option value="">Select Company</option>'
+        )
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status == 'active'){
                 $(".company_name").append(

@@ -99,7 +99,7 @@
                                           </div>
 
                                           <div class="form-group col-md-12">
-                                              <a href="#" class="btn btn-info btn_back">Back New</a>
+                                              <a href="{{ url('/dashboard/'.$project_id.'/standards') }}" class="btn btn-info btn_back" onclick="return checkFormFilled">Back New</a>
                                               <a data-href="{{ url('/dashboard/'.$project_id.'/standards') }}" class="btn btn-info back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
                                               <button type="submit" class="add_standard_form first_button btn btn-info ">Save</button>
                                               <!-- <button type="submit" class="add_standard_form another_button btn btn-info" style="display: none;">Save Another</button> -->

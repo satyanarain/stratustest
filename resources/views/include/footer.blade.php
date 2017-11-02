@@ -296,78 +296,39 @@
     // $("#my-awesome-dropzone").click(function() {
     //   $(".first_button").prop('disabled', true);
     // });
-//    var unsaved = false;
-//    $(":input").change(function(){ //trigers change in all input fields including text type
-//        unsaved = true;
-//        alert(unsaved);
-//    });
-//    
-//    function unloadPage(){ //alert('ssa');
-//        if(unsaved){
-//            alert("You have unsaved changes on this page.?");
-//        }
-//        alert('ddfsd');
-//    }
-//
-//    window.onbeforeunload = unloadPage;
-//    $(window).bind('beforeunload', function(){
-//        unloadPage();
-//        return 'Are ysu sure you want to leave?';
-//    });
-//    window.thisPage = window.thisPage || {};
-//window.thisPage.isDirty = false;
-//
-//window.thisPage.closeEditorWarning = function (event) {
-//    if (window.thisPage.isDirty)
-//        return 'It looks like you have been editing something' +
-//               ' - if you leave before saving, then your changes will be lost.'
-//    else
-//        return undefined;
-//};
-//
-//$("form").on('keyup', 'textarea', // You can use input[type=text] here as well.
-//             function () { 
-//                 window.thisPage.isDirty = true; 
-//             });
-//
-//$("form").submit(function () {
-//    QC.thisPage.isDirty = false;
-//});
-//window.onbeforeunload = window.thisPage.closeEditorWarning;
 $(document).ready(function() {
     $(".btn_back").on('click',function(){
-        var isFilled = false;
-        $("input[type=text],select").each(function() {
-            //alert($(this).val());
-           if ($(this).val() != "") {
-               isFilled = true;
-               return false;
-           }
-        });
-        //alert($('input:checkbox').is(':checked'));
-        if($('input:checkbox').is(':checked'))
-        {
-            isFilled = true;
-            //return false;
-        }
-//        $("input[type=text]").each(function() {
-//           alert($(this).val());
-//           if ($(this).val() != "") {
-//               isFilled = true;
-//               return false;
-//           }
-//        });
-        alert(isFilled);
+        checkFormFilled();
     });
 });
-//$(document).ready(function() {
-//    $('.form-control input').blur(function()
-//    {
-//        if(!$.trim(this.value).length) {
-//                  alert("kjdh");  //$(this).parents('p').addClass('warning');
-//        }
-//    });
-//})
+function checkFormFilled()
+{
+    var isFilled = false;
+    $("input[type=text],select").each(function() {
+        //alert($(this).val());
+       if ($(this).val() != "") {
+           isFilled = true;
+           return false;
+       }
+    });
+    //alert($('input:checkbox').is(':checked'));
+    if($('input:checkbox').is(':checked'))
+    {
+        isFilled = true;
+        //return false;
+    }
+
+    if(isFilled==true){
+        $("#confirm-back").modal("show");
+        //alert("form filled");
+    }else{
+        return true;
+    }
+}
+window.onbeforeunload = function(){
+  checkFormFilled();
+  //return 'Are you sure you want to leaves?';
+};
 </script>
 
 </body>
