@@ -75,7 +75,7 @@ $(document).ready(function() {
                 }
                 $(".lien_release_list").append(
                     '<tr><td>'+val.lien_release_note+'</td><td>'+val.date_of_billed_through+'</td>\n\
-                    <td>'+val.pplr_type+'</td><td>'+pplr_path_value+'</td></tr>'
+                    <td>'+capitalize(val.pplr_type)+'</td><td>'+pplr_path_value+'</td></tr>'
                 )
             });
             $(".loading_data").hide();
@@ -97,3 +97,8 @@ $(document).ready(function() {
             }
         })
 });
+
+function capitalize(s)
+{
+    return s[0].toUpperCase() + s.slice(1);
+}

@@ -77,10 +77,10 @@
                                     
                                     <div class="form-group">
                                         <label class="radio-custom check-success">
-                                            <input type="radio" value="Partial" name="pplr_type" id="pply_partial" checked="checked">
+                                            <input type="radio" value="partial" name="pplr_type" id="pply_partial" checked="checked">
                                             <label for="pply_partial">Partial</label>
                                         
-                                            <input type="radio" value="Full" name="pplr_type" id="pply_full">
+                                            <input type="radio" value="full" name="pplr_type" id="pply_full">
                                             <label for="pply_full">Full</label>
                                         </label>
                                     </div>

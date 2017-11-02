@@ -335,7 +335,7 @@ class PreliminaryNoticeController extends Controller {
                     ->leftJoin('documents', 'project_preliminary_lien_release.lien_release_path', '=', 'documents.doc_id')
                     ->select('project_preliminary_lien_release.*', 'documents.*')
                     ->where('pplr_preliminary_id', '=', $preliminary_id)
-                    ->get();
+                    ->orderBy('added_on', 'desc')->get();
                     foreach($liens as $lien)
                         $query->liens[]=$lien;
                     //print_r($query);die;

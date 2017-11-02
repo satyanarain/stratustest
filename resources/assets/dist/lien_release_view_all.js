@@ -126,7 +126,7 @@ $(document).ready(function() {
                     val.date_of_notice_signed,
                     val.post_marked_date,
                     //pnp_path_value,
-                    val.prelim_status,
+                    capitalize(val.prelim_status).capitalize(),
                     update_permission+single_view
                 ]).draw( false );
                 count++;
@@ -168,3 +168,12 @@ $(document).ready(function() {
         },2000)
 
 });
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+function capitalize(s)
+{
+    return s[0].toUpperCase() + s.slice(1);
+}
