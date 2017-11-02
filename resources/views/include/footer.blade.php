@@ -348,7 +348,7 @@ $(document).ready(function() {
         if($('input:checkbox').is(':checked'))
         {
             isFilled = true;
-            return false;
+            //return false;
         }
 //        $("input[type=text]").each(function() {
 //           alert($(this).val());

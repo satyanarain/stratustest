@@ -412,8 +412,8 @@ class PreliminaryNoticeController extends Controller {
                         ->first();
                         if(count($query1))
                         {
-                            $query[$key]->release_uploaded = 'Y';
-                            $query[$key]->unconditional_uploaded = 'Y';
+                            $query[$key]->release_uploaded = 'Yes';
+                            $query[$key]->unconditional_uploaded = 'Yes';
                         }else{
                             $query2 = DB::table('project_preliminary_lien_release')
                             ->select('project_preliminary_lien_release.*')
@@ -422,11 +422,11 @@ class PreliminaryNoticeController extends Controller {
                             ->first();
                             if(count($query2))
                             {
-                                $query[$key]->release_uploaded = 'Y';
-                                $query[$key]->unconditional_uploaded = '';
+                                $query[$key]->release_uploaded = 'Yes';
+                                $query[$key]->unconditional_uploaded = 'No';
                             }else{
-                                $query[$key]->release_uploaded = '';
-                                $query[$key]->unconditional_uploaded = '';
+                                $query[$key]->release_uploaded = 'No';
+                                $query[$key]->unconditional_uploaded = 'No';
                             }
                         }
                         
@@ -531,6 +531,32 @@ class PreliminaryNoticeController extends Controller {
                   }
                   else
                   {
+                    foreach($query as $key=>$res)
+                    {
+                        $query1 = DB::table('project_preliminary_lien_release')
+                        ->select('project_preliminary_lien_release.*')
+                        ->where('pplr_preliminary_id', '=', $res->ppn_id)
+                        ->where('pplr_type', '=', 'full')        
+                        ->first();
+                        if(count($query1))
+                        {
+                            $query[$key]->prelim_status = 'Full';
+                        }else{
+                            $query2 = DB::table('project_preliminary_lien_release')
+                            ->select('project_preliminary_lien_release.*')
+                            ->where('pplr_preliminary_id', '=', $res->ppn_id)
+                            ->where('pplr_type', '=', 'partial')        
+                            ->first();
+                            if(count($query2))
+                            {
+                                $query[$key]->prelim_status = 'Partial';
+                            }else{
+                                $query[$key]->prelim_status = '';
+                            }
+                        }
+                        
+                    }
+                    //print_r($query);die;
                     $result = array('data'=>$query,'code'=>200);
                     return response()->json($result, 200);
                   }

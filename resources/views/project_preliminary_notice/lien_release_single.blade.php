@@ -9,7 +9,7 @@
             <!-- page head start-->
             <div class="page-head">
                 <h3 class="m-b-less project_name" id="project_name_title"></h3><br/>
-                <h3 class="m-b-less">Preliminary Notice &amp; Release Log </h3>
+                <h3 class="m-b-less">Lien Release Log </h3>
                  <div class="state-information">
                     <a href="{{ url('/dashboard/'.$project_id.'/lien_release_log') }}" class="btn btn-info">Back</a>
                 </div>

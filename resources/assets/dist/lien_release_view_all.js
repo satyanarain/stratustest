@@ -126,7 +126,7 @@ $(document).ready(function() {
                     val.date_of_notice_signed,
                     val.post_marked_date,
                     //pnp_path_value,
-                    notice_status,
+                    val.prelim_status,
                     update_permission+single_view
                 ]).draw( false );
                 count++;
