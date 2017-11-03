@@ -99,11 +99,12 @@
                                           </div>
 
                                           <div class="form-group col-md-12">
-                                              <a href="{{ url('/dashboard/'.$project_id.'/standards') }}" class="btn btn-info btn_back" onclick="return checkFormFilled">Back New</a>
-                                              <a data-href="{{ url('/dashboard/'.$project_id.'/standards') }}" class="btn btn-info back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+                                              <a href="{{ url('/dashboard/'.$project_id.'/standards') }}" class="btn btn-info btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
+<!--                                              <a data-href="{{ url('/dashboard/'.$project_id.'/standards') }}" class="btn btn-info back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
                                               <button type="submit" class="add_standard_form first_button btn btn-info ">Save</button>
                                               <!-- <button type="submit" class="add_standard_form another_button btn btn-info" style="display: none;">Save Another</button> -->
-                                              <a data-href="{{ url('/dashboard/'.$project_id.'/specifications') }}" class="btn btn-info continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
+<!--                                              <a data-href="{{ url('/dashboard/'.$project_id.'/specifications') }}" class="btn btn-info continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>-->
+                                                <a href="{{ url('/dashboard/'.$project_id.'/specifications') }}" class="btn btn-info continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
                                               <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                           </div>
                                       </div>

@@ -298,38 +298,39 @@
     // });
 $(document).ready(function() {
     $(".btn_back").on('click',function(){
-        checkFormFilled();
+        checkFormFilled('btn_back');
+    });
+    $(".continue_button").on('click',function(){
+        checkFormFilled('continue_button');
     });
 });
-function checkFormFilled()
+function checkFormFilled(classname)
 {
     var isFilled = false;
     $("input[type=text],select").each(function() {
-        //alert($(this).val());
-       if ($(this).val() != "") {
+       if ($(this).val() !== "") {
            isFilled = true;
            return false;
        }
     });
-    //alert($('input:checkbox').is(':checked'));
     if($('input:checkbox').is(':checked'))
     {
         isFilled = true;
-        //return false;
     }
 
-    if(isFilled==true){
+    if(isFilled===true){
+        var href = $("."+classname).attr('href');
         $("#confirm-back").modal("show");
-        //alert("form filled");
+        $('.confirm_back_button_alert').attr('href', href);
+        return false;
     }else{
         return true;
     }
 }
 window.onbeforeunload = function(){
-  checkFormFilled();
-  //return 'Are you sure you want to leaves?';
+  checkFormFilled('btn_back');
+  return false;
 };
 </script>
-
 </body>
 </html>
