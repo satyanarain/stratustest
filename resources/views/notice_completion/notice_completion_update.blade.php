@@ -56,7 +56,8 @@
                                     </div>
 
                                     <div class="form-group col-md-12 m-t-20">
-                                        <a data-href="{{ url('/dashboard/'.$project_id.'/notice_completion') }}" class="btn btn-info  back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                        <a data-href="{{ url('/dashboard/'.$project_id.'/notice_completion') }}" class="btn btn-info  back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                        <a href="{{ url('/dashboard/'.$project_id.'/notice_completion') }}" class="btn btn-info btn_back1">Back</a>
                                         <button type="submit" class="btn btn-info sub-btn no-mar"  id="update_notice_completion_form">Save</button>
                                         <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                     </div>

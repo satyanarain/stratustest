@@ -193,7 +193,8 @@
 
 
         <div class="form-group col-md-12">
-            <a data-href="{{ url('/dashboard/'.$project_id.'/minutes_meeting') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--            <a data-href="{{ url('/dashboard/'.$project_id.'/minutes_meeting') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+            <a href="{{ url('/dashboard/'.$project_id.'/minutes_meeting') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
             <button type="submit" class="btn btn-info sub-btn submit_notice_add_form first_button">Save</button>
             <!-- <button type="submit" class="btn btn-info sub-btn submit_notice_add_form another_button" style="display: none;">Save Another</button> -->
             <a data-href="{{ url('/dashboard/'.$project_id.'/labor_compliance') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>

@@ -95,7 +95,8 @@
                                         </div>
 
                                         <div class="form-group col-md-12">
-                                            <a data-href="{{ url('/dashboard/'.$project_id.'/specifications') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                            <a data-href="{{ url('/dashboard/'.$project_id.'/specifications') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                            <a href="{{ url('/dashboard/'.$project_id.'/specifications') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                                             <button type="submit" class="add_standard_form first_button btn btn-info sub-btn">Save</button>
                                             <!-- <button type="submit" class="add_standard_form another_button btn btn-info sub-btn" style="display: none;">Save Another</button> -->
                                             <a data-href="{{ url('/dashboard/'.$project_id.'/plans') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>

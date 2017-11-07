@@ -41,7 +41,8 @@
                                     <div class="form-group col-md-12 m-t-20">
                                         <!-- <a href="{{ url('/dashboard/improvement') }}" class="btn btn-info">Back</a> -->
 
-                                        <a data-href="{{ url('/dashboard/improvement') }}" class="btn btn-info back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                        <a data-href="{{ url('/dashboard/improvement') }}" class="btn btn-info back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                        <a href="{{ url('/dashboard/improvement') }}" class="btn btn-info btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
 
                                         <button type="submit" class="btn btn-info no-mar">Submit</button>
                                     </div>

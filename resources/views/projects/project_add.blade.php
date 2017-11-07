@@ -173,8 +173,8 @@
 
                                     <div class="form-group col-md-12">
                                         
-                                        <a data-href="{{ url('/dashboard') }}" class="btn btn-info  back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
-
+<!--                                        <a data-href="{{ url('/dashboard') }}" class="btn btn-info  back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                        <a href="{{ url('/dashboard') }}" class="btn btn-info btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                                         <button type="submit" id="add_project_form" class="btn btn-info no-mar">Submit</button>
                                         <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                         <!-- <button type="submit" class="btn btn-lg btn-success addon-btn  pull-right">

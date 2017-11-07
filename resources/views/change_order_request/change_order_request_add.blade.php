@@ -147,7 +147,8 @@
                                     <input type="hidden" name="standard_upload" id="upload_doc_meta" value="cor">
                                     <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $project_id; ?>">
                                     <input type="hidden" name="standard_upload" id="cor_new_number" value="">
-                                    <a data-href="{{ url('/dashboard/'.$project_id.'/change_order_request_log') }}" class="btn btn-info  back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                    <a data-href="{{ url('/dashboard/'.$project_id.'/change_order_request_log') }}" class="btn btn-info  back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                    <a href="{{ url('/dashboard/'.$project_id.'/change_order_request_log') }}" class="btn btn-info btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                                     <button type="submit" class="add_cor btn btn-info sub-btn first_button no-mar">Save</button>
                                     <button type="submit" class="add_cor btn btn-info sub-btn another_button no-mar" style="display: none;">Save Another</button>
                                     <a data-href="{{ url('/dashboard/'.$project_id.'/minutes_meeting') }}" class="btn btn-info  continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>

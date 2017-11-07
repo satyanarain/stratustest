@@ -43,7 +43,8 @@
                                         <div class="form-group col-md-12">
                                             <!-- <a href="{{ url('/dashboard/currency') }}" class="btn btn-info sub-btn no-mar">Back</a> -->
 
-                                             <a data-href="{{ url('/dashboard/currency') }}" class="btn btn-info back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                             <a data-href="{{ url('/dashboard/currency') }}" class="btn btn-info back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                             <a href="{{ url('/dashboard/currency') }}" class="btn btn-info btn_back1">Back</a>
 
                                             <button type="submit" class="btn btn-info sub-btn no-mar">Submit</button>
                                         </div>

@@ -83,7 +83,8 @@
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <a data-href="{{ url('/dashboard/'.$project_id.'/acceptance_letter') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                        <a data-href="{{ url('/dashboard/'.$project_id.'/acceptance_letter') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                        <a href="{{ url('/dashboard/'.$project_id.'/acceptance_letter') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                                         <button type="submit" id="add_acceptance_letter_form" class="first_button btn btn-info sub-btn">Save</button>
                                         <!-- <button type="submit" id="add_acceptance_letter_form" class="another_button btn btn-info sub-btn" style="display: none;">Save Another</button> -->
                                         <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>

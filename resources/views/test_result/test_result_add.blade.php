@@ -283,7 +283,8 @@
     </div>
 </div>
 <div class="form-group col-md-12 nopadleft">
-    <a data-href="{{ url('/dashboard/'.$project_id.'/test_result') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--    <a data-href="{{ url('/dashboard/'.$project_id.'/test_result') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+    <a href="{{ url('/dashboard/'.$project_id.'/test_result') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
     <button type="submit" class="btn btn-info sub-btn first_button add_test_result_form">Save</button>
     <!-- <button type="submit" class="btn btn-info sub-btn another_button add_test_result_form" style="display: none;">Save Another</button> -->
     <a data-href="{{ url('/dashboard/'.$project_id.'/preliminary_notice_log') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>

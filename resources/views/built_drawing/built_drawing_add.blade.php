@@ -129,7 +129,8 @@
                                 </div>
 
                                 <div class="form-group col-md-12 nopadleft">
-                                    <a data-href="{{ url('/dashboard/'.$project_id.'/built_drawing') }}" class="btn btn-info back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                    <a data-href="{{ url('/dashboard/'.$project_id.'/built_drawing') }}" class="btn btn-info back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                    <a href="{{ url('/dashboard/'.$project_id.'/built_drawing') }}" class="btn btn-info btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                                     <button type="submit" class="add_built_drawing first_button btn btn-info no-mar">Save</button>
                                     <button type="submit" class="add_built_drawing another_button btn btn-info no-mar" style="display: none;">Save Another</button>
                                     <a data-href="{{ url('/dashboard/'.$project_id.'/notice_completion') }}" class="btn btn-info continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>

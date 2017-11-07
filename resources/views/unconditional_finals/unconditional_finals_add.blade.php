@@ -98,7 +98,8 @@
 
                                     <input type="hidden" id="upload_doc_id">
                                     <div class="form-group col-md-12">
-                                        <a data-href="{{ url('/dashboard/'.$project_id.'/unconditional_finals') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                        <a data-href="{{ url('/dashboard/'.$project_id.'/unconditional_finals') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                        <a href="{{ url('/dashboard/'.$project_id.'/unconditional_finals') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                                         <!-- <button type="submit" class="btn btn-info sub-btn" id="sub-btn">Upload Preliminary</button> -->
                                         <!-- <button type="submit" class="add_unconditional_finals another_button btn btn-info sub-btn" style="display: none;">Save Another</button> -->
 

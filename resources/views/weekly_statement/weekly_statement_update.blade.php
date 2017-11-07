@@ -235,7 +235,8 @@
     </div>
 
     <div class="form-group col-md-12">
-        <a data-href="{{ url('/dashboard/'.$project_id.'/weekly_statement') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--        <a data-href="{{ url('/dashboard/'.$project_id.'/weekly_statement') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+        <a href="{{ url('/dashboard/'.$project_id.'/weekly_statement') }}" class="btn btn-info sub-btn btn_back1">Back</a>
         <button type="submit" id="update_weekly_report" class="btn btn-info sub-btn">Save</button>
         <!-- <a id="create_weekly_report" class="btn btn-info sub-btn">Create PDF</a> -->
         <a data-href="{{ url('/dashboard/'.$project_id.'/bid_documents') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>

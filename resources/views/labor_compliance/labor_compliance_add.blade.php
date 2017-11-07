@@ -323,7 +323,8 @@
 
                                 </div>
                                 <div class="form-group col-md-12 nopadleft">
-                                    <a data-href="{{ url('/dashboard/'.$project_id.'/labor_compliance') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                    <a data-href="{{ url('/dashboard/'.$project_id.'/labor_compliance') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                    <a href="{{ url('/dashboard/'.$project_id.'/labor_compliance') }}" class="btn sub-btn btn-info btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                                     <button type="submit" id="add_labor_compliance" class="first_button btn btn-info sub-btn">Save</button>
                                     <!-- <button type="submit" id="add_labor_compliance" class="another_button btn btn-info sub-btn" style="display: none;">Save Another</button> -->
                                     <a data-href="{{ url('/dashboard/'.$project_id.'/unconditional_finals') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>

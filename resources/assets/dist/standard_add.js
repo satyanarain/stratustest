@@ -265,7 +265,7 @@ $(document).ready(function() {
             '<option value="">Select Company</option>'
         )
         jQuery.each(data.data, function( i, val ) {
-            if(val.f_status == 'active'){
+            if(val.f_status === 'active'){
                 $(".company_name").append(
                     '<option value="'+val.f_id+'">'+val.f_name+'</option>'
                 )

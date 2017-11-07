@@ -120,7 +120,8 @@
                 </div>
             </div>
             <div class="form-group col-md-12">
-                <a data-href="{{ url('/dashboard/'.$project_id.'/notice_award') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                <a data-href="{{ url('/dashboard/'.$project_id.'/notice_award') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                <a href="{{ url('/dashboard/'.$project_id.'/notice_award') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                 <button type="submit" id="submit_new_btn" class="btn btn-info sub-btn submit_notice_add_form">Save</button>
                 <button  class="btn btn-info sub-btn" id="cmd">Save</button>
                 <a data-href="{{ url('/dashboard/'.$project_id.'/contract') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
@@ -163,7 +164,8 @@
             <div class="form-group col-md-12">
 
 
-                <a data-href="{{ url('/dashboard/'.$project_id.'/notice_award') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                <a data-href="{{ url('/dashboard/'.$project_id.'/notice_award') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                <a href="{{ url('/dashboard/'.$project_id.'/notice_award') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                 <button type="submit" class="btn btn-info sub-btn submit_notice_add_form">Save</button>
                 <a data-href="{{ url('/dashboard/'.$project_id.'/contract') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
                 <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>

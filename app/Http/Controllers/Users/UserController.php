@@ -817,7 +817,7 @@ class UserController extends Controller {
               $user = (object) $information;
               Mail::send('emails.add_new_account',['user' => $user], function ($message) use ($user) {
                   $message->from('no-reply@sw.ai', 'StratusCM');
-                  $message->to($user->email, $user->username)->subject('New Account Add on Stratus');
+                  $message->to($user->email, $user->username)->subject('New account added on StratusCM');
               });
 
          $result = array('description'=>"New user Insert Successfully",'code'=>200,'user_id'=>$lastInsert_id);

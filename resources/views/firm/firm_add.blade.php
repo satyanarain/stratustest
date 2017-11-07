@@ -98,7 +98,8 @@
                                     <div class="form-group col-md-12">
                                         <!-- <a href="{{ url('/dashboard/firms') }}" class="btn btn-info sub-btn">Back</a> -->
 
-                                        <a data-href="{{ url('/dashboard/firms') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                        <a data-href="{{ url('/dashboard/firms') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                        <a href="{{ url('/dashboard/firms') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                                         
                                         <button class="add_firm_form btn btn-info sub-btn first_button">Submit</button>
                                         <button class="add_firm_form btn btn-info sub-btn another_button" style="display: none;">Add Another</button>

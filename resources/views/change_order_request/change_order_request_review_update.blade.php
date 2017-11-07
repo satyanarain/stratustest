@@ -153,7 +153,8 @@
 
 
                                             <div class="form-group col-md-12">
-                                               <a data-href="{{ url('/dashboard/'.$project_id.'/change_order_request') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                               <a data-href="{{ url('/dashboard/'.$project_id.'/change_order_request') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                               <a href="{{ url('/dashboard/'.$project_id.'/change_order_request') }}" class="btn btn-info sub-btn btn_back1">Back</a>
                                                 <button type="submit" class="btn btn-info sub-btn" id="submit_cor_review_form">Save</button>
                                             </div>
                                         </div><!-- Row Close -->

@@ -219,10 +219,11 @@ $(document).ready(function() {
             cache: false
         })
             .done(function(data, textStatus, jqXHR) {
-
-
                 // console.log(data.data);
                 // Foreach Loop
+                $("#project_type").append(
+                    '<option value="">Select Improvement Types</option>'
+                )
                 jQuery.each(data.data, function( i, val ) {
                     if(val.pt_status == 'active'){
                         $("#project_type").append(

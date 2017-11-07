@@ -111,7 +111,8 @@
 
                                      <!-- <a href="{{ url('/dashboard/users') }}" class="btn btn-info sub-btn">Back</a> -->
 
-                                     <a data-href="{{ url('/dashboard/users') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                     <a data-href="{{ url('/dashboard/users') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                     <a href="{{ url('/dashboard/users') }}" class="btn btn-info sub-btn btn_back1">Back</a>
 
                                      <a href="{{ url('/users/add') }}" class="btn btn-info sub-btn pull-right">Save Another User</a>
                                         <button type="submit" id="update_profile_form" class="btn btn-info sub-btn">Save</button>

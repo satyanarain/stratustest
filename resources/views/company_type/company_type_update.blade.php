@@ -36,7 +36,8 @@
                                     <div class="form-group col-md-12">
                                         <!-- <a href="{{ url('/dashboard/company_type') }}" class="btn btn-info sub-btn">Back</a> -->
 
-                                         <a data-href="{{ url('/dashboard/company_type') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--                                         <a data-href="{{ url('/dashboard/company_type') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                         <a href="{{ url('/dashboard/company_type') }}" class="btn btn-info sub-btn btn_back1">Back</a>
 
                                         <button type="submit" class="btn btn-info sub-btn">Submit</button>
 

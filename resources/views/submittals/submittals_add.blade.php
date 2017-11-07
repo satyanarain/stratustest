@@ -148,7 +148,8 @@
         </div>
 
         <div class="form-group col-md-12">
-            <a data-href="{{ url('/dashboard/'.$project_id.'/submittals') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--            <a data-href="{{ url('/dashboard/'.$project_id.'/submittals') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+            <a href="{{ url('/dashboard/'.$project_id.'/submittals') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
             <button type="submit" id="submit_submittal_form" class="first_button btn btn-info sub-btn submit_submittal_form" style="display: none;">Save</button>
             <a href="{{ url('/dashboard/'.$project_id.'/preliminary_notice_log') }}"  class="btn btn-info sub-btn preliminary_notice_button" style="display: none;">Add Another Preliminary Notice</a>
             <!-- <button type="submit" id="submit_submittal_form" class="another_button btn btn-info sub-btn" style="display: none;">Add Another</button> -->

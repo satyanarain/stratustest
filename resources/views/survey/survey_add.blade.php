@@ -116,7 +116,8 @@
         </div>
 
         <div class="form-group col-md-12">
-            <a data-href="{{ url('/dashboard/'.$project_id.'/survey') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>
+<!--            <a data-href="{{ url('/dashboard/'.$project_id.'/survey') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+            <a href="{{ url('/dashboard/'.$project_id.'/survey') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
             <a class="btn btn-info sub-btn first_button submit_survey_form">Save</a>
             <a class="btn btn-info sub-btn another_button submit_survey_form" style="display: none;">Save Another</a>
             <a data-href="{{ url('/dashboard/'.$project_id.'/daily_construction_report') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
