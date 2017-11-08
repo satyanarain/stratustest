@@ -183,10 +183,12 @@ $(document).ready(function() {
             if(upload_doc_id == ''){
                 html += '<li>Document is invalid.</li>';
                 is_error = true;
-            }else if(date_noc_filed == ''){
+            }
+            if(date_noc_filed == ''){
                 html += '<li>Please select NOC filed date.</li>';
                 is_error = true;
-            }else if(improvement_type == '' || improvement_type == 'Select Improvement Type'){
+            }
+            if(improvement_type == '' || improvement_type == 'Select Improvement Type'){
                 html += '<li>Please select Improvement Type.</li>';
                 is_error = true;
             }
@@ -511,8 +513,9 @@ $(document).ready(function() {
 
 
                             $('.loading_data1').hide();
-                            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New notice completion added successfully!</div></div>';
+                            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New notice of completion added successfully.</div></div>';
                             $("#alert_message").html(html);
+                            $("#alert_message").show();
                             $('html, body').animate({
                                 scrollTop: $(".page-head").offset().top
                             }, 'fast')
@@ -700,6 +703,7 @@ $(document).ready(function() {
 
                     html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">Added successfully!</div></div>';
                     $("#alert_message").html(html);
+                    $("#alert_message").show();
                     $('html, body').animate({
                         scrollTop: $(".page-head").offset().top
                     }, 'fast')

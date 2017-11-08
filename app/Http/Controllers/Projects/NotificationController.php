@@ -222,4 +222,27 @@ class NotificationController extends Controller {
       return response()->json(['error' => 'Something is wrong'], 500);
     }
   }
+  
+  /*
+  --------------------------------------------------------------------------
+   Send Notification via Cron
+  --------------------------------------------------------------------------
+  */
+    public function send_notification(Request $request)
+    {
+        //if (php_sapi_name() !='cli') exit;
+        //if ($_SERVER['HTTP_USER_AGENT'] != 'stratuscm.con') exit;
+        
+        
+        /*------Pre--Certs of Insurance-------*/
+        echo 'hi';
+        
+        
+        /*------Pre--Bidding-------*/
+        
+        /*------During Construction---------RFIs-------*/
+        
+        //print_r($request);
+        die;
+    }
 }

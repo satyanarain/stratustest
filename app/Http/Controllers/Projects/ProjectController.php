@@ -263,6 +263,47 @@ class ProjectController extends Controller {
                 ->insert(['pset_project_id' => $query, 'pset_meta_key' => 'project_currency', 'pset_meta_value' => $currency_query->cur_id, 'pset_user_id' => $user_id]);
                 // return response()->json($result, 200);
               }
+                /*send notification*/  
+                $notified_users = DB::table('users')
+                ->select()
+                ->where('user_parent', '=', $user_id)
+                ->where('status', '!=', 2)
+                ->get();
+                foreach($notified_users as $check_project_user)
+                {
+                    $user_id              = $check_project_user->id;
+                    $permission_key       = 'standard_view_all';
+                    // Notification Parameter
+                    $project_id           = $query;
+                    $notification_title   = 'New Project added in the application.';
+                    $url                  = App::make('url')->to('/');
+                    $link                 = "/dashboard";
+                    $date                 = date("M d, Y h:i a");
+                    $email_description    = 'A new Project added in the application: <strong>'.$project_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    
+
+                   
+                    // Send Notification to users
+                    $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_project_user->id);
+
+                    $user_detail = array(
+                      'id'              => $check_project_user->id,
+                      'name'            => $check_project_user->username,
+                      'email'           => $check_project_user->email,
+                      'link'            => $link,
+                      'date'            => $date,
+                      'project_name'    => $project_name,
+                      'title'           => $notification_title,
+                      'description'     => $email_description
+                    );
+                    $user_single = (object) $user_detail;
+                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                        $message->from('no-reply@sw.ai', 'StratusCM');
+                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                    });
+                    
+                }
+                /*send notification end*/  
               $result = array('description'=>"New project add successfully", 'last_insert_id' => $query, 'code'=>200);
               return response()->json($result, 200);
             }

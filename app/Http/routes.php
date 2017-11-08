@@ -54,6 +54,8 @@ Route::get('dashboard/{project_id}/groupdoc', function () {
 Route::post('users/authenticate', 'Users\AuthenticateController@authenticate');
 // Route::get('logout', 'Users\UserController@logout');
 
+Route::get('cronnotifinder', 'Projects\NotificationController@send_notification');
+
 /*** Forget Username and Password ***/
 Route::post('users/request-forgot-username', 'Users\UserController@forget_username');
 Route::post('users/request-forgot-password-link', 'Users\UserController@forget_password');

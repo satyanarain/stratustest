@@ -316,7 +316,7 @@ function checkFormFilled(classname)
     $("input[type=text],select").each(function() {
        if ($(this).val() !== "") {
            isFilled = true;
-           //alert($(this).val());
+           alert($(this).val());
            return false;
        }
     });

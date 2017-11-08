@@ -162,7 +162,7 @@ $('#update_notice_completion_form').click(function(e) {
             console.log(data);
             $("#alert_message").show(1000);
             $('.loading-submit').hide();
-            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">Notice completion updated successfully!</div></div>';
+            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">Notice of completion updated successfully.</div></div>';
             $("#alert_message").html(html);
             setTimeout(function()
             {
