@@ -1,6 +1,6 @@
-
+.gitignore
 .env
-
+/uploads
 /log/*.log
 /tmp
 .env.example
