@@ -201,6 +201,9 @@ $('.company_name').change(function(){
         if(company=="Add New" || company=="Add New Company")
         {
             $('#add-company').modal('show');
+            $('#add-company').on('shown.bs.modal',function(){
+                google.maps.event.trigger(map, "resize");
+              });
         }
     })
     function fetchCompanyName()

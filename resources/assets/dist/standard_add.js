@@ -245,6 +245,10 @@ $(document).ready(function() {
 //            location.length=0;
 //            marker = [];
             $('#add-company').modal('show');
+            $('#add-company').on('shown.bs.modal',function(){
+                google.maps.event.trigger(map, "resize");
+              });
+            
         }
     })
     function fetchCompanyName()

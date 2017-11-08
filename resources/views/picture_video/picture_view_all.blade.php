@@ -42,7 +42,7 @@
                         <p><strong>No. of Pictures:</strong> <span id="no_of_picture"></span></p>
                     </div>
                     <div class="form-group col-md-6">
-                       <p><strong>Contractors:</strong> <span id="contractor_name"></span></p>
+                       <p><strong>Contractor:</strong> <span id="contractor_name"></span></p>
                        <p><strong>No. of Videos:</strong> <span id="no_of_video"></span></p>
                        <p><select name="ppv_sort_by" id="ppv_sort_by">
                             <option value="">Sort By</option>

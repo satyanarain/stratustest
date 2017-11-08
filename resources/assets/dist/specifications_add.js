@@ -255,6 +255,9 @@ $(document).ready(function() {
         if(company=="Add New Entity")
         {
             $('#add-company').modal('show');
+            $('#add-company').on('shown.bs.modal',function(){
+                google.maps.event.trigger(map, "resize");
+              });
         }
     })
     function fetchCompanyName()

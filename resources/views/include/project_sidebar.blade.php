@@ -137,7 +137,7 @@
                                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/preliminary_notice/add"><span>Add Preliminary Notice</span></a>
                                     </li>
                                     <li style="display: none;" class="survey_review_view_all">
-                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/lien_release_log"><span>Lien Release</span></a>
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/lien_release_log"><span>Lien Releases</span></a>
                                     </li>
                                 </ul>
                             </li>

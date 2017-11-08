@@ -52,7 +52,7 @@ class PreliminaryNoticeController extends Controller {
             // }
             // else {
                 $ppn_project_id       = $request['ppn_project_id'];
-                $preliminary_notice_from       = $request['preliminary_notice_from'];
+                $preliminary_notice_from       = $request['company_name'];
                 $under_contract_with   = $request['under_contract_with'];
                 $amount  = $request['amount'];
                 $direct_contractor = $request['direct_contractor'];

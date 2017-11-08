@@ -14,7 +14,7 @@
     <!-- page head start-->
     <div class="page-head">
         <h3 class="m-b-less project_name" id="project_name_title"></h3><br/>
-        <h3 class="m-b-less"> Add Preliminary Notices</h3>
+        <h3 class="m-b-less"> Add Preliminary Notice</h3>
         <?php $project_id = Request::segment(2); ?>
         <input type="hidden" id="project_id" value="<?php echo $project_id ?>">
         <div class="state-information" style="width: 200px; ">
