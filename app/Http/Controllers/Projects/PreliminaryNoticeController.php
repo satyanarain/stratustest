@@ -551,7 +551,7 @@ class PreliminaryNoticeController extends Controller {
                             {
                                 $query[$key]->prelim_status = 'Partial';
                             }else{
-                                $query[$key]->prelim_status = '';
+                                $query[$key]->prelim_status = '-';
                             }
                         }
                         
