@@ -513,7 +513,7 @@ $(document).ready(function() {
 
 
                             $('.loading_data1').hide();
-                            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New notice of completion added successfully.</div></div>';
+                            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">Notice of Completion uploaded successfully.</div></div>';
                             $("#alert_message").html(html);
                             $("#alert_message").show();
                             $('html, body').animate({
@@ -701,7 +701,7 @@ $(document).ready(function() {
 
 
 
-                    html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">Added successfully!</div></div>';
+                    html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">Notice of Completion uploaded successfully.</div></div>';
                     $("#alert_message").html(html);
                     $("#alert_message").show();
                     $('html, body').animate({

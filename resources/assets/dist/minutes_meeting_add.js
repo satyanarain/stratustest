@@ -64,7 +64,7 @@ $(document).ready(function() {
         contentType: "application/json",
         cache: false
     })
-        .done(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
         // console.log(data.data);
         // Foreach Loop
         jQuery.each(data.data, function( i, val ) {
@@ -108,7 +108,7 @@ $(document).ready(function() {
             contentType: "application/json",
             cache: false
         })
-            .done(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
             // console.log(data.data);
             window.agency_id = data.data[0].ps_agency_name;
             console.log(agency_id);
@@ -138,7 +138,7 @@ $(document).ready(function() {
 
 
         })
-        .fail(function(jqXHR, textStatus, errorThrown) {
+    .fail(function(jqXHR, textStatus, errorThrown) {
             console.log("HTTP Request Failed");
             var response = jqXHR.responseJSON.code;
             console.log(response);
@@ -155,8 +155,8 @@ $(document).ready(function() {
             }
         });
 
-        // Bid Total Amount
-        jQuery.ajax({
+    // Bid Total Amount
+    jQuery.ajax({
         url: baseUrl+"/"+project_id+"/bid-items-total",
             type: "GET",
             headers: {
@@ -166,11 +166,11 @@ $(document).ready(function() {
             contentType: "application/json",
             cache: false
         })
-            .done(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
             $(".pdf_gen_contract_amount").text(data.data[0].total_amount);
             $(".pdf_gen_contract_amount").show();
         })
-        .fail(function(jqXHR, textStatus, errorThrown) {
+    .fail(function(jqXHR, textStatus, errorThrown) {
             console.log("HTTP Request Failed");
             var response = jqXHR.responseJSON.code;
             if(response == 403){
@@ -188,8 +188,8 @@ $(document).ready(function() {
         })
 
 
-        // Select Project Name
-        jQuery.ajax({
+    // Select Project Name
+    jQuery.ajax({
         url: baseUrl + "projects/"+project_id,
             type: "GET",
             headers: {
@@ -199,7 +199,7 @@ $(document).ready(function() {
             contentType: "application/json",
             cache: false
         })
-            .done(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
             var project_name = data.data.p_name;
             $('.pdf_gen_project_name').text(project_name);
 
@@ -209,8 +209,8 @@ $(document).ready(function() {
         })
 
 
-        // Selected Improvement Type
-        jQuery.ajax({
+    // Selected Improvement Type
+    jQuery.ajax({
         url: baseUrl +"/"+project_id+"/improvement-type",
             type: "GET",
             headers: {
@@ -219,7 +219,7 @@ $(document).ready(function() {
             contentType: "application/json",
             cache: false
         })
-        .done(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
         // console.log(data.data);
         // Foreach Loop
             jQuery.each(data.data, function( i, val ) {
