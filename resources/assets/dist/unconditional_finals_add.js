@@ -198,7 +198,7 @@ $('.add_unconditional_finals').click(function(e)
 
 $('.company_name').change(function(){
         var company = $(this).val();
-        if(company=="Add New" || company=="Add New Company")
+        if(company=="Add New Entity" || company=="Add New Company")
         {
             $('#add-company').modal('show');
             $('#add-company').on('shown.bs.modal',function(){
@@ -233,7 +233,7 @@ $('.company_name').change(function(){
             }
         });
         $(".company_name").append(
-            '<option>Add New</option>'
+            '<option>Add New Entity</option>'
         )
         // $( "h2" ).appendTo( $( ".container" ) );
        
