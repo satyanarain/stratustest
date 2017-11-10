@@ -116,7 +116,7 @@
             <div class="form-group col-md-12">
                 <label>Contract Date</label>
                 <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
-                    <input type="text" readonly="" value="<?php echo date("Y-m-d"); ?>" size="16" class="form-control"  id="award_date">
+                    <input type="text" readonly="" value="<?php //echo date("Y-m-d"); ?>" size="16" class="form-control"  id="award_date">
                     <span class="input-group-btn add-on">
                     <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
                     </span>

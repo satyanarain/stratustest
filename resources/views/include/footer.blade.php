@@ -313,10 +313,11 @@ $(document).ready(function() {
 function checkFormFilled(classname)
 {
     
-    $("input[type=text],select").each(function() {
-       if ($(this).val() !== "") {
+    $("input[type=text],select").each(function(key,value) {
+        //alert(key);alert(value);
+       if ($(this).val() != "" && $(this).val() != "Select Improvement Type") {
            isFilled = true;
-           //alert($(this).val());
+           alert($(this).val());
            return false;
        }
     });

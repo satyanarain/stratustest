@@ -45,6 +45,7 @@
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
                 <select class="form-control select2-multiple" id="project_type_dropdown" multiple placeholder="Select Improvement Type">
+                    
                 </select>
             </div>
 

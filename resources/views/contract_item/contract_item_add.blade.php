@@ -39,6 +39,7 @@
                                       <div class="form-group col-md-6">
                                           <label>Unit of Measure</label>
                                            <select class="form-control" id="item_unit">
+                                               <option value="">Select Unit of Measure</option>
                                                <option value="EA">Each</option>
                                                <option value="LS">Lump Sum</option>
                                                <option value="SF">Square Footage</option>

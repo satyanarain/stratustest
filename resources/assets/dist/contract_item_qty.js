@@ -32,7 +32,8 @@
 		.done(function(data, textStatus, jqXHR) {
 		    console.log(data);
 		    var item_qty = data.description.piq_qty;
-		    $('#item_qty').val(item_qty);
+		    if(item_qty)
+                        $('#item_qty').val(item_qty);
 		  
 		    $(".loading_data").hide();
 		})
@@ -45,12 +46,12 @@
 		    }
 		    else if(response == 404){
 		    	console.log("404");
-                $('#item_qty').val("0");
+                //$('#item_qty').val("0");
                 // window.location.href = baseUrl + "404";
             }
             else {
                 console.log("500");
-                $('#item_qty').val("0");
+                //$('#item_qty').val("0");
 		    	// window.location.href = baseUrl + "500";
 		    }
 		})
