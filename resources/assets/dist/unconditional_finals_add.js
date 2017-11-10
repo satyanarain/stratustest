@@ -78,7 +78,7 @@ $(document).ready(function() {
                 })
             .done(function(data, textStatus, jqXHR) {
                 // console.log(data.data);
-                $('.company_name').val(data.data.f_id);
+                //$('.company_name').val(data.data.f_id);
                 $('#contractor_name').text(data.data.f_name);
             })
         })

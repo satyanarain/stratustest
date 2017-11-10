@@ -65,7 +65,7 @@
             <div class="form-group col-md-12">
                 <label for="name_of_report" style="padding-top: 10px;">Date of Preconstruction Meeting</label>
                 <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
-                    <input type="text" readonly="" value="<?php echo date('Y-m-d'); ?>" size="16" class="form-control"  id="meeting_date">
+                    <input type="text" readonly="" value="<?php //echo date('Y-m-d'); ?>" size="16" class="form-control"  id="meeting_date">
                     <span class="input-group-btn add-on"><button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button></span>
                 </div>
             </div>
