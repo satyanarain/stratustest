@@ -105,6 +105,7 @@
                                     <div class="form-group col-md-12">
                                         <label>Type</label>
                                         <select class="form-control" id="type">
+                                            <option value="">Select Type</option>
                                             <option value="swppp">SWPPP</option>
                                             <option value="wpcp">WPCP</option>
                                         </select>

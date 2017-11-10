@@ -36,7 +36,7 @@
                                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                         </div>
                                         <select class="form-control" id="firm_name">
-                                            <option>Select Company name</option>
+                                            <option value="">Select Company name</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
@@ -57,6 +57,7 @@
                                             <label for="pnum">Phone Number <span class="text-danger">*</span></label>
                                             <a href="#" class="add_field_button btn btn-success m-b-10 pull-right">Add Phone</a>
                                             <select class="form-control" id="phone_type_1" name="phone_type[]">
+                                                <option value="">Select</option>
                                                 <option value="mobile">Mobile</option>
                                                 <option value="home">Home</option>
                                                 <option value="work">Work</option>

@@ -33,6 +33,9 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         // console.log(data.data);
         // Foreach Loop
+        $("#company_name").append(
+            '<option value="">Select Company</option>'
+        )
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status == 'active'){
                 $("#company_name").append(
@@ -76,6 +79,9 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         // console.log(data.data);
         // Foreach Loop
+        $(".currency_symbol").append(
+            '<option value="">Select Currency</option>'
+        )
         jQuery.each(data.data, function( i, val ) {
             if(val.cur_status == 'active'){
                 $(".currency_symbol").append(
