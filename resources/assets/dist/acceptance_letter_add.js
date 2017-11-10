@@ -66,6 +66,9 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         // console.log(data.data);
         // Foreach Loop
+        $("#company_name").append(
+            '<option value="">Select Agency Name</option>'
+        )
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status == 'active'){
                 $("#company_name").append(

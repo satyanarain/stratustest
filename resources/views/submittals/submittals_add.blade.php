@@ -95,7 +95,7 @@
 
             <div class="form-group col-md-12">
                 <label for="name_of_report" style="padding-top: 10px;">Date of Submittal</label>
-                <input type="text" class="form-control" value="<?php echo date("Y-m-d"); ?>" id="date_of_submittal" disabled>
+                <input type="text" class="form-control" value="<?php //echo date("Y-m-d"); ?>" id="date_of_submittal" disabled>
             </div>
 
             <div class="form-group col-md-12">
@@ -176,6 +176,10 @@
 <script src="{{ url('/resources/assets/js/dropzone_groupdoc.js') }}"></script>
 <script type="text/javascript">
 $("input[name='check_submittal_type']").click(function(){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
     if($('input:radio[name=check_submittal_type]:checked').val() == "exist"){
         console.log('exist');
         $('.resubmittal').show();
@@ -186,6 +190,7 @@ $("input[name='check_submittal_type']").click(function(){
         $('.first_button').show();
     }
     else {
+        $("#date_of_submittal").val(yyyy+'-'+mm+'-'+dd);
         console.log('new');
         $('.submittal').show();
         $('.resubmittal_box').hide();
