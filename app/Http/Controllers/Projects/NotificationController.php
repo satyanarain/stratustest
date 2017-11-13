@@ -407,7 +407,7 @@ class NotificationController extends Controller {
           'users.username', 'users.email', 'users.first_name', 'users.last_name', 'users.company_name', 'users.phone_number', 'users.status', 'users.role')
         ->whereRaw('date(project_preconstruction_meeting_documents.pm_date) = ?',[date("Y-m-d",strtotime("+10 day"))])
         ->get();
-        echo '<pre>';print_r($meetings);die;
+        //echo '<pre>';print_r($meetings);die;
         //echo date("Y-m-d",strtotime("+10 day"));die;
         foreach($meetings as $check_project_user)
         {
