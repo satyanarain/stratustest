@@ -306,7 +306,7 @@ $(document).ready(function() {
     });
     $(this).on('keypress', function(event) {
         //if (event.keyCode === 13) {
-            isFilled = true;
+            //isFilled = true;
         //}
     })
 });
@@ -315,7 +315,7 @@ function checkFormFilled(classname)
     
     $("input[type=text],select").each(function(key,value) {
         //alert(key);alert(value);
-       if ($(this).val() != "" && $(this).val() != "Select Improvement Type") {
+       if ($(this).val() && $(this).val() != "Select Improvement Type") {
            isFilled = true;
            //alert($(this).val());
            return false;
