@@ -238,6 +238,50 @@ class NotificationController extends Controller {
         
         //$WeekAgo = strtotime("-1 week"); //A week before today
         //$MonthAgo = strtotime("-1 month"); //A month before today
+        DB::enableQueryLog();
+        $records = DB::table('project_certificate')
+        ->leftJoin('project_firm', 'project_certificate.ci_company_name', '=', 'project_firm.f_id')
+        ->leftJoin('currency as liability_currency', 'project_certificate.ci_liability_currency', '=', 'liability_currency.cur_id')
+        ->leftJoin('documents as liability_cert_path', 'project_certificate.ci_liability_cert_path', '=', 'liability_cert_path.doc_id')
+        ->leftJoin('currency as work_comp_currency', 'project_certificate.ci_work_comp_currency', '=', 'work_comp_currency.cur_id')
+        ->leftJoin('documents as work_comp_cert_path', 'project_certificate.ci_work_comp_cert_path', '=', 'work_comp_cert_path.doc_id')
+        ->leftJoin('currency as auto_liability_currency', 'project_certificate.ci_auto_liability_currency', '=', 'auto_liability_currency.cur_id')
+        ->leftJoin('documents as auto_liability_cert_path', 'project_certificate.ci_auto_liability_cert_path', '=', 'auto_liability_cert_path.doc_id')
+        ->leftJoin('currency as umbrella_liability_symbol', 'project_certificate.ci_umbrella_liability_currency', '=', 'umbrella_liability_symbol.cur_id')
+        ->leftJoin('documents as umbrella_liability', 'project_certificate.ci_umbrella_liability_cert_path', '=', 'umbrella_liability.doc_id')
+        ->leftJoin('documents as doc_cert_path', 'project_certificate.ci_doc_id_certificate', '=', 'doc_cert_path.doc_id')
+        ->leftJoin('projects', 'project_certificate.ci_project_id', '=', 'projects.p_id')
+        ->leftJoin('users', 'project_certificate.ci_user_id', '=', 'users.id')
+        ->select('project_firm.f_name as agency_name', 
+          'project_certificate.ci_id', 
+          'liability_currency.cur_symbol as liability_currency', 
+          'project_certificate.ci_liability_limit as liability_limit', 
+          'project_certificate.ci_liability_exp as liability_exp', 
+          'project_certificate.ci_liability_required_min as liability_required_min', 
+          'liability_cert_path.doc_path as liability_cert_path', 
+          'work_comp_currency.cur_symbol as work_comp_currency',
+          'project_certificate.ci_work_comp_limit as work_comp_limit', 
+          'project_certificate.ci_work_comp_exp as work_comp_exp', 
+          'project_certificate.ci_works_comp_required_min as works_comp_required_min', 
+          'work_comp_cert_path.doc_path as work_comp_cert_path', 
+          'auto_liability_currency.cur_symbol as auto_liability_currency',
+          'project_certificate.ci_auto_liability_limit as auto_liability_limit', 
+          'project_certificate.ci_auto_liability_exp as auto_liability_exp', 
+          'project_certificate.ci_auto_liability_required_min as auto_liability_required_min', 
+          'auto_liability_cert_path.doc_path as auto_liability_cert_path', 
+          'umbrella_liability_symbol.cur_symbol as umbrella_liability_symbol', 
+          'project_certificate.ci_umbrella_liability_limit as umbrella_liability_limit', 
+          'project_certificate.ci_umbrella_liability_exp as umbrella_liability_exp', 
+          'umbrella_liability.doc_path as umbrella_liability_cert_path',
+          'doc_cert_path.doc_path as doc_cert_path',  
+          'projects.*', 
+          'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role', 
+          'project_certificate.ci_status as status', 
+          'project_certificate.ci_timestamp as timestamp')
+        ->whereRaw('date(project_certificate.ci_liability_exp) = ?',[date("Y-m-d",strtotime("+1 month"))])
+        ->get();
+        dd(DB::getQueryLog());
+        echo '<pre>';print_r($records);die;
         echo 'hi';
         //$check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
 //        foreach ($check_project_users as $check_project_user) {

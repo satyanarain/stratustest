@@ -82,7 +82,7 @@ $(document).ready(function() {
             .done(function(data, textStatus, jqXHR) {
                 console.log(data.data);
                 //$('.company_name').val(data.data.f_id);
-                $('#contractor_name').text(data.data.f_name);
+                //('#contractor_name').text(data.data.f_name);
             })
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
@@ -243,6 +243,10 @@ $('.add_preliminary_notice').click(function(e)
         // $("#project_id").removeAttr('value');
         $('#upload_doc_id').removeAttr('value');
         $('#amount').removeAttr('value');
+        $('#post_marked_date').removeAttr('value');
+        $('#date_of_notice_signed').removeAttr('value');
+        $('.company_name').val('');
+        
         $("#alert_message").show();
         $('.loading-submit').hide();
         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New preliminary notice added successfully!</div></div>';
