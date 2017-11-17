@@ -97,8 +97,20 @@ class LaborComplianceController extends Controller {
                 {
                     $query = DB::table('project_labor_compliance')
                     ->insertGetId(['plc_contactor_id' => $plc_contactor_id, 'plc_140' => $plc_140, 'plc_140_date' => $plc_140_date, 'plc_142' => $plc_142, 'plc_142_date' => $plc_142_date, 'plc_fringe' => $plc_fringe, 'plc_fringe_date' => $plc_fringe_date, 'plc_cac2' => $plc_cac2, 'plc_cac2_date' => $plc_cac2_date, 'plc_cpr' => $plc_cpr, 'plc_cpr_date' => $plc_cpr_date, 'plc_compliance' => $plc_compliance, 'plc_compliance_date' => $plc_compliance_date, 'plc_project_id' => $plc_project_id, 'plc_user_id' => $user_id, 'plc_status' => $status]);
-
-
+                    $doc_attached = "<br><br>Documents added with Labor Compliance are :- <br>";
+                    if($plc_140)
+                        $doc_attached.="140 – PW Contractor Award Info<br>";
+                    if($plc_142)
+                        $doc_attached.="142 – Request for Dispatch of Apprentice<br>";
+                    if($plc_fringe)
+                        $doc_attached.="Fringe Benefit Statement<br>";
+                    if($plc_cac2)
+                        $doc_attached.="CAC-2<br>";
+                    if($plc_cpr)
+                        $doc_attached.="Weekly Certified Payroll Reports<br>";
+                    if($plc_compliance)
+                        $doc_attached.="Statement of Compliance<br>";
+                    
                     $project_id = $plc_project_id;
                     // Start Check User Permission and send notification and email  
                     // Get Project Users
@@ -107,40 +119,40 @@ class LaborComplianceController extends Controller {
                     // Check User Project Permission  
                     foreach ($check_project_users as $check_project_user) {
                     // Check User Permission Parameter 
-//                    $user_id              = $check_project_user->id;
-//                    $permission_key       = 'labor_compliance_view_all';
-//                    // Notification Parameter
-//                    $project_id           = $project_id;
-//                    $notification_title   = 'Add new labor compliance in Project: ' .$check_project_user->p_name;
-//                    $url                  = App::make('url')->to('/');
-//                    $link                 = "dashboard/".$project_id."/labor_compliance/".$query;
-//                    $date                 = date("M d, Y h:i a");
-//                    $email_description    = 'Add new labor compliance in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
-//
-//                    $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
-//                    if(count($check_single_user_permission) < 1){
-//                      continue;
-//                    }
-//                    else {
-//                      // Send Notification to users
-//                      $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
-//
-//                      $user_detail = array(
-//                        'id'              => $check_project_user->id,
-//                        'name'            => $check_project_user->username,
-//                        'email'           => $check_project_user->email,
-//                        'link'            => $link,
-//                        'date'            => $date,
-//                        'project_name'    => $check_project_user->p_name,
-//                        'title'           => $notification_title,
-//                        'description'     => $email_description
-//                      );
-//                      $user_single = (object) $user_detail;
-//                      Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-//                          $message->from('no-reply@sw.ai', 'StratusCM');
-//                          $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-//                      });
-//                    }
+                    $user_id              = $check_project_user->id;
+                    $permission_key       = 'labor_compliance_view_all';
+                    // Notification Parameter
+                    $project_id           = $project_id;
+                    $notification_title   = 'Add new labor compliance in Project: ' .$check_project_user->p_name;
+                    $url                  = App::make('url')->to('/');
+                    $link                 = "dashboard/".$project_id."/labor_compliance/".$query;
+                    $date                 = date("M d, Y h:i a");
+                    $email_description    = 'Add new labor compliance in Project: <strong>'.$check_project_user->p_name.'</strong> '.$doc_attached.'<br><a href="'.$url.$link.'"> Click Here to see </a>';
+
+                    $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+                    if(count($check_single_user_permission) < 1){
+                      continue;
+                    }
+                    else {
+                      // Send Notification to users
+                      $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
+
+                      $user_detail = array(
+                        'id'              => $check_project_user->id,
+                        'name'            => $check_project_user->username,
+                        'email'           => $check_project_user->email,
+                        'link'            => $link,
+                        'date'            => $date,
+                        'project_name'    => $check_project_user->p_name,
+                        'title'           => $notification_title,
+                        'description'     => $email_description
+                      );
+                      $user_single = (object) $user_detail;
+                      Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                          $message->from('no-reply@sw.ai', 'StratusCM');
+                          $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                      });
+                    }
 
                     } // End Foreach
                     // End Check User Permission and send notification and email 

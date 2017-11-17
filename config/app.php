@@ -189,6 +189,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        //Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -238,6 +239,7 @@ return [
         'JWTAuth'   => Tymon\JWTAuthFacades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuthFacades\JWTFactory::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        //'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

@@ -383,7 +383,7 @@
       },
       errormultiple: noop,
       processing: function(file) {
-        $('.loading_data_file').show();
+        //$('.loading_data_file').show();
         if (file.previewElement) {
           file.previewElement.classList.add("dz-processing");
           if (file._removeLink) {

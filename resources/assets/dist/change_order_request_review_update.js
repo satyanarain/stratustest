@@ -41,7 +41,7 @@ $(document).ready(function() {
         $('#cor_number').text(data.data.pcd_parent_cor)
         $('#cor_generated_by').text(data.data.agency_name)
         $('#cor_date_sent').text(data.data.pco_date)
-        $('#cor_description').text(data.data.pcd_description)
+        $('#cor_description').html('<input class="form-control" type="text" name="change_order_desc" id="change_order_desc" value="'+data.data.pcd_description+'">');
         if(data.data.pcd_approved_by_cm == null || data.data.pcd_approved_by_cm == "0000-00-00"){
             $('#cor_approved_cm').html('<span class="label label-warning">PENDING</span>')
         }
@@ -58,8 +58,7 @@ $(document).ready(function() {
         $('#cor_amount').text(data.data.pcd_price)
         $('#cor_unit_number').text(data.data.pcd_unit_number)
         $('#cor_unit_price').text(data.data.pcd_unit_price)
-        $('#cor_day').text(data.data.pcd_days)
-
+        $('#cor_day').html('<input class="form-control" type="text" name="change_order_day" id="change_order_day" value="'+data.data.pcd_days+'">');
         var request_bid_path = data.data.pcd_file_path;
         var request_bid_path_value;
         if(request_bid_path == null){
@@ -167,7 +166,10 @@ function getFormattedPartTime(partTime){
 
         var item_id = $('#item_id').val();
         var project_id = $('#project_id').val();
-
+        var cor_description = $('#change_order_desc').val();
+        //alert(cor_description);return false;
+        var change_order_day = $('#change_order_day').val();
+        //alert(cor_day);return false;
         console.log(item_id);
         console.log(approved_by_cm);
         console.log(approved_by_owner);
@@ -178,7 +180,9 @@ function getFormattedPartTime(partTime){
             data: {
                 "approved_by_cm"        : approved_by_cm,
                 "approved_by_owner"     : approved_by_owner,
-                "project_id"            : project_id
+                "project_id"            : project_id,
+                "change_order_day"      : change_order_day,
+                "cor_description"       : cor_description
             },
             headers: {
               "x-access-token": token
