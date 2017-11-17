@@ -45,7 +45,10 @@ class NotificationController extends Controller {
             $project_id      = $project_id;
             $receiver_user_id= $receiver_user_id;
             $status          = '1';
-            $sender_user_id  = Auth::user()->id;
+            if(Auth::user())
+                $sender_user_id  = Auth::user()->id;
+            else
+                $sender_user_id  = 1;
 
             $information = array(
 
@@ -238,71 +241,79 @@ class NotificationController extends Controller {
         
         //$WeekAgo = strtotime("-1 week"); //A week before today
         //$MonthAgo = strtotime("-1 month"); //A month before today
-//        DB::enableQueryLog();
+        //DB::enableQueryLog();
 //        $records = DB::table('project_certificate')
 //        ->leftJoin('project_firm', 'project_certificate.ci_company_name', '=', 'project_firm.f_id')
-//        ->leftJoin('currency as liability_currency', 'project_certificate.ci_liability_currency', '=', 'liability_currency.cur_id')
-//        ->leftJoin('documents as liability_cert_path', 'project_certificate.ci_liability_cert_path', '=', 'liability_cert_path.doc_id')
-//        ->leftJoin('currency as work_comp_currency', 'project_certificate.ci_work_comp_currency', '=', 'work_comp_currency.cur_id')
-//        ->leftJoin('documents as work_comp_cert_path', 'project_certificate.ci_work_comp_cert_path', '=', 'work_comp_cert_path.doc_id')
-//        ->leftJoin('currency as auto_liability_currency', 'project_certificate.ci_auto_liability_currency', '=', 'auto_liability_currency.cur_id')
-//        ->leftJoin('documents as auto_liability_cert_path', 'project_certificate.ci_auto_liability_cert_path', '=', 'auto_liability_cert_path.doc_id')
-//        ->leftJoin('currency as umbrella_liability_symbol', 'project_certificate.ci_umbrella_liability_currency', '=', 'umbrella_liability_symbol.cur_id')
-//        ->leftJoin('documents as umbrella_liability', 'project_certificate.ci_umbrella_liability_cert_path', '=', 'umbrella_liability.doc_id')
-//        ->leftJoin('documents as doc_cert_path', 'project_certificate.ci_doc_id_certificate', '=', 'doc_cert_path.doc_id')
+//        //->leftJoin('currency as liability_currency', 'project_certificate.ci_liability_currency', '=', 'liability_currency.cur_id')
+//        //->leftJoin('documents as liability_cert_path', 'project_certificate.ci_liability_cert_path', '=', 'liability_cert_path.doc_id')
+//        //->leftJoin('currency as work_comp_currency', 'project_certificate.ci_work_comp_currency', '=', 'work_comp_currency.cur_id')
+//        //->leftJoin('documents as work_comp_cert_path', 'project_certificate.ci_work_comp_cert_path', '=', 'work_comp_cert_path.doc_id')
+//        //->leftJoin('currency as auto_liability_currency', 'project_certificate.ci_auto_liability_currency', '=', 'auto_liability_currency.cur_id')
+//        //->leftJoin('documents as auto_liability_cert_path', 'project_certificate.ci_auto_liability_cert_path', '=', 'auto_liability_cert_path.doc_id')
+//        //->leftJoin('currency as umbrella_liability_symbol', 'project_certificate.ci_umbrella_liability_currency', '=', 'umbrella_liability_symbol.cur_id')
+//       //->leftJoin('documents as umbrella_liability', 'project_certificate.ci_umbrella_liability_cert_path', '=', 'umbrella_liability.doc_id')
+//        //->leftJoin('documents as doc_cert_path', 'project_certificate.ci_doc_id_certificate', '=', 'doc_cert_path.doc_id')
 //        ->leftJoin('projects', 'project_certificate.ci_project_id', '=', 'projects.p_id')
 //        ->leftJoin('users', 'project_certificate.ci_user_id', '=', 'users.id')
 //        ->select('project_firm.f_name as agency_name', 
 //          'project_certificate.ci_id', 
-//          'liability_currency.cur_symbol as liability_currency', 
+//          //'liability_currency.cur_symbol as liability_currency', 
 //          'project_certificate.ci_liability_limit as liability_limit', 
 //          'project_certificate.ci_liability_exp as liability_exp', 
 //          'project_certificate.ci_liability_required_min as liability_required_min', 
-//          'liability_cert_path.doc_path as liability_cert_path', 
-//          'work_comp_currency.cur_symbol as work_comp_currency',
-//          'project_certificate.ci_work_comp_limit as work_comp_limit', 
+//          //'liability_cert_path.doc_path as liability_cert_path', 
+//          //'work_comp_currency.cur_symbol as work_comp_currency',
+//          //'project_certificate.ci_work_comp_limit as work_comp_limit', 
 //          'project_certificate.ci_work_comp_exp as work_comp_exp', 
 //          'project_certificate.ci_works_comp_required_min as works_comp_required_min', 
-//          'work_comp_cert_path.doc_path as work_comp_cert_path', 
-//          'auto_liability_currency.cur_symbol as auto_liability_currency',
-//          'project_certificate.ci_auto_liability_limit as auto_liability_limit', 
-//          'project_certificate.ci_auto_liability_exp as auto_liability_exp', 
-//          'project_certificate.ci_auto_liability_required_min as auto_liability_required_min', 
-//          'auto_liability_cert_path.doc_path as auto_liability_cert_path', 
-//          'umbrella_liability_symbol.cur_symbol as umbrella_liability_symbol', 
-//          'project_certificate.ci_umbrella_liability_limit as umbrella_liability_limit', 
-//          'project_certificate.ci_umbrella_liability_exp as umbrella_liability_exp', 
-//          'umbrella_liability.doc_path as umbrella_liability_cert_path',
-//          'doc_cert_path.doc_path as doc_cert_path',  
+//          //'work_comp_cert_path.doc_path as work_comp_cert_path', 
+//          //'auto_liability_currency.cur_symbol as auto_liability_currency',
+//          //'project_certificate.ci_auto_liability_limit as auto_liability_limit', 
+//          //'project_certificate.ci_auto_liability_exp as auto_liability_exp', 
+//          //'project_certificate.ci_auto_liability_required_min as auto_liability_required_min', 
+//          //'auto_liability_cert_path.doc_path as auto_liability_cert_path', 
+//          //'umbrella_liability_symbol.cur_symbol as umbrella_liability_symbol', 
+//          //'project_certificate.ci_umbrella_liability_limit as umbrella_liability_limit', 
+//          //'project_certificate.ci_umbrella_liability_exp as umbrella_liability_exp', 
+//          //'umbrella_liability.doc_path as umbrella_liability_cert_path',
+//          //'doc_cert_path.doc_path as doc_cert_path',  
 //          'projects.*', 
 //          'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role', 
 //          'project_certificate.ci_status as status', 
 //          'project_certificate.ci_timestamp as timestamp')
 //        ->whereRaw('date(project_certificate.ci_liability_exp) = ?',[date("Y-m-d",strtotime("+1 month"))])
+//        ->orWhereRaw('date(project_certificate.ci_work_comp_exp) = ?',[date("Y-m-d",strtotime("+1 month"))])
+//        ->orWhereRaw('date(project_certificate.ci_auto_liability_exp) = ?',[date("Y-m-d",strtotime("+1 month"))])
+//        ->orwhereRaw('date(project_certificate.ci_liability_exp) < ?',[date("Y-m-d")])
+//        ->orWhereRaw('date(project_certificate.ci_work_comp_exp) < ?',[date("Y-m-d")])
+//        ->orWhereRaw('date(project_certificate.ci_auto_liability_exp) < ?',[date("Y-m-d")])
 //        ->get();
-//        dd(DB::getQueryLog());
-//        echo '<pre>';print_r($records);die;
-//        echo 'hi';
-        //$check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
-//        foreach ($check_project_users as $check_project_user) {
-//        $user_id              = $check_project_user->id;
+//        //dd(DB::getQueryLog());
+//        //echo '<pre>';print_r($records);die;
+//        //echo 'hi';
+//        foreach ($records as $check_project_user) {
+//        $user_id              = $check_project_user->p_user_id;
 //        $permission_key       = 'certificate_view_all';
-//        $project_id           = $project_id;
-//        $notification_title   = 'Add new Certificate of Insurance in Project: ' .$check_project_user->p_name;
+//        $project_id           = $check_project_user->p_id;
+//        $notification_title   = 'Notification for Certificate of Insurance expiration in Project: ' .$check_project_user->p_name;
 //        $url                  = App::make('url')->to('/');
-//        $link                 = "/dashboard/".$project_id."/certificate/".$project_certificate->id;
+//        $link                 = "/dashboard/".$project_id."/certificate/".$check_project_user->ci_id;
 //        $date                 = date("M d, Y h:i a");
-//        $email_description    = 'Add new Certificate of Insurance in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+//        $email_description    = 'Notification for Certificate of Insurance expiration. <br> <a href="'.$url.$link.'"> Click Here to see </a>';
 //        $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+//        
 //        if(count($check_single_user_permission) < 1){
 //          continue;
 //        }
 //        else {
+//          //echo '<pre>';print_r($records);die;
+//            //echo '<pre>';print_r($check_single_user_permission);die;
 //          $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
+//          //echo '<pre>';print_r($check_project_user);die;
 //          $user_detail = array(
-//            'id'              => $check_project_user->id,
-//            'name'            => $check_project_user->username,
-//            'email'           => $check_project_user->email,
+//            'id'              => $check_project_user->p_user_id,
+//            'name'            => $check_project_user->user_name,
+//            'email'           => $check_project_user->user_email,
 //            'link'            => $link,
 //            'date'            => $date,
 //            'project_name'    => $check_project_user->p_name,
@@ -315,7 +326,6 @@ class NotificationController extends Controller {
 //              $message->to($user_single->email, $user_single->name)->subject($user_single->title);
 //          });
 //        }
-//
 //      } // End Foreach
         
         
@@ -390,63 +400,112 @@ class NotificationController extends Controller {
         
         /*------------------------------During Construction-------Meeting Minutes-------------------------------*/
         
-        $meetings = DB::table('project_preconstruction_meeting_documents')
-        //->leftJoin('project_firm as contractor_name', 'project_preconstruction_meeting_documents.pm_contractor_id', '=', 'contractor_name.f_id')
-        //->leftJoin('project_firm as contractor_description', 'project_preconstruction_meeting_documents.pm_description', '=', 'contractor_description.f_id')
-        //->leftJoin('documents as agenda_path', 'project_preconstruction_meeting_documents.pm_agenda_path', '=', 'agenda_path.doc_id')
-        //->leftJoin('documents as signin_sheet_path', 'project_preconstruction_meeting_documents.pm_signin_sheet_path', '=', 'signin_sheet_path.doc_id')
-        //->leftJoin('documents as meeting_minutes_path', 'project_preconstruction_meeting_documents.pm_meeting_minutes_path', '=', 'meeting_minutes_path.doc_id')
-        ->leftJoin('projects', 'project_preconstruction_meeting_documents.pm_project_id', '=', 'projects.p_id')
-        ->leftJoin('users', 'project_preconstruction_meeting_documents.pm_user_id', '=', 'users.id')
-        ->select(//'contractor_name.f_name as contractor_name',
-          //'contractor_description.f_name as contractor_description',
-          //'agenda_path.doc_path as agenda_path',  
-          //'signin_sheet_path.doc_path as signin_sheet_path',  
-          //'meeting_minutes_path.doc_path as meeting_minutes_path',  
-          'project_preconstruction_meeting_documents.*', 'projects.*', 
-          'users.username', 'users.email', 'users.first_name', 'users.last_name', 'users.company_name', 'users.phone_number', 'users.status', 'users.role')
-        ->whereRaw('date(project_preconstruction_meeting_documents.pm_date) = ?',[date("Y-m-d",strtotime("+10 day"))])
-        ->get();
-        //echo '<pre>';print_r($meetings);die;
-        //echo date("Y-m-d",strtotime("+10 day"));die;
-        foreach($meetings as $check_project_user)
-        {
-            $project_id           = $check_project_user->p_id;
-            $notification_title   = 'Preconstruction Meeting Notification';
-            $url                  = App::make('url')->to('/');
-            $link                 = "/dashboard/".$project_id."/minutes_meeting";
-            $date                 = date("M d, Y h:i a");
-            $email_description    = 'Preconstruction meeting is scheduled on '.$check_project_user->pm_date.' in <strong>'.$check_project_user->p_name.'</strong> Project.<br><a href="'.$url.$link.'"> Click Here to see </a>';
-            $user_detail = array(
-              'id'              => $check_project_user->p_id,
-              'name'            => $check_project_user->username,
-              'email'           => $check_project_user->email,
-              'link'            => $link,
-              'date'            => $date,
-              'project_name'    => $check_project_user->p_name,
-              'title'           => $notification_title,
-              'description'     => $email_description
-            );
-            $user_single = (object) $user_detail;
-            Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-                $message->from('no-reply@sw.ai', 'StratusCM');
-                $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-            });
-        }
+//        $meetings = DB::table('project_preconstruction_meeting_documents')
+//        //->leftJoin('project_firm as contractor_name', 'project_preconstruction_meeting_documents.pm_contractor_id', '=', 'contractor_name.f_id')
+//        //->leftJoin('project_firm as contractor_description', 'project_preconstruction_meeting_documents.pm_description', '=', 'contractor_description.f_id')
+//        //->leftJoin('documents as agenda_path', 'project_preconstruction_meeting_documents.pm_agenda_path', '=', 'agenda_path.doc_id')
+//        //->leftJoin('documents as signin_sheet_path', 'project_preconstruction_meeting_documents.pm_signin_sheet_path', '=', 'signin_sheet_path.doc_id')
+//        //->leftJoin('documents as meeting_minutes_path', 'project_preconstruction_meeting_documents.pm_meeting_minutes_path', '=', 'meeting_minutes_path.doc_id')
+//        ->leftJoin('projects', 'project_preconstruction_meeting_documents.pm_project_id', '=', 'projects.p_id')
+//        ->leftJoin('users', 'project_preconstruction_meeting_documents.pm_user_id', '=', 'users.id')
+//        ->select(//'contractor_name.f_name as contractor_name',
+//          //'contractor_description.f_name as contractor_description',
+//          //'agenda_path.doc_path as agenda_path',  
+//          //'signin_sheet_path.doc_path as signin_sheet_path',  
+//          //'meeting_minutes_path.doc_path as meeting_minutes_path',  
+//          'project_preconstruction_meeting_documents.*', 'projects.*', 
+//          'users.username', 'users.email', 'users.first_name', 'users.last_name', 'users.company_name', 'users.phone_number', 'users.status', 'users.role')
+//        ->whereRaw('date(project_preconstruction_meeting_documents.pm_date) = ?',[date("Y-m-d",strtotime("+10 day"))])
+//        ->get();
+//        //echo '<pre>';print_r($meetings);die;
+//        //echo date("Y-m-d",strtotime("+10 day"));die;
+//        foreach($meetings as $check_project_user)
+//        {
+//            $project_id           = $check_project_user->p_id;
+//            $notification_title   = 'Preconstruction Meeting Notification';
+//            $url                  = App::make('url')->to('/');
+//            $link                 = "/dashboard/".$project_id."/minutes_meeting";
+//            $date                 = date("M d, Y h:i a");
+//            $email_description    = 'Preconstruction meeting is scheduled on '.$check_project_user->pm_date.' in <strong>'.$check_project_user->p_name.'</strong> Project.<br><a href="'.$url.$link.'"> Click Here to see </a>';
+//            $user_detail = array(
+//              'id'              => $check_project_user->p_id,
+//              'name'            => $check_project_user->username,
+//              'email'           => $check_project_user->email,
+//              'link'            => $link,
+//              'date'            => $date,
+//              'project_name'    => $check_project_user->p_name,
+//              'title'           => $notification_title,
+//              'description'     => $email_description
+//            );
+//            $user_single = (object) $user_detail;
+//            Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+//                $message->from('no-reply@sw.ai', 'StratusCM');
+//                $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+//            });
+//        }
         
         /*------------------------------Post Construction---------Unconditional Finals--------------------------*/
         
         /*------------------------------Post Construction---------As-Builts-Final Walk--------------------------*/
         
         /*------------------------------Post Construction---------Notice of Completion--------------------------*/
+//        $notices = DB::table('project_notice_of_completion')
+//          ->leftJoin('documents', 'project_notice_of_completion.noc_file_path', '=', 'documents.doc_id')
+//          ->leftJoin('projects', 'project_notice_of_completion.noc_project_id', '=', 'projects.p_id')
+//          ->leftJoin('users', 'project_notice_of_completion.noc_user_id', '=', 'users.id')
+//          ->select('project_notice_of_completion.*', 'documents.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+//          ->whereRaw('date(project_notice_of_completion.date_noc_filed) = ?',[date("Y-m-d",strtotime("+1 month"))])
+//          ->orWhereRaw('date(project_notice_of_completion.date_noc_filed) = ?',[date("Y-m-d",strtotime("+2 month"))])
+//          ->get();
+//        //echo '<pre>';        print_r($notices);die;
+//        // Start Check User Permission and send notification and email  
+//        // Check User Project Permission  
+//        foreach ($notices as $check_project_user) {
+//          // Check User Permission Parameter 
+//          $user_id              = $check_project_user->p_user_id;
+//          $permission_key       = 'notice_completion_view_all';
+//          // Notification Parameter
+//          $project_id           = $check_project_user->p_id;
+//          $notification_title   = 'Notification for notice of completion.';
+//          $url                  = App::make('url')->to('/');
+//          $link                 = "/dashboard/".$project_id."/notice_completion";
+//          $date                 = date("M d, Y h:i a");
+//          $email_description    = 'Notification for notice of completion in project <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+//
+//          $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+//          if(count($check_single_user_permission) < 1){
+//            continue;
+//          }
+//          else {
+//            // Send Notification to users
+//            $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
+//
+//            $user_detail = array(
+//              'id'              => $check_project_user->noc_id,
+//              'name'            => $check_project_user->user_name,
+//              'email'           => $check_project_user->user_email,
+//              'link'            => $link,
+//              'date'            => $date,
+//              'project_name'    => $check_project_user->p_name,
+//              'title'           => $notification_title,
+//              'description'     => $email_description
+//            );
+//            $user_single = (object) $user_detail;
+//            Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+//                $message->from('no-reply@sw.ai', 'StratusCM');
+//                $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+//            });
+//          }
+//
+//        } // End Foreach
+        // End Check User Permission and send notification and email 
         
         
         
         
         
         
-        
-        echo '<pre>';print_r($meetings);die;
+        //echo '<pre>';print_r($meetings);die;
         
         
         

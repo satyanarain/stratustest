@@ -88,9 +88,19 @@ $(document).ready(function() {
             window.location.href = baseUrl + "500";
         }
     })
-
 });
 
+function isPrice(evt)
+{
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if(charCode==46)
+        return true;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
 $('#add_contract_item_form').submit(function(e) {
   $('.loading-submit').show();
     e.preventDefault();

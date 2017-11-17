@@ -70,7 +70,7 @@
                                           <!-- <input type="text" class="form-control" id="item_unit_price"> -->
                                           <div class="input-group m-b-10">
                                               <span class="input-group-addon project_currency"></span>
-                                              <input class="form-control" type="text" id="item_unit_price" onkeypress="return isNumber(event)">
+                                              <input class="form-control" type="text" id="item_unit_price" onkeypress="return isPrice(event)" >
                                           </div>
                                           <input type="hidden" class="form-control" id="project_id" value="<?php echo $project_id; ?>">
                                       </div>

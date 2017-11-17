@@ -1184,3 +1184,7 @@ Route::get('dashboard/{project_id}/lien_release/{pre_id}', function () {
     return view('/project_preliminary_notice/lien_release_single');
 });
 
+Route::get('importExport', 'Projects\ExcelimportController@importExport');
+Route::get('downloadExcel/{type}', 'Projects\ExcelimportController@downloadExcel');
+Route::post('importExcel', 'Projects\ExcelimportController@importExcel');
+
