@@ -26,7 +26,10 @@ use App\User; //your model
 use App\Document; //your model
 use App\Repositories\Custom\Resource\Post as Resource_Post; 
 use App\Repositories\Util\AclPolicy;
-use Excel;
+//use Maatwebsite\Excel\Excel;
+//use Excel;
+//use vendor\maatwebsite\excel\src\Maatwebsite\Excel;
+//use Maatwebsite\Excel\Excel;
 
 class ExcelimportController extends Controller {
  
@@ -36,36 +39,38 @@ class ExcelimportController extends Controller {
    Update Minutes of Meeting by passing con_id
   --------------------------------------------------------------------------
   */
-  public function importExport(Request $request)
-  {
-      return view('importExport');
+  public function importExport(Request $request,$project_id)
+    {
+        //$this->view->project_id = $project_id;
+        return view('importExport',["project_id"=>$project_id]);
     }
     public function downloadExcel($type)
-	{
-		$data = Item::get()->toArray();
-		return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
-			$excel->sheet('mySheet', function($sheet) use ($data)
-	        {
-				$sheet->fromArray($data);
-	        });
-		})->download($type);
-	}
-	public function importExcel()
-	{
-		if(Input::hasFile('import_file')){
-			$path = Input::file('import_file')->getRealPath();
-			$data = Excel::load($path, function($reader) {
-			})->get();
-			if(!empty($data) && $data->count()){
-				foreach ($data as $key => $value) {
-					$insert[] = ['title' => $value->title, 'description' => $value->description];
-				}
-				if(!empty($insert)){
-					DB::table('items')->insert($insert);
-					dd('Insert Record successfully.');
-				}
-			}
-		}
-		return back();
-	}
+    {
+        $data = Item::get()->toArray();
+        return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
+                $excel->sheet('mySheet', function($sheet) use ($data)
+        {
+                        $sheet->fromArray($data);
+        });
+        })->download($type);
+    }
+    public function importExcel()
+    {
+        if(Input::hasFile('import_file')){
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+            if(!empty($data) && $data->count()){
+                    foreach ($data as $key => $value) {
+                            $insert[] = ['title' => $value->title, 'description' => $value->description];
+                    }
+                    print_r($insert);
+//                    if(!empty($insert)){
+//                            DB::table('items')->insert($insert);
+//                            dd('Insert Record successfully.');
+//                    }
+            }
+        }
+        return back();
+    }
 }

@@ -312,14 +312,27 @@ $(document).ready(function() {
 });
 function checkFormFilled(classname)
 {
-    
     $("input[type=text],select").each(function(key,value) {
         //alert(key);alert(value);
-       if ($(this).val() && $(this).val() != "Select Improvement Type") {
-           isFilled = true;
-           //alert($(this).val());
-           return false;
-       }
+        //var form_ele_name = '';
+        //form_ele_name = $(this).attr('name');
+        //alert(typeof form_ele_name);
+        if(($(this).attr('name') === "company_name_two") || ($(this).attr('name') === "maintenance_bond_amount") || ($(this).attr('name') === "performance_bond_amount") || ($(this).attr('name') === "payment_bond_amount") || ($(this).attr('name') === "company_name" || ($(this).attr('name') === "project_type_dropdown")))
+        {
+            
+        }else{
+            if ($(this).val() && $(this).val() != "Select Improvement Type") {
+                //var nam = element.getAttribute("name");
+                //alert(nam);
+                isFilled = true;
+                console.log($(this));
+                //alert($(this).attr('name'));
+                //alert($(this).name);
+                //alert('Type: ' + input.attr('type') + 'Name: ' + input.attr('name') + 'Value: ' + input.val());
+                //alert($(this).val());
+                return false;
+            }
+        }
     });
     if($('input:checkbox').is(':checked'))
     {
