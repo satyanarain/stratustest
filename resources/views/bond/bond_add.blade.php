@@ -113,7 +113,7 @@
                         </select>
                     </div>
                     <div class="col-xs-9">
-                        <input type="text" class="form-control" id="performance_bond_amount" onkeypress="return isNumber(event)">
+                        <input type="text" name="performance_bond_amount" class="form-control" id="performance_bond_amount" onkeypress="return isNumber(event)">
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -178,7 +178,7 @@
                         </select>
                     </div>
                     <div class="col-xs-9">
-                        <input type="text" class="form-control" id="payment_bond_amount" onkeypress="return isNumber(event)">
+                        <input type="text" class="form-control" name="payment_bond_amount" id="payment_bond_amount" onkeypress="return isNumber(event)">
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -241,7 +241,7 @@
                         </select>
                     </div>
                     <div class="col-xs-9">
-                        <input type="text" class="form-control" id="maintenance_bond_amount" onkeypress="return isNumber(event)">
+                        <input type="text" class="form-control" name="maintenance_bond_amount" id="maintenance_bond_amount" onkeypress="return isNumber(event)">
                     </div>
                 </div>
                 <div class="clearfix"></div>
