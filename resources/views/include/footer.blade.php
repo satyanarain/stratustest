@@ -312,7 +312,7 @@ $(document).ready(function() {
 });
 function checkFormFilled(classname)
 {
-    if($("#upload_doc_id").val())
+    if($("#upload_doc_id").val() || $("#upload_doc_id_adv_bid").val() || $("#upload_doc_id_notice_invite").val() || $("#upload_doc_id_bid_result").val() || $("#upload_doc_id_success_bidder").val() || $("#upload_doc_id_general").val() || $("#upload_doc_id_work").val() || $("#upload_doc_id_auto").val() || $("#upload_doc_id_umbrella").val() || $("#upload_doc_id_certificate").val() || $("#upload_single_doc_id").val() || $(".upload_doc_id").val() || $("#upload_doc_id_work").val() || $("#upload_doc_id_auto").val() || $("#upload_doc_id_general").val() || $("#upload_doc_id_general").val() || $("#upload_doc_id_general").val() || $("#upload_doc_id_general").val() || $("#upload_doc_id_general").val() || $("#upload_doc_id_general").val() || $("#upload_doc_id_general").val())
     {
         isFilled = true;
     }

@@ -557,4 +557,5 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'UpdatingColumnUnitPriceBidItems' => $baseDir . '/database/migrations/2017_11_21_114753_updating_column_unit_price_bid_items.php',
 );

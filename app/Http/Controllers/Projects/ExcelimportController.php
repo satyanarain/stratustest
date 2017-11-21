@@ -29,7 +29,7 @@ use App\Repositories\Util\AclPolicy;
 //use Maatwebsite\Excel\Excel;
 //use Excel;
 //use vendor\maatwebsite\excel\src\Maatwebsite\Excel;
-//use Maatwebsite\Excel\Excel;
+use Excel;
 
 class ExcelimportController extends Controller {
  
@@ -54,21 +54,32 @@ class ExcelimportController extends Controller {
         });
         })->download($type);
     }
-    public function importExcel()
+    public function importExcel(Request $request,$project_id)
     {
-        if(Input::hasFile('import_file')){
+        if(Input::hasFile('import_file'))
+        {
             $path = Input::file('import_file')->getRealPath();
             $data = Excel::load($path, function($reader) {
             })->get();
-            if(!empty($data) && $data->count()){
-                    foreach ($data as $key => $value) {
-                            $insert[] = ['title' => $value->title, 'description' => $value->description];
-                    }
-                    print_r($insert);
-//                    if(!empty($insert)){
-//                            DB::table('items')->insert($insert);
-//                            dd('Insert Record successfully.');
-//                    }
+            echo "<pre>";
+            //print_r($data);die();
+            if(!empty($data) && $data->count())
+            {
+                foreach ($data as $key => $value) 
+                {
+                    $request = $value->toArray();
+                    $item_description       = $request['item_description'];
+                    $item_unit              = $request['item_unit'];
+                    $item_qty               = $request['item_qty'];
+                    $item_unit_price        = $request['item_unit_price'];
+                    $project_id             = $project_id;
+                    $user_id                = Auth::user()->id;
+                    $status                 = 'active';
+                    $item_total_price = $item_qty * $item_unit_price;
+                    $query = DB::table('project_bid_items')
+                    ->insert(['pbi_item_description' => $item_description, 'pbi_item_unit' => $item_unit, 'pbi_item_unit_other' => $item_unit_other, 'pbi_item_qty' => $item_qty, 'pbi_item_unit_price' => $item_unit_price, 'pbi_item_total_price' =>$item_total_price, 'pbi_project_id' => $project_id, 'pbi_user_id' => $user_id, 'pbi_status' => $status]);
+                }
+                //print_r($k);
             }
         }
         return back();
