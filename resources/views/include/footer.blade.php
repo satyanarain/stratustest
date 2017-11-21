@@ -312,6 +312,10 @@ $(document).ready(function() {
 });
 function checkFormFilled(classname)
 {
+    if($("#upload_doc_id").val())
+    {
+        isFilled = true;
+    }
     $("input[type=text],select").each(function(key,value) {
         //alert(key);alert(value);
         //var form_ele_name = '';
@@ -330,7 +334,7 @@ function checkFormFilled(classname)
                 //alert($(this).name);
                 //alert('Type: ' + input.attr('type') + 'Name: ' + input.attr('name') + 'Value: ' + input.val());
                 //alert($(this).val());
-                return false;
+                //return false;
             }
         }
     });
