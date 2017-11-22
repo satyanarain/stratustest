@@ -1159,6 +1159,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('preliminary-notice/{preliminary_id}', 'Projects\PreliminaryNoticeController@get_preliminary_single');
     Route::get('{project_id}/preliminary-notices', 'Projects\PreliminaryNoticeController@get_preliminary_notices');
     Route::get('{project_id}/lien-releases', 'Projects\PreliminaryNoticeController@get_lien_releases');
+    Route::post('dashboard/{project_id}/importExcel', 'Projects\ExcelimportController@importExcel');
 });
 
 Route::get('dashboard/{project_id}/preliminary_notice_log', function () {
@@ -1186,5 +1187,5 @@ Route::get('dashboard/{project_id}/lien_release/{pre_id}', function () {
 
 Route::get('dashboard/{project_id}/importExport', 'Projects\ExcelimportController@importExport');
 Route::get('dashboard/{project_id}/downloadExcel/{type}', 'Projects\ExcelimportController@downloadExcel');
-Route::post('dashboard/{project_id}/importExcel', 'Projects\ExcelimportController@importExcel');
+
 
