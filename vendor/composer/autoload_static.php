@@ -921,6 +921,7 @@ class ComposerStaticInit5d2cc768de0226710126baf53a0b2163
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
         'UpdatingColumnUnitPriceBidItems' => __DIR__ . '/../..' . '/database/migrations/2017_11_21_114753_updating_column_unit_price_bid_items.php',
+        'UpdatingColumnUsersEmail' => __DIR__ . '/../..' . '/database/migrations/2017_11_22_102003_updating_column_users_email.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

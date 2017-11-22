@@ -41,7 +41,7 @@ class ExcelimportController extends Controller {
   */
   public function importExport(Request $request,$project_id)
     {
-        //$this->view->project_id = $project_id;
+        //echo "dsf";die;
         return view('importExport',["project_id"=>$project_id]);
     }
     public function downloadExcel($type)
@@ -56,28 +56,30 @@ class ExcelimportController extends Controller {
     }
     public function importExcel(Request $request,$project_id)
     {
+        //print_r($_POST);
+        //print_r($_FILES);die;
         if(Input::hasFile('import_file'))
         {
             $path = Input::file('import_file')->getRealPath();
             $data = Excel::load($path, function($reader) {
             })->get();
-            echo "<pre>";
             //print_r($data);die();
             if(!empty($data) && $data->count())
             {
                 foreach ($data as $key => $value) 
                 {
                     $request = $value->toArray();
+                    //print_r($request);die;
                     $item_description       = $request['item_description'];
                     $item_unit              = $request['item_unit'];
                     $item_qty               = $request['item_qty'];
                     $item_unit_price        = $request['item_unit_price'];
                     $project_id             = $project_id;
-                    $user_id                = Auth::user()->id;
+                    $user_id            = Auth::user()->id;
                     $status                 = 'active';
                     $item_total_price = $item_qty * $item_unit_price;
                     $query = DB::table('project_bid_items')
-                    ->insert(['pbi_item_description' => $item_description, 'pbi_item_unit' => $item_unit, 'pbi_item_unit_other' => $item_unit_other, 'pbi_item_qty' => $item_qty, 'pbi_item_unit_price' => $item_unit_price, 'pbi_item_total_price' =>$item_total_price, 'pbi_project_id' => $project_id, 'pbi_user_id' => $user_id, 'pbi_status' => $status]);
+                    ->insert(['pbi_item_description' => $item_description, 'pbi_item_unit' => $item_unit, 'pbi_item_qty' => $item_qty, 'pbi_item_unit_price' => $item_unit_price, 'pbi_item_total_price' =>$item_total_price, 'pbi_project_id' => $project_id, 'pbi_user_id' => $user_id, 'pbi_status' => $status]);
                 }
                 //print_r($k);
             }
