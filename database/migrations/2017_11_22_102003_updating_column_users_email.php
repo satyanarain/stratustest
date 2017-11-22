@@ -12,7 +12,7 @@ class UpdatingColumnUsersEmail extends Migration
      */
     public function up()
     {
-         DB::statement(`ALTER TABLE ``users`` DROP INDEX ``email``;`);
+         DB::statement('ALTER TABLE `users` DROP INDEX `email`;');
     }
 
     /**
