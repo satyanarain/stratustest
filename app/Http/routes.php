@@ -682,14 +682,14 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('daily-report/{pdr_id}/update', 'Projects\DailyReportController@update_daily_report');
     Route::get('daily-report/{pdr_id}', 'Projects\DailyReportController@get_daily_report_single');
     Route::get('{project_id}/daily-report', 'Projects\DailyReportController@get_daily_report_project');
-
+    Route::get('{project_id}/daily-report-logs/{pdr_id}', 'Projects\DailyReportController@get_daily_report_logs_project');
     Route::post('{project_id}/daily-quantity-complete', 'Projects\DailyReportController@add_daily_quantity_complete');
     Route::post('daily-quantity-complete/{item_id}/{report_id}/update', 'Projects\DailyReportController@update_daily_quantity_complete');
     Route::post('daily-quantity-complete/{project_id}/add', 'Projects\DailyReportController@add_daily_resource_used');
     Route::post('daily-material-delivered/{project_id}/add', 'Projects\DailyReportController@add_material_delivered');
     Route::post('daily-photo-video/{project_id}/add', 'Projects\DailyReportController@add_photo_video');
-
     Route::get('{report_id}/daily-quantity-complete', 'Projects\DailyReportController@get_daily_quantity_complete');
+    Route::post('dashboard/{project_id}/daily_construction_report/{report_id}/get_new_report_id', 'Projects\DailyReportController@get_new_report_id');
     Route::get('{report_id}/daily-resource-used', 'Projects\DailyReportController@get_daily_resource_used');
     Route::get('{report_id}/daily-material-delivered', 'Projects\DailyReportController@get_daily_material_delivered');
     Route::get('{report_id}/daily-video-photo', 'Projects\DailyReportController@get_daily_video_photo');
@@ -706,6 +706,9 @@ Route::get('dashboard/{project_id}/daily_construction_report/{daily_construction
 });
 Route::get('dashboard/{project_id}/daily_construction_report/{daily_construction_report_id}/update', function () {
     return view('/daily_construction_report/daily_construction_report_update');
+});
+Route::get('dashboard/{project_id}/daily_construction_report/{daily_construction_report_id}/logs', function () {
+    return view('/daily_construction_report/daily_construction_report_logs');
 });
 
 /*  --------------------------------------------------------------------------

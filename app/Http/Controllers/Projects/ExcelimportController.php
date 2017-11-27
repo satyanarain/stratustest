@@ -70,16 +70,17 @@ class ExcelimportController extends Controller {
                 {
                     $request = $value->toArray();
                     //print_r($request);die;
+                    $item_no                = $request['item_no.'];
                     $item_description       = $request['item_description'];
-                    $item_unit              = $request['item_unit'];
-                    $item_qty               = $request['item_qty'];
-                    $item_unit_price        = $request['item_unit_price'];
+                    $item_unit              = $request['unit_of_measure'];
+                    $item_qty               = $request['quantity'];
+                    $item_unit_price        = $request['unit_price'];
                     $project_id             = $project_id;
                     $user_id            = Auth::user()->id;
                     $status                 = 'active';
                     $item_total_price = $item_qty * $item_unit_price;
                     $query = DB::table('project_bid_items')
-                    ->insert(['pbi_item_description' => $item_description, 'pbi_item_unit' => $item_unit, 'pbi_item_qty' => $item_qty, 'pbi_item_unit_price' => $item_unit_price, 'pbi_item_total_price' =>$item_total_price, 'pbi_project_id' => $project_id, 'pbi_user_id' => $user_id, 'pbi_status' => $status]);
+                    ->insert(['pbi_item_no' => $item_no,'pbi_item_description' => $item_description, 'pbi_item_unit' => $item_unit, 'pbi_item_qty' => $item_qty, 'pbi_item_unit_price' => $item_unit_price, 'pbi_item_total_price' =>$item_total_price, 'pbi_project_id' => $project_id, 'pbi_user_id' => $user_id, 'pbi_status' => $status]);
                 }
                 //print_r($k);
             }

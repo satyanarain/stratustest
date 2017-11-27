@@ -161,44 +161,44 @@ class DailyReportController extends Controller {
              // Check User Project Permission  
             foreach ($check_project_users as $check_project_user) {
               // Check User Permission Parameter 
-//              $user_id              = $check_project_user->id;
-//              $permission_key       = 'daily_construction_report_view_all';
-//              // Notification Parameter
-//              $project_id           = $project_id;
-//              $notification_title   = "Daily Report Added for date: ".$report_date." in Project: " .$check_project_user->p_name;
-//              $url                  = App::make('url')->to('/');
-//              $link                 = "/dashboard/".$project_id."/daily_construction_report";
-//              $date                 = date("M d, Y h:i a");
-//              $email_description    = 'Daily report added for date: '.$report_date.' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
-//
-//              $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
-//              if(count($check_single_user_permission) < 1){
-//                continue;
-//              }
-//              else { 
-//                // Send Notification to users
-//                $notification_status  = '1';
-//                $sender_user_id       = '1';// Auth::user()->id;
-//
-//                $query = DB::table('project_notifications')
-//                ->insert(['pn_description' => $notification_title, 'pn_link' => $link, 'pn_status' => $notification_status, 'pn_project_id' => $project_id, 'pn_sender_user_id' => $sender_user_id, 'pn_receiver_user_id' => $check_single_user_permission[0]->pup_user_id]);
-//             
-//                $user_detail = array(
-//                  'id'              => $check_project_user->id,
-//                  'name'            => $check_project_user->username,
-//                  'email'           => $check_project_user->email,
-//                  'link'            => $link,
-//                  'date'            => $date,
-//                  'project_name'    => $check_project_user->p_name,
-//                  'title'           => $notification_title,
-//                  'description'     => $email_description
-//                );
-//                $user_single = (object) $user_detail;
-//                Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-//                    $message->from('no-reply@sw.ai', 'StratusCM');
-//                    $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-//                });
-//              }
+              $user_id              = $check_project_user->id;
+              $permission_key       = 'daily_construction_report_view_all';
+              // Notification Parameter
+              $project_id           = $project_id;
+              $notification_title   = "Daily Report Added for date: ".$report_date." in Project: " .$check_project_user->p_name;
+              $url                  = App::make('url')->to('/');
+              $link                 = "/dashboard/".$project_id."/daily_construction_report";
+              $date                 = date("M d, Y h:i a");
+              $email_description    = 'Daily report added for date: '.$report_date.' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+
+              $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+              if(count($check_single_user_permission) < 1){
+                continue;
+              }
+              else { 
+                // Send Notification to users
+                $notification_status  = '1';
+                $sender_user_id       = '1';// Auth::user()->id;
+
+                $query = DB::table('project_notifications')
+                ->insert(['pn_description' => $notification_title, 'pn_link' => $link, 'pn_status' => $notification_status, 'pn_project_id' => $project_id, 'pn_sender_user_id' => $sender_user_id, 'pn_receiver_user_id' => $check_single_user_permission[0]->pup_user_id]);
+             
+                $user_detail = array(
+                  'id'              => $check_project_user->id,
+                  'name'            => $check_project_user->username,
+                  'email'           => $check_project_user->email,
+                  'link'            => $link,
+                  'date'            => $date,
+                  'project_name'    => $check_project_user->p_name,
+                  'title'           => $notification_title,
+                  'description'     => $email_description
+                );
+                $user_single = (object) $user_detail;
+                Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                    $message->from('no-reply@sw.ai', 'StratusCM');
+                    $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                });
+              }
 
             } // End Foreach
             // End Payment Quantity Verification Automation Process
@@ -289,6 +289,72 @@ class DailyReportController extends Controller {
   //   }
   // }
 
+  public function get_new_report_id(Request $request, $project_id,$report_id)
+  {
+    try
+     {
+      //echo $k;die;
+       $query1 = DB::table('project_daily_report')
+        ->where('pdr_id', '=', $report_id)
+        ->update([ 'pdr_status' => 'complete']);
+            
+           
+        $query = DB::table('project_daily_report')
+         ->leftJoin('project_firm', 'project_daily_report.pdr_sub_contractor_work_detail', '=', 'project_firm.f_id')
+         ->leftJoin('projects', 'project_daily_report.pdr_project_id', '=', 'projects.p_id')
+         ->leftJoin('users', 'project_daily_report.pdr_user_id', '=', 'users.id')
+         ->select('project_daily_report.*', 'project_firm.f_name as sub_contractor_work_detail', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+         ->where('pdr_id', '=', $report_id)
+         ->first();
+        $request =  (array) $query;
+        //echo '<pre>';print_r($array);die;
+        $pdr_report_id                  = $report_id;
+        $pdr_date                       = $request['pdr_date'];
+        $pdr_weather                    = $request['pdr_weather'];
+        $pdr_custom_field               = $request['pdr_custom_field']; 
+        $pdr_perform_work_day           = $request['pdr_perform_work_day'];
+        $pdr_material_delivery          = $request['pdr_material_delivery']; 
+        $pdr_milestone_completed        = $request['pdr_milestone_completed'];
+        $pdr_milestone_detail           = $request['pdr_milestone_detail']; 
+        $pdr_occur_detail               = $request['pdr_occur_detail']; 
+        $pdr_general_notes              = $request['pdr_general_notes'];
+        $pdr_picture_video              = $request['pdr_picture_video'];
+        $pdr_sub_contractor_work        = $request['pdr_sub_contractor_work'];
+        $pdr_sub_contractor_work_detail = $request['pdr_sub_contractor_work_detail'];
+        $pdr_status                     = $request['pdr_status']; 
+        $pdr_project_id                 = $request['pdr_project_id'];
+        $pdr_user_id                    = $request['pdr_user_id'];
+        $user_id                        = Auth::user()->id;
+        $query = DB::table('project_daily_report_logs')
+            ->insert(['pdr_report_id' => $pdr_report_id, 'pdr_date' => $pdr_date,
+                'pdr_weather' => $pdr_weather, 
+                'pdr_custom_field' => $pdr_custom_field,
+                'pdr_perform_work_day' =>$pdr_perform_work_day, 'pdr_material_delivery' =>$pdr_material_delivery,
+                'pdr_milestone_completed' =>$pdr_milestone_completed,
+                'pdr_milestone_detail' =>$pdr_milestone_detail, 
+                'pdr_occur_detail' =>$pdr_occur_detail, 'pdr_general_notes' =>$pdr_general_notes,
+                'pdr_picture_video' =>$pdr_picture_video, 
+                'pdr_sub_contractor_work' =>$pdr_sub_contractor_work,
+                'pdr_sub_contractor_work_detail' => $pdr_sub_contractor_work_detail, 'pdr_status' => $pdr_status,
+                'pdr_project_id' => $pdr_project_id, 'pdr_user_id' => $user_id]);
+        if(count($query) < 1)
+        {
+          $result = array('code'=>400, "description"=>"No records found");
+          return response()->json($result, 400);
+        }
+        else
+        {
+          $result = array('description'=>"Add daily report successfully",'code'=>200,'new_report_id'=>DB::getPdo()->lastInsertId());
+          return response()->json($result, 200);
+        }
+     }
+     catch(Exception $e)
+     {
+       return response()->json(['error' => 'Something is wrong'], 500);
+     }  
+  }
+  
+  
   /*
   --------------------------------------------------------------------------
    Update DAILY REPORT by passing report_id
@@ -348,8 +414,8 @@ class DailyReportController extends Controller {
         }
         else
         {
-            $query = DB::table('project_daily_report')
-            ->where('pdr_id', '=', $report_id)
+            $query = DB::table('project_daily_report_logs')
+            ->where('pdrl_id', '=', $report_id)
             ->update(['pdr_weather' => $report_weather, 'pdr_custom_field' => $report_custum_field, 'pdr_perform_work_day' => $report_perform_work_day, 'pdr_material_delivery' =>$report_material_delivery, 'pdr_milestone_completed' =>$report_milestone_completed, 'pdr_milestone_detail' =>$report_milestone_detail, 'pdr_occur_detail' =>$report_occur_detail, 'pdr_general_notes' =>$report_general_notes, 'pdr_picture_video' =>$report_picture_video, 'pdr_sub_contractor_work' =>$report_subcontractor_work_day, 'pdr_sub_contractor_work_detail' => $report_subcontractor_work_detail, 'pdr_status' => $status, 'pdr_project_id' => $project_id, 'pdr_user_id' => $user_id]);
             if(count($query) < 1)
             {
@@ -436,12 +502,12 @@ class DailyReportController extends Controller {
       //   return response()->json($result, 403);
       // } 
       // else {
-        $query = DB::table('project_daily_report')
-->leftJoin('project_firm', 'project_daily_report.pdr_sub_contractor_work_detail', '=', 'project_firm.f_id')
-->leftJoin('projects', 'project_daily_report.pdr_project_id', '=', 'projects.p_id')
-->leftJoin('users', 'project_daily_report.pdr_user_id', '=', 'users.id')
-        ->select('project_daily_report.*', 'project_firm.f_name as sub_contractor_work_detail', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
-        ->where('pdr_id', '=', $report_id)
+        $query = DB::table('project_daily_report_logs')
+        ->leftJoin('project_firm', 'project_daily_report_logs.pdr_sub_contractor_work_detail', '=', 'project_firm.f_id')
+        ->leftJoin('projects', 'project_daily_report_logs.pdr_project_id', '=', 'projects.p_id')
+        ->leftJoin('users', 'project_daily_report_logs.pdr_user_id', '=', 'users.id')
+        ->select('project_daily_report_logs.*', 'project_firm.f_name as sub_contractor_work_detail', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+        ->where('pdr_report_id', '=', $report_id)
         ->first();
         if(count($query) < 1)
         {
@@ -490,10 +556,10 @@ class DailyReportController extends Controller {
           return response()->json($result, 403);
         }
         else {
-          $query = DB::table('project_daily_report')
-->leftJoin('projects', 'project_daily_report.pdr_project_id', '=', 'projects.p_id')
-->leftJoin('users', 'project_daily_report.pdr_user_id', '=', 'users.id')
-        ->select('project_daily_report.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+            $query = DB::table('project_daily_report')
+            ->leftJoin('projects', 'project_daily_report.pdr_project_id', '=', 'projects.p_id')
+            ->leftJoin('users', 'project_daily_report.pdr_user_id', '=', 'users.id')
+            ->select('project_daily_report.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
           ->where('pdr_project_id', '=', $project_id)
           ->get();
           if(count($query) < 1)
@@ -515,7 +581,58 @@ class DailyReportController extends Controller {
   }
 
 
-
+/*
+  ----------------------------------------------------------------------------------
+   Get all Daily Report log by passing report id
+  ----------------------------------------------------------------------------------
+  */
+  public function get_daily_report_logs_project(Request $request, $project_id,$pdr_id)
+  {
+      try
+      {
+        // $user = array(
+        //   'userid'    => Auth::user()->id,
+        //   'role'      => Auth::user()->role
+        // );
+        // $user = (object) $user;
+        // $post = new Resource_Post(); // You create a new resource Post instance
+        // if (Gate::forUser($user)->denies('allow_admin', [$post,false])) { 
+        //   $result = array('code'=>403, "description"=>"Access denies");
+        //   return response()->json($result, 403);
+        // } 
+        // else {
+        // Check User Permission Parameter 
+        $user_id = Auth::user()->id;
+        $permission_key = 'daily_construction_report_view_all';
+        $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+        if(count($check_single_user_permission) < 1){
+          $result = array('code'=>403, "description"=>"Access Denies");
+          return response()->json($result, 403);
+        }
+        else {
+            $query = DB::table('project_daily_report_logs')
+            ->leftJoin('projects', 'project_daily_report_logs.pdr_project_id', '=', 'projects.p_id')
+            ->leftJoin('users', 'project_daily_report_logs.pdr_user_id', '=', 'users.id')
+            ->select('project_daily_report_logs.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+          ->where('pdr_report_id', '=', $pdr_id)
+          ->get();
+          if(count($query) < 1)
+          {
+            $result = array('code'=>404, "description"=>"No Records Found");
+            return response()->json($result, 404);
+          }
+          else
+          {
+            $result = array('data'=>$query,'code'=>200);
+            return response()->json($result, 200);
+          }
+        }
+      }
+      catch(Exception $e)
+      {
+        return response()->json(['error' => 'Something is wrong'], 500);
+      }
+  }
 
 
   /*

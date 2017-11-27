@@ -109,6 +109,7 @@ $('#add_contract_item_form').submit(function(e) {
     var item_unit_other         = $('#item_unit_other').val();
     var item_qty                = $('#item_qty').val();
     var item_unit_price         = $('#item_unit_price').val();
+    var item_no                 = $('#item_no').val();
     var project_id              = $('#project_id').val();
     var token                   = localStorage.getItem('u_token');
     console.log(item_unit_other);
@@ -121,6 +122,7 @@ $('#add_contract_item_form').submit(function(e) {
             "item_unit_other"       : item_unit_other,
             "item_qty"              : item_qty,
             "item_unit_price"       : item_unit_price,
+            "item_no"               : item_no,
             "project_id"            : project_id
         },
         headers: {

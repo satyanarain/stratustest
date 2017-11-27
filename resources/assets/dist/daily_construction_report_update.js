@@ -1,19 +1,37 @@
-  	$(document).ready(function() {
+$(document).ready(function() {
 
-	  	// $('#resource_item_div .add_bar_resource').click(function(e){
-	  	// 	e.preventDefault();
-	  	// 	console.log('click');
-	  	// });
+    // $('#resource_item_div .add_bar_resource').click(function(e){
+    // 	e.preventDefault();
+    // 	console.log('click');
+    // });
 
-     	// Get login user profile data
-     	$("#update_survey_form").hide();
-	   // Get login user profile data
-		var token = localStorage.getItem('u_token');
-		var url = $(location).attr('href').split( '/' );
-		project_id = url[ url.length - 4 ]; // projects
-		report_id = url[ url.length - 2 ]; // projects
-		console.log(project_id);
-
+    // Get login user profile data
+    $("#update_survey_form").hide();
+    // Get login user profile data
+    var token = localStorage.getItem('u_token');
+    var url = $(location).attr('href').split( '/' );
+    project_id = url[ url.length - 4 ]; // projects
+    report_id = url[ url.length - 2 ]; // projects
+    console.log(project_id);
+    //alert(report_id);
+    jQuery.ajax({
+        url: baseUrl + "dashboard/"+project_id+"/daily_construction_report/"+report_id+"/get_new_report_id",
+        type: "POST",
+        data: {
+            "report_id"  		: report_id
+        },
+        headers: {
+          "x-access-token": token
+        },
+            contentType: "application/x-www-form-urlencoded",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+            report_id = data.new_report_id;
+        })
+        //alert(report_id);
+    //return false;
+    //alert(baseUrl + "dashboard/"+project_id+"/daily_construction_report/"+report_id+"/get_new_report_id");return false;
 		 // Check Permission
 	    var check_user_access = JSON.parse(localStorage.getItem("access_permission"));
 	    var check_permission = jQuery.inArray("daily_construction_report_update", check_user_access );
@@ -108,8 +126,8 @@
 		    }
 		})
 
-
-		// Fetch All bit item for given project_id
+//alert(project_id);
+		// Fetch All bid item for given project_id
 		jQuery.ajax({
 		url: baseUrl+project_id+"/bid-items",
 		    type: "GET",
