@@ -164,9 +164,9 @@ $(document).ready(function() {
                     '<td style="vertical-align: middle;">'+val.pwrd_date+'</td>'+
                     '<td><input type="hidden" class="form-control days_id" name="days_id[]" value="'+val.pwrd_id+'" id="">'+
                     '<input type="text" class="form-control days_weather" name="days_weather[]" value="'+val.pwrd_weather+'" id=""></td>'+
-                    '<td><input type="number" min="0" max="1" class="form-control days_app_calender" name="days_app_calender[]" value="'+val.pwrd_approved_calender_day+'" id=""></td>'+
-                    '<td><input type="number" min="0" max="1" class="form-control days_app_non_calender" name="days_app_non_calender[]" value="'+val.pwrd_approved_non_calender_day+'" id=""></td>'+
-                    '<td><input type="number" min="0" max="1" class="form-control days_rainy_day" name="days_rainy_day[]" value="'+val.pwrd_rain_day+'" id=""></td>'+
+                    '<td><input type="number" min="0" max="100" class="form-control days_app_calender" name="days_app_calender[]" value="'+val.pwrd_approved_calender_day+'" id=""></td>'+
+                    '<td><input type="number" min="0" max="100" class="form-control days_app_non_calender" name="days_app_non_calender[]" value="'+val.pwrd_approved_non_calender_day+'" id=""></td>'+
+                    '<td><input type="number" min="0" max="100" class="form-control days_rainy_day" name="days_rainy_day[]" value="'+val.pwrd_rain_day+'" id=""></td>'+
                 '</tr>'
             );
             pwrd_approved_calender_day += parseInt(val.pwrd_approved_calender_day);

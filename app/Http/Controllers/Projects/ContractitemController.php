@@ -56,6 +56,7 @@ class ContractitemController extends Controller {
         $item_unit_other        = $request['item_unit_other'];
         $item_unit_price        = $request['item_unit_price'];
         $project_id             = $request['project_id'];
+        $item_no                = $request['item_no'];
         $user_id                = Auth::user()->id;
         $status                 = 'active';
     // Check User Permission Parameter 
@@ -96,7 +97,7 @@ class ContractitemController extends Controller {
         {
             $item_total_price = $item_qty * $item_unit_price;
             $query = DB::table('project_bid_items')
-            ->insert(['pbi_item_description' => $item_description, 'pbi_item_unit' => $item_unit, 'pbi_item_unit_other' => $item_unit_other, 'pbi_item_qty' => $item_qty, 'pbi_item_unit_price' => $item_unit_price, 'pbi_item_total_price' =>$item_total_price, 'pbi_project_id' => $project_id, 'pbi_user_id' => $user_id, 'pbi_status' => $status]);
+            ->insert(['pbi_item_no' => $item_no,'pbi_item_description' => $item_description, 'pbi_item_unit' => $item_unit, 'pbi_item_unit_other' => $item_unit_other, 'pbi_item_qty' => $item_qty, 'pbi_item_unit_price' => $item_unit_price, 'pbi_item_total_price' =>$item_total_price, 'pbi_project_id' => $project_id, 'pbi_user_id' => $user_id, 'pbi_status' => $status]);
 
             if(count($query) < 1)
             {

@@ -1,28 +1,32 @@
-  	$(document).ready(function() { 
+$(document).ready(function() { 
 
-  		// Get login user profile data
-     	$("#view_users_table_wrapper").hide();
-		var role = localStorage.getItem('u_role');
-		var token = localStorage.getItem('u_token');
-		var url = $(location).attr('href').split( '/' );
-		project_id = url[ url.length - 2 ]; // projects
-		// console.log(project_id);
-		type = url[ url.length - 1 ]; // projects
-		// console.log(type);
+    // Get login user profile data
+    $("#view_users_table_wrapper").hide();
+    var role = localStorage.getItem('u_role');
+    var token = localStorage.getItem('u_token');
+    var url = $(location).attr('href').split( '/' );
+    pdr_report_id = url[ url.length - 2 ]; // projects
+    // console.log(project_id);
+    type = url[ url.length - 1 ]; // job type
+    project_id = url[ url.length - 4]; // report id
+    // console.log(type);
+    
+    //alert(type);
+    //alert(project_id);
+    //alert(pdr_report_id);return false;
+    // Check View All Permission
+    var check_user_access = JSON.parse(localStorage.getItem("access_permission"));
+    var check_permission = jQuery.inArray( "daily_construction_report_view_all", check_user_access );
+    console.log(check_permission);
+    if(check_permission < 1){
+            window.location.href = baseUrl + "403";
+    }
+    else {
+            console.log('Yes Permission');
+    }
 
-		// Check View All Permission
-		var check_user_access = JSON.parse(localStorage.getItem("access_permission"));
-		var check_permission = jQuery.inArray( "daily_construction_report_view_all", check_user_access );
-		console.log(check_permission);
-		if(check_permission < 1){
-			window.location.href = baseUrl + "403";
-		}
-		else {
-			console.log('Yes Permission');
-		}
-
-		jQuery.ajax({
-		url: baseUrl +project_id+"/daily-report",
+    jQuery.ajax({
+		url: baseUrl +project_id+"/daily-report-logs/"+pdr_report_id,
 		    type: "GET",
 		    headers: {
 		      "x-access-token": token
@@ -30,7 +34,7 @@
 		    contentType: "application/json",
 		    cache: false
 		})
-		    .done(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
 		    // console.log(data.data);
 
 		    	window.project_name = data.data[0].p_name;
@@ -90,21 +94,20 @@
 					var update_permission = '';
 				}
 				else {
-					var update_permission = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/daily_construction_report/'+val.pdr_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
+					var update_permission = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/daily_construction_report/'+val.pdrl_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
 				}
 
 				var status = val.pdr_status;
 				if(status == 'complete'){
                                     status = '<span class="label label-success">COMPLETE</span>';
                                     //var action = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/daily_construction_report/'+val.pdr_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>'
-                                    var action = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/daily_construction_report/'+val.pdr_id+'/logs" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>'  
-                                    +update_permission;
+                                    
                                 }
                                 else {
                                     status = '<span class="label label-danger">INCOMPLETE</span>';
-                                    var action = update_permission;
+                                    //var action = update_permission;
                                 }
-			  	
+			  	var action = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/daily_construction_report/'+val.pdrl_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>';
 			  	// var submittal_path = val.submittal_path;
 			  	// var sub_additional_path_value;
 			  	// if(submittal_path == null){
@@ -137,7 +140,7 @@
 		    $(".loading_data").hide();
 
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
+    .fail(function(jqXHR, textStatus, errorThrown) {
 		    console.log("HTTP Request Failed");
 		    var response = jqXHR.responseJSON.code;
 		    console.log(response);
@@ -155,23 +158,5 @@
 		}); 
 
 
-		// setTimeout(function()
-  //       {
-		// 	// Check Update Permission
-		// 	var check_permission = jQuery.inArray( "daily_construction_report_update", check_user_access );
-		// 	console.log(check_permission);
-		// 	if(check_permission < 1){
-		// 		$('.hide_update_permission').remove();
-		// 	}
-		// 	else {
-		// 		$('.hide_update_permission').show();
-		// 	}
-		// },2000)
-
-
-		// $('#view_users_table_wrapper').dataTable({
-		// 	tableTools: {
-		// 		sSwfPath: "http://cdn.datatables.net/tabletools/2.2.3/swf/copy_csv_xls_pdf.swf",
-		// 	}
-	 //    });
+		
     });

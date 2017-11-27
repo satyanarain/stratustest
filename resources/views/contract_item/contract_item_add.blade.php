@@ -33,8 +33,8 @@
                                 <form role="form" id="add_contract_item_form">
                                     <div class="row">
                                       <div class="form-group col-md-6">
-                                          <label for="item_description">Item Description <span class="text-danger">*</span></label>
-                                          <input type="text" class="form-control" id="item_description">
+                                          <label for="item_description">Item No. <span class="text-danger">*</span></label>
+                                          <input type="text" class="form-control" id="item_no">
                                       </div>
                                       <div class="form-group col-md-6">
                                           <label>Unit of Measure</label>
@@ -60,6 +60,10 @@
                                            <div class="other_option" style="display: none;">
                                               <br/><input type="text" class="form-control" id="item_unit_other">
                                            </div>
+                                      </div>
+                                        <div class="form-group col-md-12">
+                                          <label for="item_description">Item Description <span class="text-danger">*</span></label>
+                                          <input type="text" class="form-control" id="item_description">
                                       </div>
                                       <div class="form-group col-md-6">
                                           <label for="item_qty">Quantity <span class="text-danger">*</span></label>
