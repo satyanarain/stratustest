@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddCompanyTypeColumnInFirmTable' => $baseDir . '/database/migrations/2017_11_29_114355_add company type column in firm table.php',
     'AddItemNoContractItems' => $baseDir . '/database/migrations/2017_11_23_102927_add_item_no_contract_items.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
     'CreateDailyReportTableReplica' => $baseDir . '/database/migrations/2017_11_24_063025_create daily report table replica.php',

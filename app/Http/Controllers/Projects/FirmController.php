@@ -270,7 +270,7 @@ class FirmController extends Controller {
         $firm_id                = $firm_id;
         $project_long           = $request['project_long'];
         $project_lat            = $request['project_lat'];
-
+        $company_type           = $request['company_type'];
 
 
         
@@ -296,7 +296,7 @@ class FirmController extends Controller {
         {
             $query = DB::table('project_firm')
             ->where('f_id', '=', $firm_id)
-            ->update(['f_name' => $firm_name, 'f_address' => $firm_address, 'p_long' => $project_long, 'p_lat' => $project_lat, 'f_type' => $firm_type, 'f_status' => $firm_status, 'f_detail' => $firm_detail]);
+            ->update(['company_type' => $company_type,'f_name' => $firm_name, 'f_address' => $firm_address, 'p_long' => $project_long, 'p_lat' => $project_lat, 'f_type' => $firm_type, 'f_status' => $firm_status, 'f_detail' => $firm_detail]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
@@ -346,6 +346,7 @@ class FirmController extends Controller {
         $firm_status            = 'active';
         $project_long           = $request['project_long'];
         $project_lat            = $request['project_lat'];
+        $company_type           = $request['company_type'];
         $user_id                = Auth::user()->id;
 
         
@@ -383,7 +384,7 @@ class FirmController extends Controller {
 
 
             $query = DB::table('project_firm')
-            ->insert(['f_name' => $firm_name, 'f_status' => $firm_status, 'f_detail' => $firm_detail, 'f_address' => $firm_address, 'p_long' => $project_long, 'p_lat' => $project_lat, 'f_type' => $firm_type, 'f_user' => $user_id]);
+            ->insert(['company_type' => $company_type,'f_name' => $firm_name, 'f_status' => $firm_status, 'f_detail' => $firm_detail, 'f_address' => $firm_address, 'p_long' => $project_long, 'p_lat' => $project_lat, 'f_type' => $firm_type, 'f_user' => $user_id]);
 
             if(count($query) < 1)
             {

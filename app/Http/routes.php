@@ -901,6 +901,8 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('{project_id}/quantity-verification-report', 'Projects\PaymentQuantityVerificationController@get_quantity_verification_report');
     Route::get('{project_id}/quantity-verification-complete-report', 'Projects\PaymentQuantityVerificationController@get_quantity_verification_complete_report');
     Route::get('quantity-verification-report-name/{report_id}', 'Projects\PaymentQuantityVerificationController@get_quantity_verification_report_name');
+    Route::post('dashboard/{project_id}/payment_quantity_verification/{report_id}/update', 'Projects\PaymentQuantityVerificationController@update_payment_quantity_verification');
+    //Route::get('dashboard/{project_id}/payment_quantity_verification/{report_id}', 'Projects\PaymentApplicationController@get_payment_application_detail_report');
 });
 /**** PAYMENT QUANTITY VIEW ****/
 Route::get('dashboard/{project_id}/payment_quantity_verification_monthly', function () {
@@ -912,7 +914,9 @@ Route::get('dashboard/{project_id}/payment_quantity_verification_complete', func
 Route::get('dashboard/{project_id}/payment_quantity_verification/{report_id}', function () {
     return view('payment_quantity/payment_quantity_single');
 });
-
+Route::get('dashboard/{project_id}/payment_quantity_verification/{report_id}/update', function () {
+    return view('/payment_quantity/payment_quantity_verification_update');
+});
 /*  --------------------------------------------------------------------------
     CHANGE ORDER REQUEST API'S
     -------------------------------------------------------------------------- */

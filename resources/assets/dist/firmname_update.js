@@ -88,6 +88,7 @@
 		    }
 		    $('#status').val(status);
 		    $('#firm_type').val(data.data.f_type);
+                    $('#company_type').val(data.data.company_type);
 		    $("#update_firm_form").show();
 		    $(".loading_data").hide();
 		})
@@ -120,8 +121,9 @@
 	    var f_address 	= $('#project_location').val();
 	    var f_type 		= $('#firm_type').val();
 	    var f_status 	= $('#status').val();
-        var lat =  $("#project_latitude").val();
-        var long =  $("#project_longitude").val();
+            var lat =  $("#project_latitude").val();
+            var long =  $("#project_longitude").val();
+            var company_type = $("#company_type").val();
 	    console.log(f_status);
 
         var token = localStorage.getItem('u_token');
@@ -135,7 +137,8 @@
                 "firm_type" 	: f_type,
                 "firm_status" 	: f_status,
                 "project_long" :long,
-                "project_lat":lat
+                "project_lat":lat,
+                "company_type":company_type
             },
             headers: {
               "x-access-token": token
