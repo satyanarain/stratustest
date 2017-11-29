@@ -83,6 +83,14 @@
                                         <select class="form-control" id="firm_type">
                                         </select>
                                     </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="company_type">Firm/Agency <span class="text-danger">*</span></label>
+                                        <select class="form-control" id="company_type">
+                                            <option value="">Firm/Agency</option>
+                                            <option value="f">Firm/Company</option>
+                                            <option value="a">Lead Agency</option>
+                                        </select>
+                                    </div>    
                                         <input type="hidden" id="project_latitude">
                                         <input type="hidden" id="project_longitude">
                                     <div class="clearfix"></div>

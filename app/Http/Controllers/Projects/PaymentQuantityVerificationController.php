@@ -323,7 +323,7 @@ class PaymentQuantityVerificationController extends Controller {
 
   /*
     ----------------------------------------------------------------------------------
-     Get Payment Quantity Verification by padding project ID
+     Get All Payment Quantity Verification Report by passing project ID
     ----------------------------------------------------------------------------------
     */
     public function get_quantity_verification_report(Request $request, $project_id)
@@ -376,7 +376,7 @@ class PaymentQuantityVerificationController extends Controller {
 
     /*
     ----------------------------------------------------------------------------------
-     Get Payment Quantity Verification Report by padding Report_id
+     Get Payment Quantity Verification Report Details by passing Report_id
     ----------------------------------------------------------------------------------
     */
     public function get_quantity_verification_detail_report(Request $request, $report_id)
@@ -419,7 +419,7 @@ class PaymentQuantityVerificationController extends Controller {
 
     /*
     ----------------------------------------------------------------------------------
-     Get Payment Quantity Verification Report Name by padding Report_id
+     Get Payment Quantity Verification Report Name by passing Report_id
     ----------------------------------------------------------------------------------
     */
     public function get_quantity_verification_report_name(Request $request, $report_id)
@@ -513,6 +513,71 @@ class PaymentQuantityVerificationController extends Controller {
         catch(Exception $e)
         {
             return response()->json(['error' => 'Something is wrong'], 500);
+        }
+    }
+    
+    
+    public function update_payment_quantity_verification(Request $request, $project_id, $report_id)
+    {
+        try
+        {
+            $pqv_latest_qty         = $request['pqv_latest_qty'];
+            $pqv_previous_qty       = $request['pqv_previous_qty'];
+            $pqv_month_qty          = $request['pqv_month_qty'];
+            $project_id             = $request['project_id'];
+            $user_id                = Auth::user()->id;
+            //$status               = $request['status'];
+            // Check User Permission Parameter 
+            $user_id = Auth::user()->id;
+            $permission_key = 'meeting_minutes_update';
+            $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+            if(count($check_single_user_permission) < 1){
+              $result = array('code'=>403, "description"=>"Access Denies");
+              return response()->json($result, 403);
+            }
+            else {
+                $information = array(
+                    "pqv_latest_qty"       => $pqv_latest_qty,
+                    "pqv_previous_qty"     => $pqv_previous_qty,
+                    "project_id"            => $project_id,
+                    "user_id"               => $user_id,
+                    "pqv_month_qty"         => $pqv_month_qty
+                );
+
+                $rules = [
+                    'pqv_latest_qty'        => 'required|numeric',
+                    'pqv_previous_qty'      => 'required|numeric',
+                    'project_id'            => 'required|numeric',
+                    'user_id'               => 'required|numeric',
+                    'pqv_month_qty'         => 'required|numeric'
+                ];
+                $validator = Validator::make($information, $rules);
+                if ($validator->fails()) 
+                {
+                    return $result = response()->json(["data" => $validator->messages()],400);
+                }
+                else
+                {
+                    $query = DB::table('project_payment_quantity_verification_detail')
+                    ->where('pqv_id', '=', $report_id)
+                    // ->update(['pm_contractor_id' => $contractor_id, 'pm_date' => $date, 'pm_description' => $description, 'pm_special' => $special, 'pm_agenda_path' => $agenda_path, 'pm_signin_sheet_path' => $signin_sheet_path, 'pm_meeting_minutes_path' => $meeting_minutes_path, 'pm_project_id' => $project_id, 'pm_user_id' => $user_id, 'pm_status' => $status]);
+                    ->update(['pqv_latest_qty' => $pqv_latest_qty, 'pqv_previous_qty' => $pqv_previous_qty, 'pqv_month_qty' => $pqv_month_qty]);
+                    if(count($query) < 1)
+                    {
+                      $result = array('code'=>400, "description"=>"No records found");
+                      return response()->json($result, 400);
+                    }
+                    else
+                    {
+                      $result = array('data'=>$query,'code'=>200);
+                      return response()->json($result, 200);
+                    }
+                }
+            }
+        }
+        catch(Exception $e)
+        {
+          return response()->json(['error' => 'Something is wrong'], 500);
         }
     }
 

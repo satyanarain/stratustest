@@ -58,6 +58,7 @@
         var firm_type = $('#firm_type').val();
         var lat =  $("#project_latitude").val();
         var long =  $("#project_longitude").val();
+        var company_type = $("#company_type").val();
         jQuery.ajax({
             url: baseUrl + "firm-name/add",
             type: "POST",
@@ -68,7 +69,8 @@
                 "firm_address"  : firm_address,
                 "firm_type"     : firm_type,
                 "project_long" :long,
-                "project_lat":lat
+                "project_lat":lat,
+                "company_type":company_type
             },
             headers: {
               "x-access-token": token
@@ -93,6 +95,8 @@
             $("#firm_name").removeAttr('value');
             $("#firm_description").removeAttr('value');
             $("#firm_address").removeAttr('value');
+            $("#company_type").removeAttr('value');
+            $("#firm_type").removeAttr('value');
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus);

@@ -107,7 +107,7 @@ $(document).ready(function() {
         contentType: "application/json",
         cache: false
     })
-        .done(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
             // console.log(data.data);
             $("#view_users_table_wrapper tbody tr").hide();
             // Foreach Loop
@@ -138,7 +138,7 @@ $(document).ready(function() {
             $(".loading_data").hide();
 
         })
-        .fail(function(jqXHR, textStatus, errorThrown) {
+    .fail(function(jqXHR, textStatus, errorThrown) {
             console.log("HTTP Request Failed");
             var response = jqXHR.responseJSON.code;
             console.log(response);
