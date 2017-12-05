@@ -137,6 +137,7 @@ $('#add_acceptance_letter_form').click(function(e) {
             $("#alert_message").html(html);
             $("#date").removeAttr('value');
             $("#name").removeAttr('value');
+            $("#company_name").val('');
             $("#upload_doc_id").removeAttr('value');
             $(".remove_file_drop").trigger("click");
             $(".first_button").text('Save Another');

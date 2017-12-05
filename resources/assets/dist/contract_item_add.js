@@ -151,6 +151,8 @@ $('#add_contract_item_form').submit(function(e) {
             $("#item_qty").removeAttr('value');
             $("#item_unit_other").removeAttr('value');
             $("#item_unit_price").removeAttr('value');
+            $("#item_no").removeAttr('value');
+            $("#item_unit").val('');
             $(".first_button").hide();
             $(".another_button").show();
         })

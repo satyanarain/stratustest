@@ -91,7 +91,7 @@ $(document).ready(function() {
                 }
                 else {
                     //var total_use_qty = '<span style="color:#f00; font-weight:bold;">'+val.pqv_latest_qty+'</span>';
-                    var total_use_qty = '<input style="color:#f00; font-weight:bold;" type="text" value="'+val.pqv_latest_qty+'" name="pqv_latest_qty" id="pqv_latest_qty'+val.pqv_id+'">';
+                    var total_use_qty = '<input style="color:#f00;" type="text" value="'+val.pqv_latest_qty+'" name="pqv_latest_qty" id="pqv_latest_qty'+val.pqv_id+'">';
                 }
 
                 var t = $('#view_users_table').DataTable();

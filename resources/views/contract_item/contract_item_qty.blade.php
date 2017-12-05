@@ -29,7 +29,7 @@
                                     <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="item_description">Number of Contract Items <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="item_qty">
+                                        <input type="text" class="form-control" id="item_qty" name="contract_item_qty">
                                         <input type="hidden" class="form-control" id="project_id" value="<?php echo $project_id; ?>">
                                     </div>
         

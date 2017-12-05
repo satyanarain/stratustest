@@ -180,10 +180,14 @@ $('.add_unconditional_finals').click(function(e)
         $('.loading-submit').hide();
         $("#upload_single_doc_id").removeAttr('value');
         $('#job_location').removeAttr('value');
+        $('#date_of_signed').removeAttr('value');
         $("#alert_message").show();
         $(".remove_file_drop").trigger("click");
-        html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New unconditional finals added successfully!</div></div>';
+        html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New unconditional final added successfully!</div></div>';
         $("#alert_message").html(html);
+        $("#name_claimant").val('');
+        $("#name_customer").val('');
+        $("#owner_name").val('');
         $(".first_button").text('Save Another');
         $('html, body').animate({
             scrollTop: $(".page-head").offset().top

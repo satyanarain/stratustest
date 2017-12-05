@@ -114,6 +114,7 @@ $('.add_swppp_form').click(function(e) {
             $('input[name="upload"]').attr('checked', false);
             $("#upload_doc_id").removeAttr('value');
             $(".remove_file_drop").trigger("click");
+            $("#type").val('');
             $(".first_button").text('Save Another');
             setTimeout(function()
             {

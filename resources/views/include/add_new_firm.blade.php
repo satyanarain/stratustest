@@ -68,11 +68,19 @@
                             <input type="text" class="form-control" id="firm_description">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="company_type">Company Type <span class="text-danger">*</span></label>
+                            <label for="firm_type">Company Type <span class="text-danger">*</span></label>
                             <div class="loading_data" style="text-align: center;display: none">
                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                             </div>
+                            <select class="form-control" id="firm_type">
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="company_type">Company/Agencies <span class="text-danger">*</span></label>
                             <select class="form-control" id="company_type">
+                                <option value="">Select</option>
+                                <option value="f">Company</option>
+                                <option value="a">Agency</option>
                             </select>
                         </div>
                             <input type="hidden" id="project_latitude">
@@ -143,10 +151,10 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
             // console.log(data.data);
             // Foreach Loop 
-            $("#company_type").append('<option value="">Select Company Type</option>');
+            $("#firm_type").append('<option value="">Select Company Type</option>');
             jQuery.each(data.data, function( i, val ) {
                 if(val.ct_status == 'active'){
-                    $("#company_type").append(
+                    $("#firm_type").append(
                         '<option value="'+val.ct_id+'">'+val.ct_name+'</option>'
                     )
                 }else {
@@ -180,9 +188,10 @@ $(document).ready(function() {
         var firm_name = $('#firm_name').val();
         var firm_description = $('#firm_description').val();
         var firm_address = $('#firm_address').val();
-        var company_type = $('#company_type').val();
+        var firm_type = $('#firm_type').val();
         var lat =  $("#project_latitude").val();
         var long =  $("#project_longitude").val();
+        var company_type = $("#company_type").val();
         jQuery.ajax({
             url: baseUrl + "firm-name/add",
             type: "POST",
@@ -191,7 +200,8 @@ $(document).ready(function() {
                 "firm_name"     : firm_name,
                 "firm_detail"   : firm_description,
                 "firm_address"  : firm_address,
-                "firm_type"     : company_type,
+                "firm_type"     : firm_type,
+                "company_type"  : company_type,
                 "project_long" :long,
                 "project_lat":lat
             },
@@ -239,7 +249,7 @@ $(document).ready(function() {
                 if(responseText.data.firm_address != null){
                     html += '<li>Company address field is Invalid</li>';
                 }
-                if(responseText.data.company_type != null){
+                if(responseText.data.firm_type != null){
                     html += '<li>Company type field is Invalid</li>';
                 }
                 html += '</ul></div></div>';

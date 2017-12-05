@@ -188,7 +188,7 @@ $(document).ready(function() {
                 html += '<li>Please select NOC filed date.</li>';
                 is_error = true;
             }
-            if(improvement_type == '' || improvement_type == 'Select Improvement Type'){
+            if(improvement_type == '' || improvement_type == 'Select Improvement Types'){
                 html += '<li>Please select Improvement Type.</li>';
                 is_error = true;
             }

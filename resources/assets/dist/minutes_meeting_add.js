@@ -577,6 +577,8 @@ $(document).ready(function() {
                             $("#upload_doc_id_auto").removeAttr('value');
                             $("#upload_doc_id_work").removeAttr('value');
                             $("#upload_doc_id_general").removeAttr('value');
+                            $("#meeting_date").removeAttr('value');
+                            $("#project_description").removeAttr('value');
                             $('input[name="minute_type"]').attr('checked', false);
                             $('input[name="signinsheet_type"]').attr('checked', false);
                             $(".first_button").text('Save Another');

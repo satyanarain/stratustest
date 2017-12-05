@@ -120,6 +120,7 @@ $('.add_preliminary_notice').click(function(e)
         $('#upload_doc_id').removeAttr('value');
         $('#billed_through').removeAttr('value');
         $('#lien_release_note').removeAttr('value');
+        $('#upload_single_doc_id').removeAttr('value');
         $("#alert_message").show();
         $('.loading-submit').hide();
         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New Lien Release added successfully!</div></div>';

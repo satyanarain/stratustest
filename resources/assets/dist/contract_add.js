@@ -277,6 +277,7 @@ $(document).ready(function() {
                 }, 'fast')
                 $(".remove_file_drop").trigger("click");
                 $('#upload_doc_id').removeAttr('value');
+                $('#award_date').removeAttr('value');
                 $("#alert_message").show();
                 $(".first_button").text('Save Another');
                 // $(".another_button").show();

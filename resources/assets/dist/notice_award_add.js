@@ -99,6 +99,9 @@ $(document).ready(function() {
         console.log(data);
         window.improvement_type_array = [];
         // Foreach Loop
+        $("#project_type_dropdown_new").append(
+            '<option value="">Select Improvement Type</option>'
+        )
         jQuery.each(data.data, function( i, val ) {
             if(val.pt_status == 'active'){
                 $(".project_type").append(
@@ -151,6 +154,9 @@ $(document).ready(function() {
         .done(function(data, textStatus, jqXHR) {
         // console.log(data.data);
         // Foreach Loop
+        $("#company_name").append(
+            '<option value="">Select Contractor Name</option>'
+        )
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status == 'active'){
                 $("#company_name").append(
@@ -437,6 +443,10 @@ $(document).ready(function() {
             html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New notice award added successfully!</div></div>';
             $("#alert_message").html(html);
             $('#upload_doc_id').removeAttr('value');
+            $('#bid_amount').removeAttr('value');
+            $('#award_date').removeAttr('value');
+            $("#company_name").val('');
+            $("#project_type_dropdown_new").val('');
             $(".remove_file_drop").trigger("click");
             // $('#cmd').show();
             // $("#submit_new_btn").hide();

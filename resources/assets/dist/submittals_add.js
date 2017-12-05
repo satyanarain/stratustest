@@ -323,6 +323,7 @@ $(document).ready(function() {
             $('input[name="check_submittal_type"]').attr('checked', false);
             $('input[name="review_yes"]').attr('checked', false);
             $("#submittal_number").removeAttr('value');
+            $("#date_of_submittal").removeAttr('value');
             $("#submittal_description").removeAttr('value');
             $("#submittal_spec").removeAttr('value');
             $("#submittal_comments").val('');

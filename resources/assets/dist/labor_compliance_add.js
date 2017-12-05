@@ -261,9 +261,10 @@ $('#add_labor_compliance').click(function(e) {
             }, 'fast')
             $("#alert_message").show();
             $('.loading-submit').hide();
-            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New labor compliance added successfully!</div></div>';
+            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New Labor compliance document successfully uploaded!</div></div>';
             $("#alert_message").html(html);
             $("#date_140").removeAttr('value');
+            $("#date_142").removeAttr('value');
             $("#upload_doc_id_1").removeAttr('value');
             $("#date_143").removeAttr('value');
             $("#upload_doc_id_2").removeAttr('value');
@@ -278,6 +279,7 @@ $('#add_labor_compliance').click(function(e) {
             // $("#upload_project_id").removeAttr('value');
             $(".remove_file_drop").trigger("click");
             $('#140_div_show').hide();
+            $("#company_name").val('');
             $('#142_div_show').hide();
             $('#cac_div_show').hide();
             $('#weekly_div_show').hide();
