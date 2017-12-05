@@ -152,6 +152,7 @@ $('#add_georeport_form').submit(function(e) {
                 $('#company_name').prop('selected', function() {
                     return this.defaultSelected;
                 });
+                $('#company_name').val('');
                 $('input[name="applicable"]').attr('checked', false);
                 $('input[name="upload"]').attr('checked', false);
                 $(".another_button").show();

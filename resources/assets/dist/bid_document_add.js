@@ -116,9 +116,9 @@ $(document).ready(function() {
         // console.log(data.data);
         window.improvement_type_array = [];
         // Foreach Loop 
-        $("#project_type").append(
-            '<option value="">Select Improvement Types</option>'
-        )
+//        $("#project_type").append(
+//            '<option value="">Select Improvement Types</option>'
+//        )
         jQuery.each(data.data, function( i, val ) {
             if(val.pt_status == 'active'){
                 $("#project_type").append(

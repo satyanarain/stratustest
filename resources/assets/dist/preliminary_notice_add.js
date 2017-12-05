@@ -245,6 +245,7 @@ $('.add_preliminary_notice').click(function(e)
         $('#amount').removeAttr('value');
         $('#post_marked_date').removeAttr('value');
         $('#date_of_notice_signed').removeAttr('value');
+        $('#upload_single_doc_id').removeAttr('value');
         $('.company_name').val('');
         
         $("#alert_message").show();

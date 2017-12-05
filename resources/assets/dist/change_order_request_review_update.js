@@ -55,9 +55,24 @@ $(document).ready(function() {
         else {
             $('#cor_approved_owner').text(data.data.pcd_approved_by_owner)
         }
-        $('#cor_amount').text(data.data.pcd_price)
-        $('#cor_unit_number').text(data.data.pcd_unit_number)
-        $('#cor_unit_price').text(data.data.pcd_unit_price)
+        var cor_amount = data.data.pcd_price;
+        //
+        if(data.data.pcd_price)
+        {
+            $("#total_requested_cost").html('<input type="radio" class="total_requested_cost" name="total_requested_cost" id="total_requested_cost_price" checked value="price">Enter Price&nbsp;\n\
+            <input type="radio" class="total_requested_cost" id="total_requested_cost_unit" name="total_requested_cost" value="unit">Enter Unit');
+            $("#cor_amount").html('<input class="form-control" type="text" name="cor_amount" id="pcd_price" value="'+cor_amount+'">');
+            $('#cor_unit_number').text(data.data.pcd_unit_number)
+            $('#cor_unit_price').text(data.data.pcd_unit_price)
+        }else{
+            $("#total_requested_cost").html('<input type="radio" class="total_requested_cost" name="total_requested_cost" id="total_requested_cost_price" value="price">Enter Price&nbsp;\n\
+            <input checked type="radio" class="total_requested_cost" id="total_requested_cost_unit" name="total_requested_cost" value="unit">Enter Unit');
+            $("#cor_unit_number").html('<input class="form-control" type="text" name="pcd_unit_number" id="pcd_unit_number" value="'+data.data.pcd_unit_number+'">');
+            $("#cor_unit_price").html('<input class="form-control" type="text" name="pcd_unit_price" id="pcd_unit_price" value="'+data.data.pcd_unit_price+'">');
+            $('#cor_amount').text(data.data.pcd_price)
+        }
+        //$('#cor_unit_number').text(data.data.pcd_unit_number)
+        //$('#cor_unit_price').text(data.data.pcd_unit_price)
         $('#cor_day').html('<input class="form-control" type="text" name="change_order_day" id="change_order_day" value="'+data.data.pcd_days+'">');
         var request_bid_path = data.data.pcd_file_path;
         var request_bid_path_value;
@@ -93,7 +108,22 @@ $(document).ready(function() {
         if(data.data.pcd_rfi == '[]'){
             $('.rfi_available').hide();
         }
-
+        $('.total_requested_cost').click(function(){
+            var sel_val = $(this).val();
+            if(sel_val == "unit")
+            {
+                var cor_unit_number = $('#cor_unit_number').text()
+                var cor_unit_price = $('#cor_unit_price').text()
+                $("#cor_unit_number").html('<input class="form-control" type="text" name="pcd_unit_number" id="pcd_unit_number" value="'+cor_unit_number+'">');
+                $("#cor_unit_price").html('<input class="form-control" type="text" name="pcd_unit_price" id="pcd_unit_price" value="'+cor_unit_price+'">');
+                $("#cor_amount").text($('#pcd_price').val())
+            }else{
+                var cor_amount = $('#cor_amount').text()
+                $("#cor_amount").html('<input class="form-control" type="text" name="cor_amount" id="pcd_price" value="'+cor_amount+'">');
+                $('#cor_unit_number').text($('#pcd_unit_number').val())
+                $('#cor_unit_price').text($('#pcd_unit_price').val()) 
+            }
+        })
         jQuery.ajax({
             url: baseUrl+data.data.pcd_id+"/get_item_rfi",
                 type: "GET",
@@ -133,6 +163,7 @@ $(document).ready(function() {
         }
     });
 
+    
 });
 
 function getFormattedPartTime(partTime){
@@ -142,10 +173,26 @@ function getFormattedPartTime(partTime){
     }
 
 
+
  $('#submit_cor_review_form').click(function(e) {
    $('.loading-submit').show();
         e.preventDefault();
-
+        var total_requested_cost = $('input[name=total_requested_cost]:checked').val();
+        if(total_requested_cost=="price")
+        {
+            var pcd_unit_number = '';
+            var pcd_unit_price = '';
+            var pcd_price = $('#pcd_price').val()
+        }else if(total_requested_cost=="unit")
+        {
+            var pcd_unit_number = $('#pcd_unit_number').val()
+            var pcd_unit_price = $('#pcd_unit_price').val()
+            var pcd_price = '';
+        }else{
+            var pcd_unit_number = '';
+            var pcd_unit_price = '';
+            var pcd_price = '';
+        }
         if($('#approved_cm').is(":checked")) {
             var date = new Date();
             var approved_by_cm = date.getFullYear() + "-" + getFormattedPartTime(date.getMonth()+1) + "-" + getFormattedPartTime(date.getDate());
@@ -182,7 +229,10 @@ function getFormattedPartTime(partTime){
                 "approved_by_owner"     : approved_by_owner,
                 "project_id"            : project_id,
                 "change_order_day"      : change_order_day,
-                "cor_description"       : cor_description
+                "cor_description"       : cor_description,
+                "pcd_unit_number"       : pcd_unit_number,
+                "pcd_unit_price"        : pcd_unit_price,
+                "pcd_price"             : pcd_price
             },
             headers: {
               "x-access-token": token

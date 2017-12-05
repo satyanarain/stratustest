@@ -221,6 +221,8 @@ $(document).ready(function() {
                 is_error = true;
             }
             // Validation Performance Bond
+            //alert(document.getElementById("upload").value)
+                    //$("#upload").is(':checked')
             if($("#performance_bond_yes").is(':checked')){
                 if(performance_bond_amount == ''){
                     html += '<li>Performance bond amount field is invalid.</li>';
@@ -237,10 +239,19 @@ $(document).ready(function() {
                     html += '<li>Performance bond number field is invalid.</li>';
                     is_error = true;
                 }
-                if(performance_bond_path == ''){
-                    html += '<li>Performance bond document field is invalid.</li>';
+                var upload_performance = $('input[name=upload_performance]:checked').val();
+                //alert(upload_performance);
+                if(upload_performance==undefined)
+                {
+                    html += '<li>Confirm all required signature fields signed by authorized representatives and notarized.</li>';
                     is_error = true;
+                }else{
+                    if(performance_bond_path == '' && upload_performance=="yes"){
+                        html += '<li>Performance bond document field is invalid.</li>';
+                        is_error = true;
+                    }
                 }
+                
             }
             if($("#payment_bond_yes").is(':checked')){
                 if(payment_bond_amount == ''){
@@ -343,6 +354,8 @@ $(document).ready(function() {
                     $('.upload_doc_panel_maintenance').css("display", "none");
                     $('.upload_doc_panel_performance').css("display", "none");
                     $('#standard_doc_id').removeAttr('value');
+                    $('#performance_bond_date').removeAttr('value');
+                    $("#company_name").val('');
                     $('#upload_doc_id_work').removeAttr('value');
                     $('#upload_doc_id_auto').removeAttr('value');
                     $('#upload_doc_id_general').removeAttr('value');

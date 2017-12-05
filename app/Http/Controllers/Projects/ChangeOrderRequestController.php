@@ -357,7 +357,10 @@ class ChangeOrderRequestController extends Controller {
         $project_id               = $request['project_id'];
         $user_id                  = Auth::user()->id;
         $cor_description          = $request['cor_description'];
-        $change_order_day                  = $request['change_order_day'];
+        $pcd_unit_number          = $request['pcd_unit_number'];
+        $pcd_unit_price           = $request['pcd_unit_price'];
+        $pcd_price                = $request['pcd_price'];
+        $change_order_day         = $request['change_order_day'];
         $information = array(
             "approved_by_cm"      => $approved_by_cm,
             "approved_by_owner"   => $approved_by_owner,
@@ -379,7 +382,7 @@ class ChangeOrderRequestController extends Controller {
         {
             $query = DB::table('project_change_order_request_detail')
             ->where('pcd_id', '=', $pcd_id)
-             ->update(['pcd_description' => $cor_description,'pcd_days' => $change_order_day,'pcd_approved_by_cm' => $approved_by_cm, 'pcd_approved_by_owner' => $approved_by_owner, 'pcd_user_id' => $user_id]);
+             ->update(['pcd_unit_number' => $pcd_unit_number,'pcd_unit_price' => $pcd_unit_price,'pcd_price' => $pcd_price,'pcd_description' => $cor_description,'pcd_days' => $change_order_day,'pcd_approved_by_cm' => $approved_by_cm, 'pcd_approved_by_owner' => $approved_by_owner, 'pcd_user_id' => $user_id]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");

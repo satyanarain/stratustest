@@ -80,7 +80,7 @@
                                             <div class="loading_data" style="text-align: center;">
                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                             </div>
-                                            <select class="form-control currency_symbol" id="general_liability_cur_symbol">
+                                            <select class="form-control currency_symbol" name="general_liability_cur_symbol" id="general_liability_cur_symbol">
                                             </select>
                                         </div>
                                         <div class="col-xs-9">
@@ -143,7 +143,7 @@
                                             <div class="loading_data" style="text-align: center;">
                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                             </div>
-                                            <select class="form-control currency_symbol" id="works_compensation_cur_symbol">
+                                            <select class="form-control currency_symbol" name="works_compensation_cur_symbol" id="works_compensation_cur_symbol">
                                             </select>
                                         </div>
                                         <div class="col-xs-9">
@@ -215,7 +215,7 @@
                                             <div class="loading_data" style="text-align: center;">
                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                             </div>
-                                            <select class="form-control currency_symbol" id="auto_compensation_cur_symbol">
+                                            <select class="form-control currency_symbol" name="auto_compensation_cur_symbol" id="auto_compensation_cur_symbol">
                                             </select>
                                         </div>
                                         <div class="col-xs-9">
@@ -293,7 +293,7 @@
                                                 <div class="loading_data" style="text-align: center;">
                                                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                                 </div>
-                                                <select class="form-control currency_symbol" id="umbrella_liability_cur_symbol">
+                                                <select class="form-control currency_symbol" name="umbrella_liability_cur_symbol" id="umbrella_liability_cur_symbol">
                                                 </select>
                                             </div>
                                             <div class="col-xs-9">

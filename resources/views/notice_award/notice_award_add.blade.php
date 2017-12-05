@@ -84,7 +84,7 @@
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
-                <select class="form-control" id="project_type_dropdown_new" placeholder="Select Improvement Type">
+                <select class="form-control" id="project_type_dropdown_new" placeholder="Select Improvement Types">
                 </select>
             </div>
 
@@ -142,7 +142,7 @@
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
-                <select class="form-control" id="project_type_dropdown_old" placeholder="Select Improvement Type">
+                <select class="form-control" id="project_type_dropdown_old" placeholder="Select Improvement Types">
                 </select>
             </div>
 

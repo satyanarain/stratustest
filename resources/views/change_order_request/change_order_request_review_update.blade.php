@@ -75,6 +75,10 @@
                                                                     <td id="cor_approved_owner"></td>
                                                                 </tr>
                                                                 <tr>
+                                                                    <th>Total Requested Costs</th>
+                                                                    <td id="total_requested_cost"></td>
+                                                                </tr>
+                                                                <tr>
                                                                     <th>$</th>
                                                                     <td id="cor_amount"></td>
                                                                 </tr>

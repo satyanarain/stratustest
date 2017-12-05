@@ -401,8 +401,8 @@
                             <div class="form-group col-md-6">
                                 <label for="project_type">Improvement Type <span class="text-danger">*</span></label>
                                 <div id="project_type_selected" style=""></div>
-                                <select class="form-control" id="project_type_dropdown" placeholder="Select Improvement Type">
-                                    <option>Select Improvement Type</option>
+                                <select class="form-control" id="project_type_dropdown" placeholder="Select Improvement Types">
+                                    <option>Select Improvement Types</option>
                                 </select>
                             </div>
                             <div class="clearfix"></div>    
