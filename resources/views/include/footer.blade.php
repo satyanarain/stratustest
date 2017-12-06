@@ -316,7 +316,7 @@ function checkFormFilled(classname)
     {
         isFilled = true;
     }
-    alert(isFilled);
+    //alert(isFilled);
     $("input[type=text],select").each(function(key,value) {
         //alert(key);alert(value);
         //var form_ele_name = '';
@@ -334,14 +334,14 @@ function checkFormFilled(classname)
                 //alert($(this).attr('name'));
                 //alert($(this).name);
                 //alert('Type: ' + input.attr('type') + 'Name: ' + input.attr('name') + 'Value: ' + input.val());
-                alert($(this).val());
+                //alert($(this).val());
                 //return false;
             }
         }
     });
     if($('input:checkbox').is(':checked'))
     {
-        alert('344');
+        //alert('344');
         isFilled = true;
     }
 

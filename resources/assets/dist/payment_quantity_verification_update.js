@@ -86,12 +86,15 @@ $(document).ready(function() {
             jQuery.each( data.data, function( i, val ) {
                 var total = val.pbi_item_qty - val.pqv_latest_qty;
                 console.log(total);
+                var quantity_upto_date = val.pqv_previous_qty+val.pqv_month_qty;
                 if(total >= 0){
-                    var total_use_qty = '<input type="text" value="'+val.pqv_latest_qty+'" name="pqv_latest_qty" id="pqv_latest_qty'+val.pqv_id+'">';
+                    //var total_use_qty = '<input type="text" value="'+val.pqv_latest_qty+'" name="pqv_latest_qty" id="pqv_latest_qty'+val.pqv_id+'">';
+                    var total_use_qty = '<span class="total_use_qty'+val.pqv_id+'">'+quantity_upto_date+'</span>';
                 }
                 else {
                     //var total_use_qty = '<span style="color:#f00; font-weight:bold;">'+val.pqv_latest_qty+'</span>';
-                    var total_use_qty = '<input style="color:#f00;" type="text" value="'+val.pqv_latest_qty+'" name="pqv_latest_qty" id="pqv_latest_qty'+val.pqv_id+'">';
+                    //var total_use_qty = '<input style="color:#f00;" type="text" value="'+val.pqv_latest_qty+'" name="pqv_latest_qty" id="pqv_latest_qty'+val.pqv_id+'">';
+                    var total_use_qty = '<span class="total_use_qty'+val.pqv_id+'" style="color:#f00; font-weight:bold;">'+quantity_upto_date+'</span>';
                 }
 
                 var t = $('#view_users_table').DataTable();
@@ -110,7 +113,7 @@ $(document).ready(function() {
             $(".update_report").click(function() {
                 var pqv_id = $(this).attr('report_id');
                 $('.loading-submit').show();
-                var pqv_latest_qty          = $('#pqv_latest_qty'+pqv_id).val();
+                //var pqv_latest_qty          = $('#pqv_latest_qty'+pqv_id).val();
                 var pqv_previous_qty          = $('#pqv_previous_qty'+pqv_id).val();
                 var pqv_month_qty          = $('#pqv_month_qty'+pqv_id).val();
                 var token                   = localStorage.getItem('u_token');
@@ -118,7 +121,7 @@ $(document).ready(function() {
                     url: baseUrl + "dashboard/"+project_id+"/payment_quantity_verification/"+pqv_id+"/update",
                     type: "POST",
                     data: {
-                        "pqv_latest_qty"    : pqv_latest_qty,
+                        //"pqv_latest_qty"    : pqv_latest_qty,
                         "pqv_previous_qty"  : pqv_previous_qty,
                         "pqv_month_qty"     : pqv_month_qty,
                         "project_id"        : project_id
@@ -133,6 +136,7 @@ $(document).ready(function() {
                     console.log(data);
                     $("#alert_message").fadeIn(1000);
                     $('.loading-submit').hide();
+                    $(".total_use_qty"+pqv_id).html(parseInt(pqv_previous_qty)+parseInt(pqv_month_qty));
                     html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">Payment quantity verification report updated successfully!</div></div>';
                     $("#alert_message").html(html);
                     setTimeout(function()

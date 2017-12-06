@@ -521,7 +521,7 @@ class PaymentQuantityVerificationController extends Controller {
     {
         try
         {
-            $pqv_latest_qty         = $request['pqv_latest_qty'];
+            //$pqv_latest_qty         = $request['pqv_latest_qty'];
             $pqv_previous_qty       = $request['pqv_previous_qty'];
             $pqv_month_qty          = $request['pqv_month_qty'];
             $project_id             = $request['project_id'];
@@ -537,7 +537,7 @@ class PaymentQuantityVerificationController extends Controller {
             }
             else {
                 $information = array(
-                    "pqv_latest_qty"       => $pqv_latest_qty,
+                    //"pqv_latest_qty"       => $pqv_latest_qty,
                     "pqv_previous_qty"     => $pqv_previous_qty,
                     "project_id"            => $project_id,
                     "user_id"               => $user_id,
@@ -545,7 +545,7 @@ class PaymentQuantityVerificationController extends Controller {
                 );
 
                 $rules = [
-                    'pqv_latest_qty'        => 'required|numeric',
+                    //'pqv_latest_qty'        => 'required|numeric',
                     'pqv_previous_qty'      => 'required|numeric',
                     'project_id'            => 'required|numeric',
                     'user_id'               => 'required|numeric',
@@ -561,7 +561,7 @@ class PaymentQuantityVerificationController extends Controller {
                     $query = DB::table('project_payment_quantity_verification_detail')
                     ->where('pqv_id', '=', $report_id)
                     // ->update(['pm_contractor_id' => $contractor_id, 'pm_date' => $date, 'pm_description' => $description, 'pm_special' => $special, 'pm_agenda_path' => $agenda_path, 'pm_signin_sheet_path' => $signin_sheet_path, 'pm_meeting_minutes_path' => $meeting_minutes_path, 'pm_project_id' => $project_id, 'pm_user_id' => $user_id, 'pm_status' => $status]);
-                    ->update(['pqv_latest_qty' => $pqv_latest_qty, 'pqv_previous_qty' => $pqv_previous_qty, 'pqv_month_qty' => $pqv_month_qty]);
+                    ->update(['pqv_previous_qty' => $pqv_previous_qty, 'pqv_month_qty' => $pqv_month_qty]);
                     if(count($query) < 1)
                     {
                       $result = array('code'=>400, "description"=>"No records found");
