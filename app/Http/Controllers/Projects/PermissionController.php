@@ -57,7 +57,30 @@ class PermissionController extends Controller {
           return response()->json(['error' => 'Something is wrong'], 500);
         }
     }
+    
+     /*
+    --------------------------------------------------------------------------
+    Check Project User Notification
+    --------------------------------------------------------------------------
+    */
+    public function check_project_user_notification($project_id,$user_id,$notification_key)
+    {
+        try
+        {
+          $check_project_user_notification = DB::table('project_user_notification')
+          ->select()
+          ->where('pun_project_id', '=', $project_id)
+          ->where('pun_user_id', '=', $user_id)
+          ->where('pun_notification_key', '=', $notification_key)
+          ->get();
 
+          return $check_project_user_notification;
+        }
+        catch(Exception $e)
+        {
+          return response()->json(['error' => 'Something is wrong'], 500);
+        }
+    }
 
     /*
     --------------------------------------------------------------------------

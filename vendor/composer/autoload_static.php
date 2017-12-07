@@ -375,6 +375,7 @@ class ComposerStaticInit5d2cc768de0226710126baf53a0b2163
         'CreateDailyReportTableReplica' => __DIR__ . '/../..' . '/database/migrations/2017_11_24_063025_create daily report table replica.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migration-backup/2014_10_12_100000_create_password_resets_table.php',
         'CreateProjectPreliminaryLienReleaseTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_02_091317_create_project_preliminary_lien_release_table.php',
+        'CreateProjectUserNotification' => __DIR__ . '/../..' . '/database/migrations/2017_12_06_072154_create_project_user_notification.php',
         'CreateRolesPermissionTables' => __DIR__ . '/../..' . '/database/migration-backup/2016_08_30_073621_create_roles_permission_tables.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migration-backup/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',

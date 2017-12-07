@@ -12,6 +12,7 @@ return array(
     'CreateDailyReportTableReplica' => $baseDir . '/database/migrations/2017_11_24_063025_create daily report table replica.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migration-backup/2014_10_12_100000_create_password_resets_table.php',
     'CreateProjectPreliminaryLienReleaseTable' => $baseDir . '/database/migrations/2017_11_02_091317_create_project_preliminary_lien_release_table.php',
+    'CreateProjectUserNotification' => $baseDir . '/database/migrations/2017_12_06_072154_create_project_user_notification.php',
     'CreateRolesPermissionTables' => $baseDir . '/database/migration-backup/2016_08_30_073621_create_roles_permission_tables.php',
     'CreateUsersTable' => $baseDir . '/database/migration-backup/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',

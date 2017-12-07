@@ -84,7 +84,7 @@
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
-                <select class="form-control" id="project_type_dropdown_new" placeholder="Select Improvement Types">
+                <select class="form-control" name="notice_award_project_type_dropdown" id="project_type_dropdown_new" placeholder="Select Improvement Types">
                 </select>
             </div>
 
@@ -94,7 +94,7 @@
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
                 <!-- <select class="form-control select2" id="company_name"> -->
-                <select class="form-control" id="company_name">
+                <select class="form-control" name="notice_award_company_name" id="company_name">
                 </select>
             </div>
 
@@ -106,14 +106,14 @@
                 <!-- <input type="text" class="form-control" id="bid_amount"> -->
                 <div class="input-group m-b-10">
                     <span class="input-group-addon project_currency"></span>
-                    <input class="form-control" type="text" id="bid_amount" onkeypress="return isNumber(event)">
+                    <input class="form-control" name="notice_award_bid_amount" type="text" id="bid_amount" onkeypress="return isNumber(event)">
                 </div>
             </div>
             <div class="clearfix"></div>
             <div class="form-group col-md-12">
                 <label>Notice of Award Date</label>
                 <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
-                    <input type="text" readonly="" value="<?php echo date("Y-m-d"); ?>" size="16" class="form-control"  id="award_date">
+                    <input type="text" name="notice_award_date" readonly="" value="<?php echo date("Y-m-d"); ?>" size="16" class="form-control"  id="award_date">
                     <span class="input-group-btn add-on">
                     <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
                     </span>
@@ -124,7 +124,8 @@
                 <a href="{{ url('/dashboard/'.$project_id.'/notice_award') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                 <button type="submit" id="submit_new_btn" class="btn btn-info sub-btn submit_notice_add_form">Save</button>
                 <button  class="btn btn-info sub-btn" id="cmd">Save</button>
-                <a data-href="{{ url('/dashboard/'.$project_id.'/contract') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
+<!--                <a data-href="{{ url('/dashboard/'.$project_id.'/contract') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>-->
+                    <a href="{{ url('/dashboard/'.$project_id.'/contract') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
                 <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
             </div>
             <div class="clearfix"></div>
@@ -142,7 +143,7 @@
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
-                <select class="form-control" id="project_type_dropdown_old" placeholder="Select Improvement Types">
+                <select name="notice_award_improvement_type" class="form-control" id="project_type_dropdown_old" placeholder="Select Improvement Types">
                 </select>
             </div>
 
@@ -167,7 +168,8 @@
 <!--                <a data-href="{{ url('/dashboard/'.$project_id.'/notice_award') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
                 <a href="{{ url('/dashboard/'.$project_id.'/notice_award') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                 <button type="submit" class="btn btn-info sub-btn submit_notice_add_form">Save</button>
-                <a data-href="{{ url('/dashboard/'.$project_id.'/contract') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
+<!--                <a data-href="{{ url('/dashboard/'.$project_id.'/contract') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>-->
+                <a href="{{ url('/dashboard/'.$project_id.'/contract') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
                 <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
             </div>
         </div><!-- notice_award_exist close -->

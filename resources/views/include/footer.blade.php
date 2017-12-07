@@ -322,9 +322,17 @@ function checkFormFilled(classname)
         //var form_ele_name = '';
         //form_ele_name = $(this).attr('name');
         //alert(typeof form_ele_name);
-        if(($(this).attr('name') === "umbrella_liability_cur_symbol") || ($(this).attr('name') === "auto_compensation_cur_symbol") || ($(this).attr('name') === "works_compensation_cur_symbol") || ($(this).attr('name') === "general_liability_cur_symbol") || ($(this).attr('name') === "contract_item_qty") || ($(this).attr('name') === "demo2") || ($(this).attr('name') === "company_name_two") || ($(this).attr('name') === "maintenance_bond_amount") || ($(this).attr('name') === "performance_bond_amount") || ($(this).attr('name') === "payment_bond_amount") || ($(this).attr('name') === "company_name" || ($(this).attr('name') === "project_type_dropdown")))
+        var exempted_array = ["umbrella_liability_cur_symbol","general_liability_cur_symbol","company_name_two", 
+            "demo2","auto_compensation_cur_symbol", "works_compensation_cur_symbol","contract_item_qty","maintenance_bond_amount",
+        "performance_bond_amount","payment_bond_amount","company_name","project_type_dropdown","notice_award_improvement_type",
+    "notice_award_project_type_dropdown","notice_award_company_name","notice_award_bid_amount","notice_award_date"];
+        var exempted = jQuery.inArray($(this).attr('name'), exempted_array);
+        //alert($(this).attr('name'));
+        //alert(exempted);
+        if(exempted >= 0)
         {
-            
+            //alert($(this).attr('name'));
+            //alert('exempted');
         }else{
             if ($(this).val() && $(this).val() != "Select Improvement Types") {
                 //var nam = element.getAttribute("name");
@@ -334,7 +342,7 @@ function checkFormFilled(classname)
                 //alert($(this).attr('name'));
                 //alert($(this).name);
                 //alert('Type: ' + input.attr('type') + 'Name: ' + input.attr('name') + 'Value: ' + input.val());
-                //alert($(this).val());
+                alert($(this).val());
                 //return false;
             }
         }

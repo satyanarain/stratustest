@@ -582,4 +582,118 @@ class ContactController extends Controller {
         return response()->json(['error' => 'Something is wrong'], 500);
       }
   }
+  
+  /*
+  --------------------------------------------------------------------------
+   Add User Notification per Project
+  --------------------------------------------------------------------------
+  */
+  public function add_user_notification(Request $request, $project_id, $user_id)
+  {
+      try
+      {    
+        $project_id                   = $project_id;
+        $user_id                      = $user_id;
+        $notification_key               = $request['notification_key'];
+        // $permission_access            = $request['permission_access'];
+        $permission_assign_user_id    = Auth::user()->id;
+
+        $information = array(
+
+            "project_id"                  => $project_id,
+            "user_id"                     => $user_id,
+            "notification_key"              => $notification_key,
+            // "permission_access"           => $permission_access,
+            "permission_assign_user_id"   => $permission_assign_user_id
+
+        );
+        $rules = [
+            "project_id"                  => 'required|numeric',
+            "user_id"                     => 'required|numeric',
+            "notification_key"              => 'required',
+            // "permission_access"           => 'required',
+            "permission_assign_user_id"   => 'required|numeric'
+        ];
+
+        $validator = Validator::make($information, $rules);
+        if ($validator->fails())
+        {
+            return $result = response()->json(["data" => $validator->messages()],400);
+        }
+        else
+        {
+          // Delete User Permission
+          $user = DB::table('project_user_notification')
+          ->where('pun_project_id', $project_id)
+          ->where('pun_user_id', $user_id)
+          ->delete();
+        
+          foreach ($notification_key  as $key => $notification_single) {
+              // print_r('Project ID: '.$project_id.' User ID: '.$user_id.' Permission Key: '.$notification_single.' Permission Assign User: '.$permission_assign_user_id.'<br/>');
+              $query = DB::table('project_user_notification')
+              ->insert(['pun_project_id' => $project_id, 'pun_user_id' => $user_id, 'pun_notification_key' => $notification_single, 'pun_access' => 'true', 'pun_notification_assign_user_id' => $permission_assign_user_id]);
+          }
+         
+          if(count($query) < 1)
+          {
+            $result = array('code'=>400, "description"=>$query);
+            return response()->json($result, 400);
+          }
+          else
+          {
+            $result = array('description'=>"Add notification successfully",'code'=>200);
+            return response()->json($result, 200);
+          }
+        }
+      }
+      catch(Exception $e)
+      {
+          return response()->json(['error' => 'Something is wrong'], 500);
+      }
+  }
+  
+  /*
+  ----------------------------------------------------------------------------------
+   Get all User Notification by passing project_id & user_id
+  ----------------------------------------------------------------------------------
+  */
+  public function get_user_notification(Request $request, $project_id, $user_id)
+  {
+      try
+      {
+        // $user = array(
+        //   'userid'    => Auth::user()->id,
+        //   'role'      => Auth::user()->role
+        // );
+        // $user = (object) $user;
+        // $post = new Resource_Post(); // You create a new resource Post instance
+        // if (Gate::forUser($user)->denies('allow_admin', [$post,false])) { 
+        //   $result = array('code'=>403, "description"=>"Access denies");
+        //   return response()->json($result, 403);
+        // } 
+        // else {
+          $query = DB::table('project_user_notification')
+          ->leftJoin('users', 'project_user_notification.pun_notification_assign_user_id', '=', 'users.id')
+          ->select('project_user_notification.*', 'users.username as pun_notification_assign_user_name')
+          ->where('pun_project_id', $project_id)
+          ->where('pun_user_id', $user_id)
+          ->get();
+
+          if(count($query) < 1)
+          {
+            $result = array('code'=>404, "description"=>"No Records Found");
+            return response()->json($result, 404);
+          }
+          else
+          {
+            $result = array('data'=>$query,'code'=>200);
+            return response()->json($result, 200);
+          }
+        // }
+      }
+      catch(Exception $e)
+      {
+        return response()->json(['error' => 'Something is wrong'], 500);
+      }
+  }
 }

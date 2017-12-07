@@ -120,7 +120,7 @@
             <a href="{{ url('/dashboard/'.$project_id.'/survey') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
             <a class="btn btn-info sub-btn first_button submit_survey_form">Save</a>
             <a class="btn btn-info sub-btn another_button submit_survey_form" style="display: none;">Save Another</a>
-            <a data-href="{{ url('/dashboard/'.$project_id.'/daily_construction_report') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
+            <a href="{{ url('/dashboard/'.$project_id.'/daily_construction_report') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
             <!-- <button type="submit" class="btn btn-info sub-btn submit_survey_form" style="display: none;">Submit</button> -->
             <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
         </div>

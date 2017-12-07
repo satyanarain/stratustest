@@ -151,7 +151,7 @@
                                     <a href="{{ url('/dashboard/'.$project_id.'/change_order_request_log') }}" class="btn btn-info btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                                     <button type="submit" class="add_cor btn btn-info sub-btn first_button no-mar">Save</button>
                                     <button type="submit" class="add_cor btn btn-info sub-btn another_button no-mar" style="display: none;">Save Another</button>
-                                    <a data-href="{{ url('/dashboard/'.$project_id.'/minutes_meeting') }}" class="btn btn-info  continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
+                                    <a href="{{ url('/dashboard/'.$project_id.'/minutes_meeting') }}" class="btn btn-info  continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
                                     <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                 </div>
                             </div><!-- panel-body Close -->
