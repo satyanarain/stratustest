@@ -838,7 +838,40 @@ $(document).ready(function() {
                         // CLOSE FUNCTION CREATE PDF
                     })
 
-                    
+                    $("#alert_message").show();
+                    $('.loading-submit').hide();
+                    $(".remove_file_drop").trigger("click");
+                    $(".remove_current_custom_certificate").trigger("click");
+                    $(".first_button").text('Save Another');
+                    $('#general_liability_amount').removeAttr('value');
+                    $("#general_liability_amount").val('');
+                    $('#general_liability_date').removeAttr('value');
+                    $("#general_liability_date").val('');
+                    $('#req_minimum_general').attr('checked', false);
+                    // alert('faizan');
+                    $('#works_compensation_currency').removeAttr('value');
+                    $("#works_compensation_currency").val('');
+                    $('#works_compensation_date').removeAttr('value');
+                    $("#works_compensation_date").val('');
+                    $('#umbrella_liability_currency').removeAttr('value');
+                    $("#umbrella_liability_currency").val('');
+                    $('#umbrella_liability_date').removeAttr('value');
+                    $("#umbrella_liability_date").val('');
+                    $('#auto_compensation_currency').removeAttr('value');
+                    $("#auto_compensation_currency").val('');
+                    $('#auto_compensation_date').removeAttr('value');
+                    $("#auto_compensation_date").val('');
+                    $('#upload_doc_id_general').removeAttr('value');
+                    $("#upload_doc_id_general").val('');
+                    $('#upload_doc_id_auto').removeAttr('value');
+                    $("#upload_doc_id_auto").val('');
+                    $('#upload_doc_id_work').removeAttr('value');
+                    $("#upload_doc_id_work").val('');
+                    $('#upload_doc_id_umbrella').removeAttr('value');
+                    $("#upload_doc_id_umbrella").val('');
+                    $('#umbrella_liability_currency').removeAttr('value');
+                    $("#umbrella_liability_currency").val('');
+                    $('#umbrella_liability_date').removeAttr('value');
                     // console.log('final');
                     window.localStorage.setItem("umbrella_cert_on", "no");
 
@@ -865,41 +898,6 @@ $(document).ready(function() {
                 console.log(responseText.data);
             })
         },6000)
-        
-        $("#alert_message").show();
-        $('.loading-submit').hide();
-        $(".remove_file_drop").trigger("click");
-        $(".remove_current_custom_certificate").trigger("click");
-        $(".first_button").text('Save Another');
-        $('#general_liability_amount').removeAttr('value');
-        $("#general_liability_amount").val('');
-        $('#general_liability_date').removeAttr('value');
-        $("#general_liability_date").val('');
-        $('#req_minimum_general').attr('checked', false);
-        // alert('faizan');
-        $('#works_compensation_currency').removeAttr('value');
-        $("#works_compensation_currency").val('');
-        $('#works_compensation_date').removeAttr('value');
-        $("#works_compensation_date").val('');
-        $('#umbrella_liability_currency').removeAttr('value');
-        $("#umbrella_liability_currency").val('');
-        $('#umbrella_liability_date').removeAttr('value');
-        $("#umbrella_liability_date").val('');
-        $('#auto_compensation_currency').removeAttr('value');
-        $("#auto_compensation_currency").val('');
-        $('#auto_compensation_date').removeAttr('value');
-        $("#auto_compensation_date").val('');
-        $('#upload_doc_id_general').removeAttr('value');
-        $("#upload_doc_id_general").val('');
-        $('#upload_doc_id_auto').removeAttr('value');
-        $("#upload_doc_id_auto").val('');
-        $('#upload_doc_id_work').removeAttr('value');
-        $("#upload_doc_id_work").val('');
-        $('#upload_doc_id_umbrella').removeAttr('value');
-        $("#upload_doc_id_umbrella").val('');
-        $('#umbrella_liability_currency').removeAttr('value');
-        $("#umbrella_liability_currency").val('');
-        $('#umbrella_liability_date').removeAttr('value');
         return;
     });
 
