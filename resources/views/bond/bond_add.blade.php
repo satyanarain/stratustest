@@ -109,7 +109,7 @@
                         <div class="loading_data" style="text-align: center;">
                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                         </div>
-                        <select class="form-control currency_symbol" id="performance_bond_cur_symbol">
+                        <select name="performance_bond_cur_symbol" class="form-control currency_symbol" id="performance_bond_cur_symbol">
                         </select>
                     </div>
                     <div class="col-xs-9">
@@ -174,7 +174,7 @@
                         <div class="loading_data" style="text-align: center;">
                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                         </div>
-                        <select class="form-control currency_symbol" id="payment_bond_cur_symbol">
+                        <select name="payment_bond_cur_symbol" class="form-control currency_symbol" id="payment_bond_cur_symbol">
                         </select>
                     </div>
                     <div class="col-xs-9">
@@ -237,7 +237,7 @@
                         <div class="loading_data" style="text-align: center;">
                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                         </div>
-                        <select class="form-control currency_symbol" id="maintenance_bond_cur_symbol">
+                        <select name="maintenance_bond_cur_symbol" class="form-control currency_symbol" id="maintenance_bond_cur_symbol">
                         </select>
                     </div>
                     <div class="col-xs-9">
