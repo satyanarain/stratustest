@@ -36,7 +36,7 @@ $(document).ready(function() {
         contentType: "application/json",
         cache: false
     })
-        .done(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
         // console.log(data.data);
         // Foreach Loop
         jQuery.each(data.data, function( i, val ) {
@@ -76,7 +76,7 @@ $(document).ready(function() {
         var token = localStorage.getItem('u_token');
         // console.log(userid);
 
-        jQuery.ajax({
+    jQuery.ajax({
         url: baseUrl + "users/"+userid,
             type: "GET",
             headers: {
@@ -86,7 +86,7 @@ $(document).ready(function() {
             contentType: "application/json",
             cache: false
         })
-        .done(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
             console.log(data.data);
             jQuery.ajax({
                 url: baseUrl + "users/get_user_info/"+userid,
@@ -165,7 +165,7 @@ $(document).ready(function() {
             $(".loading_data").hide();
             $("#update_profile_form").show();
         })
-        .fail(function(jqXHR, textStatus, errorThrown) {
+    .fail(function(jqXHR, textStatus, errorThrown) {
             console.log("HTTP Request Failed");
             var response = jqXHR.responseJSON.code;
             if(response == 403){
@@ -216,6 +216,50 @@ $(document).ready(function() {
                 count_permission ++;
             });
             if(count_permission >= 96){
+                $('#select_all').prop('checked', true);
+            }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log("HTTP Request Failed");
+            var response = jqXHR.responseJSON.code;
+            if(response == 403){
+                // window.location.href = baseUrl + "403";
+                console.log("403 Permission Show");
+            }
+            else if(response == 404){
+                console.log("404 User Permission");
+                // window.location.href = baseUrl + "404";
+            }
+            else {
+                // console.log("500");
+                window.location.href = baseUrl + "500";
+            }
+        })
+        
+    jQuery.ajax({
+        url: baseUrl + "contact/"+project_id+"/get_notification/"+userid,
+            type: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "x-access-token": token
+            },
+            contentType: "application/json",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+            // console.log(data.data.lenght);
+            var count_notification = 0;
+            jQuery.each( data.data, function( i, val )
+            {
+                // console.log(val.pup_permission_key);
+                $('#'+val.pun_notification_key).prop('checked', true);
+                // if(jQuery.inArray(val.pup_permission_key, permission_key_static)){
+                //     console.log('True');
+                // }
+                // $('input[name=permission_key*]').find('')
+                count_notification ++;
+            });
+            if(count_notification >= 96){
                 $('#select_all').prop('checked', true);
             }
         })
@@ -399,7 +443,6 @@ $('#update_profile_form').click(function(e) {
                count ++;
             });
             console.log(permission_key);
-
             jQuery.ajax({
                 url: baseUrl + "contact/"+project_id+"/add_permission/"+userid,
                 type: "POST",
@@ -421,7 +464,37 @@ $('#update_profile_form').click(function(e) {
                 responseText = JSON.parse(jqXHR.responseText);
                 console.log(jqXHR);
             })
-
+            
+            // Add User Notification
+            var notification_key = {}; // note this
+            var count = 0;
+            $('input[name^=notification_key]:checked').each(function(){
+               var per_value = $(this).val();
+               notification_key[count] =  $(this).val();
+               count ++;
+            });
+            console.log(notification_key);
+            jQuery.ajax({
+                url: baseUrl + "contact/"+project_id+"/add_notification/"+userid,
+                type: "POST",
+                data: {
+                    "notification_key"    : notification_key
+                },
+                headers: {
+                    "x-access-token": token
+                },
+                contentType: "application/x-www-form-urlencoded",
+                cache: false
+            })
+            .done(function(data, textStatus, jqXHR) {
+                console.log(data);
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("HTTP Request Failed");
+                var responseText, html;
+                responseText = JSON.parse(jqXHR.responseText);
+                console.log(jqXHR);
+            })
             // html = '<div class="alert alert-block alert-success fade in">Profile updated!</div>';
             // $("#updateuserinfo").html(html);
             $('html, body').animate({

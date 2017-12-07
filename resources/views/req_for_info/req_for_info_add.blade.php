@@ -140,7 +140,7 @@
 <!--            <a data-href="{{ url('/dashboard/'.$project_id.'/req_for_info') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
             <a href="{{ url('/dashboard/'.$project_id.'/req_for_info') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
             <button type="submit" class="btn btn-info sub-btn submit_submittal_form">Save</button>
-            <a data-href="{{ url('/dashboard/'.$project_id.'/submittals_log') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
+            <a href="{{ url('/dashboard/'.$project_id.'/submittals_log') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
             <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
         </div>
     </div><!-- Row Close -->

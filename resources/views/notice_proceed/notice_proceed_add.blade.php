@@ -179,7 +179,7 @@
             <a href="{{ url('/dashboard/'.$project_id.'/notice_proceed') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
             <button type="submit" class="btn btn-info sub-btn submit_notice_add_form first_button create_notice" style="display: none;">Save</button>
             <!-- <button class="btn btn-info sub-btn submit_notice_add_form another_button create_notice" type="submit" style="display: none;">Add Revised Notice to Proceed</button> -->
-            <a data-href="{{ url('/dashboard/'.$project_id.'/req_for_info_log') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
+            <a href="{{ url('/dashboard/'.$project_id.'/req_for_info_log') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
             <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
 
         </div>

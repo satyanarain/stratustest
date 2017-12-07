@@ -153,7 +153,7 @@
             <button type="submit" id="submit_submittal_form" class="first_button btn btn-info sub-btn submit_submittal_form" style="display: none;">Save</button>
             <a href="{{ url('/dashboard/'.$project_id.'/preliminary_notice_log') }}"  class="btn btn-info sub-btn preliminary_notice_button" style="display: none;">Add Another Preliminary Notice</a>
             <!-- <button type="submit" id="submit_submittal_form" class="another_button btn btn-info sub-btn" style="display: none;">Add Another</button> -->
-            <a data-href="{{ url('/dashboard/'.$project_id.'/survey_log') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
+            <a href="{{ url('/dashboard/'.$project_id.'/survey_log') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
             <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
         </div>
     </div><!-- Row Close -->

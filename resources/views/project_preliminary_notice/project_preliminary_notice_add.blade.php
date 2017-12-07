@@ -110,7 +110,7 @@
                                         <!-- <button type="submit" class="add_preliminary_notice another_button btn btn-info sub-btn" id="add_preliminary_notice" style="display: none;">Save Another</button> -->
 
                                         <button type="submit" class="add_preliminary_notice first_button btn btn-info sub-btn">Save</button>
-                                        <a data-href="{{ url('/dashboard/'.$project_id.'/picture_video') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
+                                        <a href="{{ url('/dashboard/'.$project_id.'/picture_video') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
                                         <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                     </div>
 

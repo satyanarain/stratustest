@@ -86,7 +86,7 @@
                                             <a href="{{ url('/dashboard/'.$project_id.'/contract_item') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                                             <button type="submit" class="first_button btn btn-info sub-btn">Save</button>
                                             <button type="submit" class="another_button btn btn-info sub-btn" style="display: none;">Save Another</button>
-                                            <a data-href="{{ url('/dashboard/'.$project_id.'/certificate') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
+                                            <a href="{{ url('/dashboard/'.$project_id.'/certificate') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
                                             <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                         </div>
 

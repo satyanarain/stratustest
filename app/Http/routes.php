@@ -157,6 +157,8 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('contact/{project_id}/get_permission/{user_id}', 'Projects\ContactController@get_user_permission');
     Route::post('{project_id}/get_user_permission_key', 'Projects\ContactController@get_user_permission_key');
     // Route::post('contact/{project_id}/delete_permission/{user_id}', 'Projects\ContactController@delete_user_permission');
+    Route::post('contact/{project_id}/add_notification/{user_id}', 'Projects\ContactController@add_user_notification');
+    Route::get('contact/{project_id}/get_notification/{user_id}', 'Projects\ContactController@get_user_notification');
 });
 /**** CONTACT VIEW ****/
 Route::get('dashboard/{project_id}/contact', function () {

@@ -176,7 +176,9 @@ $(document).ready(function() {
                     $("#standard_name").removeAttr('value');
                     $("#standard_link").removeAttr('value');
                     $("#standard_date").removeAttr('value');
+                    $("#company_name").val('');
                     $("#upload_doc_ids").removeAttr('value');
+                    $("#upload_doc_id").removeAttr('value');
                     $("#applicable").prop('checked', false);
                     $(".remove_file_drop").trigger("click");
                     $(".first_button").text('Save Another');

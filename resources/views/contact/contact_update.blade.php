@@ -650,6 +650,52 @@
             </div>
         </div>
     </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="background-color: #f3f3f3;">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" style="font-size: 26px;">
+                    Notification's
+                </a>
+            </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+            <div class="panel-body">
+                <div class="row">
+                    <?php
+                    $notification_types = array(
+                        "project_setup"=>"Project setup",
+                        "notice_of_award_upload"=>"Notice of award upload",
+                        "contract_upload"=>"Contract upload",
+                        "certificates_of_insurance"=>"Certificates of Insurance",
+                        "bidding"=>"Bidding",
+                        "rfi"=>"RFIs",
+                        "submittals_eor"=>"Submittals-EOR ",
+                        "survey_cut_sheet"=>"Surveys Cut sheet",
+                        "weekly_statement_of_contract_days"=>"Weekly Statement of Contract Days",
+                        "pay_applications"=>"Pay Applications",
+                        "change_orders"=>"Change Orders",
+                        "labor_compliance"=>"Labor Compliance",
+                        "meeting_minutes"=>"Meeting Minutes",
+                        "unconditional_finals"=>"Unconditional Finals",
+                        "as_built_drawings"=>"As Built Drawings",
+                        "notice_of_completion"=>"Notice of Completion",
+                        "standards"=>"Standards"
+                    );
+                            
+                    foreach ($notification_types as $key=>$notification_type){
+                    ?>
+                    
+                    <div class="form-group col-md-3">
+                        <label for="<?=$key?>"><?=$notification_type?></label>
+                        <input type="checkbox" name="notification_key[]" class="" id="<?=$key?>" value="<?=$key?>">
+                    </div>
+                    <?php }?>
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 

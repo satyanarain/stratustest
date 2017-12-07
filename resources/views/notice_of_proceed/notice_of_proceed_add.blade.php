@@ -182,7 +182,7 @@
             <a href="{{ url('/dashboard/'.$project_id.'/notice_of_proceed') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
             <button type="submit" class="btn btn-info sub-btn submit_notice_add_form first_button create_notice" style="display: none;">Save</button>
             <button class="btn btn-info sub-btn submit_notice_add_form another_button create_notice" type="submit" style="display: none;">Add Revised Notice to Proceed</button>
-            <a data-href="{{ url('/dashboard/'.$project_id.'/minutes_meeting') }}" class="btn btn-info sub-btn continue_button" data-toggle="modal" data-target="#confirm-continue">Next Screen</a>
+            <a href="{{ url('/dashboard/'.$project_id.'/minutes_meeting') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
             <a class="btn btn-warning" id="docusign_box_open" style="visibility: hidden;" data-toggle="modal" href="#myModal2">L</a>
             <p class="loading-submit" style="display: none;">Loading. This could take a few minutes as we are generating the document<span>.</span><span>.</span><span>.</span></p>
         </div>
