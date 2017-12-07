@@ -849,6 +849,16 @@ $(document).ready(function() {
                     $("#general_liability_date").val('');
                     $('#req_minimum_general').attr('checked', false);
                     // alert('faizan');
+                    $('#general_liability_included').attr('checked', false);
+                    $('#req_minimum_work').attr('checked', false);
+                    $('#upload_work_above').attr('checked', false);
+                    $('#upload_work').attr('checked', false);
+                    $('#auto_req_minimum').attr('checked', false);
+                    $('#upload_auto_above').attr('checked', false);
+                    $('#upload_auto').attr('checked', false);
+                    $('#req_minimum_umbrella').attr('checked', false);
+                    $('#upload_umbrella_above').attr('checked', false);
+                    $('#upload_umbrella').attr('checked', false);
                     $('#works_compensation_currency').removeAttr('value');
                     $("#works_compensation_currency").val('');
                     $('#works_compensation_date').removeAttr('value');
