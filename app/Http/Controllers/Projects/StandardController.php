@@ -301,6 +301,7 @@ class StandardController extends Controller {
                     else {
                         $notification_key     = 'standards';
                         $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);
+                        print_r($check_project_user_notification);
                         if(count($check_project_user_notification) < 1){
                           continue;
                         }else{
@@ -326,7 +327,7 @@ class StandardController extends Controller {
                     }
 
                   } // End Foreach
-
+die;
                   // End Check User Permission and send notification and email  
 
                   $result = array('data'=>$query,'code'=>200);
