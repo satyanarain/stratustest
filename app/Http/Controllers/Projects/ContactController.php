@@ -594,7 +594,7 @@ class ContactController extends Controller {
       {    
         $project_id                   = $project_id;
         $user_id                      = $user_id;
-        $notification_key               = $request['notification_key'];
+        $notification_key             = $request['notification_key'];
         // $permission_access            = $request['permission_access'];
         $permission_assign_user_id    = Auth::user()->id;
 
@@ -602,7 +602,7 @@ class ContactController extends Controller {
 
             "project_id"                  => $project_id,
             "user_id"                     => $user_id,
-            "notification_key"              => $notification_key,
+            //"notification_key"              => $notification_key,
             // "permission_access"           => $permission_access,
             "permission_assign_user_id"   => $permission_assign_user_id
 
@@ -610,7 +610,7 @@ class ContactController extends Controller {
         $rules = [
             "project_id"                  => 'required|numeric',
             "user_id"                     => 'required|numeric',
-            "notification_key"              => 'required',
+            //"notification_key"              => 'required',
             // "permission_access"           => 'required',
             "permission_assign_user_id"   => 'required|numeric'
         ];
@@ -628,22 +628,31 @@ class ContactController extends Controller {
           ->where('pun_user_id', $user_id)
           ->delete();
         
-          foreach ($notification_key  as $key => $notification_single) {
-              // print_r('Project ID: '.$project_id.' User ID: '.$user_id.' Permission Key: '.$notification_single.' Permission Assign User: '.$permission_assign_user_id.'<br/>');
-              $query = DB::table('project_user_notification')
-              ->insert(['pun_project_id' => $project_id, 'pun_user_id' => $user_id, 'pun_notification_key' => $notification_single, 'pun_access' => 'true', 'pun_notification_assign_user_id' => $permission_assign_user_id]);
-          }
+            if(count($notification_key))
+            {
+                foreach ($notification_key  as $key => $notification_single) {
+                    // print_r('Project ID: '.$project_id.' User ID: '.$user_id.' Permission Key: '.$notification_single.' Permission Assign User: '.$permission_assign_user_id.'<br/>');
+                    $query = DB::table('project_user_notification')
+                    ->insert(['pun_project_id' => $project_id, 'pun_user_id' => $user_id, 'pun_notification_key' => $notification_single, 'pun_access' => 'true', 'pun_notification_assign_user_id' => $permission_assign_user_id]);
+                }
+                if(count($query) < 1)
+                {
+                  $result = array('code'=>400, "description"=>$query);
+                  return response()->json($result, 400);
+                }
+                else
+                {
+                  $result = array('description'=>"Add notification successfully",'code'=>200);
+                  return response()->json($result, 200);
+                }
+            }else{
+                
+                $result = array('description'=>"Add notification successfully",'code'=>200);
+                return response()->json($result, 200);
+                
+            }
          
-          if(count($query) < 1)
-          {
-            $result = array('code'=>400, "description"=>$query);
-            return response()->json($result, 400);
-          }
-          else
-          {
-            $result = array('description'=>"Add notification successfully",'code'=>200);
-            return response()->json($result, 200);
-          }
+          
         }
       }
       catch(Exception $e)
