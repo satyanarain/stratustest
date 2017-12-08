@@ -84,7 +84,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="company_type">Company/Agencies <span class="text-danger">*</span></label>
+                                        <label for="company_type">Company/Agency <span class="text-danger">*</span></label>
                                         <select class="form-control" id="company_type">
                                             <option value="">Select</option>
                                             <option value="f">Company</option>
