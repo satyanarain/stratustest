@@ -10,7 +10,7 @@
          </div>
      </div>
  </div>
- <div class="modal confrm-pop fade" id="confirm-back" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal confrm-pop fade" id="confirm-back" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-md">
          <div class="modal-content text-center">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -22,7 +22,7 @@
      </div>
  </div>
 
- <div class="modal add-company fade" id="add-company" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal add-company fade" id="add-company" tabindex="-3" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-md">
          <div class="modal-content text-center">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -322,11 +322,13 @@ function checkFormFilled(classname)
         //var form_ele_name = '';
         //form_ele_name = $(this).attr('name');
         //alert(typeof form_ele_name);
+        var exempted_val = ["Add New Company","Select Improvement Types"];
         var exempted_array = ["umbrella_liability_cur_symbol","general_liability_cur_symbol","company_name_two","maintenance_bond_cur_symbol","payment_bond_cur_symbol","performance_bond_cur_symbol", 
             "demo2","auto_compensation_cur_symbol", "works_compensation_cur_symbol","contract_item_qty","maintenance_bond_amount",
         "performance_bond_amount","payment_bond_amount","company_name","project_type_dropdown","notice_award_improvement_type",
     "notice_award_project_type_dropdown","notice_award_company_name","notice_award_bid_amount","notice_award_date"];
         var exempted = jQuery.inArray($(this).attr('name'), exempted_array);
+        var exempted1 = jQuery.inArray($(this).val(), exempted_val);
         //alert($(this).attr('name'));
         //alert(exempted);
         if(exempted >= 0)
@@ -334,7 +336,7 @@ function checkFormFilled(classname)
             //alert($(this).attr('name'));
             //alert('exempted');
         }else{
-            if ($(this).val() && $(this).val() != "Select Improvement Types") {
+            if ($(this).val() && exempted1 < 0) {
                 //var nam = element.getAttribute("name");
                 //alert(nam);
                 isFilled = true;

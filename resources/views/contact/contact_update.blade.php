@@ -686,7 +686,7 @@
                     ?>
                     
                     <div class="form-group col-md-3">
-                        <label for="<?=$key?>"><?=$notification_type?></label>
+                        <label for="<?=$key?>"><?=$notification_type?></label><br>
                         <input type="checkbox" name="notification_key[]" class="" id="<?=$key?>" value="<?=$key?>">
                     </div>
                     <?php }?>

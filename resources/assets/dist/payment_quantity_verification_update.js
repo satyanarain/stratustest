@@ -84,9 +84,10 @@ $(document).ready(function() {
             // Foreach Loop
             var count = 1;
             jQuery.each( data.data, function( i, val ) {
-                var total = val.pbi_item_qty - val.pqv_latest_qty;
-                console.log(total);
                 var quantity_upto_date = val.pqv_previous_qty+val.pqv_month_qty;
+                var total = val.pbi_item_qty - quantity_upto_date;
+                console.log(total);
+                
                 if(total >= 0){
                     //var total_use_qty = '<input type="text" value="'+val.pqv_latest_qty+'" name="pqv_latest_qty" id="pqv_latest_qty'+val.pqv_id+'">';
                     var total_use_qty = '<span class="total_use_qty'+val.pqv_id+'">'+quantity_upto_date+'</span>';
@@ -102,7 +103,7 @@ $(document).ready(function() {
                     count, //val.pqv_item_id,
                     val.pbi_item_description,
                     val.pbi_item_unit,
-                    val.pbi_item_qty,
+                    '<span class="total_contract_qty'+val.pbi_item_qty+'">'+parseInt(val.pbi_item_qty)+'</span>',
                     total_use_qty,
                     '<input type="text" value="'+val.pqv_previous_qty+'" name="pqv_previous_qty" id="pqv_previous_qty'+val.pqv_id+'">',
                     '<input type="text" value="'+val.pqv_month_qty+'" name="pqv_month_qty" id="pqv_month_qty'+val.pqv_id+'">',
@@ -113,9 +114,11 @@ $(document).ready(function() {
             $(".update_report").click(function() {
                 var pqv_id = $(this).attr('report_id');
                 $('.loading-submit').show();
-                //var pqv_latest_qty          = $('#pqv_latest_qty'+pqv_id).val();
-                var pqv_previous_qty          = $('#pqv_previous_qty'+pqv_id).val();
-                var pqv_month_qty          = $('#pqv_month_qty'+pqv_id).val();
+                //var pqv_latest_qty        = $('#pqv_latest_qty'+pqv_id).val();
+                var pqv_previous_qty        = $('#pqv_previous_qty'+pqv_id).val();
+                var pqv_month_qty           = $('#pqv_month_qty'+pqv_id).val();
+                var total_contract_qty      = $('.total_contract_qty'+pqv_id).html();
+                //alert(total_contract_qty);
                 var token                   = localStorage.getItem('u_token');
                 jQuery.ajax({
                     url: baseUrl + "dashboard/"+project_id+"/payment_quantity_verification/"+pqv_id+"/update",
@@ -136,7 +139,14 @@ $(document).ready(function() {
                     console.log(data);
                     $("#alert_message").fadeIn(1000);
                     $('.loading-submit').hide();
-                    $(".total_use_qty"+pqv_id).html(parseInt(pqv_previous_qty)+parseInt(pqv_month_qty));
+                    var total_today = parseInt(pqv_previous_qty)+parseInt(pqv_month_qty);
+                    $(".total_use_qty"+pqv_id).html(total_today);
+                    if(parseInt(total_contract_qty)<total_today)
+                    {
+                        $(".total_use_qty"+pqv_id).css("color","#f00").css("font-weight","bold");
+                    }else{
+                        $(".total_use_qty"+pqv_id).css("color","#323232").css("font-weight","normal");
+                    }
                     html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">Payment quantity verification report updated successfully!</div></div>';
                     $("#alert_message").html(html);
                     setTimeout(function()
