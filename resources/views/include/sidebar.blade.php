@@ -37,7 +37,7 @@
                     </li>
 
                     <li class="hide_user">
-                        <a href="{{ url('/dashboard/firms') }}"><i class="fa fa-building"></i><span>Companies</span></a>
+                        <a href="{{ url('/dashboard/firms') }}"><i class="fa fa-building"></i><span>Companies/Agencies</span></a>
                         <!-- <ul class="child-list">
                             <li><a href="{{ url('/dashboard/firms') }}"><i class="icon-user"></i>&nbsp; View Company</a></li>
                             <li><a href="{{ url('/dashboard/firms/add') }}"><i class="icon-plus"></i>&nbsp; Add Company</a></li>
