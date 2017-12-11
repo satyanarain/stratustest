@@ -148,6 +148,7 @@ $(document).ready(function() {
                 $("#project_number").removeAttr('value');
                 $("#project_name").removeAttr('value');
                 $("#project_wage_determination").removeAttr('value');
+                $('#project_terms').attr('checked', false);
                 $("#project_lead_agency").removeAttr('value');
                 $("#project_location").removeAttr('value');
                 $("#project_description").removeAttr('value');

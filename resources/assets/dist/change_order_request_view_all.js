@@ -117,10 +117,14 @@ $(document).ready(function() {
             // Check Update Permission
             var check_permission = jQuery.inArray("cor_order_review_update", check_user_access );
             console.log(check_permission);
+            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00")
+            {var editable_now = true;}else{var editable_now = false;}
             if(check_permission < 1){
                 var update_permission = '';
             }
-            else {
+            else if(editable_now==false) {
+                var update_permission = '';
+            }else{
                 var update_permission = '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
             }
 

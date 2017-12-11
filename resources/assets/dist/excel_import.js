@@ -69,7 +69,15 @@ $(document).ready(function() {
                         },6000)
                     })
                     .fail(function(jqXHR, textStatus, errorThrown) {
-                
+                        $(".loading_data_file").hide();
+                        //$("#import_file").removeAttr('value');
+                        $("#alert_message").show();
+                        html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error">There is some error with import!</div></div>';
+                        $("#alert_message").html(html);
+                        setTimeout(function()
+                        {
+                            $("#alert_message").hide();
+                        },6000)
             });
                 }
         e.preventDefault();

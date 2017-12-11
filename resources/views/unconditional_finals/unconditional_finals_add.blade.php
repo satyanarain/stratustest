@@ -15,7 +15,7 @@
     <!-- page head start-->
     <div class="page-head">
         <h3 class="m-b-less project_name" id="project_name_title"></h3><br/>
-        <h3 class="m-b-less"> Add Unconditional Finals</h3>
+        <h3 class="m-b-less"> Add Unconditional Final</h3>
         <?php $project_id = Request::segment(2); ?>
         <input type="hidden" id="project_id" value="<?php echo $project_id ?>">
         <div class="state-information" style="width: 200px; ">
@@ -113,7 +113,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                          <label class="m-b-2">Upload Unconditional Finals <span class="text-danger">*</span></label>
+                          <label class="m-b-2">Upload Unconditional Final <span class="text-danger">*</span></label>
                             <section class="panel upload_doc_panel_performance" id="upload_performance">
                                 <div class="panel-body" style="padding:0px;">
                                     <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">

@@ -17,6 +17,9 @@
             <div class="page-head">
                 <h3 class="m-b-less project_name" id="project_name_title"></h3><br/>
                 <h3 class="m-b-less">Import Contract Items</h3>
+                <div class="state-information hide_add_permission" style="display: ;">
+                    <a href="{{ url('/') }}/contract-items.xlsx" class="btn btn-success"><i class="fa fa-plus"></i> Download Sample File</a>
+                </div>
             </div>
             <!-- page head end-->
 

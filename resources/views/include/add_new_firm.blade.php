@@ -98,7 +98,7 @@
                         <div class="form-group col-md-12">
                             <!-- <a href="{{ url('/dashboard/firms') }}" class="btn btn-info sub-btn">Back</a> -->
 
-                            <button class="close-add-firm-btn btn btn-info sub-btn back_button">Back</button>
+                            <button class="close-add-firm-btn btn btn-info sub-btn back_button btn_back" onclick="return checkFormFilled('btn_back')">Back</button>
 
                             <button class="add_firm_form btn btn-info sub-btn first_button">Submit</button>
                             <button class="add_firm_form btn btn-info sub-btn another_button" style="display: none;">Add Another</button>
@@ -121,6 +121,9 @@
 
 <script>
 $(document).ready(function() {
+    var curr_url = $(location).attr('href')
+    $(".close-add-firm-btn").attr("href",curr_url);
+    //alert();return false;
     // $('.wysihtml5').wysihtml5();
 
     // $('.summernote').summernote({
@@ -260,7 +263,18 @@ $(document).ready(function() {
     });
             
     $('.close-add-firm-btn').click(function(){
-        jQuery.ajax({
+//        $("input[type=text],select").each(function(key,value) {
+//            if($(this).val())
+//            {
+//                confirm("Are you sure you want to leave this page?");
+//                return false;
+//            }
+//        })
+        if(isFilled===true)
+        {
+            $('#confirm-back').modal('show');
+        }else{
+            jQuery.ajax({
         url: baseUrl+project_id+"/company_name_user",
         type: "GET",
         headers: {
@@ -269,7 +283,7 @@ $(document).ready(function() {
         contentType: "application/json",
         cache: false
         })
-        .done(function(data, textStatus, jqXHR) {
+            .done(function(data, textStatus, jqXHR) {
         // console.log(data);
         // Foreach Loop 
         $('.company_name').empty();
@@ -317,7 +331,7 @@ $(document).ready(function() {
             location.length=0;
             marker = [];
     })
-        .fail(function(jqXHR, textStatus, errorThrown) {
+            .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
         var response = jqXHR.responseJSON.code;
         console.log(jqXHR);
@@ -333,6 +347,8 @@ $(document).ready(function() {
             window.location.href = baseUrl + "500";
         }
     });
+        }
+        
     })
   })  
   function initMap() {
