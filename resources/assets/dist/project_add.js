@@ -4,7 +4,57 @@ $(document).ready(function() {
     $("#s2id_project_type").hide();
     var role = localStorage.getItem('u_role');
     var token = localStorage.getItem('u_token');
+    var project_id = localStorage.getItem('current_project_id');
+//    for (var i = 0; i < localStorage.length; i++){
+//        console.log(localStorage.key(i)+"="+localStorage.getItem(localStorage.key(i)));
+//    }
     get_improvement_project();
+    //alert("sds");
+    jQuery.ajax({
+        url: baseUrl+project_id+"/company_name_user_agency",
+        type: "GET",
+        headers: {
+            "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+    })
+    .done(function(data, textStatus, jqXHR) {
+        // console.log(data.data);
+        // Foreach Loop
+        $("#project_lead_agency").append(
+            '<option value="">Select Agency Name</option>'
+        )
+        jQuery.each(data.data, function( i, val ) {
+            if(val.f_status == 'active'){
+                $("#project_lead_agency").append(
+                    '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                )
+            }else {
+
+            }
+        });
+        // $( "h2" ).appendTo( $( ".container" ) );
+
+        $(".loading_data").remove();
+        $("#company_name").show();
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(response);
+        if(response == 403){
+            console.log('Company name 403');
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            console.log('Company name 404');
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
 });
 
 

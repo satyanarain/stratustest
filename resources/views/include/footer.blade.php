@@ -10,13 +10,13 @@
          </div>
      </div>
  </div>
- <div class="modal confrm-pop fade" id="confirm-back" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal confrm-pop fade" id="confirm-back" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 1051 !important;">
      <div class="modal-dialog modal-md">
          <div class="modal-content text-center">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
              <strong>Are you sure you want to leave this page?</strong>
              <p>Changes you made may not be saved.</p>
-             <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+             <button type="button" class="btn btn-danger confirm_back_button_no" data-dismiss="modal">No</button>
              <a href="" class="btn btn-success btn-ok confirm_back_button_alert">Yes</a>
          </div>
      </div>
@@ -309,6 +309,10 @@ $(document).ready(function() {
             //isFilled = true;
         //}
     })
+    
+    $(".confirm_back_button_alert").on('click',function(){
+       $("#confirm-back").modal("hide"); 
+    })
 });
 function checkFormFilled(classname)
 {
@@ -322,7 +326,7 @@ function checkFormFilled(classname)
         //var form_ele_name = '';
         //form_ele_name = $(this).attr('name');
         //alert(typeof form_ele_name);
-        var exempted_val = ["Add New Company","Select Improvement Types"];
+        var exempted_val = ["Add New Company","Select Improvement Types","Add New Entity"];
         var exempted_array = ["umbrella_liability_cur_symbol","general_liability_cur_symbol","company_name_two","maintenance_bond_cur_symbol","payment_bond_cur_symbol","performance_bond_cur_symbol", 
             "demo2","auto_compensation_cur_symbol", "works_compensation_cur_symbol","contract_item_qty","maintenance_bond_amount",
         "performance_bond_amount","payment_bond_amount","company_name","project_type_dropdown","notice_award_improvement_type",
@@ -356,10 +360,20 @@ function checkFormFilled(classname)
     }
 
     if(isFilled===true){
-        var href = $("."+classname).attr('href');
-        $("#confirm-back").modal("show");
-        $('.confirm_back_button_alert').attr('href', href);
-        return false;
+        if(classname=="modal_btn_back")
+        {
+            var href = $("."+classname).attr('href');
+            $("#confirm-back").modal("show");
+            $('.confirm_back_button_alert').attr('onclick', '$("#add-company").modal("hide");');
+            $('.confirm_back_button_alert').attr('href', href);
+            
+            return false;
+        }else{
+            var href = $("."+classname).attr('href');
+            $("#confirm-back").modal("show");
+            $('.confirm_back_button_alert').attr('href', href);
+            return false;
+        }
     }else{
         return true;
     }

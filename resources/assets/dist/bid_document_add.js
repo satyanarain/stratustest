@@ -24,7 +24,7 @@ $(document).ready(function() {
     var role = localStorage.getItem('u_role');
     var token = localStorage.getItem('u_token');
     jQuery.ajax({
-    url: baseUrl+project_id+"/company_name_user",
+    url: baseUrl+project_id+"/company_name_user_agency",
         type: "GET",
         headers: {
           "x-access-token": token

@@ -98,7 +98,7 @@
                         <div class="form-group col-md-12">
                             <!-- <a href="{{ url('/dashboard/firms') }}" class="btn btn-info sub-btn">Back</a> -->
 
-                            <button class="close-add-firm-btn btn btn-info sub-btn back_button btn_back" onclick="return checkFormFilled('btn_back')">Back</button>
+                            <button class="close-add-firm-btn btn btn-info sub-btn back_button modal_btn_back" onclick="return checkFormFilled('modal_btn_back')">Back</button>
 
                             <button class="add_firm_form btn btn-info sub-btn first_button">Submit</button>
                             <button class="add_firm_form btn btn-info sub-btn another_button" style="display: none;">Add Another</button>
@@ -222,6 +222,11 @@ $(document).ready(function() {
             html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast toast-success">New firm added successfully.!</div></div>';
             $("#alert_message").html(html);
             $(".first_button").hide();
+            
+            $("#project_latitude").removeAttr('value');
+            $("#project_longitude").removeAttr('value');
+            $("#firm_type").val('');
+            $("#company_type").val('');
             $(".another_button").show();
             setTimeout(function()
                 {
