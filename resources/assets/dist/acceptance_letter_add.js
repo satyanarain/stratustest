@@ -55,7 +55,7 @@ $(document).ready(function() {
 
 
     jQuery.ajax({
-        url: baseUrl+project_id+"/company_name_user",
+        url: baseUrl+project_id+"/company_name_user_agency",
         type: "GET",
         headers: {
             "x-access-token": token
