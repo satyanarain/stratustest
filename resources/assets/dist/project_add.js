@@ -34,9 +34,9 @@ $(document).ready(function() {
 
             }
         });
-//        $("#project_lead_agency").append(
-//            '<option>Add New Agency</option>'
-//        )
+        $("#project_lead_agency").append(
+            '<option>Add New Agency</option>'
+        )
         // $( "h2" ).appendTo( $( ".container" ) );
 
         $(".loading_data").remove();
@@ -66,6 +66,7 @@ $(document).ready(function() {
             $('#add-company').modal('show');
             $('#add-company').on('shown.bs.modal',function(){
                 google.maps.event.trigger(map, "resize");
+                google.maps.event.trigger(map1, "resize");
               });
         }
     })

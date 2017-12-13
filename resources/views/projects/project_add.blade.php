@@ -16,7 +16,7 @@
             <!-- page head end-->
 
     <style>
-      #map {
+      #map1 {
         height: 300px;
        /* position: relative !important;
         overflow: inherit !important;*/
@@ -147,7 +147,8 @@
                                     <div class="clearfix"></div>
                                     <div class="form-group col-md-12">
                                     <!-- <input id="pac-input" class="controls" type="text" placeholder="Enter a location"> -->
-                                        <div class="map-wrapper"><div id="map"></div></div>
+                                        <div class="map-wrapper"><div id="map1"></div></div>
+                                        
                                     </div>
                                     <div class="clearfix"></div>
 
@@ -199,7 +200,7 @@
 <script src="{{ url('/resources/assets/dist/project_add.js') }}"></script>
 <script>
 var script = document.createElement('script');
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDIoFv2pgyZCk4whduCYs5Ol3ziTuo9-sI&libraries=places&callback=initMap";
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDIoFv2pgyZCk4whduCYs5Ol3ziTuo9-sI&libraries=places&callback=initMap1";
     setTimeout(function(){
         document.body.appendChild(script);
     },1000);
@@ -221,8 +222,8 @@ $(document).ready(function() {
     $('#project_location').css("top", "-50px");
 });
 
-  function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
+  function initMap1() {
+        var map1 = new google.maps.Map(document.getElementById('map1'), {
           center: {lat: 36.443796, lng: -119.369653},
           zoom: 7,
           scrollwheel: false
@@ -231,13 +232,13 @@ $(document).ready(function() {
             document.getElementById('project_location'));
 
         var types = document.getElementById('type-selector');
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+        map1.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        map1.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
         var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.bindTo('bounds', map);
+        autocomplete.bindTo('bounds', map1);
         var infowindow = new google.maps.InfoWindow();
         var marker = new google.maps.Marker({
-          map: map,
+          map1: map1,
           anchorPoint: new google.maps.Point(0, -29)
         });
 
@@ -252,10 +253,10 @@ $(document).ready(function() {
 
           // If the place has a geometry, then present it on a map.
           if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
+            map1.fitBounds(place.geometry.viewport);
           } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(17);  // Why 17? Because it looks good.
+            map1.setCenter(place.geometry.location);
+            map1.setZoom(17);  // Why 17? Because it looks good.
           }
           marker.setIcon(/** @type {google.maps.Icon} */({
             url: place.icon,
@@ -279,7 +280,7 @@ $(document).ready(function() {
             $("#project_latitude").val(place.geometry.location.lat());
             $("#project_longitude").val(place.geometry.location.lng());
           infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-          infowindow.open(map, marker);
+          infowindow.open(map1, marker);
           return false;
 
         });

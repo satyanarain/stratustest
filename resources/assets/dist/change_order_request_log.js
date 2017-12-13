@@ -117,7 +117,7 @@ $(document).ready(function() {
             else {
                 var pcd_approved_by_owner = val.pcd_approved_by_owner;
             }
-
+            if(val.pcd_price){var disp_price=val.pcd_price;}else{var disp_price=val.pcd_unit_number*val.pcd_unit_price;}
             if(val.pcd_rfi == '[]'){
                 var t = $('#request_change_order').DataTable();
                 t.row.add([
@@ -127,7 +127,7 @@ $(document).ready(function() {
                    val.pcd_description,
                    pcd_approved_by_cm,
                    pcd_approved_by_owner,
-                   val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
+                   val.currency_symbol +' '+  ReplaceNumberWithCommas(disp_price),
                    val.pcd_days,
                    status_cm + status_owner,
                 ]).draw( false );
