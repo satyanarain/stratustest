@@ -955,6 +955,9 @@ Route::get('dashboard/{project_id}/change_order_request_review', function () {
 Route::get('dashboard/{project_id}/change_order_request_review/{item_id}/update', function () {
     return view('change_order_request/change_order_request_review_update');
 });
+Route::get('dashboard/{project_id}/change_order_request_review/{item_id}/view', function () {
+    return view('change_order_request/change_order_request_review_view');
+});
 
 
 /*  --------------------------------------------------------------------------

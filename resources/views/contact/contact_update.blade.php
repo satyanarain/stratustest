@@ -30,12 +30,12 @@
     <div class="panel panel-default">
         <div class="panel-heading" style="background-color: #f3f3f3;">
             <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" style="font-size: 26px;">
+                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" style="font-size: 26px;">
                     USER DETAILS
                 </a>
             </h4>
         </div>
-        <div id="collapseTwo" class="panel-collapse collapse in" aria-expanded="true">
+        <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false">
             <div class="panel-body">
                 <div class="row">
                     <div class="form-group col-md-6 hide_user">
@@ -653,14 +653,20 @@
     <div class="panel panel-default">
         <div class="panel-heading" style="background-color: #f3f3f3;">
             <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" style="font-size: 26px;">
+                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" style="font-size: 26px;">
                     Notifications
                 </a>
             </h4>
         </div>
         <div id="collapseFour" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
             <div class="panel-body">
-                <div class="row">
+                <div class="row" id="user_notifications">
+                    <div class="form-group col-md-12">
+                        <span style="background-color: #69c2fe; padding: 3px 15px 0px; color: #fff; font-weight: bold; float: right; border-radius: 3px;">
+                            <input type="checkbox" id="select_all_notification" value="select_all">
+                            <label>SELECT ALL</label>
+                        </span>
+                    </div>
                     <?php
                     $notification_types = array(
                         "project_setup"=>"Project setup",

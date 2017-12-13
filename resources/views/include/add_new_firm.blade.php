@@ -117,7 +117,9 @@
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIoFv2pgyZCk4whduCYs5Ol3ziTuo9-sI&libraries=places&callback=initMap" async defer></script>
+<?php if(Route::getCurrentRoute()->getPath()=="dashboard/projects/add"){}else{?>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIoFv2pgyZCk4whduCYs5Ol3ziTuo9-sI&libraries=places&callback=initMap" async defer></script>
+<?php }?>
 
 <script>
 $(document).ready(function() {

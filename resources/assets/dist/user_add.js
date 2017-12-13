@@ -33,13 +33,16 @@ $(document).ready(function()
         // Foreach Loop
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status == 'active'){
-                $("#firm_name").append(
+                $("#firm_name1").append(
                     '<option value="'+val.f_id+'">'+val.f_name+'</option>'
                 )
             }else {
 
             }
         });
+        $("#firm_name1").append(
+            '<option>Add New Company</option>'
+        )
         // $( "h2" ).appendTo( $( ".container" ) );
 
         $(".loading_data").remove();
@@ -106,6 +109,16 @@ $(document).ready(function()
         }
     });
 
+    $('#firm_name1').change(function(){
+        var company = $(this).val();
+        if(company=="Add New Company")
+        {
+            $('#add-company').modal('show');
+            $('#add-company').on('shown.bs.modal',function(){
+                google.maps.event.trigger(map, "resize");
+              });
+        }
+    })
 });
     $('#add_user_form').submit(function(e) {
         e.preventDefault();
@@ -114,7 +127,7 @@ $(document).ready(function()
 	    var email          = $('#email').val().toLowerCase();
         var first_name     = $('#fname').val();
 	    var last_name      = $('#lname').val();
-	    var company_name   = $('#firm_name').val();
+	    var company_name   = $('#firm_name1').val();
         var phone          = $('#pnum').val();
         var position       = $('#position').val();
 	    // var user_role       = $('#user_role').val();
@@ -252,7 +265,7 @@ $(document).ready(function()
                 $("#uname").removeAttr('value');
                 $("#email").removeAttr('value');
                 $("#pnum").removeAttr('value');
-                $("#firm_name").removeAttr('value');
+                $("#firm_name1").removeAttr('value');
                 $("#fname").removeAttr('value');
                 $("#lname").removeAttr('value');
                 $("#position").removeAttr('value');
