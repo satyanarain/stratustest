@@ -92,7 +92,7 @@ $(document).ready(function() {
         }
         else {
             $("#approved_owner").attr("checked", "checked");
-            // $("#approved_owner").attr('disabled', true);
+            $("#approved_owner").attr('disabled', true);
         }
 
         if(data.data.pcd_approved_by_cm == null || data.data.pcd_approved_by_cm == "0000-00-00"){
@@ -100,7 +100,7 @@ $(document).ready(function() {
         }
         else {
             $("#approved_cm").attr("checked", "checked");
-            // $("#approved_cm").attr('disabled', true);
+            $("#approved_cm").attr('disabled', true);
         }
 
         if(data.data.pcd_rfi == '[]'){
