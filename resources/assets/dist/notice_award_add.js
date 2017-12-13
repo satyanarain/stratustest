@@ -440,7 +440,7 @@ $(document).ready(function() {
                 scrollTop: $(".page-head").offset().top
             }, 'fast')
             $("#alert_message").show();
-            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New notice award added successfully!</div></div>';
+            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New notice of award added successfully!</div></div>';
             $("#alert_message").html(html);
             $('#upload_doc_id').removeAttr('value');
             $('#bid_amount').removeAttr('value');

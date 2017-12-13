@@ -259,8 +259,8 @@ $(document).ready(function() {
                 // $('input[name=permission_key*]').find('')
                 count_notification ++;
             });
-            if(count_notification >= 96){
-                $('#select_all').prop('checked', true);
+            if(count_notification >= 16){
+                $('#select_all_notification').prop('checked', true);
             }
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
@@ -286,6 +286,14 @@ $(document).ready(function() {
     }
     else {
         $("#user_permissions input[type='checkbox']").prop('checked', false);
+    }
+});
+$('#select_all_notification').change(function() {
+    if($(this).is(":checked")) {
+        $("#user_notifications input[type='checkbox']").prop('checked', true);
+    }
+    else {
+        $("#user_notifications input[type='checkbox']").prop('checked', false);
     }
 });
 });

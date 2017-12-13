@@ -123,7 +123,7 @@ $(document).ready(function() {
                 var update_permission = '';
             }
             else if(editable_now==false) {
-                var update_permission = '';
+                var update_permission = '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/view" class="btn btn-success btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-search"></i></a>';
             }else{
                 var update_permission = '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
             }
@@ -149,7 +149,7 @@ $(document).ready(function() {
             else {
                 var pcd_approved_by_owner = val.pcd_approved_by_owner;
             }
-
+            if(val.pcd_price){var disp_price=val.pcd_price;}else{var disp_price=val.pcd_unit_number*val.pcd_unit_price;}
             if(val.pcd_rfi == '[]'){
                 var t = $('#request_change_order').DataTable();
                 t.row.add([
@@ -159,7 +159,7 @@ $(document).ready(function() {
                    val.pcd_description,
                    pcd_approved_by_cm,
                    pcd_approved_by_owner,
-                   val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
+                   val.currency_symbol +' '+  ReplaceNumberWithCommas(disp_price),
                    val.pcd_days,
                    // status,
                    update_permission
