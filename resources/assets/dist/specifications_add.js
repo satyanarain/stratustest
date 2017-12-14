@@ -287,7 +287,7 @@ $(document).ready(function() {
             }
         });
         $(".company_name").append(
-            '<option>Add New Entity</option>'
+            '<option style="font-weight:bold;">Add New Entity</option>'
         )
         // $( "h2" ).appendTo( $( ".container" ) );
        

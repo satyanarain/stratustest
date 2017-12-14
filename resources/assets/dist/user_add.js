@@ -41,7 +41,7 @@ $(document).ready(function()
             }
         });
         $("#firm_name1").append(
-            '<option>Add New Company</option>'
+            '<option style="font-weight:bold;">Add New Company</option>'
         )
         // $( "h2" ).appendTo( $( ".container" ) );
 
