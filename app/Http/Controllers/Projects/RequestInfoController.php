@@ -141,7 +141,7 @@ class RequestInfoController extends Controller {
                       $url                  = App::make('url')->to('/');
                       $link                 = "/dashboard/".$project_id."/req_for_info/".$request_info->id;
                       $date                 = date("M d, Y h:i a");
-                      $email_description    = 'A new request information # '.$request_number .' added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                      $email_description    = 'A new request for information has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                       $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                       if(count($check_single_user_permission) < 1){

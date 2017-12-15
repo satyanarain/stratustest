@@ -11,10 +11,11 @@ $(document).ready(function() {
 
     // Check Permission
     var check_user_access = JSON.parse(localStorage.getItem("access_permission"));
+    alert(check_user_access);return false;
     var check_permission = jQuery.inArray("bond_add", check_user_access );
     console.log(check_permission);
     if(check_permission < 1){
-        window.location.href = baseUrl + "403";
+        //window.location.href = baseUrl + "403";
     }
     else {
         console.log('Yes Permission');

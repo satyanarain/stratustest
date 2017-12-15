@@ -252,7 +252,7 @@ $(document).ready(function() {
     });
     $('.company_name').change(function(){
         var company = $(this).val();
-        if(company=="Add New Entity")
+        if(company=="Add New Company")
         {
             $('#add-company').modal('show');
             $('#add-company').on('shown.bs.modal',function(){
@@ -287,7 +287,7 @@ $(document).ready(function() {
             }
         });
         $(".company_name").append(
-            '<option style="font-weight:bold;">Add New Entity</option>'
+            '<option style="font-weight:bold;">Add New Company</option>'
         )
         // $( "h2" ).appendTo( $( ".container" ) );
        
