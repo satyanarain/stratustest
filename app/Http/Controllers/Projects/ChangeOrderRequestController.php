@@ -120,11 +120,11 @@ class ChangeOrderRequestController extends Controller {
                 $permission_key       = 'cor_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'Add new change order request in Project: ' .$check_project_user->p_name;
+                $notification_title   = 'New change order request added in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "dashboard/".$project_id."/change_order_request_review/".$change_order->id."/update";
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'Add new change order request in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a> <br/> Note: Change Order Request requires their attention and notifies them they must respond within 5 days';
+                $email_description    = 'New change order request added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a> <br/> Note: Change Order Request requires their attention and notifies them they must respond within 5 days';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){
