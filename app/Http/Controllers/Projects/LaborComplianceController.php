@@ -123,11 +123,11 @@ class LaborComplianceController extends Controller {
                     $permission_key       = 'labor_compliance_view_all';
                     // Notification Parameter
                     $project_id           = $project_id;
-                    $notification_title   = 'A new labor compliance added in Project: ' .$check_project_user->p_name;
+                    $notification_title   = 'New labor compliance document added in Project: ' .$check_project_user->p_name;
                     $url                  = App::make('url')->to('/');
                     $link                 = "dashboard/".$project_id."/labor_compliance/".$query;
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'A new labor compliance added in Project: <strong>'.$check_project_user->p_name.'</strong> '.$doc_attached.'<br><a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'A new labor compliance document has been added in Project: <strong>'.$check_project_user->p_name.'</strong> '.$doc_attached.'<br><a href="'.$url.$link.'"> Click Here to see </a>';
 
                     $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                     if(count($check_single_user_permission) < 1){
@@ -257,11 +257,11 @@ class LaborComplianceController extends Controller {
                         $permission_key       = 'labor_compliance_view_all';
                         // Notification Parameter
                         $project_id           = $project_id;
-                        $notification_title   = 'Update status labor compliance in Project: ' .$check_project_user->p_name;
+                        $notification_title   = 'Labor compliance document updated in Project: ' .$check_project_user->p_name;
                         $url                  = App::make('url')->to('/');
                         $link                 = "dashboard/".$project_id."/labor_compliance/".$plc_id;
                         $date                 = date("M d, Y h:i a");
-                        $email_description    = 'Update status labor compliance in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $email_description    = 'A labor compliance document has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                         $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                         if(count($check_single_user_permission) < 1){

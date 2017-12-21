@@ -129,11 +129,11 @@ class SurveyController extends Controller {
                         $permission_key       = 'survey_view_all';
                         // Notification Parameter
                         $project_id           = $project_id;
-                        $notification_title   = 'Add new survey # '.$survey_number .' in Project: ' .$check_project_user->p_name;
+                        $notification_title   = 'New survey # '.$survey_number .' added in Project: ' .$check_project_user->p_name;
                         $url                  = App::make('url')->to('/');
                         $link                 = "dashboard/".$project_id."/survey/".$survey->id;
                         $date                 = date("M d, Y h:i a");
-                        $email_description    = 'Add new survey # '.$survey_number .' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $email_description    = 'A new survey # '.$survey_number .' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                         $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                         if(count($check_single_user_permission) < 1){
@@ -272,11 +272,11 @@ class SurveyController extends Controller {
                 $permission_key       = 'survey_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'Update status survey # '.$sur_id .' in Project: ' .$check_project_user->p_name;
+                $notification_title   = 'Survey # '.$sur_id .' updated in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "dashboard/".$project_id."/survey/".$sur_id;
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'Update status survey # '.$sur_id .' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'Survey # '.$sur_id .' has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){

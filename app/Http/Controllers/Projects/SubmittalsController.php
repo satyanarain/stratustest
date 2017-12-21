@@ -168,7 +168,7 @@ class SubmittalsController extends Controller {
                     $url                  = App::make('url')->to('/');
                     $link                 = "dashboard/".$project_id."/submittals/".$submittal->id;
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'A new submittal # '.$submittal->id .' added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'A new submittal # '.$submittal->id .' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                     $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                     if(count($check_single_user_permission) < 1){
@@ -310,11 +310,11 @@ class SubmittalsController extends Controller {
                 $permission_key       = 'submittal_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'Update status submittal # '.$sub_id .' in Project: ' .$check_project_user->p_name;
+                $notification_title   = 'Submittal # '.$sub_id .' updated in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/submittals/".$sub_id;
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'Update status submittal # '.$sub_id .' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'Submittal # '.$sub_id .' has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){

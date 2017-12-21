@@ -276,11 +276,11 @@ class ProjectController extends Controller {
                     
                     // Notification Parameter
                     $project_id           = $query;
-                    $notification_title   = 'New Project added in the application.';
+                    $notification_title   = 'New Project added in StratusCM.';
                     $url                  = App::make('url')->to('/');
                     $link                 = "/dashboard";
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'A new Project added in the application: <strong>'.$project_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'A new Project has been added in StratusCM: <strong>'.$project_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                     
                     $notification_key     = 'project_setup';
                     $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);

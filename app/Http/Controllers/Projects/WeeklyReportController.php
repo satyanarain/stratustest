@@ -84,11 +84,11 @@ class WeeklyReportController extends Controller {
               $permission_key       = 'weekly_report_view_all';
               // Notification Parameter
               $project_id           = $project_id;
-              $notification_title   = "Weekly report added for date: ".$current_date." in Project: " .$check_project_user->p_name;
+              $notification_title   = "Weekly report added in Project: " .$check_project_user->p_name;
               $url                  = App::make('url')->to('/');
               $link                 = "/dashboard/".$project_id."/weekly_statement/".$add_weekly_report->id.'/update';
               $date                 = date("M d, Y h:i a");
-              $email_description    = 'Weekly report added for date: '.$current_date.' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+              $email_description    = 'A weekly report has been added for date: '.$current_date.' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
               $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
               if(count($check_single_user_permission) < 1){
@@ -215,11 +215,11 @@ class WeeklyReportController extends Controller {
                 // Notification Parameter
                 $project_id           = $project_id;
                 //$notification_title   = "Update Weekly report # ".$report_id." in Project: " .$check_project_user->p_name;
-                $notification_title   = "Weekly report # ".$report_id." updated.";
+                $notification_title   = "Weekly report # ".$report_id." updated in Project: ".$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/weekly_statement/".$report_id;
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'Weekly report # '.$report_id.' updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'A weekly report # '.$report_id.' has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){

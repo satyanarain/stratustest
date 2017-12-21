@@ -186,7 +186,7 @@ class PaymentQuantityVerificationController extends Controller {
               $url                  = App::make('url')->to('/');
               $link                 = "/dashboard/".$project_id."/payment_quantity_verification/".$item_inserted_id;
               $date                 = date("M d, Y h:i a");
-              $email_description    = 'Payment quantity verification monthly report '.$month_name.' has been generated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+              $email_description    = 'A payment quantity verification monthly report '.$month_name.' has been generated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
               $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
               if(count($check_single_user_permission) < 1){

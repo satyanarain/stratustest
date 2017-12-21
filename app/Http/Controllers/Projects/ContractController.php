@@ -114,11 +114,11 @@ class ContractController extends Controller {
                 $permission_key       = 'contract_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'A new contract uploaded in Project: ' .$check_project_user->p_name;
+                $notification_title   = 'New contract uploaded in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/contract";
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'A new contract uploaded in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'A new contract has been uploaded in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){
@@ -248,11 +248,11 @@ class ContractController extends Controller {
                 $permission_key       = 'contract_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'Update contract # '.$con_id.' in Project: ' .$check_project_user->p_name;
+                $notification_title   = 'Updated contract # '.$con_id.' in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/contract";
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'Update contract # '.$con_id.' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'Contract # '.$con_id.' has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){

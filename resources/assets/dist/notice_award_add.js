@@ -415,6 +415,7 @@ $(document).ready(function() {
         else {
             var improvement_type    = project_type_dropdown_old;
         }
+        alert(improvement_type_array);return false;
         console.log(improvement_type);
         jQuery.ajax({
             url: baseUrl + "notice-award/add",
