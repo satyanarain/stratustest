@@ -409,13 +409,13 @@ $(document).ready(function() {
         var project_type_dropdown_new = $('#project_type_dropdown_new').val();
         var project_type_dropdown_old = $('#project_type_dropdown_old').val();
 
-        if(check_award_type == 'new'){
+        if(project_type_dropdown_new){
             var improvement_type    = project_type_dropdown_new;
         }
         else {
             var improvement_type    = project_type_dropdown_old;
         }
-        alert(improvement_type_array);return false;
+        //alert(improvement_type_array);return false;
         console.log(improvement_type);
         jQuery.ajax({
             url: baseUrl + "notice-award/add",
