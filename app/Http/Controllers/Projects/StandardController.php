@@ -150,10 +150,10 @@ class StandardController extends Controller {
                       $date                 = date("M d, Y h:i a");
 
                       if($applicable == 'no'){
-                        $email_description    = 'A new standard added in Project: <strong>'.$check_project_user->p_name.'</strong> that standard is not applicable yet <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $email_description    = 'A new standard has been added in Project: <strong>'.$check_project_user->p_name.'</strong> that standard is not applicable yet <a href="'.$url.$link.'"> Click Here to see </a>';
                       }
                       else {
-                        $email_description    = 'A new standard added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $email_description    = 'A new standard has been     added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                       }
 
                       $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
@@ -288,11 +288,11 @@ class StandardController extends Controller {
                     $permission_key       = 'standard_view_all';
                     // Notification Parameter
                     $project_id           = $project_id;
-                    $notification_title   = 'Change status standard # '.$spec_id.' in Project: ' .$check_project_user->p_name;
+                    $notification_title   = 'Standard # '.$spec_id.' updated in Project: ' .$check_project_user->p_name;
                     $url                  = App::make('url')->to('/');
                     $link                 = "/dashboard/".$project_id."/standards";
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'Change status standard # '.$spec_id.' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'Standard # '.$spec_id.' has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                     $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                     if(count($check_single_user_permission) < 1){

@@ -314,12 +314,15 @@
 				else {
 					var liability_limit = val.liability_currency+' '+ ReplaceNumberWithCommas(val.liability_limit);
 				}
-
+                                if(val.umbrella_liability_symbol)
+                                    var umbrella_liability_symbol = val.umbrella_liability_symbol;
+                                else
+                                    var umbrella_liability_symbol = '';
 				if(val.work_comp_limit == 0 || val.work_comp_limit == null){
 					var work_comp_limit = '';
 				}
 				else {
-					var work_comp_limit = val.umbrella_liability_symbol+' '+ ReplaceNumberWithCommas(val.work_comp_limit);
+					var work_comp_limit = umbrella_liability_symbol+' '+ ReplaceNumberWithCommas(val.work_comp_limit);
 				}
 				
 				if(val.auto_liability_limit == 0 || val.auto_liability_limit == null){

@@ -3105,7 +3105,7 @@ h2.form-heading {
     position:relative;
     padding:13px;
     margin-bottom:5px;
-    cursor:move;
+/*    cursor:move;*/
     list-style: none;
     border-top: #f3f3f3 1px solid;
     border-right: #f3f3f3 1px solid;

@@ -291,8 +291,23 @@ $(document).ready(function() {
         var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
         var total_days_plus = (total_day_approved_app_calender1+total_day_approved_app_non_calender1+day_due_to_rain1);
         var result = new Date(date_final);
-        result.setDate(result.getDate() + total_days_plus);
-        var revised_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
+        if ( Object.prototype.toString.call(result) === "[object Date]" ) {
+            // it is a date
+            if ( isNaN( result.getTime() ) ) {  // d.valueOf() could also work
+                // date is not valid
+                var revised_completion_date = '';
+            }
+            else {
+                // date is valid
+                result.setDate(result.getDate() + parseInt(total_days_plus));
+                var revised_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
+            }
+        }
+        else {
+            // not a date
+            var revised_completion_date = '';
+        }
+        
         $('#revised_completion_date').text(revised_completion_date);
     }, 3000);
     

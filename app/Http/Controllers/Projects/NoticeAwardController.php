@@ -162,7 +162,7 @@ class NoticeAwardController extends Controller {
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/notice_award";
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'New notice of award in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'A new notice of award has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){
@@ -303,11 +303,11 @@ class NoticeAwardController extends Controller {
                 $permission_key       = 'notice_award_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'Update notice of award status in Project: ' .$check_project_user->p_name;
+                $notification_title   = 'Notice of award updated in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/notice_award/";
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'Update status notice of award # '.$pna_id.' in Project : <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'Notice of award # '.$pna_id.' has been updated in Project : <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){

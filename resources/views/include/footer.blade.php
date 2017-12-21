@@ -34,7 +34,7 @@
  </div>
  
             <footer>
-                <?php echo date("Y"); ?> &copy; StratusCM.<?php //echo Route::getCurrentRoute()->getPath();?>
+                <?php echo date("Y"); ?> &copy; StratusCM, LLC.<?php //echo Route::getCurrentRoute()->getPath();?>
             </footer>
             <!--footer section end-->
         </div>
