@@ -202,7 +202,7 @@
 		    	else {
 		    		var rir_additional_day = data.data.rir_additional_day;
 		    	}
-		    	if(data.data.rir_additional_day_add == null){
+		    	if(data.data.rir_additional_day_add == null || rir_additional_day=="no"){
 		    		var rir_additional_day_add = '  ';
 		    	}
 		    	else {
