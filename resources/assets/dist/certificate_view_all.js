@@ -307,12 +307,15 @@
 						var umbrella_liability_exp = "<span class='label label-warning'>"+val.umbrella_liability_exp+"</span>";
 					}
 				}
-
+                                if(val.liability_currency=="" || val.liability_currency==null)
+                                    var liability_currency = '';        
+                                else
+                                    var liability_currency = val.liability_currency;
 				if(val.liability_limit == 0 || val.liability_limit == null){
 					var liability_limit = '';
 				}
 				else {
-					var liability_limit = val.liability_currency+' '+ ReplaceNumberWithCommas(val.liability_limit);
+					var liability_limit = liability_currency+' '+ ReplaceNumberWithCommas(val.liability_limit);
 				}
                                 if(val.umbrella_liability_symbol=="" || val.umbrella_liability_symbol==null)
                                     var umbrella_liability_symbol = '';        
@@ -324,10 +327,7 @@
 				else {
 					var work_comp_limit = umbrella_liability_symbol+' '+ ReplaceNumberWithCommas(val.work_comp_limit);
 				}
-                                if(val.liability_currency=="" || val.liability_currency==null)
-                                    var liability_currency = '';        
-                                else
-                                    var liability_currency = val.liability_currency;
+                                
 				
 				if(val.auto_liability_limit == 0 || val.auto_liability_limit == null){
 					var auto_liability_limit = '';
