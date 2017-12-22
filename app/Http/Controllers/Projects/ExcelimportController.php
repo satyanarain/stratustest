@@ -67,7 +67,7 @@ class ExcelimportController extends Controller {
             if(!empty($data) && $data->count())
             {
                 $is_valid = $data->toArray();
-                if(isset($is_valid[0]['item_no.']))
+                if(isset($is_valid[0]['item_number']))
                 {
                     //print_r($dta);die;
                     foreach ($data as $key => $value) 
@@ -76,7 +76,7 @@ class ExcelimportController extends Controller {
                         //if($key=="")
                         //print_r($request);die;
                         //print_r($data);die;
-                        $item_no                = $request['item_no.'];
+                        $item_no                = $request['item_number'];
                         $item_description       = $request['item_description'];
                         $item_unit              = $request['unit_of_measure'];
                         $item_qty               = $request['quantity'];
