@@ -185,25 +185,25 @@
 		    	}
 
 			    if(data.data.rir_additional_cost == null){
-		    		var rir_additional_cost = ' - ';
+		    		var rir_additional_cost = '  ';
 		    	}
 		    	else {
 		    		var rir_additional_cost = data.data.rir_additional_cost;
 		    	}
 		    	if(data.data.rir_additional_cost_amount == null || rir_additional_cost=="no"){
-		    		var rir_additional_cost_amount = ' - ';
+		    		var rir_additional_cost_amount = '  ';
 		    	}
 		    	else {
 		    		var rir_additional_cost_amount = window.symbol+' '+ReplaceNumberWithCommas(data.data.rir_additional_cost_amount);
 		    	}
 		    	if(data.data.rir_additional_day == null){
-		    		var rir_additional_day = ' - ';
+		    		var rir_additional_day = '  ';
 		    	}
 		    	else {
 		    		var rir_additional_day = data.data.rir_additional_day;
 		    	}
 		    	if(data.data.rir_additional_day_add == null){
-		    		var rir_additional_day_add = ' - ';
+		    		var rir_additional_day_add = '  ';
 		    	}
 		    	else {
 		    		var rir_additional_day_add = data.data.rir_additional_day_add;
