@@ -190,7 +190,7 @@
 		    	else {
 		    		var rir_additional_cost = data.data.rir_additional_cost;
 		    	}
-		    	if(data.data.rir_additional_cost_amount == null){
+		    	if(data.data.rir_additional_cost_amount == null || rir_additional_cost=="no"){
 		    		var rir_additional_cost_amount = ' - ';
 		    	}
 		    	else {
