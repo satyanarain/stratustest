@@ -421,7 +421,7 @@
                         </div>
                         <div class="clearfix"></div>
 
-                         <h4>Daily Contruction Report</h4>
+                         <h4>Daily Construction Report</h4>
                         <div class="col-sm-3 nopadleft">
                                 <input type="checkbox" name="permission_key[]" id="daily_construction_report_view_all" value="daily_construction_report_view_all">
                                 <label>Read only</label>
