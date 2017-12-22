@@ -314,22 +314,26 @@
 				else {
 					var liability_limit = val.liability_currency+' '+ ReplaceNumberWithCommas(val.liability_limit);
 				}
-                                if(val.umbrella_liability_symbol)
-                                    var umbrella_liability_symbol = val.umbrella_liability_symbol;
+                                if(val.umbrella_liability_symbol=="" || val.umbrella_liability_symbol==null)
+                                    var umbrella_liability_symbol = '';        
                                 else
-                                    var umbrella_liability_symbol = '';
+                                    var umbrella_liability_symbol = val.umbrella_liability_symbol;
 				if(val.work_comp_limit == 0 || val.work_comp_limit == null){
 					var work_comp_limit = '';
 				}
 				else {
 					var work_comp_limit = umbrella_liability_symbol+' '+ ReplaceNumberWithCommas(val.work_comp_limit);
 				}
+                                if(val.liability_currency=="" || val.liability_currency==null)
+                                    var liability_currency = '';        
+                                else
+                                    var liability_currency = val.liability_currency;
 				
 				if(val.auto_liability_limit == 0 || val.auto_liability_limit == null){
 					var auto_liability_limit = '';
 				}
 				else {
-					var auto_liability_limit = val.liability_currency+' '+ ReplaceNumberWithCommas(val.auto_liability_limit);
+					var auto_liability_limit = liability_currency+' '+ ReplaceNumberWithCommas(val.auto_liability_limit);
 				}
 
 
