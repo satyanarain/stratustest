@@ -211,11 +211,11 @@ class CompanytypeController extends Controller {
         );
         $user = (object) $user;
         $post = new Resource_Post(); // You create a new resource Post instance
-        if (Gate::forUser($user)->denies('allow_admin_owner_user', [$post,false])) {
-          $result = array('code'=>403, "description"=>"Access denies");
-          return response()->json($result, 403);
-        } 
-        else {
+//        if (Gate::forUser($user)->denies('allow_admin_owner_user', [$post,false])) {
+//          $result = array('code'=>403, "description"=>"Access denies");
+//          return response()->json($result, 403);
+//        } 
+        //else {
 
           if($user_id == 1){
             $query = DB::table('company_type')
@@ -227,7 +227,7 @@ class CompanytypeController extends Controller {
             $query = DB::table('company_type')
             ->leftJoin('users', 'company_type.ct_user_id', '=', 'users.id')
             ->select('company_type.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
-            ->where('ct_user_id', '=', $user_id)
+            //->where('ct_user_id', '=', $user_id)
             ->get(); 
           }
 
@@ -241,7 +241,7 @@ class CompanytypeController extends Controller {
             $result = array('data'=>$query,'code'=>200);
             return response()->json($result, 200);
           }
-        }
+        //}
       }
       catch(Exception $e)
       {
