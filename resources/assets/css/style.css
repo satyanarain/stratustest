@@ -7092,7 +7092,7 @@ ul.lower-alpha {list-style-type: none;padding:0 ;margin:0;}
 .table-projects-progress { list-style-type: none;width:100%; padding: 0px; }
 .table-projects-progress li{float:left;width: 100%;clear: both;margin:0 0 1rem 0;}
 .table-projects-progress li .project-col{float: left;width: 25%;}
-.table-projects-progress li .project-col a{color:#000;}
+/*.table-projects-progress li .project-col a{color:#000;}*/
 .table-projects-progress li .progress-col{float: right;width: 65%;}
 .table-projects-progress li .proj-amt{color: #000;}
 .table-projects-progress li .proj-amt a{display:block; width:100%; color:#000;}
