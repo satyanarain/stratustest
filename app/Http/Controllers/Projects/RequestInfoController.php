@@ -137,7 +137,7 @@ class RequestInfoController extends Controller {
                       // Notification Parameter
                       $project_id           = $project_id;
                       //$notification_title   = 'Add new request information # '.$request_number .' in Project: ' .$check_project_user->p_name;
-                      $notification_title   = 'Request for information # '.$request_number .' received in Project.';
+                      $notification_title   = 'Request for information # '.$request_number .' received in Project: ' .$check_project_user->p_name;
                       $url                  = App::make('url')->to('/');
                       $link                 = "/dashboard/".$project_id."/req_for_info/".$request_info->id;
                       $date                 = date("M d, Y h:i a");

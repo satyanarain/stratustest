@@ -439,7 +439,7 @@ class NotificationController extends Controller {
               continue;
             }else{
                 $project_id           = $check_project_user->p_id;
-                $notification_title   = 'Preconstruction Meeting Notification';
+                $notification_title   = 'Preconstruction Meeting Notification in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/minutes_meeting";
                 $date                 = date("M d, Y h:i a");
@@ -485,7 +485,7 @@ class NotificationController extends Controller {
           $notification_key     = 'notice_of_completion';
           // Notification Parameter
           $project_id           = $check_project_user->p_id;
-          $notification_title   = 'Notification for notice of completion.';
+          $notification_title   = 'Notification for notice of completion in Project: ' .$check_project_user->p_name;
           $url                  = App::make('url')->to('/');
           $link                 = "/dashboard/".$project_id."/notice_completion";
           $date                 = date("M d, Y h:i a");
