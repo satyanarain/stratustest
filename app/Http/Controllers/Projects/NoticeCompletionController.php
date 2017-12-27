@@ -170,7 +170,7 @@ class NoticeCompletionController extends Controller {
                 $permission_key       = 'notice_completion_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'New notice of completion added in Project.';
+                $notification_title   = 'New notice of completion added in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/notice_completion";
                 $date                 = date("M d, Y h:i a");

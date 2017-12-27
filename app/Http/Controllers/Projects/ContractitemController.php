@@ -119,7 +119,7 @@ class ContractitemController extends Controller {
                 // Notification Parameter
                 $project_id           = $project_id;
                 //$notification_title   = 'Add new contract item # in Project: ' .$check_project_user->p_name;
-                $notification_title   = 'New contract item added in Project.';
+                $notification_title   = 'New contract item added in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/contract_item";
                 $date                 = date("M d, Y h:i a");

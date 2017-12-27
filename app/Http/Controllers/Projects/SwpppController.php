@@ -146,7 +146,7 @@ class SwpppController extends Controller {
                 $permission_key       = 'swppp_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'New SWPPP/WPCP added in Project.';
+                $notification_title   = 'New SWPPP/WPCP added in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/swppp";
                 $date                 = date("M d, Y h:i a");

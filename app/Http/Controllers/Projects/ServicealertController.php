@@ -124,7 +124,7 @@ class ServicealertController extends Controller {
                 // Notification Parameter
                 $project_id           = $project_id;
                 //$notification_title   = 'Add new Underground Service Alert in Project: ' .$check_project_user->p_name;
-                $notification_title     = 'New underground service alert added in Project';
+                $notification_title     = 'New underground service alert added in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/service_alert";
                 $date                 = date("M d, Y h:i a");

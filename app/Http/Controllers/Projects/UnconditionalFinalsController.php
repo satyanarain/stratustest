@@ -113,7 +113,7 @@ class UnconditionalFinalsController extends Controller {
                 // Notification Parameter
                 $project_id           = $project_id;
                 //$notification_title   = 'Add new unconditional finals in Project: ' .$check_project_user->p_name;
-                $notification_title   = 'New unconditional final added in Project.';
+                $notification_title   = 'New unconditional final added in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/unconditional_finals/".$query;
                 $date                 = date("M d, Y h:i a");
