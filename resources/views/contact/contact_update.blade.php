@@ -669,14 +669,14 @@
                     </div>
                     <?php
                     $notification_types = array(
-                        "project_setup"=>"Project setup",
-                        "notice_of_award_upload"=>"Notice of award upload",
-                        "contract_upload"=>"Contract upload",
+                        //"project_setup"=>"Project setup",
+                        "notice_of_award_upload"=>"Notice of award",
+                        "contract_upload"=>"Contracts",
                         "certificates_of_insurance"=>"Certificates of Insurance",
                         "bidding"=>"Bidding",
                         "rfi"=>"RFIs",
-                        "submittals_eor"=>"Submittals-EOR ",
-                        "survey_cut_sheet"=>"Surveys Cut sheet",
+                        "submittals_eor"=>"Submittals",
+                        "survey_cut_sheet"=>"Surveys",
                         "weekly_statement_of_contract_days"=>"Weekly Statement of Contract Days",
                         "pay_applications"=>"Pay Applications",
                         "change_orders"=>"Change Orders",

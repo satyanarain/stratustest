@@ -112,7 +112,7 @@ class AcceptanceLetterController extends Controller {
 //                $project_id           = $project_id;
 //                $notification_title   = 'Add new agency acceptance letter in Project: ' .$check_project_user->p_name;
 //                $url                  = App::make('url')->to('/');
-//                $link                 = "dashboard/".$project_id."/acceptance_letter";
+//                $link                 = "/dashboard/".$project_id."/acceptance_letter";
 //                $date                 = date("M d, Y h:i a");
 //                $email_description    = 'Add new agency acceptance letter in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 //
@@ -228,7 +228,7 @@ class AcceptanceLetterController extends Controller {
 //              $project_id           = $project_id;
 //              $notification_title   = 'Update status agency acceptance letter in Project: ' .$check_project_user->p_name;
 //              $url                  = App::make('url')->to('/');
-//              $link                 = "dashboard/".$project_id."/acceptance_letter";
+//              $link                 = "/dashboard/".$project_id."/acceptance_letter";
 //              $date                 = date("M d, Y h:i a");
 //              $email_description    = 'Update status agency acceptance letter in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 //
