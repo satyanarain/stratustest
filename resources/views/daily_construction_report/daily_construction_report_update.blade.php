@@ -61,14 +61,14 @@
                                 <div id="alert_message"></div>
 <div class="col-md-12">
     <div class="row">
-        <div class="form-group">
-            <!-- <label for="company_name"></label> -->
+<!--        <div class="form-group">
+             <label for="company_name"></label> 
             <header class="panel-heading nopadtop">Contractor:
                 <span id="contractor_name">
 
                 </span>
             </header>
-        </div>
+        </div>-->
 
         <div class="col-md-12 nopadleft">
             <div class="form-group col-md-12">

@@ -108,7 +108,7 @@ class BuiltDrawingsController extends Controller {
               $project_id           = $project_id;
               $notification_title   = 'New As built drawing added in Project: ' .$check_project_user->p_name;
               $url                  = App::make('url')->to('/');
-              $link                 = "dashboard/".$project_id."/built_drawing/".$query;
+              $link                 = "/dashboard/".$project_id."/built_drawing/".$query;
               $date                 = date("M d, Y h:i a");
               $email_description    = 'New As built drawing added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
