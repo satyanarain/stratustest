@@ -150,10 +150,10 @@ class StandardController extends Controller {
                       $date                 = date("M d, Y h:i a");
 
                       if($applicable == 'no'){
-                        $email_description    = 'A new standard has been added in Project: <strong>'.$check_project_user->p_name.'</strong> that standard is not applicable yet <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $email_description    = 'A new standard has been added in Project: <strong>'.$check_project_user->p_name.'</strong>. <a href="'.$url.$link.'"> Click Here to see </a>';
                       }
                       else {
-                        $email_description    = 'A new standard has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $email_description    = 'A new standard has been added in Project: <strong>'.$check_project_user->p_name.'</strong>. <a href="'.$url.$link.'"> Click Here to see </a>';
                       }
 
                       $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);

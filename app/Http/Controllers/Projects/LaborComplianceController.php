@@ -97,7 +97,7 @@ class LaborComplianceController extends Controller {
                 {
                     $query = DB::table('project_labor_compliance')
                     ->insertGetId(['plc_contactor_id' => $plc_contactor_id, 'plc_140' => $plc_140, 'plc_140_date' => $plc_140_date, 'plc_142' => $plc_142, 'plc_142_date' => $plc_142_date, 'plc_fringe' => $plc_fringe, 'plc_fringe_date' => $plc_fringe_date, 'plc_cac2' => $plc_cac2, 'plc_cac2_date' => $plc_cac2_date, 'plc_cpr' => $plc_cpr, 'plc_cpr_date' => $plc_cpr_date, 'plc_compliance' => $plc_compliance, 'plc_compliance_date' => $plc_compliance_date, 'plc_project_id' => $plc_project_id, 'plc_user_id' => $user_id, 'plc_status' => $status]);
-                    $doc_attached = "<br><br>Documents added with Labor Compliance are :- <br>";
+                    $doc_attached = "<br><br>Documents added in Labor Compliance are :- <br>";
                     if($plc_140)
                         $doc_attached.="140 – PW Contractor Award Info<br>";
                     if($plc_142)
@@ -125,7 +125,7 @@ class LaborComplianceController extends Controller {
                     $project_id           = $project_id;
                     $notification_title   = 'New labor compliance document added in Project: ' .$check_project_user->p_name;
                     $url                  = App::make('url')->to('/');
-                    $link                 = "dashboard/".$project_id."/labor_compliance/".$query;
+                    $link                 = "/dashboard/".$project_id."/labor_compliance/".$query;
                     $date                 = date("M d, Y h:i a");
                     $email_description    = 'A new labor compliance document has been added in Project: <strong>'.$check_project_user->p_name.'</strong> '.$doc_attached.'<br><a href="'.$url.$link.'"> Click Here to see </a>';
 
@@ -259,7 +259,7 @@ class LaborComplianceController extends Controller {
                         $project_id           = $project_id;
                         $notification_title   = 'Labor compliance document updated in Project: ' .$check_project_user->p_name;
                         $url                  = App::make('url')->to('/');
-                        $link                 = "dashboard/".$project_id."/labor_compliance/".$plc_id;
+                        $link                 = "/dashboard/".$project_id."/labor_compliance/".$plc_id;
                         $date                 = date("M d, Y h:i a");
                         $email_description    = 'A labor compliance document has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 

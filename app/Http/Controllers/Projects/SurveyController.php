@@ -131,7 +131,7 @@ class SurveyController extends Controller {
                         $project_id           = $project_id;
                         $notification_title   = 'New survey # '.$survey_number .' added in Project: ' .$check_project_user->p_name;
                         $url                  = App::make('url')->to('/');
-                        $link                 = "dashboard/".$project_id."/survey/".$survey->id;
+                        $link                 = "/dashboard/".$project_id."/survey/".$survey->id;
                         $date                 = date("M d, Y h:i a");
                         $email_description    = 'A new survey # '.$survey_number .' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
@@ -274,7 +274,7 @@ class SurveyController extends Controller {
                 $project_id           = $project_id;
                 $notification_title   = 'Survey # '.$sur_id .' updated in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
-                $link                 = "dashboard/".$project_id."/survey/".$sur_id;
+                $link                 = "/dashboard/".$project_id."/survey/".$sur_id;
                 $date                 = date("M d, Y h:i a");
                 $email_description    = 'Survey # '.$sur_id .' has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
@@ -596,7 +596,7 @@ class SurveyController extends Controller {
 //                $project_id           = $project_id;
 //                $notification_title   = 'Received review survey # '.$survey_number .' in Project: ' .$check_project_user->p_name;
 //                $url                  = App::make('url')->to('/');
-//                $link                 = "dashboard/".$project_id."/survey/".$sr_id;
+//                $link                 = "/dashboard/".$project_id."/survey/".$sr_id;
 //                $date                 = date("M d, Y h:i a");
 //                $email_description    = 'Received review survey # '.$survey_number .' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 //
