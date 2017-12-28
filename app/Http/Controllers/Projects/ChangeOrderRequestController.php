@@ -112,7 +112,8 @@ class ChangeOrderRequestController extends Controller {
               // Start Check User Permission and send notification and email  
               // Get Project Users
               $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
-
+              echo "<pre>";
+              ////print_r($check_project_users);
               // Check User Project Permission  
               foreach ($check_project_users as $check_project_user) {
                 // Check User Permission Parameter 
@@ -133,6 +134,7 @@ class ChangeOrderRequestController extends Controller {
                 else {
                     $notification_key     = 'change_orders';
                     $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);
+                    //print_r($check_project_user_notification);
                     if(count($check_project_user_notification) < 1){
                       continue;
                     }else{
@@ -150,6 +152,7 @@ class ChangeOrderRequestController extends Controller {
                            'description'     => $email_description
                          );
                          $user_single = (object) $user_detail;
+                         print_r($user_single);
                          Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
                              $message->from('no-reply@sw.ai', 'StratusCM');
                              $message->to($user_single->email, $user_single->name)->subject($user_single->title);
@@ -158,7 +161,7 @@ class ChangeOrderRequestController extends Controller {
                 }
               } // End Foreach
               // End Check User Permission and send notification and email 
-
+die;
               $result = array('description'=>"Add change order request successfully",'code'=>200);
               return response()->json($result, 200);
             }
