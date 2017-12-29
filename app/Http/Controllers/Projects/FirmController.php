@@ -64,7 +64,7 @@ class FirmController extends Controller {
             ->leftJoin('company_type', 'project_firm.f_type', '=', 'company_type.ct_id')
             ->leftJoin('users', 'project_firm.f_user', '=', 'users.id')
             ->select('project_firm.*', 'company_type.ct_name as company_name', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
-            ->where('f_user', '=', $user_id)
+            //->where('f_user', '=', $user_id)
             ->get(); 
           }
 
