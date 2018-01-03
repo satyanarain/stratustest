@@ -100,7 +100,7 @@
 
                             <button class="close-add-firm-btn btn btn-info sub-btn back_button modal_btn_back" onclick="return checkFormFilled('modal_btn_back')">Back</button>
 
-                            <button class="add_firm_form btn btn-info sub-btn first_button">Submit</button>
+                            <button class="add_firm_form btn btn-info sub-btn first_button1">Submit</button>
                             <button class="add_firm_form btn btn-info sub-btn another_button" style="display: none;">Add Another</button>
                         </div>
 
@@ -223,7 +223,7 @@ $(document).ready(function() {
             }, 'fast')
             html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast toast-success">New firm added successfully.!</div></div>';
             $("#alert_message").html(html);
-            $(".first_button").hide();
+            $(".first_button1").hide();
             
             $("#project_latitude").removeAttr('value');
             $("#project_longitude").removeAttr('value');
@@ -238,6 +238,79 @@ $(document).ready(function() {
             $("#firm_name").removeAttr('value');
             $("#firm_description").removeAttr('value');
             $("#firm_address").removeAttr('value');
+            jQuery.ajax({
+        url: baseUrl+project_id+"/company_name_user",
+        type: "GET",
+        headers: {
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+        })
+            .done(function(data, textStatus, jqXHR) {
+        // console.log(data);
+        // Foreach Loop 
+        $('.company_name').empty();
+        jQuery.each(data.data, function( i, val ) {
+            if(val.f_status == 'active'){
+                $(".company_name").append(
+                    '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                )
+            }else {
+
+            }
+        });
+        $(".company_name").append(
+            '<option style="font-weight:bold;">Add New Company</option>'
+        )
+        // $( "h2" ).appendTo( $( ".container" ) );
+       
+        $(".loading_data").remove();
+        $(".company_name").show();
+        $('#add-company').modal('hide');
+        $('#firm_address').val("");
+        $('#project_latitude').val("");
+        $('#project_longitude').val("");
+        
+//        var map = new google.maps.Map(document.getElementById('map'), {
+//          center: {lat: 36.443796, lng: -119.369653},
+//          zoom: 7,
+//          scrollwheel: false
+//        });
+        $('#firm_address').css("display", "inline-block");
+    $('#firm_address').css("z-index", "9999");
+    $('#firm_address').css("position", "relative");
+    $('#firm_address').css("left", "0px");
+    $('#firm_address').css("top", "-50px");
+        map.clear();
+        info_Window = new google.maps.InfoWindow();
+            info_Window.close();
+            for (var i = 0; i < marker.length; i++) {
+                marker[i].setMap(null);
+            }
+            marker.length = 0;
+            for(var i=0;i<location.length;i++){
+                location[i].setMap(null);
+            }
+            location.length=0;
+            marker = [];
+    })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(jqXHR);
+        if(response == 403){
+            console.log('Company name 403');
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            console.log('Company name 404');
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus);

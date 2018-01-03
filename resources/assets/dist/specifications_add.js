@@ -204,6 +204,7 @@ $(document).ready(function() {
                 $("#standard_date").removeAttr('value');
                 $("#applicable").prop('checked', false);
                 $(".remove_file_drop").trigger("click");
+                $("#company_name").val('');
                 $(".first_button").text('Save Another');
                 $('html, body').animate({
                     scrollTop: $(".page-head").offset().top

@@ -402,7 +402,7 @@ $('#update_profile_form').click(function(e) {
         contentType: "application/x-www-form-urlencoded",
         cache: false
     })
-        .done(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
             $('.loading-submit').hide();
             jQuery.ajax({
                 url: baseUrl + "users/delete_user_data",
@@ -513,7 +513,7 @@ $('#update_profile_form').click(function(e) {
             $('.loading-submit').hide();
             html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">Contact updated successfully!</div></div>';
             $("#alert_message").html(html);
-
+            $("#alert_message").show();
             setTimeout(function(){
                 $("#alert_message").hide();
             },5000)
@@ -542,7 +542,7 @@ $('#update_profile_form').click(function(e) {
             // })
 
         })
-        .fail(function(jqXHR, textStatus, errorThrown) {
+    .fail(function(jqXHR, textStatus, errorThrown) {
             $('.loading-submit').hide();
             console.log("HTTP Request Failed");
             var responseText, html;
