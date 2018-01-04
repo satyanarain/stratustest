@@ -63,25 +63,27 @@
                                             <input type="text" class="form-control" id="name_of_plan">
                                         </div>
                                         <div class="clearfix"></div>
-                                        <div class="form-group col-md-12">
+                                        
+                                        <div class=" col-md-12">
+                                            <label for="standard_link" style="min-width: 200px;">Are these plans approved? <span class="text-danger">*</span></label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="plan_approved" id="plan_approved" value="yes" class="plan_approved_yes"> Yes
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="plan_approved" id="plan_approved" value="no" class="plan_approved_yes"> No
+                                            </label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="form-group col-md-12 plan_approval_date" style="display:none;">
                                             <label>Plans Approval Date <span class="text-danger">*</span></label>
-                                            <div data-date-viewmode="years" data-date-format="yyyy-mmdd" data-date=""  class="input-append date dpYears">
+                                            <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
                                                 <input type="text" readonly="" value="" size="16" class="form-control"  id="date_of_plans">
                                                   <span class="input-group-btn add-on">
                                                     <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
                                                   </span>
                                             </div>
                                         </div>
-                                        <div class="clearfix"></div>
-                                        <div class=" col-md-12">
-                                            <label for="standard_link" style="min-width: 200px;">Are these plans approved? <span class="text-danger">*</span></label>
-                                            <label class="radio-inline">
-                                              <input type="radio" name="plan_approved" id="plan_approved" value="yes"> Yes
-                                            </label>
-                                            <label class="radio-inline">
-                                              <input type="radio" name="plan_approved" id="plan_approved" value="no"> No
-                                            </label>
-                                        </div>
+                                        
                                         <div class="form-group col-md-12" style="margin-top: 30px;">
 <!--                                            <a data-href="{{ url('/dashboard/'.$project_id.'/plans') }}" class="btn btn-info back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
                                             <a href="{{ url('/dashboard/'.$project_id.'/plans') }}" class="btn btn-info btn_back" onclick="return checkFormFilled('btn_back')">Back</a>

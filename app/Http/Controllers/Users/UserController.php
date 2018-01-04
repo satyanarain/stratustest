@@ -96,6 +96,7 @@ class UserController extends Controller {
             ->leftJoin('project_firm', 'users.company_name', '=', 'project_firm.f_id')
             ->leftJoin('users as user_parent', 'users.user_parent', '=', 'user_parent.id')
             ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'project_firm.f_name as agency_name', 'users.phone_number', 'users.position_title', 'users.status', 'users.role', 'user_parent.username as user_parent')
+            ->orderBy('users.id', 'asc')
             ->get();
           }
           else {
@@ -104,6 +105,7 @@ class UserController extends Controller {
             ->leftJoin('users as user_parent', 'users.user_parent', '=', 'user_parent.id')
             ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'project_firm.f_name as agency_name', 'users.phone_number', 'users.position_title', 'users.status', 'users.role', 'user_parent.username as user_parent')
             ->where('users.user_parent', '=', $user_id)
+            ->orderBy('users.id', 'asc')
             ->get(); 
           }
 

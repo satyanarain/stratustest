@@ -78,13 +78,13 @@ class PlansController extends Controller {
         );
 
         $rules = [
-            'date'        => 'required',
             'name'        => 'required',
             'approval'    => 'required',
-            'file_path'   => 'required|numeric',
-            'project_id'  => 'required|numeric',
-            'user_id'     => 'required|numeric'
-        ];
+            'file_path'   => 'required|numeric'];
+        if($approval=="yes")
+            $rules['date']='required';
+        $rules['project_id']='required|numeric';
+        $rules['user_id']='required|numeric';        //print_r($rules);die;
         $validator = Validator::make($information, $rules);
         if ($validator->fails()) 
         {

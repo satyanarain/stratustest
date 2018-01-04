@@ -151,7 +151,20 @@
 				    else {
 				    	status = '<span class="label label-info">REVIEWED</span>';
 				    }
-				  	
+				var req_info_path = val.file_path;
+			  	var req_info_path_value;
+			  	if(req_info_path == null){
+			  		req_info_path_value = '-';
+			  	}
+			  	else {
+			  		if(val.ri_request_status == 'active'){
+			  			req_info_path_value = '<a href="https://apps.groupdocs.com/document-viewer/embed/'+val.file_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+			  		}
+			  		else {
+			  			req_info_path_value = '<a href="'+baseUrl+'404" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+			  		}
+			  		
+			  	}  	
 				  var date = new Date(val.ri_date.replace(' ', 'T'));
 				  var day = date.getDate();
 				  var month = date.getMonth()+1;
@@ -177,6 +190,7 @@
 			           val.ri_question_request,
 			           val.review_user_company,
 			           submitted_date,
+                                   req_info_path_value,
 			           respond_date,
 			           // date_status,
 			           status,
