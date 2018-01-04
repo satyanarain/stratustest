@@ -37,6 +37,7 @@
                             <th>Description</th>
                             <th>Approval Authority</th>
                             <th>Date Submitted</th>
+                            <th>Document</th>
                             <th>Date Responded</th>
                             <!-- <th>Date status</th> -->
                             <th>Status</th>

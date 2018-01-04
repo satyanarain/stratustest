@@ -135,7 +135,7 @@
 	            contentType: "application/x-www-form-urlencoded",
 	            cache: false
 	        })
-	            .done(function(data, textStatus, jqXHR) {
+                .done(function(data, textStatus, jqXHR) {
 	            console.log(data.data);
 	              html = '<div class="alert alert-block alert-success fade in"><button data-dismiss="alert" class="close close-sm" type="button"><i class="fa fa-times"></i></button><strong>Verification email sent! </strong>kindly check your email.</a></div>';
 	            $("#email_unverified_error .alert").hide();

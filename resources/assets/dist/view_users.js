@@ -74,8 +74,8 @@
 			    else {
 			    	position_title = position_title;
 			    }
-
-			  var t = $('#view_users_table').DataTable();
+                        $('#view_users_table').DataTable().destroy();
+                        var t = $('#view_users_table').DataTable({"ordering":false});
 
 			  if(val.id == '1'){
 			  	var action_btn = '<a href="'+baseUrl+'dashboard/users/'+val.id+'" class="btn btn-success btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>'+'<a href="'+baseUrl+'dashboard/users/'+val.id+'/update" class="btn btn-primary btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
@@ -83,7 +83,7 @@
 			  else {
 			  	var action_btn = '<a href="'+baseUrl+'dashboard/users/'+val.id+'" class="btn btn-success btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>'+'<a href="'+baseUrl+'dashboard/users/'+val.id+'/update" class="btn btn-primary btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>'+'<a href="" id="'+val.id+'" class="btn btn-danger btn-xs tooltips user_suspend" data-placement="top" data-toggle="tooltip" data-original-title="Suspend"><i class="fa fa-times"></i></a>';
 			  }
-
+                          console.log('kunal--'+val.email)
 			  if(role == 'owner'){
 			  	t.row.add( [
 		           val.username,

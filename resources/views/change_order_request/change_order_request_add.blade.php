@@ -171,7 +171,7 @@
 <script src="{{ url('/resources/assets/js/dropzone_groupdoc.js?v=1.0') }}"></script>
 
 <script type="text/javascript">
-    $('body').delegate( "input[type='radio']", "click", function () {
+    //$('body').delegate( "input[type='radio']", "click", function () {
         $("input[type='radio']").click(function(){
             // alert('faizan');
             if($('input:radio[name=select_type]:checked').val() == "price"){
@@ -189,6 +189,6 @@
                 $('#'+id+' .item_unit').show();
             }
         });
-    });
+   // });
 </script>
 @include('include/footer')

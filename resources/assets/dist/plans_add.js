@@ -16,7 +16,13 @@ $(document).ready(function() {
         console.log('Yes Permission');
         $('.body-content .wrapper').show();
     }
-
+    $(".plan_approved_yes").click(function(){
+        //alert($("input[name='plan_approved']:checked"). val());
+        if($(this).val()=="yes")
+            $(".plan_approval_date").show();
+        else
+            $(".plan_approval_date").hide();
+    })
     jQuery.ajax({
     url: baseUrl + "projects/"+project_id,
         type: "GET",
@@ -88,7 +94,7 @@ $(document).ready(function() {
                 $("#alert_message").html(html);
                 $("#name_of_plan").removeAttr('value');
                 $("#date_of_plans").removeAttr('value');
-                $("#plan_approved").removeAttr('value');
+                //$("#plan_approved").removeAttr('value');
                 $('#upload_doc_id').removeAttr('value');
                 $(".remove_file_drop").trigger("click");
                 $(".first_button").text('Save Another');

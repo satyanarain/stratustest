@@ -853,12 +853,14 @@ class RequestInfoController extends Controller {
       else {
           $query = DB::table('project_request_info')
 ->leftJoin('project_request_info_review', 'project_request_info.ri_id', '=', 'project_request_info_review.rir_review_parent')
+->leftJoin('documents as file_path', 'project_request_info.ri_file_path', '=', 'file_path.doc_id')
 ->leftJoin('users as rfi_user', 'project_request_info.ri_user_id', '=', 'rfi_user.id')
 ->leftJoin('project_firm as rfi_firm_name', 'rfi_user.company_name', '=', 'rfi_firm_name.f_id')
 ->leftJoin('users as review_user', 'project_request_info_review.rir_user_id', '=', 'review_user.id')
 ->leftJoin('project_firm as review_firm_name', 'review_user.company_name', '=', 'review_firm_name.f_id')
         ->select(
           'project_request_info.*', 'project_request_info_review.*',
+        'file_path.doc_path as file_path',
           'rfi_user.username as rfi_user_name', 'rfi_user.email as rfi_user_email', 'rfi_user.first_name as rfi_user_firstname', 'rfi_user.last_name as rfi_user_lastname', 'rfi_firm_name.f_name as rfi_user_company', 'rfi_user.phone_number as rfi_user_phonenumber', 'rfi_user.status as rfi_user_status', 'rfi_user.role as rfi_user_role', 
           'review_user.username as review_user_name', 'review_user.email as review_user_email', 'review_user.first_name as review_user_firstname', 'review_user.last_name as review_user_lastname', 'review_firm_name.f_name as review_user_company', 'review_user.phone_number as review_user_phonenumber', 'review_user.status as review_user_status', 'review_user.role as review_user_role')
           ->where('ri_project_id', '=', $project_id)
