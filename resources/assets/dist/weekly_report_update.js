@@ -82,9 +82,14 @@ $(document).ready(function() {
         var notice_to_proceed_duration_day = data.data.pnp_duration;
         $('#notice_to_proceed_duration_day').text(notice_to_proceed_duration_day);
         var result = new Date(notice_to_proceed_start_date);
-        result.setDate(result.getDate() + notice_to_proceed_duration_day);
-        var computed_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
-        $('#computed_completion_date').text(computed_completion_date);
+        if(result.getFullYear())
+        {
+            result.setDate(result.getDate() + notice_to_proceed_duration_day);
+            var computed_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
+            $('#computed_completion_date').text(computed_completion_date);
+        }else{
+            $('#computed_completion_date').text('');
+        }
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
@@ -313,6 +318,8 @@ $(document).ready(function() {
             result.setDate(result.getDate() + total_days_plus);
             var revised_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
             $('#revised_completion_date').text(revised_completion_date);
+        }else{
+            $('#revised_completion_date').text('');
         }
     }, 3000);
 
