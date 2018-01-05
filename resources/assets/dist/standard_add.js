@@ -19,7 +19,7 @@ $(document).ready(function() {
         console.log('Yes Permission');
         $('.body-content .wrapper').show();
     }
-    fetchCompanyName();
+    fetchCompanyName(role);
      
 
     jQuery.ajax({
@@ -255,7 +255,7 @@ $(document).ready(function() {
             
         }
     })
-    function fetchCompanyName()
+    function fetchCompanyName(role)
     {
         jQuery.ajax({
         url: baseUrl+project_id+"/company_name_user",
@@ -281,9 +281,10 @@ $(document).ready(function() {
 
             }
         });
+        if(role == 'admin'){
         $(".company_name").append(
             '<option style="font-weight:bold;">Add New Company</option>'
-        )
+        )}
         // $( "h2" ).appendTo( $( ".container" ) );
        
         $(".loading_data").remove();

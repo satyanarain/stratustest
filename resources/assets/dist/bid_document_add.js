@@ -290,8 +290,10 @@ $(document).ready(function() {
         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
 
         var bid_advertisement_yes = document.getElementById("bid_advertisement_yes").checked;
+        //alert(bid_advertisement_yes);return false;
         if(bid_advertisement_yes == true){
             var bid_advertisement_yes = "yes";
+            
         }
         else {
             var bid_advertisement_yes = 'no';
@@ -303,11 +305,13 @@ $(document).ready(function() {
                 html += '<li>Bid advertisement document is required.</li>';
                 is_error = true;
             }
+            
         }
 
         var notice_invite_bid_yes = document.getElementById("notice_invite_bid_yes").checked;
         if(notice_invite_bid_yes == true){
             var notice_invite_bid_yes = "yes";
+            
         }
         else {
             var notice_invite_bid_yes = 'no';
@@ -319,6 +323,7 @@ $(document).ready(function() {
                 html += '<li>Notice invite bid document is required.</li>';
                 is_error = true;
             }
+            
         }
 
         if(date_of_bid_opening == ''){

@@ -45,9 +45,10 @@ $(document).ready(function() {
 
             }
         });
+        if(role == 'admin'){
         $("#company_name").append(
             '<option style="font-weight:bold;">Add New Company</option>'
-        )
+        )}
         // $( "h2" ).appendTo( $( ".container" ) );
 
         // $(".loading_data").remove();
