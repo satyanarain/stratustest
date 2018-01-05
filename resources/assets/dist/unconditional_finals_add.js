@@ -96,7 +96,7 @@ $(document).ready(function() {
                 window.location.href = baseUrl + "500";
             }
         });
-     fetchCompanyName();   
+     fetchCompanyName(role);   
 });
 
 $('.add_unconditional_finals').click(function(e)
@@ -210,7 +210,7 @@ $('.company_name').change(function(){
               });
         }
     })
-    function fetchCompanyName()
+    function fetchCompanyName(role)
     {
         jQuery.ajax({
         url: baseUrl+project_id+"/company_name_user",
@@ -236,9 +236,10 @@ $('.company_name').change(function(){
 
             }
         });
+        if(role == 'admin'){
         $(".company_name").append(
             '<option style="font-weight:bold;">Add New Company</option>'
-        )
+        )}
         // $( "h2" ).appendTo( $( ".container" ) );
        
         $(".loading_data").remove();

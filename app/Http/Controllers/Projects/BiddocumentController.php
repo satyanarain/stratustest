@@ -103,14 +103,15 @@ class BiddocumentController extends Controller {
             'bid_advertisement_date'          => 'required',
             'invite_date'                     => 'required',
             'date_of_opening'                 => 'required',
-            'sucessful_bidder_proposal_path'  => 'required',
-            'addvertisement_of_bid_path'      => 'required',
-            'notice_invite_bid_path'          => 'required',
-            'detail_result_path'              => 'required',
-            'project_id'                      => 'required|numeric',
-            'user_id'                         => 'required|numeric',
-            'status'                          => 'required'
-        ];
+            'sucessful_bidder_proposal_path'  => 'required'];
+        if($addvertisement_of_bid_path)
+            $rules['addvertisement_of_bid_path']= 'required';
+        if($notice_invite_bid_path)
+            $rules['notice_invite_bid_path']    = 'required';
+            $rules['detail_result_path']              = 'required';
+            $rules['project_id']                      ='required|numeric';
+            $rules['user_id']                         = 'required|numeric';
+            $rules['status']                          = 'required';
         $validator = Validator::make($information, $rules);
         if ($validator->fails()) 
         {

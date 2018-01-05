@@ -51,7 +51,7 @@ $(document).ready(function() {
             window.location.href = baseUrl + "500";
         }
     })
-    fetchCompanyName();
+    fetchCompanyName(role);
     jQuery('#wdid_no').keyup(function() {
         var raw_text =  jQuery(this).val();
         var return_text = raw_text.replace(/[^a-zA-Z0-9 _]/g,'');
@@ -180,7 +180,7 @@ $('.company_name').change(function(){
               });
         }
     })
-function fetchCompanyName()
+function fetchCompanyName(role)
 {
         jQuery.ajax({
         url: baseUrl+project_id+"/company_name_user",
@@ -206,9 +206,10 @@ function fetchCompanyName()
 
             }
         });
+        if(role == 'admin'){
         $(".company_name").append(
             '<option style="font-weight:bold;">Add New Company</option>'
-        )
+        )}
         // $( "h2" ).appendTo( $( ".container" ) );
        
         $(".loading_data").remove();
