@@ -214,7 +214,7 @@
         <p style="width:30%; float: left;"><strong>Project Description:</strong></p>
         <p style="width:70%; float: left;">
             <strong>Project Name: </strong><span id="pdf_gen_project_name"></span><br/>
-            <strong>Murow|CM Ref No:</strong> (Insert Murow CM Ref No)<br/>
+<!--            <strong>Murow|CM Ref No:</strong> (Insert Murow CM Ref No)<br/>-->
             <strong>Improvement Type:</strong> <span id="pdf_gen_project_type"></span>
         </p>
         <div style="clear: both;"></div>
@@ -226,7 +226,7 @@
         <div style="clear: both;"></div>
         <div style="width:100%; float: right; text-align:right; ">
             <p style="margin: 0px;">By: ____________________________</p>
-            <p style="font-style: italic;  margin: 0 25px 25px 0;">     Murow|CM Representative</p>
+<!--            <p style="font-style: italic;  margin: 0 25px 25px 0;">     Murow|CM Representative</p>-->
             <p>Title: _________________________</p>
         </div>
         <div style="clear: both;"></div>
