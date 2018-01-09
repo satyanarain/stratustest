@@ -402,10 +402,11 @@ class SurveyController extends Controller {
       else {
           $query = DB::table('project_survey')
 ->leftJoin('documents', 'project_survey.sur_request_path', '=', 'documents.doc_id')
+->leftJoin('documents as survey_rew_path', 'project_survey_review.sr_file_path', '=', 'survey_rew_path.doc_id')                  
 ->leftJoin('project_survey_review', 'project_survey.sur_id', '=', 'project_survey_review.sr_survey_id')
 ->leftJoin('projects', 'project_survey.sur_project_id', '=', 'projects.p_id')
 ->leftJoin('users', 'project_survey.sur_user_id', '=', 'users.id')
-        ->select('documents.doc_path as file_path', 'project_survey.*', 'project_survey_review.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+        ->select('documents.doc_path as file_path', 'project_survey.*','survey_rew_path.doc_path as survey_rew_path', 'project_survey_review.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
           ->where('sur_project_id', '=', $survey_id)
           ->orderBy('sur_number')
           ->get();
