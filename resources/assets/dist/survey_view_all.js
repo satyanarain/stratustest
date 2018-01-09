@@ -192,7 +192,7 @@
 			           '<span style="color:#F00;">'+val.sur_description+'</span>',
 			           '<span style="color:#F00;">'+completion_date+'</span>',
 			           file_path_value,
-                                   survey_rew_path,
+                                   survey_rew_path_value,
 			           status,
 			           sr_status,
 			           single_view + update_permission
@@ -205,7 +205,7 @@
 			           val.sur_description,
 			           completion_date,
 			           file_path_value,
-                                   survey_rew_path,
+                                   survey_rew_path_value,
 			           status,
 			           sr_status,
 			           single_view + update_permission
