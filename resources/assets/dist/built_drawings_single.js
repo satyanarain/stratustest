@@ -172,8 +172,8 @@
                 }
                 else {
                     custom_cert_path_value = '<a href="http://apps.groupdocs.com/document-viewer/embed/'+custom_cert_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf.svg" width="40"/></a>';
-                	 // var file_iframe_value = '<iframe src="http://apps.groupdocs.com/document-viewer/embed/'+custom_cert_path+'" frameborder="0" width="100%" height="800"></iframe>';
-                	 var file_iframe_value = '<iframe src="https://apps.groupdocs.com/document-viewer/Embed/'+custom_cert_path+'?quality=50&use_pdf=False&download=False&print=False&signature=5Xpc7qsFKjmJoHfRcXxUus8Tqn0" frameborder="0" width="100%" height="800"></iframe>';
+                	  var file_iframe_value = '<iframe src="http://apps.groupdocs.com/document-annotation2/embed/'+custom_cert_path+'" frameborder="0" width="100%" height="800"></iframe>';
+                	 //var file_iframe_value = '<iframe src="https://apps.groupdocs.com/document-viewer/Embed/'+custom_cert_path+'?quality=50&use_pdf=False&download=False&print=False&signature=5Xpc7qsFKjmJoHfRcXxUus8Tqn0" frameborder="0" width="100%" height="800"></iframe>';
                 }
                 $('#built_drawing').html(custom_cert_path_value);
                 $('#review_document').html(file_iframe_value);

@@ -177,7 +177,13 @@
 				// var year = date.getFullYear();
 				//var completion_date = year + '-' + month + '-' + day;
 				var completion_date = val.sur_request_completion_date; //formatDate;
-
+                                var survey_rew_path = val.survey_rew_path;
+                                if(survey_rew_path == null){
+			  	 	var	survey_rew_path_value = '-';
+			  	}
+			  	else {
+			  		var survey_rew_path_value = '<a href="'+baseUrl+val.survey_rew_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+			  	}
 			  var t = $('#view_users_table').DataTable();
 				if(val.sur_request_expedited == 'yes'){
 					t.row.add( [
@@ -186,6 +192,7 @@
 			           '<span style="color:#F00;">'+val.sur_description+'</span>',
 			           '<span style="color:#F00;">'+completion_date+'</span>',
 			           file_path_value,
+                                   survey_rew_path,
 			           status,
 			           sr_status,
 			           single_view + update_permission
@@ -198,6 +205,7 @@
 			           val.sur_description,
 			           completion_date,
 			           file_path_value,
+                                   survey_rew_path,
 			           status,
 			           sr_status,
 			           single_view + update_permission
