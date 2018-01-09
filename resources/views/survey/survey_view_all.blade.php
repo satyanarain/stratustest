@@ -35,6 +35,7 @@
                             <th>Description of Request</th>
                             <th>Requested Completion By</th>
                             <th>Survey Document</th>
+                            <th>Survey Cut Sheets</th>
                             <th>Survey Status</th>
                             <th>Survey Review Status</th>
                             <th>Action</th>
