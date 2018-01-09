@@ -402,6 +402,7 @@ class SurveyController extends Controller {
       else {
           $query = DB::table('project_survey')
 ->leftJoin('documents', 'project_survey.sur_request_path', '=', 'documents.doc_id')
+->leftJoin('project_survey_review', 'project_survey.sur_id', '=', 'project_survey_review.sr_survey_id')                  
 ->leftJoin('documents as survey_rew_path', 'project_survey_review.sr_file_path', '=', 'survey_rew_path.doc_id')                  
 ->leftJoin('project_survey_review', 'project_survey.sur_id', '=', 'project_survey_review.sr_survey_id')
 ->leftJoin('projects', 'project_survey.sur_project_id', '=', 'projects.p_id')
