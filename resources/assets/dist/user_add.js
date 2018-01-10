@@ -40,7 +40,7 @@ $(document).ready(function()
 
             }
         });
-        if(role == 'admin'){
+        if(role == 'owner'){
         $("#firm_name1").append(
             '<option style="font-weight:bold;">Add New Company</option>'
         )

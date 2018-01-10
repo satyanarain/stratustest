@@ -71,9 +71,24 @@ $(document).ready(function() {
 
             }
         });
+        console.log(role);
+        if(role == 'owner'){
+        $(".company_name").append(
+            '<option style="font-weight:bold;">Add New Company</option>'
+        )}
         $(".loading_data").remove();
     })
-
+    $('.company_name').change(function(){
+        var company = $(this).val();
+        if(company=="Add New Company")
+        {
+            $('#add-company').modal('show');
+            $('#add-company').on('shown.bs.modal',function(){
+                google.maps.event.trigger(map, "resize");
+                //google.maps.event.trigger(map1, "resize");
+              });
+        }
+    })
 });
 
 $("#my-awesome-dropzone").click(function() {

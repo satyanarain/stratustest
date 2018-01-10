@@ -105,10 +105,10 @@
                                 <a href="">  <span>Surveys</span></a>
                                 <ul class="child-list">
                                     <li style="display: none;" class="survey_log">
-                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/survey_log"><span>Survey Log</span></a>
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/survey"><span>Survey Log</span></a>
                                     </li>
                                     <li style="display: none;" class="survey_view_all">
-                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/survey"><span>Add Survey</span></a>
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/survey/add"><span>Add Survey</span></a>
                                     </li>
                                     <li style="display: none;" class="survey_review_view_all">
                                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/survey_review"><span>Survey Review</span></a>
