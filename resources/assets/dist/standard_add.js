@@ -281,7 +281,7 @@ $(document).ready(function() {
 
             }
         });
-        if(role == 'admin'){
+        if(role == 'owner'){
         $(".company_name").append(
             '<option style="font-weight:bold;">Add New Company</option>'
         )}
