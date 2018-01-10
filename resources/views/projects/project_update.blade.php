@@ -206,7 +206,7 @@
 <script src="{{ url('/resources/assets/dist/project_update.js') }}"></script>
 
 <!-- <script src="{{ url('/resources/assets/dist/project_add.js') }}"></script> -->
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIoFv2pgyZCk4whduCYs5Ol3ziTuo9-sI&libraries=places&callback=initMap" async defer></script>-->
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEf-8-SoRe54t6wZL8_rkiuNIAhwgffIU&libraries=places&callback=initMap" async defer></script>-->
 
 <script>
 
@@ -215,7 +215,7 @@
 
 
     var script = document.createElement('script');
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDIoFv2pgyZCk4whduCYs5Ol3ziTuo9-sI&libraries=places&callback=initMap";
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDEf-8-SoRe54t6wZL8_rkiuNIAhwgffIU&libraries=places&callback=initMap";
     setTimeout(function(){
         document.body.appendChild(script);
     },8000);
