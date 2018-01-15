@@ -51,7 +51,7 @@ $(document).ready(function() {
             window.location.href = baseUrl + "500";
         }
     })
-    fetchCompanyName(role);
+    fetchCompanyName(role,check_user_access);
     jQuery('#wdid_no').keyup(function() {
         var raw_text =  jQuery(this).val();
         var return_text = raw_text.replace(/[^a-zA-Z0-9 _]/g,'');
@@ -180,7 +180,7 @@ $('.company_name').change(function(){
               });
         }
     })
-function fetchCompanyName(role)
+function fetchCompanyName(role,check_user_access)
 {
         jQuery.ajax({
         url: baseUrl+project_id+"/company_name_user",
@@ -206,7 +206,9 @@ function fetchCompanyName(role)
 
             }
         });
-        if(role == 'owner'){
+        var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+        console.log(add_company_on_fly_permission+'company_fly');
+        if(add_company_on_fly_permission>0){
         $(".company_name").append(
             '<option style="font-weight:bold;">Add New Company</option>'
         )}

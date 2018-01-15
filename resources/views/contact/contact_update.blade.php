@@ -645,6 +645,12 @@
                                 <label>Update Project Settings</label>
                         </div>
                         <div class="clearfix"></div>
+                        <h4>Add Company On Fly</h4>
+                        <div class="col-sm-3 nopadleft">
+                                <input type="checkbox" name="permission_key[]" id="project_add_company_on_fly" value="project_add_company_on_fly">
+                                <label for="project_add_company_on_fly">Add Company On Fly</label>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
