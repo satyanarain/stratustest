@@ -4300,7 +4300,7 @@ table.sliders tr td {
 /*addon btn*/
 
 .addon-btn {
-
+padding: 5px 12px;
 }
 
 .addon-btn.btn-sm i {

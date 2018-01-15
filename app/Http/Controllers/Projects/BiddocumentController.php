@@ -100,14 +100,15 @@ class BiddocumentController extends Controller {
         $rules = [
             'lead_agency'                     => 'required|numeric',
             'low_bidder_name'                 => 'required|numeric',
-            'bid_advertisement_date'          => 'required',
-            'invite_date'                     => 'required',
             'date_of_opening'                 => 'required',
             'sucessful_bidder_proposal_path'  => 'required'];
-        if($addvertisement_of_bid_path)
+        if($add_applicable=="no")
+        {
             $rules['addvertisement_of_bid_path']= 'required';
-        if($notice_invite_bid_path)
+            $rules['bid_advertisement_date']= 'required';
+            $rules['invite_date']= 'required';
             $rules['notice_invite_bid_path']    = 'required';
+        }
             $rules['detail_result_path']              = 'required';
             $rules['project_id']                      ='required|numeric';
             $rules['user_id']                         = 'required|numeric';

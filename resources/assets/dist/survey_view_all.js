@@ -200,7 +200,8 @@
 				}
 				else {
 					t.row.add( [
-			           val.sur_number,
+			           //val.sur_number,
+                                   count,
 			           request_date,
 			           val.sur_description,
 			           completion_date,

@@ -155,12 +155,12 @@
                                 <a href="">  <span>Change Orders</span></a>
                                 <ul class="child-list">
                                     <li style="display: none;" class="cor_log">
-                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request_log"><span>Change Order Request Log</span></a>
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request"><span>Change Order Request Log</span></a>
                                     </li>
                                     <li style="display: none;" class="cor_view_all">
-                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request"><span>Change Order Request</span></a>
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request/add"><span>Add Change Order Request</span></a>
                                     </li>
-                                    <li style="display: none;" class=""cor_review_view_all>
+                                    <li style="display: none;" class="cor_review_view_all">
                                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request_review"><span>Change Order Request Review</span></a>
                                     </li>
                                 </ul>

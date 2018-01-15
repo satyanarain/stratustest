@@ -115,6 +115,23 @@ $(document).ready(function() {
         jQuery.each( data.data, function( i, val ) {
 
             // Check Update Permission
+            var status_cm = '';
+            var status_owner = '';
+            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00"){
+                var pcd_approved_by_cm = '<span class="label label-warning">PENDING</span>';
+                var status_cm = '<span class="label label-warning">PENDING CM REVIEW</span><br/>';
+            }
+            else {
+                var pcd_approved_by_cm = val.pcd_approved_by_cm;
+            }
+
+            if(val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
+                var pcd_approved_by_owner = '<span class="label label-warning">PENDING</span>';
+                var status_owner = '<span class="label label-warning">PENDING OWNER REVIEW</span><br/>';
+            }
+            else {
+                var pcd_approved_by_owner = val.pcd_approved_by_owner;
+            }
             var check_permission = jQuery.inArray("cor_order_review_update", check_user_access );
             console.log(check_permission);
             if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00")
@@ -161,7 +178,8 @@ $(document).ready(function() {
                    pcd_approved_by_owner,
                    val.currency_symbol +' '+  ReplaceNumberWithCommas(disp_price),
                    val.pcd_days,
-                   // status,
+                   status_cm + status_owner,
+                   //status,
                    update_permission
                 ]).draw( false );  
                 count++;

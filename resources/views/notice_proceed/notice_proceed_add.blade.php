@@ -210,9 +210,9 @@
         <p>The contract provides for an assessment of the sum of <strong><span class="pdf_gen_project_currency"></span> <span id="pdf_gen_amount"></span></strong> as liquidated damages for each consecutive calendar day after the established contract completion dates that the work remains incomplete.</p>
         <div style="clear: both;"></div>
         <div style="width:100%; float: right; text-align:right; ">
-            <p style="margin: 0px;">By: ____________________________</p>
+            <p style="margin: 0px;">By: ____________________________&nbsp;&nbsp;Title: _________________________</p>
 <!--            <p style="font-style: italic;  margin: 0 25px 25px 0;">     Murow|CM Representative</p>-->
-            <p>Title: _________________________</p>
+<!--            <p>Title: _________________________</p>-->
         </div>
         <div style="clear: both;"></div>
         <p><strong>ACCPETANCE OF NOTICE:</strong></p>

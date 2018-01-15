@@ -43,7 +43,7 @@
                                               <th>Approved by OWNER</th>
                                               <th class="project_currency"></th>
                                               <th>Days</th>
-                                              <!-- <th>Status</th> -->
+                                              <th>Status</th>
                                               <th>Action</th>
                                           </tr>
                                           </thead>
