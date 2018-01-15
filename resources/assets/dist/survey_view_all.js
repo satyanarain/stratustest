@@ -187,7 +187,8 @@
 			  var t = $('#view_users_table').DataTable();
 				if(val.sur_request_expedited == 'yes'){
 					t.row.add( [
-			           '<span style="color:#F00;">'+val.sur_number+'</span>', //val.sur_id,
+			           //'<span style="color:#F00;">'+val.sur_number+'</span>', //val.sur_id,
+                                   count,
 			           '<span style="color:#F00;">'+request_date+'</span>',
 			           '<span style="color:#F00;">'+val.sur_description+'</span>',
 			           '<span style="color:#F00;">'+completion_date+'</span>',
