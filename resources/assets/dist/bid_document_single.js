@@ -2,14 +2,15 @@
      	// Get login user profile data
      	$("#update_bond_form").hide();
 	   // Get login user profile data
-		var token = localStorage.getItem('u_token');
-		var url = $(location).attr('href').split( '/' );
-		bd_id = url[ url.length - 1 ]; // projects
-		console.log(bd_id);
-
-		project_id = url[ url.length - 3 ]; // projects
+            var token = localStorage.getItem('u_token');
+            var url = $(location).attr('href').split( '/' );
+            bd_id = url[ url.length - 1 ]; // projects
+            console.log(bd_id);
+                
+            project_id = url[ url.length - 3 ]; // projects
 	    console.log(project_id);
-
+            var add_addendum_link = baseUrl + "dashboard/"+project_id+"/bid_documents/"+bd_id+"/add-addendum";
+            $(".add-extra-addendum").attr("href",add_addendum_link);
 	    // Check View All Permission
 		var check_user_access = JSON.parse(localStorage.getItem("access_permission"));
 		var check_permission = jQuery.inArray( "bid_document_view_all", check_user_access );

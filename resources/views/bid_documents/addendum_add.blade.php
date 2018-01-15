@@ -121,7 +121,8 @@
         <div class="form-group col-md-12">
 <!--            <a data-href="{{ url('/dashboard/'.$project_id.'/bid_documents') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
             <a href="{{ url('/dashboard/'.$project_id.'/bid_documents') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
-            <button type="submit" id="add_addendum" class="btn btn-primary addon-btn pull-right"><i class="fa fa-plus pull-right"></i>Save and add another addendum</button>
+            <button type="submit" id="add_addendum" class="btn sub-btn btn-info addon-btn "><i class="fa fa-plus "></i>Save addendum</button>
+            
             <a href="{{ url('/dashboard/'.$project_id.'/contract_item') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
             <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
         </div>

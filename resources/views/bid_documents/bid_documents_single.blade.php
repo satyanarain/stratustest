@@ -61,7 +61,10 @@
                     </div>
 
                     <div class="col-sm-12">
-                        <h2>Project Addendum</h2>
+                        <h2 style="width:250px; float:left;">Project Addendum</h2>
+                        <div class="state-information hide_add_permission" style="float:right; margin-top: 20px;">
+                    <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/bid_documents/add-addendum" class="btn btn-success add-extra-addendum"><i class="fa fa-plus"></i> Add New Addendum</a>
+                </div>
                     </div>
 
 
