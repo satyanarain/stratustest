@@ -17,7 +17,7 @@ $(document).ready(function() {
         console.log('Yes Permission');
         $('.body-content .wrapper').show();
     }
-    fetchCompanyName(role);
+    fetchCompanyName(role,check_user_access);
     jQuery.ajax({
         url: baseUrl + "projects/"+project_id,
         type: "GET",
@@ -276,7 +276,7 @@ $('.company_name').change(function(){
        
     }
 })
-function fetchCompanyName(role)
+function fetchCompanyName(role,check_user_access)
 {
     jQuery.ajax({
     url: baseUrl+project_id+"/company_name_user",
@@ -302,7 +302,9 @@ function fetchCompanyName(role)
 
         }
     });
-    if(role == 'owner'){
+    var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+    console.log(add_company_on_fly_permission+'company_fly');
+    if(add_company_on_fly_permission>0){
     $(".company_name").append(
         '<option style="font-weight:bold;">Add New Company</option>'
     )}
