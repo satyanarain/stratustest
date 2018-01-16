@@ -132,13 +132,13 @@
 <div id="pdf_content" style="width:100%; display:none;">
 <!-- <div  id="pdf_content" style="width:100%;"> -->
     <h2>Survey</h2>
-    <p><strong>Date:</strong> <?php echo date("Y-m-d"); ?></p>
+    <p><strong>Date and Time of request:</strong> <?php echo date("Y-m-d H:i:s"); ?></p>
     <p><strong>Company Name:</strong> <span id="pdf_gen_contractor_name"></span></p>
     <p><strong>Company Address:</strong> <span id="pdf_gen_contractor_address"></span></p>
     <p><strong>Project Name: </strong><span id="pdf_gen_project_name"></span></p>
     <p><strong>Project Description: </strong><span id="pdf_gen_project_description"></span></p>
     <p><strong>Improvement Type:</strong> <span id="pdf_gen_project_type"></span></p>
-    <p><strong>Contract Amount:</strong> <span id="pdf_gen_contract_amount"></span></p>
+<!--    <p><strong>Survey Contract Amount:</strong> <span id="pdf_gen_contract_amount"></span></p>-->
     <p><strong>Survey # :</strong> <span id="pdf_gen_survey_number"></span></p>
     <p><strong>Survey Description:</strong> <span id="pdf_gen_survey_description"></span></p>
     <p><strong>Survey Requested Completion By:</strong> <span id="pdf_gen_req_comp_date"></span></p>
