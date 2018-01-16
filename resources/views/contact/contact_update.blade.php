@@ -691,7 +691,9 @@
                         "unconditional_finals"=>"Unconditional Finals",
                         "as_built_drawings"=>"As Built Drawings",
                         "notice_of_completion"=>"Notice of Completion",
-                        "standards"=>"Standards"
+                        "standards"=>"Standards",
+                        "swppp"=>"SWPPP/WPCP",
+                        "underground_service_alert"=>"Underground service alert"
                     );
                             
                     foreach ($notification_types as $key=>$notification_type){
