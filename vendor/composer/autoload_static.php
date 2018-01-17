@@ -371,6 +371,7 @@ class ComposerStaticInit5d2cc768de0226710126baf53a0b2163
     public static $classMap = array (
         'AddCompanyTypeColumnInFirmTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_29_114355_add company type column in firm table.php',
         'AddItemNoContractItems' => __DIR__ . '/../..' . '/database/migrations/2017_11_23_102927_add_item_no_contract_items.php',
+        'ChangeSurveyCompletionDateColumn' => __DIR__ . '/../..' . '/database/migrations/2018_01_17_083421_change survey completion date column.php',
         'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'CreateDailyReportTableReplica' => __DIR__ . '/../..' . '/database/migrations/2017_11_24_063025_create daily report table replica.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migration-backup/2014_10_12_100000_create_password_resets_table.php',

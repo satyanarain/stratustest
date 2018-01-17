@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AddCompanyTypeColumnInFirmTable' => $baseDir . '/database/migrations/2017_11_29_114355_add company type column in firm table.php',
     'AddItemNoContractItems' => $baseDir . '/database/migrations/2017_11_23_102927_add_item_no_contract_items.php',
+    'ChangeSurveyCompletionDateColumn' => $baseDir . '/database/migrations/2018_01_17_083421_change survey completion date column.php',
     'Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
     'CreateDailyReportTableReplica' => $baseDir . '/database/migrations/2017_11_24_063025_create daily report table replica.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migration-backup/2014_10_12_100000_create_password_resets_table.php',
