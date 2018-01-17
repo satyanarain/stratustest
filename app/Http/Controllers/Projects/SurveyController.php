@@ -252,7 +252,7 @@ class SurveyController extends Controller {
             $query = DB::table('project_survey')
             ->where('sur_id', '=', $sur_id)
             // ->update(['sur_number' => $survey_number, 'sur_date' => $survey_date, 'sur_description' => $survey_description, 'sur_request_completion_date' => $survey_request_completion_date, 'sur_request_expedited' =>$survey_request_expedited, 'sur_request_path' => $survey_request_path, 'sur_cut_sheet' => $survey_cut_sheet, 'sur_status' => $survey_status, 'sur_user_id' => $user_id, 'sur_project_id' => $project_id, 'sur_req_status' => $sur_req_status]);
-            ->update(['survey_request_completion_date'=>$survey_request_completion_date,'sur_user_id' => $user_id, 'sur_project_id' => $project_id, 'sur_req_status' => $sur_req_status]);
+            ->update(['sur_request_completion_date'=>$survey_request_completion_date,'sur_user_id' => $user_id, 'sur_project_id' => $project_id, 'sur_req_status' => $sur_req_status]);
             if(count($query) < 1)
             {
               $result = array('code'=>404, "description"=>"No records found");
