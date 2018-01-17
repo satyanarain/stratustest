@@ -81,10 +81,10 @@
                                         <th colspan="2">Date of Cut Sheet: </th>
                                         <td colspan="2" id="review_response_date"></td>
                                     </tr>
-                                    <tr>
+<!--                                    <tr>
                                         <th colspan="2">Attach Cut Sheet</th>
                                         <td colspan="2" id="review_cut_sheet"></td>
-                                    </tr>
+                                    </tr>-->
                                     <tr>
                                         <th colspan="2">Review Status</th>
                                         <td colspan="2" id="review_status"></td>

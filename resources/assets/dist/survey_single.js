@@ -185,7 +185,7 @@
 		    }
 		    $('#review_request_number').text(review_request_number);
 		    $('#review_response_date').text(review_response_date);
-		    $('#review_cut_sheet').html(review_file_path_value);
+		    //$('#review_cut_sheet').html(review_file_path_value);
 		    $('#review_status').html(status);
 
 		    if(data.data.review_user_email == null){
