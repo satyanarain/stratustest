@@ -103,7 +103,7 @@
 		    }
 		    $('#status').val(status);
 		    $('#survey_number').text(data.data.sur_number);
-
+                    $('#survey_completion_date').text(data.data.sur_request_completion_date);
 		    $("#update_survey_form").show();
 		    $(".loading_data").hide();
 		})

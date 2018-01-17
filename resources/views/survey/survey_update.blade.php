@@ -41,7 +41,15 @@
                                             <option value="deactive">Deactivated</option>
                                         </select>
                                     </div>
-
+                                    <div class="form-group col-md-12">
+                                        <label>Requested Completion By <span class="text-danger">*</span></label>
+                                        <div class='input-group date form_datetime' id='datetimepicker1'>
+                                            <input type='text' class="form-control" id="survey_completion_date" value="2018-01-19 12:19" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>    
 
                                     <div class="form-group col-md-12">
                                         <!-- <input type="hidden" name="standard_upload" id="upload_doc_meta" value="swppp"> -->
