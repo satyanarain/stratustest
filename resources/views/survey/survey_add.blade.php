@@ -75,7 +75,7 @@
             </div>
 
             <div class="form-group col-md-12 resubmittal">
-                <label>Date of Request : <strong><span id="survey_date"><?php echo date("Y-m-d"); ?></span></strong></label>
+                <label>Date of Request : <strong><span id="survey_date"><?php echo date("Y-m-d H:i"); ?></span></strong></label>
             </div>
 
             <div class="form-group col-md-12">
@@ -84,12 +84,19 @@
             </div>
             <div class="form-group col-md-12">
                 <label>Requested Completion By <span class="text-danger">*</span></label>
-                <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="<?php echo date("Y-m-d"); ?>"  class="input-append date dpYears">
+                <div class='input-group date form_datetime' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                
+<!--                <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="<?php echo date("Y-m-d"); ?>"  class="input-append date dpYears">
                     <input type="text" readonly="" value="<?php //echo date("Y-m-d"); ?>" size="16" class="form-control"  id="survey_completion_date">
                       <span class="input-group-btn add-on">
                         <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
                       </span>
-                </div>
+                </div>-->
             </div>
 
            <div class="form-group">
