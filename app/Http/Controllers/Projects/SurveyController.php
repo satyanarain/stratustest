@@ -204,7 +204,7 @@ class SurveyController extends Controller {
         // $survey_number                  = $request['survey_number'];
         // $survey_date                    = $request['survey_date'];
         // $survey_description             = $request['survey_description'];
-        // $survey_request_completion_date = $request['survey_request_completion_date'];
+         $survey_request_completion_date   = $request['survey_request_completion_date'];
         // $survey_request_expedited       = $request['survey_request_expedited'];
         // $survey_request_path            = $request['survey_request_path'];
         // $survey_cut_sheet               = $request['survey_cut_sheet'];
@@ -225,7 +225,7 @@ class SurveyController extends Controller {
             // "survey_number"                   => $survey_number,
             // "survey_date"                     => $survey_date,
             // "survey_description"              => $survey_description,
-            // "survey_request_completion_date"  => $survey_request_completion_date,
+            "survey_request_completion_date"     => $survey_request_completion_date,
             // "survey_request_expedited"        => $survey_request_expedited,
             "project_id"                      => $project_id,
             "user_id"                         => $user_id,
@@ -236,7 +236,7 @@ class SurveyController extends Controller {
             // 'survey_number'                   => 'required',
             // 'survey_date'                     => 'required',
             // 'survey_description'              => 'required',
-            // 'survey_request_completion_date'  => 'required',
+             'survey_request_completion_date'  => 'required',
             // 'survey_request_expedited'        => 'required',
             'project_id'                      => 'required|numeric',
             'user_id'                         => 'required|numeric',
@@ -252,7 +252,7 @@ class SurveyController extends Controller {
             $query = DB::table('project_survey')
             ->where('sur_id', '=', $sur_id)
             // ->update(['sur_number' => $survey_number, 'sur_date' => $survey_date, 'sur_description' => $survey_description, 'sur_request_completion_date' => $survey_request_completion_date, 'sur_request_expedited' =>$survey_request_expedited, 'sur_request_path' => $survey_request_path, 'sur_cut_sheet' => $survey_cut_sheet, 'sur_status' => $survey_status, 'sur_user_id' => $user_id, 'sur_project_id' => $project_id, 'sur_req_status' => $sur_req_status]);
-            ->update(['sur_user_id' => $user_id, 'sur_project_id' => $project_id, 'sur_req_status' => $sur_req_status]);
+            ->update(['survey_request_completion_date'=>$survey_request_completion_date,'sur_user_id' => $user_id, 'sur_project_id' => $project_id, 'sur_req_status' => $sur_req_status]);
             if(count($query) < 1)
             {
               $result = array('code'=>404, "description"=>"No records found");

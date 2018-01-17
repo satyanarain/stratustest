@@ -131,9 +131,25 @@
         e.preventDefault();
         var status               	= $('#status').val();
         var project_id              = $('#upload_project_id').val();
-	    var token                   = localStorage.getItem('u_token');
-
-
+	var token                   = localStorage.getItem('u_token');
+        var survey_completion_date = $('#survey_completion_date').val();
+        if(survey_completion_date == '')
+        {
+            $('.loading-submit').hide();
+            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast toast-error"><ul>';
+            html += '<li>The requested completion field is required </li>';
+            html += '</ul></div>';
+            $('html, body').animate({
+                scrollTop: $(".page-head").offset().top
+            }, 'fast')
+            $("#alert_message").html(html);
+            $("#alert_message").show();
+            setTimeout(function()
+            {
+                $("#alert_message").hide();
+            },5000);
+            return false;
+        }
 
         var token = localStorage.getItem('u_token');
         jQuery.ajax({
@@ -141,7 +157,8 @@
             type: "POST",
             data: {
          	    "sur_req_status"        : status,
-                "project_id"        	: project_id
+                    "project_id"        	: project_id,
+                    "survey_request_completion_date"    : survey_completion_date,
             },
             headers: {
               "x-access-token": token
