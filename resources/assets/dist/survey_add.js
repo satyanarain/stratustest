@@ -413,8 +413,7 @@ $(document).ready(function() {
         })
         .done(function(data, textStatus, jqXHR) {
             console.log(data);
-            var doc_path = data;
-            return false;
+            var doc_path = data;return false;
             jQuery.ajax({
                 url: baseUrl + "document/add",
                 type: "POST",
