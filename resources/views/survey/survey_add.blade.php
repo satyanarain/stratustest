@@ -150,8 +150,8 @@
     <p><strong>Survey Description:</strong> <span id="pdf_gen_survey_description"></span></p>
     <p><strong>Survey Requested Completion By:</strong> <span id="pdf_gen_req_comp_date"></span></p>
 </div>-->
-<div id="pdf_content" style="width:80%; display:;">
-    <table cellspacing="0" border="0" style="width: 80%">
+
+    <table cellspacing="0" border="0" style="width: 80%" id="pdf_content">
 	<colgroup width="16"></colgroup>
 	<colgroup width="25"></colgroup>
 	<colgroup width="16"></colgroup>
@@ -881,7 +881,7 @@
 		
 	</tr>
 </table>
-</div>
+
 
                             </div>
                         </section>
