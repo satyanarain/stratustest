@@ -152,14 +152,7 @@
 </div>-->
 <div id="pdf_content" style="width:80%; display:;">
     <table cellspacing="0" border="0">
-	<colgroup width="16"></colgroup>
-	<colgroup width="25"></colgroup>
-	<colgroup width="16"></colgroup>
-	<colgroup width="97"></colgroup>
-	<colgroup width="87"></colgroup>
-	<colgroup width="93"></colgroup>
-	<colgroup span="8" width="87"></colgroup>
-	<colgroup width="33"></colgroup>
+	
 	<tr>
 		<td height="40" align="left" valign=bottom><br></td>
 		<td colspan=5 rowspan=3 align="left" valign=bottom><br><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg" width=222 height=96 hspace=49 vspace=2>
