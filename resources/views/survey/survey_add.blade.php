@@ -188,8 +188,8 @@
 		<td align="left" valign=bottom><br></td>
 		<td align="left" valign=bottom><br></td>
 		<td align="left" valign=bottom><br></td>
-		<td style="border-bottom: 1px solid #000000" colspan=4 align="left" valign=middle sdval="41768" sdnum="1033;0;[$-F800]DDDD\, MMMM DD\, YYYY"><b><font color="#FF0000"><?php echo date('l, M y, Y');?></font></b></td>
-		<td align="left" valign=bottom><br></td>
+		<td style="border-bottom: 1px solid #000000" colspan=5 align="left" valign=middle><b><font color="#FF0000"><?php echo date('l, M y, Y');?></font></b></td>
+		
 	</tr>
 	<tr>
 		<td height="27" align="left" valign=bottom><br></td>
