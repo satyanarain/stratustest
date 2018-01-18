@@ -385,9 +385,11 @@ $(document).ready(function() {
         var completion_day = date.getDate(); //Date of the month: 2 in our example
         var completion_month = date.getMonth(); //Month of the Year: 0-based index, so 1 in our example
         var completion_year = date.getFullYear(); //Year: 2013
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var dayName = days[date.getDay()];
         var completion_hour = date.getHours(); 
         var completion_time = date.getMinutes()
-        $('#pdf_gen_req_comp_date').text(completion_month+'-'+completion_day+'-'+completion_year);
+        $('#pdf_gen_req_comp_date').text(dayName+', '+completion_month+'-'+completion_day+'-'+completion_year);
         $('#pdf_gen_req_comp_time').text(completion_hour+':'+completion_time);
 
         var doc_meta = $("#upload_doc_meta").val();
@@ -412,6 +414,7 @@ $(document).ready(function() {
         .done(function(data, textStatus, jqXHR) {
             console.log(data);
             var doc_path = data;
+            return false;
             jQuery.ajax({
                 url: baseUrl + "document/add",
                 type: "POST",
