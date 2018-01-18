@@ -380,8 +380,15 @@ $(document).ready(function() {
             },5000);
             return false;
         }
-        $('#pdf_gen_req_comp_date').text(survey_completion_date);
-
+        //var str = survey_completion_date;
+        var date = new Date(survey_completion_date);
+        var completion_day = date.getDate(); //Date of the month: 2 in our example
+        var completion_month = date.getMonth(); //Month of the Year: 0-based index, so 1 in our example
+        var completion_year = date.getFullYear(); //Year: 2013
+        var completion_hour = date.getHours(); 
+        var completion_time = date.getMinutes()
+        $('#pdf_gen_req_comp_date').text(completion_month+'-'+completion_day+'-'+completion_year);
+        $('#pdf_gen_req_comp_time').text(completion_hour+':'+completion_time);
 
         var doc_meta = $("#upload_doc_meta").val();
         var doc_project_id = $("#upload_project_id").val();
