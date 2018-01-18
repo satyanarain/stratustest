@@ -195,6 +195,14 @@ $(document).ready(function() {
     });
 
     new_survey_number();
+    
+    
+    
+    
+        
+        
+        
+        
 });
 
     function new_survey_number(){
@@ -386,11 +394,14 @@ $(document).ready(function() {
         var completion_month = date.getMonth(); //Month of the Year: 0-based index, so 1 in our example
         var completion_year = date.getFullYear(); //Year: 2013
         var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         var dayName = days[date.getDay()];
+        var monthName = monthNames[date.getMonth()];
         var completion_hour = date.getHours(); 
+        var ampm = completion_hour >= 12 ? 'pm' : 'am';
         var completion_time = date.getMinutes()
-        $('#pdf_gen_req_comp_date').text(dayName+', '+completion_month+'-'+completion_day+'-'+completion_year);
-        $('#pdf_gen_req_comp_time').text(completion_hour+':'+completion_time);
+        $('#pdf_gen_req_comp_date').text(dayName+', '+monthName+' '+completion_day+', '+completion_year);
+        $('#pdf_gen_req_comp_time').text(completion_hour+':'+completion_time+' '+ampm);
 
         var doc_meta = $("#upload_doc_meta").val();
         var doc_project_id = $("#upload_project_id").val();
