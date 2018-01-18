@@ -150,7 +150,8 @@
     <p><strong>Survey Description:</strong> <span id="pdf_gen_survey_description"></span></p>
     <p><strong>Survey Requested Completion By:</strong> <span id="pdf_gen_req_comp_date"></span></p>
 </div>-->
-<div style="width:100%;float:left;" id="pdf_content">
+<div id="pdf_content">
+<div style="width:100%;float:left;" id="">
     <div style="width:100%;float:left;">
         <div style="width: 50%;float: left;">
             <img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg">
@@ -229,6 +230,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <div id="pdf_content1" style="width:80%; display:;">
     <table cellspacing="0" border="0" style="width: 80%">
