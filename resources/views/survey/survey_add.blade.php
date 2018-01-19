@@ -151,7 +151,7 @@
     <p><strong>Survey Requested Completion By:</strong> <span id="pdf_gen_req_comp_date"></span></p>
 </div>-->
 <div id="pdf_content" style="width:100%; display:;">
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
+    <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
 	<tr>
     	<td><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg" alt="" /></td>
         <td style="font-size:35px;"><b><i>Survey Request For:<i></b></td>
@@ -181,10 +181,10 @@
         	<tr>
             	<td width="50" rowspan="4" valign="top"><b>From</b>:</td>
                 <td width="120">Contact Person:</td>
-                <td style="border-bottom:1px solid #000;">(insert)</td>
+                <td style="border-bottom:1px solid #000;" width="30%">(insert)</td>
                 <td width="100">&nbsp;</td>
                 <td width="120">Day requested:</td>
-                <td style="border-bottom:1px solid #000;">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" width="30%">&nbsp;</td>
             </tr>
             <tr>
                 <td>Company:</td>
