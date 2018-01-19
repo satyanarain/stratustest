@@ -151,81 +151,66 @@
     <p><strong>Survey Requested Completion By:</strong> <span id="pdf_gen_req_comp_date"></span></p>
 </div>-->
 <div id="pdf_content" style="width:100%; display:;">
-    <table style="width: 100%">
-        <colgroup width="5"></colgroup>
-        <colgroup width="10"></colgroup>
-        <colgroup width="30"></colgroup>
-        <colgroup width="10"></colgroup>
-        <colgroup width="30"></colgroup>
-        <colgroup width="10"></colgroup>
-        <tr>
-            <td colspan="2"><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg"></td>
-            <td></td>
-            <td colspan="2"><i><font face="DUTCH" size=6>Survey Request For:</font></i></b></td>
-            <td align="left" valign=bottom><br></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <b><font size=2>1151 Duryea Ave.</font></b></br>
-                <b><font size=2>Irvine, CA  92614</font></b></br>
-                <b><font size=2>Tel: 949.988.3270</font></b>
-            </td>
-            <td></td>
-            <td colspan="2">
-                <table style="width: 100%">
-                    <tr><td style="border-bottom: 1px solid #000000"><b style="color: #FF0000">Friday, Jan 18, 2018</b></td></tr>
-                    <tr><td>Date Service Needed</td></tr>
-                    <tr><td style="border-bottom: 1px solid #000000"><b style="color: #FF0000">12:00 AM</b></td></tr>
-                    <tr><td>Time Service Needed</td></tr>
-                </table>
-            </td>
-           <td align="left" valign=bottom>&nbsp;</td>
-        </tr>
-        <tr>
-            <td rowspan="4" valign="top"><b>From:</b></td>
-            <td align="" style="text-align: left" >Contact Person:</td>
-            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
-            <td align="left">Day requested:</td>
-            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
-            <td align="left" valign=bottom>&nbsp;</td>
-        </tr>
-        <tr>
-            <td align="" style="text-align: left" >Company:</td>
-            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
-            <td align="left" >Time requested:</td>
-            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
-            <td align="left" valign=bottom>&nbsp;</td>
-        </tr>
-        <tr>
-            <td align="" style="text-align: left" >Project Name:</td>
-            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
-            <td align="left" >Surveyors Job #:</td>
-            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
-            <td align="left" valign=bottom>&nbsp;</td>
-        </tr>
-        <tr>
-            <td align="" style="text-align: left" >Phone Numer:</td>
-            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
-            <td align="left">JOBSITE FAX NO.:</td>
-            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
-            <td align="left" valign=bottom>&nbsp;</td>
-        </tr>
-        <tr>
-            <td rowspan="10">To:</td>
-            <td align="" style="text-align: left" colspan="4" >SURVEY COORDINATOR:</td>
-            <td align="left" valign=bottom>&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="top" valign=bottom bgcolor="#D9D9D9"><b>Task No.</b></td>
-            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=bottom bgcolor="#D9D9D9"><b>           DESCRIPTION OF SURVEY REQUIRED:  (Please prioritize &amp;  provide details) </b></td>
-            <td align="left" valign=bottom>&nbsp;</td>
-	</tr>
-        <tr>
-            <td style="">1</td>
-            <td style="border-bottom: 1px solid #000000" colspan="3">&nbsp;</td>
-            <td align="left" valign=bottom>&nbsp;</td>
-        </tr>
-    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
+	<tr>
+    	<td><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg" alt="" /></td>
+        <td style="font-size:35px;"><b><i>Survey Request For:<i></b></td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+    	<td valign="top">
+        	<table width="100%" cellpadding="5" cellspacing="0" border="0">
+                <tr><td><b>1151 Duryea Ave.</b></td></tr>
+                <tr><td><b>Irvine, CA 92614</b></td></tr>
+                <tr><td><b>Tel: 949.988.3270</b></td></tr>
+            </table>    
+        </td>
+        <td valign="top" width="40%">
+        	<table width="100%" cellpadding="10" cellspacing="0" border="0">
+            	<tr><td style="color:#F00; border-bottom:2px solid #000;"><b>Friday, May 09, 2014</b></td></tr>
+                <tr><td>Date Service Needed</td></tr>
+                <tr><td style="color:#F00; border-bottom:2px solid #000;"><b>12:00 AM</b></td></tr>
+                <tr><td>Time Service Needed</td></tr>
+            </table>
+        </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr><td colspan="2" valign="top">
+    
+    	<table width="100%" cellpadding="10" cellspacing="0" border="0">
+        	<tr>
+            	<td width="50" rowspan="4" valign="top"><b>From</b>:</td>
+                <td width="120">Contact Person:</td>
+                <td style="border-bottom:1px solid #000;">(insert)</td>
+                <td width="100">&nbsp;</td>
+                <td width="120">Day requested:</td>
+                <td style="border-bottom:1px solid #000;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Company:</td>
+                <td style="border-bottom:1px solid #000;">(insert)</td>
+                <td>&nbsp;</td>
+                <td>Time Requested</td>
+                <td style="border-bottom:1px solid #000;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Project Name:</td>
+                <td style="border-bottom:1px solid #000;">(insert)</td>
+                <td>&nbsp;</td>
+                <td>Surveyors Job #:</td>
+                <td style="border-bottom:1px solid #000;">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Phone Numer:</td>
+                <td style="border-bottom:1px solid #000;">xxx.xxx.xxx</td>
+                <td>&nbsp;</td>
+                <td>JOBSITE FAX NO.:</td>
+                <td style="border-bottom:1px solid #000;">xxx.xxx.xxx</td>
+            </tr>
+        </table>
+    
+    </td></tr>
+</table>
 </div>
 
                             </div>
