@@ -179,7 +179,7 @@
            </table>
        </td>
    </tr>
-   <tr><td colspan="2">&nbsp;</td></tr>
+  
    <tr><td colspan="2" valign="top">
 	 <table width="100%" cellpadding="10" cellspacing="10" border="0">
            <tr>
