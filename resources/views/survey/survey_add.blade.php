@@ -152,16 +152,14 @@
 </div>-->
 <div id="pdf_content" style="display:;">
     <style type="text/css">
-	table td, table th{
-		border:1px solid black;
-	}
+	
         
         
 </style>
-    <table width="80%" cellpadding="0" align="center" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
+    <table width="90%" cellpadding="0" align="center" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
 	<tr>
     	<td><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg" alt="" /></td>
-        <td style="font-size:35px;"><b><i>Survey Request For:<i></b></td>
+        <td style="font-size:25px;"><b><i>Survey Request For:<i></b></td>
     </tr>
     <tr><td colspan="2">&nbsp;</td></tr>
     <tr>
@@ -187,11 +185,11 @@
     	<table width="100%" cellpadding="10" cellspacing="0" border="0">
         	<tr>
             	<td width="50" rowspan="4" valign="top"><b>From</b>:</td>
-                <td width="100">Contact Person:</td>
-                <td style="border-bottom:1px solid #000;" width="30%">(insert)</td>
+                <td width="70">Contact Person:</td>
+                <td style="border-bottom:1px solid #000;">(insert)</td>
                 <td>&nbsp;</td>
-                <td width="100">Day requested:</td>
-                <td style="border-bottom:1px solid #000;" width="30%">&nbsp;</td>
+                <td width="70">Day requested:</td>
+                <td style="border-bottom:1px solid #000;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Company:</td>
