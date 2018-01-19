@@ -188,7 +188,7 @@
                 <td width="70">Contact Person:</td>
                 <td style="border-bottom:1px solid #000;">(insert)</td>
                 
-                <td width="80">Day requested:</td>
+                <td width="90">Day requested:</td>
                 <td style="border-bottom:1px solid #000;">&nbsp;</td>
             </tr>
             <tr>
