@@ -155,8 +155,10 @@
 	table td, table th{
 		border:1px solid black;
 	}
+        @page{margin: 0px;}
+        
 </style>
-    <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
+    <table width="80%" cellpadding="0" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
 	<tr>
     	<td><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg" alt="" /></td>
         <td style="font-size:35px;"><b><i>Survey Request For:<i></b></td>
@@ -185,10 +187,10 @@
     	<table width="100%" cellpadding="10" cellspacing="0" border="0">
         	<tr>
             	<td width="50" rowspan="4" valign="top"><b>From</b>:</td>
-                <td width="120">Contact Person:</td>
+                <td width="100">Contact Person:</td>
                 <td style="border-bottom:1px solid #000;" width="30%">(insert)</td>
-                <td width="100">&nbsp;</td>
-                <td width="120">Day requested:</td>
+                <td>&nbsp;</td>
+                <td width="100">Day requested:</td>
                 <td style="border-bottom:1px solid #000;" width="30%">&nbsp;</td>
             </tr>
             <tr>
