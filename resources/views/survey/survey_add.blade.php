@@ -182,11 +182,47 @@
            <td align="left" valign=bottom>&nbsp;</td>
         </tr>
         <tr>
-            <td><b>From:</b></td>
+            <td rowspan="4" valign="top"><b>From:</b></td>
             <td align="" style="text-align: left" >Contact Person:</td>
             <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
-            <td align="left" >Day requested:</td>
+            <td align="left">Day requested:</td>
             <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
+            <td align="left" valign=bottom>&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="" style="text-align: left" >Company:</td>
+            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
+            <td align="left" >Time requested:</td>
+            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
+            <td align="left" valign=bottom>&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="" style="text-align: left" >Project Name:</td>
+            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
+            <td align="left" >Surveyors Job #:</td>
+            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
+            <td align="left" valign=bottom>&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="" style="text-align: left" >Phone Numer:</td>
+            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
+            <td align="left">JOBSITE FAX NO.:</td>
+            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
+            <td align="left" valign=bottom>&nbsp;</td>
+        </tr>
+        <tr>
+            <td rowspan="10">To:</td>
+            <td align="" style="text-align: left" colspan="4" >SURVEY COORDINATOR:</td>
+            <td align="left" valign=bottom>&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="top" valign=bottom bgcolor="#D9D9D9"><b>Task No.</b></td>
+            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan=3 align="center" valign=bottom bgcolor="#D9D9D9"><b>           DESCRIPTION OF SURVEY REQUIRED:  (Please prioritize &amp;  provide details) </b></td>
+            <td align="left" valign=bottom>&nbsp;</td>
+	</tr>
+        <tr>
+            <td style="">1</td>
+            <td style="border-bottom: 1px solid #000000" colspan="3">&nbsp;</td>
             <td align="left" valign=bottom>&nbsp;</td>
         </tr>
     </table>
