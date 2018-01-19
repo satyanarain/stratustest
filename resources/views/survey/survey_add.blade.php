@@ -152,24 +152,42 @@
 </div>-->
 <div id="pdf_content" style="width:100%; display:;">
     <table style="width: 100%">
+        <colgroup width="5"></colgroup>
+        <colgroup width="10"></colgroup>
+        <colgroup width="30"></colgroup>
+        <colgroup width="10"></colgroup>
+        <colgroup width="30"></colgroup>
+        <colgroup width="10"></colgroup>
         <tr>
-            <td colspan="3"><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg"></td>
+            <td colspan="2"><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg"></td>
+            <td></td>
             <td colspan="2"><i><font face="DUTCH" size=6>Survey Request For:</font></i></b></td>
+            <td align="left" valign=bottom><br></td>
         </tr>
         <tr>
-            <td colspan="3">
+            <td colspan="2">
                 <b><font size=2>1151 Duryea Ave.</font></b></br>
                 <b><font size=2>Irvine, CA  92614</font></b></br>
                 <b><font size=2>Tel: 949.988.3270</font></b>
             </td>
+            <td></td>
             <td colspan="2">
                 <table style="width: 100%">
-                    <tr><td style="border-bottom: 1px solid #000000">Friday, Jan 18, 2018</td></tr>
+                    <tr><td style="border-bottom: 1px solid #000000"><b style="color: #FF0000">Friday, Jan 18, 2018</b></td></tr>
                     <tr><td>Date Service Needed</td></tr>
-                    <tr><td style="border-bottom: 1px solid #000000">Friday, Jan 18, 2018</td></tr>
+                    <tr><td style="border-bottom: 1px solid #000000"><b style="color: #FF0000">12:00 AM</b></td></tr>
                     <tr><td>Time Service Needed</td></tr>
                 </table>
             </td>
+           <td align="left" valign=bottom>&nbsp;</td>
+        </tr>
+        <tr>
+            <td><b>From:</b></td>
+            <td align="" style="text-align: left" >Contact Person:</td>
+            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
+            <td align="left" >Day requested:</td>
+            <td align="left" valign=bottom style="border-bottom: 1px solid #000000">&nbsp;</td>
+            <td align="left" valign=bottom>&nbsp;</td>
         </tr>
     </table>
 </div>
