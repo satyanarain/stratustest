@@ -151,6 +151,11 @@
     <p><strong>Survey Requested Completion By:</strong> <span id="pdf_gen_req_comp_date"></span></p>
 </div>-->
 <div id="pdf_content" style="display:;">
+    <style type="text/css">
+	table td, table th{
+		border:1px solid black;
+	}
+</style>
     <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
 	<tr>
     	<td><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg" alt="" /></td>
