@@ -187,28 +187,28 @@
             	<td width="50" rowspan="4" valign="top"><b>From</b>:</td>
                 <td width="70">Contact Person:</td>
                 <td style="border-bottom:1px solid #000;">(insert)</td>
-                <td>&nbsp;</td>
-                <td width="70">Day requested:</td>
+                
+                <td width="80">Day requested:</td>
                 <td style="border-bottom:1px solid #000;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Company:</td>
                 <td style="border-bottom:1px solid #000;">(insert)</td>
-                <td>&nbsp;</td>
+                
                 <td>Time Requested</td>
                 <td style="border-bottom:1px solid #000;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Project Name:</td>
                 <td style="border-bottom:1px solid #000;">(insert)</td>
-                <td>&nbsp;</td>
+                
                 <td>Surveyors Job #:</td>
                 <td style="border-bottom:1px solid #000;">&nbsp;</td>
             </tr>
             <tr>
                 <td>Phone Numer:</td>
                 <td style="border-bottom:1px solid #000;">xxx.xxx.xxx</td>
-                <td>&nbsp;</td>
+                
                 <td>JOBSITE FAX NO.:</td>
                 <td style="border-bottom:1px solid #000;">xxx.xxx.xxx</td>
             </tr>
