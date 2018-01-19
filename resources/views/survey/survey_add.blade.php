@@ -151,12 +151,20 @@
     <p><strong>Survey Requested Completion By:</strong> <span id="pdf_gen_req_comp_date"></span></p>
 </div>-->
 <div id="pdf_content" style="display:;">
-    <table width="90%" cellpadding="0" align="center" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>13 Form</title>
+</head>
+
+<body>
+<table width="90%" cellpadding="0" align="center" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
     <tr>
        <td><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg" alt="" /></td>
        <td style="font-size:25px;"><b><i>Survey Request For:<i></b></td>
    </tr>
-   
+   <tr><td colspan="2">&nbsp;</td></tr>
    <tr>
        <td valign="top">
            <table width="100%" cellpadding="5" cellspacing="0" border="0">
@@ -174,7 +182,7 @@
            </table>
        </td>
    </tr>
-   
+   <tr><td colspan="2">&nbsp;</td></tr>
    <tr><td colspan="2" valign="top">
 	 <table width="100%" cellpadding="10" cellspacing="10" border="0">
            <tr>
@@ -285,9 +293,13 @@
            </tr>
          </table>
    </td></tr>
-   
+  <tr><td colspan="2">&nbsp;</td></tr>  
+  <tr><td colspan="2">&nbsp;</td></tr>  
   <tr><td colspan="2" style="border-bottom:2px solid #000;font-size:30px;"><b>NOTE: MINIMUM 48 HOUR NOTICE REQUIRED FOR ALL SURVEY REQUESTS</b></td></tr>  
 </table>
+</body>
+
+</html>
 </div>
 
                             </div>
