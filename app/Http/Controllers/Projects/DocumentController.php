@@ -524,7 +524,7 @@ class DocumentController extends Controller {
       $data = $document['document_generated'];
       $document_path = $document_path['document_path'];
       $fname = rand(11111,99999).'_'.date("Ymd").'.pdf'; // name the file
-      return PDF::loadHTML($data)->setWarnings(false)->save($document_path.$fname);
+      PDF::loadHTML($data)->setPaper('A4', 'portrait')->setWarnings(false)->save($document_path.$fname);
     // echo '<pre>';->setPaper('letter', 'portrait')
     // print_r($data);
     // // print_r($document_path);
