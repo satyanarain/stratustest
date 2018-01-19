@@ -156,7 +156,7 @@
        <td><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg" alt="" /></td>
        <td style="font-size:25px;"><b><i>Survey Request For:<i></b></td>
    </tr>
-   <tr><td colspan="2">&nbsp;</td></tr>
+   
    <tr>
        <td valign="top">
            <table width="100%" cellpadding="5" cellspacing="0" border="0">
@@ -174,7 +174,7 @@
            </table>
        </td>
    </tr>
-   <tr><td colspan="2">&nbsp;</td></tr>
+   
    <tr><td colspan="2" valign="top">
 	 <table width="100%" cellpadding="10" cellspacing="10" border="0">
            <tr>
@@ -285,8 +285,7 @@
            </tr>
          </table>
    </td></tr>
-  <tr><td colspan="2">&nbsp;</td></tr>  
-  <tr><td colspan="2">&nbsp;</td></tr>  
+   
   <tr><td colspan="2" style="border-bottom:2px solid #000;font-size:30px;"><b>NOTE: MINIMUM 48 HOUR NOTICE REQUIRED FOR ALL SURVEY REQUESTS</b></td></tr>  
 </table>
 </div>
