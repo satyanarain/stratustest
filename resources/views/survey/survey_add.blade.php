@@ -176,80 +176,65 @@
    </tr>
    
    <tr><td colspan="2" valign="top">
-	 <table width="80%" cellpadding="10" cellspacing="10" border="0">
+	 <table width="100%" cellpadding="10" cellspacing="10" border="0">
            <tr>
                <td width="50" rowspan="4" valign="top"><b>From</b>:</td>
                <td width="70">Contact Person:</td>
-               <td style="border-bottom:1px solid #000;">(insert)</td>    
+               <td style="border-bottom:1px solid #000;"></td>    
                <td width="90">Day requested:</td>
                <td style="border-bottom:1px solid #000;">&nbsp;</td>
            </tr>
            <tr>
                <td>Company:</td>
-               <td style="border-bottom:1px solid #000;">(insert)</td>
-			   <td>Time Requested</td>
+               <td style="border-bottom:1px solid #000;">&nbsp;</td>
+                <td>Time Requested</td>
                <td style="border-bottom:1px solid #000;">&nbsp;</td>
            </tr>
            <tr>
                <td>Project Name:</td>
-               <td style="border-bottom:1px solid #000;">(insert)</td>              
+               <td style="border-bottom:1px solid #000;">&nbsp;</td>              
                <td>Surveyors Job #:</td>
                <td style="border-bottom:1px solid #000;">&nbsp;</td>
            </tr>
            <tr>
                <td>Phone Numer:</td>
-               <td style="border-bottom:1px solid #000;">xxx.xxx.xxx</td>
+               <td style="border-bottom:1px solid #000;">&nbsp;</td>
                <td>JOBSITE FAX NO.:</td>
-               <td style="border-bottom:1px solid #000;">xxx.xxx.xxx</td>
+               <td style="border-bottom:1px solid #000;">&nbsp;</td>
            </tr>
            <tr><td colspan="5">&nbsp;</td></tr>
            
            <tr>
-           		<td rowspan="10" valign="top"><b>To:</b></td>
+                <td rowspan="6" valign="top"><b>To:</b></td>
                 <td colspan="4"><b>SURVEY COORDINATOR:</b></td>
            </tr>
            <tr>
                 <td colspan="4">
                 	<table width="100%" cellpadding="10" cellspacing="0" border="1" bgcolor="#d9d9d9" bordercolor="#999999" style="border-collapse:collapse;">
                     	<tr>
-                        	<td width="70"><b>Task No.</b></td>
+                            <td width="70"><b>Task No.</b></td>
                             <td><b>DESCRIPTION OF SURVEY REQUIRED: (Please prioritize & provide details)</b></td>
                         </tr>
                     </table>
                 </td>
            </tr>
            <tr>
-                <td style="border-bottom:1px solid #000;" align="center">(no.)</td>
-                <td style="border-bottom:1px solid #000;" colspan="3">(insert)</td>
+                <td style="border-bottom:1px solid #000;" align="center">1</td>
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
            </tr> 
            <tr>
-                <td style="border-bottom:1px solid #000;" align="center">(no.)</td>
-                <td style="border-bottom:1px solid #000;" colspan="3">(insert)</td>
+                <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
            </tr> 
            <tr>
-                <td style="border-bottom:1px solid #000;" align="center">(no.)</td>
-                <td style="border-bottom:1px solid #000;" colspan="3">(insert)</td>
+                <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
            </tr> 
            <tr>
-                <td style="border-bottom:1px solid #000;" align="center">(no.)</td>
-                <td style="border-bottom:1px solid #000;" colspan="3">(insert)</td>
+                <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
            </tr> 
-           <tr>
-                <td style="border-bottom:1px solid #000;" align="center">(no.)</td>
-                <td style="border-bottom:1px solid #000;" colspan="3">(insert)</td>
-           </tr> 
-           <tr>
-                <td style="border-bottom:1px solid #000;" align="center">(no.)</td>
-                <td style="border-bottom:1px solid #000;" colspan="3">(insert)</td>
-           </tr> 
-           <tr>
-                <td style="border-bottom:1px solid #000;" align="center">(no.)</td>
-                <td style="border-bottom:1px solid #000;" colspan="3">(insert)</td>
-           </tr> 
-           <tr>
-                <td style="border-bottom:1px solid #000;" align="center">(no.)</td>
-                <td style="border-bottom:1px solid #000;" colspan="3">(insert)</td>
-           </tr>  
+             
            <tr><td colspan="5" style="border-bottom:2px solid #000;">&nbsp;</td></tr>
            
           <tr>
