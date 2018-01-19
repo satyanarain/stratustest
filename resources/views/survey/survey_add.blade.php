@@ -159,14 +159,14 @@
    
    <tr>
        <td valign="top">
-           <table width="100%" cellpadding="5" cellspacing="0" border="0">
+           <table width="80%" cellpadding="5" cellspacing="0" border="0">
                <tr><td><b>1151 Duryea Ave.</b></td></tr>
                <tr><td><b>Irvine, CA 92614</b></td></tr>
                <tr><td><b>Tel: 949.988.3270</b></td></tr>
            </table>    
        </td>
-       <td valign="top" width="40%">
-           <table width="100%" cellpadding="10" cellspacing="0" border="0">
+       <td valign="top">
+           <table width="80%" cellpadding="10" cellspacing="0" border="0">
                <tr><td style="color:#F00; border-bottom:2px solid #000;"><b>Friday, May 09, 2014</b></td></tr>
                <tr><td>Date Service Needed</td></tr>
                <tr><td style="color:#F00; border-bottom:2px solid #000;"><b>12:00 AM</b></td></tr>
