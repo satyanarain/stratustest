@@ -151,7 +151,7 @@
     <p><strong>Survey Requested Completion By:</strong> <span id="pdf_gen_req_comp_date"></span></p>
 </div>-->
 <div id="pdf_content" style="display:;">
-    <table cellpadding="0" align="center" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
+    <table width="90%" cellpadding="0" align="center" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
     <tr>
        <td><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg" alt="" /></td>
        <td style="font-size:25px;"><b><i>Survey Request For:<i></b></td>
@@ -159,14 +159,14 @@
    
    <tr>
        <td valign="top">
-           <table cellpadding="5" cellspacing="0" border="0">
+           <table width="100%" cellpadding="5" cellspacing="0" border="0">
                <tr><td><b>1151 Duryea Ave.</b></td></tr>
                <tr><td><b>Irvine, CA 92614</b></td></tr>
                <tr><td><b>Tel: 949.988.3270</b></td></tr>
            </table>    
        </td>
-       <td valign="top" >
-           <table  cellpadding="10" cellspacing="0" border="0">
+       <td valign="top" width="40%">
+           <table width="100%" cellpadding="10" cellspacing="0" border="0">
                <tr><td style="color:#F00; border-bottom:2px solid #000;"><b>Friday, May 09, 2014</b></td></tr>
                <tr><td>Date Service Needed</td></tr>
                <tr><td style="color:#F00; border-bottom:2px solid #000;"><b>12:00 AM</b></td></tr>
@@ -176,12 +176,12 @@
    </tr>
    
    <tr><td colspan="2" valign="top">
-	 <table cellpadding="10" cellspacing="10" border="0">
+	 <table width="100%" cellpadding="10" cellspacing="10" border="0">
            <tr>
-               <td  rowspan="4" valign="top"><b>From</b>:</td>
-               <td >Contact Person:</td>
+               <td width="50" rowspan="4" valign="top"><b>From</b>:</td>
+               <td width="70">Contact Person:</td>
                <td style="border-bottom:1px solid #000;"></td>    
-               <td >Day requested:</td>
+               <td width="90">Day requested:</td>
                <td style="border-bottom:1px solid #000;">&nbsp;</td>
            </tr>
            <tr>
@@ -205,14 +205,14 @@
            <tr><td colspan="5">&nbsp;</td></tr>
            
            <tr>
-                <td rowspan="6" valign="top"><b>To:</b></td>
+                <td rowspan="10" valign="top"><b>To:</b></td>
                 <td colspan="4"><b>SURVEY COORDINATOR:</b></td>
            </tr>
            <tr>
                 <td colspan="4">
-                	<table cellpadding="10" cellspacing="0" border="1" bgcolor="#d9d9d9" bordercolor="#999999" style="border-collapse:collapse;">
+                	<table width="100%" cellpadding="10" cellspacing="0" border="1" bgcolor="#d9d9d9" bordercolor="#999999" style="border-collapse:collapse;">
                     	<tr>
-                            <td ><b>Task No.</b></td>
+                            <td width="70"><b>Task No.</b></td>
                             <td><b>DESCRIPTION OF SURVEY REQUIRED: (Please prioritize & provide details)</b></td>
                         </tr>
                     </table>
@@ -234,7 +234,22 @@
                 <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
                 <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
            </tr> 
-             
+           <tr>
+               <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
+           </tr> 
+           <tr>
+                <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
+           </tr> 
+           <tr>
+                <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
+           </tr> 
+           <tr>
+                <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
+           </tr>  
            <tr><td colspan="5" style="border-bottom:2px solid #000;">&nbsp;</td></tr>
            
           <tr>
