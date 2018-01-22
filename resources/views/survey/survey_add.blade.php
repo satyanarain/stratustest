@@ -206,7 +206,7 @@
         </table>
        </td></tr>
     </table>
-    <table width="90%" cellpadding="0" align="center" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;"> 
+    <table width="90%" cellpadding="10" align="center" cellspacing="10" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;"> 
            <tr>
             <td rowspan="6" valign="top"><b>To:</b></td>
             <td colspan="4"><b>SURVEY COORDINATOR:</b></td>
