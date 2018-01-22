@@ -212,9 +212,14 @@
             <td colspan="4"><b>SURVEY COORDINATOR:</b></td>
           </tr>
             <tr>
-              <td style="border-bottom:1px solid #000;" align="center">Task No.</td>
-              <td style="border-bottom:1px solid #000;" colspan="3"><b>DESCRIPTION OF SURVEY REQUIRED: (Please prioritize & provide details)</b></td>
-
+              <td colspan="4">
+                    <table width="100%" cellpadding="10" cellspacing="0" border="1" bgcolor="#d9d9d9" bordercolor="#999999" style="border-collapse:collapse;">
+                    <tr>
+                        <td width="70"><b>Task No.</b></td>
+                        <td><b>DESCRIPTION OF SURVEY REQUIRED: (Please prioritize & provide details)</b></td>
+                      </tr>
+                    </table>
+              </td>
             </tr>
             <tr>
             <td style="border-bottom:1px solid #000;" align="center">1</td>
@@ -237,7 +242,7 @@
              
            <tr><td colspan="5" style="border-bottom:2px solid #000;">&nbsp;</td></tr>
         </table>
-        <table width="100%" cellpadding="10" cellspacing="10" border="0">
+    <table width="100%" cellpadding="10" cellspacing="10" border="0">
           <tr>
               <td rowspan="6" valign="top"><b>CONFIRMED:</b></td>
               <td>Plans prepared by:</td>
@@ -269,7 +274,7 @@
                <td>Digital Files Used:</td>
                <td style="border-bottom:1px solid #000;" colspan="3"></td>
            </tr>
-         </table>
+    </table>
    <table width="90%" cellpadding="0" align="center" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
    
   <tr><td colspan="2" style="border-bottom:2px solid #000;font-size:15px;"><b>NOTE: MINIMUM 48 HOUR NOTICE REQUIRED FOR ALL SURVEY REQUESTS</b></td></tr>  
