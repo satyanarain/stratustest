@@ -205,7 +205,7 @@
            <tr><td colspan="5">&nbsp;</td></tr>
            
            <tr>
-                <td rowspan="6" valign="top"><b>To:</b></td>
+                <td  valign="top"><b>To:</b></td>
                 <td colspan="4"><b>SURVEY COORDINATOR:</b></td>
            </tr>
            <tr>
@@ -219,20 +219,24 @@
                 </td>
            </tr>
            <tr>
+               <td>&nbsp;</td>
                 <td style="border-bottom:1px solid #000;" align="center">1</td>
-<!--                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>-->
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
            </tr> 
            <tr>
+               <td>&nbsp;</td>
                 <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
-                
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
            </tr> 
            <tr>
+               <td>&nbsp;</td>
                 <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
-                
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
            </tr> 
            <tr>
+               <td>&nbsp;</td>
                 <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
-                
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
            </tr> 
              
            <tr><td colspan="5" style="border-bottom:2px solid #000;">&nbsp;</td></tr>
