@@ -159,7 +159,7 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
-<script src="{{ url('/resources/assets/js/dropzone_groupdoc.js') }}"></script>
+<!--<script src="{{ url('/resources/assets/js/dropzone_groupdoc.js') }}"></script>-->
 <script type="text/javascript">
 $("input[name='additonal_cost_type']").click(function(){
     if($('input:radio[name=additonal_cost_type]:checked').val() == "yes"){
@@ -184,5 +184,5 @@ $("input[name='additonal_day_type']").click(function(){
 });
 </script>
 <script src="{{ url('/resources/assets/dist/req_for_info_add.js') }}"></script>
-
+<script src="{{ url('/resources/assets/js/dropzone.js') }}"></script>
 @include('include/footer')

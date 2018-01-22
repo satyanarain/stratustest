@@ -2,7 +2,7 @@ $(document).ready(function() {
     // Get login user profile data
     $("#submit_new_btn").hide();
     // $("#bid_amount").hide();
-    $('#upload_doc_id').removeAttr('value');
+    //$('#upload_doc_id').removeAttr('value');
     var url = $(location).attr('href').split( '/' );
     project_id = url[ url.length - 3]; // projects
     // console.log(project_id);

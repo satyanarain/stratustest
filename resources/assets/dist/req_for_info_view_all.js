@@ -133,7 +133,7 @@
 			  	else {
 			  		if(val.ri_request_status == 'active'){
 			  			//req_info_path_value = '<a href="https://apps.groupdocs.com/document-viewer/embed/'+val.file_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
-                                                req_info_path_value = '<a href="'+val.file_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+                                                req_info_path_value = '<a href="'+baseUrl+val.file_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
 			  		}
 			  		else {
 			  			req_info_path_value = '<a href="'+baseUrl+'404" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
