@@ -204,7 +204,9 @@
            </tr>
            <tr><td colspan="5">&nbsp;</td></tr>
         </table>
-        <table width="100%" cellpadding="10" cellspacing="10" border="0">   
+       </td></tr>
+    </table>
+    <table width="90%" cellpadding="0" align="center" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;"> 
            <tr>
             <td rowspan="6" valign="top"><b>To:</b></td>
             <td colspan="4"><b>SURVEY COORDINATOR:</b></td>
@@ -268,7 +270,7 @@
                <td style="border-bottom:1px solid #000;" colspan="3"></td>
            </tr>
          </table>
-   </td></tr>
+   <table width="90%" cellpadding="0" align="center" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
    
   <tr><td colspan="2" style="border-bottom:2px solid #000;font-size:15px;"><b>NOTE: MINIMUM 48 HOUR NOTICE REQUIRED FOR ALL SURVEY REQUESTS</b></td></tr>  
 </table>
