@@ -85,7 +85,7 @@
             <div class="form-group col-md-12">
                 <label>Requested Completion By <span class="text-danger">*</span></label>
                 <div class='input-group date form_datetime' id='datetimepicker1'>
-                    <input type='text' class="form-control" id="survey_completion_date" value="2018-01-18 16:13" />
+                    <input type='text' class="form-control" id="survey_completion_date" value="" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
