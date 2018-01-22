@@ -123,7 +123,7 @@
                     <label for="name_of_report" style="padding-top: 15px;">Upload Request for Information <span class="text-danger">*</span></label>
                     <section class="panel upload_doc_panel_performance" id="upload_performance">
                         <div class="panel-body" style="padding: 0px;">
-                            <form id="my-awesome-dropzone" action="{{ url('/group_doc/index.php') }}" class="dropzone">
+                            <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                             <input type="hidden" name="document_path" value="/uploads/request_info/">
                             </form>
                         </div>
