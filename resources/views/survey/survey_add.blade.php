@@ -150,7 +150,7 @@
     <p><strong>Survey Description:</strong> <span id="pdf_gen_survey_description"></span></p>
     <p><strong>Survey Requested Completion By:</strong> <span id="pdf_gen_req_comp_date"></span></p>
 </div>-->
-<div id="pdf_content" style="display:;">
+<div id="pdf_content" style="display:none;">
     <table width="90%" cellpadding="0" align="center" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
     <tr>
        <td><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg" alt="" /></td>
@@ -167,9 +167,9 @@
        </td>
        <td valign="top" width="40%">
            <table width="100%" cellpadding="10" cellspacing="0" border="0">
-               <tr><td style="color:#F00; border-bottom:2px solid #000;"><b>Friday, May 09, 2014</b></td></tr>
+               <tr><td style="color:#F00; border-bottom:2px solid #000;"><b><?php echo date('l, M d, Y');?></b></td></tr>
                <tr><td>Date Service Needed</td></tr>
-               <tr><td style="color:#F00; border-bottom:2px solid #000;"><b>12:00 AM</b></td></tr>
+               <tr><td style="color:#F00; border-bottom:2px solid #000;"><b><?php echo date('h:i A');?></b></td></tr>
                <tr><td>Time Service Needed</td></tr>
            </table>
        </td>
@@ -182,19 +182,19 @@
                <td width="70">Contact Person:</td>
                <td style="border-bottom:1px solid #000;"></td>    
                <td width="90">Day requested:</td>
-               <td style="border-bottom:1px solid #000;">&nbsp;</td>
+               <td style="border-bottom:1px solid #000;" id="pdf_gen_req_comp_date">&nbsp;</td>
            </tr>
            <tr>
                <td>Company:</td>
-               <td style="border-bottom:1px solid #000;">&nbsp;</td>
+               <td style="border-bottom:1px solid #000;" id="pdf_gen_contractor_name">&nbsp;</td>
                 <td>Time Requested</td>
-               <td style="border-bottom:1px solid #000;">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" id="pdf_gen_req_comp_time">&nbsp;</td>
            </tr>
            <tr>
                <td>Project Name:</td>
-               <td style="border-bottom:1px solid #000;">&nbsp;</td>              
+               <td style="border-bottom:1px solid #000;" id="pdf_gen_project_name">&nbsp;</td>              
                <td>Surveyors Job #:</td>
-               <td style="border-bottom:1px solid #000;">&nbsp;</td>
+               <td style="border-bottom:1px solid #000;" id="pdf_gen_survey_number">&nbsp;</td>
            </tr>
            <tr>
                <td>Phone Numer:</td>
