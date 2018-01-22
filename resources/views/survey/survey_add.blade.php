@@ -205,14 +205,10 @@
            <tr><td colspan="5">&nbsp;</td></tr>
            
            <tr>
-            <td rowspan="6" valign="top"><b>To:</b></td>
+            <td rowspan="5" valign="top"><b>To:</b></td>
             <td colspan="4"><b>SURVEY COORDINATOR:</b></td>
           </tr>
-            <tr>
-              <td colspan="4">
-                    
-              </td>
-            </tr>
+            
             <tr>
               <td style="border-bottom:1px solid #000;" align="center">1</td>
               <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
