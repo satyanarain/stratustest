@@ -209,7 +209,7 @@
                 <td colspan="4"><b>SURVEY COORDINATOR:</b></td>
            </tr>
            <tr>
-                <td colspan="4">
+                <td colspan="5">
                 	<table width="100%" cellpadding="10" cellspacing="0" border="1" bgcolor="#d9d9d9" bordercolor="#999999" style="border-collapse:collapse;">
                     	<tr>
                             <td width="70"><b>Task No.</b></td>
