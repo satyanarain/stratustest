@@ -205,7 +205,7 @@
            <tr><td colspan="5">&nbsp;</td></tr>
            
            <tr>
-            <td rowspan="2" valign="top"><b>To:</b></td>
+            <td rowspan="6" valign="top"><b>To:</b></td>
             <td colspan="4"><b>SURVEY COORDINATOR:</b></td>
           </tr>
             <tr>
