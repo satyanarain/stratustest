@@ -205,37 +205,6 @@
            <tr><td colspan="5">&nbsp;</td></tr>
            
            
-           <tr>
-               <td>&nbsp;</td>
-                <td colspan="4">
-                	<table width="100%" cellpadding="10" cellspacing="0" border="1" bgcolor="#d9d9d9" bordercolor="#999999" style="border-collapse:collapse;">
-                    	<tr>
-                            <td width="70"><b>Task No.</b></td>
-                            <td><b>DESCRIPTION OF SURVEY REQUIRED: (Please prioritize & provide details)</b></td>
-                        </tr>
-                    </table>
-                </td>
-           </tr>
-           <tr>
-               <td>&nbsp;</td>
-                <td style="border-bottom:1px solid #000;" align="center">1</td>
-                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
-           </tr> 
-           <tr>
-               <td>&nbsp;</td>
-                <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
-                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
-           </tr> 
-           <tr>
-               <td>&nbsp;</td>
-                <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
-                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
-           </tr> 
-           <tr>
-               <td>&nbsp;</td>
-                <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
-                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
-           </tr> 
              
            <tr><td colspan="5" style="border-bottom:2px solid #000;">&nbsp;</td></tr>
            
