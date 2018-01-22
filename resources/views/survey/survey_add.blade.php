@@ -210,12 +210,7 @@
           </tr>
             <tr>
               <td colspan="4">
-                    <table width="100%" cellpadding="10" cellspacing="0" border="1" bgcolor="#d9d9d9" style="border-collapse:collapse;">
-                    <tr>
-                        <td width="70"><b>Task No.</b></td>
-                        <td><b>DESCRIPTION OF SURVEY REQUIRED: (Please prioritize & provide details)</b></td>
-                      </tr>
-                </table>
+                    
               </td>
             </tr>
             <tr>
