@@ -208,7 +208,7 @@
     </table>
     <table width="90%" cellpadding="10" align="center" cellspacing="10" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;"> 
            <tr>
-            <td rowspan="6" valign="top"><b>To:</b></td>
+            <td rowspan="8" valign="top"><b>To:</b></td>
             <td colspan="4"><b>SURVEY COORDINATOR:</b></td>
           </tr>
             <tr>
@@ -241,7 +241,10 @@
             <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
             <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
           </tr>  
-            
+          <tr>
+            <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
+            <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
+          </tr>   
              
            <tr><td colspan="5" style="border-bottom:2px solid #000;">&nbsp;</td></tr>
         </table>
