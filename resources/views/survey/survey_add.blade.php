@@ -158,7 +158,7 @@
    </tr>
    
    <tr>
-       <td valign="top">
+       <td valign="top" width="60%">
            <table width="100%" cellpadding="5" cellspacing="0" border="0">
                <tr><td><b>1151 Duryea Ave.</b></td></tr>
                <tr><td><b>Irvine, CA 92614</b></td></tr>
@@ -234,39 +234,55 @@
                 <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
                 <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
            </tr> 
+           <tr>
+               <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
+           </tr> 
+           <tr>
+                <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
+           </tr> 
+           <tr>
+                <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
+           </tr> 
+           <tr>
+                <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
+                <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
+           </tr>
              
            <tr><td colspan="5" style="border-bottom:2px solid #000;">&nbsp;</td></tr>
            
           <tr>
               <td rowspan="6" valign="top"><b>CONFIRMED:</b></td>
               <td>Plans prepared by:</td>
-              <td style="border-bottom:1px solid #000;">(insert)</td>    
+              <td style="border-bottom:1px solid #000;"></td>    
               <td>Dated</td>
               <td style="border-bottom:1px solid #000;">&nbsp;</td>
           </tr>
           <tr>
                <td>Staked by:</td>
-               <td style="border-bottom:1px solid #000;">(insert)</td>
+               <td style="border-bottom:1px solid #000;"></td>
 			   <td>Dated:</td>
                <td style="border-bottom:1px solid #000;">&nbsp;</td>
            </tr>
            <tr>
                <td>Calc'ed By:</td>
-               <td style="border-bottom:1px solid #000;">(insert)</td>
+               <td style="border-bottom:1px solid #000;"></td>
 			   <td>Dated:</td>
                <td style="border-bottom:1px solid #000;">&nbsp;</td>
            </tr>
            <tr>
                <td>Comments:</td>
-               <td style="border-bottom:1px solid #000;" colspan="3">(insert)</td>
+               <td style="border-bottom:1px solid #000;" colspan="3"></td>
            </tr>
            <tr>
                <td>Project Mgr.</td>
-               <td style="border-bottom:1px solid #000;" colspan="3">(insert)</td>
+               <td style="border-bottom:1px solid #000;" colspan="3"></td>
            </tr>
            <tr>
                <td>Digital Files Used:</td>
-               <td style="border-bottom:1px solid #000;" colspan="3">(insert)</td>
+               <td style="border-bottom:1px solid #000;" colspan="3"></td>
            </tr>
          </table>
    </td></tr>
