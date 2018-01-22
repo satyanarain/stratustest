@@ -210,7 +210,7 @@
           </tr>
             <tr>
               <td style="border-bottom:1px solid #000;" align="center">Task No.</td>
-              <td style="border-bottom:1px solid #000;" colspan="3"><b>DESCRIPTION OF SURVEY REQUIRED: (Please prioritize & provide details)</b></td>
+              <td style="border-bottom:1px solid #000;" colspan="3"><b>DESCRIPTION OF SURVEY REQUIRED: ()</b></td>
 
             </tr>
             <tr>
