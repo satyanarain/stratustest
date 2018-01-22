@@ -223,7 +223,7 @@
             </tr>
             <tr>
             <td style="border-bottom:1px solid #000;" align="center">1</td>
-            <td style="border-bottom:1px solid #000;" colspan="3">&nbsp;</td>
+            <td style="border-bottom:1px solid #000;" colspan="3" id="pdf_gen_survey_description">&nbsp;</td>
           </tr> 
           <tr>
             <td style="border-bottom:1px solid #000;" align="center">&nbsp;</td>
