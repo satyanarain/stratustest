@@ -216,7 +216,7 @@
             
             
              
-           <tr><td colspan="5" style="border-bottom:2px solid #000; height: 50px;">&nbsp;</td></tr>
+           <tr><td colspan="5" style="border-bottom:2px solid #000;">&nbsp;</td></tr>
            
           <tr>
               <td rowspan="6" valign="top"><b>CONFIRMED:</b></td>
@@ -252,7 +252,7 @@
          </table>
    </td></tr>
    
-  <tr><td colspan="2" style="border-bottom:2px solid #000;font-size:30px;"><b>NOTE: MINIMUM 48 HOUR NOTICE REQUIRED FOR ALL SURVEY REQUESTS</b></td></tr>  
+  <tr><td colspan="2" style="border-bottom:2px solid #000;font-size:25px;"><b>NOTE: MINIMUM 48 HOUR NOTICE REQUIRED FOR ALL SURVEY REQUESTS</b></td></tr>  
 </table>
 </div>
 
