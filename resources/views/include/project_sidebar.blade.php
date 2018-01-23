@@ -192,12 +192,12 @@
                         </ul>
                     </li>
 
-                    <li style="display: none;" class="project_setting">
+<!--                    <li style="display: none;" class="project_setting">
                         <h3 class="navigation-title">Project Setting</h3>
                     </li>
                     <li style="display: none;" class="project_setting">
                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/project_currency/update"><i class="fa fa-usd"></i><span>Project Currency</span></a>
-                    </li>
+                    </li>-->
                   <!--   <li style="display: none;" class="project_setting">
                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/project_wage_determination/update"><span>Project Wage Determination</span></a>
                     </li> -->
