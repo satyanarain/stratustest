@@ -4,6 +4,7 @@ $(document).ready(function() {
     // Get login user profile data
     $("#company_name").hide();
     var role = localStorage.getItem('u_role');
+    //console.log(role+'lll');
     var token = localStorage.getItem('u_token');
     var url = $(location).attr('href').split( '/' );
     project_id  = url[ url.length - 3 ]; // project_id
@@ -282,7 +283,7 @@ $(document).ready(function() {
             }
         });
         var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
-        if(add_company_on_fly_permission>0){
+        if(add_company_on_fly_permission>0 || role=="owner"){
         $(".company_name").append(
             '<option style="font-weight:bold;">Add New Company</option>'
         )}

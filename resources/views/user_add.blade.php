@@ -64,7 +64,6 @@
                                                 <option value="work_fax">Work Fax</option>
                                                 <option value="home_fax">Home Fax</option>
                                                 <option value="skype">Skype</option>
-                                                <option value="pager">Pager</option>
                                                 <option value="work_email">Email</option>
                                                 <option value="other">Other</option>
                                             </select>

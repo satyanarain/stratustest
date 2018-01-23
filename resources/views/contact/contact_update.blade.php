@@ -139,38 +139,49 @@
                             <input type="checkbox" id="select_all" value="select_all">
                             <label>SELECT ALL</label>
                         </span>
+                        &nbsp;
+                        <span style="background-color: #69c2fe; padding: 3px 15px 0px; color: #fff; font-weight: bold; float: right; border-radius: 3px; margin-right: 10px;">
+                            <input type="checkbox" id="select_all_read_only" value="select_all_read_only">
+                            <label>Select All: Read-Only</label>
+                        </span>
+                        &nbsp;
+                        <span style="background-color: #69c2fe; padding: 3px 15px 0px; color: #fff; font-weight: bold; float: right; border-radius: 3px; margin-right: 10px;">
+                            <input type="checkbox" id="select_all_non_read_only" value="select_all_non_read_only">
+                            <label>Select All: Non Read-Only</label>
+                        </span>
                     </div>
                     <div class="form-group col-md-12" id="user_permissions">
+                        <h3 style="border-bottom:1px solid red">Pre-Construction</h3>
                         <h4>Project Contact</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="contact_view_permission_all" value="contact_view_permission_all">
+                            <input type="checkbox" class="read_only" name="permission_key[]" id="contact_view_permission_all" value="contact_view_permission_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="contact_update" value="contact_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="contact_update" value="contact_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="contact_add" value="contact_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="contact_add" value="contact_add">
                                 <label>Add</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="contact_remove" value="contact_remove">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="contact_remove" value="contact_remove">
                                 <label>Remove</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Project Standard / Specification </h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="standard_view_all" value="standard_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="standard_view_all" value="standard_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="standard_update" value="standard_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="standard_update" value="standard_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="standard_add" value="standard_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="standard_add" value="standard_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
@@ -192,242 +203,242 @@
 
                         <h4>Project Plan</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="plan_view_all" value="plan_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="plan_view_all" value="plan_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="plan_update" value="plan_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="plan_update" value="plan_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="plan_add" value="plan_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="plan_add" value="plan_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Geotechnical Report</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="geotechnical_view_all" value="geotechnical_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="geotechnical_view_all" value="geotechnical_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="geotechnical_update" value="geotechnical_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="geotechnical_update" value="geotechnical_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="geotechnical_add" value="geotechnical_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="geotechnical_add" value="geotechnical_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>SWPPP / WPCP</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="swppp_view_all" value="swppp_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="swppp_view_all" value="swppp_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="swppp_update" value="swppp_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="swppp_update" value="swppp_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="swppp_add" value="swppp_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="swppp_add" value="swppp_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Bid Documents</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="bid_document_view_all" value="bid_document_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="bid_document_view_all" value="bid_document_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="bid_document_update" value="bid_document_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="bid_document_update" value="bid_document_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="bid_document_add" value="bid_document_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="bid_document_add" value="bid_document_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Notice of Award</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="notice_award_view_all" value="notice_award_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="notice_award_view_all" value="notice_award_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="notice_award_update" value="notice_award_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="notice_award_update" value="notice_award_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="notice_award_add" value="notice_award_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="notice_award_add" value="notice_award_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Contracts</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="contract_view_all" value="contract_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="contract_view_all" value="contract_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="contract_update" value="contract_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="contract_update" value="contract_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="contract_add" value="contract_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="contract_add" value="contract_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Contract Item</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="contract_item_view_all" value="contract_item_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="contract_item_view_all" value="contract_item_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="contract_item_update" value="contract_item_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="contract_item_update" value="contract_item_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="contract_item_add" value="contract_item_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="contract_item_add" value="contract_item_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Certificate of Insurance</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="certificate_view_all" value="certificate_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="certificate_view_all" value="certificate_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="certificate_update" value="certificate_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="certificate_update" value="certificate_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="certificate_add" value="certificate_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="certificate_add" value="certificate_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Contractor Bond</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="bond_view_all" value="bond_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="bond_view_all" value="bond_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="bond_update" value="bond_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="bond_update" value="bond_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="bond_add" value="bond_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="bond_add" value="bond_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Notice of Proceed</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="notice_proceed_view_all" value="notice_proceed_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="notice_proceed_view_all" value="notice_proceed_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="notice_proceed_update" value="notice_proceed_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="notice_proceed_update" value="notice_proceed_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="notice_proceed_add" value="notice_proceed_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="notice_proceed_add" value="notice_proceed_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
-
+                        <h3 style="border-bottom:1px solid red">During Construction</h3>
                         <h4>Request for Information</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="rfi_view_all" value="rfi_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="rfi_view_all" value="rfi_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="rfi_update" value="rfi_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="rfi_update" value="rfi_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="rfi_add" value="rfi_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="rfi_add" value="rfi_add">
                                 <label>Add</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="rfi_log" value="rfi_log">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="rfi_log" value="rfi_log">
                                 <label>RFI Log</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="rfi_review_view_all" value="rfi_review_view_all">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="rfi_review_view_all" value="rfi_review_view_all">
                                 <label>Review View All</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="rfi_review_update" value="rfi_review_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="rfi_review_update" value="rfi_review_update">
                                 <label>Review Edit</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Submittal</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="submittal_view_all" value="submittal_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="submittal_view_all" value="submittal_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="submittal_update" value="submittal_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="submittal_update" value="submittal_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="submittal_add" value="submittal_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="submittal_add" value="submittal_add">
                                 <label>Add</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="submittal_log" value="submittal_log">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="submittal_log" value="submittal_log">
                                 <label>Submittal Log</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="submittal_review_view_all" value="submittal_review_view_all">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="submittal_review_view_all" value="submittal_review_view_all">
                                 <label>Review View All</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="submittal_review_update" value="submittal_review_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="submittal_review_update" value="submittal_review_update">
                                 <label>Review Edit</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Survey</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="survey_view_all" value="survey_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="survey_view_all" value="survey_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="survey_update" value="survey_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="survey_update" value="survey_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="survey_add" value="survey_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="survey_add" value="survey_add">
                                 <label>Add</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="survey_log" value="survey_log">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="survey_log" value="survey_log">
                                 <label>Survey Log</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="survey_review_view_all" value="survey_review_view_all">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="survey_review_view_all" value="survey_review_view_all">
                                 <label>Review View All</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="survey_review_update" value="survey_review_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="survey_review_update" value="survey_review_update">
                                 <label>Review Edit</label>
                         </div>
                         <div class="clearfix"></div>
 
                          <h4>Daily Construction Report</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="daily_construction_report_view_all" value="daily_construction_report_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="daily_construction_report_view_all" value="daily_construction_report_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="daily_construction_report_update" value="daily_construction_report_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="daily_construction_report_update" value="daily_construction_report_update">
                                 <label>Edit</label>
                         </div>
                      <!--    <div class="col-sm-3 nopadleft">
@@ -438,11 +449,11 @@
 
                         <h4>Weekly Report</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="weekly_report_view_all" value="weekly_report_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="weekly_report_view_all" value="weekly_report_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="weekly_report_update" value="weekly_report_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="weekly_report_update" value="weekly_report_update">
                                 <label>Edit</label>
                         </div>
                       <!--   <div class="col-sm-3 nopadleft">
@@ -453,89 +464,89 @@
 
                         <h4>Underground Service Alert</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="service_alert_view_all" value="service_alert_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="service_alert_view_all" value="service_alert_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="service_alert_update" value="service_alert_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="service_alert_update" value="service_alert_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="service_alert_add" value="service_alert_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="service_alert_add" value="service_alert_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Test Result</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="test_result_view_all" value="test_result_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="test_result_view_all" value="test_result_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="test_result_update" value="test_result_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="test_result_update" value="test_result_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="test_result_add" value="test_result_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="test_result_add" value="test_result_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Preliminary Notice</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="preliminary_view_all" value="preliminary_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="preliminary_view_all" value="preliminary_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="preliminary_update" value="preliminary_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="preliminary_update" value="preliminary_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="preliminary_add" value="preliminary_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="preliminary_add" value="preliminary_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Picture / Video</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="project_picture_video_view_all" value="project_picture_video_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="project_picture_video_view_all" value="project_picture_video_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="project_picture_video_remove" value="project_picture_video_remove">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="project_picture_video_remove" value="project_picture_video_remove">
                                 <label>Remove</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="project_picture_video_add" value="project_picture_video_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="project_picture_video_add" value="project_picture_video_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
  
                         <h4>Payment Quantity Verification</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="payment_quantity_verification_view_all" value="payment_quantity_verification_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="payment_quantity_verification_view_all" value="payment_quantity_verification_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Payment Application</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="payment_application_view_all" value="payment_application_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="payment_application_view_all" value="payment_application_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Change Order Request (COR)</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="cor_log" value="cor_log">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="cor_log" value="cor_log">
                                 <label>COR Log</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="cor_view_all" value="cor_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="cor_view_all" value="cor_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="cor_add" value="cor_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="cor_add" value="cor_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
@@ -544,110 +555,111 @@
                                 <label>Review View All</label>
                         </div> -->
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="cor_order_review_update" value="cor_order_review_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="cor_order_review_update" value="cor_order_review_update">
                                 <label>Review Edit</label>
                         </div>
                         <div class="clearfix"></div>
 
                          <h4>Meeting Minutes</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="meeting_minutes_view_all" value="meeting_minutes_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="meeting_minutes_view_all" value="meeting_minutes_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="meeting_minutes_update" value="meeting_minutes_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="meeting_minutes_update" value="meeting_minutes_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="meeting_minutes_add" value="meeting_minutes_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="meeting_minutes_add" value="meeting_minutes_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Labor Compliance</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="labor_compliance_view_all" value="labor_compliance_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="labor_compliance_view_all" value="labor_compliance_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="labor_compliance_update" value="labor_compliance_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="labor_compliance_update" value="labor_compliance_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="labor_compliance_add" value="labor_compliance_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="labor_compliance_add" value="labor_compliance_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
-
+                        <h3 style="border-bottom:1px solid red">Post Construction</h3>
                         <h4>Unconditional Finals</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="unconditional_finals_view_all" value="unconditional_finals_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="unconditional_finals_view_all" value="unconditional_finals_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="unconditional_finals_update" value="unconditional_finals_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="unconditional_finals_update" value="unconditional_finals_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="unconditional_finals_add" value="unconditional_finals_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="unconditional_finals_add" value="unconditional_finals_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Build Drawing</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="drawing_view_all" value="drawing_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="drawing_view_all" value="drawing_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="drawing_update" value="drawing_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="drawing_update" value="drawing_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="drawing_add" value="drawing_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="drawing_add" value="drawing_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
 
                         <h4>Notice of Completion</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="notice_completion_view_all" value="notice_completion_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="notice_completion_view_all" value="notice_completion_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="notice_completion_update" value="notice_completion_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="notice_completion_update" value="notice_completion_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="notice_completion_add" value="notice_completion_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="notice_completion_add" value="notice_completion_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
-
                         <h4>Agency Acceptance Letter</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="agency_acceptance_view_all" value="agency_acceptance_view_all">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="agency_acceptance_view_all" value="agency_acceptance_view_all">
                                 <label>Read only</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="agency_acceptance_update" value="agency_acceptance_update">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="agency_acceptance_update" value="agency_acceptance_update">
                                 <label>Edit</label>
                         </div>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="agency_acceptance_add" value="agency_acceptance_add">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="agency_acceptance_add" value="agency_acceptance_add">
                                 <label>Add</label>
                         </div>
                         <div class="clearfix"></div>
+                        <h3 style="border-bottom:1px solid red">Miscellaneous</h3>
+                        
 
                         <h4>Project Setting</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="project_setting" value="project_setting">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="project_setting" value="project_setting">
                                 <label>Update Project Settings</label>
                         </div>
                         <div class="clearfix"></div>
                         <h4>Add Company On Fly</h4>
                         <div class="col-sm-3 nopadleft">
-                                <input type="checkbox" name="permission_key[]" id="project_add_company_on_fly" value="project_add_company_on_fly">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="project_add_company_on_fly" value="project_add_company_on_fly">
                                 <label for="project_add_company_on_fly">Add Company On Fly</label>
                         </div>
                         <div class="clearfix"></div>
@@ -696,14 +708,90 @@
                         "underground_service_alert"=>"Underground service alert"
                     );
                             
-                    foreach ($notification_types as $key=>$notification_type){
+                    //foreach ($notification_types as $key=>$notification_type){
                     ?>
+                    <h3 style="border-bottom:1px solid red">Pre-Construction</h3>
+                    <div class="form-group col-md-3">
+                        <label for="standards">Standards</label><br>
+                        <input type="checkbox" name="notification_key[]" id="standards" value="standards">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="swppp">SWPPP/WPCP</label><br>
+                        <input type="checkbox" name="notification_key[]" id="swppp" value="swppp">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="bidding">Bidding</label><br>
+                        <input type="checkbox" name="notification_key[]" id="bidding" value="bidding">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="notice_of_award_upload">Notice of award</label><br>
+                        <input type="checkbox" name="notification_key[]" id="notice_of_award_upload" value="notice_of_award_upload">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="contract_upload">Contracts</label><br>
+                        <input type="checkbox" name="notification_key[]" id="contract_upload" value="contract_upload">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="certificates_of_insurance">Certificates of Insurance</label><br>
+                        <input type="checkbox" name="notification_key[]" id="certificates_of_insurance" value="certificates_of_insurance">
+                    </div>
+                    <div class="clearfix"></div>
+                    <h3 style="border-bottom:1px solid red">During Construction</h3>
                     
                     <div class="form-group col-md-3">
-                        <label for="<?=$key?>"><?=$notification_type?></label><br>
-                        <input type="checkbox" name="notification_key[]" class="" id="<?=$key?>" value="<?=$key?>">
+                        <label for="rfi">RFIs</label><br>
+                        <input type="checkbox" name="notification_key[]" id="rfi" value="rfi">
                     </div>
-                    <?php }?>
+                    <div class="form-group col-md-3">
+                        <label for="submittals_eor">Submittals</label><br>
+                        <input type="checkbox" name="notification_key[]" id="submittals_eor" value="submittals_eor">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="survey_cut_sheet">Surveys</label><br>
+                        <input type="checkbox" name="notification_key[]" id="survey_cut_sheet" value="survey_cut_sheet">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="weekly_statement_of_contract_days">Weekly Statement of Contract Days</label><br>
+                        <input type="checkbox" name="notification_key[]" id="weekly_statement_of_contract_days" value="weekly_statement_of_contract_days">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="underground_service_alert">Underground service alert</label><br>
+                        <input type="checkbox" name="notification_key[]" id="underground_service_alert" value="underground_service_alert">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="pay_applications">Pay Applications</label><br>
+                        <input type="checkbox" name="notification_key[]" id="pay_applications" value="pay_applications">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="change_orders">Change Orders</label><br>
+                        <input type="checkbox" name="notification_key[]" id="change_orders" value="change_orders">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="labor_compliance">Labor Compliance</label><br>
+                        <input type="checkbox" name="notification_key[]" id="labor_compliance" value="labor_compliance">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="meeting_minutes">Meeting Minutes</label><br>
+                        <input type="checkbox" name="notification_key[]" id="meeting_minutes" value="meeting_minutes">
+                    </div>
+                    <div class="clearfix"></div>
+                    <h3 style="border-bottom:1px solid red">Post Construction</h3>
+                    <div class="form-group col-md-3">
+                        <label for="unconditional_finals">Unconditional Finals</label><br>
+                        <input type="checkbox" name="notification_key[]" id="unconditional_finals" value="unconditional_finals">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="as_built_drawings">As Built Drawings</label><br>
+                        <input type="checkbox" name="notification_key[]" id="as_built_drawings" value="as_built_drawings">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="notice_of_completion">Notice of Completion</label><br>
+                        <input type="checkbox" name="notification_key[]" id="notice_of_completion" value="notice_of_completion">
+                    </div>
+                    
+                    
+                    
+                    <?php //}?>
                    
 
                 </div>

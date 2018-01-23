@@ -281,21 +281,37 @@ $(document).ready(function() {
         })
 
     $('#select_all').change(function() {
-    if($(this).is(":checked")) {
-        $("#user_permissions input[type='checkbox']").prop('checked', true);
-    }
-    else {
-        $("#user_permissions input[type='checkbox']").prop('checked', false);
-    }
-});
-$('#select_all_notification').change(function() {
-    if($(this).is(":checked")) {
-        $("#user_notifications input[type='checkbox']").prop('checked', true);
-    }
-    else {
-        $("#user_notifications input[type='checkbox']").prop('checked', false);
-    }
-});
+        if($(this).is(":checked")) {
+            $("#user_permissions input[type='checkbox']").prop('checked', true);
+        }
+        else {
+            $("#user_permissions input[type='checkbox']").prop('checked', false);
+        }
+    });
+    $('#select_all_notification').change(function() {
+        if($(this).is(":checked")) {
+            $("#user_notifications input[type='checkbox']").prop('checked', true);
+        }
+        else {
+            $("#user_notifications input[type='checkbox']").prop('checked', false);
+        }
+    });
+    $('#select_all_read_only').change(function() {
+        if($(this).is(":checked")) {
+            $("#user_permissions input.read_only[type='checkbox']").prop('checked', true);
+        }
+        else {
+            $("#user_permissions input.read_only[type='checkbox']").prop('checked', false);
+        }
+    });
+    $('#select_all_non_read_only').change(function() {
+        if($(this).is(":checked")) {
+            $("#user_permissions input.non_read_only[type='checkbox']").prop('checked', true);
+        }
+        else {
+            $("#user_permissions input.non_read_only[type='checkbox']").prop('checked', false);
+        }
+    });
 });
 
 

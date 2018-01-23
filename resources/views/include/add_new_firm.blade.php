@@ -144,6 +144,7 @@ $(document).ready(function() {
     $("#s2id_firm_type").hide();
     var role = localStorage.getItem('u_role');
     var token = localStorage.getItem('u_token');
+    var check_user_access = JSON.parse(localStorage.getItem("access_permission"));
     jQuery.ajax({
         url: baseUrl + "company-type",
             type: "GET",
@@ -239,14 +240,14 @@ $(document).ready(function() {
             $("#firm_description").removeAttr('value');
             $("#firm_address").removeAttr('value');
             jQuery.ajax({
-        url: baseUrl+project_id+"/company_name_user",
-        type: "GET",
-        headers: {
-          "x-access-token": token
-        },
-        contentType: "application/json",
-        cache: false
-        })
+                url: baseUrl+project_id+"/company_name_user",
+                type: "GET",
+                headers: {
+                  "x-access-token": token
+                },
+                contentType: "application/json",
+                cache: false
+                })
             .done(function(data, textStatus, jqXHR) {
         // console.log(data);
         // Foreach Loop 
@@ -262,7 +263,7 @@ $(document).ready(function() {
         });
         var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
         console.log(add_company_on_fly_permission+'company_fly');
-        if(add_company_on_fly_permission>0){
+        if(add_company_on_fly_permission>0 || role=="owner"){
             $(".company_name").append(
                 '<option style="font-weight:bold;">Add New Company</option>'
             )
@@ -300,21 +301,21 @@ $(document).ready(function() {
             marker = [];
     })
             .fail(function(jqXHR, textStatus, errorThrown) {
-        console.log("HTTP Request Failed");
-        var response = jqXHR.responseJSON.code;
-        console.log(jqXHR);
-        if(response == 403){
-            console.log('Company name 403');
-            // window.location.href = baseUrl + "403";
-        }
-        else if(response == 404){
-            console.log('Company name 404');
-            // window.location.href = baseUrl + "404";
-        }
-        else {
-            window.location.href = baseUrl + "500";
-        }
-    });
+                console.log("HTTP Request Failed");
+                var response = jqXHR.responseJSON.code;
+                console.log(jqXHR);
+                if(response == 403){
+                    console.log('Company name 403');
+                    // window.location.href = baseUrl + "403";
+                }
+                else if(response == 404){
+                    console.log('Company name 404');
+                    // window.location.href = baseUrl + "404";
+                }
+                else {
+                    window.location.href = baseUrl + "500";
+                }
+            });
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus);
@@ -382,7 +383,7 @@ $(document).ready(function() {
         });
         var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
         console.log(add_company_on_fly_permission+'company_fly');
-        if(add_company_on_fly_permission>0){
+        if(add_company_on_fly_permission>0 || role=="owner"){
             $(".company_name").append(
                 '<option style="font-weight:bold;">Add New Company</option>'
             )
