@@ -81,7 +81,7 @@
 
             <div class="form-group col-md-12 resubmittal" style="display: none;">
                 <label>What was the Original Submittal Number? (Select One)</label>
-                <select class="form-control" id="submittal_number_exist">
+                <select class="form-control" name="submittal_number_exist" id="submittal_number_exist">
                     <option value="" selected>Select Submittals</option>
                 </select>
             </div>
