@@ -75,12 +75,12 @@
                             <select class="form-control" id="firm_type">
                             </select>
                         </div>
-                            <div class="form-group col-md-6" style="display:none;">
+                            <div class="form-group col-md-6">
                             <label for="company_type">Company/Agency <span class="text-danger">*</span></label>
                             <select class="form-control" id="company_type">
                                 <option value="">Select</option>
                                 <option value="f">Company</option>
-                                <option value="a" selected="selected">Agency</option>
+                                <option value="a">Agency</option>
                             </select>
                         </div>
                             <input type="hidden" id="project_latitude">
