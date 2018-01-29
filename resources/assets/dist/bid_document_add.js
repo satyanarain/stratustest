@@ -47,6 +47,15 @@ $(document).ready(function() {
 
             }
         });
+        var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+        if(add_company_on_fly_permission>0 || role=="owner"){
+        $("#company_name").append(
+            '<option style="font-weight:bold;">Add New Agency</option>'
+        );
+        $("#company_name_two").append(
+            '<option style="font-weight:bold;">Add New Agency</option>'
+        )
+        }
         // $( "h2" ).appendTo( $( ".container" ) );
        
         // $(".loading_data").remove();
@@ -517,3 +526,17 @@ $(document).ready(function() {
             },5000)
         })
     });
+    
+    $('#company_name,#company_name_two').change(function(){
+        var company = $(this).val();
+        if(company=="Add New Agency")
+        {
+            $('#add-agency').modal('show');
+            $('#add-agency').on('shown.bs.modal',function(){
+                google.maps.event.trigger(map, "resize");
+              });
+            
+        }
+    })
+    
+    

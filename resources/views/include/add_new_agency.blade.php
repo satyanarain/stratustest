@@ -1,6 +1,6 @@
 <!-- page head start-->
 <div class="page-head">
-    <h3 class="m-b-less">Add Company</h3>
+    <h3 class="m-b-less">Add Agency</h3>
 </div>
 <!-- page head end-->
 <style>
@@ -60,11 +60,11 @@
                     <form role="form">
                         <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="firm_name">Company Name <span class="text-danger">*</span></label>
+                            <label for="firm_name">Agency Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="firm_name">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="firm_description">Company Description <span class="text-danger">*</span></label>
+                            <label for="firm_description">Agency Description <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="firm_description">
                         </div>
                         <div class="form-group col-md-6">
@@ -75,12 +75,12 @@
                             <select class="form-control" id="firm_type">
                             </select>
                         </div>
-                        <div class="form-group col-md-6">
+                            <div class="form-group col-md-6" style="display:none;">
                             <label for="company_type">Company/Agency <span class="text-danger">*</span></label>
                             <select class="form-control" id="company_type">
                                 <option value="">Select</option>
                                 <option value="f">Company</option>
-                                <option value="a">Agency</option>
+                                <option value="a" selected="selected">Agency</option>
                             </select>
                         </div>
                             <input type="hidden" id="project_latitude">
@@ -240,7 +240,7 @@ $(document).ready(function() {
             $("#firm_description").removeAttr('value');
             $("#firm_address").removeAttr('value');
             jQuery.ajax({
-                url: baseUrl+project_id+"/company_name_user",
+                url: baseUrl+project_id+"/company_name_user_agency",
                 type: "GET",
                 headers: {
                   "x-access-token": token
@@ -257,11 +257,16 @@ $(document).ready(function() {
                     var ele_name = '#company_name';
                 }
                 $(ele_name).empty();
+                if($("#company_name_two").length != 0)
+                    $("#company_name_two").empty();
                 jQuery.each(data.data, function( i, val ) {
                     if(val.f_status == 'active'){
                         $(ele_name).append(
                             '<option value="'+val.f_id+'">'+val.f_name+'</option>'
-                        )
+                        );
+                        if($("#company_name_two").length != 0) {
+                            $("#company_name_two").append('<option value="'+val.f_id+'">'+val.f_name+'</option>');
+                        }
                     }else {
 
                     }
@@ -270,8 +275,11 @@ $(document).ready(function() {
         console.log(add_company_on_fly_permission+'company_fly');
         if(add_company_on_fly_permission>0 || role=="owner"){
             $(ele_name).append(
-                '<option style="font-weight:bold;">Add New Company</option>'
-            )
+                '<option style="font-weight:bold;">Add New Agency</option>'
+            );
+            if($("#company_name_two").length != 0) {
+                            $("#company_name_two").append('<option style="font-weight:bold;">Add New Agency</option>');
+                        }
         }
         // $( "h2" ).appendTo( $( ".container" ) );
        

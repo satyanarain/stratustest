@@ -105,7 +105,14 @@
 
                                                                 <div class="form-group">
                                                                     <label>Date of Cut Sheet:  </label>
-                                                                    <input type="text" class="form-control" id="survey_respond_date" value="<?php echo date("Y-m-d"); ?>" disabled>
+                                                                    <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
+                                                                        <input type="text" value="<?php echo date("Y-m-d"); ?>" size="16" class="form-control"  id="survey_respond_date">
+                                                                          <span class="input-group-btn add-on">
+                                                                            <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                                                                          </span>
+                                                                    </div>
+                                                                    
+<!--                                                                    <input type="text" class="form-control" id="survey_respond_date" value="<?php echo date("Y-m-d"); ?>" disabled>-->
                                                                 </div>
                                                             </div>
                                                         </div>

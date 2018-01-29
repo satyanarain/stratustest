@@ -72,6 +72,11 @@ $(document).ready(function() {
 
             }
         });
+        var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+        if(add_company_on_fly_permission>0 || role=="owner"){
+        $("#company_name").append(
+            '<option style="font-weight:bold;">Add New Contractor</option>'
+        )}
         // $( "h2" ).appendTo( $( ".container" ));
         $(".loading_data").remove();
         $(".select2").show();
@@ -333,3 +338,26 @@ $('#add_labor_compliance').click(function(e) {
         },6000);
     }
 });
+$('#company_name').change(function(){
+        var company = $(this).val();
+        if(company=="Add New Contractor")
+        {
+            //map.clear();
+//            info_Window = new google.maps.InfoWindow();
+//            info_Window.close();
+//            for (var i = 0; i < marker.length; i++) {
+//                marker[i].setMap(null);
+//            }
+//            marker.length = 0;
+//            for(var i=0;i<location.length;i++){
+//                location[i].setMap(null);
+//            }
+//            location.length=0;
+//            marker = [];
+            $('#add-company').modal('show');
+            $('#add-company').on('shown.bs.modal',function(){
+                google.maps.event.trigger(map, "resize");
+              });
+            
+        }
+    })

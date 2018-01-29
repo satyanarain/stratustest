@@ -56,7 +56,7 @@
                 </div>
                 <span id="company_name_lead"></span><br/>
                 <span class="sub-title">Select lead agency if you want to change</span>
-                <select class="form-control select2" name="company_name" id="company_name">
+                <select class="form-control" name="company_name" id="company_name">
                 <!-- <select class="form-control" id="company_name"> -->
                 </select>
             </div>
@@ -189,7 +189,7 @@
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
-                <select class="form-control select2" name="company_name_two" id="company_name_two">
+                <select class="form-control" name="company_name_two" id="company_name_two">
                 </select>
             </div>
 
