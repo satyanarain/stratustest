@@ -106,12 +106,14 @@ class FirmController extends Controller {
         //   return response()->json($result, 403);
         // } 
         // else {
-
+          //DB::enableQueryLog();
           $project_owner = DB::table('projects')
           ->select('p_user_id')
           ->where('p_id', '=', $project_id)
           ->first();
-
+          //echo '<pre>';
+          
+        
         //  print_r($project_owner->p_user_id);  
           $project_owner = $project_owner->p_user_id;  
           // die();
@@ -123,7 +125,9 @@ class FirmController extends Controller {
           ->where('f_user', '=', $project_owner)
           ->where('project_firm.company_type', '=', 'f')
           ->get();
-         
+//         $query = DB::getQueryLog();
+//        $lastQuery = end($query);
+//        print_r($lastQuery);
           if(count($query) < 1)
           {
             $result = array('code'=>404, "description"=>"No Records Found");
