@@ -29,6 +29,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <section class="panel">
+                            <div id="alert_message"></div>
                             <div class="panel-body">
                                 <div id="upload_error">
                                     <div id="toast-container" class="toast-top-right" aria-live="polite" role="alert">
@@ -54,7 +55,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="alert_message"></div>
+                                
                                 <form role="form">
                                     <div class="row">
                                     <div class="form-group col-md-12">

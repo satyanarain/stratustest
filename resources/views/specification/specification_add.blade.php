@@ -81,7 +81,7 @@
                                             </label>
                                         </div> -->
 
-                                        <div class="form-group">
+                                        <div class="form-group" style="display: none;">
                                             <label class="checkbox-custom check-success">
                                                 <input type="checkbox" value="" id="applicable">
                                                 <label for="applicable">NA</label>

@@ -81,7 +81,7 @@ $('#add_georeport_form').submit(function(e) {
             html += '<li>Report Name is invalid.</li>';
             is_error = true;
         }
-
+        //alert(applicable);alert(upload);return false;
         if(applicable == "" || applicable == "undefined" || applicable == null){
             html += '<li>Applicable is invalid.</li>';
             is_error = true;
@@ -100,6 +100,16 @@ $('#add_georeport_form').submit(function(e) {
                 }
             }
         }
+        if(applicable=="yes" && upload=="no")
+        {
+             var res = confirm("Warning: Proceeding without upload of report is not recommended.");
+        }
+        if(res==false)
+        {
+            html += '<li>Warning: Proceeding without upload of report is not recommended.</li>';
+            is_error = true;
+        }
+        //alert(res);//return false;
         html += '</ul></div>';
 
         if(is_error == true){

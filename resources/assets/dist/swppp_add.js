@@ -75,7 +75,32 @@ $('.add_swppp_form').click(function(e) {
     var wdid_expiration_date    = $('#wdid_expiration_date').val();
     var token                   = localStorage.getItem('u_token');
     console.log(date_of_report);
-    jQuery.ajax({
+    var html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
+    var is_error = false;
+    if(applicable=="yes" && upload=="no")
+    {
+         var res = confirm("Warning: Proceeding without upload of report is not recommended.");
+    }
+    if(res==false)
+    {
+        html += '<li>Warning: Proceeding without upload of report is not recommended.</li>';
+        is_error = true;
+    }
+    html += '</ul></div>';
+    if(is_error == true){
+        $("#alert_message").html(html);
+        $("#alert_message").show();
+        $('.loading-submit').hide();
+        $('html, body').animate({
+            scrollTop: $(".page-head").offset().top
+        }, 'fast')
+        setTimeout(function(){
+            //$("#alert_message").hide();
+            return false;
+        },5000)
+        return;
+    }else{
+        jQuery.ajax({
         url: baseUrl + "swppp/add",
         type: "POST",
         data: {
@@ -169,6 +194,7 @@ $('.add_swppp_form').click(function(e) {
                 $("#alert_message").hide();
             },5000)
         })
+    }
 });
 $('.company_name').change(function(){
         var company = $(this).val();
