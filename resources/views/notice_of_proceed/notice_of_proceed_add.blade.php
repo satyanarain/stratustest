@@ -211,7 +211,7 @@
         <div style="clear: both;"></div>
         <hr/>
         <div style="clear: both;"></div>
-        <p style="width:30%; float: left;"><strong>Project Description:</strong></p>
+<!--        <p style="width:30%; float: left;"><strong>Project Description:</strong></p>-->
         <p style="width:70%; float: left;">
             <strong>Project Name: </strong><span id="pdf_gen_project_name"></span><br/>
 <!--            <strong>Murow|CM Ref No:</strong> (Insert Murow CM Ref No)<br/>-->
@@ -230,7 +230,7 @@
 <!--            <p>Title: _________________________</p>-->
         </div>
         <div style="clear: both;"></div>
-        <p><strong>ACCPETANCE OF NOTICE:</strong></p>
+        <p><strong>ACCEPTANCE OF NOTICE:</strong></p>
         <p>Receipt of the above <strong>NOTICE TO PROCEED</strong> is hereby acknowledged by:</p>
         <p>Contractor: _____________________</p>
         <p>By: _____________________________</p>

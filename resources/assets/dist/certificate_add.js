@@ -50,7 +50,7 @@ $(document).ready(function() {
             })
         .done(function(data, textStatus, jqXHR) {
             $('#contractor_name').text(data.data.f_name);
-            $('#pdf_gen_contractor_name').text(data.data.f_name);
+            $('#pdf_gen_contractor_name').text(' '+data.data.f_name);
             $('#company_name').val(data.data.f_id);
         })
     })
@@ -158,7 +158,7 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         // console.log(data.data.p_name);
         var project_name = data.data.p_name;
-        $('#pdf_gen_project_name').text(project_name);
+        $('#pdf_gen_project_name').text(' '+project_name);
     })
 
 
@@ -405,7 +405,7 @@ $(document).ready(function() {
         var token                               = localStorage.getItem('u_token');
 
             // ADD VARIABLE IN PDF FILE OPEN
-            $('#pdf_gen_general_date').text(general_liability_date);
+            $('#pdf_gen_general_date').text(' '+general_liability_date);
             jQuery.ajax({
             url: baseUrl + "currency/"+general_liability_cur_symbol,
                 type: "GET",
@@ -417,10 +417,10 @@ $(document).ready(function() {
                 cache: false
             })
             .done(function(data, textStatus, jqXHR) {
-               $('#pdf_gen_general_limit').text(data.data.cur_symbol+' '+ ReplaceNumberWithCommas(general_liability_amount));
+               $('#pdf_gen_general_limit').text(' '+data.data.cur_symbol+ReplaceNumberWithCommas(general_liability_amount));
             })
 
-            $('#pdf_gen_auto_date').text(auto_compensation_date);
+            $('#pdf_gen_auto_date').text(' '+auto_compensation_date);
             jQuery.ajax({
             url: baseUrl + "currency/"+works_compensation_cur_symbol,
                 type: "GET",
@@ -432,10 +432,10 @@ $(document).ready(function() {
                 cache: false
             })
             .done(function(data, textStatus, jqXHR) {
-               $('#pdf_gen_auto_limit').text(data.data.cur_symbol+' '+ ReplaceNumberWithCommas(auto_compensation_currency));
+               $('#pdf_gen_auto_limit').text(' '+data.data.cur_symbol+ ReplaceNumberWithCommas(auto_compensation_currency));
             })
 
-            $('#pdf_gen_work_comp_date').text(works_compensation_date);
+            $('#pdf_gen_work_comp_date').text(' '+works_compensation_date);
             jQuery.ajax({
             url: baseUrl + "currency/"+auto_compensation_cur_symbol,
                 type: "GET",
@@ -447,10 +447,10 @@ $(document).ready(function() {
                 cache: false
             })
             .done(function(data, textStatus, jqXHR) {
-               $('#pdf_gen_work_comp_limit').text(data.data.cur_symbol+' '+ ReplaceNumberWithCommas(works_compensation_currency));
+               $('#pdf_gen_work_comp_limit').text(' '+data.data.cur_symbol+ ReplaceNumberWithCommas(works_compensation_currency));
             })
 
-            $('#pdf_gen_umbrella_date').text(umbrella_date);
+            $('#pdf_gen_umbrella_date').text(' '+umbrella_date);
             jQuery.ajax({
             url: baseUrl + "currency/"+umbrella_cur_symbol,
                 type: "GET",
@@ -462,7 +462,7 @@ $(document).ready(function() {
                 cache: false
             })
             .done(function(data, textStatus, jqXHR) {
-               $('#pdf_gen_umbrella_limit').text(data.data.cur_symbol+' '+ ReplaceNumberWithCommas(umbrella_currency));
+               $('#pdf_gen_umbrella_limit').text(' '+data.data.cur_symbol+ ReplaceNumberWithCommas(umbrella_currency));
             })
             // ADD VARIABLE IN PDF FILE CLOSE
 

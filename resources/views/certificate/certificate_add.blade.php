@@ -426,7 +426,7 @@
 <div style="display: none;">
 <!-- <div> -->
     <div id="certificate_pdf_content" style="width:100%;">
-        <h1 style="color:green; text-align:center;">CERTIFICATES OF INSURANCE</h1>
+        <h1 style="color:green; text-align:center;">Certificates of Insurance Summary</h1>
         <div style="clear: both;"></div>
         <p style="width:70%;"><strong>Contractor: </strong><span id="pdf_gen_contractor_name"></span><br/>
             <span id="pdf_gen_contractor_address"></span></p>

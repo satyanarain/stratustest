@@ -452,7 +452,8 @@ $(document).ready(function() {
             $('#bid_amount').removeAttr('value');
             $('#award_date').removeAttr('value');
             $("#company_name").val('');
-            $("#submit_notice_add_form").text('Save Another');
+            $(".submit_notice_add_form").text('Save Another');
+            $("#cmd").text('Save Another');
             $("#project_type_dropdown_new").val('');
             $(".remove_file_drop").trigger("click");
             // $('#cmd').show();
