@@ -338,7 +338,7 @@ function checkFormFilled(classname)
         //form_ele_name = $(this).attr('name');
         //alert(typeof form_ele_name);
         var exempted_val = ["Add New Company","Select Improvement Types","Add New Entity","Add New Agency"];
-        var exempted_array = ["submittal_number_exist","project_terms","umbrella_liability_cur_symbol","general_liability_cur_symbol","company_name_two","maintenance_bond_cur_symbol","payment_bond_cur_symbol","performance_bond_cur_symbol", 
+        var exempted_array = ["date_of_submittal","submittal_number_exist","project_terms","umbrella_liability_cur_symbol","general_liability_cur_symbol","company_name_two","maintenance_bond_cur_symbol","payment_bond_cur_symbol","performance_bond_cur_symbol", 
             "demo2","auto_compensation_cur_symbol", "works_compensation_cur_symbol","contract_item_qty","maintenance_bond_amount",
         "performance_bond_amount","payment_bond_amount","company_name","project_type_dropdown","notice_award_improvement_type",
     "notice_award_project_type_dropdown","notice_award_company_name","notice_award_bid_amount","notice_award_date"];

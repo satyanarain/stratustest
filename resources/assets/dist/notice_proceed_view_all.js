@@ -116,10 +116,10 @@
 
 			  	var pnp_cal_day = val.pnp_cal_day;
 			  	var pnp_cal_day_value;
-			  	if(pnp_cal_day == 'calendar_day'){
+			  	if(pnp_cal_day == 'calendar_day' && val.pnp_type=="new"){
 			  		pnp_cal_day_value = 'Calendar Days';
 			  	}
-			  	else if(pnp_cal_day == 'working_day'){
+			  	else if(pnp_cal_day == 'working_day' && val.pnp_type=="new"){
 			  		pnp_cal_day_value = 'Working Days';
 			  	}
 			  	else {
@@ -130,7 +130,7 @@
 			  	if(val.pnp_type == "exist"){
 			  		var pnp_date = ' ';
 			  		var pnp_start_date = ' ';
-			  		var liquidated_amount = " - ";
+			  		var liquidated_amount = " ";
 			  		var pnp_duration = " ";
 			  	}
 			  	else {

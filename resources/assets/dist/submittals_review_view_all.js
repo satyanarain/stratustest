@@ -102,7 +102,7 @@
 		    	status = '<span class="label label-success">Revise & Resubmit</span>';
 			    }
 			    else if(status == 'rejected'){
-		    	status = '<span class="label label-success">Rejected</span>';
+		    	status = '<span class="label label-danger">Rejected</span>';
 			    }
 			    else if(status == 'pending'){
 			    	if(val.sub_review_type == 'yes'){
@@ -135,7 +135,8 @@
 			  var t = $('#view_users_table').DataTable();
 				if(val.sub_review_type == 'yes'){
 			  		t.row.add( [
-			           '<span style="color:#F00;">'+sub_num+'</span>',
+			           //'<span style="color:#F00;">'+sub_num+'</span>',
+                                   '<span style="color:#F00;">'+(i+1)+'</span>',
 			           '<span style="color:#F00;">'+val.sub_description+'</span>',
 			           status,
 			           update_permission
@@ -143,7 +144,8 @@
 			  	}
 			  	else {
 		            t.row.add( [
-			           sub_num,
+			           //sub_num,
+                                   i+1,
 			           val.sub_description,
 			           status,
 			           update_permission

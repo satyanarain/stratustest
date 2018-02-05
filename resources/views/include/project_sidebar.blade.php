@@ -80,7 +80,8 @@
                                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/req_for_info_log"><span>RFI Log</span></a>
                                     </li>
                                     <li style="display: none;" class="rfi_view_all">
-                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/req_for_info"><span>Add RFI</span></a>
+<!--                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/req_for_info"><span>Add RFI</span></a>-->
+                                            <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/req_for_info/add"><span>Add RFI</span></a>
                                     </li>
                                     <li style="display: none;" class="rfi_review_view_all">
                                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/req_for_info_review"><span>RFI Review</span></a>

@@ -260,10 +260,10 @@ $(document).ready(function() {
 
         var check_box = document.getElementById("review_yes").checked;
         if(check_box ==true){
-            var review_type = "yes";
+            var review_type = "Yes";
         }
         else {
-            var review_type = 'no';
+            var review_type = 'No';
         }
 
         console.log(review_type);

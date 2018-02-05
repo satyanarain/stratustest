@@ -116,7 +116,7 @@
                                 </div><!-- Col 6 Close -->
 
                                 <div class="col-sm-6">
-                                    <section class="panel upload_doc_panel" style="margin-top: 20px;">
+                                    <section class="panel upload_doc_panel" style="margin-top: 20px;"><span class="text-danger" style="float:right">*</span>
                                         <div class="panel-body">
                                             <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                 <input type="hidden" name="document_path" value="/uploads/certificate/">
@@ -185,7 +185,7 @@
                                     <div class="clearfix"></div>
                                 </div><!-- Col 6 Close -->
                                 <div class="col-sm-6">
-                                    <section class="panel upload_doc_panel_work" style="margin-top: 0px;">
+                                    <section class="panel upload_doc_panel_work" style="margin-top: 0px;"><span class="text-danger" style="float:right">*</span>
                                         <div class="panel-body">
                                             <form id="my-awesome-dropzone1" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                 <input type="hidden" class="certificate_work_compensation" name="document_path" value="/uploads/certificate/">
@@ -258,7 +258,7 @@
                                     <div class="clearfix"></div>
                                 </div><!-- Col 6 Close -->
                                 <div class="col-sm-6">
-                                    <section class="panel upload_doc_panel_auto">
+                                    <section class="panel upload_doc_panel_auto"><span class="text-danger" style="float:right">*</span>
                                         <div class="panel-body">
                                             <form id="my-awesome-dropzone2" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                 <input type="hidden" class="certificate_auto_liability" name="document_path" value="/uploads/certificate/">

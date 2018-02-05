@@ -131,7 +131,7 @@
 			  	 	var	document_link_value = '-';
 			  	}
 			  	else {
-			  		var document_link_value = '<a href="https://apps.groupdocs.com/document-viewer/embed/'+data.data.submittal_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+			  		var document_link_value = '<a href="'+baseUrl+data.data.submittal_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
 			  	}
 
 			// var date = new Date(data.data.sub_date.replace(' ', 'T'));
@@ -144,7 +144,7 @@
 		    $('#submittal_description').text(data.data.sub_description);
 		    $('#submittal_specification').text(data.data.sub_specification);
 		    $('#submittal_comments').html(data.data.sub_additional_comments);
-		    $('#submittal_expedited').html(data.data.sub_request_expedited_review);
+		    $('#submittal_expedited').html(data.data.sub_review_type);
 		    $('#submittal_documents').html(document_link_value);
 		    $('#submittal_user_detail').html(data.data.user_firstname+' '+data.data.user_lastname+'<br/>'+data.data.user_email+'<br/>'+data.data.user_role);
 

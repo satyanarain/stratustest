@@ -97,6 +97,15 @@
 			    // Foreach Loop 
 			    var count = 1;
 				jQuery.each( data.data, function( i, val ) {
+                                        // Check Update Permission
+                                        var check_permission = jQuery.inArray("rfi_update", check_user_access );
+                                        console.log(check_permission);
+                                        if(check_permission < 1){
+                                                var update_permission = '';
+                                        }
+                                        else {
+                                                var update_permission = '<a href="'+baseUrl+'dashboard/'+val.rir_project_id+'/req_for_info/'+val.ri_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
+                                        }
 					var status = val.rir_review_status;
 					if(status == 'response_due'){
 			    	// status = '<span class="label label-warning">RESPONSE DUE</span>';
@@ -182,7 +191,12 @@
 					  var respond_date = year + '-' + month + '-' + day;
 				  }
 
-				  
+				if(val.ri_request_status == 'active'){
+			  		var view_option = '<a href="'+baseUrl+'dashboard/'+val.rir_project_id+'/req_for_info/'+val.ri_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>';
+				}
+		  		else {
+		  			var view_option = '<a href="'+baseUrl+'404" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>';
+		  		}  
 
 				  var t = $('#view_users_table').DataTable();
 					t.row.add( [
@@ -195,6 +209,7 @@
 			           respond_date,
 			           // date_status,
 			           status,
+                                   view_option + update_permission,
 			       	]).draw( false );
 			       	count++;
 				});

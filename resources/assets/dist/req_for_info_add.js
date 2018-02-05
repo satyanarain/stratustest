@@ -281,6 +281,7 @@ $(document).ready(function() {
             $('#additional_day_add').removeAttr('value');
             $('.additonal_day_div').hide();
             $('.additonal_cost_div').hide();
+            $('.submit_submittal_form').text('add another');
             $('input[name="additonal_day_type"]').attr('checked', false);
             $('input[name="additonal_cost_type"]').attr('checked', false);
             $("#upload_doc_id").removeAttr('value');

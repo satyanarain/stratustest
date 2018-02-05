@@ -74,7 +74,7 @@
                             <thead>
                                 <th>Review</th>
                                 <th>Review Status</th>
-                                <th>Respond Date</th>
+                                <th>Review Date</th>
                                 <th>User</th>
                             </thead>
                             <tbody>

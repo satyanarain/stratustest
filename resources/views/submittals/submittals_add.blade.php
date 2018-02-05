@@ -95,7 +95,7 @@
 
             <div class="form-group col-md-12">
                 <label for="name_of_report" style="padding-top: 10px;">Date of Submittal</label>
-                <input type="text" class="form-control" value="<?php //echo date("Y-m-d"); ?>" id="date_of_submittal" disabled>
+                <input type="text" class="form-control" name="date_of_submittal" value="<?php //echo date("Y-m-d"); ?>" id="date_of_submittal" disabled>
             </div>
 
             <div class="form-group col-md-12">
@@ -134,7 +134,7 @@
                     <label for="name_of_report" style="padding-top: 15px;">Attach Additional Document <span class="text-danger">*</span></label>
                     <section class="panel upload_doc_panel_performance" id="upload_performance">
                         <div class="panel-body" style="padding: 0px;">
-                            <form id="my-awesome-dropzone" action="{{ url('/group_doc/index.php') }}" class="dropzone">
+                            <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                             <input type="hidden" name="document_path" value="/uploads/submittals/">
                             </form>
                         </div>
@@ -172,8 +172,8 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
-<!-- <script src="{{ url('/resources/assets/js/dropzone.js') }}"></script> -->
-<script src="{{ url('/resources/assets/js/dropzone_groupdoc.js') }}"></script>
+ <script src="{{ url('/resources/assets/js/dropzone.js') }}"></script> 
+<!--<script src="{{ url('/resources/assets/js/dropzone_groupdoc.js') }}"></script>-->
 <script type="text/javascript">
 $("input[name='check_submittal_type']").click(function(){
     var today = new Date();

@@ -103,14 +103,14 @@
 			    }
 			  	
 			  	var submittal_path = val.submittal_path;
-			  	// console.log(submittal_path);
+			  	 console.log(submittal_path);
 			  	var sub_additional_path_value;
 			  	if(submittal_path == null){
 			  		sub_additional_path_value = '-';
 			  	}
 			  	else {
 			  		if(val.sub_status == 'active'){
-			  			sub_additional_path_value = '<a href="https://apps.groupdocs.com/document-viewer/embed/'+val.submittal_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+			  			sub_additional_path_value = '<a href="'+baseUrl+val.submittal_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
 			  		}
 			  		else {
 			  			sub_additional_path_value = '<a href="'+baseUrl+'404" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
