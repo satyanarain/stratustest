@@ -423,10 +423,43 @@
                                 </div>
                                 <div class="clearfix"></div>
 
-<div style="display: none;">
+<div style="display: block;">
 <!-- <div> -->
     <div id="certificate_pdf_content" style="width:100%;">
-        <h1 style="color:green; text-align:center;">Certificates of Insurance Summary</h1>
+        <style>
+            .pdftable tr td{padding: 5px;}
+        </style>
+        <table style="width: 100%; padding: 5px;" class="pdftable" cellpadding="10" cellspacing="10">
+            
+            <tr><td colspan="2"><h1 style="color:green; text-align:center;">Certificates of Insurance Summary</h1></td></tr>
+        
+            <tr><td style="width:250px;"><strong>Contractor: </strong></td><td><span id="pdf_gen_contractor_name"></span><br><span id="pdf_gen_contractor_address"></span></td></tr>
+            
+        
+        <tr><td><strong>Project: </strong></td><td><span id="pdf_gen_project_name"></span></td></tr>
+        
+        <tr><td><strong>General Liability Exp. Date: </strong></td><td><span id="pdf_gen_general_date"></span></td></tr>
+        
+        <tr><td><strong>General Liability Limit: </strong></td><td><span id="pdf_gen_general_limit"></span></td></tr>
+        
+        <tr><td><strong>Auto Liability Exp. Date: </strong></td><td><span id="pdf_gen_auto_date"></span></td></tr>
+        
+        <tr><td><strong>Auto Liability Limit: </strong></td><td><span id="pdf_gen_auto_limit"></span></td></tr>
+        
+        <tr><td><strong>Workers Comp Exp. Date: </strong></td><td><span id="pdf_gen_work_comp_date"></span></td></tr>
+        
+        <tr><td><strong>Workers Comp Limit: </strong></td><td><span id="pdf_gen_work_comp_limit"></span></td></tr>
+        
+        <tr><td><strong>Umbrella Liability Exp. Date: </strong></td><td><span id="pdf_gen_umbrella_date"></span></td></tr>
+        
+        <tr><td><strong>Umbrella Liability Limit: </strong></td><td><span id="pdf_gen_umbrella_limit"></span></td></tr>
+        
+        <tr><td colspan="2"><div id="custom_certificate_pdf" style="display: block;">
+
+                </div></td></tr>
+        
+        </table>
+<!--        <h1 style="color:green; text-align:center;">Certificates of Insurance Summary</h1>
         <div style="clear: both;"></div>
         <p style="width:70%;"><strong>Contractor: </strong><span id="pdf_gen_contractor_name"></span><br/>
             <span id="pdf_gen_contractor_address"></span></p>
@@ -452,7 +485,7 @@
         <div id="custom_certificate_pdf" style="display: block;">
 
         </div>
-        <div style="clear: both;"></div>
+        <div style="clear: both;"></div>-->
 
     </div>
 </div>
