@@ -423,7 +423,7 @@
                                 </div>
                                 <div class="clearfix"></div>
 
-<div style="display: block;">
+<div style="display: none;">
 <!-- <div> -->
     <div id="certificate_pdf_content" style="width:100%;">
         <style>

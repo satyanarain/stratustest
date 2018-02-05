@@ -417,7 +417,8 @@ $(document).ready(function() {
                 cache: false
             })
             .done(function(data, textStatus, jqXHR) {
-               $('#pdf_gen_general_limit').text(' '+data.data.cur_symbol+ReplaceNumberWithCommas(general_liability_amount));
+                if(general_liability_amount)
+                    $('#pdf_gen_general_limit').text(' '+data.data.cur_symbol+ReplaceNumberWithCommas(general_liability_amount));
             })
 
             $('#pdf_gen_auto_date').text(' '+auto_compensation_date);
@@ -432,7 +433,8 @@ $(document).ready(function() {
                 cache: false
             })
             .done(function(data, textStatus, jqXHR) {
-               $('#pdf_gen_auto_limit').text(' '+data.data.cur_symbol+ ReplaceNumberWithCommas(auto_compensation_currency));
+                if(auto_compensation_currency)
+                    $('#pdf_gen_auto_limit').text(' '+data.data.cur_symbol+ ReplaceNumberWithCommas(auto_compensation_currency));
             })
 
             $('#pdf_gen_work_comp_date').text(' '+works_compensation_date);
@@ -447,7 +449,8 @@ $(document).ready(function() {
                 cache: false
             })
             .done(function(data, textStatus, jqXHR) {
-               $('#pdf_gen_work_comp_limit').text(' '+data.data.cur_symbol+ ReplaceNumberWithCommas(works_compensation_currency));
+                if(works_compensation_currency)
+                    $('#pdf_gen_work_comp_limit').text(' '+data.data.cur_symbol+ ReplaceNumberWithCommas(works_compensation_currency));
             })
 
             $('#pdf_gen_umbrella_date').text(' '+umbrella_date);
@@ -462,7 +465,8 @@ $(document).ready(function() {
                 cache: false
             })
             .done(function(data, textStatus, jqXHR) {
-               $('#pdf_gen_umbrella_limit').text(' '+data.data.cur_symbol+ ReplaceNumberWithCommas(umbrella_currency));
+               if(umbrella_currency) 
+                $('#pdf_gen_umbrella_limit').text(' '+data.data.cur_symbol+ ReplaceNumberWithCommas(umbrella_currency));
             })
             // ADD VARIABLE IN PDF FILE CLOSE
 
