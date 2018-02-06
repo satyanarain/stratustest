@@ -105,18 +105,18 @@
 			    	status = '<span class="label label-danger">Inactive</span>';
 			    }
 
-				if(val.bd_bid_advertisement_date == null){
-			  		var bid_advertisement_date = '-'
+				if(val.bd_bid_advertisement_date == null || val.bd_bid_advertisement_date=='0000-00-00'){
+                                    var bid_advertisement_date = ''
 			  	}
 			  	else {
-                   var bid_advertisement_date = $.datepicker.formatDate('yy-mm-dd', new Date(val.bd_bid_advertisement_date.replace(' ', 'T')));
+                                    var bid_advertisement_date = $.datepicker.formatDate('yy-mm-dd', new Date(val.bd_bid_advertisement_date.replace(' ', 'T')));
 			  	}			  	
 
-			  	if(val.bd_invite_date == null){
-			  		var invite_date = '-'
+			  	if(val.bd_invite_date == null || val.bd_invite_date=='0000-00-00'){
+                                    var invite_date = ''
 			  	}
 			  	else {
-                   var invite_date = $.datepicker.formatDate('yy-mm-dd', new Date(val.bd_invite_date.replace(' ', 'T')));
+                                    var invite_date = $.datepicker.formatDate('yy-mm-dd', new Date(val.bd_invite_date.replace(' ', 'T')));
 			  	}
 
 			  	if(val.bd_date_of_opening == null){
