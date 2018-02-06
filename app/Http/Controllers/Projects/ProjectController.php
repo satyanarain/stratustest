@@ -375,6 +375,7 @@ class ProjectController extends Controller {
   {
     try
     {
+      //print_r($request->all());die;
       $user = array(
         'userid'    => Auth::user()->id,
         'role'      => Auth::user()->role
@@ -402,7 +403,7 @@ class ProjectController extends Controller {
             // "p_number"        => $project_number,
             "p_name"          => $project_name,
             "p_location"      => $project_location,
-            // "p_type"          => $project_type,
+            "p_type"          => $project_type,
             "p_status"        => $project_status,
             "p_wage_determination" => $project_wage_determination,
             // "project_terms"   => $project_terms,
@@ -411,7 +412,7 @@ class ProjectController extends Controller {
             // "p_number"        => 'required|unique:projects',
             "p_name"          => 'required',
             "p_location"      => 'required',
-            // "p_type"          => 'required',
+            "p_type"          => 'required',
             "p_status"        => 'required',
             "p_wage_determination" => 'required',
             // "project_terms"   => 'required'
@@ -431,7 +432,7 @@ class ProjectController extends Controller {
 
             // print_r($query_select->p_type);
             // exit;
-            if(($project_type == "") ? $project_type = $query_select->p_type : $project_type = $project_type);
+            if(($project_type == "" || $project_type == "null") ? $project_type = $query_select->p_type : $project_type = $project_type);
             // print_r($project_type);
             // exit;
             $query = DB::table('projects')

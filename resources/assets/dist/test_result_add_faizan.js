@@ -367,7 +367,7 @@ $('#etc_yes').change(function() {
                 $(".first_button").text('Save Another');
                 $("#alert_message").show();
                 $('.loading-submit').hide();
-                html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New test result added successfully!</div></div>';
+                html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New test results added successfully!</div></div>';
                 $("#alert_message").html(html);
                 setTimeout(function()
                 {

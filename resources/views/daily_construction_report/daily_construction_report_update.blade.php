@@ -19,9 +19,7 @@
 
                 <span id="report_name"></span></h3>
                 <?php $project_id = Request::segment(2); ?>
-                <div class="state-information">
-                    <a href="{{ url('/dashboard/'.$project_id.'/daily_construction_report') }}" class="btn btn-info">Back</a>
-                </div>
+                
             </div>
             <!-- page head end-->
 
@@ -452,6 +450,9 @@
                     <div class="clearfix"></div>
                 </div><!-- upload_doc_panel_payment close -->
             </div><!-- contract_exist close -->
+            <div class="state-information">
+                    <a href="{{ url('/dashboard/'.$project_id.'/daily_construction_report') }}" class="btn btn-info">Back</a>
+                </div>
         </div>
 
         <div class="form-group col-md-12">

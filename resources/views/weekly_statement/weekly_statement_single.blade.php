@@ -14,9 +14,7 @@
                     <div class="col-sm-12">
                         <h3 class="m-b-less project_name" id="project_name_title"></h3><br/>
                         <h2 style="float: left; margin-top: 0px;">Weekly Statement of Contract Days # <?php echo $report_id; ?> <span id="status" style="float: right; margin-bottom: 10px;"></span></h2>
-                        <div class="state-information" style="float: right;">
-                            <a href="{{ url('/dashboard/'.$project_id.'/weekly_statement') }}" class="btn btn-info">Back</a>
-                        </div>
+                        
                     </div>
 
                     <div class="col-sm-12">
@@ -197,6 +195,9 @@
     </div>
     
                         </section>
+                        <div class="state-information" style="float: left;">
+                            <a href="{{ url('/dashboard/'.$project_id.'/weekly_statement') }}" class="btn btn-info">Back</a>
+                        </div>
                     </div>
                 </div>
             </div>
