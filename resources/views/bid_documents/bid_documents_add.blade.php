@@ -41,7 +41,7 @@
                 </div>
                 <span id="project_type"></span><br/>
                 <span class="sub-title">Select improvement type if you want to change</span>
-                <button class="label label-warning add-impvtypes" style="margin-bottom: 5px;">Add New Improvement Type</button>
+<!--                <button class="label label-warning add-impvtypes" style="margin-bottom: 5px;">Add New Improvement Type</button>-->
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
