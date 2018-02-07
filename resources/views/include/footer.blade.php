@@ -43,6 +43,17 @@
          </div>
      </div>
  </div>
+
+<div class="modal add-impvtypes fade" id="add-impvtypes" tabindex="-5" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-md">
+         <div class="modal-content text-center">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            @if(Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/bid_documents/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/notice_award/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/notice_completion/add" )
+             @include('include/add_new_impvtype')
+            @endif
+         </div>
+     </div>
+ </div>
  
             <footer>
                 <?php echo date("Y"); ?> &copy; StratusCM, LLC<?php //echo Route::getCurrentRoute()->getPath();?>

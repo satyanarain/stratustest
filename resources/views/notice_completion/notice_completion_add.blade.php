@@ -399,9 +399,9 @@
                                     </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="project_type">Improvement Type <span class="text-danger">*</span></label>
+                                <label for="project_type">Improvement Type <span class="text-danger">*</span></label><button class="label label-warning add-impvtypes" style="margin-bottom: 5px;">Add New Improvement Type</button>
                                 <div id="project_type_selected" style=""></div>
-                                <select class="form-control" id="project_type_dropdown" placeholder="Select Improvement Types">
+                                <select class="form-control project_type_dropdown" id="project_type_dropdown" placeholder="Select Improvement Types">
                                     <option>Select Improvement Types</option>
                                 </select>
                             </div>

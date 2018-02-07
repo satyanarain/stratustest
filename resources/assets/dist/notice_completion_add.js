@@ -8,7 +8,8 @@ $(document).ready(function() {
     {
         // Selected Improvement Type
         jQuery.ajax({
-        url: baseUrl +"/"+project_id+"/improvement-type",
+        //url: baseUrl +"/"+project_id+"/improvement-type",
+        url: baseUrl +"/"+project_id+"/improvement-type-by-owner",
             type: "GET",
             headers: {
               "x-access-token": token
@@ -724,3 +725,7 @@ $(document).ready(function() {
 
         }
     });
+    
+    $('.add-impvtypes').click(function(){
+        $('#add-impvtypes').modal('show');
+    }) 

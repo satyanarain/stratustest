@@ -87,6 +87,7 @@ $(document).ready(function() {
 
     // Selected Improvement Type
     jQuery.ajax({
+    //url: baseUrl +project_id+"/improvement-type",
     url: baseUrl +project_id+"/improvement-type",
         type: "GET",
         headers: {
@@ -108,12 +109,12 @@ $(document).ready(function() {
                     '<span class="label label-inverse" style="display: inline-block; font-size: 14px; margin: 10px 15px 10px 0px; padding: 5px 15px;">'+val.pt_name+'</span>'
                 )
 
-                $("#project_type_dropdown_new").append(
-                    '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
-                )
-                $("#project_type_dropdown_old").append(
-                    '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
-                )
+//                $("#project_type_dropdown_new").append(
+//                    '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
+//                )
+//                $("#project_type_dropdown_old").append(
+//                    '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
+//                )
                 improvement_type_array.push(val.pt_id);
             }else {
 
@@ -140,7 +141,49 @@ $(document).ready(function() {
         }
     });
 
-
+    // All Improvement Type
+    jQuery.ajax({
+    url: baseUrl + project_id +"/improvement-type-by-owner",
+        type: "GET",
+        headers: {
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+    })
+    .done(function(data, textStatus, jqXHR) {
+        // console.log(data.data);
+        // Foreach Loop 
+        jQuery.each(data.data, function( i, val ) {
+            if(val.pt_status == 'active'){
+                $(".project_type_dropdown").append(
+                    '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
+                )
+            }
+        });
+        // $( "h2" ).appendTo( $( ".container" ) );
+       
+        $(".loading_data").remove();
+        $("#s2id_project_type_dropdown").show();
+        // $("#add_project_form").show();
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(response);
+        if(response == 403){
+        console.log('All Improvement 403');
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            console.log('All Improvement 404');
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    }); 
+    
     // Get All agencies Name
     jQuery.ajax({
     url: baseUrl+project_id+"/company_name_user",
@@ -401,7 +444,9 @@ $(document).ready(function() {
         },3000)
     });
 
-
+    $('.add-impvtypes').click(function(){
+        $('#add-impvtypes').modal('show');
+    }) 
 
     function add_notice_award_data(){
         var check_award_type        = $("input[name='check_award_type']:checked"). val();

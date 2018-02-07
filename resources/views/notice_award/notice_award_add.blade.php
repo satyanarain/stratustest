@@ -81,10 +81,11 @@
                 </div>
                 <span class="project_type"></span><br/>
                 <span class="sub-title">Select improvement type if you want to change</span>
+                <button class="label label-warning add-impvtypes" style="margin-bottom: 5px;">Add New Improvement Type</button>
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
-                <select class="form-control" name="notice_award_project_type_dropdown" id="project_type_dropdown_new" placeholder="Select Improvement Types">
+                <select class="form-control project_type_dropdown" name="notice_award_project_type_dropdown" id="project_type_dropdown_new" placeholder="Select Improvement Types">
                 </select>
             </div>
 
@@ -140,10 +141,11 @@
                 </div>
                 <span class="project_type"></span><br/>
                 <span class="sub-title">Select improvement type if you want to change</span>
+                <button class="label label-warning add-impvtypes" style="margin-bottom: 5px;">Add New Improvement Type</button>
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
-                <select name="notice_award_improvement_type" class="form-control" id="project_type_dropdown_old" placeholder="Select Improvement Types">
+                <select name="notice_award_improvement_type" class="form-control project_type_dropdown" id="project_type_dropdown_old" placeholder="Select Improvement Types">
                 </select>
             </div>
 

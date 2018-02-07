@@ -174,7 +174,7 @@ $(document).ready(function() {
         contentType: "application/json",
         cache: false
     })
-        .done(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
         // console.log(data.data);
         // Foreach Loop 
         jQuery.each(data.data, function( i, val ) {
@@ -538,5 +538,6 @@ $(document).ready(function() {
             
         }
     })
-    
-    
+    $('.add-impvtypes').click(function(){
+        $('#add-impvtypes').modal('show');
+    })    
