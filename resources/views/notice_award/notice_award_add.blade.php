@@ -135,7 +135,7 @@
         <div class="notice_award_exist" style="display: none;">
             <header class="panel-heading">Already have Notice of Award</header>
             <div class="form-group col-md-12">
-                <label for="project_type">Project Improvement Type</label><br/>
+<!--                <label for="project_type">Project Improvement Type</label><br/>-->
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
