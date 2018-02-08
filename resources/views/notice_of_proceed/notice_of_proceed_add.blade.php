@@ -222,7 +222,7 @@
         <div style="clear: both;"></div>
         <p>Dear <span id="pdf_gen_contractor_name_1"></span></p>
         <p>In accordance with the contract documents for the above-referenced project, you are hereby notified to commence work on or before <strong><span id="pdf_gen_start_date"></span></strong>, and shall fully complete all of the work of said contract within <strong><span id="pdf_gen_working_days"></span></strong>  calendar days thereafter.  The anticipated date of completion is therefore, <strong><span id="pdf_gen_working_days_1"></span></strong>.</p>
-        <p>The contract provides for an assessment of the sum of <span class="pdf_gen_project_currency"></span> <strong><span id="pdf_gen_amount"></span></strong> as liquidated damages for each consecutive calendar day after the established contract completion dates that the work remains incomplete.</p>
+        <p>The contract provides for an assessment of the sum of <span class="pdf_gen_project_currency"></span> <strong><span id="pdf_gen_amount"></span></strong> as liquidated damages for each consecutive calendar day after the established contract completion dates that the work remains incomplete. The Contractor shall furnish original copies of the above mentioned documents to both the OWNER and OWNER'S Construction Management representative.</p>
         <div style="clear: both;"></div>
         <div style="width:100%; float: right; text-align:right; ">
             <p style="margin: 0px;">By: ____________________________ &nbsp;&n&nbsp;Title: _________________________</p>

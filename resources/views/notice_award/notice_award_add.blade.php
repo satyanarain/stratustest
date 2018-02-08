@@ -75,7 +75,7 @@
             <header class="panel-heading">Create Notice of Award</header>
 
             <div class="form-group col-md-12">
-                <label for="project_type">Project Improvement Type</label><br/>
+<!--                <label for="project_type">Project Improvement Type</label><br/>-->
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
