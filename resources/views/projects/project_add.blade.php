@@ -113,7 +113,7 @@
                                             <div class="loading_data" style="text-align: center;display: none;">
                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                             </div>
-                                            <select class="form-control select2-multiple" multiple id="project_type" placeholder="Select Improvement Types">
+                                            <select class="form-control select2-multiple1" multiple id="project_type" placeholder="Select Improvement Types" style="min-height:200px;">
                                             </select>
                                         </div>
 

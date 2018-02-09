@@ -15,7 +15,7 @@
                         <h3 class="m-b-less project_name" id="project_name_title"></h3><br/>
                         <h2 style="float: left">Request for Information # <span class="rfi_number"></span></h2>
                         <div class="state-information">
-                            <a href="{{ url('/dashboard/'.$project_id.'/req_for_info') }}" class="btn btn-success sub-btn pull-right">Back</a>
+                            <a href="{{ url('/dashboard/'.$project_id.'/req_for_info_log') }}" class="btn btn-success sub-btn pull-right">Back</a>
                         </div>
                     </div>
 

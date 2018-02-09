@@ -293,8 +293,10 @@ $(document).ready(function() {
                 jQuery.each(data.data, function( i, val ) {
                     if(val.pt_status == 'active'){
                         $("#project_type").append(
-                            '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
-                        )
+                            '<option value="'+val.pt_id+'" selected>'+val.pt_name+'</option>'
+                        );
+                        
+                        //$(".select2-choices").append('<li class="select2-search-choice"><div>'+val.pt_name+'</div><a href="#" onclick="return false;" class="select2-search-choice-close" tabindex="-1"></a></li>');
                     }else {
 
                     }

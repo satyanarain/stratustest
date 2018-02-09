@@ -233,21 +233,21 @@ $(document).ready(function() {
                 .done(function(data, textStatus, jqXHR) {
                     // console.log(data.data);
                     window.rfi_final = '';
-                    jQuery.each(data.data, function( i, val ) {
-                        rfi_final += "RFI "+val.ri_id+" : "+ val.ri_question_request+"<br/>"; 
+                    jQuery.each(data.data, function( i, val1 ) {
+                        rfi_final += "RFI "+val1.ri_id+" : "+ val1.ri_question_request+"<br/>"; 
                         // console.log(rfi_final);
                     });
 
                     var t = $('#potential_change_order').DataTable();
                     t.row.add([
                        counts, // val.pcd_parent_cor,
-                       // val.agency_name,
-                       // val.pco_date,
-                       // val.pcd_description,
+                       val.agency_name,
+                       val.pco_date,
+                       val.pcd_description,
                        rfi_final,
                        val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
                        val.pcd_days,
-                       potential_status,
+                       status_cm + status_owner+potential_status,
                        action_button
                     ]).draw( false );  
                     counts++;

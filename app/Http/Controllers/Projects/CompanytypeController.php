@@ -204,8 +204,10 @@ class CompanytypeController extends Controller {
   {
       try
       {
-        //$user_id              = Auth::user()->id;
-        $user_id              = Auth::user()->user_parent;
+          if(Auth::user()->role=="owner")
+            $user_id              = Auth::user()->id;
+          else
+            $user_id              = Auth::user()->user_parent;
         $user = array(
           'userid'    => Auth::user()->id,
           'role'      => Auth::user()->role
