@@ -127,10 +127,10 @@ $(document).ready(function() {
             html += '<li>Specification date is invalid.</li>';
             is_error == true;
         }
-        // if(standard_file_path == ''){
-        //     html += '<li>Specification document is invalid.</li>';
-        //     is_error == true;
-        // }
+         if(standard_file_path == ''){
+             html += '<li>Specification document is invalid.</li>';
+             is_error == true;
+         }
 
         var urlregex = new RegExp(
              "^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/|www\.)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$");
@@ -229,7 +229,7 @@ $(document).ready(function() {
                 $("#alert_message").show();
                 html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
                 if(responseText.data.agency_name != null){
-                    html += '<li>The agency name is required.</li>';
+                    html += '<li>The company name is required.</li>';
                 }
                 if(responseText.data.name != null){
                     html += '<li>The specification name is required.</li>';

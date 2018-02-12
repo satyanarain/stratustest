@@ -84,21 +84,21 @@
                                     <div class=" col-md-12">
                                         <label for="standard_link" style="min-width: 200px;">Applicable <span class="text-danger">*</span></label>
                                         <label class="radio-inline">
-                                          <input type="radio" name="applicable" id="applicable" value="yes"> Yes
+                                            <input type="checkbox" name="applicable" id="applicable" value="yes"> 
                                         </label>
-                                        <label class="radio-inline">
-                                          <input type="radio" name="applicable" id="applicable" value="no"> No
-                                        </label>
+<!--                                        <label class="radio-inline">
+                                          <input type="radio" name="applicable" id="applicable1" value="no"> No
+                                        </label>-->
                                     </div>
 
                                     <div class=" col-md-12">
                                         <label for="standard_link" style="min-width: 200px;">Available <span class="text-danger">*</span></label>
                                         <label class="radio-inline">
-                                          <input type="radio" name="upload" id="upload" value="yes"> Yes
+                                            <input type="checkbox" name="upload" id="upload" value="yes"> 
                                         </label>
-                                        <label class="radio-inline">
+<!--                                        <label class="radio-inline">
                                           <input type="radio" name="upload" id="upload" value="no"> No
-                                        </label>
+                                        </label>-->
                                     </div>
 
                                     <div class="form-group col-md-12">
@@ -111,7 +111,7 @@
 <!--                                        <a data-href="{{ url('/dashboard/'.$project_id.'/geo_reports') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
                                         <a href="{{ url('/dashboard/'.$project_id.'/geo_reports') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
                                         <button type="submit" class="btn btn-info sub-btn first_button">Save</button>
-                                        <button type="submit" class="another_button btn btn-info sub-btn" style="display: none;">Save Another</button>
+                                        <button type="submit" class="another_button1 btn btn-info sub-btn" style="display: none;">Save Another</button>
                                         <a href="{{ url('/dashboard/'.$project_id.'/swppp') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
                                         <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                     </div>

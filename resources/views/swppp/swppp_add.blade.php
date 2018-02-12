@@ -86,21 +86,21 @@
                                     <div class=" col-md-12">
                                         <label for="standard_link" style="min-width: 200px;">Applicable <span class="text-danger">*</span></label>
                                         <label class="radio-inline">
-                                          <input type="radio" name="applicable" id="applicable" value="yes"> Yes
+                                            <input type="checkbox" name="applicable" id="applicable" value="yes">
                                         </label>
-                                        <label class="radio-inline">
+<!--                                        <label class="radio-inline">
                                           <input type="radio" name="applicable" id="applicable" value="no"> No
-                                        </label>
+                                        </label>-->
                                     </div>
 
                                     <div class=" col-md-12">
                                         <label for="standard_link" style="min-width: 200px;">Available <span class="text-danger">*</span></label>
                                         <label class="radio-inline">
-                                          <input type="radio" name="upload" id="upload" value="yes"> Yes
+                                            <input type="checkbox" name="upload" id="upload" value="yes">
                                         </label>
-                                        <label class="radio-inline">
+<!--                                        <label class="radio-inline">
                                           <input type="radio" name="upload" id="upload" value="no"> No
-                                        </label>
+                                        </label>-->
                                     </div>
 
                                     <div class="form-group col-md-12">

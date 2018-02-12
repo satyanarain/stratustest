@@ -100,9 +100,9 @@ $(document).ready(function() {
         console.log(data);
         window.improvement_type_array = [];
         // Foreach Loop
-        $("#project_type_dropdown_new").append(
-            '<option value="">Select Improvement Type</option>'
-        )
+//        $("#project_type_dropdown_new").append(
+//            '<option value="">Select Improvement Type</option>'
+//        )
         jQuery.each(data.data, function( i, val ) {
             if(val.pt_status == 'active'){
                 $(".project_type").append(
@@ -154,6 +154,9 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         // console.log(data.data);
         // Foreach Loop 
+        $(".project_type_dropdown").append(
+            '<option value="">Select Improvement Type</option>'
+        )
         jQuery.each(data.data, function( i, val ) {
             if(val.pt_status == 'active'){
                 $(".project_type_dropdown").append(

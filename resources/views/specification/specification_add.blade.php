@@ -43,7 +43,7 @@
                                     <form role="form" id="add_standard_form">
                                         <div class="row">
                                         <div class="form-group">
-                                            <label for="company_name">Entity name</label>
+                                            <label for="company_name">Entity name <span class="text-danger">*</span></label>
                                             <div class="loading_data" style="text-align: center;">
                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                             </div>
@@ -107,7 +107,7 @@
                                     </form>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="standard_name">Upload Specification Document</label>
+                                    <label for="standard_name">Upload Specification Document <span class="text-danger">*</span></label>
                                     <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                         <input type="hidden" name="document_path" value="/uploads/standard/">
                                     </form>

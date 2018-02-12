@@ -125,7 +125,12 @@
 			  	else {
 			  		var sw_applicable = "No";
 			  	}
-
+                                if(val.sw_available == 'yes'){
+			  		var sw_available = "Yes";
+			  	}
+			  	else {
+			  		var sw_available = "No";
+			  	}
 			  	if(val.sw_type == 'wpcp'){
 			  		var sw_type = "WPCP";
 			  	}
@@ -142,6 +147,7 @@
                            val.sw_date,
 		           val.f_name,
 		           sw_applicable,
+                           sw_available,
 		           sw_type,
 		           doc_path_value,
 		           status,

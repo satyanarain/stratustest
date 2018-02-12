@@ -102,10 +102,10 @@ $(document).ready(function() {
             html += '<li>Standard date is invalid.</li>';
             is_error = true;
         }
-        // if(standard_file_path == ''){
-        //     html += '<li>Standard document is invalid.</li>';
-        //     is_error = true;
-        // }
+         if(standard_file_path == ''){
+             html += '<li>Standard document is invalid.</li>';
+             is_error = true;
+         }
 
         var urlregex = new RegExp(
            "^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/|www\.)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$");

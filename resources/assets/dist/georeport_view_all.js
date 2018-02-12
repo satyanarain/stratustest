@@ -118,6 +118,12 @@
 			  	else {
 			  		var geo_application = 'No';
 			  	}
+                                if(val.geo_available == 'yes'){
+			  		var geo_available = 'Yes';
+			  	}
+			  	else {
+			  		var geo_available = 'No';
+			  	}
 
 			  // $("#view_users_table_wrapper tbody").append(
 			  // 	'<tr><td>'+val.geo_id+'</td>'+
@@ -142,6 +148,7 @@
                    $.datepicker.formatDate('yy-mm-dd', new Date(val.geo_date_of_report.replace(' ', 'T'))),
 		           val.agency_name,
 		           geo_application,
+                           geo_available,
 		           doc_path_value,
 		           status,
 		           update_permission

@@ -68,6 +68,12 @@ $('.add_swppp_form').click(function(e) {
     var company_name            = $('#company_name').val();
     var applicable              = $("input[name='applicable']:checked"). val();
     var upload                  = $("input[name='upload']:checked"). val();
+    if(upload == "" || upload == "undefined" || upload == null){
+        upload = 'no';
+    }
+    if(applicable == "" || applicable == "undefined" || applicable == null){
+        applicable = 'no';
+    }
     var type                    = $('#type').val();
     var file_path               = $('#upload_doc_id').val();
     var project_id              = $('#upload_project_id').val();

@@ -90,29 +90,30 @@ class StandardController extends Controller {
                   "status"          => $status,
               );
 
-              // if($type == 'standard'){
-              //   $rules = [
-              //     'agency_name'     => 'required',
-              //     'name'            => 'required',
-              //     'date'            => 'required',
-              //     'type'            => 'required',
-              //     'upload_file'     => 'required',
-              //     'project_id'      => 'required|numeric',
-              //     'user_id'         => 'required|numeric',
-              //     'status'          => 'required',
-              //   ];  
-              // }
-              // else {
+               if($type == 'standard'){
+                 $rules = [
+                   'agency_name'     => 'required',
+                   'name'            => 'required',
+                   'date'            => 'required',
+                   'type'            => 'required',
+                   'upload_file'     => 'required',
+                   'project_id'      => 'required|numeric',
+                   'user_id'         => 'required|numeric',
+                   'status'          => 'required',
+                 ];  
+               }
+               else {
                 $rules = [
                   'agency_name'     => 'required',
                   'name'            => 'required',
                   'date'            => 'required',
                   'type'            => 'required',
+                  'upload_file'     => 'required',
                   'project_id'      => 'required|numeric',
                   'user_id'         => 'required|numeric',
                   'status'          => 'required',
                 ];
-              // }
+              }
               
               $validator = Validator::make($information, $rules);
               if ($validator->fails()) 

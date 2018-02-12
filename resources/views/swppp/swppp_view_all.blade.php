@@ -35,6 +35,7 @@
                             <th>Date</th>
                             <th>Company Name</th>
                             <th>Applicable</th>
+                            <th>Available</th>
                             <th>Document Type</th>
                             <th>Document</th>
                             <th>Status</th>

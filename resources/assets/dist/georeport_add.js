@@ -63,6 +63,13 @@ $('#add_georeport_form').submit(function(e) {
     var standard_link           = $('#standard_link').val();
     var applicable              = $("input[name='applicable']:checked"). val();
     var upload                  = $("input[name='upload']:checked"). val();
+    if(upload == "" || upload == "undefined" || upload == null){
+        upload = 'no';
+    }
+    if(applicable == "" || applicable == "undefined" || applicable == null){
+        applicable = 'no';
+    }
+    //alert(upload);return false;
     var georeport_file_path     = $('#upload_doc_id').val();
     var georeport_project_id    = $('#upload_project_id').val();
     var token                   = localStorage.getItem('u_token');
@@ -87,19 +94,19 @@ $('#add_georeport_form').submit(function(e) {
             is_error = true;
         }
         
-        if(upload == "" || upload == "undefined" || upload == null){
-            html += '<li>Available is invalid.</li>';
-            is_error = true;
-        }
-        else {
-            if($('input:radio[name=upload]:checked').val() == "yes"){
+//        if(upload == "" || upload == "undefined" || upload == null){
+//            html += '<li>Available is invalid.</li>';
+//            is_error = true;
+//        }
+//        else {
+            if($('input:checkbox[name=upload]:checked').val() == "yes"){
                 $('.upload_doc_panel').css("display", "block");
                 if(georeport_file_path == ''){
                     html += '<li>Document is invalid.</li>';
                     is_error = true;
                 }
             }
-        }
+        //}
         if(applicable=="yes" && upload=="no")
         {
              var res = confirm("Warning: Proceeding without upload of report is not recommended.");
@@ -165,7 +172,7 @@ $('#add_georeport_form').submit(function(e) {
                 $('#company_name').val('');
                 $('input[name="applicable"]').attr('checked', false);
                 $('input[name="upload"]').attr('checked', false);
-                $(".another_button").show();
+                $(".another_button1").show();
                 $(".first_button").hide();
                 setTimeout(function()
                 {
