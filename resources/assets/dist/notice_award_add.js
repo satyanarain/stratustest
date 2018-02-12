@@ -465,8 +465,10 @@ $(document).ready(function() {
         if(project_type_dropdown_new){
             var improvement_type    = project_type_dropdown_new;
         }
-        else {
+        else if(project_type_dropdown_old) {
             var improvement_type    = project_type_dropdown_old;
+        }else{
+            var improvement_type = improvement_type_array.join(',')
         }
         //alert(improvement_type_array);return false;
         console.log(improvement_type);

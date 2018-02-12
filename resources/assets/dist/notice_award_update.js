@@ -168,8 +168,11 @@
             $("#alert_message").show();
             html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">Notice award update successfully!</div></div>';
             $("#alert_message").html(html);
-            $("#alert_message").hide();
-            window.location.reload();
+            setTimeout(function()
+            {
+                $("#alert_message").hide();
+            },5000)
+            //window.location.reload();
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
             $('.loading-submit').hide();
