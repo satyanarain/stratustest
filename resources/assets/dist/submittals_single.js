@@ -144,6 +144,7 @@
 		    $('#submittal_description').text(data.data.sub_description);
 		    $('#submittal_specification').text(data.data.sub_specification);
 		    $('#submittal_comments').html(data.data.sub_additional_comments);
+                    $('#sub_request_expedited_review').html(data.data.sub_request_expedited_review);
 		    $('#submittal_expedited').html(data.data.sub_review_type);
 		    $('#submittal_documents').html(document_link_value);
 		    $('#submittal_user_detail').html(data.data.user_firstname+' '+data.data.user_lastname+'<br/>'+data.data.user_email+'<br/>'+data.data.user_role);

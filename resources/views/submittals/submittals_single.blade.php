@@ -44,6 +44,10 @@
                                         <td width="75%" colspan="2" id="submittal_comments"></td>
                                     </tr>
                                     <tr>
+                                        <th width="25%" colspan="2">Request Expedited Review Comments</th>
+                                        <td width="75%" colspan="2" id="sub_request_expedited_review"></td>
+                                    </tr>
+                                    <tr>
                                         <th width="25%" colspan="2">Expedited Review Requested</th>
                                         <td width="75%" colspan="2" id="submittal_expedited"></td>
                                     </tr>
