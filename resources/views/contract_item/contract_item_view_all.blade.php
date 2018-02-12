@@ -48,7 +48,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Description</th>
+                            <th width="30%">Description</th>
                             <th>Unit of Measure</th>
                             <th>QTY</th>
                             <th>Unit Price</th>

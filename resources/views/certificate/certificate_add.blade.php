@@ -116,8 +116,10 @@
                                 </div><!-- Col 6 Close -->
 
                                 <div class="col-sm-6">
-                                    <section class="panel upload_doc_panel" style="margin-top: 20px;"><span class="text-danger" style="float:right">*</span>
+                                    <section class="panel upload_doc_panel" style="margin-top: 20px;">
+                                        
                                         <div class="panel-body">
+                                            <label for="standard_name">Upload General Liability Document <span class="text-danger" style="float:right">*</span></label>
                                             <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                 <input type="hidden" name="document_path" value="/uploads/certificate/">
                                             </form>
@@ -185,8 +187,9 @@
                                     <div class="clearfix"></div>
                                 </div><!-- Col 6 Close -->
                                 <div class="col-sm-6">
-                                    <section class="panel upload_doc_panel_work" style="margin-top: 0px;"><span class="text-danger" style="float:right">*</span>
+                                    <section class="panel upload_doc_panel_work" style="margin-top: 0px;">
                                         <div class="panel-body">
+                                            <label for="standard_name">Upload Workers Compensation Document <span class="text-danger" style="float:right">*</span></label>
                                             <form id="my-awesome-dropzone1" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                 <input type="hidden" class="certificate_work_compensation" name="document_path" value="/uploads/certificate/">
                                             </form>
@@ -258,8 +261,9 @@
                                     <div class="clearfix"></div>
                                 </div><!-- Col 6 Close -->
                                 <div class="col-sm-6">
-                                    <section class="panel upload_doc_panel_auto"><span class="text-danger" style="float:right">*</span>
+                                    <section class="panel upload_doc_panel_auto">
                                         <div class="panel-body">
+                                            <label for="standard_name">Upload Auto Liability Document <span class="text-danger" style="float:right">*</span></label>
                                             <form id="my-awesome-dropzone2" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                 <input type="hidden" class="certificate_auto_liability" name="document_path" value="/uploads/certificate/">
                                             </form>

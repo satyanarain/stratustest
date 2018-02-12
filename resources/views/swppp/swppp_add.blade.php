@@ -152,7 +152,7 @@
                     <div class="col-lg-6">
                         <section class="panel upload_doc_panel">
                             <div class="panel-body">
-                                <label for="standard_name">Upload SWPPP / WPCP <span class="text-danger">*</span></label>
+                                <label for="standard_name">Upload SWPPP / WPCP </label>
                                 <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                     <input type="hidden" name="document_path" value="/uploads/swppp/">
                                 </form> 

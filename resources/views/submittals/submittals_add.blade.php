@@ -202,14 +202,14 @@ $("input[name='check_submittal_type']").click(function(){
     }
 });
 
-// $('#review_yes').change(function() {
-//     if($(this).is(":checked")) {
-//         $('.request_expedited_review').css("display", "block");
-//     }
-//     else {
-//         $('.request_expedited_review').css("display", "none");
-//     }
-// });
+ $('#review_yes').change(function() {
+     if($(this).is(":checked")) {
+         $('.request_expedited_review').css("display", "block");
+     }
+     else {
+         $('.request_expedited_review').css("display", "none");
+     }
+ });
 </script>
 <script src="{{ url('/resources/assets/dist/submittals_add.js') }}"></script>
 
