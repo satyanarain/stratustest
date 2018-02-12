@@ -6778,10 +6778,10 @@ table.dataTable tbody td {
     padding: 8px 10px;
 }
 
-table.dataTable th,
+/*table.dataTable th,
 table.dataTable td {
     white-space: nowrap;
-}
+}*/
 
 table.dataTable.row-border tbody th,
 table.dataTable.row-border tbody td,
@@ -7256,4 +7256,4 @@ ul.lower-alpha {list-style-type: none;padding:0 ;margin:0;}
 .picture-video-add .desc-text{display: block;max-width: 667px;white-space: normal;word-wrap: break-word;}
 .picture_video_single img{width: 100%;}
 .project_name   { padding-bottom: 5px; display: inline-block !important; font-size: 18px !important; font-weight: 500 !important; border-bottom: 1px solid #333; margin-bottom: 5px !important; }
-.wrap-div{width: 300px;text-overflow:ellipsis;overflow: hidden;}
+/*.wrap-div{width: 300px;text-overflow:ellipsis;overflow: hidden;}*/

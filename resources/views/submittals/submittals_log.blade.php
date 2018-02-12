@@ -34,7 +34,7 @@
                         <thead>
                         <tr>
                             <th>Submittal #</th>
-                            <th>Description</th>
+                            <th width="30%">Description</th>
                             <th>Date of Submittal</th>
                             <th>Date Submittal Returned by Reviewer</th>
                             <th>No Exceptions</th>

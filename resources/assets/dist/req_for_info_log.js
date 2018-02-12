@@ -68,7 +68,6 @@
 			    var specific_project_name = 'Request for Information Log for Project: ' + window.project_name;
 			   	console.log(specific_project_name);
 			    $('#view_users_table').DataTable({
-                                scrollX:        true,
                         dom: 'Bfrtip',
 	                buttons: [
 	                    // {

@@ -33,7 +33,7 @@
                             <th>Compaction Firm</th>
                             <th>Compaction Date</th>
                             <th># of Compaction Tests</th>
-                            <th>Compaction Location</th>
+                            <th width="20%">Compaction Location</th>
                             <th>Compaction Document</th>
                             <th>PCC Strength Firm</th>
                             <th>PCC Strength Date</th>

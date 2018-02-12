@@ -27,7 +27,7 @@
                         <thead>
                         <tr>
                             <th>RFI #</th>
-                            <th>Description</th>
+                            <th width="30%">Description</th>
                             <th>Approval Authority</th>
                             <th>Date Submitted</th>
                             <th>Date Responded</th>

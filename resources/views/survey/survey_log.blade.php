@@ -34,7 +34,7 @@
                         <thead>
                         <tr>
                             <th>Survey #</th>
-                            <th>Description</th>
+                            <th width="30%">Description</th>
                             <th>Date of Request</th>
                             <th>Date Survey Complete</th>
                             <th>Survey Requests</th>

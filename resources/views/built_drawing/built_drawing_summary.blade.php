@@ -32,7 +32,7 @@
                                           <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Description</th>
+                                                <th width="30%">Description</th>
                                                 <th>Contractor’s Redlines</th>
                                                 <th>Engineer’s As Built</th>
                                                 <th>Changes to Plans?</th>

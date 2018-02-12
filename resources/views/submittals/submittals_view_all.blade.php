@@ -32,7 +32,7 @@
                             <!-- <th>#</th> -->
                             <th>Submittal #</th>
                             <th>Date</th>
-                            <th>Description</th>
+                            <th width="30%">Description</th>
                             <th>Document</th>
                             <th>Status</th>
                             <th>Action</th>

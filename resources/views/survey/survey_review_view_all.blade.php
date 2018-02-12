@@ -30,7 +30,7 @@
                                 <thead>
                                 <tr>
                                     <th>Survey #</th>
-                                    <th>Description</th>
+                                    <th width="30%">Description</th>
                                     <th>Status</th>
                                     <th>Hours worked by Survey Crew</th>
                                     <th>Action</th>
