@@ -444,10 +444,11 @@ class SubmittalsController extends Controller {
 ->leftJoin('project_standards as specification', 'project_submittals.sub_specification', '=', 'specification.ps_id')
 ->leftJoin('documents as submittal_path', 'project_submittals.sub_additional_path', '=', 'submittal_path.doc_id')
 ->leftJoin('projects', 'project_submittals.sub_project_id', '=', 'projects.p_id')
+->leftJoin('project_submittal_review', 'project_submittals.sub_id', '=', 'project_submittal_review.sr_submittal_id')
 ->leftJoin('users', 'project_submittals.sub_user_id', '=', 'users.id')
         ->select('specification.ps_name as specification_name',
           'submittal_path.doc_path as submittal_path',  
-          'project_submittals.*', 'projects.*', 
+          'project_submittals.*', 'projects.*','project_submittal_review.*', 
           'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
           ->where('sub_project_id', '=', $project_id)
           ->orderBy('sub_number', 'desc')
