@@ -388,9 +388,16 @@ $('.create_notice').click(function () {
             // return false;
         }
         $('#pdf_gen_working_days').text(duration_days);
-        $('#pdf_gen_working_days_1').text(duration_days);
-
+    
         var notice_date = $("#notice_start_date").val();
+        var invite_date = $.datepicker.formatDate('yy-mm-dd', new Date(notice_date));
+        var invite_date = new Date(invite_date);
+        invite_date.setDate(invite_date.getDate() + parseInt(duration_days));
+
+        var dateMsg = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+invite_date.getDate();
+        //alert(dateMsg);return false;
+        $('#pdf_gen_working_days_1').text(dateMsg);
+        
         if(notice_date == ''){
             html += '<li>Start date is invalid</li>';
         }

@@ -84,7 +84,7 @@
                                     </div>
 
                                     <div class=" col-md-12">
-                                        <label for="standard_link" style="min-width: 200px;">Applicable <span class="text-danger">*</span></label>
+                                        <label for="standard_link" style="min-width: 200px;">Applicable</label>
                                         <label class="radio-inline">
                                             <input type="checkbox" name="applicable" id="applicable" value="yes">
                                         </label>
@@ -94,7 +94,7 @@
                                     </div>
 
                                     <div class=" col-md-12">
-                                        <label for="standard_link" style="min-width: 200px;">Available <span class="text-danger">*</span></label>
+                                        <label for="standard_link" style="min-width: 200px;">Available</label>
                                         <label class="radio-inline">
                                             <input type="checkbox" name="upload" id="upload" value="yes">
                                         </label>

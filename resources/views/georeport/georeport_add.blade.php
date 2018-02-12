@@ -82,7 +82,7 @@
                                     </div>
 
                                     <div class=" col-md-12">
-                                        <label for="standard_link" style="min-width: 200px;">Applicable <span class="text-danger">*</span></label>
+                                        <label for="standard_link" style="min-width: 200px;">Applicable</label>
                                         <label class="radio-inline">
                                             <input type="checkbox" name="applicable" id="applicable" value="yes"> 
                                         </label>
@@ -92,7 +92,7 @@
                                     </div>
 
                                     <div class=" col-md-12">
-                                        <label for="standard_link" style="min-width: 200px;">Available <span class="text-danger">*</span></label>
+                                        <label for="standard_link" style="min-width: 200px;">Available</label>
                                         <label class="radio-inline">
                                             <input type="checkbox" name="upload" id="upload" value="yes"> 
                                         </label>
@@ -126,7 +126,7 @@
                     <div class="col-lg-6">
                         <section class="panel upload_doc_panel">
                             <div class="panel-body">
-                                <label for="name_of_report">Upload Geotechnical Report <span class="text-danger">*</span></label>
+                                <label for="name_of_report">Upload Geotechnical Report</label>
                                 <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                     <input type="hidden" name="document_path" value="/uploads/geo_report/">
                                 </form>

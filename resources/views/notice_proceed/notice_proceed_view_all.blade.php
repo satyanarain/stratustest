@@ -10,7 +10,7 @@
             <!-- page head start-->
             <div class="page-head">
                 <h3 class="m-b-less project_name" id="project_name_title"></h3><br/>
-                <h3 class="m-b-less">View Notices to Proceed</h3>
+                <h3 class="m-b-less">View Notice to Proceed</h3>
                 <div class="state-information hide_add_permission" style="display: none;">
                     <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/notice_proceed/add" class="btn btn-success"><i class="fa fa-plus"></i> Add Notice to Proceed</a>
                 </div>

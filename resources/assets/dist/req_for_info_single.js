@@ -102,7 +102,7 @@
 			  	 	var	file_path_value = '-';
 			  	}
 			  	else {
-			  		var file_path_value = '<a href="https://apps.groupdocs.com/document-viewer/embed/'+data.data.file_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+			  		var file_path_value = '<a href="'+baseUrl+data.data.file_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
 			  		// var file_path_value = '<iframe src="https://apps.groupdocs.com/document-viewer/Embed/'+data.data.file_path+'?quality=50&use_pdf=False&download=False&print=False&signature=5Xpc7qsFKjmJoHfRcXxUus8Tqn0" frameborder="0" width="100%" height="800"></iframe>';
 			  	}
 
@@ -110,7 +110,7 @@
 				var day = date.getDate();
 				var month = date.getMonth();
 				var year = date.getFullYear();
-				var rfi_date = year + '-' + month + '-' + day;
+				var rfi_date = year + '-' + parseInt(month+1) + '-' + day;
 		    	$('#rfi_date').text(rfi_date);
 
 		    	if(data.data.ri_additional_cost == null){
