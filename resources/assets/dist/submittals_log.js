@@ -175,11 +175,14 @@
 
 			  var t = $('#view_users_table').DataTable();
 			  	if(val.sub_review_type == 'yes'){
+                                    var cus_css = '';
+                                    if(val.sr_review_type=="pending")
+                                        var cus_css = 'color:#F00;';
 			  		t.row.add( [
-			           '<span style="color:#F00;">'+sub_num+'</span>',
-			           '<span style="color:#F00;">'+val.sub_description+'</span>',
-			           '<span style="color:#F00;">'+date_format+'</span>',
-			           '<span style="color:#F00;">'+respond_date+'</span>',
+			           '<span style="'+cus_css+'">'+sub_num+'</span>',
+			           '<span style="'+cus_css+'">'+val.sub_description+'</span>',
+			           '<span style="'+cus_css+'">'+date_format+'</span>',
+			           '<span style="'+cus_css+'">'+respond_date+'</span>',
 			           no_exception,
 			           make_corrections_noted,
 			           revise_resubmit,

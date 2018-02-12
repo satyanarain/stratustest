@@ -68,7 +68,8 @@
 			    var specific_project_name = 'Request for Information Log for Project: ' + window.project_name;
 			   	console.log(specific_project_name);
 			    $('#view_users_table').DataTable({
-	                dom: 'Bfrtip',
+                                scrollX:        true,
+                        dom: 'Bfrtip',
 	                buttons: [
 	                    // {
 	                    //     extend: 'copyHtml5',
@@ -202,7 +203,7 @@
 					t.row.add( [
 			           count, // val.ri_id,
 			           val.rfi_user_company,
-			           val.ri_question_request,
+			           '<div class="wrap-div">'+val.ri_question_request+'</div>',
 			           val.review_user_company,
 			           submitted_date,
                                    req_info_path_value,
@@ -253,5 +254,5 @@
 			}
         },2000)
 
-
+  
     });
