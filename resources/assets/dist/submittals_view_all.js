@@ -149,7 +149,8 @@
                                         var cus_css = 'color:#F00;';
 			  		t.row.add( [
 			           // val.sub_id,
-			           '<span style="'+cus_css+'">'+sub_num+'</span>',
+			           //'<span style="'+cus_css+'">'+sub_num+'</span>',
+                                   '<span style="'+cus_css+'">'+(i+1)+'</span>',
 			           '<span style="'+cus_css+'">'+date_format+'</span>',
 			           '<span style="'+cus_css+'">'+val.sub_description+'</span>',
 			           sub_additional_path_value,

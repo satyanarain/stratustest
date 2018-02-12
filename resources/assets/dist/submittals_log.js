@@ -179,7 +179,8 @@
                                     if(val.sr_review_type=="pending")
                                         var cus_css = 'color:#F00;';
 			  		t.row.add( [
-			           '<span style="'+cus_css+'">'+sub_num+'</span>',
+			           //'<span style="'+cus_css+'">'+sub_num+'</span>',
+                                   '<span style="'+cus_css+'">'+(i+1)+'</span>',
 			           '<span style="'+cus_css+'">'+val.sub_description+'</span>',
 			           '<span style="'+cus_css+'">'+date_format+'</span>',
 			           '<span style="'+cus_css+'">'+respond_date+'</span>',
