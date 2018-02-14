@@ -53,7 +53,7 @@
                                         <td colspan="2" id="rfi_documents"></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="2">Submittal User Detail</th>
+                                        <th colspan="2">User Detail</th>
                                         <td colspan="2" id="rfi_user_detail"></td>
                                     </tr>
                                 </tbody>
@@ -92,7 +92,7 @@
                                         <td colspan="2" id="review_additional_days"></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="2">Submittal User Detail</th>
+                                        <th colspan="2">User Detail</th>
                                         <td colspan="2" id="review_user_detail"></td>
                                     </tr>
                                 </tbody>

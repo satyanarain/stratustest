@@ -146,18 +146,24 @@
 
 			  	var performance_bond_date = val.performance_bond_date;
 			  	if(val.performance_bond_date == '0000-00-00' || val.performance_bond_date == null){
-			  		var performance_bond_date = ' --- '; 
+			  		var performance_bond_date = ' '; 
 			  	}
 
 			  	var payment_bond_date = val.payment_bond_date;
 			  	if(payment_bond_date == '0000-00-00' || payment_bond_date == null){
-			  		payment_bond_date = ' --- '; 
+			  		payment_bond_date = ' '; 
 			  	}
 			  	var maintenance_bond_date = val.maintenance_bond_date;
 			  	if(maintenance_bond_date == '0000-00-00' || maintenance_bond_date == null){
-			  		maintenance_bond_date = ' --- '; 
+			  		maintenance_bond_date = ' '; 
 			  	}
 			  var t = $('#view_users_table').DataTable();
+                          var maintenance_bond_amount = '';
+                          if(val.maintenance_bond_amount>0)
+                              maintenance_bond_amount = val.maintenance_bond_currency+' '+ ReplaceNumberWithCommas(val.maintenance_bond_amount);
+                          var payment_bond_amount = '';
+                          if(val.payment_bond_amount>0)
+                              val.payment_bond_currency+' '+ ReplaceNumberWithCommas(val.payment_bond_amount)
 				t.row.add( [
 		           count,
 		           val.agency_name,
@@ -165,11 +171,11 @@
                    performance_bond_date,
 		           val.performance_bond_number,
 		           performance_bond_path_value,
-		           val.payment_bond_currency+' '+ ReplaceNumberWithCommas(val.payment_bond_amount),
+		           payment_bond_amount,
                    payment_bond_date,
 		           val.payment_bond_number,
 		           payment_bond_path_value,
-		           val.maintenance_bond_currency+' '+ ReplaceNumberWithCommas(val.maintenance_bond_amount),
+		           maintenance_bond_amount,
                    maintenance_bond_date,
 		           val.maintenance_bond_number,
 		           maintenance_bond_path_value,

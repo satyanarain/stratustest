@@ -32,14 +32,65 @@ $(document).ready(function() {
         contentType: "application/json",
         cache: false
     })
-        .done(function(data, textStatus, jqXHR) {
+    .done(function(data, textStatus, jqXHR) {
         // console.log(data.data);
         // Foreach Loop 
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status == 'active'){
-                $("#company_name").append(
+                $("#agency_name").append(
                     '<option value="'+val.f_id+'">'+val.f_name+'</option>'
                 )
+                
+            }else {
+
+            }
+        });
+        var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+        if(add_company_on_fly_permission>0 || role=="owner"){
+        $("#agency_name").append(
+            '<option style="font-weight:bold;">Add New Agency</option>'
+        );
+        
+        }
+        // $( "h2" ).appendTo( $( ".container" ) );
+       
+        // $(".loading_data").remove();
+        $("#s2id_company_name").show();
+        $("#s2id_company_name_two").show();
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(response);
+        if(response == 403){
+        console.log('Company name 403');
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            console.log('Company name 404');
+            $("#agency_name").show();
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
+    
+    jQuery.ajax({
+    url: baseUrl+project_id+"/company_name_user",
+        type: "GET",
+        headers: {
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+    })
+    .done(function(data, textStatus, jqXHR) {
+        // console.log(data.data);
+        // Foreach Loop 
+        jQuery.each(data.data, function( i, val ) {
+            if(val.f_status == 'active'){
+                
                  $("#company_name_two").append(
                     '<option value="'+val.f_id+'">'+val.f_name+'</option>'
                 )
@@ -49,11 +100,8 @@ $(document).ready(function() {
         });
         var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
         if(add_company_on_fly_permission>0 || role=="owner"){
-        $("#company_name").append(
-            '<option style="font-weight:bold;">Add New Agency</option>'
-        );
         $("#company_name_two").append(
-            '<option style="font-weight:bold;">Add New Agency</option>'
+            '<option style="font-weight:bold;">Add New Company</option>'
         )
         }
         // $( "h2" ).appendTo( $( ".container" ) );
@@ -72,14 +120,14 @@ $(document).ready(function() {
         }
         else if(response == 404){
             console.log('Company name 404');
-            $("#company_name").show();
+            $("#agency_name").show();
             // window.location.href = baseUrl + "404";
         }
         else {
             window.location.href = baseUrl + "500";
         }
     });
-
+    
     jQuery.ajax({
     url: baseUrl + "projects/"+project_id,
         type: "GET",
@@ -272,7 +320,7 @@ $(document).ready(function() {
         e.preventDefault();
         $('.loading-submit').show();
         var project_type                        = $('#project_type_dropdown').val();
-        var company_name                        = $('#company_name').val();
+        var company_name                        = $('#agency_name').val();
         var bid_advertisement_date              = $('#bid_advertisement_date').val();
         var upload_doc_id_adv_bid               = $('#upload_doc_id_adv_bid').val();
         var bid_advertisement_yes               = $('#bid_advertisement_yes').val();
@@ -527,12 +575,12 @@ $(document).ready(function() {
         })
     });
     
-    $('#company_name,#company_name_two').change(function(){
+    $('#agency_name,#company_name_two').change(function(){
         var company = $(this).val();
-        if(company=="Add New Agency")
+        if(company=="Add New Company" || company=="Add New Agency")
         {
-            $('#add-agency').modal('show');
-            $('#add-agency').on('shown.bs.modal',function(){
+            $('#add-company').modal('show');
+            $('#add-company').on('shown.bs.modal',function(){
                 google.maps.event.trigger(map, "resize");
               });
             

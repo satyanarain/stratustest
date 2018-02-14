@@ -126,7 +126,7 @@
                     <div class="col-lg-6">
                         <section class="panel upload_doc_panel">
                             <div class="panel-body">
-                                <label for="name_of_report">Upload Geotechnical Report</label>
+                                <label for="name_of_report">Upload Geotechnical Report <span class="text-danger">*</span></label>
                                 <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                     <input type="hidden" name="document_path" value="/uploads/geo_report/">
                                 </form>

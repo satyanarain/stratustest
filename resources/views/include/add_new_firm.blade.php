@@ -251,28 +251,134 @@ $(document).ready(function() {
             .done(function(data, textStatus, jqXHR) {
                 // console.log(data);
                 // Foreach Loop
-                if($("#company_name").length == 0) {
+                if($(".company_name").length > 0) {
                     var ele_name = '.company_name';
-                }else{
-                    var ele_name = '#company_name';
-                }
-                $(ele_name).empty();
-                jQuery.each(data.data, function( i, val ) {
-                    if(val.f_status == 'active'){
-                        $(ele_name).append(
-                            '<option value="'+val.f_id+'">'+val.f_name+'</option>'
-                        )
-                    }else {
+                    $(ele_name).empty();
+                    jQuery.each(data.data, function( i, val ) {
+                        if(val.f_status == 'active'){
+                            $(ele_name).append(
+                                '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                            )
+                        }else {
 
+                        }
+                    });
+                    var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+                    console.log(add_company_on_fly_permission+'company_fly');
+                    if(add_company_on_fly_permission>0 || role=="owner"){
+                        $(ele_name).append(
+                            '<option style="font-weight:bold;">Add New Company</option>'
+                        )
                     }
-                });
-        var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
-        console.log(add_company_on_fly_permission+'company_fly');
-        if(add_company_on_fly_permission>0 || role=="owner"){
-            $(ele_name).append(
-                '<option style="font-weight:bold;">Add New Company</option>'
-            )
+                }
+                if($("#company_name").length > 0) {
+                    var ele_name = '#company_name';
+                    $(ele_name).empty();
+                    jQuery.each(data.data, function( i, val ) {
+                        if(val.f_status == 'active'){
+                            $(ele_name).append(
+                                '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                            )
+                        }else {
+
+                        }
+                    });
+                    var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+                    console.log(add_company_on_fly_permission+'company_fly');
+                    if(add_company_on_fly_permission>0 || role=="owner"){
+                        $(ele_name).append(
+                            '<option style="font-weight:bold;">Add New Company</option>'
+                        )
+                    }
+                }
+                if($("#company_name_two").length > 0) {
+                    var ele_name = '#company_name_two';
+                    $(ele_name).empty();
+                    jQuery.each(data.data, function( i, val ) {
+                        if(val.f_status == 'active'){
+                            $(ele_name).append(
+                                '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                            )
+                        }else {
+
+                        }
+                    });
+                    var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+                    console.log(add_company_on_fly_permission+'company_fly');
+                    if(add_company_on_fly_permission>0 || role=="owner"){
+                        $(ele_name).append(
+                            '<option style="font-weight:bold;">Add New Company</option>'
+                        )
+                    }
+                }
+                if($("#agency_name").length > 0){
+                    jQuery.ajax({
+                        url: baseUrl+project_id+"/company_name_user_agency",
+                        type: "GET",
+                        headers: {
+                          "x-access-token": token
+                        },
+                        contentType: "application/json",
+                        cache: false
+                        })
+                    .done(function(data, textStatus, jqXHR) {
+                        $('#agency_name').empty();
+                        jQuery.each(data.data, function( i, val ) {
+                            if(val.f_status == 'active'){
+                                $("#agency_name").append(
+                                    '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                                )
+                            }
+                        });
+                        var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+                        if(add_company_on_fly_permission>0 || role=="owner"){
+                            $("#agency_name").append(
+                                '<option style="font-weight:bold;">Add New Agency</option>'
+                            )
+                        }
+                        $(".loading_data").remove();
+                        $(".company_name").show();
+                        $('#add-company').modal('hide');
+                        $('#firm_address').val("");
+                        $('#project_latitude').val("");
+                        $('#project_longitude').val("");
+        
+
+                        $('#firm_address').css("display", "inline-block");
+                        $('#firm_address').css("z-index", "9999");
+                        $('#firm_address').css("position", "relative");
+                        $('#firm_address').css("left", "0px");
+                        $('#firm_address').css("top", "-50px");
+                        map.clear();
+                        info_Window = new google.maps.InfoWindow();
+                            info_Window.close();
+                            for (var i = 0; i < marker.length; i++) {
+                                marker[i].setMap(null);
+                            }
+                            marker.length = 0;
+                            for(var i=0;i<location.length;i++){
+                                location[i].setMap(null);
+                            }
+                            location.length=0;
+                            marker = [];
+                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(jqXHR);
+        if(response == 403){
+            console.log('Company name 403');
+            // window.location.href = baseUrl + "403";
         }
+        else if(response == 404){
+            console.log('Company name 404');
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
+                }
         // $( "h2" ).appendTo( $( ".container" ) );
        
         $(".loading_data").remove();

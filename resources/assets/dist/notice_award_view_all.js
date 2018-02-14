@@ -115,11 +115,14 @@
 			  	}
 
 			  var t = $('#view_users_table').DataTable();
+                          var pna_contact_amount = '';
+                          if(val.pna_contact_amount>0)
+                              pna_contact_amount = val.currency_symbol+' '+ ReplaceNumberWithCommas(val.pna_contact_amount);
 				t.row.add([
 		           count,
 		           val.f_name,
 		           val.pt_name,
-		           val.currency_symbol+' '+ ReplaceNumberWithCommas(val.pna_contact_amount),
+		           pna_contact_amount,
                    val.pna_award_date,
 		           doc_path_value,
 		           status,

@@ -1,6 +1,6 @@
 <!-- page head start-->
 <div class="page-head">
-    <h3 class="m-b-less">Add Company</h3>
+    <h3 class="m-b-less">Add Improvement Type</h3>
 </div>
 <!-- page head end-->
 <!--body wrapper start-->

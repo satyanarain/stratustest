@@ -374,6 +374,8 @@ $(document).ready(function() {
                     $("#company_name").val('');
                     $('#upload_doc_id_work').removeAttr('value');
                     $('#upload_doc_id_auto').removeAttr('value');
+                    $('#payment_bond_date').removeAttr('value');
+                    $('#maintenance_bond_date').removeAttr('value');
                     $('#upload_doc_id_general').removeAttr('value');
                     $(".remove_file_drop").trigger("click");
                     $(".first_button").text('Save Another');
