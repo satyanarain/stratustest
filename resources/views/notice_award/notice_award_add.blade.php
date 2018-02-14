@@ -179,7 +179,7 @@
 </div><!-- Col 6 Close -->
 <div class="clearfix"></div>
 
-<div style="display: ;">
+<div style="display: none;">
 <!-- <div> -->
     <div id="notice_award_pdf_content" style="width:100%;">
         <h1 style="color:green; text-align:center;">NOTICE OF AWARD</h1>
