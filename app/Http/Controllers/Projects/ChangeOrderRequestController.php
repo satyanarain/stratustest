@@ -575,6 +575,7 @@ class ChangeOrderRequestController extends Controller {
         return response()->json($result, 403);
       }
       else {
+          DB::enableQueryLog();
           $query = DB::table('project_change_order_request_detail')
 ->leftJoin('project_settings', 'project_change_order_request_detail.pcd_project_id', '=', 'project_settings.pset_project_id')
           ->leftJoin('currency', 'project_settings.pset_meta_value', '=', 'currency.cur_id')
@@ -584,8 +585,9 @@ class ChangeOrderRequestController extends Controller {
 ->leftJoin('users', 'project_change_order_request_detail.pcd_user_id', '=', 'users.id')
         ->select('currency.cur_symbol as currency_symbol', 'project_change_order_request_detail.*', 'project_change_order_request.*', 'projects.*', 'project_firm.f_name as agency_name', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
           ->where('pcd_project_id', '=', $project_id)
-          //->groupBy('project_change_order_request_detail.pcd_id')
+          ->groupBy('project_change_order_request_detail.pcd_id')
           ->get();
+          dd(DB::getQueryLog());
           if(count($query) < 1)
           {
             $result = array('code'=>404, "description"=>"No Records Found");
