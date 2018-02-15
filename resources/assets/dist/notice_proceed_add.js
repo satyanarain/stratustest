@@ -391,13 +391,23 @@ $('.create_notice').click(function () {
     
         var notice_date = $("#notice_start_date").val();
         var invite_date = $.datepicker.formatDate('yy-mm-dd', new Date(notice_date));
-        var invite_date = new Date(invite_date);
-        var today = new Date(invite_date.getFullYear(), invite_date.getMonth(), invite_date.getDate());
-        //today1 = addBusinessDays(today, duration_days);
-        //alert(today1);
-        invite_date.setDate(invite_date.getDate() + parseInt(duration_days));
-
-        var dateMsg = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+(invite_date.getDate()-1);
+        if($("input[name='days_working']:checked").val()=="working_day")
+        {
+            var invite_date1 = $.datepicker.formatDate('mm/dd/yy', new Date(notice_date));
+            //alert(invite_date1);return false;
+            var invite_date = add_business_days(invite_date1,parseInt(duration_days));
+            //alert(today);return false;
+            var invite_date = new Date(invite_date);
+            var dateMsg = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+(invite_date.getDate());
+        }else{
+            var invite_date = new Date(invite_date);
+            var today = new Date(invite_date.getFullYear(), invite_date.getMonth(), invite_date.getDate());
+            //today1 = addBusinessDays(today, duration_days);
+            //alert(today1);
+            invite_date.setDate(invite_date.getDate() + parseInt(duration_days));
+            var dateMsg = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+(invite_date.getDate()-1);
+        }
+        
         //alert(dateMsg);return false;
         
         $('#pdf_gen_working_days_1').text(dateMsg);
@@ -806,4 +816,23 @@ function addBusinessDays(d,n) {
     var day = d.getDay();
     d.setDate(d.getDate() + n + (day === 6 ? 2 : +!day) + (Math.floor((n - 1 + (day % 6 || 1)) / 5) * 2));
     return d;
+}
+
+function add_business_days(now,days) {
+  var now = new Date(now);
+  var dayOfTheWeek = now.getDay();
+  var calendarDays = days;
+  var deliveryDay = dayOfTheWeek + days;
+  if (deliveryDay >= 6) {
+    //deduct this-week days
+    days -= 6 - dayOfTheWeek;
+    //count this coming weekend
+    calendarDays += 2;
+    //how many whole weeks?
+    deliveryWeeks = Math.floor(days / 5);
+    //two days per weekend per week
+    calendarDays += deliveryWeeks * 2;
+  }
+  now.setTime((now.getTime() + calendarDays * 24 * 60 * 60 * 1000)-(24 * 60 * 60 * 1000));
+  return now;
 }
