@@ -173,7 +173,7 @@
 					var day = date.getDate();
 					var month = date.getMonth();
 					var year = date.getFullYear();
-					var review_date = year + '-' + month + '-' + day;
+					var review_date = year + '-' + (month+1) + '-' + day;
 			    	$('#review_responded_date').text(review_date);
 			    }
 
