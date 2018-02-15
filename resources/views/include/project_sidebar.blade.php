@@ -95,7 +95,10 @@
                                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/submittals_log"><span>Submittal Log</span></a>
                                     </li>
                                     <li style="display: none;" class="submittal_view_all">
-                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/submittals"><span>Add Submittals</span></a>
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/submittals"><span>View Submittals</span></a>
+                                    </li>
+                                    <li style="display: none;" class="submittal_view_all">
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/submittals/add"><span>Add Submittals</span></a>
                                     </li>
                                     <li style="display: none;" class="submittal_review_view_all">
                                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/submittal_review"><span>Submittals Review</span></a>

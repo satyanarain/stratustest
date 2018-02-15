@@ -393,8 +393,8 @@ $('.create_notice').click(function () {
         var invite_date = $.datepicker.formatDate('yy-mm-dd', new Date(notice_date));
         var invite_date = new Date(invite_date);
         var today = new Date(invite_date.getFullYear(), invite_date.getMonth(), invite_date.getDate());
-        today = addWorkDays(today, duration_days);
-        alert(today);
+        today1 = addWorkDays(today, duration_days);
+        alert(today1);
         invite_date.setDate(invite_date.getDate() + parseInt(duration_days));
 
         var dateMsg = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+invite_date.getDate();
@@ -452,7 +452,7 @@ $('.create_notice').click(function () {
         var doc_project_id = $("#upload_project_id").val();
 
 
-        var document_generated  = $("#pdf_content").html();return false;
+        var document_generated  = $("#pdf_content").html();
         var document_path       = 'uploads/notice_proceed/';
         jQuery.ajax({
             url: baseUrl + "document/GeneratePdfFiles",
