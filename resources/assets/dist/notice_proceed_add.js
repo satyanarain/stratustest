@@ -393,11 +393,11 @@ $('.create_notice').click(function () {
         var invite_date = $.datepicker.formatDate('yy-mm-dd', new Date(notice_date));
         var invite_date = new Date(invite_date);
         var today = new Date(invite_date.getFullYear(), invite_date.getMonth(), invite_date.getDate());
-        today1 = addWorkDays(today, duration_days);
-        alert(today1);
+        //today1 = addBusinessDays(today, duration_days);
+        //alert(today1);
         invite_date.setDate(invite_date.getDate() + parseInt(duration_days));
 
-        var dateMsg = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+invite_date.getDate();
+        var dateMsg = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+(invite_date.getDate()-1);
         //alert(dateMsg);return false;
         
         $('#pdf_gen_working_days_1').text(dateMsg);
@@ -452,7 +452,7 @@ $('.create_notice').click(function () {
         var doc_project_id = $("#upload_project_id").val();
 
 
-        var document_generated  = $("#pdf_content").html();
+        var document_generated  = $("#pdf_content").html();//return false;
         var document_path       = 'uploads/notice_proceed/';
         jQuery.ajax({
             url: baseUrl + "document/GeneratePdfFiles",
@@ -800,4 +800,10 @@ function addWorkDays(startDate, days) {
     }
     startDate.setDate(startDate.getDate() + daysToAdd);
     return startDate;
+}
+function addBusinessDays(d,n) {
+    d = new Date(d.getTime());
+    var day = d.getDay();
+    d.setDate(d.getDate() + n + (day === 6 ? 2 : +!day) + (Math.floor((n - 1 + (day % 6 || 1)) / 5) * 2));
+    return d;
 }
