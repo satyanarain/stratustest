@@ -118,12 +118,14 @@ $(document).ready(function() {
                 var pcd_approved_by_owner = val.pcd_approved_by_owner;
             }
             if(val.pcd_price){var disp_price=val.pcd_price;}else{var disp_price=val.pcd_unit_number*val.pcd_unit_price;}
+            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
+                var approved_status = '';
+            }else{
+                var approved_status = '<span class="label label-success">APPROVED</span>';
+            }
             if(val.pcd_rfi == '[]'){
                 var t = $('#request_change_order').DataTable();
-                if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
-                }else{
-                    var approved_status = '<span class="label label-success">APPROVED</span>';
-                }
+                
                 t.row.add([
                    count, // val.pcd_parent_cor,
                    val.agency_name,
