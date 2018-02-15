@@ -70,7 +70,7 @@ $(document).ready(function() {
             $('html, body').animate({
                     scrollTop: $(".page-head").offset().top
             }, 'fast')
-            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast toast-success">New improvement type added successfully.!</div></div>';
+            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast toast-success">New improvement type added successfully!</div></div>';
             $("#alert_message").html(html);
             setTimeout(function()
             {

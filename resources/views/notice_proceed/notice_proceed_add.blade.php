@@ -187,7 +187,7 @@
 </div><!-- Col 6 Close -->
 <div class="clearfix"></div>
 
-<div style="display: none;">
+<div style="display: ;">
 <!-- <div> -->
     <div id="pdf_content" style="width:100%;">
         <h1 style="color:green; text-align:center;">Notice to Proceed</h1>

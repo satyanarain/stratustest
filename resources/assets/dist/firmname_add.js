@@ -83,7 +83,7 @@
             $('html, body').animate({
                     scrollTop: $(".page-head").offset().top
             }, 'fast')
-            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast toast-success">New firm added successfully.!</div></div>';
+            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast toast-success">New firm added successfully!</div></div>';
             $("#alert_message").html(html);
             $(".first_button").hide();
             $(".another_button").show();

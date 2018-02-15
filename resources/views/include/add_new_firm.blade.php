@@ -222,7 +222,7 @@ $(document).ready(function() {
             $('html, body').animate({
                     scrollTop: $(".page-head").offset().top
             }, 'fast')
-            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast toast-success">New firm added successfully.!</div></div>';
+            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast toast-success">New firm added successfully!</div></div>';
             $("#alert_message").html(html);
             $(".first_button1").hide();
             
@@ -379,38 +379,38 @@ $(document).ready(function() {
         }
     });
                 }
-        // $( "h2" ).appendTo( $( ".container" ) );
+                // $( "h2" ).appendTo( $( ".container" ) );
        
-        $(".loading_data").remove();
-        $(".company_name").show();
-        $('#add-company').modal('hide');
-        $('#firm_address').val("");
-        $('#project_latitude').val("");
-        $('#project_longitude').val("");
+                $(".loading_data").remove();
+                $(".company_name").show();
+                $('#add-company').modal('hide');
+                $('#firm_address').val("");
+                $('#project_latitude').val("");
+                $('#project_longitude').val("");
         
-//        var map = new google.maps.Map(document.getElementById('map'), {
-//          center: {lat: 36.443796, lng: -119.369653},
-//          zoom: 7,
-//          scrollwheel: false
-//        });
-        $('#firm_address').css("display", "inline-block");
-    $('#firm_address').css("z-index", "9999");
-    $('#firm_address').css("position", "relative");
-    $('#firm_address').css("left", "0px");
-    $('#firm_address').css("top", "-50px");
-        map.clear();
-        info_Window = new google.maps.InfoWindow();
-            info_Window.close();
-            for (var i = 0; i < marker.length; i++) {
-                marker[i].setMap(null);
-            }
-            marker.length = 0;
-            for(var i=0;i<location.length;i++){
-                location[i].setMap(null);
-            }
-            location.length=0;
-            marker = [];
-    })
+                //        var map = new google.maps.Map(document.getElementById('map'), {
+                //          center: {lat: 36.443796, lng: -119.369653},
+                //          zoom: 7,
+                //          scrollwheel: false
+                //        });
+                $('#firm_address').css("display", "inline-block");
+                $('#firm_address').css("z-index", "9999");
+                $('#firm_address').css("position", "relative");
+                $('#firm_address').css("left", "0px");
+                $('#firm_address').css("top", "-50px");
+                map.clear();
+                info_Window = new google.maps.InfoWindow();
+                info_Window.close();
+                for (var i = 0; i < marker.length; i++) {
+                    marker[i].setMap(null);
+                }
+                marker.length = 0;
+                for(var i=0;i<location.length;i++){
+                    location[i].setMap(null);
+                }
+                location.length=0;
+                marker = [];
+            })
             .fail(function(jqXHR, textStatus, errorThrown) {
                 console.log("HTTP Request Failed");
                 var response = jqXHR.responseJSON.code;

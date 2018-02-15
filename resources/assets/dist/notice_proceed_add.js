@@ -392,10 +392,14 @@ $('.create_notice').click(function () {
         var notice_date = $("#notice_start_date").val();
         var invite_date = $.datepicker.formatDate('yy-mm-dd', new Date(notice_date));
         var invite_date = new Date(invite_date);
+        var today = new Date(invite_date.getFullYear(), invite_date.getMonth(), invite_date.getDate());
+        today = addWorkDays(today, duration_days);
+        alert(today);
         invite_date.setDate(invite_date.getDate() + parseInt(duration_days));
 
         var dateMsg = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+invite_date.getDate();
         //alert(dateMsg);return false;
+        
         $('#pdf_gen_working_days_1').text(dateMsg);
         
         if(notice_date == ''){
@@ -448,7 +452,7 @@ $('.create_notice').click(function () {
         var doc_project_id = $("#upload_project_id").val();
 
 
-        var document_generated  = $("#pdf_content").html();
+        var document_generated  = $("#pdf_content").html();return false;
         var document_path       = 'uploads/notice_proceed/';
         jQuery.ajax({
             url: baseUrl + "document/GeneratePdfFiles",
@@ -772,3 +776,28 @@ $('.create_notice').click(function () {
     //     }
     // }
 });
+
+function addWorkDays(startDate, days) {
+    // Get the day of the week as a number (0 = Sunday, 1 = Monday, .... 6 = Saturday)
+    var dow = startDate.getDay();
+    var daysToAdd = parseInt(days);
+    // If the current day is Sunday add one day
+    if (dow == 0)
+        daysToAdd++;
+    // If the start date plus the additional days falls on or after the closest Saturday calculate weekends
+    if (dow + daysToAdd >= 6) {
+        //Subtract days in current working week from work days
+        var remainingWorkDays = daysToAdd - (5 - dow);
+        //Add current working week's weekend
+        daysToAdd += 2;
+        if (remainingWorkDays > 5) {
+            //Add two days for each working week by calculating how many weeks are included
+            daysToAdd += 2 * Math.floor(remainingWorkDays / 5);
+            //Exclude final weekend if remainingWorkDays resolves to an exact number of weeks
+            if (remainingWorkDays % 5 == 0)
+                daysToAdd -= 2;
+        }
+    }
+    startDate.setDate(startDate.getDate() + daysToAdd);
+    return startDate;
+}

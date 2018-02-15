@@ -5,7 +5,7 @@ $(document).ready(function()
     $("#s2id_project_name").hide();
     var role = localStorage.getItem('u_role');
     var token = localStorage.getItem('u_token');
-
+    var check_user_access = JSON.parse(localStorage.getItem("access_permission"));
     if(role == 'owner'){
         $('.owner_class').remove();
     }
@@ -33,7 +33,7 @@ $(document).ready(function()
         // Foreach Loop
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status == 'active'){
-                $("#firm_name1").append(
+                $("#company_name").append(
                     '<option value="'+val.f_id+'">'+val.f_name+'</option>'
                 )
             }else {
@@ -43,7 +43,7 @@ $(document).ready(function()
         var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
         console.log(add_company_on_fly_permission+'company_fly');
         if(add_company_on_fly_permission>0 || role=="owner"){
-        $("#firm_name1").append(
+        $("#company_name").append(
             '<option style="font-weight:bold;">Add New Company</option>'
         )
         }
@@ -113,7 +113,7 @@ $(document).ready(function()
         }
     });
 
-    $('#firm_name1').change(function(){
+    $('#company_name').change(function(){
         var company = $(this).val();
         if(company=="Add New Company")
         {
@@ -131,7 +131,7 @@ $(document).ready(function()
 	    var email          = $('#email').val().toLowerCase();
         var first_name     = $('#fname').val();
 	    var last_name      = $('#lname').val();
-	    var company_name   = $('#firm_name1').val();
+	    var company_name   = $('#company_name').val();
         var phone          = $('#pnum').val();
         var position       = $('#position').val();
 	    // var user_role       = $('#user_role').val();
@@ -269,7 +269,7 @@ $(document).ready(function()
                 $("#uname").removeAttr('value');
                 $("#email").removeAttr('value');
                 $("#pnum").removeAttr('value');
-                $("#firm_name1").removeAttr('value');
+                $("#company_name").removeAttr('value');
                 $("#fname").removeAttr('value');
                 $("#lname").removeAttr('value');
                 $("#position").removeAttr('value');
