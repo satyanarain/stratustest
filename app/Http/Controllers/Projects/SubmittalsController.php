@@ -384,13 +384,15 @@ class SubmittalsController extends Controller {
         $query = DB::table('project_submittals')
                 ->select('submittal_path.doc_path as submittal_path',  
           'project_submittals.*', 'projects.*', 'project_submittal_review.*',
-          'users.id as id','users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role', 
-          'review_user.id as review_user_id','review_user.username as review_username', 'review_user.email as review_email', 'review_user.first_name as review_firstname', 'review_user.last_name as review_lastname', 'review_user.phone_number as review_phonenumber', 'review_user.position_title as review_positiontitle')
-->leftJoin('documents as submittal_path', 'project_submittals.sub_additional_path', '=', 'submittal_path.doc_id')
+          //'users.id as id','users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role', 
+          'review_user.id as review_user_id','review_user.username as review_username', 'review_user.email as review_email', 'review_user.first_name as review_firstname', 'review_user.last_name as review_lastname', 'review_user.phone_number as review_phonenumber', 'review_user.position_title as review_positiontitle'
+                        )
+->leftJoin('users as review_user', 'project_submittal_review.sr_user_id', '=', 'users.id')
+                ->leftJoin('documents as submittal_path', 'project_submittals.sub_additional_path', '=', 'submittal_path.doc_id')
 ->leftJoin('project_submittal_review', 'project_submittals.sub_id', '=', 'project_submittal_review.sr_submittal_id')
 ->leftJoin('projects', 'project_submittals.sub_project_id', '=', 'projects.p_id')
-->leftJoin('users', 'project_submittals.sub_user_id', '=', 'users.id')
-->leftJoin('users as review_user', 'project_submittal_review.sr_user_id', '=', 'users.id')
+//->leftJoin('users', 'project_submittals.sub_user_id', '=', 'users.id')
+
         
         ->where('project_submittals.sub_id', '=', $sub_id)
         ->first();
