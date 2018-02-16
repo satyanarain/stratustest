@@ -138,18 +138,18 @@
                                     if(val.sr_review_type=="pending")
                                         var cus_css = 'color:#F00;';
 			  		t.row.add( [
-			           //'<span style="color:#F00;">'+sub_num+'</span>',
-                                   '<span style="'+cus_css+'">'+(i+1)+'</span>',
-			           '<span style="'+cus_css+'">'+val.sub_description+'</span>',
+                                    '<span style="'+cus_css+'">'+(i+1)+'</span>',
+                                    '<span style="'+cus_css+'">'+sub_num+'</span>',
+                                    '<span style="'+cus_css+'">'+val.sub_description+'</span>',
 			           status,
 			           update_permission
 			       	]).draw( false );
 			  	}
 			  	else {
 		            t.row.add( [
-			           //sub_num,
-                                   i+1,
-			           val.sub_description,
+			           i+1,
+                                   sub_num,
+                                   val.sub_description,
 			           status,
 			           update_permission
 			       	]).draw( false );
