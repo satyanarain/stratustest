@@ -35,7 +35,7 @@
                         <tr>
                             <th>S. No.</th>
                             <th>Submittal #</th>
-                            <th width="30%">Description</th>
+                            <th width="25%">Description</th>
                             <th>Date of Submittal</th>
                             <th>Date Submittal Returned by Reviewer</th>
                             <th>No Exceptions</th>
