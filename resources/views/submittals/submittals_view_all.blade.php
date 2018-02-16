@@ -29,7 +29,7 @@
                         <table class="table convert-data-table data-table custom-grid table-bordered" id="view_users_table">
                         <thead>
                         <tr>
-                            <!-- <th>#</th> -->
+                            <th>S. No.</th>
                             <th>Submittal #</th>
                             <th>Date</th>
                             <th width="30%">Description</th>

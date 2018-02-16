@@ -33,6 +33,7 @@
                         <table class="table convert-data-table data-table custom-grid table-bordered table_scroll_x_axis" id="view_users_table">
                         <thead>
                         <tr>
+                            <th>S. No.</th>
                             <th>Submittal #</th>
                             <th width="30%">Description</th>
                             <th>Date of Submittal</th>

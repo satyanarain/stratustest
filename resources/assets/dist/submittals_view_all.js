@@ -149,9 +149,9 @@
                                         var cus_css = 'color:#F00;';
 			  		t.row.add( [
 			           // val.sub_id,
-			           //'<span style="'+cus_css+'">'+sub_num+'</span>',
-                                   '<span style="'+cus_css+'">'+(i+1)+'</span>',
-			           '<span style="'+cus_css+'">'+date_format+'</span>',
+                                   i+1,
+			           '<span style="'+cus_css+'">'+sub_num+'</span>',
+                                   '<span style="'+cus_css+'">'+date_format+'</span>',
 			           '<span style="'+cus_css+'">'+val.sub_description+'</span>',
 			           sub_additional_path_value,
 			           status,
@@ -161,6 +161,7 @@
 			  	else {
 					t.row.add( [
 			           // val.sub_id,
+                                   i+1,
 			           sub_num,
 			           date_format,
 			           val.sub_description,
@@ -169,6 +170,11 @@
 			           single_view + update_permission
 			       	]).draw( false );
 			  	}
+                                t.on( 'order.dt search.dt', function () {
+                                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                                    cell.innerHTML = i+1;
+                                } );
+                            } ).draw();
 			});
 		    // $( "h2" ).appendTo( $( ".container" ) );
 		   
