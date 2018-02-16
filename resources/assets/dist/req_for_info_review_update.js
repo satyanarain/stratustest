@@ -157,7 +157,7 @@
 			var day = date.getDate();
 			var month = date.getMonth();
 			var year = date.getFullYear();
-			var rfi_date = year + '-' + (month-1) + '-' + day;
+			var rfi_date = year + '-' + (month+1) + '-' + day;
 	    	$('#rfi_date').text(rfi_date);
 
 	    	if(data.data.ri_additional_cost == null){
