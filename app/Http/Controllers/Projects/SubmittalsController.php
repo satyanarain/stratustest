@@ -390,7 +390,7 @@ class SubmittalsController extends Controller {
         ->select('submittal_path.doc_path as submittal_path',  
           'project_submittals.*', 'projects.*', 'project_submittal_review.*',
           'users.id as id','users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role', 
-          'review_user.username as review_username', 'review_user.email as review_email', 'review_user.first_name as review_firstname', 'review_user.last_name as review_lastname', 'review_user.phone_number as review_phonenumber', 'review_user.position_title as review_positiontitle')
+          'review_user.id as id','review_user.username as review_username', 'review_user.email as review_email', 'review_user.first_name as review_firstname', 'review_user.last_name as review_lastname', 'review_user.phone_number as review_phonenumber', 'review_user.position_title as review_positiontitle')
         ->where('project_submittals.sub_id', '=', $sub_id)
         ->first();
         if(count($query) < 1)
