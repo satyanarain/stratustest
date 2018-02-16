@@ -70,28 +70,22 @@
             <label for="company_name">Are any of the following contractor bonds required? <span class="text-danger">*</span></label>
         </div>
         <div class="form-group">
-            <div class="col-lg-10">
                 <label class="checkbox-custom check-success">
                     <input type="checkbox" value=" " id="performance_bond_yes">
                     <label for="performance_bond_yes">Performance Bond</label>
                 </label>
-            </div>
         </div>
         <div class="form-group">
-            <div class="col-lg-10">
                 <label class="checkbox-custom check-success">
                     <input type="checkbox" value=" " id="payment_bond_yes">
                     <label for="payment_bond_yes">Payment Bond (Labor &amp; Material Bond)</label>
                 </label>
-            </div>
         </div>
         <div class="form-group">
-            <div class="col-lg-10">
                 <label class="checkbox-custom check-success">
                     <input type="checkbox" value=" " id="maintenance_bond_yes">
                     <label for="maintenance_bond_yes">Maintenance Bond</label>
                 </label>
-            </div>
         </div>
         <div class="clearfix"></div>
     </div>
