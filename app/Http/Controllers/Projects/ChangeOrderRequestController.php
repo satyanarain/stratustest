@@ -159,7 +159,7 @@ class ChangeOrderRequestController extends Controller {
               } // End Foreach
               // End Check User Permission and send notification and email 
 
-              $result = array('description'=>"Add change order request successfully",'code'=>200);
+              $result = array('change_order_id'=>$change_order_id,'description'=>"Add change order request successfully",'code'=>200);
               return response()->json($result, 200);
             }
         }
@@ -578,7 +578,7 @@ class ChangeOrderRequestController extends Controller {
           //DB::enableQueryLog();
           $query = DB::table('project_change_order_request_detail')
 ->leftJoin('project_settings', 'project_change_order_request_detail.pcd_project_id', '=', 'project_settings.pset_project_id')
-          ->leftJoin('currency', 'project_settings.pset_meta_value', '=', 'currency.cur_id')
+->leftJoin('currency', 'project_settings.pset_meta_value', '=', 'currency.cur_id')
 ->leftJoin('projects', 'project_change_order_request_detail.pcd_project_id', '=', 'projects.p_id')
 ->leftJoin('project_change_order_request', 'project_change_order_request_detail.pcd_parent_cor', '=', 'project_change_order_request.pco_id')
 ->leftJoin('project_firm', 'project_change_order_request.pco_contractor_name', '=', 'project_firm.f_id')

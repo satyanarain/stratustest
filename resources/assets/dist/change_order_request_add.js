@@ -583,7 +583,7 @@ $(document).ready(function() {
                             "order_days"            : val.order_days,
                             "order_file_path"       : val.order_file_path,
                             "order_rfi"             : val.order_rfi_details,
-                            "order_parent_cor"      : val.order_parent_cor,
+                            "order_parent_cor"      : data.change_order_id,
                             "order_project_id"      : val.order_project_id
                         },
                         headers: {
