@@ -584,7 +584,7 @@ class ChangeOrderRequestController extends Controller {
 ->leftJoin('project_firm', 'project_change_order_request.pco_contractor_name', '=', 'project_firm.f_id')
 ->leftJoin('users', 'project_change_order_request_detail.pcd_user_id', '=', 'users.id')
         ->select('currency.cur_symbol as currency_symbol', 'project_change_order_request_detail.*', 'project_change_order_request.*', 'projects.*', 'project_firm.f_name as agency_name1', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
-          ->where('pcd_project_id', '=', $project_id)
+          ->where('project_change_order_request_detail.pcd_project_id', '=', $project_id)
           ->groupBy('project_change_order_request_detail.pcd_id')
           ->get();
           //dd(DB::getQueryLog());
