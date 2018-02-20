@@ -219,7 +219,10 @@ class CurrencyController extends Controller {
         //   return response()->json($result, 403);
         // } 
         // else {
-          $user_id              = Auth::user()->id;
+          if(Auth::user()->role=="admin")
+                $user_id              = Auth::user()->id;
+          else
+                $user_id              = Auth::user()->user_parent;
 
           if($user_id == 1){
             $query = DB::table('currency')
