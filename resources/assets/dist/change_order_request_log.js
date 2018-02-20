@@ -201,7 +201,7 @@ $(document).ready(function() {
                     var t = $('#potential_change_order').DataTable();
                     t.row.add([
                        counts, // val.pcd_parent_cor,
-                       val.agency_name,
+                       val.agency_name+'kl',
                        val.pco_date,
                        val.pcd_description,
                        pcd_approved_by_cm,
