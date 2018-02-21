@@ -382,7 +382,7 @@ $(document).ready(function() {
                     });
                     var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
                     console.log(add_company_on_fly_permission+'company_fly');
-                    if(add_company_on_fly_permission>0 || role=="owner"){
+                    if(add_company_on_fly_permission>0 || role=="owner" || role=="admin"){
                         $(ele_name).append(
                             '<option style="font-weight:bold;">Add New Company</option>'
                         )
@@ -486,7 +486,7 @@ $(document).ready(function() {
         });
         var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
         console.log(add_company_on_fly_permission+'company_fly');
-        if(add_company_on_fly_permission>0 || role=="owner"){
+        if(add_company_on_fly_permission>0 || role=="owner" || role=="admin"){
             $("#company_name").append(
                 '<option style="font-weight:bold;">Add New Company</option>'
             )
