@@ -188,6 +188,7 @@ $("input[name='check_submittal_type']").click(function(){
         $('.expedited_review_checkbox').hide();
         $('.request_expedited_review').hide();
         $('.first_button').show();
+        $("#date_of_submittal").val(yyyy+'-'+mm+'-'+dd);
     }
     else {
         $("#date_of_submittal").val(yyyy+'-'+mm+'-'+dd);
