@@ -269,7 +269,7 @@ $(document).ready(function() {
         console.log(review_type);
 
         if(sub_type == 'exist'){
-            sub_number = 0;
+            sub_number = sub_exist_parent+ ' R '+sub_rev_number;
         }
         console.log(sub_type);
         console.log(sub_number);
