@@ -188,7 +188,7 @@
 					  var day = date.getDate();
 					  var month = date.getMonth();
 					  var year = date.getFullYear();
-					  var respond_date = year + '-' + month + '-' + day;
+					  var respond_date = year + '-' + (month+1) + '-' + day;
 				  }
 
 				if(val.ri_request_status == 'active'){
