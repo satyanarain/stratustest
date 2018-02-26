@@ -442,6 +442,7 @@ class BondController extends Controller {
           'project_bond.pb_status as status', 
           'project_bond.pb_timestamp as timestamp')
           ->where('pb_project_id', '=', $project_id)
+          ->orderBy('pb_id', 'ASC')
           ->get();
           if(count($query) < 1)
           {
