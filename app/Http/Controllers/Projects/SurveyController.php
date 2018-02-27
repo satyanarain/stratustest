@@ -410,7 +410,7 @@ class SurveyController extends Controller {
 ->leftJoin('users', 'project_survey.sur_user_id', '=', 'users.id')
         ->select('documents.doc_path as file_path', 'project_survey.*','survey_rew_path.doc_path as survey_rew_path', 'project_survey_review.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
           ->where('sur_project_id', '=', $survey_id)
-          ->orderBy('sur_number')
+          ->orderBy('project_survey.sur_id','ASC')
           ->get();
           if(count($query) < 1)
           {
@@ -727,6 +727,7 @@ class SurveyController extends Controller {
 ->leftJoin('users', 'project_survey_review.sr_user_id', '=', 'users.id')
         ->select('documents.doc_path as review_file_path', 'project_survey_review.*', 'project_survey.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
           ->where('sr_project_id', '=', $project_id)
+          ->orderBy('project_survey_review.sr_id','ASC')
           ->get();
           if(count($query) < 1)
           {

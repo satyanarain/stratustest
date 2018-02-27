@@ -306,6 +306,7 @@ class WeeklyReportController extends Controller {
 ->leftJoin('projects', 'project_weekly_reports.pwr_project_id', '=', 'projects.p_id')
         ->select('project_weekly_reports.*', 'projects.*')
         ->where('pwr_project_id', '=', $project_id)
+        ->orderBy('project_weekly_reports.pwr_id','ASC')
         ->get();
         if(count($query) < 1)
         {

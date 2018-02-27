@@ -803,6 +803,7 @@ class RequestInfoController extends Controller {
           'users.username as rfi_user_name', 'users.email as rfi_user_email', 'users.first_name as rfi_user_firstname', 'users.last_name as rfi_user_lastname', 'users.company_name as rfi_user_company', 'users.phone_number as rfi_user_phonenumber', 'users.status as rfi_user_status', 'users.role as rfi_user_role', 'project_firm.f_name as company_name',
           'review_user.username as review_user_name', 'review_user.email as review_user_email', 'review_user.first_name as review_user_firstname', 'review_user.last_name as review_user_lastname', 'review_user.company_name as review_user_company', 'review_user.phone_number as review_user_phonenumber', 'review_user.status as review_user_status', 'review_user.role as review_user_role')
           ->where('rir_project_id', '=', $request_id)
+          ->orderBy('project_request_info_review.rir_id','ASC')
           ->get();
           if(count($query) < 1)
           {
@@ -864,6 +865,7 @@ class RequestInfoController extends Controller {
           'rfi_user.username as rfi_user_name', 'rfi_user.email as rfi_user_email', 'rfi_user.first_name as rfi_user_firstname', 'rfi_user.last_name as rfi_user_lastname', 'rfi_firm_name.f_name as rfi_user_company', 'rfi_user.phone_number as rfi_user_phonenumber', 'rfi_user.status as rfi_user_status', 'rfi_user.role as rfi_user_role', 
           'review_user.username as review_user_name', 'review_user.email as review_user_email', 'review_user.first_name as review_user_firstname', 'review_user.last_name as review_user_lastname', 'review_firm_name.f_name as review_user_company', 'review_user.phone_number as review_user_phonenumber', 'review_user.status as review_user_status', 'review_user.role as review_user_role')
           ->where('ri_project_id', '=', $project_id)
+          ->orderBy('project_request_info.ri_id','ASC')
           ->get();
           if(count($query) < 1)
           {

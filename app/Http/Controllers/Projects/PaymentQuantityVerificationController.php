@@ -360,6 +360,7 @@ class PaymentQuantityVerificationController extends Controller {
             ->leftJoin('projects', 'project_payment_quantity_verification.ppq_project_id', '=', 'projects.p_id')
             ->select('project_payment_quantity_verification.*', 'projects.*')
             ->where('ppq_project_id', '=', $project_id)
+            ->orderBy('project_payment_quantity_verification.ppq_id','ASC')
             ->get();
             if(count($query) < 1)
             {

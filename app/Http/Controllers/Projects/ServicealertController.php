@@ -391,6 +391,7 @@ class ServicealertController extends Controller {
 ->leftJoin('users', 'project_service_alert.psa_user_id', '=', 'users.id')
         ->select('project_service_alert.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
           ->where('psa_project_id', '=', $project_id)
+          ->orderBy('project_service_alert.psa_id','ASC')
           ->get();
           if(count($query) < 1)
           {

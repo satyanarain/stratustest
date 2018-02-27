@@ -64,6 +64,7 @@ class PaymentApplicationController extends Controller {
             ->leftJoin('projects', 'project_payment_application.ppa_project_id', '=', 'projects.p_id')
             ->select('project_payment_application.*', 'projects.*')
             ->where('ppa_project_id', '=', $project_id)
+            ->orderBy('project_payment_application.ppa_id','ASC')
             ->get();
             if(count($query) < 1)
             {

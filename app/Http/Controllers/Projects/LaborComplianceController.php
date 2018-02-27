@@ -472,6 +472,7 @@ class LaborComplianceController extends Controller {
 ->leftJoin('users', 'project_labor_compliance.plc_user_id', '=', 'users.id')
                 ->select('contractor_name.f_name', '140_doc.doc_path as doc_140', '142_doc.doc_path as doc_142', 'fringe_doc.doc_path as fringe_doc', 'cac2_doc.doc_path as cac2_doc', 'cpr_doc.doc_path as cpr_doc', 'compliance.doc_path as compliance', 'project_labor_compliance.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
                 ->where('plc_project_id', '=', $project_id)
+                ->orderBy('project_labor_compliance.plc_id','ASC')
                 ->get();
                 if(count($query) < 1)
                   {

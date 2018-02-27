@@ -591,6 +591,7 @@ class ChangeOrderRequestController extends Controller {
                 'users.status as user_status','users.role as user_role')
           ->where('project_change_order_request_detail.pcd_project_id', '=', $project_id)
           ->groupBy('project_change_order_request_detail.pcd_id')
+          ->orderBy('project_change_order_request_detail.pcd_id','ASC')
           ->get();
           //dd(DB::getQueryLog());
           if(count($query) < 1)
