@@ -465,6 +465,7 @@ class BiddocumentController extends Controller {
     'projects.*',
     'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
           ->where('bd_project_id', '=', $project_id)
+          ->orderBy('project_bid_documents.bd_id','ASC')
           ->get();
           if(count($query) < 1)
           {

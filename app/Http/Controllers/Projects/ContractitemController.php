@@ -379,6 +379,7 @@ class ContractitemController extends Controller {
         ->select('currency.cur_symbol as currency_symbol', 'project_bid_items.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
           ->where('pbi_project_id', '=', $project_id)
           ->groupBy('project_bid_items.pbi_id')
+          ->orderBy('project_bid_items.pbi_id','ASC')
           ->get();
           if(count($query) < 1)
           {

@@ -628,6 +628,7 @@ class CertificateController extends Controller {
           'project_certificate.ci_status as status', 
           'project_certificate.ci_timestamp as timestamp')
           ->where('ci_project_id', '=', $project_id)
+          ->orderBy('project_certificate.ci_id','ASC')
           ->get();
           if(count($query) < 1)
           {
