@@ -404,40 +404,40 @@ class ChangeOrderRequestController extends Controller {
               // Check User Project Permission  
               foreach ($check_project_users as $check_project_user) {
                 // Check User Permission Parameter 
-//                $user_id              = $check_project_user->id;
-//                $permission_key       = 'cor_view_all';
-//                // Notification Parameter
-//                $project_id           = $project_id;
-//                $notification_title   = 'Received review change order request in Project: ' .$check_project_user->p_name;
-//                $url                  = App::make('url')->to('/');
-//                $link                 = "/dashboard/".$project_id."/change_order_request_review/".$pcd_id."/update";
-//                $date                 = date("M d, Y h:i a");
-//                $email_description    = 'Received review change order request in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
-//
-//                $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
-//                if(count($check_single_user_permission) < 1){
-//                  continue;
-//                }
-//                else {
-//                  // Send Notification to users
-//                  $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
-//               
-//                   $user_detail = array(
-//                     'id'              => $check_project_user->id,
-//                     'name'            => $check_project_user->username,
-//                     'email'           => $check_project_user->email,
-//                     'link'            => $link,
-//                     'date'            => $date,
-//                     'project_name'    => $check_project_user->p_name,
-//                     'title'           => $notification_title,
-//                     'description'     => $email_description
-//                   );
-//                   $user_single = (object) $user_detail;
-//                   Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-//                       $message->from('no-reply@sw.ai', 'StratusCM');
-//                       $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-//                   });
-//                }
+                $user_id              = $check_project_user->id;
+                $permission_key       = 'cor_view_all';
+                // Notification Parameter
+                $project_id           = $project_id;
+                $notification_title   = 'Change order has been reviewed in Project: ' .$check_project_user->p_name;
+                $url                  = App::make('url')->to('/');
+                $link                 = "/dashboard/".$project_id."/change_order_request_review/".$pcd_id."/update";
+                $date                 = date("M d, Y h:i a");
+                $email_description    = 'Change order has been reviewed in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+
+                $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+                if(count($check_single_user_permission) < 1){
+                  continue;
+                }
+                else {
+                  // Send Notification to users
+                  $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
+               
+                   $user_detail = array(
+                     'id'              => $check_project_user->id,
+                     'name'            => $check_project_user->username,
+                     'email'           => $check_project_user->email,
+                     'link'            => $link,
+                     'date'            => $date,
+                     'project_name'    => $check_project_user->p_name,
+                     'title'           => $notification_title,
+                     'description'     => $email_description
+                   );
+                   $user_single = (object) $user_detail;
+                   Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                       $message->from('no-reply@sw.ai', 'StratusCM');
+                       $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                   });
+                }
               } // End Foreach
               // End Check User Permission and send notification and email 
 
