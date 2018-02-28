@@ -153,7 +153,7 @@
 		           val.ri_question_request,
 		           val.company_name,
 		           date_submitted,
-		           date_responded,
+		           val.rir_review_respond,
 		           status,
 		           update_permission
 		       	]).draw( false );
