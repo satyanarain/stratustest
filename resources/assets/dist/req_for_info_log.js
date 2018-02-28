@@ -206,7 +206,7 @@
 			           val.review_user_company,
 			           submitted_date,
                                    req_info_path_value,
-			           respond_date,
+			           val.rir_review_respond,
 			           // date_status,
 			           status,
                                    view_option + update_permission,
