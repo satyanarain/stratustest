@@ -48,6 +48,6 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
-<script src="{{ url('/resources/assets/dist/submittals_review_view_all.js') }}"></script>
+<script src="{{ url('/resources/assets/dist/submittals_review_view_all.js?v=1') }}"></script>
 
 @include('include/footer')

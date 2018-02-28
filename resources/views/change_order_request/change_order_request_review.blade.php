@@ -107,6 +107,6 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js?v=1.0') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js?v=1.0') }}"></script>
-<script src="{{ url('/resources/assets/dist/change_order_request_review_view_all.js?v=1.0') }}"></script>
+<script src="{{ url('/resources/assets/dist/change_order_request_review_view_all.js?v=2.0') }}"></script>
 <!-- <script src="{{ url('/resources/assets/dist/test_result_add_faizan.js') }}"></script> -->
 @include('include/footer')
