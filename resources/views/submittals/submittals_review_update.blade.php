@@ -60,6 +60,7 @@
                                         <!-- <input type="hidden" name="standard_upload" id="upload_doc_meta" value="swppp"> -->
                                         <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $project_id; ?>">
                                         <input type="hidden" id="respond_date" value="<?php echo date('Y-m-d'); ?>">
+                                        <input type="hidden" name="submittal_version_number" id="submittal_version_number">
                                         <!-- <input type="hidden" name="standard_doc_id" id="upload_doc_id" value=""> -->
                                     </div>
 

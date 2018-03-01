@@ -310,9 +310,9 @@ class SubmittalsController extends Controller {
                 $permission_key       = 'submittal_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'Submittal # '.$sub_id .' updated in Project: ' .$check_project_user->p_name;
+                $notification_title   = 'Submittal # '.$request['submittal_version_number'] .' updated in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
-                $link                 = "/dashboard/".$project_id."/submittals/".$sub_id;
+                $link                 = "/dashboard/".$request['submittal_version_number']."/submittals/".$sub_id;
                 $date                 = date("M d, Y h:i a");
                 $email_description    = 'Submittal # '.$sub_id .' has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 

@@ -87,7 +87,7 @@
 	    	status = 'expedited_review_overdue';
 		    }
 		    $('#status').val(status);
-
+                    $('#submittal_version_number').val(data.data.sub_number);
 		    $('#review_detail').val(data.data.sr_review);
 
 		    var document_link = data.data.submittal_path;
@@ -139,11 +139,12 @@
             url: baseUrl + "submittal-review/"+submittal_id+"/update",
             type: "POST",
             data: {
-         	    "submittal_id"				: submittal_id,
-         	    "submittal_review_type"		: status,
-         	    "submittal_review"  		: review_detail,
-         	    "respond_date"  			: respond_date,
-                "project_id"        		: project_id
+                "submittal_id"				: submittal_id,
+                "submittal_review_type"		: status,
+                "submittal_review"  		: review_detail,
+                "respond_date"  		: respond_date,
+                "project_id"        		: project_id,
+                "submittal_version_number"      : submittal_version_number,
             },
             headers: {
               "x-access-token": token
