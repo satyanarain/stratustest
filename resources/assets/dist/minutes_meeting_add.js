@@ -601,7 +601,7 @@ $(document).ready(function() {
                             $(".loading-submit").hide();
                             setTimeout(function()
                             {
-                                $("#alert_message").hide();
+                                $("#alert_message").html('');
                             },6000)
                         })
                         .fail(function(jqXHR, textStatus, errorThrown) {
