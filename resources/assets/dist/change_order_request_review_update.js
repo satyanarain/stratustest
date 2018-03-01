@@ -232,7 +232,8 @@ function getFormattedPartTime(partTime){
                 "cor_description"       : cor_description,
                 "pcd_unit_number"       : pcd_unit_number,
                 "pcd_unit_price"        : pcd_unit_price,
-                "pcd_price"             : pcd_price
+                "pcd_price"             : pcd_price,
+                "pco_number"            : $('#cor_number').text()
             },
             headers: {
               "x-access-token": token
