@@ -38,7 +38,7 @@ $(document).ready(function() {
             status = '<span class="label label-danger">Deactivated</span>';
         }
 
-        $('#cor_number').text(data.data.pcd_parent_cor)
+        $('#cor_number').text(data.data.pco_number)
         $('#cor_generated_by').text(data.data.agency_name)
         $('#cor_date_sent').text(data.data.pco_date)
         $('#cor_description').html(data.data.pcd_description);
