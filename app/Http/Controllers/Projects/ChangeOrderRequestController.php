@@ -367,6 +367,7 @@ class ChangeOrderRequestController extends Controller {
         $pcd_unit_price           = $request['pcd_unit_price'];
         $pcd_price                = $request['pcd_price'];
         $change_order_day         = $request['change_order_day'];
+        $pco_number               = $request['pco_number'];
         $information = array(
             "approved_by_cm"      => $approved_by_cm,
             "approved_by_owner"   => $approved_by_owner,
@@ -408,11 +409,11 @@ class ChangeOrderRequestController extends Controller {
                 $permission_key       = 'cor_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'Change order has been reviewed in Project: ' .$check_project_user->p_name;
+                $notification_title   = 'Change order # '.$pco_number.' has been reviewed in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/change_order_request_review/".$pcd_id."/update";
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'Change order has been reviewed in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'Change order # '.$pco_number.' has been reviewed in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){

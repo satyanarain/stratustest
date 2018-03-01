@@ -38,7 +38,7 @@ $(document).ready(function() {
             status = '<span class="label label-danger">Deactivated</span>';
         }
 
-        $('#cor_number').text(data.data.pcd_parent_cor)
+        $('#cor_number').text(data.data.pco_number)
         $('#cor_generated_by').text(data.data.agency_name)
         $('#cor_date_sent').text(data.data.pco_date)
         $('#cor_description').html('<input class="form-control" type="text" name="change_order_desc" id="change_order_desc" value="'+data.data.pcd_description+'">');
@@ -232,7 +232,8 @@ function getFormattedPartTime(partTime){
                 "cor_description"       : cor_description,
                 "pcd_unit_number"       : pcd_unit_number,
                 "pcd_unit_price"        : pcd_unit_price,
-                "pcd_price"             : pcd_price
+                "pcd_price"             : pcd_price,
+                "pco_number"            : $('#cor_number').text();
             },
             headers: {
               "x-access-token": token
