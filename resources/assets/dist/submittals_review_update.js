@@ -130,6 +130,7 @@
         var review_detail           = $('#review_detail').val();
         var respond_date           	= $('#respond_date').val();
         var project_id              = $('#upload_project_id').val();
+        var submittal_version_number = $('#submittal_version_number').val();
 	    var token                   = localStorage.getItem('u_token');
 
      
