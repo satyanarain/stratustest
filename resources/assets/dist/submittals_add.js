@@ -126,7 +126,7 @@ $(document).ready(function() {
                     var sub_number = val.sub_number;
                 }
                 else {
-                    var sub_number = val.sub_number+' R '+ val.sub_rev_number;
+                    var sub_number = val.sub_number;
                 }
 
                 if(val.sr_review_type == 'make_corrections_noted' || val.sr_review_type == 'revise_resubmit' || val.sr_review_type == 'rejected'){
