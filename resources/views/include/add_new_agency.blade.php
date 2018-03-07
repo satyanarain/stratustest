@@ -251,8 +251,10 @@ $(document).ready(function() {
             .done(function(data, textStatus, jqXHR) {
                 // console.log(data);
                 // Foreach Loop
-                if($("#company_name").length == 0) {
+                if($("#company_name").length > 0) {
                     var ele_name = '.company_name';
+                }else if($("#agency_name").length > 0){
+                    var ele_name = '#agency_name';
                 }else{
                     var ele_name = '#company_name';
                 }
@@ -300,18 +302,18 @@ $(document).ready(function() {
     $('#firm_address').css("position", "relative");
     $('#firm_address').css("left", "0px");
     $('#firm_address').css("top", "-50px");
-        map.clear();
-        info_Window = new google.maps.InfoWindow();
-            info_Window.close();
-            for (var i = 0; i < marker.length; i++) {
-                marker[i].setMap(null);
-            }
-            marker.length = 0;
-            for(var i=0;i<location.length;i++){
-                location[i].setMap(null);
-            }
-            location.length=0;
-            marker = [];
+        //map.clear();
+//        info_Window = new google.maps.InfoWindow();
+//            info_Window.close();
+//            for (var i = 0; i < marker.length; i++) {
+//                marker[i].setMap(null);
+//            }
+//            marker.length = 0;
+//            for(var i=0;i<location.length;i++){
+//                location[i].setMap(null);
+//            }
+//            location.length=0;
+//            marker = [];
     })
             .fail(function(jqXHR, textStatus, errorThrown) {
                 console.log("HTTP Request Failed");

@@ -26,7 +26,7 @@
      <div class="modal-dialog modal-md">
          <div class="modal-content text-center">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            @if(Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/bid_documents/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/notice_award/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/labor_compliance/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/test_result/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/standards/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/specifications/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/geo_reports/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/swppp/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/preliminary_notice/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/unconditional_finals/add" || Route::getCurrentRoute()->getPath()=="dashboard/projects/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/bond/add")
+            @if(Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/bid_documents/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/notice_award/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/labor_compliance/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/test_result/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/geo_reports/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/swppp/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/preliminary_notice/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/unconditional_finals/add" || Route::getCurrentRoute()->getPath()=="dashboard/projects/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/bond/add")
              @include('include/add_new_firm')
             @endif
          </div>
@@ -37,7 +37,7 @@
      <div class="modal-dialog modal-md">
          <div class="modal-content text-center">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            @if(Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/bid_documents/add1" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/acceptance_letter/add")
+            @if(Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/bid_documents/add1" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/acceptance_letter/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/standards/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/specifications/add")
              @include('include/add_new_agency')
             @endif
          </div>
@@ -348,7 +348,7 @@ function checkFormFilled(classname)
         //var form_ele_name = '';
         //form_ele_name = $(this).attr('name');
         //alert(typeof form_ele_name);
-        var exempted_val = ["Add New Company","Select Improvement Type","Select Improvement Types","Add New Entity","Add New Agency"];
+        var exempted_val = ["Add New Company","Select Improvement Type","Select Improvement Types","Add New Entity","Add New Agency","Irvine, CA, USA"];
         var exempted_array = ["date_of_submittal","submittal_number_exist","project_terms","umbrella_liability_cur_symbol","general_liability_cur_symbol","company_name_two","maintenance_bond_cur_symbol","payment_bond_cur_symbol","performance_bond_cur_symbol", 
             "demo2","auto_compensation_cur_symbol", "works_compensation_cur_symbol","contract_item_qty","maintenance_bond_amount",
         "performance_bond_amount","payment_bond_amount","company_name","project_type_dropdown","notice_award_improvement_type",

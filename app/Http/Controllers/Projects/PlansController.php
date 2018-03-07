@@ -130,24 +130,31 @@ class PlansController extends Controller {
                   continue;
                 }
                 else {
-                  // Send Notification to users
-                  $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
-               
-                  $user_detail = array(
-                    'id'              => $check_project_user->id,
-                    'name'            => $check_project_user->username,
-                    'email'           => $check_project_user->email,
-                    'link'            => $link,
-                    'date'            => $date,
-                    'project_name'    => $check_project_user->p_name,
-                    'title'           => $notification_title,
-                    'description'     => $email_description
-                  );
-                  $user_single = (object) $user_detail;
-                  Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-                      $message->from('no-reply@sw.ai', 'StratusCM');
-                      $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-                  });
+                    $notification_key     = 'plans';
+                    $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);
+                    if(count($check_project_user_notification) < 1){
+                        continue;
+                    }else
+                    {
+                        // Send Notification to users
+                        $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
+
+                        $user_detail = array(
+                          'id'              => $check_project_user->id,
+                          'name'            => $check_project_user->username,
+                          'email'           => $check_project_user->email,
+                          'link'            => $link,
+                          'date'            => $date,
+                          'project_name'    => $check_project_user->p_name,
+                          'title'           => $notification_title,
+                          'description'     => $email_description
+                        );
+                        $user_single = (object) $user_detail;
+                        Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                            $message->from('no-reply@sw.ai', 'StratusCM');
+                            $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                        });
+                    }
                 }
 
               } // End Foreach

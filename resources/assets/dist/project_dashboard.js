@@ -1274,10 +1274,10 @@ $(document).ready(function() {
 			    	$("#request_change_order thead").show();
 			    	$("#potential_change_order thead").show();
 			    	$("#request_change_order tbody").append(
-					  	'<tr><td colspan="7">You have no access</td></tr>'
+					  	'<tr><td colspan="9">You have no access</td></tr>'
 					);
 					$("#potential_change_order tbody").append(
-					  	'<tr><td colspan="7">You have no access</td></tr>'
+					  	'<tr><td colspan="9">You have no access</td></tr>'
 					);
 			    }
 			    else if(response == 404){
@@ -1286,10 +1286,10 @@ $(document).ready(function() {
 			    	$("#request_change_order thead").show();
 			    	$("#potential_change_order thead").show();
 			    	$("#request_change_order tbody").append(
-					  	'<tr><td colspan="7">No Request change order available</td></tr>'
+					  	'<tr><td colspan="9">No Request change order available</td></tr>'
 					);
 					$("#potential_change_order tbody").append(
-					  	'<tr><td colspan="7">No Potential change order available</td></tr>'
+					  	'<tr><td colspan="10">No Potential change order available</td></tr>'
 					);
 			    }
 			    else {

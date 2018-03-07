@@ -48,11 +48,11 @@
                                   <form role="form">
                                       <div class="col-sm-6">
                                           <div class="form-group">
-                                              <label>Company Name <span class="text-danger">*</span></label>
+                                              <label>Agency Name <span class="text-danger">*</span></label>
                                               <div class="loading_data" style="text-align: center;">
                                                  <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                               </div>
-                                              <select class="form-control company_name" id="company_name"></select>
+                                              <select class="form-control agency_name" id="agency_name"></select>
                                           </div>
                                           <div class="form-group">
                                               <label for="standard_name">Standards Name <span class="text-danger">*</span></label>

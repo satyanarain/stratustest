@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 
     // Get login user profile data
-    $("#company_name").hide();
+    $("#agency_name").hide();
     var role = localStorage.getItem('u_role');
     //console.log(role+'lll');
     var token = localStorage.getItem('u_token');
@@ -62,7 +62,7 @@ $(document).ready(function() {
     $('.add_standard_form').click(function(e) {
         e.preventDefault();
         $('.loading-submit').show();
-        var company_name        = $('#company_name').val();
+        var company_name        = $('#agency_name').val();
         var standard_name       = $('#standard_name').val();
         var standard_date       = $('#standard_date').val();
         var standard_link       = $('#standard_link').val();
@@ -91,7 +91,7 @@ $(document).ready(function() {
         var is_error = false;
         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
         if(company_name == ''){
-            html += '<li>Company name is invalid.</li>';
+            html += '<li>Agency name is invalid.</li>';
             is_error = true;
         }
         if(standard_name == ''){
@@ -177,8 +177,8 @@ $(document).ready(function() {
                     $("#standard_name").removeAttr('value');
                     $("#standard_link").removeAttr('value');
                     $("#standard_date").removeAttr('value');
-                    //$("#company_name").removeAttr('value');
-                    $("#company_name").val('');
+                    //$("#agency_name").removeAttr('value');
+                    $("#agency_name").val('');
                     
                     $("#upload_doc_ids").removeAttr('value');
                     $("#upload_doc_id").removeAttr('value');
@@ -233,9 +233,9 @@ $(document).ready(function() {
             })
         }
     });
-    $('.company_name').change(function(){
+    $('.agency_name').change(function(){
         var company = $(this).val();
-        if(company=="Add New Company")
+        if(company=="Add New Agency")
         {
             //map.clear();
 //            info_Window = new google.maps.InfoWindow();
@@ -249,8 +249,8 @@ $(document).ready(function() {
 //            }
 //            location.length=0;
 //            marker = [];
-            $('#add-company').modal('show');
-            $('#add-company').on('shown.bs.modal',function(){
+            $('#add-agency').modal('show');
+            $('#add-agency').on('shown.bs.modal',function(){
                 google.maps.event.trigger(map, "resize");
               });
             
@@ -259,7 +259,7 @@ $(document).ready(function() {
     function fetchCompanyName(role,check_user_access)
     {
         jQuery.ajax({
-        url: baseUrl+project_id+"/company_name_user",
+        url: baseUrl+project_id+"/company_name_user_agency",
         type: "GET",
         headers: {
           "x-access-token": token
@@ -270,12 +270,12 @@ $(document).ready(function() {
         .done(function(data, textStatus, jqXHR) {
         // console.log(data);
         // Foreach Loop 
-        $(".company_name").append(
-            '<option value="">Select Company</option>'
+        $(".agency_name").append(
+            '<option value="">Select Agency</option>'
         )
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status === 'active'){
-                $(".company_name").append(
+                $(".agency_name").append(
                     '<option value="'+val.f_id+'">'+val.f_name+'</option>'
                 )
             }else {
@@ -284,13 +284,13 @@ $(document).ready(function() {
         });
         var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
         if(add_company_on_fly_permission>0 || role=="owner"){
-        $(".company_name").append(
-            '<option style="font-weight:bold;">Add New Company</option>'
+        $(".agency_name").append(
+            '<option style="font-weight:bold;">Add New Agency</option>'
         )}
         // $( "h2" ).appendTo( $( ".container" ) );
        
         $(".loading_data").remove();
-        $("#company_name").show();
+        $("#agency_name").show();
     })
         .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");

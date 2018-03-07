@@ -350,16 +350,24 @@
                             </div>
                         </section>
                     </div>
-
-                  <div class="col-sm-12">
-                    <div class="loading_submittal_detail" style="text-align: center;">
-                        <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
-                    </div>
+                    
+                  
+                    <div class="panel-group m-bot20" id="accordion">
+                        <div class="panel panel-default">
+                        <div class="col-sm-12">
+                        <div class="loading_submittal_detail" style="text-align: center;">
+                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
+                        </div>
                     <section class="panel hide_submittal_permission" style="display: none;">
-                        <header class="panel-heading head-border">
-                            <strong>Submittals</strong>
-                        </header>
-                        <div class="pro-dash-table">
+                        <div class="panel-heading" style="">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" style="font-size: 26px;">
+                                    Submittals
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
+                            <div class="pro-dash-table">
                           <div class="project-table table-responsive">
                             <table class="table table-striped" id="submittal_data_log">
                               <thead style="display: none;">
@@ -381,17 +389,25 @@
                             </table>
                           </div>
                         </div>
+                        </div>
                     </section>
-                  </div>
-
-                  <div class="col-sm-12">
-                    <div class="loading_rfi_detail" style="text-align: center;">
-                        <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                     </div>
-                    <section class="panel hide_rfi_permission" style="display: none;">
-                        <header class="panel-heading head-border">
-                            <strong style="text-transform: capitalize;">RFIs</strong>
-                        </header>
+                  </div>
+                        
+                        <div class="panel panel-default">
+                        <div class="col-sm-12">
+                        <div class="loading_rfi_detail" style="text-align: center;">
+                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
+                        </div>
+                        <section class="panel hide_rfi_permission" style="display: none;">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" style="font-size: 26px;">
+                                        RFIs
+                                    </a>
+                                </h4>
+                            </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false">
                         <div class="pro-dash-table">
                           <div class="project-table table-responsive">
                             <table class="table table-striped" id="rfi_data_log">
@@ -411,8 +427,98 @@
                             </table>
                           </div>
                         </div>
+                        </div>
+                    </section>
+                      </div>
+                  </div>
+                        
+                        <div class="panel panel-default">
+                    <div class="col-sm-12">
+                        <div class="loading_cor_detail" style="text-align: center;">
+                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
+                        </div>
+                    <section class="panel hide_cor_permission"  style="display: none;">
+                        
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" style="font-size: 26px;">
+                                    Requested Change Orders
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
+                            <div class="pro-dash-table">
+                          <div class="panel-body project-table table-responsive">
+                            <table class="table table-striped" id="request_change_order">
+                          <thead>
+                          <tr>
+                              <th>COR#</th>
+                              <th>Generated By</th>
+                              <th>Date Sent</th>
+                              <th>Description</th>
+                              <th>Approved by CM</th>
+                              <th>Approved by OWNER</th>
+                              <th>$</th>
+                              <th>Days</th>
+                              <th>Status</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+
+                          </tbody>
+                          </table>
+                        </div>
+                      </div>
+                        </div>
+                        
+                    </section>
+                    </div>
+                </div>
+                        
+                        <div class="panel panel-default">
+                  <div class="col-sm-12">
+                    <div class="loading_cor_detail" style="text-align: center;">
+                        <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
+                    </div>
+                    <section class="panel hide_cor_permission"  style="display: none;">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" style="font-size: 26px;">
+                                    Potential Change Orders
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse" aria-expanded="false">
+                      
+                      <div class="pro-dash-table">
+                          <div class="panel-body project-table table-responsive">
+                            <table class="table table-striped" id="potential_change_order">
+                          <thead>
+                          <tr>
+                              <th>Potential <br/>COR#</th>
+                              <th>Generated By</th>
+                              <th>Date Sent</th>
+                              <th>Description</th>
+                              <th>Approved by CM</th>
+                              <th>Approved by OWNER</th>
+                              <th style="min-width: 200px;">Referenced RFI</th>
+                              <th>$</th>
+                              <th>Days</th>
+                              <th>Status</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          </tbody>
+                      </table>
+                        </div>
+                      </div>
+                        </div>
                     </section>
                   </div>
+                </div>
+                 </div>     
+                  
+                      
 
                 <!--   <div class="col-sm-12">
                     <div class="loading_survey_detail" style="text-align: center;">
@@ -447,73 +553,9 @@
                   </div> -->
 
 
-                  <div class="col-sm-12">
-                    <div class="loading_cor_detail" style="text-align: center;">
-                        <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
-                    </div>
-                    <section class="panel hide_cor_permission"  style="display: none;">
-                      <header class="panel-heading head-border">
-                          <strong>Requested Change Orders</strong>
-                      </header>
-                      <div class="pro-dash-table">
-                          <div class="panel-body project-table table-responsive">
-                            <table class="table table-striped" id="request_change_order">
-                          <thead>
-                          <tr>
-                              <th>COR#</th>
-                              <th>Generated By</th>
-                              <th>Date Sent</th>
-                              <th>Description</th>
-                              <th>Approved by CM</th>
-                              <th>Approved by OWNER</th>
-                              <th>$</th>
-                              <th>Days</th>
-                              <th>Status</th>
-                          </tr>
-                          </thead>
-                          <tbody>
+                
 
-                          </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-
-
-                  <div class="col-sm-12">
-                    <div class="loading_cor_detail" style="text-align: center;">
-                        <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
-                    </div>
-                    <section class="panel hide_cor_permission"  style="display: none;">
-                      <header class="panel-heading head-border">
-                          <strong>Potential Change Orders</strong>
-                      </header>
-                      <div class="pro-dash-table">
-                          <div class="panel-body project-table table-responsive">
-                            <table class="table table-striped" id="potential_change_order">
-                          <thead>
-                          <tr>
-                              <th>Potential <br/>COR#</th>
-                              <th>Generated By</th>
-                              <th>Date Sent</th>
-                              <th>Description</th>
-                              <th>Approved by CM</th>
-                              <th>Approved by OWNER</th>
-                              <th style="min-width: 200px;">Referenced RFI</th>
-                              <th>$</th>
-                              <th>Days</th>
-                              <th>Status</th>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          </tbody>
-                      </table>
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-
+                
 
             <!--body wrapper end-->
 

@@ -716,6 +716,10 @@
                         <input type="checkbox" name="notification_key[]" id="standards" value="standards">
                     </div>
                     <div class="form-group col-md-3">
+                        <label for="standards">Plans</label><br>
+                        <input type="checkbox" name="notification_key[]" id="plans" value="plans">
+                    </div>
+                    <div class="form-group col-md-3">
                         <label for="swppp">SWPPP/WPCP</label><br>
                         <input type="checkbox" name="notification_key[]" id="swppp" value="swppp">
                     </div>
