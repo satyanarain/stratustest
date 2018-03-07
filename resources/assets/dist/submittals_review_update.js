@@ -96,7 +96,7 @@
 		  	}
 		  	else {
 		  		//var document_link_value = '<iframe src="http://apps.groupdocs.com/document-annotation2/embed/'+data.data.submittal_path+'" frameborder="0" width="100%" height="800"></iframe>';
-                                var document_link_value = '<a href="'+data.data.submittal_path+'">View Document</a>';
+                                var document_link_value = '<a href="'+data.data.submittal_path+'" target="_blank">View Document</a>';
 		  	}
 
 		  	$("#review_document").html(document_link_value);
