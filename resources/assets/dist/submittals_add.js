@@ -123,9 +123,11 @@ $(document).ready(function() {
             jQuery.each(data.data, function( i, val ) {
                 // console.log(val);
                 if(val.sub_exist_parent == 0){
+                    //var sub_number = val.sub_id;
                     var sub_number = val.sub_number;
                 }
                 else {
+                    //var sub_number = val.sub_exist_parent;
                     var sub_number = val.sub_number;
                 }
 

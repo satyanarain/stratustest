@@ -90,7 +90,7 @@
 
                                     <div class="form-group col-md-12">
                                         <label for="name_of_report">Owner <span class="text-danger">*</span></label>
-                                        <select class="form-control company_name" id="owner_name" ></select>
+                                        <select class="form-control " id="agency_name" ></select>
 
                                     </div>
                                    

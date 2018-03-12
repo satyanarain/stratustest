@@ -102,7 +102,7 @@ $(document).ready(function() {
 			var year = date.getFullYear();
 			var report_date = year + '-' + month + '-' + day;
 		    $('#report_name').text(report_date);
-		    $('#report_number').text(data.data.pdr_id);
+		    $('#report_number').text(data.data.pdrl_id);
 		    $('#report_date').text(report_date);
 		    $('#project_weather').html(data.data.pdr_weather + "<sup>o</sup> c");
 
@@ -236,6 +236,7 @@ $(document).ready(function() {
 					.done(function(data, textStatus, jqXHR) {
 						console.log(data.data);
 				    var item_id = data.data.pbi_id;
+                                    var bid_item_no = data.data.pbi_item_no;
 				    var item_name = data.data.pbi_item_description;
 						html = '<div class="form-group">'+
 		                    '<div class="col-sm-2 form-group" style="padding: 0px;">'+

@@ -30,7 +30,7 @@
                         <tr>
                             <th>#</th>
                             <th>Standards Name</th>
-                            <th>Company Name</th>
+                            <th>Agency Name</th>
                             <th>Standards URL</th>
                             <th>Standards Date</th>
                             <th>Document</th>

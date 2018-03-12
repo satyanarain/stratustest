@@ -96,7 +96,8 @@ $(document).ready(function() {
                 window.location.href = baseUrl + "500";
             }
         });
-     fetchCompanyName(role,check_user_access);  
+     fetchCompanyName(role,check_user_access);
+     fetchAgencyName(role,check_user_access);
 });
 
 $('.add_unconditional_finals').click(function(e)
@@ -108,7 +109,7 @@ $('.add_unconditional_finals').click(function(e)
     var name_claimant           = $('#name_claimant').val();
     var name_customer           = $('#name_customer').val();
     var job_location            = $('#job_location').val();
-    var owner_name              = $('#owner_name').val();
+    var owner_name              = $('#agency_name').val();
     var unconditional_finals    = $('#upload_single_doc_id').val();
 
     // Validation Certificate
@@ -187,7 +188,7 @@ $('.add_unconditional_finals').click(function(e)
         $("#alert_message").html(html);
         $("#name_claimant").val('');
         $("#name_customer").val('');
-        $("#owner_name").val('');
+        $("#agency_name").val('');
         $(".first_button").text('Save Another');
         $('html, body').animate({
             scrollTop: $(".page-head").offset().top
@@ -200,9 +201,9 @@ $('.add_unconditional_finals').click(function(e)
 
 })
 
-$('.company_name').change(function(){
+$('.company_name,#agency_name').change(function(){
         var company = $(this).val();
-        if(company=="Add New Company")
+        if(company=="Add New Company" || company=="Add New Agency")
         {
             $('#add-company').modal('show');
             $('#add-company').on('shown.bs.modal',function(){
@@ -246,6 +247,61 @@ $('.company_name').change(function(){
        
         $(".loading_data").remove();
         $(".company_name").show();
+    })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(jqXHR);
+        if(response == 403){
+            console.log('Company name 403');
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            console.log('Company name 404');
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
+    }
+    
+    function fetchAgencyName(role,check_user_access)
+    {
+        jQuery.ajax({
+        url: baseUrl+project_id+"/company_name_user_agency",
+        type: "GET",
+        headers: {
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+        // console.log(data);
+        // Foreach Loop 
+        $("#agency_name").append(
+            '<option value="">Select Agency</option>'
+        )
+        jQuery.each(data.data, function( i, val ) {
+            if(val.f_status == 'active'){
+                $("#agency_name").append(
+                    '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                )
+            }else {
+
+            }
+        });
+        var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+        console.log(add_company_on_fly_permission+'company_fly');
+        if(add_company_on_fly_permission>0 || role=="owner"){
+        $("#agency_name").append(
+            '<option style="font-weight:bold;">Add New Agency</option>'
+        )}
+        // $( "h2" ).appendTo( $( ".container" ) );
+       
+        $(".loading_data").remove();
+        $("#agency_name").show();
     })
         .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");

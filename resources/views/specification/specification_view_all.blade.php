@@ -30,7 +30,7 @@
                         <tr>
                             <th>#</th>
                             <th>Specifications Name</th>
-                            <th>Entity name</th>
+                            <th>Agency name</th>
                             <th>Specifications URL</th>
                             <th>Specifications Date</th>
                             <th>Document</th>

@@ -108,12 +108,12 @@
 			  		noc_path_value = '-';
 			  	}
 			  	else {
-			  		if(val.noc_status == 'active'){
+			  		//if(val.noc_status == 'active'){
 			  			noc_path_value = '<a href="'+baseUrl+val.doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
-			  		}
-			  		else {
-			  			noc_path_value = '<td><a href="'+baseUrl+'404" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a></td>';
-			  		}
+//			  		}
+//			  		else {
+//			  			noc_path_value = '<td><a href="'+baseUrl+'404" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a></td>';
+//			  		}
 			  	}
                             if(val.date_noc_filed!='' && val.date_noc_filed!='0000-00-00')    
                                 var date_noc_filed = val.date_noc_filed;

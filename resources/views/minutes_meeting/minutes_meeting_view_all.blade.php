@@ -33,7 +33,7 @@
                             <th>Contactor Name</th>
                             <th>Date</th>
                             <th>Project Description</th>
-                            <!-- <th>Special Considerations</th> -->
+                            <th>Special Considerations</th>
                             <th>Agenda</th>
                             <th>Sign-in Sheet</th>
                             <th>Meeting Minutes</th>

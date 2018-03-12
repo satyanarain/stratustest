@@ -452,11 +452,12 @@
             </div><!-- contract_exist close -->
             <div class="state-information">
                     <a href="{{ url('/dashboard/'.$project_id.'/daily_construction_report') }}" class="btn btn-info">Back</a>
+                    <button type="submit" class="btn btn-info submit_daily_report_form" id="submit_daily_report_form" style="display: none;">Save</button>
                 </div>
         </div>
 
         <div class="form-group col-md-12">
-            <button type="submit" class="btn btn-info sub-btn submit_daily_report_form" id="submit_daily_report_form" style="display: none;">Save</button>
+            
             <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
         </div>
     </div><!-- Row Close -->

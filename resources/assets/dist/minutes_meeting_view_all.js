@@ -141,18 +141,24 @@
 			  			meeting_minutes_path_value = '<td><a href="'+baseUrl+'404" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a></td>';
 			  		}
 			  	}
-
-			  	var pm_special = [val.pm_special];
-			 	var newHTML = [];
-				    console.log(pm_special.length);
-				for (var i = 0; i < pm_special.length; i++) {
-			  		pm_special[i] = pm_special[i].replace('[{"value":"', '');
-			  		pm_special[i] = pm_special[i].replace('"},', ',');
-					
-				    // newHTML.push('<span>' + pm_special[i] + '</span>');
-				    newHTML.push(pm_special[i]);
-				}
-				console.log(newHTML.join(""));
+                                var pm_special='';
+                                var objJSON = JSON.parse(val.pm_special); // this is how you parse a string into JSON 
+                                for (var i = 0, len = objJSON.length; i < len; i++)
+                                    pm_special = pm_special+objJSON[i].value+',';
+                                pm_special = pm_special.substring(0, pm_special.length - 1); // "12345.0"
+                                //pm_special = obj.value;
+                                //alert(obj.value);
+//			  	var pm_special = [val.pm_special];
+//			 	var newHTML = [];
+//				    console.log(pm_special.length);
+//				for (var i = 0; i < pm_special.length; i++) {
+//			  		pm_special[i] = pm_special[i].replace('[{"value":"', '');
+//			  		pm_special[i] = pm_special[i].replace('"},', ',');
+//					
+//				    // newHTML.push('<span>' + pm_special[i] + '</span>');
+//				    newHTML.push(pm_special[i]);
+//				}
+				//console.log(newHTML.join(""));
 			  // pm_special = pm_special.replace(']', '');
 			  // pm_special = pm_special.replace('{', '');
 			  // pm_special = pm_special.replace('}', '');
@@ -164,7 +170,7 @@
 		           val.contractor_name,
                    val.pm_date, // $.datepicker.formatDate('yy-mm-dd', new Date(val.pm_date.replace(' ', 'T'))),
 		           val.pm_description,
-		           // val.pm_special,
+		           pm_special,
 		           agenda_path_value,
 		           signin_sheet_path_value,
 		           meeting_minutes_path_value,
