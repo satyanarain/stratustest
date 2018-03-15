@@ -16,6 +16,11 @@ $('#update_profile_form').click(function(e) {
     var position_title        = $('#position').val();
     // var user_role       = $('#user_role').val();
     // var project_id 		= $('#project_name').val();
+    var user_image_path =    $("#user_image_path").val();
+    if(user_image_path!="")
+        $("#old_image_link").html('');
+    else
+        user_image_path = $("#old_image_path").val();
     var status 			= $('#status').val();
     // console.log(project_id);
     // console.log(position_title);
@@ -37,6 +42,7 @@ $('#update_profile_form').click(function(e) {
             // "user_role" : user_role,
             // "project_id" : project_id,
             "status" : status,
+            "user_image_path" : user_image_path,
         },
         headers: {
             "x-access-token": token
@@ -279,6 +285,13 @@ $(document).ready(function() {
 			    cache: false
 			})
 			    .done(function(data, textStatus, jqXHR) {
+                                if(data.data.user_image_path!=''){
+                                    var user_image_path = '<img src="'+baseUrl+data.data.user_image_path+'" width="50px">';
+                                    $("#old_image_path").val(data.data.user_image_path);
+                                }else{
+                                    var user_image_path = '';
+                                }
+                                $("#old_image_link").html(user_image_path);
                     jQuery.ajax({
                         url: baseUrl + "users/get_user_info/"+userid,
                         type: "GET",
@@ -356,6 +369,7 @@ $(document).ready(function() {
 			    $('.user_status').val(data.data.status);
                 // $('#project_name').val(data.data.project_id);
                 $('#user_role').val(data.data.user_type);
+                
                 $(".loading_data").hide();
                 $("#update_profile_form").show();
 

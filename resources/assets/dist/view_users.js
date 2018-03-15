@@ -83,10 +83,15 @@
 			  else {
 			  	var action_btn = '<a href="'+baseUrl+'dashboard/users/'+val.id+'" class="btn btn-success btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>'+'<a href="'+baseUrl+'dashboard/users/'+val.id+'/update" class="btn btn-primary btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>'+'<a href="" id="'+val.id+'" class="btn btn-danger btn-xs tooltips user_suspend" data-placement="top" data-toggle="tooltip" data-original-title="Suspend"><i class="fa fa-times"></i></a>';
 			  }
-                          console.log('kunal--'+val.email)
+                          console.log('kunal--'+val.email);
+                          if(val.user_image_path!="")
+                              var user_image_path = '<img src="'+baseUrl+val.user_image_path+'" width="50px">';
+                          else
+                              var user_image_path = '';
 			  if(role == 'owner'){
 			  	t.row.add( [
 		           val.username,
+                           user_image_path,
 		           val.first_name+' '+val.last_name,
 		           val.email,
 		           val.agency_name,
@@ -99,6 +104,7 @@
 			  }else {
 				t.row.add( [
 		           val.username,
+                           user_image_path,
 		           val.first_name+' '+val.last_name,
 		           val.email,
 		           val.agency_name,

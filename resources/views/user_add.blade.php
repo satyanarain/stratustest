@@ -20,7 +20,7 @@
                             </header>
                             <div class="panel-body">
 
-                                <form role="form" id="add_user_form">
+                                
                                     <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="uname">User Name <span class="text-danger">*</span></label>
@@ -72,6 +72,17 @@
                                             <input type="text" class="form-control" id="pnum_1" name="phone_num[]">
                                         </div>
                                         </div>
+                                    <div class="col-sm-6">
+                                        <label for="standard_name">Upload User Image <span class="text-danger">*</span> </label>
+                                        <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
+                                            <input type="hidden" name="document_path" value="/uploads/users/">
+                                        </form>
+
+                                        <div class="form-group">
+                                            <input type="hidden" name="user_image_path" id="user_image_path" value="">
+                                            
+                                        </div>
+                                    </div>
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-md-6">
@@ -94,13 +105,13 @@
                                         <a href="{{ url('/dashboard/users') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
 
 
-                                        <button type="submit" class="first_button btn btn-info sub-btn">Save</button>
+                                        <button type="submit" id="add_user_form" class="first_button btn btn-info sub-btn">Save</button>
                                         <button type="submit" id="add_swppp_form" class="another_button btn btn-info sub-btn" style="display: none;">Save Another</button>
                                         <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                     </div>
 
                                     </div>
-                                </form>
+                                
 
                             </div>
                         </section>
@@ -111,6 +122,7 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
+<script src="{{ url('/resources/assets/js/dropzone_image.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/user_add.js') }}"></script>
 
 <div class="modal add-company fade" id="add-company" tabindex="-3" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -236,7 +248,6 @@
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
-
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEf-8-SoRe54t6wZL8_rkiuNIAhwgffIU&libraries=places&callback=initMap" async defer></script>
 
 

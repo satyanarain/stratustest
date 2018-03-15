@@ -261,6 +261,8 @@ $(document).ready(function() {
                 $(ele_name).empty();
                 if($("#company_name_two").length != 0)
                     $("#company_name_two").empty();
+                $(ele_name).append('<option value="">Select Agency</option>');
+                if($("#company_name_two").length != 0) {$("#company_name_two").append('<option value="">Select Agency</option>');}
                 jQuery.each(data.data, function( i, val ) {
                     if(val.f_status == 'active'){
                         $(ele_name).append(

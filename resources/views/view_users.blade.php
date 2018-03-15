@@ -31,6 +31,9 @@
                                 User name
                             </th>
                             <th>
+                                Image
+                            </th>
+                            <th>
                                 First Name / Last Name
                             </th>
                             <th>

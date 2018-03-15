@@ -21,7 +21,9 @@ $(document).ready(function() {
             console.log(data);
             var username = data.data.username;
             $('#username').text(username);
-
+            var user_image_path = data.data.user_image_path;
+            if(user_image_path!='')
+                $('#user_image_path').html('<img src="'+baseUrl+user_image_path+'">');
             var email = data.data.email;
             $('#email').text(email);
 

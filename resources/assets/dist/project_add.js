@@ -218,6 +218,7 @@ $(document).ready(function() {
                 $("#project_location").removeAttr('value');
                 $("#project_description").removeAttr('value');
                 $(".select2-search-choice-close").trigger("click");
+                $("#project_type option:selected").removeAttr("selected");
                 setTimeout(function()
                 {
                     $("#alert_message").hide();

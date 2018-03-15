@@ -256,7 +256,7 @@ $(document).ready(function() {
     }); 
 
     jQuery.ajax({
-        url: baseUrl + "standards/"+project_id+"/standard",
+        url: baseUrl + "/"+project_id+"/default_contractor",
             type: "GET",
             headers: {
               "Content-Type": "application/json",

@@ -254,6 +254,7 @@ $(document).ready(function() {
                 if($(".company_name").length > 0) {
                     var ele_name = '.company_name';
                     $(ele_name).empty();
+                    $(ele_name).append('<option value="">Select Company</option>');
                     jQuery.each(data.data, function( i, val ) {
                         if(val.f_status == 'active'){
                             $(ele_name).append(

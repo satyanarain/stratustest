@@ -23,7 +23,6 @@
                             </div>
                             <div class="panel-body">
                             <div id="updateuserinfo" style="display: none"></div>
-                                <form role="form" id="">
                                     <div class="row">
                                     <div class="form-group col-md-6 hide_user">
                                         <label for="uname">User Name <span class="text-danger">*</span></label>
@@ -86,6 +85,17 @@
                                             <option value="2">Suspended</option>
                                         </select>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <label for="standard_name">User Image <span class="text-danger">*</span><span id="old_image_link"></span><input type="hidden" id="old_image_path"></span> </label>
+                                        <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
+                                            <input type="hidden" name="document_path" value="/uploads/users/">
+                                        </form>
+
+                                        <div class="form-group">
+                                            <input type="hidden" name="user_image_path" id="user_image_path" value="">
+                                            
+                                        </div>
+                                    </div>
                                     <div class="col-md-6 hide_user role_admin_hide">
                                         <!-- <label>User Type</label>
                                         <select class="form-control user_role" id="role">
@@ -119,8 +129,6 @@
                                     </div>
 
                                     </div>
-                                </form>
-
                             </div>
                         </section>
                     </div>
@@ -132,5 +140,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js?v=1.0"></script>
 <!-- <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script> -->
 <script src="{{ url('/resources/assets/dist/api_url.js?v=1.0') }}"></script>
+<script src="{{ url('/resources/assets/js/dropzone_image.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/user_update.js?v=1.0') }}"></script>
 @include('include/footer')

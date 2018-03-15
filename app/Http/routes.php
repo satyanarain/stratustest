@@ -33,6 +33,11 @@ Route::get('users/email_verification/{user_id}', function () {
     return view('/email_verification');
 });
 
+Route::get('users/update_password/{user_id}', function () {
+    return view('/update_password');
+});
+Route::post('users/update_password', 'Users\UserController@update_password');
+
 /**** DASHBOARD VIEW ****/
 Route::get('dashboard/users/{userid}', function () { 
     return view('/user_detail');   
@@ -300,6 +305,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('notice-award/{notice_id}/update', 'Projects\NoticeAwardController@update_notice_award');
     Route::get('notice-award/{notice_id}', 'Projects\NoticeAwardController@get_notice_award_single');
     Route::get('{project_id}/notice-award', 'Projects\NoticeAwardController@get_notice_award_project');
+    Route::get('{project_id}/default_contractor', 'Projects\NoticeAwardController@get_default_contractor_project');
     Route::get('{project_id}/check_project_user', 'Projects\PermissionController@check_project_user');
     Route::get('{project_id}/check_single_project_permission/{user_id}', 'Projects\PermissionController@check_all_user_permission');
 });

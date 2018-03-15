@@ -463,4 +463,44 @@ class NoticeAwardController extends Controller {
         return response()->json(['error' => 'Something is wrong'], 500);
       }
   }
+  
+  /*
+  ----------------------------------------------------------------------------------
+   Get default contractor by passing project id
+  ----------------------------------------------------------------------------------
+  */
+  public function get_default_contractor_project(Request $request, $project_id)
+  {
+      try
+      {
+        $query = DB::table('project_notice_award')
+          ->leftJoin('project_firm', 'project_notice_award.pna_contactor_name', '=', 'project_firm.f_id')
+//          ->leftJoin('project_type_improvement', 'project_notice_award.pna_improvement_type', '=', 'project_type_improvement.pt_id')
+//          ->leftJoin('project_settings', 'project_notice_award.pna_project_id', '=', 'project_settings.pset_project_id')
+//          ->leftJoin('currency', 'project_settings.pset_meta_value', '=', 'currency.cur_id')
+//          ->leftJoin('documents', 'project_notice_award.pna_notice_path', '=', 'documents.doc_id')
+//          ->leftJoin('projects', 'project_notice_award.pna_project_id', '=', 'projects.p_id')
+//          ->leftJoin('users', 'project_notice_award.pna_user_id', '=', 'users.id')
+          ->select('project_firm.f_name as agency_name','project_notice_award.*')
+          ->where('project_notice_award.pna_project_id', '=', $project_id)
+          ->groupBy('project_notice_award.pna_id')
+          ->orderBy('project_notice_award.pna_id','ASC')
+          ->get();
+          if(count($query) < 1)
+          {
+            $result = array('code'=>404, "description"=>"No Records Found");
+            return response()->json($result, 404);
+          }
+          else
+          {
+            $result = array('data'=>$query,'code'=>200);
+            return response()->json($result, 200);
+          }
+        
+      }
+      catch(Exception $e)
+      {
+        return response()->json(['error' => 'Something is wrong'], 500);
+      }
+  }
 }

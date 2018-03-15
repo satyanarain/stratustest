@@ -8,7 +8,9 @@
     }
 
     .sidebar-left {
-        display: none;
+        display: block;
+        background: #32323a;
+	z-index: 99999;
     }
 
     .body-content {
@@ -17,11 +19,11 @@
     }
 
     .sidebar-collapsed .sidebar-left {
-        display: none;
+        display: block;
     }
 
     .sidebar-collapsed .body-content {
-        margin-left: 0;
+        margin-left:52px;
     }
 
     .sidebar-collapsed .header-section {

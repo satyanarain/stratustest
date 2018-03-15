@@ -62,7 +62,7 @@ class ContactController extends Controller {
           ->leftJoin('projects', 'project_contact.c_project_id', '=', 'projects.p_id')
           ->leftJoin('project_firm', 'users.company_name', '=', 'project_firm.f_id')
           ->leftJoin('company_type', 'project_firm.f_type', '=', 'company_type.ct_id')
-          ->select('projects.*', 'users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role', 'project_firm.f_name as company_name','company_type.ct_name')
+          ->select('projects.*', 'users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role', 'project_firm.f_name as company_name','company_type.ct_name','users.user_image_path')
           ->where('project_contact.c_project_id', '=', $project_id)
           ->where('users.status', '!=', 2)
           ->orderBy('role')

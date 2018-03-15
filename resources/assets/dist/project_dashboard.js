@@ -161,7 +161,7 @@ $(document).ready(function() {
         {
 		    // Select Contractor Name
 		    jQuery.ajax({
-	        url: baseUrl + "standards/"+project_id+"/standard",
+	        url: baseUrl + "/"+project_id+"/default_contractor",
 	            type: "GET",
 	            headers: {
 	              "Content-Type": "application/json",
@@ -405,13 +405,17 @@ $(document).ready(function() {
 			jQuery.each( data.data, function( i, val )
             {	
             	// console.log(val);
+                if(val.user_image_path!="")
+                    var user_image_path = baseUrl+val.user_image_path;
+                else
+                    var user_image_path = baseUrl+'/resources/assets/img/thumbnail.jpg';
             	if(val.role == 'admin'){
                 	admin_contact = true;
                 	$('#admin_contact').append(
                 	'<li>'+
                       '<a href="'+baseUrl+'dashboard/'+val.p_id+'/contact/'+val.id+'">'+
                           	'<span class="thumb-small">'+
-                            	'<img class="circle" src="'+baseUrl+'/resources/assets/img/thumbnail.jpg" alt=""/>'+
+                            	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
                           '<span class="name">'+val.first_name+' '+val.last_name+'</span>'+
                       '</a>'+
@@ -424,7 +428,7 @@ $(document).ready(function() {
                 	'<li>'+
                       '<a href="'+baseUrl+'dashboard/'+val.p_id+'/contact/'+val.id+'">'+
                           	'<span class="thumb-small">'+
-                            	'<img class="circle" src="'+baseUrl+'/resources/assets/img/thumbnail.jpg" alt=""/>'+
+                            	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
                           '<span class="name">'+val.first_name+' '+val.last_name+'</span>'+
                       '</a>'+
@@ -437,7 +441,7 @@ $(document).ready(function() {
                 	'<li>'+
                       '<a href="'+baseUrl+'dashboard/'+val.p_id+'/contact/'+val.id+'">'+
                           	'<span class="thumb-small">'+
-                            	'<img class="circle" src="'+baseUrl+'/resources/assets/img/thumbnail.jpg" alt=""/>'+
+                            	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
                           '<span class="name">'+val.first_name+' '+val.last_name+'</span>'+
                       '</a>'+
@@ -450,7 +454,7 @@ $(document).ready(function() {
                 	'<li>'+
                       '<a href="'+baseUrl+'dashboard/'+val.p_id+'/contact/'+val.id+'">'+
                           	'<span class="thumb-small">'+
-                            	'<img class="circle" src="'+baseUrl+'/resources/assets/img/thumbnail.jpg" alt=""/>'+
+                            	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
                           '<span class="name">'+val.first_name+' '+val.last_name+'</span>'+
                       '</a>'+
@@ -463,7 +467,7 @@ $(document).ready(function() {
                 	'<li>'+
                       '<a href="'+baseUrl+'dashboard/'+val.p_id+'/contact/'+val.id+'">'+
                           	'<span class="thumb-small">'+
-                            	'<img class="circle" src="'+baseUrl+'/resources/assets/img/thumbnail.jpg" alt=""/>'+
+                            	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
                           '<span class="name">'+val.first_name+' '+val.last_name+'</span>'+
                       '</a>'+
@@ -476,7 +480,7 @@ $(document).ready(function() {
                 	'<li>'+
                       '<a href="'+baseUrl+'dashboard/'+val.p_id+'/contact/'+val.id+'">'+
                           	'<span class="thumb-small">'+
-                            	'<img class="circle" src="'+baseUrl+'/resources/assets/img/thumbnail.jpg" alt=""/>'+
+                            	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
                           '<span class="name">'+val.first_name+' '+val.last_name+'</span>'+
                       '</a>'+
@@ -489,7 +493,7 @@ $(document).ready(function() {
                 	'<li>'+
                       '<a href="'+baseUrl+'dashboard/'+val.p_id+'/contact/'+val.id+'">'+
                           	'<span class="thumb-small">'+
-                            	'<img class="circle" src="'+baseUrl+'/resources/assets/img/thumbnail.jpg" alt=""/>'+
+                            	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
                           '<span class="name">'+val.first_name+' '+val.last_name+'</span>'+
                       '</a>'+
@@ -502,7 +506,7 @@ $(document).ready(function() {
                 	'<li>'+
                       '<a href="'+baseUrl+'dashboard/'+val.p_id+'/contact/'+val.id+'">'+
                           	'<span class="thumb-small">'+
-                            	'<img class="circle" src="'+baseUrl+'/resources/assets/img/thumbnail.jpg" alt=""/>'+
+                            	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
                           '<span class="name">'+val.first_name+' '+val.last_name+'</span>'+
                       '</a>'+

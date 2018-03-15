@@ -95,7 +95,7 @@ class UserController extends Controller {
             $query = DB::table('users')
             ->leftJoin('project_firm', 'users.company_name', '=', 'project_firm.f_id')
             ->leftJoin('users as user_parent', 'users.user_parent', '=', 'user_parent.id')
-            ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'project_firm.f_name as agency_name', 'users.phone_number', 'users.position_title', 'users.status', 'users.role', 'user_parent.username as user_parent')
+            ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'project_firm.f_name as agency_name', 'users.phone_number', 'users.position_title', 'users.status', 'users.role', 'user_parent.username as user_parent','users.user_image_path')
             ->orderBy('users.id', 'asc')
             ->get();
           }
@@ -103,7 +103,7 @@ class UserController extends Controller {
             $query = DB::table('users')
             ->leftJoin('project_firm', 'users.company_name', '=', 'project_firm.f_id')
             ->leftJoin('users as user_parent', 'users.user_parent', '=', 'user_parent.id')
-            ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'project_firm.f_name as agency_name', 'users.phone_number', 'users.position_title', 'users.status', 'users.role', 'user_parent.username as user_parent')
+            ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'project_firm.f_name as agency_name', 'users.phone_number', 'users.position_title', 'users.status', 'users.role', 'user_parent.username as user_parent','users.user_image_path')
             ->where('users.user_parent', '=', $user_id)
             ->orderBy('users.id', 'asc')
             ->get(); 
@@ -143,7 +143,7 @@ class UserController extends Controller {
            $query = DB::table('users')
             // ->leftJoin('project_contact', 'users.id', '=', 'project_contact.c_user_id')
             // ->leftJoin('projects', 'users.project_id', '=', 'projects.p_id')
-            ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role')
+            ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role','users.password_changed')
             ->where('id', '=', $u_id)
             ->first();
 
@@ -161,22 +161,28 @@ class UserController extends Controller {
         }
         else
         {
-            $session_data = Array(
-              'id'            => $query->id,
-              'email'         => $query->email,
-              'username'      => $query->username,
-              'first_name'    => $query->first_name,
-              'last_name'     => $query->last_name,
-              'company_name'  => $query->company_name,
-              'phone_number'  => $query->phone_number,
-              'position_title'=> $query->position_title,
-              'status'        => $query->status,
-              'role'          => $query->role
-            );
-            // print_r($session_data);
-            Session::put('user', $session_data);
-            $result = array('data'=>$query,'code'=>200);
-            return response()->json($result, 200);
+            if($query->password_changed==1)
+            {
+                $session_data = Array(
+                  'id'            => $query->id,
+                  'email'         => $query->email,
+                  'username'      => $query->username,
+                  'first_name'    => $query->first_name,
+                  'last_name'     => $query->last_name,
+                  'company_name'  => $query->company_name,
+                  'phone_number'  => $query->phone_number,
+                  'position_title'=> $query->position_title,
+                  'status'        => $query->status,
+                  'role'          => $query->role,
+                );
+                // print_r($session_data);
+                Session::put('user', $session_data);
+                $result = array('data'=>$query,'code'=>200);
+                return response()->json($result, 200);
+            }else{
+                $result = array('code'=>403,"description"=>"Please check your email to change password");
+                return response()->json($result, 403);
+            }
         }
       }
       catch(Exception $e)
@@ -202,7 +208,7 @@ class UserController extends Controller {
             // ->leftJoin('projects', 'users.project_id', '=', 'projects.p_id')
            
             ->leftJoin('project_firm', 'users.company_name', '=', 'project_firm.f_id')
-            ->select('project_firm.f_name as company_name', 'users.id', 'users.email', 'users.username', 'users.first_name', 'users.company_name as company_id', 'users.last_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role')
+            ->select('project_firm.f_name as company_name', 'users.id', 'users.email', 'users.username', 'users.first_name', 'users.company_name as company_id', 'users.last_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role','users.user_image_path')
             ->where('id', '=', $u_id)
             ->first();
 
@@ -528,7 +534,7 @@ class UserController extends Controller {
         // ->select('id', 'email', 'username', 'first_name', 'last_name', 'company_name', 'phone_number', 'status', 'project_id', 'projects.p_name as project_name', 'role')
         // ->leftJoin('project_contact', 'users.id', '=', 'project_contact.c_user_id')
         ->leftJoin('project_firm', 'users.company_name', '=', 'project_firm.f_id')
-        ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'users.phone_number', 'project_firm.f_name', 'users.status', 'users.position_title', 'users.role')
+        ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'users.phone_number', 'project_firm.f_name', 'users.status', 'users.position_title', 'users.role','users.user_image_path')
 
         ->where('id', '=', $u_id)
         ->first();
@@ -587,6 +593,7 @@ class UserController extends Controller {
         $password           = $request['password'];
         // $project_id         = $request['project_id'];
         $confirm_password   = $request['confirm_password'];
+        $user_image_path = $request['user_image_path'];
         
         $information = array(
             "first_name"        => $first_name,
@@ -635,7 +642,7 @@ class UserController extends Controller {
             $user = DB::table('users')
             ->where('id', '=', $u_id)
             // ->update(['first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'phone_number' => $phone_number, 'username' => $username, 'position_title' => $position_title, 'email' => $email, 'password' => $password, 'status' => $status, 'role' => $role]);
-            ->update(['first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'phone_number' => $phone_number, 'position_title' => $position_title, 'password' => $password, 'status' => $status, 'role' => $role]);
+            ->update(['first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'phone_number' => $phone_number, 'position_title' => $position_title, 'password' => $password, 'status' => $status, 'role' => $role,'user_image_path' => $user_image_path]);
 
             // $user = DB::table('project_contact')
             // ->where('c_user_id', '=', $u_id)
@@ -737,7 +744,8 @@ class UserController extends Controller {
         $user_id_owner    = Auth::user()->id;
         // $user_role    = $request['user_role'];
         // $project_id   = $request['project_id'];
-
+        $user_image_path = $request['user_image_path'];
+        
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -758,7 +766,8 @@ class UserController extends Controller {
             "position"            => $position,
             "role"                => $role,
             "user_email_password" => $user_email_password,
-            "date"                => date("M d, Y h:i a")
+            "date"                => date("M d, Y h:i a"),
+            "user_image_path"     => $user_image_path
         );
         $rules = [
             "username"      => 'required|unique:users|max:255',
@@ -776,12 +785,14 @@ class UserController extends Controller {
         }
         else
         {
-
-            $user = User::create(['username' => $username, 'email' => $email, 'password' => $password, 'first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'position_title' => $position, 'status' => $status, 'role' => $role, 'user_parent' => $user_id_owner]);
-            
-
+            $user = User::create(['username' => $username, 'email' => $email, 'password' => $password, 'first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'position_title' => $position, 'status' => $status, 'role' => $role, 'user_parent' => $user_id_owner,'user_image_path' => $user_image_path]);
             $lastInsert_id =  $user->id;
-
+            
+            $email_verification = sha1($lastInsert_id);
+            $query = DB::table('users')
+            ->where('id', $lastInsert_id)
+            ->update(['email_verification' => $email_verification]);
+            $information['email_verification'] = $email_verification;
             if($role == 'owner'){
               $default_improvement_type = array("Mobilization and Site Preparation", "Rough Grading", "Structural Retaining Walls", "Erosion Control", "Habitat Mitigation", "Storm Drainage", "Sanitary Sewer", "Domestic Water Systems", "Reclaimed Water Systems", "Street Improvements", "Signalization", "Street Lights", "Dry Utilities", "Landscape & Irrigation", "Entry Monuements", "Walls & Fencing", "Bridges");
 
@@ -817,6 +828,7 @@ class UserController extends Controller {
                  // });
 
               $user = (object) $information;
+              //print_r($user);
               Mail::send('emails.add_new_account',['user' => $user], function ($message) use ($user) {
                   $message->from('no-reply@sw.ai', 'StratusCM');
                   $message->to($user->email, $user->username)->subject('New account added on StratusCM');
@@ -1246,5 +1258,53 @@ Mail::send('emails.reset_password_request', ['user' => $user_single], function (
   //            }
 
   //       }
+     }
+     
+     
+     public function update_password(Request $request) {
+        try
+        {
+            $email_verification = $request['email_verification'];
+            $new_password = Hash::make($request['new_password']);
+            if(Auth::attempt(['username' => $request['username'], 'password' => $request['password']]))
+            {
+                //echo 'df';die;
+                $user = DB::table('users')
+                ->select('id','email', 'username')
+                ->where('email_verification', '=', $email_verification)
+                ->first();
+                if(count($user) < 1)
+                {
+                  $result = array('code'=>400, "description"=>"Email already verified!");
+                  return response()->json($result, 400);
+                }
+                else
+                {
+                  $user_update = DB::table('users')
+                  ->where('id', '=', $user->id)
+                  ->update(['password' => $new_password, 'password_changed' => '1', 'email_verification' => '','status'=>1]);
+                  if(count($user_update) < 1)
+                  {
+                    $result = array('code'=>400, "description"=>"No Records Found");
+                    // $data = array('data' =>  $result);  
+                    return $result = response()->json($result, 400);
+                  }
+                  else
+                  {
+                    $result = array('code'=>200, "description"=>"Password Updated");
+                    // $data = array('data' =>  $result);  
+                    return $result = response()->json($result, 200);
+                  }
+                } 
+            }
+            else{
+                $result = array('code'=>400, "description"=>"User Name /Password Wrong");
+                return $result = response()->json($result, 400);
+            }    
+        }
+        catch(Exception $e)
+        {
+          return response()->json(['error' => 'Something is wrong'], 500);
+        } 
      }
 }

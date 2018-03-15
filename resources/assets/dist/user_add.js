@@ -124,7 +124,7 @@ $(document).ready(function()
         }
     })
 });
-    $('#add_user_form').submit(function(e) {
+    $('#add_user_form').click(function(e) {
         e.preventDefault();
         $('.loading-submit').show();
         var username       = $('#uname').val().toLowerCase();
@@ -132,6 +132,7 @@ $(document).ready(function()
         var first_name     = $('#fname').val();
 	    var last_name      = $('#lname').val();
 	    var company_name   = $('#company_name').val();
+        var user_image_path =    $("#user_image_path").val();
         var phone          = $('#pnum').val();
         var position       = $('#position').val();
 	    // var user_role       = $('#user_role').val();
@@ -220,9 +221,10 @@ $(document).ready(function()
                 "company_name"  : company_name,
                 "phone_number"  : phone,
                 "position"      : position,
-                "role"          : role
+                "role"          : role,
                 // "project_id" : project_id,
                 // "user_role" : user_role,
+                "user_image_path" : user_image_path
             },
             headers: {
               "x-access-token": token
@@ -233,6 +235,7 @@ $(document).ready(function()
             .done(function(data, textStatus, jqXHR)
             {
                 $('.loading-submit').hide();
+                $(".remove_file_drop").trigger("click");
                 var inp_phone_num = document.getElementsByName('phone_num[]');
                 var inp_phone_type = document.getElementsByName('phone_type[]');
                 for (var i = 0; i <inp_phone_num.length; i++) {

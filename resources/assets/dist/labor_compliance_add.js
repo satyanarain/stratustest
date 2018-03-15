@@ -100,7 +100,7 @@ $(document).ready(function() {
 
     // Get Selected Agency
     jQuery.ajax({
-    url: baseUrl + "standards/"+project_id+"/standard",
+    url: baseUrl + "/"+project_id+"/default_contractor",
         type: "GET",
         headers: {
           "x-access-token": token
@@ -109,7 +109,7 @@ $(document).ready(function() {
         cache: false
     })
     .done(function(data, textStatus, jqXHR) {
-        window.agency_id = data.data[0].ps_agency_name;
+        window.agency_id = data.data[0].pna_contactor_name;
         console.log(agency_id);
         $(".loading_data").hide();
         jQuery.ajax({

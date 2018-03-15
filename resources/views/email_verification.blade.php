@@ -24,7 +24,7 @@
       </div>
       
       <div id="email_verified" style="display: none;">
-        <h2 class="form-heading">Your Email Successfully Verified</h2>
+        <h2 class="form-heading">YOUR EMAIL HAS BEEN SUCCESSFULLY VERIFIED.</h2>
         <div class="container log-row">
             <form class="form-signin">
                 <div class="login-wrap">
