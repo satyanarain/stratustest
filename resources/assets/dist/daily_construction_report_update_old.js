@@ -1,7 +1,5 @@
 $(document).ready(function() {
-    $('.add_contract_items').click(function(){
-        $('#add-contractitems').modal('show');
-    }) 
+
     // $('#resource_item_div .add_bar_resource').click(function(e){
     // 	e.preventDefault();
     // 	console.log('click');
@@ -238,12 +236,11 @@ $(document).ready(function() {
 					.done(function(data, textStatus, jqXHR) {
 						console.log(data.data);
 				    var item_id = data.data.pbi_id;
-                                    var pbi_item_no = data.data.pbi_item_no;
-                                    var item_name = data.data.pbi_item_description;
+                                    var bid_item_no = data.data.pbi_item_no;
+				    var item_name = data.data.pbi_item_description;
 						html = '<div class="form-group">'+
 		                    '<div class="col-sm-2 form-group" style="padding: 0px;">'+
-		                        '<input type="hidden" class="form-control item_id" name="item_id[]" value="'+item_id+'" disabled>'+
-                                        '<input type="text" class="form-control pbi_item_no" name="pbi_item_no[]" value="'+pbi_item_no+'" disabled>'+
+		                        '<input type="text" class="form-control item_id" name="item_id[]" value="'+item_id+'" disabled>'+
 		                    '</div>'+
 		                    '<div class="col-sm-4 form-group">'+
 		                        '<input type="text" class="form-control item_name" name="item_name[]" value="'+item_name+'" disabled>'+
@@ -259,8 +256,8 @@ $(document).ready(function() {
 
 						html1 = '<div class="form-group">'+
 						'<label>'+item_id+'. '+item_name+'</label><br/>'+
-						'<div class="div_item form-group clearfix res_itm'+count+'" id="'+item_id+'abcd'+count+'">'+
-	                        '<div class="col-xs-6" style="padding:0px;">'+
+						'<div class="div_item form-group clearfix" id="'+item_id+'abcd'+count+'">'+
+	                        '<div class="col-xs-7" style="padding:0px;">'+
 	                            '<input type="text" class="form-control" name="resource_detail" value="">'+
 	                        '</div>'+
 	                        '<div class="col-xs-2">'+
@@ -275,9 +272,8 @@ $(document).ready(function() {
 	                                '<option value="month">Month</option>'+
 	                            '</select>'+
 	                        '</div>'+
-	                        '<div class="col-xs-2">'+
-	                            '<a id="'+item_id+'abc'+count+'" class="btn btn-success add_bar_resource add_res"> + </a> '+
-                                    ' <a id="'+item_id+'abc'+count+'" class="btn btn-success add_bar_resource remove_res"> X </a>'+
+	                        '<div class="col-xs-1">'+
+	                            '<a id="'+item_id+'abc'+count+'" class="btn btn-success add_bar_resource"> + </a>'+
 	                        '</div>'+
 	                    '</div><div class="clearfix"></div>'+
 	                    '</div>';
@@ -291,24 +287,13 @@ $(document).ready(function() {
 		}); // add_contract_item_work END
 
 				        setTimeout(function(){
-					  		$('#resource_item_div').delegate( 'a.remove_res', 'click', function () {
-                                                            if(parseInt($('#resource_item_div .div_item').length)<=1)
-                                                                return false;
-                                                            //alert("sdfsd");return false;
-							    var id = $(this).attr("id");
-							    var id1 = $(this).parents('.div_item').attr("id");
-                                                            $(this).parents('.div_item').last().remove();
-							    //$(this).parents('.div_item').clone().insertAfter('#'+id1+':last');
-							    return;
-							});
-                                                        $('#resource_item_div').delegate( 'a.add_res', 'click', function () {
+					  		$('#resource_item_div').delegate( 'a', 'click', function () {
 							    var id = $(this).attr("id");
 							    var id1 = $(this).parents('.div_item').attr("id");
 
 							    $(this).parents('.div_item').clone().insertAfter('#'+id1+':last');
 							    return;
 							});
-                                                        
 				  		}, 5000);
 
 		$('#update_item_quantity').click(function(e) {
@@ -659,7 +644,7 @@ $(document).ready(function() {
 			        contentType: "application/x-www-form-urlencoded",
 			        cache: false
 			    })
-                .done(function(data, textStatus, jqXHR) {
+			    .done(function(data, textStatus, jqXHR) {
 			        // console.log(data);
 			    })
 	        });
@@ -725,7 +710,7 @@ $(document).ready(function() {
 						    '</div>'+
 	                    '<div class="col-sm-6">'+
 	                        '<label>Upload Photo / Video</label><br/>'+
-	'<section class="panel upload_doc_panel" id="upload_div">'+
+	'<section class="panel upload_doc_panel" id="upload_div1">'+
 	    '<div class="panel-body" style="padding: 0px;">'+
 	    	'<form id="my-awesome-dropzone" action="'+baseUrl+'document/uploadFiles" class="dropzone dz-clickable">'+
 				'<input class="" name="document_path" value="/uploads/daily_construction_report/video_photo/" type="hidden">'+
@@ -749,12 +734,8 @@ $(document).ready(function() {
   	$('#add_photo_video').click(function(e) {
 			console.log('faizan');
 			var photo_description = [];
-                        var taken_on = [];
 	        $('input[name^=photo_description]').each(function(){
 	            photo_description.push($(this).val());
-	        });
-                $('input[name^=taken_on]').each(function(){
-	            taken_on.push($(this).val());
 	        });
 	        console.log(photo_description);
 	        var upload_doc_id = [];
@@ -764,7 +745,6 @@ $(document).ready(function() {
 	        console.log(upload_doc_id);
 	        var item = {};
 	        item['description'] 			= photo_description;
-                item['taken_on'] 			= taken_on;
 	        item['upload_doc_id'] 			= upload_doc_id;
 			var item_lenght 				= $(upload_doc_id).length;
 			// console.log(item_lenght);
@@ -773,7 +753,6 @@ $(document).ready(function() {
 		 	for (i = 0; i < upload_doc_id.length; i++) {
 				item_final.push({
 		            "description" 		:  item['description'][i],
-                            "taken_on"                  : item['taken_on'][i],
 		            "upload_doc_id" 	:  item['upload_doc_id'][i],
 		        });
 			}
@@ -800,75 +779,7 @@ $(document).ready(function() {
 			        cache: false
 			    })
 			    .done(function(data, textStatus, jqXHR) {
-			        var taken_by                = localStorage.getItem('u_first_name');
-                                //var description             = val.description;
-                                //var upload_doc_id           = upload_doc_id;
-                                //var project_id              = project_id;
-                                var ppv_taken_on            = val.taken_on;
-                                var pic_type                = localStorage.getItem('upload_type');
-                                var token                   = localStorage.getItem('u_token');
-                                jQuery.ajax({
-                                    url: baseUrl + "picture/add",
-                                    type: "POST",
-                                    data: {
-                                        "taken_by"              : taken_by,
-                                        "pic_type"              : pic_type,
-                                        "doc_id"                : upload_doc_id,
-                                        "description"           : description,
-                                        "project_id"            : project_id,
-                                        "ppv_taken_on"          : ppv_taken_on,
-                                    },
-                                    headers: {
-                                        "x-access-token": token
-                                    },
-                                    contentType: "application/x-www-form-urlencoded",
-                                    cache: false
-                                })
-                                .done(function(data, textStatus, jqXHR) {
-//                                    console.log(data.description);
-//                                    $('html, body').animate({
-//                                        scrollTop: $(".page-head").offset().top
-//                                    }, 'fast')
-//                                    $("#alert_message").show();
-//                                    $('.loading-submit').hide();
-//                                    html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New photo / video added successfully!</div></div>';
-//                                    $("#alert_message").html(html);
-//                                    $("#upload_doc_id").removeAttr('value');
-//                                    $("#taken_by").removeAttr('value');
-//                                    var today = new Date();
-//                                    var dd = today.getDate();
-//                                    var mm = today.getMonth()+1; //January is 0!
-//                                    var yyyy = today.getFullYear();
-//                                    $("#ppv_taken_on").val(yyyy+'-'+mm+'-'+dd);
-//                                    $("#description").removeAttr('value');
-//                                    $(".remove_file_drop").trigger("click");
-//                                    setTimeout(function()
-//                                    {
-//                                        $("#alert_message").hide();
-//                                    },5000)
-//                                    $('#add_gallery_grid tbody tr').remove();
-
-                                })
-                                .fail(function(jqXHR, textStatus, errorThrown) {
-//                                    console.log("HTTP Request Failed");
-//                                    var responseText, html;
-//                                    responseText = JSON.parse(jqXHR.responseText);
-//                                    // console.log(responseText.data);
-//
-//                                    $('html, body').animate({
-//                                        scrollTop: $(".page-head").offset().top
-//                                    }, 'fast')
-//                                    $("#alert_message").show();
-//                                    $('.loading-submit').hide();
-//                                    html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
-//
-//
-//                                    html += '</ul></div>';
-//                                    $("#alert_message").html(html);
-//                                    setTimeout(function(){
-//                                        $("#alert_message").hide();
-//                                    },5000)
-                                })
+			        // console.log(data);
 			    })
 	        });
 	        $('.submit_daily_report_form').show();

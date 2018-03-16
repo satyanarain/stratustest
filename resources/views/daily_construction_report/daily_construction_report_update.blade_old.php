@@ -132,7 +132,7 @@
 </div>
 
             <div class="form-group col-md-12 perform_work_day_div" style="display: none;">
-                <label>What Contract Items were worked on? <input type="button" class="add_contract_items" value="Add New Contract Item"></label>
+                <label>What Contract Items were worked on?</label>
                 <select class="form-control select2-multiple" id="contract_item_work" multiple placeholder="Select Contract Item">
                 </select>
                 <button class="btn btn-success addon-btn m-b-10" id="add_contract_item_work" style="margin-top: 15px; float:right;">
@@ -140,7 +140,7 @@
                 </button>
             </div>
 
-            <div class="form-group col-md-12" id="add_contract_item_work_data" style="display:none;">
+            <div class="form-group col-md-12" id="add_contract_item_work_data" style="display: none;">
                 <label>How many quantities were completed for each?</label>
                 <div class="">
                     <div class="col-sm-2" style="padding: 0px;">
@@ -411,20 +411,16 @@
         <input type="radio" name="photo_video_field" id="photo_video_field" value="no"> No
     </label>
 </div>
-<div class="photo_video_taken_detail" style="display: ;">
+<div class="photo_video_taken_detail" style="display: none;">
 
     <div class="form-group col-md-12">
         <a id="add_photo_video_row" class="btn btn-success" style=" float: right;"> Add More Photos / Videos</a>
     </div>
 
     <div class="photo_video_single">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <label>Photo Description</label><br/>
             <input type="text" name="photo_description[]" class="form-control" value="">
-        </div>
-        <div class="col-sm-2">
-            <label>Taken On</label><br/>
-            <input type="text" name="taken_on[]" class="form-control default-date-picker1" value="">
         </div>
         <div class="col-sm-6">
             <label>Upload Photo / Video</label><br/>
@@ -446,7 +442,7 @@
     </button>
 </div>
 
-        <div class="col-sm-12">
+        <div class="col-sm-6">
             <div class="notice_exist">
                 <div class="form-group col-md-12">
                     <input type="hidden" name="standard_upload" id="upload_doc_meta" value="daily_construction_report">
@@ -456,7 +452,7 @@
             </div><!-- contract_exist close -->
             <div class="state-information">
                     <a href="{{ url('/dashboard/'.$project_id.'/daily_construction_report') }}" class="btn btn-info">Back</a>
-                    <button type="submit" class="btn btn-info first_button submit_daily_report_form" id="submit_daily_report_form" style="display: none;">Save</button>
+                    <button type="submit" class="btn btn-info submit_daily_report_form" id="submit_daily_report_form" style="display: none;">Save</button>
                 </div>
         </div>
 
@@ -484,7 +480,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.16/jspdf.plugin.autotable.js"></script> -->
 <script src="{{ url('/resources/assets/js/FileSaver.js') }}"></script>
-<script src="{{ url('/resources/assets/js/dropzone_image_pdf.js') }}"></script>
+<script src="{{ url('/resources/assets/js/dropzone.js') }}"></script>
 <script type="text/javascript">
 $("input[name='add_custom_field']").click(function(){
     if($('input:radio[name=add_custom_field]:checked').val() == "no"){
@@ -556,11 +552,11 @@ $("input[name='photo_video_field']").click(function(){
     if($('input:radio[name=photo_video_field]:checked').val() == "no"){
         $('.photo_video_taken_detail').css("display", "none");
         $('#add_photo_video').css("display", "none");
-        $('.submit_daily_report_form').show();
+        $('.submit_daily_report_form').css("display", "block");
     }
     else {
         $('.photo_video_taken_detail').css("display", "block");
-        $('.submit_daily_report_form').hide();
+        $('.submit_daily_report_form').css("display", "none");
         $('#add_photo_video').css("display", "block");
     }
 });

@@ -2,18 +2,11 @@
         <div class="sidebar-left">
             <!--responsive view logo start-->
             <div class="logo dark-logo-bg visible-xs-* visible-sm-*">
-                <a class="toggle-btn toggle-btn-custom pull-left"><i class="fa fa-outdent"></i></a>
-               <!-- <a href="{{ url('/dashboard') }}">
-                    <img src="{{ url('/resources/assets/img/logo.png') }}" alt="">-->
+                <a href="{{ url('/dashboard') }}">
+                    <img src="{{ url('/resources/assets/img/logo.png') }}" alt="">
                     <!--<i class="fa fa-maxcdn"></i>-->
-                    <!-- <span class="brand-name">Stratus</span> 
-                </a>-->
-                <div class="edit-profile edit-profile-marginLeft">
-                  <img src="/resources/assets/img/logo.png" alt="" title="">
-                  <div class="overlay" title="Edit Profile">
-                     <div class="caption"><i class="fa fa-pencil"></i></div>
-                  </div>
-                </div>
+                    <!-- <span class="brand-name">Stratus</span> -->
+                </a>
             </div>
             <!--responsive view logo end-->
 
@@ -88,8 +81,3 @@
         </div>
         
         <!-- sidebar left end
-        
-        
-        
-        
-        

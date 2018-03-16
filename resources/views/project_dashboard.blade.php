@@ -362,7 +362,7 @@
                         <div class="panel-heading" style="">
                             <h4 class="panel-title">
                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" style="font-size: 26px;">
-                                    Submittals
+                                    SUBMITTALS
                                 </a>
                             </h4>
                         </div>
@@ -442,7 +442,7 @@
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" style="font-size: 26px;">
-                                    Requested Change Orders
+                                    REQUESTED CHANGE ORDERS
                                 </a>
                             </h4>
                         </div>
@@ -484,7 +484,7 @@
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" style="font-size: 26px;">
-                                    Potential Change Orders
+                                    POTENTIAL CHANGE ORDERS
                                 </a>
                             </h4>
                         </div>

@@ -3,18 +3,33 @@
 
                 <!--logo and logo icon start-->
                 <div class="logo dark-logo-bg hidden-xs hidden-sm">
-                    <a href="{{ url('/dashboard') }}">
-                        <img src="{{ url('/resources/assets/img/logo.png') }}" alt="">
+                   <!-- <a href="{{ url('/dashboard') }}">
+                        <img src="{{ url('/resources/assets/img/logo.png') }}" alt="">-->
                         <!--<i class="fa fa-maxcdn"></i>-->
-                    </a>
+                    <!--</a>-->
+                    
+                    <div class="edit-profile">
+                      <img src="/resources/assets/img/logo.png" alt="" title="">
+                      <div class="overlay" title="Edit Profile">
+                        <div class="caption"><i class="fa fa-pencil"></i></div>
+                      </div>
+                    </div>
                 </div>
 
                 <div class="icon-logo dark-logo-bg hidden-xs hidden-sm">
-                    <a href="{{ url('/') }}">
-                        <img src="{{ url('/resources/assets/img/logo-icon.png') }}" alt="">
+                  <!--  <a href="{{ url('/') }}">
+                        <img src="{{ url('/resources/assets/img/logo-icon.png') }}" alt="">-->
                         <!--<i class="fa fa-maxcdn"></i>-->
-                    </a>
+                    <!--</a>-->
+                    
+                    <div class="edit-profile sm-img">
+                      <img src="/resources/assets/img/logo.png" alt="" title="">
+                      <div class="overlay" title="Edit Profile">
+                        <div class="caption"><i class="fa fa-pencil"></i></div>
+                      </div>
+                    </div>
                 </div>
+                
                 <!--logo and logo icon end-->
 
                 <!--toggle button start-->

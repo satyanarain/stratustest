@@ -14,6 +14,10 @@ $(function(){
         format: 'mm-dd-yyyy',
         autoclose: true
     });
+    $('.default-date-picker1').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true
+    });
     $('.dpYears').datepicker({
         autoclose: true
     });

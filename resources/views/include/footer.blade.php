@@ -55,6 +55,17 @@
      </div>
  </div>
  
+ <div class="modal add-contractitems fade" id="add-contractitems" tabindex="-6" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-md">
+         <div class="modal-content text-center">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            @if(Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/daily_construction_report/{daily_construction_report_id}/update")
+             @include('include/add_new_contract_item')
+            @endif
+         </div>
+     </div>
+ </div>
+ 
             <footer>
                 <?php echo date("Y"); ?> &copy; StratusCM, LLC<?php //echo Route::getCurrentRoute()->getPath();?>
             </footer>
@@ -348,8 +359,8 @@ function checkFormFilled(classname)
         //var form_ele_name = '';
         //form_ele_name = $(this).attr('name');
         //alert(typeof form_ele_name);
-        var exempted_val = ["Add New Company","Select Improvement Type","Select Improvement Types","Add New Entity","Add New Agency","Irvine, CA, USA"];
-        var exempted_array = ["date_of_submittal","submittal_number_exist","project_terms","umbrella_liability_cur_symbol","general_liability_cur_symbol","company_name_two","maintenance_bond_cur_symbol","payment_bond_cur_symbol","performance_bond_cur_symbol", 
+        var exempted_val = ["2","cy","Select Contract Item","Add New Company","Select Improvement Type","Select Improvement Types","Add New Entity","Add New Agency","Irvine, CA, USA"];
+        var exempted_array = ["material_unit_type","date_of_submittal","submittal_number_exist","project_terms","umbrella_liability_cur_symbol","general_liability_cur_symbol","company_name_two","maintenance_bond_cur_symbol","payment_bond_cur_symbol","performance_bond_cur_symbol", 
             "demo2","auto_compensation_cur_symbol", "works_compensation_cur_symbol","contract_item_qty","maintenance_bond_amount",
         "performance_bond_amount","payment_bond_amount","company_name","project_type_dropdown","notice_award_improvement_type",
     "notice_award_project_type_dropdown","notice_award_company_name","notice_award_bid_amount","notice_award_date"];
