@@ -232,13 +232,13 @@
 
 
 <script type="text/javascript">
-    $('body').on('focus',".paginate_button", function(){
-        setTimeout(function(){
-            $('html, body').animate({
-                scrollTop: $(".page-head").offset().top
-            }, 'fast');
-        }, 100);
-    });
+//    $('body').on('focus',".paginate_button", function(){
+//        setTimeout(function(){
+//            $('html, body').animate({
+//                scrollTop: $(".page-head").offset().top
+//            }, 'fast');
+//        }, 100);
+//    });
 
 
     $(document).ready(function() {
