@@ -83,11 +83,11 @@
                                 <option value="a">Agency</option>
                             </select>
                         </div>
-                            <input type="hidden" id="project_latitude" value="33.6845673">
-                            <input type="hidden" id="project_longitude" value="-117.82650490000003">
+                            <input type="hidden" id="project_latitude" value="33.7174708">
+                                        <input type="hidden" id="project_longitude" value="-117.83114280000001">
                         <div class="clearfix"></div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" id="firm_address" value="Irvine, CA, USA" style="display: block;">
+                            <input type="text" class="form-control" id="firm_address" value="Orange County, CA, USA" style="display: block;">
                             <label for="firm_address">Company Address <span class="text-danger">*</span></label>
                         </div>
                         <div class="clearfix"></div>
@@ -554,8 +554,8 @@ $(document).ready(function() {
   })  
   function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 33.6845673, lng: -117.82650490000003},
-          zoom: 10,
+          center: {lat: 33.7174708, lng: -117.83114280000001},
+          zoom: 11,
           scrollwheel: false
         });
         var input = /** @type {!HTMLInputElement} */(
