@@ -153,6 +153,7 @@
       dictMaxFilesExceeded: "You are unable to upload an additional file.",
       accept: function(file, done) {
         // Faizan Edit
+        window.localStorage.setItem("upload_type", file.type);
         if (file.type != "image/png" && file.type != "image/jpg" && file.type != "image/jpeg" && file.type != "application/pdf") {
             $("#upload_error").show();
             setTimeout(function()
