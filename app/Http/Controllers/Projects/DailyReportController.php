@@ -559,8 +559,8 @@ class DailyReportController extends Controller {
             $query = DB::table('project_daily_report')
             ->leftJoin('projects', 'project_daily_report.pdr_project_id', '=', 'projects.p_id')
             ->leftJoin('users', 'project_daily_report.pdr_user_id', '=', 'users.id')
-            ->leftJoin('project_daily_report_logs', 'project_daily_report_logs.pdr_report_id', '=', 'project_daily_report.pdr_id')
-            ->select('project_daily_report_logs.pdrl_id','project_daily_report.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+            //->leftJoin('project_daily_report_logs', 'project_daily_report.pdr_id', '=', 'project_daily_report_logs.pdr_report_id')
+            ->select('project_daily_report.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
           ->where('project_daily_report.pdr_project_id', '=', $project_id)
           ->orderBy('project_daily_report.pdr_id','ASC')
           ->get();
@@ -571,6 +571,22 @@ class DailyReportController extends Controller {
           }
           else
           {
+              //print_r($query);die;
+            foreach($query as $key=>$data)
+            {
+               $query1 = DB::table('project_daily_report_logs')
+                ->select('project_daily_report_logs.pdrl_id')
+                ->where('project_daily_report_logs.pdr_report_id', '=', $data->pdr_id)
+                ->get();
+               //print_r($query1);
+               if(count($query1)<1)
+               {
+                   $query[$key]->pdrl_id = null;
+               }else{
+                   $query[$key]->pdrl_id = $query1[0]->pdrl_id;
+               }
+            }
+            
             $result = array('data'=>$query,'code'=>200);
             return response()->json($result, 200);
           }
