@@ -203,21 +203,30 @@ $(document).ready(function() {
         if($("#performance_bond_yes").is(':checked') || $("#payment_bond_yes").is(':checked') || $("#maintenance_bond_yes").is(':checked')){
             var company_name                        = $('#company_name').val();
             var performance_bond_cur_symbol         = $('#performance_bond_cur_symbol').val();
-            var performance_bond_amount             = $('#performance_bond_amount').val();
+            if($("#performance_bond_yes").is(':checked'))
+                var performance_bond_amount             = $('#performance_bond_amount').val();
+            else
+                var performance_bond_amount             = '';
             var performance_bond_date               = $('#performance_bond_date').val();
             var performance_bond_number             = $('#performance_bond_number').val();
             var performance_bond_sign               = $("input[name='upload_performance']:checked").val();
             var performance_bond_path               = $('#upload_doc_id_general').val();
 
             var payment_bond_cur_symbol             = $('#payment_bond_cur_symbol').val();
-            var payment_bond_amount                 = $('#payment_bond_amount').val();
+            if($("#payment_bond_yes").is(':checked'))
+                var payment_bond_amount                 = $('#payment_bond_amount').val();
+            else
+                var payment_bond_amount                 = '';
             var payment_bond_date                   = $('#payment_bond_date').val();
             var payment_bond_number                 = $('#payment_bond_number'). val();
             var payment_bond_sign                   = $("input[name='upload_payment']:checked"). val();
             var payment_bond_path                   = $('#upload_doc_id_work').val();
 
             var maintenance_bond_cur_symbol         = $('#maintenance_bond_cur_symbol').val();
-            var maintenance_bond_amount             = $('#maintenance_bond_amount').val();
+            if($("#maintenance_bond_yes").is(':checked'))
+                var maintenance_bond_amount             = $('#maintenance_bond_amount').val();
+            else
+                var maintenance_bond_amount             = '';
             var maintenance_bond_date               = $('#maintenance_bond_date').val();
             var maintenance_bond_number             = $('#maintenance_bond_number'). val();
             var maintenance_bond_sign               = $("input[name='upload_maintenance']:checked"). val();
