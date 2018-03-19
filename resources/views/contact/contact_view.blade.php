@@ -26,6 +26,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         <tbody>
+                                        <tr><th></th><td><span id="user_image_path"></span></td></tr>
                                         <tr><th>Username</th><td><span id="username"></span></td></tr>
                                         <tr><th>Email Address</th><td><span id="email"></span></td></tr>
                                         <tr><th>First Name</th><td><span id="firstname"></span></td></tr>

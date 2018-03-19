@@ -37,7 +37,9 @@ $(document).ready(function() {
 
             var username = data.data.username;
             $('#username').text(username);
-
+            var user_image_path = data.data.user_image_path;
+            if(user_image_path!='')
+                $('#user_image_path').html('<a href="'+baseUrl+user_image_path+'" target="_blank"><img src="'+baseUrl+user_image_path+'" width="100px;"></a>');
             var email = data.data.email;
             $('#email').text(email);
 

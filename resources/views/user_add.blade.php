@@ -56,7 +56,7 @@
                                         <div class="form-group">
                                             <label for="pnum">Phone Number <span class="text-danger">*</span></label>
                                             <a href="#" class="add_field_button btn btn-success m-b-10 pull-right">Add Phone</a>
-                                            <select class="form-control" id="phone_type_1" name="phone_type[]">
+                                            <select class="form-control user_contact_no" id="phone_type_1" name="phone_type[]">
                                                 <option value="">Select</option>
                                                 <option value="mobile">Mobile</option>
                                                 <option value="home">Home</option>
