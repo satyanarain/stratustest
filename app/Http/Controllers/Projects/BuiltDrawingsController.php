@@ -102,8 +102,10 @@ class BuiltDrawingsController extends Controller {
               // Check User Project Permission  
               foreach ($check_project_users as $check_project_user) {
                 $check_engineer =  strpos(strtolower($check_project_user->ct_name), 'engineer');
+                echo $check_project_user->email;
                 if(isset($check_engineer) && $check_engineer>=0)
                 {
+                    echo 'true';
                     // Check User Permission Parameter 
                     $user_id              = $check_project_user->id;
                     $permission_key       = 'drawing_view_all';
