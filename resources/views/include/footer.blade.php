@@ -44,6 +44,17 @@
      </div>
  </div>
 
+<!-- <div class="modal add-agency-company fade" id="add-agency-company" tabindex="-7" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-dialog modal-md">
+         <div class="modal-content text-center">
+             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            @if(Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/bid_documents/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/notice_award/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/labor_compliance/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/test_result/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/geo_reports/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/swppp/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/preliminary_notice/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/unconditional_finals/add" || Route::getCurrentRoute()->getPath()=="dashboard/projects/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/bond/add")
+             @include('include/add_new_agency_firm')
+            @endif
+         </div>
+     </div>
+ </div>-->
+ 
 <div class="modal add-impvtypes fade" id="add-impvtypes" tabindex="-5" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
      <div class="modal-dialog modal-md">
          <div class="modal-content text-center">
@@ -381,7 +392,7 @@ function checkFormFilled(classname)
                 //alert($(this).attr('name'));
                 //alert($(this).name);
                 //alert('Type: ' + input.attr('type') + 'Name: ' + input.attr('name') + 'Value: ' + input.val());
-                alert($(this).val());
+                //alert($(this).val());
                 //return false;
             }
         }
