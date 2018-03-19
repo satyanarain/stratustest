@@ -37,6 +37,8 @@ Route::get('users/update_password/{user_id}', function () {
     return view('/update_password');
 });
 Route::post('users/update_password', 'Users\UserController@update_password');
+Route::post('get_site_logo', 'Users\UserController@get_site_logo');
+Route::post('upload_site_logo', 'Users\UserController@update_site_logo');
 
 /**** DASHBOARD VIEW ****/
 Route::get('dashboard/users/{userid}', function () { 

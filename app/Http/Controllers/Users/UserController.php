@@ -1307,4 +1307,54 @@ Mail::send('emails.reset_password_request', ['user' => $user_single], function (
           return response()->json(['error' => 'Something is wrong'], 500);
         } 
      }
+     
+
+     public function update_site_logo(Request $request) {
+         $ws_key = $request['ws_key'];
+         // Decode base64 data
+        list($type, $data) = explode(';', $request['ws_value']);
+        list(, $data) = explode(',', $data);
+        $file_data = base64_decode($data);
+
+        // Get file mime type
+        $finfo = finfo_open();
+        $file_mime_type = finfo_buffer($finfo, $file_data, FILEINFO_MIME_TYPE);
+
+        // File extension from mime type
+        if($file_mime_type == 'image/jpeg' || $file_mime_type == 'image/jpg')
+                $file_type = 'jpeg';
+        else if($file_mime_type == 'image/png')
+                $file_type = 'png';
+        else if($file_mime_type == 'image/gif')
+                $file_type = 'gif';
+        else 
+                $file_type = 'other';
+
+        // Validate type of file
+        if(in_array($file_type, [ 'jpeg', 'png', 'gif' ])) {
+                // Set a unique name to the file and save
+                $file_name = 'uploads/'.uniqid() . '.' . $file_type;
+                file_put_contents($file_name, $file_data);
+                $query = DB::table('website_settings')
+                ->where('ws_key', $ws_key)
+                ->update(['ws_value' => $file_name]);
+                
+                $result = array('description'=>"Website logo updated Successfully",'code'=>200,'site_logo'=>$file_name);
+                return response()->json($result, 200);
+                die;
+        }
+        else {
+                $result = array('code'=>400, "description"=>"Error : Only JPEG, PNG & GIF allowed");
+                return response()->json($result, 400);
+        }die;
+         
+     }
+     
+     public function get_site_logo(Request $request) {
+         $user = DB::table('website_settings')
+                ->select('ws_value')
+                ->where('ws_key', '=','website_logo')->get();
+                $result = array('code'=>200, "data"=>$user);
+                return $result = response()->json($result, 200);
+     }
 }

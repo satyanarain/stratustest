@@ -66,11 +66,11 @@ $(document).ready(function() {
         console.log('hide engineer');
     }
     else if (role == 'engineer'){
-        $('#contractor_hide').hide();
+        //$('#contractor_hide').hide();
         console.log('hide contractor');
     }
     else {
-        $('#contractor_hide').hide();
+        //$('#contractor_hide').hide();
         console.log('hide contractor');
     }
 
@@ -323,6 +323,10 @@ $('#update_built_form').click(function(e) {
             html += '<li>The Engineer Redline field is invalid.</li>';
             var is_error = true;
         }
+        if(built_contractor == null){
+            html += '<li>The Contractor Redline field is invalid.</li>';
+            var is_error = true;
+        }
         if(built_plan == null){
             html += '<li>The Change Plan field is invalid.</li>';
             var is_error = true;
@@ -349,7 +353,8 @@ $('#update_built_form').click(function(e) {
                 "engineer_redline"    : built_engineer,
                 "built_plan"            : built_plan,
                 "status"                : status,
-                "project_id"            : project_id
+                "project_id"            : project_id,
+                "contractor_redline"    : built_contractor,
             },
             headers: {
                 "x-access-token": token

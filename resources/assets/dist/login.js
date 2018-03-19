@@ -206,4 +206,31 @@ $(document).ready(function() {
                 })
         }
     });
+    
+    if(localStorage.getItem('site_logo'))
+    {
+        $('.login-logo img').attr('src', baseUrl+localStorage.getItem('site_logo'));
+    }else{
+        jQuery.ajax({
+            url: baseUrl + "get_site_logo",
+            type: "POST",
+            data: '',
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            contentType: "application/x-www-form-urlencoded",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+            //console.log(baseUrl+data.data[0].ws_value);
+            $('.login-logo img').attr('src', baseUrl+data.data[0].ws_value);
+            localStorage.setItem('site_logo',data.data[0].ws_value);
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("HTTP Request Failed");
+                var responseText, html;
+                responseText = JSON.parse(jqXHR.responseText);
+                html = '<div class="alert alert-block alert-danger fade in">'+responseText.email+'</div>';
+        })
+    }
 });

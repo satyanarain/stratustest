@@ -1,35 +1,30 @@
- <!-- header section start-->
+  <!-- header section start-->
             <div class="header-section">
 
                 <!--logo and logo icon start-->
                 <div class="logo dark-logo-bg hidden-xs hidden-sm">
-                   <!-- <a href="{{ url('/dashboard') }}">
-                        <img src="{{ url('/resources/assets/img/logo.png') }}" alt="">-->
-                        <!--<i class="fa fa-maxcdn"></i>-->
-                    <!--</a>-->
-                    
-                    <div class="edit-profile">
-                      <img src="/resources/assets/img/logo.png" alt="" title="">
-                      <div class="overlay" title="Edit Profile">
-                        <div class="caption"><i class="fa fa-pencil"></i></div>
+                    <div class="profile-pic-container">
+                         <div class="circle">
+                           <img class="profile-pic profile-pic-js" src="/resources/assets/img/logo.png">
+                         </div>
+                         <div class="p-image">
+                           <i class="fa fa-pencil upload-button upload-button-js" title="Edit Profile"></i>
+                            <input class="file-upload file-upload-js" type="file" accept="image/*"/>
+                         </div>
                       </div>
-                    </div>
                 </div>
 
                 <div class="icon-logo dark-logo-bg hidden-xs hidden-sm">
-                  <!--  <a href="{{ url('/') }}">
-                        <img src="{{ url('/resources/assets/img/logo-icon.png') }}" alt="">-->
-                        <!--<i class="fa fa-maxcdn"></i>-->
-                    <!--</a>-->
-                    
-                    <div class="edit-profile sm-img">
-                      <img src="/resources/assets/img/logo.png" alt="" title="">
-                      <div class="overlay" title="Edit Profile">
-                        <div class="caption"><i class="fa fa-pencil"></i></div>
-                      </div>
-                    </div>
+                   <div class="profile-pic-container">
+                     <div class="circle">
+                       <img class="profile-pic profile-pic-js1" src="/resources/assets/img/logo-icon.png">
+                     </div>
+                     <div class="p-image">
+                       <i class="fa fa-pencil upload-button upload-button-js1" title="Edit Profile"></i>
+                        <input class="file-upload file-upload-js1" type="file" accept="image/*"/>
+                     </div>
+                  </div>
                 </div>
-                
                 <!--logo and logo icon end-->
 
                 <!--toggle button start-->
@@ -315,3 +310,4 @@
 
             </div>
             <!-- header section end-->
+       

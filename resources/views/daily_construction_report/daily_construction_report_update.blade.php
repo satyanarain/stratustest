@@ -411,7 +411,7 @@
         <input type="radio" name="photo_video_field" id="photo_video_field" value="no"> No
     </label>
 </div>
-<div class="photo_video_taken_detail" style="display: ;">
+<div class="photo_video_taken_detail" style="display: none;">
 
     <div class="form-group col-md-12">
         <a id="add_photo_video_row" class="btn btn-success" style=" float: right;"> Add More Photos / Videos</a>

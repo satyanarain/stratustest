@@ -417,5 +417,90 @@ window.onbeforeunload = function(e){
   //return false;
 };
 </script>
+<script>
+$(document).ready(function() {
+    var readURL = function(input) 
+    {
+        if(['image/jpeg', 'image/jpg', 'image/png', 'image/gif'].indexOf(input.files[0].type) == -1) {
+            alert('Error : Only JPEG, PNG & GIF allowed');
+            return false;
+        }
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var $data = { 'ws_key': 'website_logo', 'ws_value': reader.result };
+                var token  = localStorage.getItem('u_token');
+                $.ajax({
+                    type: 'POST',
+                    url: baseUrl+'upload_site_logo',
+                    data: $data,
+                    headers: {
+                        "x-access-token": token
+                    },
+                    success: function(data) {
+                        data.description;
+                        $('.profile-pic-js,.profile-pic-js1').attr('src', baseUrl+data.site_logo);
+                        localStorage.setItem('site_logo',data.site_logo);
+                    },
+                    error: function(data) {
+
+                    },
+                });
+                $('.profile-pic-js,.profile-pic-js1').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+            //alert(input.files[0]);
+        }
+    }
+    $(".file-upload-js,.file-upload-js1").on('change', function(){
+        readURL(this);
+    });
+    $(".upload-button-js,.upload-button-js1").on('click', function() {
+       $(".file-upload-js").click();
+    });
+
+//    var readURL1 = function(input) {
+//        if (input.files && input.files[0]) {
+//            var reader1 = new FileReader();
+//            reader1.onload = function (e) {
+//                $('.profile-pic-js1').attr('src', e.target.result);
+//            }
+//            reader1.readAsDataURL(input.files[0]);
+//        }}
+//    $(".file-upload-js1").on('change', function(){
+//        readURL1(this);
+//    });
+//    $(".upload-button-js1").on('click', function() {
+//       $(".file-upload-js1").click();
+//    });
+    if(localStorage.getItem('site_logo'))
+    {
+        $('.profile-pic-js,.profile-pic-js1').attr('src', baseUrl+localStorage.getItem('site_logo'));
+    }else{
+        jQuery.ajax({
+            url: baseUrl + "get_site_logo",
+            type: "POST",
+            data: '',
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            contentType: "application/x-www-form-urlencoded",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+            //console.log(baseUrl+data.data[0].ws_value);
+            $('.login-logo img').attr('src', baseUrl+data.data[0].ws_value);
+            localStorage.setItem('site_logo',data.data[0].ws_value);
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("HTTP Request Failed");
+                var responseText, html;
+                responseText = JSON.parse(jqXHR.responseText);
+                html = '<div class="alert alert-block alert-danger fade in">'+responseText.email+'</div>';
+        })
+    }
+       
+});
+</script>  
 </body>
 </html>
