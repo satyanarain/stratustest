@@ -77,7 +77,7 @@
                         </div>
                             <div class="form-group col-md-6" style="display:none;">
                             <label for="company_type">Company/Agency <span class="text-danger">*</span></label>
-                            <select class="form-control" id="company_type">
+                            <select class="form-control" id="company_type" name="company_type">
                                 <option value="">Select</option>
                                 <option value="f">Company</option>
                                 <option value="a" selected="selected">Agency</option>

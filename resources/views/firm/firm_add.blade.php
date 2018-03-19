@@ -149,7 +149,7 @@ $(document).ready(function() {
   function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 33.7174708, lng: -117.83114280000001},
-          zoom: 12,
+          zoom: 11,
           scrollwheel: false
         });
         var input = /** @type {!HTMLInputElement} */(
