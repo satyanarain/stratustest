@@ -672,7 +672,7 @@
         <div class="panel-heading" style="background-color: #f3f3f3;">
             <h4 class="panel-title">
                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" style="font-size: 26px;">
-                    Notifications
+                    NOTIFICATIONS
                 </a>
             </h4>
         </div>

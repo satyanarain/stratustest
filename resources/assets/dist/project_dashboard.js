@@ -431,7 +431,7 @@ $(document).ready(function() {
                           	'<span class="thumb-small">'+
                             	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
-                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+'- '+val.company_name+'</span>'+
+                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+' - '+val.company_name+'</span>'+
                       '</a>'+
                   	'</li>'
                   	);
@@ -444,7 +444,7 @@ $(document).ready(function() {
                           	'<span class="thumb-small">'+
                             	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
-                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+'- '+val.company_name+'</span>'+
+                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+' - '+val.company_name+'</span>'+
                       '</a>'+
                   	'</li>'
                   	);
@@ -457,7 +457,7 @@ $(document).ready(function() {
                           	'<span class="thumb-small">'+
                             	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
-                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+'- '+val.company_name+'</span>'+
+                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+' - '+val.company_name+'</span>'+
                       '</a>'+
                   	'</li>'
                   	);
@@ -470,7 +470,7 @@ $(document).ready(function() {
                           	'<span class="thumb-small">'+
                             	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
-                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+'- '+val.company_name+'</span>'+
+                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+' - '+val.company_name+'</span>'+
                           
                       '</a>'+
                   	'</li>'
@@ -484,7 +484,7 @@ $(document).ready(function() {
                           	'<span class="thumb-small">'+
                             	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
-                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+'- '+val.company_name+'</span>'+
+                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+' - '+val.company_name+'</span>'+
                       '</a>'+
                   	'</li>'
                   	);
@@ -497,7 +497,7 @@ $(document).ready(function() {
                           	'<span class="thumb-small">'+
                             	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
-                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+'- '+val.company_name+'</span>'+
+                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+' - '+val.company_name+'</span>'+
                       '</a>'+
                   	'</li>'
                   	);
@@ -510,7 +510,7 @@ $(document).ready(function() {
                           	'<span class="thumb-small">'+
                             	'<img class="circle" src="'+user_image_path+'" alt=""/>'+
                           	'</span>'+
-                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+'- '+val.company_name+'</span>'+
+                          '<span class="name">'+val.first_name+' '+val.last_name+'<br>'+val.position_title+' - '+val.company_name+'</span>'+
                       '</a>'+
                   	'</li>'
                   	);
