@@ -1991,7 +1991,7 @@ footer.sticky-footer {
 
 .team-list li .thumb-small img {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .circle {
@@ -7263,3 +7263,16 @@ ul.lower-alpha {list-style-type: none;padding:0 ;margin:0;}
 .picture_video_single img{width: 100%;}
 .project_name   { padding-bottom: 5px; display: inline-block !important; font-size: 18px !important; font-weight: 500 !important; border-bottom: 1px solid #333; margin-bottom: 5px !important; }
 /*.wrap-div{width: 300px;text-overflow:ellipsis;overflow: hidden;}*/
+
+.profile-pic-container{ position:relative; width:92%; height:50px;}
+.circle {border-radius:0% !important;overflow: hidden;width:100% !important;height:50px;position: absolute;top: 0px;max-width:100% !important;max-height:100% !important;}
+.circle img {width: auto !important;height:100% !important; max-width:100% !important; max-height:100% !important;}
+.profile-pic {width:100%;max-height:100%;display: block;}
+.p-image {position: absolute;top:10px;right:1px;color: #666666;transition: all .3s cubic-bezier(.175, .885, .32, 1.275);}
+.p-image:hover {transition: all .3s cubic-bezier(.175, .885, .32, 1.275);}
+.upload-button {background:#32323a;color:#FFF;font-size:13px; cursor:pointer;border-radius:3px; padding:2px 3px;}
+.upload-button:hover{background:#5cc691;transition: all .3s cubic-bezier(.175, .885, .32, 1.275);color: #FFF;}
+.file-upload {display:none !important;}
+.custom-pull-top{ margin-top:5px;}
+.custom-pull-left{ margin-left:2px;}
+.child-list{ width:289px !important;}
