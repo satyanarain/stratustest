@@ -56,10 +56,10 @@
 			jQuery.each( data.data, function( i, val ) {
 				var status = val.f_status;
 				if(status == 'active'){
-		    	status = '<span class="label label-success">Activated</span>';
+		    	status = '<span class="label label-success">Activate</span>';
 			    }
 			    else {
-			    	status = '<span class="label label-danger">Deactivated</span>';
+			    	status = '<span class="label label-danger">Deactivate</span>';
 			    }
 			  // $("#view_users_table_wrapper tbody").append(
 			  // 	'<tr><td>'+val.f_id+'</td>'+

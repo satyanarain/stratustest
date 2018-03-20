@@ -46,7 +46,7 @@
                                             <!-- <td>1</td>
                                             <td>Example text</td>
                                             <td><a href="javascript:;" target="_blank"><img src="{{ url('/') }}/resources/assets/img/pdf_icon.png" alt="Sample Standard" width="40"></a></td>
-                                            <td><span class="label label-success">Activated</span></td>
+                                            <td><span class="label label-success">Activate</span></td>
                                             <td><a href="{{ url('/') }}/dashboard/{{$project_id}}/notice_completion/update" class="btn btn-primary btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
                                             </td> -->
                                           </tbody>

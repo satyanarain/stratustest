@@ -47,7 +47,7 @@
                                             <td>PROVIDED</td>
                                             <td>COMPLETE</td>
                                             <td>YES</td>
-                                            <td><span class="label label-success">Activated</span></td>
+                                            <td><span class="label label-success">Activate</span></td>
                                             <td><a href="{{ url('/') }}/dashboard/{{$project_id}}/built_drawing/1/update" class="btn btn-primary btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
 
                                             <a href="{{ url('/') }}/dashboard/{{$project_id}}/built_drawing/1" class="btn btn-success btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="View"><i class="fa fa-search"></i></a></td>

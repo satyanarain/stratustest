@@ -37,8 +37,8 @@
                                     <div class="col-md-6">
                                         <label>Status</label>
                                         <select class="form-control" id="status">
-                                            <option value="active">Activated</option>
-                                            <option value="deactive">Deactivated</option>
+                                            <option value="active">Activate</option>
+                                            <option value="deactive">Deactivate</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">

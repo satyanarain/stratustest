@@ -65,6 +65,7 @@ class ContactController extends Controller {
           ->select('projects.*', 'users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role', 'project_firm.f_name as company_name','company_type.ct_name','users.user_image_path')
           ->where('project_contact.c_project_id', '=', $project_id)
           ->where('users.status', '!=', 2)
+          ->where('users.id', '!=', $user_id)
           ->orderBy('role')
           ->get();
 

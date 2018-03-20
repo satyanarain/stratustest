@@ -98,7 +98,8 @@
                                     status = '<span class="label label-success">COMPLETE</span>';
                                     if(val.pdrl_id)
                                     {
-                                        var action = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/daily_construction_report/'+val.pdr_id+'/logs" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>';  
+                                        //var action = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/daily_construction_report/'+val.pdr_id+'/logs" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>';  
+                                        var action = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/daily_construction_report/'+val.pdrl_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>';  
                                     }else{
                                         var action = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/daily_construction_report/'+val.pdr_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>';
                                     }    

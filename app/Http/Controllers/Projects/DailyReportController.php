@@ -575,8 +575,9 @@ class DailyReportController extends Controller {
             foreach($query as $key=>$data)
             {
                $query1 = DB::table('project_daily_report_logs')
-                ->select('project_daily_report_logs.pdrl_id')
+                ->select('project_daily_report_logs.pdrl_id','project_daily_report_logs.pdr_report_id')
                 ->where('project_daily_report_logs.pdr_report_id', '=', $data->pdr_id)
+                ->orderBy('project_daily_report_logs.pdrl_id','DESC')
                 ->get();
                //print_r($query1);
                if(count($query1)<1)

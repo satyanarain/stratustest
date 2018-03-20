@@ -32,10 +32,10 @@ $(document).ready(function() {
         console.log(data.data);
         var status = data.data.pco_status;
         if(status == 'active'){
-        status = '<span class="label label-success">Activated</span>';
+        status = '<span class="label label-success">Activate</span>';
         }
         else {
-            status = '<span class="label label-danger">Deactivated</span>';
+            status = '<span class="label label-danger">Deactivate</span>';
         }
 
         $('#cor_number').text(data.data.pco_number)

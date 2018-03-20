@@ -46,10 +46,10 @@
 			jQuery.each( data.data, function( i, val ) {
 				var status = val.p_status;
 				if(status == 'active'){
-		    	status = '<span class="label label-success">Activated</span>';
+		    	status = '<span class="label label-success">Activate</span>';
 			    }
 			    else {
-			    	status = '<span class="label label-danger">Deactivated</span>';
+			    	status = '<span class="label label-danger">Deactivate</span>';
 			    }
 			    
 			    var t = $('#view_users_table').DataTable();

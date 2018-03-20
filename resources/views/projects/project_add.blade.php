@@ -113,7 +113,7 @@
                                             <div class="loading_data" style="text-align: center;display: none;">
                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                             </div>
-                                            <select class="form-control select2-multiple1" multiple id="project_type" placeholder="Select Improvement Types" style="min-height:200px;">
+                                            <select class="form-control select2-multiple" multiple id="project_type" placeholder="Select Improvement Types" style="">
                                             </select>
                                         </div>
 
@@ -136,14 +136,12 @@
                                         <div class="clearfix"></div>
                                         <div class="form-group col-md-12">
                                             <label for="project_location">Location / Closest Intersection <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control " id="project_location"  style="display: block;">
+                                            <input type="text" class="form-control " id="project_location"  style="display: block;" value="Orange County, CA, USA">
                                             <!-- <input id="pac-input" class="controls" type="text" placeholder="Enter a location"> -->
                                         </div>
 
-                                            <input type="hidden" class="form-control" id="project_latitude">
-
-                                            <input type="hidden" class="form-control" id="project_longitude">
-
+                                            <input type="hidden" id="project_latitude" value="33.7174708">
+                                            <input type="hidden" id="project_longitude" value="-117.83114280000001">
                                     <div class="clearfix"></div>
                                     <div class="form-group col-md-12">
                                     <!-- <input id="pac-input" class="controls" type="text" placeholder="Enter a location"> -->
@@ -224,8 +222,8 @@ $(document).ready(function() {
 
   function initMap1() {
         var map1 = new google.maps.Map(document.getElementById('map1'), {
-          center: {lat: 36.443796, lng: -119.369653},
-          zoom: 7,
+          center: {lat: 33.7174708, lng: -117.83114280000001},
+          zoom: 11,
           scrollwheel: false
         });
         var input = /** @type {!HTMLInputElement} */(

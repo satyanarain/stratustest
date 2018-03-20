@@ -801,7 +801,13 @@ class UserController extends Controller {
                 $query_contact = DB::table('project_type_improvement')
                 ->insert(['pt_name' => $single_improvement_type, 'pt_user_id' => $lastInsert_id, 'pt_status' => 'active']);
               }
+              $default_company_type = array("Engineering", "Surveying", "Materials Testing", "Architect", "Supplier", "General Contractor", "Inspection", "Subcontractor", "Construction Management", "Public Agency", "Geotechnical", "SWPPP");
 
+              foreach ($default_company_type as $single_company_type) {
+                  // echo $single_improvement_type;
+                $query_contact = DB::table('company_type')
+                ->insert(['ct_name' => $single_company_type, 'ct_user_id' => $lastInsert_id, 'ct_status' => 'active']);
+              }
                 // Add USD Currency by Default
                 // $currency = currency::create(['cur_name' => 'US Dollor', 'cur_symbol' => '$', 'cur_user_id' => $lastInsert_id, 'cur_status' => 'active']);
                 // $lastcurrency_id =  $currency->id;

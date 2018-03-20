@@ -83,10 +83,10 @@ $(document).ready(function() {
 
 		    var status = data.data.p_status;
 		    if(status == "active"){
-		    	status = '<span class="label label-success">Activated</span>';
+		    	status = '<span class="label label-success">Activate</span>';
 		    }
 		    else {
-		    	status = '<span class="label label-danger">Deactivated</span>';
+		    	status = '<span class="label label-danger">Deactivate</span>';
 		    }
 		    $('#project_status').html(status);
 		    $('.loading_project_detail').remove();

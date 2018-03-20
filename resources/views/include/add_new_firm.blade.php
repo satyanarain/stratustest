@@ -84,7 +84,7 @@
                             </select>
                         </div>
                             <input type="hidden" id="project_latitude" value="33.7174708">
-                                        <input type="hidden" id="project_longitude" value="-117.83114280000001">
+                            <input type="hidden" id="project_longitude" value="-117.83114280000001">
                         <div class="clearfix"></div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" id="firm_address" value="Orange County, CA, USA" style="display: block;">
@@ -350,7 +350,7 @@ $(document).ready(function() {
                         $('#firm_address').css("position", "relative");
                         $('#firm_address').css("left", "0px");
                         $('#firm_address').css("top", "-50px");
-                        map.clear();
+                        //map.clear();
                         info_Window = new google.maps.InfoWindow();
                             info_Window.close();
                             for (var i = 0; i < marker.length; i++) {
@@ -399,7 +399,7 @@ $(document).ready(function() {
                 $('#firm_address').css("position", "relative");
                 $('#firm_address').css("left", "0px");
                 $('#firm_address').css("top", "-50px");
-                map.clear();
+                //map.clear();
                 info_Window = new google.maps.InfoWindow();
                 info_Window.close();
                 for (var i = 0; i < marker.length; i++) {

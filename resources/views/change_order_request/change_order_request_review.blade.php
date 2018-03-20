@@ -83,7 +83,7 @@
                                               <td>RFI #X</td>
                                               <td>$X</td>
                                               <td>X</td>
-                                              <td><span class="label label-success">Activated</span></td>
+                                              <td><span class="label label-success">Activate</span></td>
                                               <td>
                                                 <a href="{{ url('/') }}/dashboard/{{$project_id}}/change_order_request/1/update" class="btn btn-primary btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
                                               </td>
