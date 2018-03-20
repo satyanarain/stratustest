@@ -4,7 +4,7 @@
                 <!--logo and logo icon start-->
                 <div class="logo dark-logo-bg hidden-xs hidden-sm">
                     <div class="profile-pic-container custom-pull-top">
-                         <div class="circle">
+                         <div class="circle1">
                            <img class="profile-pic profile-pic-js" src="/resources/assets/img/logo.png">
                          </div>
                          <div class="p-image">
@@ -16,7 +16,7 @@
 
                 <div class="icon-logo dark-logo-bg hidden-xs hidden-sm">
                    <div class="profile-pic-container custom-pull-left">
-                     <div class="circle">
+                     <div class="circle1">
                        <img class="profile-pic profile-pic-js1" src="/resources/assets/img/logo-icon.png">
                      </div>
                      <div class="p-image">
