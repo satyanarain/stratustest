@@ -118,15 +118,15 @@
 			  	if(val.pbd_contractor_redline == 'complete'){
 			  		var contractor_redline = '<span class="label label-success">Complete</span>';
 			  	}
-			  	else if(val.pbd_contractor_redline == 'additional_info'){
-			  		var contractor_redline = '<span class="label label-warning">Additional Info</span>';
-			  	}
-			  	else if(val.pbd_contractor_redline == 'past_due'){
-			  		var contractor_redline = '<span class="label label-danger">Past Due</span>';
-			  	}
-			  	else if(val.pbd_contractor_redline == 'not_provided'){
-			  		var contractor_redline = '<span class="label label-warning">Not Provided</span>';
-			  	}
+//			  	else if(val.pbd_contractor_redline == 'additional_info'){
+//			  		var contractor_redline = '<span class="label label-warning">Additional Info</span>';
+//			  	}
+//			  	else if(val.pbd_contractor_redline == 'past_due'){
+//			  		var contractor_redline = '<span class="label label-danger">Past Due</span>';
+//			  	}
+//			  	else if(val.pbd_contractor_redline == 'not_provided'){
+//			  		var contractor_redline = '<span class="label label-warning">Not Provided</span>';
+//			  	}
 			  	else {
 			  		var contractor_redline = ' --- ';
 			  	}
