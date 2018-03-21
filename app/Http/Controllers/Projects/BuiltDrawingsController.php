@@ -248,7 +248,7 @@ class BuiltDrawingsController extends Controller {
       // } 
       // else {
         $engineer_redline     = $request['engineer_redline'];
-        $contractor_redline   = $request['contractor_redline'];
+        //$contractor_redline   = $request['contractor_redline'];
         $built_plan           = $request['built_plan'];
         //$status               = $request['status'];
         $project_id           = $request['project_id'];
@@ -275,7 +275,7 @@ class BuiltDrawingsController extends Controller {
         else {
           $query = DB::table('project_built_drawing')
           ->where('pbd_id', '=', $pbd_id)
-          ->update(['pbd_contractor_redline' => $contractor_redline,'pbd_engineer_redline' => $engineer_redline, 'pbd_user_id' => $user_id, 'pbd_change_plan' => $built_plan]);
+          ->update(['pbd_engineer_redline' => $engineer_redline, 'pbd_user_id' => $user_id, 'pbd_change_plan' => $built_plan]);
           if(count($query) < 1)
           {
             $result = array('code'=>400, "description"=>"No records found");
