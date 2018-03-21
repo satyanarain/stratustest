@@ -36,7 +36,7 @@
                             <th>Performance Bond Number</th>
                             <th>Performance Bond Certificate</th>
                             <th>Payment Bond Amount</th>
-                            <th>Payment Bond&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date</th>
+                            <th>Payment&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bond Date</th>
                             <th>Payment Bond Number</th>
                             <th>Payment Bond Certificate</th>
                             <th>Maintenance Bond Amount</th>
