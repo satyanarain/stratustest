@@ -291,7 +291,7 @@ $(document).ready(function() {
                     html += '<li>Payment bond number field is invalid.</li>';
                     is_error = true;
                 }
-                if(payment_bond_path == ''){
+                if(payment_bond_path == '' && payment_bond_sign=="yes"){
                     html += '<li>Payment bond document field is invalid.</li>';
                     is_error = true;
                 }
@@ -309,7 +309,7 @@ $(document).ready(function() {
                     html += '<li>Maintenance bond number field is invalid.</li>';
                     is_error = true;
                 }
-                if(maintenance_bond_path == ''){
+                if(maintenance_bond_path == '' && maintenance_bond_sign=="yes"){
                     html += '<li>Maintenance bond document field is invalid.</li>';
                     is_error = true;
                 }

@@ -59,7 +59,7 @@
                           </div>
                           <div class="modal-body">
                               <span id="resetPasswordFail"></span>
-                              <p>Enter your e-mail address below to reset your password.</p>
+                              <p>Enter your email below to reset your password.</p>
                               <input type="text" name="email" id="forget_pass" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
 
                           </div>
@@ -84,7 +84,7 @@
                           </div>
                           <div class="modal-body">
                               <span id="resetUsernameFail"></span>
-                              <p>Enter your e-mail address below to reset your Username.</p>
+                              <p>Enter your email below to receive your username.</p>
                               <input type="text" name="email" id="forget_user" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
 
                           </div>

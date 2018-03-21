@@ -75,7 +75,7 @@
             </div>
 
             <div class="form-group col-md-12 resubmittal">
-                <label>Date of Request : <strong><span id="survey_date"><?php echo date("Y-m-d H:i"); ?></span></strong></label>
+                <label>Date of Request : <strong><span id="survey_date"><?php echo date("Y-m-d h:i"); ?></span></strong></label>
             </div>
 
             <div class="form-group col-md-12">

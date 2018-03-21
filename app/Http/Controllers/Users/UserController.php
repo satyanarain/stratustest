@@ -1012,7 +1012,7 @@ Mail::send('emails.reset_password_request', ['user' => $user_single], function (
     $message->from('no-reply@sw.ai', 'StratusCM');
     $message->to($user_single->email, $user_single->name)->subject('Password request');
 });      
-              $result = array('code'=>200, "description"=>"Your verification code has been sent on email, kindly check your inbox");
+              $result = array('code'=>200, "description"=>"A verification code has been sent to your email. Kindly check your inbox.");
               // $data = array('data' =>  $result);  
               return response()->json($result, 200);
             }

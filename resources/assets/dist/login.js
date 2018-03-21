@@ -110,7 +110,7 @@ $(document).ready(function() {
         })
         .done(function(data, textStatus, jqXHR) {
             console.log(data.code);
-            html = '<div class="alert alert-block alert-success fade in">Your username has been sent to email, kindly check your inbox</div>';
+            html = '<div class="alert alert-block alert-success fade in">Your username has been sent to your email. Kindly check your inbox.</div>';
             $("#resetUsernameFail").html(html);
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
