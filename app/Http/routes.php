@@ -85,7 +85,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('users/insert_user_data', 'Users\UserController@insert_user_data');
     Route::get('users/get_user_info/{id}', 'Users\UserController@get_user_info');
     Route::post('users/delete_user_data/', 'Users\UserController@delete_user_data');
-
+    Route::post('users/get_user_new_role', 'Users\UserController@get_user_new_role');
 
 });
 Route::group(['middleware' => ['jwt-auth']], function () {

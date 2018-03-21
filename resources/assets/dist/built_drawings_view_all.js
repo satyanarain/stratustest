@@ -4,6 +4,7 @@
 		var role = localStorage.getItem('u_role');
 		var token = localStorage.getItem('u_token');
 		var url = $(location).attr('href').split( '/' );
+                var u_new_role = window.localStorage.getItem("u_new_role");
 		project_id = url[ url.length - 2 ]; // projects
 		console.log(project_id);
 		type = url[ url.length - 1 ]; // projects
@@ -146,15 +147,19 @@
 		  		else {
 		  			var view_single = '<a href="'+baseUrl+'404" class="btn btn-success btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-search"></i></a>';
 		  		}
-			  	
+			  	if(val.pbd_filed_on!=="0000-00-00")
+                                    var pbd_filed_on = val.pbd_filed_on;
+                                else
+                                    pbd_filed_on = '';
 			  var t = $('#view_users_table').DataTable();
 				t.row.add( [
 		           count, // val.pbd_id,
+                           pbd_filed_on,
 		           val.pbd_description,
 		           contractor_redline,
 		           engineer_redline,
 		           change_plan,
-                   status,
+                        status,
 		           update_permission + view_single
 		       	]).draw( false );
 		       	count++;

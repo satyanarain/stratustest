@@ -1363,4 +1363,66 @@ Mail::send('emails.reset_password_request', ['user' => $user_single], function (
                 $result = array('code'=>200, "data"=>$user);
                 return $result = response()->json($result, 200);
      }
+     
+     public function get_user_new_role(Request $request) {
+        $user_id        = $request['user_id'];
+        $u_company_id   = $request['u_company_id'];
+        $project_id     = $request['project_id'];
+        $information = array(
+            "user_id"=>$user_id,
+        );
+        $rules = [
+            "user_id"=>'required',
+        ];
+        $validator = Validator::make($information, $rules);
+        if ($validator->fails())
+        {
+            return $result = response()->json($validator->messages(),400);
+        }
+        else
+        {
+            $company = DB::table('project_firm')
+            ->leftJoin('company_type', 'project_firm.f_type', '=', 'company_type.ct_id')
+            ->select('project_firm.f_id','project_firm.f_name','company_type.ct_name')
+            ->where('project_firm.f_id', '=', $u_company_id)
+            ->get();
+            //print_r($company);
+            $check_engineer =  strpos(strtolower($company[0]->ct_name), 'engineer');
+            //print_r($check_engineer);
+            if($check_engineer===FALSE)
+            {
+               
+                $query = DB::table('project_notice_award')
+                ->leftJoin('project_firm', 'project_notice_award.pna_contactor_name', '=', 'project_firm.f_id')
+                ->select('project_firm.f_name as agency_name','project_notice_award.*')
+                ->where('project_notice_award.pna_project_id', '=', $project_id)
+                ->groupBy('project_notice_award.pna_id')
+                ->orderBy('project_notice_award.pna_id','ASC')
+                ->get();
+                //print_r($query);die;
+                if(count($query) < 1)
+                {
+                    $new_role = '';
+                }else{
+                    if($query[0]->pna_contactor_name==$u_company_id)
+                    {
+                        $new_role = 'contractor';
+                    }else{
+                        $new_role = '';
+                    }
+                }
+            }else{
+                $new_role = 'engineer';
+            }
+            //echo $new_role;die;
+            if($new_role)
+            {
+                $result = array('code'=>200, "new_role"=>$new_role);
+                return $result = response()->json($result, 200);
+            }else{
+                $result = array('code'=>404, "description"=>"No Role Found");
+                return response()->json($result, 404);
+            }
+        }
+     }
 }

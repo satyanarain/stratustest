@@ -4,6 +4,7 @@ $(document).ready(function() {
     $("#company_name").hide();
     var role = localStorage.getItem('u_role');
     var token = localStorage.getItem('u_token');
+    var u_new_role = window.localStorage.getItem("u_new_role");
      var url = $(location).attr('href').split( '/' );
     project_id  = url[ url.length - 4 ]; // project_id
     console.log(project_id);
@@ -58,19 +59,19 @@ $(document).ready(function() {
     console.log(project_id);
     built_drawing_id = url[ url.length - 2 ]; // projects
     console.log(built_drawing_id);
-    var role            = localStorage.getItem('u_role');
+    //var role            = localStorage.getItem('u_role');
 
-
+    var role = u_new_role;
     if(role == 'contractor'){
         $('#engineer_hide').hide();
         console.log('hide engineer');
     }
     else if (role == 'engineer'){
-        //$('#contractor_hide').hide();
+        $('.contractor_hide').hide();
         console.log('hide contractor');
     }
     else {
-        //$('#contractor_hide').hide();
+        $('.contractor_hide').hide();
         console.log('hide contractor');
     }
 
@@ -132,14 +133,14 @@ $(document).ready(function() {
     })
         .done(function(data, textStatus, jqXHR) {
             console.log(data);
-            var status = data.data.pbd_status;
-            if(status == "active"){
-                status = 'active';
-            }
-            else {
-                status = "deactive";
-            }
-            $('#status').val(status);
+//            var status = data.data.pbd_status;
+//            if(status == "active"){
+//                status = 'active';
+//            }
+//            else {
+//                status = "deactive";
+//            }
+//            $('#status').val(status);
 
             $('#built_description').val(data.data.pbd_description);
 
@@ -222,16 +223,18 @@ $(document).ready(function() {
 $('#update_built_form').click(function(e) {
   $('.loading-submit').show();
     e.preventDefault();
-    var built_contractor        = $('#built_contractor').val();
+    //var built_contractor        = $('#built_contractor').val();
+    var built_contractor        = $("input[name='built_contractor']:checked").val();
     var built_engineer          = $('#built_engineer').val();
     var built_plan              = $('#built_plan').val();
-    var status               	= $('#status').val();
+    //var status               	= $('#status').val();
     var project_id              = $('#upload_project_id').val();
     var token                   = localStorage.getItem('u_token');
 
     console.log(built_plan);
     console.log(built_contractor);
-    var role            = localStorage.getItem('u_role');
+    //var role            = localStorage.getItem('u_role');
+    var role = u_new_role;
     if(role == 'contractor'){
         // Validation Certificate
         var html;
@@ -267,7 +270,7 @@ $('#update_built_form').click(function(e) {
             data: {
                 "contractor_redline"    : built_contractor,
                 "built_plan"            : built_plan,
-                "status"                : status,
+                //"status"                : status,
                 "project_id"            : project_id
             },
             headers: {
@@ -302,9 +305,9 @@ $('#update_built_form').click(function(e) {
             if(responseText.data.contractor_redline != null){
                 html += '<li>The Contractor Redline field is invalid.</li>';
             }
-            if(responseText.data.status != null){
-                html += '<li>The Status field is invalid.</li>';
-            }
+//            if(responseText.data.status != null){
+//                html += '<li>The Status field is invalid.</li>';
+//            }
             if(responseText.data.project_id != null){
                 html += '<li>The project id field is invalid.</li>';
             }
@@ -321,10 +324,6 @@ $('#update_built_form').click(function(e) {
 
         if(built_engineer == null){
             html += '<li>The Engineer Redline field is invalid.</li>';
-            var is_error = true;
-        }
-        if(built_contractor == null){
-            html += '<li>The Contractor Redline field is invalid.</li>';
             var is_error = true;
         }
         if(built_plan == null){
@@ -352,9 +351,8 @@ $('#update_built_form').click(function(e) {
             data: {
                 "engineer_redline"    : built_engineer,
                 "built_plan"            : built_plan,
-                "status"                : status,
-                "project_id"            : project_id,
-                "contractor_redline"    : built_contractor,
+                //"status"                : status,
+                "project_id"            : project_id
             },
             headers: {
                 "x-access-token": token
@@ -388,9 +386,9 @@ $('#update_built_form').click(function(e) {
             if(responseText.data.engineer_redline != null){
                 html += '<li>The Engineer Redline field is invalid.</li>';
             }
-            if(responseText.data.status != null){
-                html += '<li>The Status field is invalid.</li>';
-            }
+//            if(responseText.data.status != null){
+//                html += '<li>The Status field is invalid.</li>';
+//            }
             if(responseText.data.project_id != null){
                 html += '<li>The project id field is invalid.</li>';
             }

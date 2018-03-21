@@ -41,14 +41,18 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group clearfix" id="contractor_hide">
+                                        <div class="form-group clearfix contractor_hide" id="contractor_hide">
                                             <label class="nopadleft col-sm-6 control-label"><strong>Contractor’s Redlines :</strong></label>
                                             <div class="col-lg-6 nopadleft">
-                                                <select name="" id="built_contractor" class="form-control">
+                                                <label class="checkbox-csustom check-success">
+                                                    <input class="" type="radio" id="built_contractor" name="built_contractor" value="complete">
+                                                    <label for="built_contractor">Complete</label>
+                                                </label>
+<!--                                                <select name="" id="built_contractor" class="form-control">
                                                     <option value="complete">Complete</option>
-                                                    <option value="additional_info">Addional info requested</option>
+                                                    <option value="additional_info">Additional info requested</option>
                                                     <option value="past_due">Past Due</option>
-                                                </select>
+                                                </select>-->
                                             </div>
                                         </div>
 
@@ -59,13 +63,13 @@
                                                     <option value="complete">Complete</option>
                                                     <option value="past_due">Past Due</option>
                                                     <option value="additional_info">Additional Info Requested</option>
-                                                    <option value="not_provided">Not Provided</option>
+<!--                                                    <option value="not_provided">Not Provided</option>-->
                                                 </select>
                                             </div>
                                         </div>
 
-                                        <div class="form-group clearfix">
-                                            <label class="nopadleft col-sm-6 control-label"><strong>Changes to Plans? :</strong></label>
+                                        <div class="form-group clearfix contractor_hide">
+                                            <label class="nopadleft col-sm-6 control-label"><strong>Changes to Plans?</strong></label>
                                             <div class="col-lg-6 nopadleft">
                                                 <select name="" id="built_plan" class="form-control">
                                                     <option value="yes">Yes</option>
@@ -75,7 +79,7 @@
                                         </div>
 
 
-                                        <div class="form-group clearfix">
+<!--                                        <div class="form-group clearfix">
                                             <label class="nopadleft col-sm-6 control-label"><strong>Status</strong></label>
                                             <div class="col-lg-6 nopadleft">
                                                 <select class="form-control" id="status">
@@ -83,7 +87,7 @@
                                                     <option value="deactive">Deactivate</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                     <div class="form-group col-md-12">
                                         <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $project_id; ?>">

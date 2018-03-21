@@ -53,6 +53,7 @@ class BuiltDrawingsController extends Controller {
         $description  = $request['description'];
         $file_path    = $request['file_path'];
         $project_id   = $request['project_id'];
+        $built_filed_on = $request['built_filed_on'];
         $user_id      = Auth::user()->id;
         $status       = 'active';
     // Check User Permission Parameter 
@@ -70,6 +71,7 @@ class BuiltDrawingsController extends Controller {
             "file_path"   => $file_path,
             "project_id"  => $project_id,
             "user_id"     => $user_id,
+            "built_filed_on"=>$built_filed_on
         );
 
         $rules = [
@@ -86,7 +88,7 @@ class BuiltDrawingsController extends Controller {
         else
         {
              $query = DB::table('project_built_drawing')
-            ->insertGetId(['pbd_description' => $description, 'pbd_file_path' => $file_path, 'pbd_project_id' => $project_id, 'pbd_user_id' => $user_id, 'pbd_status' => $status]);
+            ->insertGetId(['pbd_filed_on'=>$built_filed_on,'pbd_description' => $description, 'pbd_file_path' => $file_path, 'pbd_project_id' => $project_id, 'pbd_user_id' => $user_id, 'pbd_status' => $status]);
 
             if(count($query) < 1)
             {
@@ -183,19 +185,19 @@ class BuiltDrawingsController extends Controller {
       // else {
         $contractor_redline   = $request['contractor_redline'];
         $built_plan           = $request['built_plan'];
-        $status               = $request['status'];
+        //$status               = $request['status'];
         $user_id              = Auth::user()->id;
       
         $information = array(
             "user_id"     => $user_id,
             'built_plan'  => $built_plan,
-            'status'      => $status
+            //'status'      => $status
         );
 
         $rules = [
             'user_id'     => 'required|numeric',
             'built_plan'  => 'required',
-            'status'      => 'required'
+            //'status'      => 'required'
         ];
 
         $validator = Validator::make($information, $rules);
@@ -205,7 +207,7 @@ class BuiltDrawingsController extends Controller {
         else {
           $query = DB::table('project_built_drawing')
           ->where('pbd_id', '=', $pbd_id)
-          ->update(['pbd_user_id' => $user_id, 'pbd_contractor_redline' => $contractor_redline, 'pbd_change_plan' => $built_plan, 'pbd_status' => $status]);
+          ->update(['pbd_user_id' => $user_id, 'pbd_contractor_redline' => $contractor_redline, 'pbd_change_plan' => $built_plan]);
           if(count($query) < 1)
           {
             $result = array('code'=>400, "description"=>"No records found");
@@ -248,14 +250,14 @@ class BuiltDrawingsController extends Controller {
         $engineer_redline     = $request['engineer_redline'];
         $contractor_redline   = $request['contractor_redline'];
         $built_plan           = $request['built_plan'];
-        $status               = $request['status'];
+        //$status               = $request['status'];
         $project_id           = $request['project_id'];
         $user_id              = Auth::user()->id;
         
         $information = array(
             "user_id"     => $user_id,
             'built_plan'  => $built_plan,
-            'status'      => $status,
+            //'status'      => $status,
             'project_id'  => $project_id
         );
 
@@ -263,7 +265,7 @@ class BuiltDrawingsController extends Controller {
             'user_id'     => 'required|numeric',
             'project_id'  => 'required|numeric',
             'built_plan'  => 'required',
-            'status'      => 'required'
+            //'status'      => 'required'
         ];
 
         $validator = Validator::make($information, $rules);
@@ -273,7 +275,7 @@ class BuiltDrawingsController extends Controller {
         else {
           $query = DB::table('project_built_drawing')
           ->where('pbd_id', '=', $pbd_id)
-          ->update(['pbd_contractor_redline' => $contractor_redline,'pbd_engineer_redline' => $engineer_redline, 'pbd_user_id' => $user_id, 'pbd_change_plan' => $built_plan, 'pbd_status' => $status]);
+          ->update(['pbd_contractor_redline' => $contractor_redline,'pbd_engineer_redline' => $engineer_redline, 'pbd_user_id' => $user_id, 'pbd_change_plan' => $built_plan]);
           if(count($query) < 1)
           {
             $result = array('code'=>400, "description"=>"No records found");
@@ -359,7 +361,7 @@ class BuiltDrawingsController extends Controller {
       // else {
         $project_id   = $request['project_id'];
         $user_id      = Auth::user()->id;
-        $status       = $request['status'];
+        //$status       = $request['status'];
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
       $permission_key = 'drawing_update';
@@ -372,13 +374,13 @@ class BuiltDrawingsController extends Controller {
         $information = array(
             "project_id"  => $project_id,
             "user_id"     => $user_id,
-            "status"      => $status
+            //"status"      => $status
         );
 
         $rules = [
             'project_id'  => 'required|numeric',
             'user_id'     => 'required|numeric',
-            'status'      => 'required'
+            //'status'      => 'required'
         ];
         $validator = Validator::make($information, $rules);
         if ($validator->fails()) {
@@ -387,7 +389,7 @@ class BuiltDrawingsController extends Controller {
         else {
           $query = DB::table('project_built_drawing')
           ->where('pbd_id', '=', $pbd_id)
-          ->update(['pbd_project_id' => $project_id, 'pbd_user_id' => $user_id, 'pbd_status' => $status]);
+          ->update(['pbd_project_id' => $project_id, 'pbd_user_id' => $user_id]);
           if(count($query) < 1)
           {
             $result = array('code'=>400, "description"=>"No records found");

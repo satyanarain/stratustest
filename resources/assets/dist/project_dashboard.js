@@ -9,7 +9,8 @@ $(document).ready(function() {
 	console.log(u_id);
 	// localStorage.clear('access_permission');
 	var role 			= localStorage.getItem('u_role');
-
+        var user_id 			= localStorage.getItem('u_id');
+        var u_company_name              = localStorage.getItem('u_company_name');
 	// console.log(role);
 	// jQuery.ajax({
  //        url: baseUrl +project_id+"/check_single_project_permission/"+u_id,
@@ -1360,5 +1361,26 @@ $(document).ready(function() {
 
 			$('.loading_progress_bar').remove();
         },3000)
-
+        
+        jQuery.ajax({
+           
+            url: baseUrl + "users/get_user_new_role",
+            type: "POST",
+            data:{"user_id":user_id,"u_company_id":u_company_name,"project_id":project_id},
+            headers: {
+                "x-access-token": token
+              },
+              contentType: "application/x-www-form-urlencoded",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR)
+        {
+            window.localStorage.setItem("u_new_role", data.new_role);
+            console.log(data.new_role);
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log("HTTP Request Failed");
+            // var response = jqXHR.responseJSON.code;
+            console.log(jqXHR.responseJSON);
+        });
 });

@@ -65,6 +65,10 @@
                                             <label class="nopadleft col-sm-12 control-label"><strong>Contractor : <span id="contractor_name"></span></strong></label>
                                         </div>
 
+                                        <div class="form-group contractor_built_filed_on" style="display:none;">
+                                            <label for="standard_name">Date Filled On <span class="text-danger">*</span></label>
+                                            <input type="text" disabled="disabled" class="form-control" name="built_filed_on" id="built_filed_on" value="<?php echo date("Y-m-d"); ?>">
+                                        </div>
                                         <div class="form-group">
                                             <label for="standard_name">Description <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="built_description">

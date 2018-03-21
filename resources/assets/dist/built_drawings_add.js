@@ -5,7 +5,10 @@ $(document).ready(function() {
     project_id = url[ url.length - 3]; // projects
     var role = localStorage.getItem('u_role');
     var token = localStorage.getItem('u_token');
-
+    var u_new_role = window.localStorage.getItem("u_new_role");
+    if(u_new_role=="contractor")
+        $(".contractor_built_filed_on").show();
+    //alert(u_new_role);
     // Check Permission
     var check_user_access = JSON.parse(localStorage.getItem("access_permission"));
     var check_permission = jQuery.inArray("drawing_add", check_user_access );
@@ -105,6 +108,7 @@ $('.add_built_drawing').click(function(e) {
     var built_description       = $('#built_description').val();
     var file_path               = $('#upload_doc_id').val();
     var project_id              = $('#upload_project_id').val();
+    var built_filed_on          = $('#built_filed_on').val();
     var token                   = localStorage.getItem('u_token');
         jQuery.ajax({
             url: baseUrl + "build_drawings/add",
@@ -112,7 +116,8 @@ $('.add_built_drawing').click(function(e) {
             data: {
                 "description"       : built_description,
                 "file_path"         : file_path,
-                "project_id"        : project_id
+                "project_id"        : project_id,
+                "built_filed_on"    : built_filed_on,
             },
             headers: {
                 "x-access-token": token
