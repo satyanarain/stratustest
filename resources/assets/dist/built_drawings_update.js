@@ -241,14 +241,14 @@ $('#update_built_form').click(function(e) {
         var is_error = false;
         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
 
-        if(built_contractor == null){
-            html += '<li>The Contractor Redline field is invalid.</li>';
-            var is_error = true;
-        }
-        if(built_plan == null){
-            html += '<li>The Change Plan field is invalid.</li>';
-            var is_error = true;
-        }
+//        if(built_contractor == null){
+//            html += '<li>The Contractor Redline field is invalid.</li>';
+//            var is_error = true;
+//        }
+//        if(built_plan == null){
+//            html += '<li>The Change Plan field is invalid.</li>';
+//            var is_error = true;
+//        }
         html += '</ul></div>';
         if(is_error == true){
             $("#alert_message").show();
