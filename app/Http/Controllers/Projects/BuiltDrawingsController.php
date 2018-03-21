@@ -196,7 +196,7 @@ class BuiltDrawingsController extends Controller {
 
         $rules = [
             'user_id'     => 'required|numeric',
-            'built_plan'  => 'required',
+            //'built_plan'  => 'required',
             //'status'      => 'required'
         ];
 
