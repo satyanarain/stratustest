@@ -230,7 +230,7 @@ $('#update_built_form').click(function(e) {
     //var status               	= $('#status').val();
     var project_id              = $('#upload_project_id').val();
     var token                   = localStorage.getItem('u_token');
-
+    var u_new_role = window.localStorage.getItem("u_new_role");
     console.log(built_plan);
     console.log(built_contractor);
     //var role            = localStorage.getItem('u_role');
