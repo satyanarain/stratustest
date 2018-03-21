@@ -171,21 +171,22 @@ $(document).ready(function() {
             $('#built_engineer').val(engineer_redline);
 
             if(data.data.pbd_contractor_redline == 'complete'){
-                var contractor_redline = 'complete';
+                //var contractor_redline = 'complete';
+                $("#built_contractor").attr('checked',true);
             }
-            else if(data.data.pbd_contractor_redline == 'additional_info'){
-                var contractor_redline = 'additional_info';
-            }
-            else if(data.data.pbd_contractor_redline == 'past_due'){
-                var contractor_redline = 'past_due';
-            }
-            else if(data.data.pbd_contractor_redline == 'not_provided'){
-                var contractor_redline = 'not_provided';
-            }
-            else {
-                var contractor_redline = ' --- ';
-            }
-            $('#built_contractor').val(contractor_redline);
+//            else if(data.data.pbd_contractor_redline == 'additional_info'){
+//                var contractor_redline = 'additional_info';
+//            }
+//            else if(data.data.pbd_contractor_redline == 'past_due'){
+//                var contractor_redline = 'past_due';
+//            }
+//            else if(data.data.pbd_contractor_redline == 'not_provided'){
+//                var contractor_redline = 'not_provided';
+//            }
+//            else {
+//                var contractor_redline = ' --- ';
+//            }
+            //$('#built_contractor').val(contractor_redline);
 
             if(data.data.pbd_change_plan == 'yes'){
                 var change_plan = 'yes';
@@ -224,15 +225,16 @@ $('#update_built_form').click(function(e) {
   $('.loading-submit').show();
     e.preventDefault();
     //var built_contractor        = $('#built_contractor').val();
-    var built_contractor        = $("input[name='built_contractor']:checked").val();
+    if($("#built_contractor").is(':checked')===true)
+        var built_contractor        = $('#built_contractor').val();
+    else
+        built_contractor            = '';
     var built_engineer          = $('#built_engineer').val();
     var built_plan              = $('#built_plan').val();
     //var status               	= $('#status').val();
     var project_id              = $('#upload_project_id').val();
     var token                   = localStorage.getItem('u_token');
     var u_new_role = window.localStorage.getItem("u_new_role");
-    console.log(built_plan);
-    console.log(built_contractor);
     //var role            = localStorage.getItem('u_role');
     var role = u_new_role;
     if(role == 'contractor'){
@@ -326,10 +328,10 @@ $('#update_built_form').click(function(e) {
             html += '<li>The Engineer Redline field is invalid.</li>';
             var is_error = true;
         }
-        if(built_plan == null){
-            html += '<li>The Change Plan field is invalid.</li>';
-            var is_error = true;
-        }
+//        if(built_plan == null){
+//            html += '<li>The Change Plan field is invalid.</li>';
+//            var is_error = true;
+//        }
         html += '</ul></div>';
         if(is_error == true){
             $("#alert_message").show();

@@ -41,11 +41,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group clearfix contractor_hide" id="contractor_hide">
+                                        <div class="form-group clearfix contractor_hide1" id="contractor_hide">
                                             <label class="nopadleft col-sm-6 control-label"><strong>Contractor’s Redlines :</strong></label>
                                             <div class="col-lg-6 nopadleft">
                                                 <label class="checkbox-csustom check-success">
-                                                    <input class="" type="radio" id="built_contractor" name="built_contractor" value="complete">
+                                                    <input class="" type="checkbox" id="built_contractor" name="built_contractor" value="complete">
                                                     <label for="built_contractor">Complete</label>
                                                 </label>
 <!--                                                <select name="" id="built_contractor" class="form-control">

@@ -87,7 +87,7 @@
                           if(val.user_image_path!="")
                               var user_image_path = '<img src="'+baseUrl+val.user_image_path+'" width="50px">';
                           else
-                              var user_image_path = '';
+                              var user_image_path = ' ';
 			  if(role == 'owner'){
 			  	t.row.add( [
 		           val.username,
