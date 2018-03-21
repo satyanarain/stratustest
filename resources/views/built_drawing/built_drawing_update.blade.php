@@ -41,7 +41,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group clearfix contractor_hide1" id="contractor_hide">
+                                        <div class="form-group clearfix contractor_hide" id="contractor_hide">
                                             <label class="nopadleft col-sm-6 control-label"><strong>Contractor’s Redlines :</strong></label>
                                             <div class="col-lg-6 nopadleft">
                                                 <label class="checkbox-csustom check-success">
