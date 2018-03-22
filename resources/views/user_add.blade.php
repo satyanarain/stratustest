@@ -105,8 +105,8 @@
                                         <a href="{{ url('/dashboard/users') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
 
 
-                                        <button type="submit" id="add_user_form" class="first_button btn btn-info sub-btn">Save</button>
-                                        <button type="submit" id="add_swppp_form" class="another_button btn btn-info sub-btn" style="display: none;">Save Another</button>
+                                        <button type="submit" id="add_user_form" class="add_user_form first_button btn btn-info sub-btn">Save</button>
+                                        <button type="submit" id="add_swppp_form" class="add_user_form another_button btn btn-info sub-btn" style="display: none;">Save Another</button>
                                         <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                     </div>
 
@@ -214,8 +214,8 @@
                                 <option value="a">Agency</option>
                             </select>
                         </div>
-                            <input type="hidden" id="project_latitude">
-                            <input type="hidden" id="project_longitude">
+                            <input type="hidden" id="project_latitude" value="33.7174708">
+                            <input type="hidden" id="project_longitude" value="-117.83114280000001">
                         <div class="clearfix"></div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" id="firm_address" style="display: block;">
@@ -556,8 +556,8 @@ $(document).ready(function() {
   })  
   function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 36.443796, lng: -119.369653},
-          zoom: 7,
+          center: {lat: 33.7174708, lng: -117.83114280000001},
+          zoom: 11,
           scrollwheel: false
         });
         var input = /** @type {!HTMLInputElement} */(

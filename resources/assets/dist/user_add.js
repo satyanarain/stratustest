@@ -124,7 +124,7 @@ $(document).ready(function()
         }
     })
 });
-    $('#add_user_form').click(function(e) {
+    $('.add_user_form').click(function(e) {
         e.preventDefault();
         $('.loading-submit').show();
         var username       = $('#uname').val().toLowerCase();
