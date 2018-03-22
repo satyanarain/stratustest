@@ -67,6 +67,7 @@ $(document).ready(function()
             $("#company_name").append(
                 '<option style="font-weight:bold;">Add New Company</option>'
             )
+            }
             $(".loading_data").remove();
             alert("You can't add new user, first add company name!");
             $("#s2id_project_name").show();
