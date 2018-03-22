@@ -342,7 +342,7 @@
                   <div class="col-md-12">
                         <section class="panel">
                             <header class="panel-heading">
-                                improvement types
+                                Improvement Types
                             </header>
                             <div class="panel-body">
                                 <ul class="todo-list-item" id="project_type">

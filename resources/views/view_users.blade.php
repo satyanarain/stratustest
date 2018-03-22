@@ -28,7 +28,7 @@
                         <thead>
                         <tr>
                             <th>
-                                User name
+                                Username
                             </th>
                             <th>
                                 Image

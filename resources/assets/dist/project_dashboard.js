@@ -750,7 +750,7 @@ $(document).ready(function() {
 			    	$(".loading_submittal_detail").remove();
 			    	$("#submittal_data_log thead").show();
 			    	$("#submittal_data_log tbody").append(
-					  	'<tr><td colspan="10">No Submittal available</td></tr>'
+					  	'<tr><td colspan="10">No Submittals available</td></tr>'
 					);
 			    }
 			    else {
@@ -905,7 +905,7 @@ $(document).ready(function() {
 			    	$(".loading_rfi_detail").remove();
 			    	$("#rfi_data_log thead").show();
 			    	$("#rfi_data_log tbody").append(
-					  	'<tr><td colspan="7">No RFI available</td></tr>'
+					  	'<tr><td colspan="7">No RFIs available</td></tr>'
 					);
 			    }
 			    else {
@@ -1293,10 +1293,10 @@ $(document).ready(function() {
 			    	$("#request_change_order thead").show();
 			    	$("#potential_change_order thead").show();
 			    	$("#request_change_order tbody").append(
-					  	'<tr><td colspan="9">No Request change order available</td></tr>'
+					  	'<tr><td colspan="9">No Change Order Requests available</td></tr>'
 					);
 					$("#potential_change_order tbody").append(
-					  	'<tr><td colspan="10">No Potential change order available</td></tr>'
+					  	'<tr><td colspan="10">No Potential Change Order Requests available</td></tr>'
 					);
 			    }
 			    else {
