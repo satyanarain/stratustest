@@ -35,7 +35,7 @@ $(document).ready(function() {
             }
         });
         $("#project_lead_agency").append(
-            '<option>Add New Agency</option>'
+            '<option style="font-weight:bold;">Add New Agency</option>'
         )
         // $( "h2" ).appendTo( $( ".container" ) );
 
@@ -55,7 +55,7 @@ $(document).ready(function() {
                 '<option value="">Select Agency Name</option>'
             )
             $("#project_lead_agency").append(
-                '<option>Add New Agency</option>'
+                '<option style="font-weight:bold;">Add New Agency</option>'
             )
             console.log('Company name 404');
             // window.location.href = baseUrl + "404";
