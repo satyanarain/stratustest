@@ -37,7 +37,7 @@
      <div class="modal-dialog modal-md">
          <div class="modal-content text-center">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            @if(Route::getCurrentRoute()->getPath()=="dashboard/projects/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/bid_documents/add1" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/acceptance_letter/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/standards/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/specifications/add")
+            @if(Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/bid_documents/add1" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/acceptance_letter/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/standards/add" || Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/specifications/add")
              @include('include/add_new_agency')
             @endif
          </div>
