@@ -61,6 +61,12 @@ $(document).ready(function()
         }
         else if(response == 404){
             console.log('Firm Name 404');
+            var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+            console.log(add_company_on_fly_permission+'company_fly');
+            if(add_company_on_fly_permission>0 || role=="owner" || role=="admin"){
+            $("#company_name").append(
+                '<option style="font-weight:bold;">Add New Company</option>'
+            )
             $(".loading_data").remove();
             alert("You can't add new user, first add company name!");
             $("#s2id_project_name").show();
