@@ -15,7 +15,7 @@
 <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12pt; color: #777; font-weight: normal; line-height: 1.45;color:#5aaaba;">Dear <strong style="text-transform: capitalize;"><?php echo $user->username; ?></strong>,&nbsp;
 </p>
 
-<p class="p1" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12pt; color: #777; font-weight: normal; line-height: 1.45;">Your account has successfully been created as a <?php echo ucwords($user->role); ?></p>
+<p class="p1" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12pt; color: #777; font-weight: normal; line-height: 1.45;">Your account has successfully been created as <?php if($user->role=="user"){echo 'a';}else{echo 'an';}?> <?php echo ucwords($user->role); ?></p>
 <p class="p1" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12pt; color: #777; font-weight: normal; line-height: 1.45;">Your username is: <strong><?php echo $user->username; ?></strong></p>
 <p class="p1" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12pt; color: #777; font-weight: normal; line-height: 1.45;">Your temporary password is: <strong><?php echo $user->user_email_password; ?></strong></p>
 <p class="p1" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 12pt; color: #777; font-weight: normal; line-height: 1.45;">Please click the link below to change your password.</p>

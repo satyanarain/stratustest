@@ -237,7 +237,7 @@
         <div class="col-sm-6">
             <label>Upload Delivery Ticket</label><br/>
             <section class="panel upload_doc_panel" id="upload_div">
-                <div class="panel-body" style="padding: 0px;">
+                <div class="panel-body dropzone-form" style="padding: 0px;">
                     <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                         <input type="hidden" class="" name="document_path" value="/uploads/daily_construction_report/material_delivered/">
                     </form>
@@ -429,8 +429,8 @@
         <div class="col-sm-6">
             <label>Upload Photo / Video</label><br/>
             <section class="panel upload_doc_panel" id="upload_div">
-                <div class="panel-body" style="padding: 0px;">
-                    <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
+                <div class="panel-body dropzone-form" style="padding: 0px;">
+                    <form id="my-awesome-dropzone1" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                         <input type="hidden" class="" name="document_path" value="/uploads/daily_construction_report/video_photo/">
                     </form>
                     <input type="hidden" name="upload_photo_id[]" class="upload_doc_id" id="upload_doc_id_3" value="">

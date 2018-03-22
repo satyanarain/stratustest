@@ -697,10 +697,10 @@ $(document).ready(function() {
 	                    '<div class="col-sm-6">'+
 	                        '<label>Upload Delivery Ticket</label><br/>'+
 	'<section class="panel upload_doc_panel" id="upload_div">'+
-	    '<div class="panel-body" style="padding: 0px;">'+
-	    	'<form id="my-awesome-dropzone" action="'+baseUrl+'document/uploadFiles" class="dropzone dz-clickable">'+
+	    '<div class="panel-body dropzone-form" style="padding: 0px;">'+
+	    	'<form id="my-awesome-dropzone'+randum_number+'" action="'+baseUrl+'document/uploadFiles" class="dropzone dz-clickable">'+
 				'<input class="" name="document_path" value="/uploads/daily_construction_report/material_delivered/" type="hidden">'+
-				'<div class="dz-default dz-message"><span>PDF ONLY</span></div>'+
+				'<div class="dz-default dz-message"><span>Upload only Image (PNG, JPG)/PDF format file ONLY</span></div>'+
 			'</form>'+
 	        '<input type="hidden" name="upload_doc_id[]" class="upload_doc_id" id="upload_doc_id_'+randum_number+'" value="">'+
 	        '<input type="hidden" name="upload_type" id="upload_type" value="multiple_upload">'+
@@ -709,7 +709,7 @@ $(document).ready(function() {
 	                    '</div>'+
 	                '</div>';
 	                $(".material_delivered_all").append(html);
-	                $('.material_delivered_detail:last .upload_doc_panel .panel-body form').dropzone({url: baseUrl+'document/uploadFiles'});
+	                $('.material_delivered_detail:last .upload_doc_panel .dropzone-form form').dropzone({url: baseUrl+'document/uploadFiles'});
 			    return;
 			});
 		}, 5000);
@@ -719,17 +719,21 @@ $(document).ready(function() {
   			$('body').delegate( '#add_photo_video_row', 'click', function () {
 				var randum_number = Math.floor(Math.random()*(99-11+1)+11);
 			    var html = 	'<div class="photo_video_single">'+
-			    			'<div class="col-sm-6">'+
+			    			'<div class="col-sm-4">'+
 						        '<label>Photo Description</label><br/>'+
 						        '<input type="text" name="photo_description[]" class="form-control" value="">'+
 						    '</div>'+
+                                                '<div class="col-sm-2">'+
+                                                    '<label>Taken On</label><br/>'+
+                                                    '<input type="text" name="taken_on[]" class="form-control default-date-picker1" value="">'+
+                                                '</div>'+
 	                    '<div class="col-sm-6">'+
 	                        '<label>Upload Photo / Video</label><br/>'+
 	'<section class="panel upload_doc_panel" id="upload_div">'+
-	    '<div class="panel-body" style="padding: 0px;">'+
-	    	'<form id="my-awesome-dropzone" action="'+baseUrl+'document/uploadFiles" class="dropzone dz-clickable">'+
+	    '<div class="panel-body dropzone-form" style="padding: 0px;">'+
+	    	'<form id="my-awesome-dropzone'+randum_number+'" action="'+baseUrl+'document/uploadFiles" class="dropzone dz-clickable">'+
 				'<input class="" name="document_path" value="/uploads/daily_construction_report/video_photo/" type="hidden">'+
-				'<div class="dz-default dz-message"><span>PDF ONLY</span></div>'+
+				'<div class="dz-default dz-message"><span>Upload only Image (PNG, JPG)/PDF format file ONLY</span></div>'+
 			'</form>'+
 	        '<input type="hidden" name="upload_photo_id[]" class="upload_doc_id" id="upload_doc_id_'+randum_number+'" value="">'+
 	        '<input type="hidden" name="upload_type" id="upload_type" value="multiple_upload">'+
