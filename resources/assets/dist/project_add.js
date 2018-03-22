@@ -51,6 +51,12 @@ $(document).ready(function() {
             // window.location.href = baseUrl + "403";
         }
         else if(response == 404){
+            $("#project_lead_agency").append(
+                '<option value="">Select Agency Name</option>'
+            )
+            $("#project_lead_agency").append(
+                '<option>Add New Agency</option>'
+            )
             console.log('Company name 404');
             // window.location.href = baseUrl + "404";
         }
@@ -63,8 +69,8 @@ $(document).ready(function() {
         var company = $(this).val();
         if(company=="Add New Agency")
         {
-            $('#add-company').modal('show');
-            $('#add-company').on('shown.bs.modal',function(){
+            $('#add-agency').modal('show');
+            $('#add-agency').on('shown.bs.modal',function(){
                 google.maps.event.trigger(map, "resize");
                 google.maps.event.trigger(map1, "resize");
               });

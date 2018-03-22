@@ -7257,6 +7257,8 @@ ul.lower-alpha {list-style-type: none;padding:0 ;margin:0;}
   width: 300px;
   padding: 0;
  }
+ 
+ #role{text-transform: capitalize;}
 .loading_data_file .loading-text{position: absolute; top: 154px;left: -15%;right: 0; bottom: 0; margin: auto;height: 20px; width: 200px;}
 .checkbox-custom.check-success{display: inline-block;margin-top: 0;margin-bottom: 0;}
 .picture-video-add .desc-text{display: block;max-width: 667px;white-space: normal;word-wrap: break-word;}

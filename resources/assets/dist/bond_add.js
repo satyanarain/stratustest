@@ -248,7 +248,9 @@ $(document).ready(function() {
             // Validation Performance Bond
             //alert(document.getElementById("upload").value)
                     //$("#upload").is(':checked')
+            var bond_counter = 0;
             if($("#performance_bond_yes").is(':checked')){
+                bond_counter = bond_counter+1;
                 if(performance_bond_amount == ''){
                     html += '<li>Performance bond amount field is invalid.</li>';
                     is_error = true;
@@ -279,6 +281,7 @@ $(document).ready(function() {
                 
             }
             if($("#payment_bond_yes").is(':checked')){
+                bond_counter = bond_counter+1;
                 if(payment_bond_amount == ''){
                     html += '<li>Payment bond amount field is invalid.</li>';
                     is_error = true;
@@ -297,6 +300,7 @@ $(document).ready(function() {
                 }
             }
             if($("#maintenance_bond_yes").is(':checked')){
+                bond_counter = bond_counter+1;
                 if(maintenance_bond_amount == ''){
                     html += '<li>Maintenance bond amount field is invalid.</li>';
                     is_error = true;
@@ -390,7 +394,11 @@ $(document).ready(function() {
                     $(".first_button").text('Save Another');
                     $("#alert_message").show();
                     $('.loading-submit').hide();
-                    html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New bond added successfully!</div></div>';
+                    if(bond_counter>1){
+                        html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New bonds added successfully!</div></div>';
+                    }else{
+                        html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New bond added successfully!</div></div>';
+                    }
                     $("#alert_message").html(html);
                     setTimeout(function()
                     {
