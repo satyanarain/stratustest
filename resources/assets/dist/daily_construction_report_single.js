@@ -305,7 +305,7 @@
 			  	 	var	file_path_value = '-';
 			  	}
 			  	else {
-			  		var file_path_value = '<a href="'+baseUrl+val.doc_path+'"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+			  		var file_path_value = '<a href="'+baseUrl+val.doc_path+'"><img src="'+baseUrl+val.doc_path+'" width="40"/></a>';
 			  	}
 
 				$("#daily_photo_video").append(

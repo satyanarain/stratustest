@@ -707,7 +707,7 @@ $(document).ready(function() {
 	    '</div>'+
 	'</section>'+
 	                    '</div>'+
-	                '</div>';
+	                '</div><script src="'+baseUrl+'resources/assets/js/dropzone_image_pdf.js"></script>';
 	                $(".material_delivered_all").append(html);
 	                $('.material_delivered_detail:last .upload_doc_panel .dropzone-form form').dropzone({url: baseUrl+'document/uploadFiles'});
 			    return;
@@ -740,8 +740,12 @@ $(document).ready(function() {
 	    '</div>'+
 	'</section>'+
 	                    '</div>'+
-	                '</div></div>';
+	                '</div></div><script src="'+baseUrl+'resources/assets/js/dropzone_image_pdf.js"></script>';
 	                $(".photo_video_taken_detail").append(html);
+                        $('.default-date-picker1').datepicker({
+                            format: 'yyyy-mm-dd',
+                            autoclose: true
+                        });
 	                $('.photo_video_single:last .upload_doc_panel .panel-body form').dropzone({url: baseUrl+'document/uploadFiles'});
 			    return;
 			});
