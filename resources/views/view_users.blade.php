@@ -72,5 +72,5 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
-<script src="{{ url('/resources/assets/dist/view_users.js?v=1.0') }}"></script>
+<script src="{{ url('/resources/assets/dist/view_users.js?v=2.0') }}"></script>
 @include('include/footer')

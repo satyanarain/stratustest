@@ -88,6 +88,8 @@
                               var user_image_path = '<img src="'+baseUrl+val.user_image_path+'" width="50px">';
                           else
                               var user_image_path = ' ';
+                          var role1 = toTitleCase(val.role);
+                          //alert(role1);
 			  if(role == 'owner'){
 			  	t.row.add( [
 		           val.username,
@@ -109,7 +111,7 @@
 		           val.email,
 		           val.agency_name,
 		           position_title,
-		           val.role,
+		           role1,
 		           account_status,
 		           val.user_parent,
 		           action_btn
@@ -175,4 +177,7 @@
 
     });
 
-	
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
