@@ -11,7 +11,7 @@ $(document).ready(function() {
     get_improvement_project();
     //alert("sds");
     jQuery.ajax({
-        url: baseUrl+project_id+"/company_name_user_agency",
+        url: baseUrl+"/agency-name",
         type: "GET",
         headers: {
             "x-access-token": token
