@@ -218,7 +218,7 @@
                             <input type="hidden" id="project_longitude" value="-117.83114280000001">
                         <div class="clearfix"></div>
                         <div class="form-group col-md-6">
-                            <input type="text" class="form-control" id="firm_address" style="display: block;">
+                            <input type="text" class="form-control" id="firm_address" style="display: block;" value="Orange County, CA, USA">
                             <label for="firm_address">Company Address <span class="text-danger">*</span></label>
                         </div>
                         <div class="clearfix"></div>
