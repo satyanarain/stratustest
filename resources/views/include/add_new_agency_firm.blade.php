@@ -340,7 +340,7 @@ $(document).ready(function() {
                         $(".loading_data").remove();
                         $(".company_name").show();
                         $('#add-company').modal('hide');
-                        $('#firm_address').val("");
+                        //$('#firm_address').val("");
                         //$('#project_latitude').val("");
                         //$('#project_longitude').val("");
         
