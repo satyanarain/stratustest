@@ -156,10 +156,17 @@ $(document).ready(function()
         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
 
         var inp_phone_num = document.getElementsByName('phone_num[]');
+        var inp_phone_type = document.getElementsByName('phone_type[]');
         for (var i = 0; i <inp_phone_num.length; i++) {
+            var inp_phone_type_value =inp_phone_type[i];
+            var phone_type_value = inp_phone_type_value.value;
             var inp_phone_num_value =inp_phone_num[i];
             var phone_value = inp_phone_num_value.value;
             console.log(phone_value);
+            if(phone_type_value==''){
+                html += '<li>Phone Type filed is invalid.</li>';
+                is_error = true;
+            }
             if(phone_value == ''){
                 html += '<li>Phone Number filed is invalid.</li>';
                 is_error = true;
