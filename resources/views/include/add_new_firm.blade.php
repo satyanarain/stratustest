@@ -351,17 +351,17 @@ $(document).ready(function() {
                         $('#firm_address').css("left", "0px");
                         $('#firm_address').css("top", "-50px");
                         //map.clear();
-                        info_Window = new google.maps.InfoWindow();
-                            info_Window.close();
-                            for (var i = 0; i < marker.length; i++) {
-                                marker[i].setMap(null);
-                            }
-                            marker.length = 0;
-                            for(var i=0;i<location.length;i++){
-                                location[i].setMap(null);
-                            }
-                            location.length=0;
-                            marker = [];
+//                        info_Window = new google.maps.InfoWindow();
+//                            info_Window.close();
+//                            for (var i = 0; i < marker.length; i++) {
+//                                marker[i].setMap(null);
+//                            }
+//                            marker.length = 0;
+//                            for(var i=0;i<location.length;i++){
+//                                location[i].setMap(null);
+//                            }
+//                            location.length=0;
+//                            marker = [];
                     })
                     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
