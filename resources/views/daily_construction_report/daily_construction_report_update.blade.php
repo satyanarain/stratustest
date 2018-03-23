@@ -573,7 +573,7 @@ $("input[name='subcontractor_field']").click(function(){
     else {
         $('.subcontractor_detail').css("display", "block");
         $('#material_delivered_div').css("display", "none");
-        $('.submit_daily_report_form').css("display", "block");
+        $('.submit_daily_report_form').show();
     }
 });
 
