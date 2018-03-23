@@ -191,6 +191,9 @@ $(document).ready(function() {
 	        }
 	        else if(response == 404){
 	            console.log("404");
+                    $("#subcontractor_work_detail").append(
+                        '<option value="">Select Subcontractor</option>'
+                    )
                     var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
                     if(add_company_on_fly_permission>0 || role=="owner"){
                     $("#subcontractor_work_detail").append(
