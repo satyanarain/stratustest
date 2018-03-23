@@ -771,7 +771,7 @@ class UserController extends Controller {
         );
         $rules = [
             "username"      => 'required|unique:users|max:255',
-            "email"         => 'required|max:255',
+            "email"         => 'required|email|max:255',
             "first_name"    => 'required',
             "last_name"     => 'required',
             "company_name"  => 'required',
