@@ -39,7 +39,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="form-group col-md-6 hide_user">
-                        <label for="uname">User Name</label>
+                        <label for="uname">Username</label>
                         <input type="text" class="form-control" id="uname" disabled>
                     </div>
                     <div class="form-group col-md-6 hide_user">

@@ -1308,7 +1308,7 @@ Mail::send('emails.reset_password_request', ['user' => $user_single], function (
                 } 
             }
             else{
-                $result = array('code'=>400, "description"=>"User Name /Password Wrong");
+                $result = array('code'=>400, "description"=>"Username /Password Wrong");
                 return $result = response()->json($result, 400);
             }    
         }

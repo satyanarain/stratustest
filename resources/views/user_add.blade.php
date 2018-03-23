@@ -23,7 +23,7 @@
                                 
                                     <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="uname">User Name <span class="text-danger">*</span></label>
+                                        <label for="uname">Username <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="uname">
                                     </div>
                                     <div class="form-group col-md-6">
