@@ -903,8 +903,8 @@ class UserController extends Controller {
           $user = DB::table('users')
           ->select('email', 'username')
           ->where('email', '=', $email)
-          ->first();
-          print_r($user);die;
+          ->get();
+          //print_r($user);die;
           if(count($user) < 1)
           {
             $result = array('code'=>400, "email"=>"No Records Found");
@@ -912,19 +912,23 @@ class UserController extends Controller {
           }
           else
           {
-
+              $html = '<br>';
+              foreach ($user as $users){
+                  $html.=$users->username.'<br>';
+              }
             $maildata = array(
-              'name'                => $user->username,
-              'email'               => $user->email,
-              'username'            => $user->username,
+              'name'                => $user[0]->username,
+              'email'               => $user[0]->email,
+              'username'            => $user[0]->username,
+              'users'               => $html,
               'date'                => date("M d, Y h:i a")
             );
             $user_single = (object) $maildata;
-
-Mail::send('emails.forget_username', ['user' => $user_single], function ($message) use ($user_single) {
-    $message->from('no-reply@sw.ai', 'StratusCM');
-    $message->to($user_single->email, $user_single->username)->subject('Username request');
-});            
+        //print_r($user_single);die;
+        Mail::send('emails.forget_username', ['user' => $user_single], function ($message) use ($user_single) {
+            $message->from('no-reply@sw.ai', 'StratusCM');
+            $message->to($user_single->email, $user_single->username)->subject('Username request');
+        });            
             $result = array('data'=>$user,'code'=>200);
             return response()->json($result, 200);
           }
