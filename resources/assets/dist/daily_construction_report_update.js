@@ -181,7 +181,28 @@ $(document).ready(function() {
                 $("#subcontractor_work_detail").append(
                     '<option style="font-weight:bold;">Add New Subcontractor</option>'
                 )}
-		});
+		})
+            .fail(function(jqXHR, textStatus, errorThrown) {
+	        console.log("HTTP Request Failed");
+	        var response = jqXHR.responseJSON.code;
+	        if(response == 403){
+	            // window.location.href = baseUrl + "403";
+	            console.log("403");
+	        }
+	        else if(response == 404){
+	            console.log("404");
+                    var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+                    if(add_company_on_fly_permission>0 || role=="owner"){
+                    $("#subcontractor_work_detail").append(
+                        '<option style="font-weight:bold;">Add New Subcontractor</option>'
+                    )}
+	            // window.location.href = baseUrl + "404";
+	        }
+	        else {
+	            // console.log("500");
+	            window.location.href = baseUrl + "500";
+	        }
+	    })
 
 
 		$('#add_contract_item_work').click(function(e)
