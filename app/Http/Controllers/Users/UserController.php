@@ -904,7 +904,7 @@ class UserController extends Controller {
           ->select('email', 'username')
           ->where('email', '=', $email)
           ->first();
-     
+          print_r($user);die;
           if(count($user) < 1)
           {
             $result = array('code'=>400, "email"=>"No Records Found");

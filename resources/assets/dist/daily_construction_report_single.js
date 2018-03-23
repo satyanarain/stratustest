@@ -133,7 +133,7 @@
 		    else {
 		    }
 		    $('#subcontractor_work_day').html(sub_contractor_work);
-		    $('#subcontractor_work_detail').text(data.data.sub_contractor_work_detail);
+		    $('#subcontractor_work_detail').text(data.data.pdr_sub_contractor_work_detail);
                     $('#subcontractor_work_detail_comment').text(data.data.pdr_sub_contractor_work_detail_comment);
 		    $("#update_submittal_review_form").show();
 		    $(".loading_data").hide();
