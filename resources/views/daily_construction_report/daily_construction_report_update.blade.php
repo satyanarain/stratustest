@@ -125,9 +125,12 @@
     </label>
 </div>
 <div class="subcontractor_detail" style="display: none;">
-    <div class="form-group col-md-12">
+    <div class="form-group col-md3">
        <select class="form-control" name="" id="subcontractor_work_detail">
        </select>
+    </div>
+    <div class="form-group col-md-9">
+        <input class="form-control" type="text" id="pdr_sub_contractor_work_detail_comment" name="pdr_sub_contractor_work_detail_comment">
     </div>
 </div>
 

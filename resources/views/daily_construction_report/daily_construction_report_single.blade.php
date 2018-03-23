@@ -132,6 +132,9 @@
                                         <td colspan="4" id="subcontractor_work_detail"></td>
                                     </tr>
                                     <tr>
+                                        <td colspan="4" id="subcontractor_work_detail_comment"></td>
+                                    </tr>
+                                    <tr>
                                         <td colspan="4">
                                             <a href="{{ url('/dashboard/'.$project_id.'/daily_construction_report') }}" class="btn btn-info pull-right">Back</a>
                                         </td>

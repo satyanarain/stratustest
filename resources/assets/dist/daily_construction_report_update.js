@@ -925,6 +925,7 @@ $(document).ready(function() {
 	    var photo_video 	 			= $("input[name='photo_video_field']:checked"). val();
 	    var subcontractor 				= $("input[name='subcontractor_field']:checked"). val();
 	    var subcontractor_work_detail 	= $("#subcontractor_work_detail"). val();
+            var pdr_sub_contractor_work_detail_comment = $("#pdr_sub_contractor_work_detail_comment").val();
 	    var project_id 					= $('#upload_project_id').val();
 	    console.log(accur_details);
 
@@ -944,6 +945,7 @@ $(document).ready(function() {
                 "report_picture_video" 				: photo_video,
                 "report_subcontractor_work_day" 	: subcontractor,
                 "report_subcontractor_work_detail" 	: subcontractor_work_detail,
+                "pdr_sub_contractor_work_detail_comment": pdr_sub_contractor_work_detail_comment,
                 "project_id" 						: project_id
             },
             headers: {

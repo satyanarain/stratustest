@@ -386,6 +386,7 @@ class DailyReportController extends Controller {
         $report_picture_video               = $request['report_picture_video'];
         $report_subcontractor_work_day      = $request['report_subcontractor_work_day'];
         $report_subcontractor_work_detail   = $request['report_subcontractor_work_detail'];
+        $pdr_sub_contractor_work_detail_comment = $request['pdr_sub_contractor_work_detail_comment'];
         $project_id                         = $request['project_id'];
         $user_id                            = Auth::user()->id;
         $status                             = 'complete';
@@ -416,7 +417,7 @@ class DailyReportController extends Controller {
         {
             $query = DB::table('project_daily_report_logs')
             ->where('pdrl_id', '=', $report_id)
-            ->update(['pdr_weather' => $report_weather, 'pdr_custom_field' => $report_custum_field, 'pdr_perform_work_day' => $report_perform_work_day, 'pdr_material_delivery' =>$report_material_delivery, 'pdr_milestone_completed' =>$report_milestone_completed, 'pdr_milestone_detail' =>$report_milestone_detail, 'pdr_occur_detail' =>$report_occur_detail, 'pdr_general_notes' =>$report_general_notes, 'pdr_picture_video' =>$report_picture_video, 'pdr_sub_contractor_work' =>$report_subcontractor_work_day, 'pdr_sub_contractor_work_detail' => $report_subcontractor_work_detail, 'pdr_status' => $status, 'pdr_project_id' => $project_id, 'pdr_user_id' => $user_id]);
+            ->update(['pdr_weather' => $report_weather, 'pdr_custom_field' => $report_custum_field, 'pdr_perform_work_day' => $report_perform_work_day, 'pdr_material_delivery' =>$report_material_delivery, 'pdr_milestone_completed' =>$report_milestone_completed, 'pdr_milestone_detail' =>$report_milestone_detail, 'pdr_occur_detail' =>$report_occur_detail, 'pdr_general_notes' =>$report_general_notes, 'pdr_picture_video' =>$report_picture_video, 'pdr_sub_contractor_work' =>$report_subcontractor_work_day, 'pdr_sub_contractor_work_detail' => $report_subcontractor_work_detail,'pdr_sub_contractor_work_detail_comment'=>$pdr_sub_contractor_work_detail_comment ,'pdr_status' => $status, 'pdr_project_id' => $project_id, 'pdr_user_id' => $user_id]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
@@ -507,7 +508,8 @@ class DailyReportController extends Controller {
         ->leftJoin('projects', 'project_daily_report_logs.pdr_project_id', '=', 'projects.p_id')
         ->leftJoin('users', 'project_daily_report_logs.pdr_user_id', '=', 'users.id')
         ->select('project_daily_report_logs.*', 'project_firm.f_name as sub_contractor_work_detail', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
-        ->where('pdr_report_id', '=', $report_id)
+        ->where('project_daily_report_logs.pdrl_id', '=', $report_id)
+        //->orderBy('project_daily_report_logs.pdrl_id','DESC')
         ->first();
         if(count($query) < 1)
         {
