@@ -917,7 +917,7 @@ $(document).ready(function() {
 	    var milestone_completed 	= $("input[name='milestone_field']:checked"). val();
 	    var milestone_detail 		= $('#milestone_detail').val();
 	    var accur_detail = [];
-        $('input[name^=accur_detail]').each(function(){
+        $('input[name^=accur_detail]:checked').each(function(){
             accur_detail.push($(this).val());
         });
         var accur_details = JSON.stringify(accur_detail);

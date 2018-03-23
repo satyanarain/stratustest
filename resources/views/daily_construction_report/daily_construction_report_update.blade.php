@@ -125,7 +125,7 @@
     </label>
 </div>
 <div class="subcontractor_detail" style="display: none;">
-    <div class="form-group col-md3">
+    <div class="form-group col-md-3">
        <select class="form-control" name="" id="subcontractor_work_detail">
        </select>
     </div>
