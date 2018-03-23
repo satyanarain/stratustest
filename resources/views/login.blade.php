@@ -59,7 +59,7 @@
                           </div>
                           <div class="modal-body">
                               <span id="resetPasswordFail"></span>
-                              <p>Enter your email below to reset your password.</p>
+                              <p>Enter your username below to reset your password.</p>
                               <input type="text" name="email" id="forget_pass" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
 
                           </div>

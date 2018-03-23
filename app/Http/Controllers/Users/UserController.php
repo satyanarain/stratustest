@@ -955,7 +955,7 @@ class UserController extends Controller {
       );
 
       $rules = [
-          "email"         => 'required|email|max:255',
+          "email"         => 'required|max:255',
       ];
 
       $validator = Validator::make($information, $rules);
@@ -971,7 +971,7 @@ class UserController extends Controller {
       {
           $user = DB::table('users')
           ->select('id','email', 'username')
-          ->where('email', '=', $email)
+          ->where('username', '=', $email)
           ->first();
           if(count($user) < 1)
           {
