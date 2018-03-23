@@ -998,6 +998,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('firm-name/{firm_id}/update', 'Projects\FirmController@update_firm_name');
     Route::get('firm-name/{firm_id}', 'Projects\FirmController@get_firm_name_single');
     Route::get('firm-name', 'Projects\FirmController@get_firm_name');
+    Route::get('company-name', 'Projects\FirmController@get_company_name');
     Route::get('agency-name', 'Projects\FirmController@get_agency_name');
     Route::get('{project_id}/company_name_user', 'Projects\FirmController@get_project_firm_name');
     Route::get('{project_id}/company_name_user_agency', 'Projects\FirmController@get_project_firm_name_agency');

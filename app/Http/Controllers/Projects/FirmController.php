@@ -88,6 +88,68 @@ class FirmController extends Controller {
         return response()->json(['error' => 'Something is wrong'], 500);
       }
   }
+  
+  /*
+  --------------------------------------------------------------------------
+   Get All Firm Name
+  --------------------------------------------------------------------------
+  */
+  public function get_company_name(Request $request)
+  {
+      try
+      {
+        // $user = array(
+        //   'userid'    => Auth::user()->id,
+        //   'role'      => Auth::user()->role
+        // );
+        // $user = (object) $user;
+        // $post = new Resource_Post(); // You create a new resource Post instance
+        // if (Gate::forUser($user)->denies('allow_admin', [$post,false])) { 
+        //   $result = array('code'=>403, "description"=>"Access denies");
+        //   return response()->json($result, 403);
+        // } 
+        // else {
+        
+          if(Auth::user()->role=="owner")
+            $user_id              = Auth::user()->id;
+          else
+            $user_id              = Auth::user()->user_parent;
+          
+          if($user_id == 1){
+            $query = DB::table('project_firm')
+            ->leftJoin('company_type', 'project_firm.f_type', '=', 'company_type.ct_id')
+            ->leftJoin('users', 'project_firm.f_user', '=', 'users.id')
+            ->select('project_firm.*', 'company_type.ct_name as company_name', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+            ->where('project_firm.company_type', '=', 'f')
+            ->get();
+          }
+          else {
+           $query = DB::table('project_firm')
+            ->leftJoin('company_type', 'project_firm.f_type', '=', 'company_type.ct_id')
+            ->leftJoin('users', 'project_firm.f_user', '=', 'users.id')
+            ->select('project_firm.*', 'company_type.ct_name as company_name', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+            ->where('f_user', '=', $user_id)
+            ->where('project_firm.company_type', '=', 'f')
+            ->get(); 
+          }
+
+          if(count($query) < 1)
+          {
+            $result = array('code'=>404, "description"=>"No Records Found");
+            return response()->json($result, 404);
+          }
+          else
+          {
+            $result = array('data'=>$query,'code'=>200);
+            return response()->json($result, 200);
+          }
+        // }
+      }
+      catch(Exception $e)
+      {
+        return response()->json(['error' => 'Something is wrong'], 500);
+      }
+  }
 
   /*
   --------------------------------------------------------------------------

@@ -380,6 +380,27 @@ $(document).ready(function() {
         }
     });
                 }
+                if($("#subcontractor_work_detail").length > 0) {
+                    var ele_name = '#subcontractor_work_detail';
+                    $(ele_name).empty();
+                    $(ele_name).append('<option value="">Select Subcontractor</option>');
+                    jQuery.each(data.data, function( i, val ) {
+                        if(val.f_status == 'active'){
+                            $(ele_name).append(
+                                '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                            )
+                        }else {
+
+                        }
+                    });
+                    var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+                    console.log(add_company_on_fly_permission+'company_fly');
+                    if(add_company_on_fly_permission>0 || role=="owner"){
+                        $(ele_name).append(
+                            '<option style="font-weight:bold;">Add New Subcontractor</option>'
+                        )
+                    }
+                }
                 // $( "h2" ).appendTo( $( ".container" ) );
        
                 $(".loading_data").remove();

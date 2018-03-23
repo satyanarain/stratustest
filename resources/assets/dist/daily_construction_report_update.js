@@ -10,6 +10,7 @@ $(document).ready(function() {
     // Get login user profile data
     $("#update_survey_form").hide();
     // Get login user profile data
+    var role = localStorage.getItem('u_role');
     var token = localStorage.getItem('u_token');
     var url = $(location).attr('href').split( '/' );
     project_id = url[ url.length - 4 ]; // projects
@@ -154,7 +155,7 @@ $(document).ready(function() {
 
 		// Fetch All bit item for given project_id
 		jQuery.ajax({
-		url: baseUrl + "firm-name",
+		url: baseUrl + "company-name",
 		    type: "GET",
 		    headers: {
 		      "x-access-token": token
@@ -163,6 +164,9 @@ $(document).ready(function() {
 		    cache: false
 		})
 	    .done(function(data, textStatus, jqXHR) {
+                $("#subcontractor_work_detail").append(
+                    '<option value="">Select Subcontractor</option>'
+                )
 	        jQuery.each(data.data, function( i, val ) {
 	            if(val.f_status == 'active'){
 	                $("#subcontractor_work_detail").append(
@@ -172,6 +176,11 @@ $(document).ready(function() {
 
 	            }
 	        });
+                var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+                if(add_company_on_fly_permission>0 || role=="owner"){
+                $("#subcontractor_work_detail").append(
+                    '<option style="font-weight:bold;">Add New Subcontractor</option>'
+                )}
 		});
 
 
@@ -750,7 +759,17 @@ $(document).ready(function() {
 			    return;
 			});
 		}, 5000);
-
+    $('#subcontractor_work_detail').change(function(){
+        var company = $(this).val();
+        if(company=="Add New Subcontractor")
+        {
+            $('#add-company').modal('show');
+            $('#add-company').on('shown.bs.modal',function(){
+                google.maps.event.trigger(map, "resize");
+              });
+            
+        }
+    })
     });
 
 
