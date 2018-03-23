@@ -597,7 +597,7 @@ $(document).ready(function() {
             $("#toast-container").fadeOut(10000);
             $("#firm_name").removeAttr('value');
             $("#firm_description").removeAttr('value');
-            $("#firm_address").removeAttr('value');
+            //$("#firm_address").removeAttr('value');
             jQuery.ajax({
                 url: baseUrl+"agency-name",
                 type: "GET",

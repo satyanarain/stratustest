@@ -94,7 +94,7 @@
             $("#toast-container").fadeOut(10000);
             $("#firm_name").removeAttr('value');
             $("#firm_description").removeAttr('value');
-            $("#firm_address").removeAttr('value');
+            //$("#firm_address").removeAttr('value');
             $("#company_type").removeAttr('value');
             $("#firm_type").removeAttr('value');
         })

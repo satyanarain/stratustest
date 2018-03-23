@@ -356,8 +356,8 @@ $(document).ready(function() {
             $("#alert_message").html(html);
             $(".first_button1").hide();
             
-            $("#project_latitude").removeAttr('value');
-            $("#project_longitude").removeAttr('value');
+            //$("#project_latitude").removeAttr('value');
+            //$("#project_longitude").removeAttr('value');
             $("#firm_type").val('');
             $("#company_type").val('');
             $(".another_button").show();
@@ -368,7 +368,7 @@ $(document).ready(function() {
             $("#toast-container").fadeOut(10000);
             $("#firm_name").removeAttr('value');
             $("#firm_description").removeAttr('value');
-            $("#firm_address").removeAttr('value');
+            //$("#firm_address").removeAttr('value');
             jQuery.ajax({
                 url: baseUrl+"firm-name",
                 type: "GET",
