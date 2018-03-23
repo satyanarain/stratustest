@@ -114,7 +114,14 @@
                   <input type="radio" name="perform_work_day" id="perform_work_day" value="no"> No
                 </label>
             </div>
-
+           <div class="form-group col-md-12 perform_work_day_div" style="display: none;">
+                <label>What Contract Items were worked on? <input type="button" class="add_contract_items" value="Add New Contract Item"></label>
+                <select class="form-control select2-multiple" id="contract_item_work" multiple placeholder="Select Contract Item">
+                </select>
+                <button class="btn btn-success addon-btn m-b-10" id="add_contract_item_work" style="margin-top: 15px; float:right;">
+                    <i class="fa fa-forward pull-right"></i>NEXT
+                </button>
+            </div>
 <div class="form-group col-md-12" id="subcontractor_div" style="display: none;">
     <label>Did Subcontractors perform any work this day?</label><br/>
     <label class="radio-inline">
@@ -134,14 +141,7 @@
     </div>
 </div>
 
-            <div class="form-group col-md-12 perform_work_day_div" style="display: none;">
-                <label>What Contract Items were worked on? <input type="button" class="add_contract_items" value="Add New Contract Item"></label>
-                <select class="form-control select2-multiple" id="contract_item_work" multiple placeholder="Select Contract Item">
-                </select>
-                <button class="btn btn-success addon-btn m-b-10" id="add_contract_item_work" style="margin-top: 15px; float:right;">
-                    <i class="fa fa-forward pull-right"></i>NEXT
-                </button>
-            </div>
+            
 
             <div class="form-group col-md-12" id="add_contract_item_work_data" style="display:none;">
                 <label>How many quantities were completed for each?</label>
