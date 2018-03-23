@@ -407,7 +407,10 @@ class FirmController extends Controller {
 //      } 
 //      else {
 
-
+        if(Auth::user()->role=="owner")
+            $user_id              = Auth::user()->id;
+        else
+            $user_id              = Auth::user()->user_parent;
 
         $firm_name              = $request['firm_name'];
         $firm_detail            = $request['firm_detail'];
@@ -417,7 +420,7 @@ class FirmController extends Controller {
         $project_long           = $request['project_long'];
         $project_lat            = $request['project_lat'];
         $company_type           = $request['company_type'];
-        $user_id                = Auth::user()->id;
+        //$user_id                = Auth::user()->id;
 
         
         $information = array(
