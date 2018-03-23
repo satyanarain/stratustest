@@ -400,12 +400,12 @@ class FirmController extends Controller {
         'role'      => Auth::user()->role
       );
       $user = (object) $user;
-      $post = new Resource_Post(); // You create a new resource Post instance
-      if (Gate::forUser($user)->denies('allow_admin_owner_user', [$post,false])) { 
-        $result = array('code'=>403, "description"=>"Access denies");
-        return response()->json($result, 403);
-      } 
-      else {
+//      $post = new Resource_Post(); // You create a new resource Post instance
+//      if (Gate::forUser($user)->denies('allow_admin_owner_user', [$post,false])) { 
+//        $result = array('code'=>403, "description"=>"Access denies");
+//        return response()->json($result, 403);
+//      } 
+//      else {
 
 
 
@@ -467,7 +467,7 @@ class FirmController extends Controller {
               return response()->json($result, 200);
             }
         }
-      }
+      //}
     }
     catch(Exception $e)
     {
