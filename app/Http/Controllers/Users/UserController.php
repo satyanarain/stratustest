@@ -883,7 +883,7 @@ class UserController extends Controller {
   {
     try
     {
-      $email = $request['email'];
+      $email = trim($request['email']);
       $information = array(
           "email"         => $email
       );
