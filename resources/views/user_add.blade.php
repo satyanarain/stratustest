@@ -73,7 +73,7 @@
                                         </div>
                                         </div>
                                     <div class="col-sm-6">
-                                        <label for="standard_name">Upload User Image <span class="text-danger">*</span> </label>
+                                        <label for="standard_name">Upload User Image</label>
                                         <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                             <input type="hidden" name="document_path" value="/uploads/users/">
                                         </form>
