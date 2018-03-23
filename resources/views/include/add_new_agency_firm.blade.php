@@ -341,8 +341,8 @@ $(document).ready(function() {
                         $(".company_name").show();
                         $('#add-company').modal('hide');
                         $('#firm_address').val("");
-                        $('#project_latitude').val("");
-                        $('#project_longitude').val("");
+                        //$('#project_latitude').val("");
+                        //$('#project_longitude').val("");
         
 
                         $('#firm_address').css("display", "inline-block");
@@ -385,9 +385,9 @@ $(document).ready(function() {
                 $(".loading_data").remove();
                 $(".company_name").show();
                 $('#add-company').modal('hide');
-                $('#firm_address').val("");
-                $('#project_latitude').val("");
-                $('#project_longitude').val("");
+                //$('#firm_address').val("");
+                //$('#project_latitude').val("");
+                //$('#project_longitude').val("");
         
                 //        var map = new google.maps.Map(document.getElementById('map'), {
                 //          center: {lat: 36.443796, lng: -119.369653},
@@ -505,9 +505,9 @@ $(document).ready(function() {
         $(".loading_data").remove();
         $(".company_name").show();
         $('#add-company').modal('hide');
-        $('#firm_address').val("");
-        $('#project_latitude').val("");
-        $('#project_longitude').val("");
+        //$('#firm_address').val("");
+        //$('#project_latitude').val("");
+        //$('#project_longitude').val("");
         
 //        var map = new google.maps.Map(document.getElementById('map'), {
 //          center: {lat: 36.443796, lng: -119.369653},

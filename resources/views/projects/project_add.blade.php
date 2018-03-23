@@ -634,9 +634,9 @@ $(document).ready(function() {
                 $(".loading_data").remove();
                 $("#project_lead_agency").show();
                 $('#add-agency').modal('hide');
-                $('#firm_address').val("");
-                $('#project_latitude1').val("");
-                $('#project_longitude1').val("");
+                //$('#firm_address').val("");
+                //$('#project_latitude1').val("");
+                //$('#project_longitude1').val("");
                 $('#firm_address').css("display", "inline-block");
                 $('#firm_address').css("z-index", "9999");
                 $('#firm_address').css("position", "relative");
@@ -739,9 +739,9 @@ $(document).ready(function() {
         $(".loading_data").remove();
         $("#project_lead_agency").show();
         $('#add-agency').modal('hide');
-        $('#firm_address').val("");
-        $('#project_latitude1').val("");
-        $('#project_longitude1').val("");
+        //$('#firm_address').val("");
+        //$('#project_latitude1').val("");
+        //$('#project_longitude1').val("");
         
 //        var map = new google.maps.Map(document.getElementById('map'), {
 //          center: {lat: 36.443796, lng: -119.369653},

@@ -402,9 +402,9 @@ $(document).ready(function() {
                 $(".loading_data").remove();
                 $("#company_name").show();
                 $('#add-company').modal('hide');
-                $('#firm_address').val("");
-                $('#project_latitude').val("");
-                $('#project_longitude').val("");
+                //$('#firm_address').val("");
+                //$('#project_latitude').val("");
+                //$('#project_longitude').val("");
                 $('#firm_address').css("display", "inline-block");
                 $('#firm_address').css("z-index", "9999");
                 $('#firm_address').css("position", "relative");
