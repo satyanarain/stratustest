@@ -32,7 +32,7 @@
                                           <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Built Drawing Filed On</th>
+                                                <th>As Built Drawing Filed On</th>
                                                 <th width="30%">Description</th>
                                                 <th>Contractor’s Redlines</th>
                                                 <th>Engineer’s As Built</th>

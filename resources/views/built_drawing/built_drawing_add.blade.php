@@ -66,7 +66,7 @@
                                         </div>
 
                                         <div class="form-group contractor_built_filed_on" style="display:none;">
-                                            <label for="standard_name">Date Filled On <span class="text-danger">*</span></label>
+                                            <label for="standard_name">Date Filed On <span class="text-danger">*</span></label>
                                             <input type="text" disabled="disabled" class="form-control" name="built_filed_on" id="built_filed_on" value="<?php echo date("Y-m-d"); ?>">
                                         </div>
                                         <div class="form-group">
