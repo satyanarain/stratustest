@@ -224,6 +224,7 @@ class CompanytypeController extends Controller {
             $query = DB::table('company_type')
             ->leftJoin('users', 'company_type.ct_user_id', '=', 'users.id')
             ->select('company_type.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+            ->orderBy('company_type.ct_name','ASC')
             ->get();
           }
           else {
@@ -231,6 +232,7 @@ class CompanytypeController extends Controller {
             ->leftJoin('users', 'company_type.ct_user_id', '=', 'users.id')
             ->select('company_type.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
             ->where('ct_user_id', '=', $user_id)
+            ->orderBy('company_type.ct_name','ASC')
             ->get(); 
           }
 

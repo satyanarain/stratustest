@@ -60,6 +60,7 @@ class FirmController extends Controller {
             ->leftJoin('company_type', 'project_firm.f_type', '=', 'company_type.ct_id')
             ->leftJoin('users', 'project_firm.f_user', '=', 'users.id')
             ->select('project_firm.*', 'company_type.ct_name as company_name', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+            ->orderBy('project_firm.f_name','ASC')
             ->get();
           }
           else {
@@ -68,6 +69,7 @@ class FirmController extends Controller {
             ->leftJoin('users', 'project_firm.f_user', '=', 'users.id')
             ->select('project_firm.*', 'company_type.ct_name as company_name', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
             ->where('f_user', '=', $user_id)
+            ->orderBy('project_firm.f_name','ASC')
             ->get(); 
           }
 
@@ -121,6 +123,7 @@ class FirmController extends Controller {
             ->leftJoin('users', 'project_firm.f_user', '=', 'users.id')
             ->select('project_firm.*', 'company_type.ct_name as company_name', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
             ->where('project_firm.company_type', '=', 'f')
+            ->orderBy('project_firm.f_name','ASC')
             ->get();
           }
           else {
@@ -130,6 +133,7 @@ class FirmController extends Controller {
             ->select('project_firm.*', 'company_type.ct_name as company_name', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
             ->where('f_user', '=', $user_id)
             ->where('project_firm.company_type', '=', 'f')
+            ->orderBy('project_firm.f_name','ASC')
             ->get(); 
           }
 
@@ -189,6 +193,7 @@ class FirmController extends Controller {
           ->select('project_firm.*', 'company_type.ct_name as company_type', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.status as user_status', 'users.role as user_role')
           ->where('f_user', '=', $project_owner)
           ->where('project_firm.company_type', '=', 'f')
+          ->orderBy('project_firm.f_name','ASC')
           ->get();
 //         $query = DB::getQueryLog();
 //        $lastQuery = end($query);
@@ -247,6 +252,7 @@ class FirmController extends Controller {
           ->select('project_firm.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.status as user_status', 'users.role as user_role')
           ->where('project_firm.f_user', '=', $project_owner)
           ->where('project_firm.company_type', '=', 'a')
+          ->orderBy('project_firm.f_name','ASC')
           ->get();
          
           if(count($query) < 1)
@@ -510,6 +516,7 @@ class FirmController extends Controller {
             ->leftJoin('users', 'project_firm.f_user', '=', 'users.id')
             ->select('project_firm.*', 'company_type.ct_name as company_name', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
             ->where('project_firm.company_type', '=', 'a')
+            ->orderBy('project_firm.f_name','ASC')
             ->get();
           }
           else {
@@ -519,6 +526,7 @@ class FirmController extends Controller {
             ->select('project_firm.*', 'company_type.ct_name as company_name', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
             ->where('f_user', '=', $user_id)
             ->where('project_firm.company_type', '=', 'a')
+            ->orderBy('project_firm.f_name','ASC')
             ->get(); 
           }
 

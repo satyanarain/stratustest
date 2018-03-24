@@ -190,6 +190,7 @@ class ImprovementController extends Controller {
             ->select()
             ->whereIn('pt_id', $faizan)
             ->where('pt_status', '=', 'active')
+            ->orderBy('pt_name', 'asc')
             ->get();
 
           if(count($query2) < 1)
