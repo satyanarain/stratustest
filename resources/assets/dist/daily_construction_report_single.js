@@ -72,7 +72,7 @@
 		    }
 		    $('#status').html(status);
 
-			var report_date = val.pdr_date;//var report_date = $.datepicker.formatDate('yy-mm-dd', new Date(data.data.pdr_date.replace(' ', 'T')));
+			var report_date = data.data.pdr_date;//var report_date = $.datepicker.formatDate('yy-mm-dd', new Date(data.data.pdr_date.replace(' ', 'T')));
 		    $('#report_date').text(report_date);
 		    // $('#report_weather_detail').html(data.data.pdr_weather + "<sup>o</sup> c");
 		    $('#report_weather_detail').html(data.data.pdr_weather);
