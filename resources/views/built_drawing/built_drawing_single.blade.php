@@ -77,14 +77,13 @@
 
 
                                 </div>
-
+                                <div class="state-information">
+                                    <a href="http://ec2-34-236-61-80.compute-1.amazonaws.com/dashboard/1/built_drawing" class="btn btn-success"> Back</a>
+                                </div>
 
 
                             </div><!-- panel-body Close -->
                         </section>
-                        <div class="state-information">
-                            <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/built_drawing" class="btn btn-success"> Back</a>
-                        </div>
                     </div>
                 </div>
             </div>
