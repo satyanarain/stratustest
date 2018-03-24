@@ -103,7 +103,8 @@ $(document).ready(function() {
 			var day = date.getDate();
 			var month = date.getMonth()+1;
 			var year = date.getFullYear();
-			var report_date = year + '-' + month + '-' + day;
+			//var report_date = year + '-' + month + '-' + day;
+                        var report_date = $.datepicker.formatDate('yy-mm-dd', new Date(data.data.pdr_date.replace(' ', 'T')));
 		    $('#report_name').text(report_date);
 		    $('#report_number').text(data.data.pdrl_id);
 		    $('#report_date').text(report_date);
