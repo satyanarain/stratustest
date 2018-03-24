@@ -32,6 +32,7 @@
                             <th>Bid Advertisement Date</th>
                             <th>Notice Inviting Bids Date</th>
                             <th>Date of Bid Opening</th>
+                            <th>Low Bidder's Name</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>

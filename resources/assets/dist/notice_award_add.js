@@ -99,6 +99,7 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         console.log(data);
         window.improvement_type_array = [];
+        window.latest_improvement_type_array = [];
         // Foreach Loop
 //        $("#project_type_dropdown_new").append(
 //            '<option value="">Select Improvement Type</option>'
@@ -116,6 +117,7 @@ $(document).ready(function() {
 //                    '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
 //                )
                 improvement_type_array.push(val.pt_id);
+                latest_improvement_type_array.push(val.pt_name);
             }else {
 
             }
@@ -345,6 +347,17 @@ $(document).ready(function() {
 
         // Add Improvement Type in PDF
         var improvement_type = $("#project_type_dropdown_new").val();
+        var project_type_dropdown_new = $('#project_type_dropdown_new').val();
+        var project_type_dropdown_old = $('#project_type_dropdown_old').val();
+        var update_impv_type = 0;
+        if(project_type_dropdown_new){
+            var improvement_type    = project_type_dropdown_new;
+            var update_impv_type = 1;
+        }
+        else if(project_type_dropdown_old) {
+            var improvement_type    = project_type_dropdown_old;
+            var update_impv_type = 1;
+        }
         jQuery.ajax({
         url: baseUrl + "improvement-type/"+improvement_type,
             type: "GET",
@@ -357,8 +370,13 @@ $(document).ready(function() {
         })
         .done(function(data, textStatus, jqXHR) {
             console.log(data.data.pt_name);
-            $('#pdf_gen_project_type').text(data.data.pt_name);
-
+            //alert(data.data[0].pt_name);
+            
+            //$('#pdf_gen_project_type').text(data.data.pt_name);
+            if(update_impv_type==1)
+                $('#pdf_gen_project_type').text(data.data.pt_name);
+            else
+                $('#pdf_gen_project_type').text(latest_improvement_type_array.join(','));
             var bid_total_amount = $("#bid_amount").val();
             $("#pdf_gen_contract_amount").text(ReplaceNumberWithCommas(bid_total_amount));
         })
@@ -384,7 +402,7 @@ $(document).ready(function() {
         })
         setTimeout(function()
         {
-            var document_generated  = $("#notice_award_pdf_content").html();
+            var document_generated  = $("#notice_award_pdf_content").html();return false;
             var document_path       = 'uploads/notice_award/';
             jQuery.ajax({
                 url: baseUrl + "document/GeneratePdfFiles",

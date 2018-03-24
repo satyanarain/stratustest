@@ -141,6 +141,12 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         var project_name = data.data.p_name;
         $('#project_name_title').text("Project: " + project_name);
+        if(data.data.f_name)
+        {
+            $("#company_name_lead").append(
+                '<span class="label label-inverse" style="display: inline-block; font-size: 14px; margin: 10px 15px 10px 0px; padding: 5px 15px;">'+data.data.f_name+'</span>'
+            );
+        }
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
@@ -255,37 +261,37 @@ $(document).ready(function() {
         }
     }); 
 
-    jQuery.ajax({
-        url: baseUrl + "/"+project_id+"/default_contractor",
-            type: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              "x-access-token": token
-            },
-            contentType: "application/json",
-            cache: false
-        })
-            .done(function(data, textStatus, jqXHR) {
-            $("#company_name_lead").append(
-                '<span class="label label-inverse" style="display: inline-block; font-size: 14px; margin: 10px 15px 10px 0px; padding: 5px 15px;">'+data.data[0].agency_name+'</span>'
-            )   
-         })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-            console.log("HTTP Request Failed");
-            var response = jqXHR.responseJSON.code;
-            if(response == 403){
-                // window.location.href = baseUrl + "403";
-                console.log("403");
-            }
-            else if(response == 404){
-                console.log("404");
-                // window.location.href = baseUrl + "404";
-            }
-            else {
-                // console.log("500");
-                window.location.href = baseUrl + "500";
-            }
-        }) 
+//        jQuery.ajax({
+//        url: baseUrl + "/"+project_id+"/default_contractor",
+//            type: "GET",
+//            headers: {
+//              "Content-Type": "application/json",
+//              "x-access-token": token
+//            },
+//            contentType: "application/json",
+//            cache: false
+//        })
+//        .done(function(data, textStatus, jqXHR) {
+//            $("#company_name_lead").append(
+//                '<span class="label label-inverse" style="display: inline-block; font-size: 14px; margin: 10px 15px 10px 0px; padding: 5px 15px;">'+data.data[0].agency_name+'</span>'
+//            )   
+//         })
+//        .fail(function(jqXHR, textStatus, errorThrown) {
+//            console.log("HTTP Request Failed");
+//            var response = jqXHR.responseJSON.code;
+//            if(response == 403){
+//                // window.location.href = baseUrl + "403";
+//                console.log("403");
+//            }
+//            else if(response == 404){
+//                console.log("404");
+//                // window.location.href = baseUrl + "404";
+//            }
+//            else {
+//                // console.log("500");
+//                window.location.href = baseUrl + "500";
+//            }
+//        }) 
 
    
 }); 

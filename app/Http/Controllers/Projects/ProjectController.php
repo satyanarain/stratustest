@@ -345,7 +345,8 @@ class ProjectController extends Controller {
         $query = DB::table('projects')
         // ->join('project_type_improvement', 'projects.p_type', '=', 'project_type_improvement.pt_id')
         // ->select('projects.*', 'project_type_improvement.pt_name as project_type')
-        ->select('projects.*')
+        ->leftJoin('project_firm', 'projects.p_lead_agency', '=', 'project_firm.f_id')
+        ->select('projects.*','project_firm.f_name')
         ->where('p_id', '=', $project_id)
         ->first();
         if(count($query) < 1)

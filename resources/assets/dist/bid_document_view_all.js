@@ -132,6 +132,7 @@
 		           bid_advertisement_date,
 		           invite_date,
 		           date_of_opening,
+                           val.low_bidder_name,
 		           status,
 		           single_view + update_permission
 		       	]).draw( false );

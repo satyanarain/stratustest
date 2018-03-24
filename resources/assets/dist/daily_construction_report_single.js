@@ -75,7 +75,8 @@
 			var report_date = data.data.pdr_date;//var report_date = $.datepicker.formatDate('yy-mm-dd', new Date(data.data.pdr_date.replace(' ', 'T')));
 		    $('#report_date').text(report_date);
 		    // $('#report_weather_detail').html(data.data.pdr_weather + "<sup>o</sup> c");
-		    $('#report_weather_detail').html(data.data.pdr_weather);
+		    if(data.data.pdr_weather)
+                        $('#report_weather_detail').html(data.data.pdr_weather);
 		    $('#report_custom_detail').text(data.data.pdr_custom_field);
 
 		    var perform_work_day = data.data.pdr_perform_work_day;
@@ -131,9 +132,11 @@
 		    	sub_contractor_work = '<span class="label label-success">Yes</span>';
 		    }
 		    else {
+                        sub_contractor_work = '<span class="label label-danger">No</span>';
 		    }
 		    $('#subcontractor_work_day').html(sub_contractor_work);
-		    $('#subcontractor_work_detail').text(data.data.pdr_sub_contractor_work_detail);
+		    if(data.data.sub_contractor_work_detail)
+                        $('#subcontractor_work_detail').text(data.data.sub_contractor_work_detail);
                     $('#subcontractor_work_detail_comment').text(data.data.pdr_sub_contractor_work_detail_comment);
 		    $("#update_submittal_review_form").show();
 		    $(".loading_data").hide();

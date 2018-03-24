@@ -41,6 +41,18 @@
                                     <tr>
                                         <td colspan="4" id="report_work_day"></td>
                                     </tr>
+                                    <tr class="info">
+                                       <th colspan="4">Did Subcontractors perform any work this day?</th> 
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" id="subcontractor_work_day"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" id="subcontractor_work_detail"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" id="subcontractor_work_detail_comment"></td>
+                                    </tr>
                                     <!-- <tr>
                                         <th colspan="4">What Contract Items were worked on?</th>
                                     </tr>
@@ -122,18 +134,7 @@
                                         <tbody id="daily_photo_video">
                                         </tbody>
                                     </tr>
-                                    <tr class="info">
-                                       <th colspan="4">Did Subcontractors perform any work this day?</th> 
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" id="subcontractor_work_day"></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" id="subcontractor_work_detail"></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" id="subcontractor_work_detail_comment"></td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td colspan="4">
                                             <a href="{{ url('/dashboard/'.$project_id.'/daily_construction_report') }}" class="btn btn-info pull-right">Back</a>

@@ -1,6 +1,7 @@
 <!-- page head start-->
 <div class="page-head">
     <h3 class="m-b-less">Add Company</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;    </button>
 </div>
 <!-- page head end-->
 <style>
