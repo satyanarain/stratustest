@@ -181,6 +181,11 @@ class NoticeCompletionController extends Controller {
                   continue;
                 }
                 else {
+                $notification_key     = 'notice_of_completion';
+                $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);
+                if(count($check_project_user_notification) < 1){
+                  continue;
+                }else{
                   // Send Notification to users
                   $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
                
@@ -199,6 +204,7 @@ class NoticeCompletionController extends Controller {
                       $message->from('no-reply@sw.ai', 'StratusCM');
                       $message->to($user_single->email, $user_single->name)->subject($user_single->title);
                   });
+                }
                 }
 
               } // End Foreach
