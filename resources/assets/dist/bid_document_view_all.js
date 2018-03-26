@@ -127,12 +127,16 @@
 			  	}
 
 			  	var t = $('#view_users_table').DataTable();
+                                if(val.low_bidder_name)
+                                    var low_bidder_name = val.low_bidder_name;
+                                else
+                                    var low_bidder_name = '';
 				t.row.add( [
 		           count,
 		           bid_advertisement_date,
 		           invite_date,
 		           date_of_opening,
-                           val.low_bidder_name,
+                           low_bidder_name,
 		           status,
 		           single_view + update_permission
 		       	]).draw( false );

@@ -402,7 +402,7 @@ $(document).ready(function() {
         })
         setTimeout(function()
         {
-            var document_generated  = $("#notice_award_pdf_content").html();return false;
+            var document_generated  = $("#notice_award_pdf_content").html();
             var document_path       = 'uploads/notice_award/';
             jQuery.ajax({
                 url: baseUrl + "document/GeneratePdfFiles",

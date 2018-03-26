@@ -125,7 +125,7 @@
                                             <div id="diplay" style="display: none">
                                             <div class="form-group col-md-6">
                                                 <label>Add New Improvement Type</label>
-                                              <input type="text" class="form-control " id="imp_type">
+                                                <input type="text" class="form-control " id="imp_type" autocomplete="off">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label>&nbsp;</label>
