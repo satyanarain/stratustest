@@ -691,6 +691,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('daily-report/add', 'Projects\DailyReportController@add_daily_report');
     Route::post('daily-report/{pdr_id}/update', 'Projects\DailyReportController@update_daily_report');
     Route::get('daily-report/{pdr_id}', 'Projects\DailyReportController@get_daily_report_single');
+    Route::get('daily-report-from-log/{pdr_id}', 'Projects\DailyReportController@get_daily_report_single_log');
     Route::get('{project_id}/daily-report', 'Projects\DailyReportController@get_daily_report_project');
     Route::get('{project_id}/daily-report-logs/{pdr_id}', 'Projects\DailyReportController@get_daily_report_logs_project');
     Route::post('{project_id}/daily-quantity-complete', 'Projects\DailyReportController@add_daily_quantity_complete');

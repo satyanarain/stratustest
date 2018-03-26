@@ -79,7 +79,7 @@ $(document).ready(function() {
 	    })
 	    
 		jQuery.ajax({
-		url: baseUrl + "daily-report/"+report_id,
+		url: baseUrl + "daily-report-from-log/"+report_id,
 		    type: "GET",
 		    headers: {
 		      "Content-Type": "application/json",

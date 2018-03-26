@@ -508,6 +508,41 @@ class DailyReportController extends Controller {
         ->leftJoin('projects', 'project_daily_report_logs.pdr_project_id', '=', 'projects.p_id')
         ->leftJoin('users', 'project_daily_report_logs.pdr_user_id', '=', 'users.id')
         ->select('project_daily_report_logs.*', 'project_firm.f_name as sub_contractor_work_detail', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+        ->where('project_daily_report_logs.pdrl_id', '=', $report_id)
+        //->orderBy('project_daily_report_logs.pdrl_id','DESC')
+        ->first();
+        if(count($query) < 1)
+        {
+          $result = array('code'=>404, "description"=>"No Records Found");
+          return response()->json($result, 404);
+        }
+        else
+        {
+          $result = array('data'=>$query,'code'=>200);
+          return response()->json($result, 200);
+        }
+      // }
+    }
+    catch(Exception $e)
+    {
+      return response()->json(['error' => 'Something is wrong'], 500);
+    }
+  }
+  
+  /*
+  --------------------------------------------------------------------------
+   Get single Daily Report by passing pdr_id
+  --------------------------------------------------------------------------
+  */
+  public function get_daily_report_single_log(Request $request, $report_id)
+  {
+    try
+    {
+        $query = DB::table('project_daily_report_logs')
+        ->leftJoin('project_firm', 'project_daily_report_logs.pdr_sub_contractor_work_detail', '=', 'project_firm.f_id')
+        ->leftJoin('projects', 'project_daily_report_logs.pdr_project_id', '=', 'projects.p_id')
+        ->leftJoin('users', 'project_daily_report_logs.pdr_user_id', '=', 'users.id')
+        ->select('project_daily_report_logs.*', 'project_firm.f_name as sub_contractor_work_detail', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
         ->where('project_daily_report_logs.pdr_report_id', '=', $report_id)
         ->orderBy('project_daily_report_logs.pdrl_id','DESC')
         ->first();
@@ -521,7 +556,7 @@ class DailyReportController extends Controller {
           $result = array('data'=>$query,'code'=>200);
           return response()->json($result, 200);
         }
-      // }
+      
     }
     catch(Exception $e)
     {
