@@ -196,8 +196,9 @@ class NoticeAwardController extends Controller {
                     $response = json_decode($json_response, true);
                     //print_r($json_response);
                     //print_r($response);die;
-                    $result = array('code'=>400, "description"=>$response['message'],'docusign'=>1);
+                    $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1));
                     return response()->json($result, 400);
+                    //return $result = response()->json(["data" => $validator->messages()],400);
                     //return $result = response()->json(["data" => $validator->messages()],400);
                     //return response()->json(['error' => "Error calling DocuSign.".$response['message']], 500);
 //                    echo "Error calling DocuSign." . $status . "\nerror text: ";
