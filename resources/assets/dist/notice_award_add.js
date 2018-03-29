@@ -610,6 +610,9 @@ $(document).ready(function() {
             if(responseText.data.project_id != null){
                 html += '<li>The project id field is required.</li>';
             }
+            if(responseText.data.docusign != null){
+                html += '<li>There is some error with docusign. Please try after some time.</li>';
+            }
             html += '</ul></div>';
             $("#alert_message").html(html);
             setTimeout(function()
