@@ -196,7 +196,7 @@ class NoticeAwardController extends Controller {
                     $response = json_decode($json_response, true);
                     //print_r($json_response);
                     //print_r($response);die;
-                    $result = array('code'=>400,"responseText"=>array("data"=>array("description"=>$response['message'],'docusign'=>1)));
+                    $result = array('code'=>400,"responseText"=>array("data"=>array("description"=>$response['message'],'docusign'=>1,"notice_status"=>null,"contactor_name"=>null)));
                     return response()->json($result, 400);
                     //return $result = response()->json(["data" => $validator->messages()],400);
                     //return $result = response()->json(["data" => $validator->messages()],400);
