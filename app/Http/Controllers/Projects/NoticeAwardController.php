@@ -191,6 +191,7 @@ class NoticeAwardController extends Controller {
             );
             $json_response = curl_exec($curl); // Do it!
             $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+            print_r($json_response);die;
             if ( $status != 201 ) {
                    // $response = json_decode($json_response, true);
                     return response()->json(['error' => "Error calling DocuSign.".$json_response['message']], 500);
