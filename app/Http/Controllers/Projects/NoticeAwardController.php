@@ -126,7 +126,7 @@ class NoticeAwardController extends Controller {
             }
             $docs = DB::table('documents')
                 ->select('documents.*')
-                ->where('doc_id', '=', 12)
+                ->where('doc_id', '=', $notice_path)
                 ->first();
             //print_r($docs);die; 
             $documentFileName = env('APP_URL').$docs->doc_path;
@@ -143,7 +143,8 @@ class NoticeAwardController extends Controller {
             $json_response = curl_exec($curl);
             $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
             if ( $status != 200 ) {
-                    return (['ok' => false, 'errMsg' => "Error calling DocuSign, status is: " . $status]);
+                    return response()->json(['error' => "Error calling DocuSign, status is: " . $status], 500);
+                    //return (['ok' => false, 'errMsg' => "Error calling DocuSign, status is: " . $status]);
             }
             $response = json_decode($json_response, true);
             $accountId = $response["loginAccounts"][0]["accountId"];
@@ -191,9 +192,11 @@ class NoticeAwardController extends Controller {
             $json_response = curl_exec($curl); // Do it!
             $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
             if ( $status != 201 ) {
-                    echo "Error calling DocuSign, status is:" . $status . "\nerror text: ";
-                    print_r($json_response); echo "\n";
-                    exit(-1);
+                    $response = json_decode($json_response, true);
+                    return response()->json(['error' => "Error calling DocuSign.".$json_response['message']], 500);
+//                    echo "Error calling DocuSign." . $status . "\nerror text: ";
+//                    print_r($json_response['message']); echo "\n";
+//                    exit(-1);
             }
             $response = json_decode($json_response, true);
             $pna_envelope_id = $response["envelopeId"];
