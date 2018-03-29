@@ -520,12 +520,15 @@ $(document).ready(function() {
         });
         var signatory_email = [];
         $('input[name^=signatory_email]').each(function(){
-            if($(this).val() == null){
+            if($(this).val() != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())){
+                signatory_email.push($(this).val());
+            }else if($(this).val() != ""){
                 html += '<li>Signatory email is invalid.</li>';
                 is_error = true;
             }
-            if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val()))
-                signatory_email.push($(this).val());
+            alert($(this).val());
+//            if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val()))
+//                signatory_email.push($(this).val());
         });
         var item = {};
         item['signatory_name'] 		= signatory_name;

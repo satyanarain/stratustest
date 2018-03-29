@@ -78,7 +78,6 @@ class NoticeAwardController extends Controller {
             {
                 $data = array();
                 foreach($signatory_arr as $i=>$row){
-                    echo filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL);
                     if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
                     {
                         $data[$i]['email'] = $row['signatory_email'];
