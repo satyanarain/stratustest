@@ -509,13 +509,23 @@ $(document).ready(function() {
         var token                   = localStorage.getItem('u_token');
         var project_type_dropdown_new = $('#project_type_dropdown_new').val();
         var project_type_dropdown_old = $('#project_type_dropdown_old').val();
+        var html;
+        var is_error = false;
+        html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
+        
+        //alert(company_name);return false;
         var signatory_name = [];
         $('input[name^=signatory_name]').each(function(){
             signatory_name.push($(this).val());
         });
         var signatory_email = [];
         $('input[name^=signatory_email]').each(function(){
-            signatory_email.push($(this).val());
+            if($(this).val() == null){
+                html += '<li>Signatory email is invalid.</li>';
+                is_error = true;
+            }
+            if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val()))
+                signatory_email.push($(this).val());
         });
         var item = {};
         item['signatory_name'] 		= signatory_name;
@@ -536,7 +546,22 @@ $(document).ready(function() {
             var improvement_type = improvement_type_array.join(',')
         }
         //alert(improvement_type_array);return false;
+        html += '</ul></div>';
         console.log(improvement_type);
+        if(is_error == true){
+            $("#alert_message").html(html);
+            $("#alert_message").show();
+            $('.loading-submit').hide();
+            $('html, body').animate({
+                scrollTop: $(".page-head").offset().top
+            }, 'fast')
+            setTimeout(function(){
+                $("#alert_message").hide();
+                return false;
+            },5000)
+            return;
+        }
+        else {
         jQuery.ajax({
             url: baseUrl + "notice-award/add",
             type: "POST",
@@ -585,7 +610,7 @@ $(document).ready(function() {
             var responseText, html;
             responseText = JSON.parse(jqXHR.responseText);
             console.log(responseText.data);
-
+            console.log(jqXHR.responseText);
             $('html, body').animate({
                 scrollTop: $(".page-head").offset().top
             }, 'fast')
@@ -610,7 +635,7 @@ $(document).ready(function() {
                 html += '<li>The project id field is required.</li>';
             }
             if(responseText.data.docusign != null){
-                html += '<li>There is some error with docusign. Please try after some time.</li>';
+                html += '<li>'+responseText.data.description+'</li>';
             }
             html += '</ul></div>';
             $("#alert_message").html(html);
@@ -619,6 +644,7 @@ $(document).ready(function() {
                 $("#alert_message").hide();
             },5000);
         })
+        }
     }
     
     $('#company_name').change(function(){

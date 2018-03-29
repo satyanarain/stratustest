@@ -74,140 +74,144 @@ class NoticeAwardController extends Controller {
     }
     else {
         if($notice_status == 'new'){
-            $data = array();
-            foreach($signatory_arr as $i=>$row){
-                $data[$i]['email'] = $row['signatory_email'];
-                $data[$i]['name'] = $row['signatory_name'];
-                $data[$i]['recipientId'] = $i+1;
-                $data[$i]['tabs']['textTabs'] = array(
+            if(count($signatory_arr))
+            {
+                $data = array();
+                foreach($signatory_arr as $i=>$row){
+                    if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
+                    {
+                        $data[$i]['email'] = $row['signatory_email'];
+                        $data[$i]['name'] = $row['signatory_name'];
+                        $data[$i]['recipientId'] = $i+1;
+                        $data[$i]['tabs']['textTabs'] = array(
+                                            array(
+                                                "anchorString"=> "By:",
+                                                "anchorXOffset"=>30*($i+1),
+                                                //"anchorYOffset" => "200",
+                                                "tabLabel"=>"By",
+                                                "text"=>"By",
+                                                "pageNumber"=>"1",
+                                                "name"=>"By",
+                                                "required"=>"TRUE",
+                                                "anchorIgnoreIfNotPresent"=>TRUE,
+                                            ),
+                                            array(
+                                                "anchorString"=> "Title:",
+                                                "anchorXOffset"=>30*($i+1),
+                                                //"anchorYOffset" => "200",
+                                                "tabLabel"=>"Title",
+                                                "text"=>"Title",
+                                                "pageNumber"=>"1",
+                                                "name"=>"Title",
+                                                "required"=>"TRUE",
+                                                "anchorIgnoreIfNotPresent"=>TRUE,
+                                            ));
+                        $data[$i]['tabs']['dateSignedTabs'] =   array(
                                     array(
-                                        "anchorString"=> "By:",
-                                        "anchorXOffset"=>30*($i+1),
-                                        //"anchorYOffset" => "200",
-                                        "tabLabel"=>"By",
-                                        "text"=>"By",
-                                        "pageNumber"=>"1",
-                                        "name"=>"By",
-                                        "required"=>"TRUE",
-                                        "anchorIgnoreIfNotPresent"=>TRUE,
-                                    ),
-                                    array(
-                                        "anchorString"=> "Title:",
-                                        "anchorXOffset"=>30*($i+1),
-                                        //"anchorYOffset" => "200",
-                                        "tabLabel"=>"Title",
-                                        "text"=>"Title",
-                                        "pageNumber"=>"1",
-                                        "name"=>"Title",
-                                        "required"=>"TRUE",
-                                        "anchorIgnoreIfNotPresent"=>TRUE,
-                                    ));
-                $data[$i]['tabs']['dateSignedTabs'] =   array(
-                            array(
-                                "anchorString"=>null,
-                                "documentId" => "1",
-                                "pageNumber" => "1",
-                                "tabLabel"=> "Date Signed",
-                                "name"=> "Date Signed",
-                                "xPosition"=> 100*($i+1),
-                                "yPosition"=> 510*($i+1),
-
-                            )
-                        );
-                    $data[$i]['tabs']["signHereTabs"] = array(
-                                array(
-                                        "xPosition" => 100*($i+1),
-                                        "yPosition" => 700*($i+1),
+                                        "anchorString"=>null,
                                         "documentId" => "1",
-                                        "pageNumber" => "1"
-                                )
-                        );
-                
-            }
-            $docs = DB::table('documents')
-                ->select('documents.*')
-                ->where('doc_id', '=', $notice_path)
-                ->first();
-            //print_r($docs);die; 
-            $documentFileName = env('APP_URL').$docs->doc_path;
-            $documentName = 'Notice Of Award';
-            $email = env('DOCUSIGN_EMAIL');
-            $password = env('DOCUSIGN_PASSWORD');
-            $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
-            $url = env('DOCUSIGN_URL');
-            $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
-            $curl = curl_init($url);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, array("X-DocuSign-Authentication: $header"));
-            $json_response = curl_exec($curl);
-            $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-            if ( $status != 200 ) {
-                    return response()->json(['error' => "Error calling DocuSign, status is: " . $status], 500);
-                    //return (['ok' => false, 'errMsg' => "Error calling DocuSign, status is: " . $status]);
-            }
-            $response = json_decode($json_response, true);
-            $accountId = $response["loginAccounts"][0]["accountId"];
-            $baseUrl = $response["loginAccounts"][0]["baseUrl"];
-            curl_close($curl);
-            $data = 
-                    array (
-                            "emailSubject" => "DocuSign API - Please sign " . $documentName,
-                            "documents" => array( 
-                                    array("documentId" => "1", "name" => $documentName)
-                            ),
-                            "recipients" => array( 
-                                    "signers" => $data
-                            ),
-                            "status" => "sent"
-            );
-            $data_string = json_encode($data); 
-            $file_contents = file_get_contents($documentFileName);
-            // Create a multi-part request. First the form data, then the file content
-            $requestBody = 
-                     "\r\n"
-                    ."\r\n"
-                    ."--myboundary\r\n"
-                    ."Content-Type: application/json\r\n"
-                    ."Content-Disposition: form-data\r\n"
-                    ."\r\n"
-                    ."$data_string\r\n"
-                    ."--myboundary\r\n"
-                    ."Content-Type:application/pdf\r\n"
-                    ."Content-Disposition: file; filename=\"$documentName\"; documentid=1 \r\n"
-                    ."\r\n"
-                    ."$file_contents\r\n"
-                    ."--myboundary--\r\n"
-                    ."\r\n";
-            // Send to the /envelopes end point, which is relative to the baseUrl received above. 
-            $curl = curl_init($baseUrl . "/envelopes" );
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_POST, true);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $requestBody);                                                                  
-            curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
-                    'Content-Type: multipart/form-data;boundary=myboundary',
-                    'Content-Length: ' . strlen($requestBody),
-                    "X-DocuSign-Authentication: $header" )                                                                       
-            );
-            $json_response = curl_exec($curl); // Do it!
-            $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-            
-            if ( $status != 201 ) {
+                                        "pageNumber" => "1",
+                                        "tabLabel"=> "Date Signed",
+                                        "name"=> "Date Signed",
+                                        "xPosition"=> 100*($i+1),
+                                        "yPosition"=> 510*($i+1),
+
+                                    )
+                                );
+                        $data[$i]['tabs']["signHereTabs"] = array(
+                                    array(
+                                            "xPosition" => 100*($i+1),
+                                            "yPosition" => 700*($i+1),
+                                            "documentId" => "1",
+                                            "pageNumber" => "1"
+                                    )
+                            );
+                    }else{
+                        $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                        return response()->json($result, 400);
+                    }
+                }
+                if(count($data))
+                {
+                    $docs = DB::table('documents')
+                        ->select('documents.*')
+                        ->where('doc_id', '=', $notice_path)
+                        ->first();
+                    //print_r($docs);die; 
+                    $documentFileName = env('APP_URL').$docs->doc_path;
+                    $documentName = 'Notice Of Award';
+                    $email = env('DOCUSIGN_EMAIL');
+                    $password = env('DOCUSIGN_PASSWORD');
+                    $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
+                    $url = env('DOCUSIGN_URL');
+                    $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
+                    $curl = curl_init($url);
+                    curl_setopt($curl, CURLOPT_HEADER, false);
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array("X-DocuSign-Authentication: $header"));
+                    $json_response = curl_exec($curl);
+                    $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if ( $status != 200 ) {
+                            $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $status,'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                            return response()->json($result, 400);
+                    }
                     $response = json_decode($json_response, true);
-                    //print_r($json_response);
-                    //print_r($response);die;
-                    $result = array('code'=>400,"responseText"=>array("data"=>array("description"=>$response['message'],'docusign'=>1,
-                                    "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null)));
-                    return response()->json($result, 400);
-                    //return $result = response()->json(["data" => $validator->messages()],400);
-                    //return $result = response()->json(["data" => $validator->messages()],400);
-                    //return response()->json(['error' => "Error calling DocuSign.".$response['message']], 500);
-//                    echo "Error calling DocuSign." . $status . "\nerror text: ";
-//                    print_r($json_response['message']); echo "\n";
-//                    exit(-1);
+                    $accountId = $response["loginAccounts"][0]["accountId"];
+                    $baseUrl = $response["loginAccounts"][0]["baseUrl"];
+                    curl_close($curl);
+                    $data = 
+                            array (
+                                    "emailSubject" => "DocuSign API - Please sign " . $documentName,
+                                    "documents" => array( 
+                                            array("documentId" => "1", "name" => $documentName)
+                                    ),
+                                    "recipients" => array( 
+                                            "signers" => $data
+                                    ),
+                                    "status" => "sent"
+                    );
+                    $data_string = json_encode($data); 
+                    $file_contents = file_get_contents($documentFileName);
+                    // Create a multi-part request. First the form data, then the file content
+                    $requestBody = 
+                             "\r\n"
+                            ."\r\n"
+                            ."--myboundary\r\n"
+                            ."Content-Type: application/json\r\n"
+                            ."Content-Disposition: form-data\r\n"
+                            ."\r\n"
+                            ."$data_string\r\n"
+                            ."--myboundary\r\n"
+                            ."Content-Type:application/pdf\r\n"
+                            ."Content-Disposition: file; filename=\"$documentName\"; documentid=1 \r\n"
+                            ."\r\n"
+                            ."$file_contents\r\n"
+                            ."--myboundary--\r\n"
+                            ."\r\n";
+                    // Send to the /envelopes end point, which is relative to the baseUrl received above. 
+                    $curl = curl_init($baseUrl . "/envelopes" );
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_POST, true);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $requestBody);                                                                  
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
+                            'Content-Type: multipart/form-data;boundary=myboundary',
+                            'Content-Length: ' . strlen($requestBody),
+                            "X-DocuSign-Authentication: $header" )                                                                       
+                    );
+                    $json_response = curl_exec($curl); // Do it!
+                    $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if ( $status != 201 ) {
+                            $response = json_decode($json_response, true);
+                            $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                            return response()->json($result, 400);
+                    }
+                    $response = json_decode($json_response, true);
+                    $pna_envelope_id = $response["envelopeId"];
+                }
             }
-            $response = json_decode($json_response, true);
-            $pna_envelope_id = $response["envelopeId"];
             
 //            print_r( [
 //                    'ok' => true,
