@@ -61,6 +61,9 @@ class NoticeAwardController extends Controller {
         $project_id         = $request['project_id'];
         $user_id            = Auth::user()->id;
         $status             = 'active';
+        $signatory_arr      = $request['signatory_arr'];
+        $pna_envelope_id    = '';
+        $pna_docusign_status = 'pending';
     // Check User Permission Parameter 
     $user_id = Auth::user()->id;
     $permission_key = 'notice_award_add';
@@ -71,6 +74,140 @@ class NoticeAwardController extends Controller {
     }
     else {
         if($notice_status == 'new'){
+            $data = array();
+            foreach($signatory_arr as $i=>$row){
+                $data[$i]['email'] = $row['signatory_email'];
+                $data[$i]['name'] = $row['signatory_name'];
+                $data[$i]['recipientId'] = $i+1;
+                $data[$i]['tabs']['textTabs'] = array(
+                                    array(
+                                        "anchorString"=> "By:",
+                                        "anchorXOffset"=>30*($i+1),
+                                        //"anchorYOffset" => "200",
+                                        "tabLabel"=>"By",
+                                        "text"=>"By",
+                                        "pageNumber"=>"1",
+                                        "name"=>"By",
+                                        "required"=>"TRUE",
+                                        "anchorIgnoreIfNotPresent"=>TRUE,
+                                    ),
+                                    array(
+                                        "anchorString"=> "Title:",
+                                        "anchorXOffset"=>30*($i+1),
+                                        //"anchorYOffset" => "200",
+                                        "tabLabel"=>"Title",
+                                        "text"=>"Title",
+                                        "pageNumber"=>"1",
+                                        "name"=>"Title",
+                                        "required"=>"TRUE",
+                                        "anchorIgnoreIfNotPresent"=>TRUE,
+                                    ));
+                $data[$i]['tabs']['dateSignedTabs'] =   array(
+                            array(
+                                "anchorString"=>null,
+                                "documentId" => "1",
+                                "pageNumber" => "1",
+                                "tabLabel"=> "Date Signed",
+                                "name"=> "Date Signed",
+                                "xPosition"=> 100*($i+1),
+                                "yPosition"=> 510*($i+1),
+
+                            )
+                        );
+                    $data[$i]['tabs']["signHereTabs"] = array(
+                                array(
+                                        "xPosition" => 100*($i+1),
+                                        "yPosition" => 700*($i+1),
+                                        "documentId" => "1",
+                                        "pageNumber" => "1"
+                                )
+                        );
+                
+            }
+            $docs = DB::table('documents')
+                ->select('documents.*')
+                ->where('doc_id', '=', 12)
+                ->first();
+            //print_r($docs);die; 
+            $documentFileName = env('APP_URL').$docs->doc_path;
+            $documentName = 'Notice Of Award';
+            $email = env('DOCUSIGN_EMAIL');
+            $password = env('DOCUSIGN_PASSWORD');
+            $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
+            $url = env('DOCUSIGN_URL');
+            $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_HEADER, false);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array("X-DocuSign-Authentication: $header"));
+            $json_response = curl_exec($curl);
+            $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+            if ( $status != 200 ) {
+                    return (['ok' => false, 'errMsg' => "Error calling DocuSign, status is: " . $status]);
+            }
+            $response = json_decode($json_response, true);
+            $accountId = $response["loginAccounts"][0]["accountId"];
+            $baseUrl = $response["loginAccounts"][0]["baseUrl"];
+            curl_close($curl);
+            $data = 
+                    array (
+                            "emailSubject" => "DocuSign API - Please sign " . $documentName,
+                            "documents" => array( 
+                                    array("documentId" => "1", "name" => $documentName)
+                            ),
+                            "recipients" => array( 
+                                    "signers" => $data
+                            ),
+                            "status" => "sent"
+            );
+            $data_string = json_encode($data); 
+            $file_contents = file_get_contents($documentFileName);
+            // Create a multi-part request. First the form data, then the file content
+            $requestBody = 
+                     "\r\n"
+                    ."\r\n"
+                    ."--myboundary\r\n"
+                    ."Content-Type: application/json\r\n"
+                    ."Content-Disposition: form-data\r\n"
+                    ."\r\n"
+                    ."$data_string\r\n"
+                    ."--myboundary\r\n"
+                    ."Content-Type:application/pdf\r\n"
+                    ."Content-Disposition: file; filename=\"$documentName\"; documentid=1 \r\n"
+                    ."\r\n"
+                    ."$file_contents\r\n"
+                    ."--myboundary--\r\n"
+                    ."\r\n";
+            // Send to the /envelopes end point, which is relative to the baseUrl received above. 
+            $curl = curl_init($baseUrl . "/envelopes" );
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $requestBody);                                                                  
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
+                    'Content-Type: multipart/form-data;boundary=myboundary',
+                    'Content-Length: ' . strlen($requestBody),
+                    "X-DocuSign-Authentication: $header" )                                                                       
+            );
+            $json_response = curl_exec($curl); // Do it!
+            $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+            if ( $status != 201 ) {
+                    echo "Error calling DocuSign, status is:" . $status . "\nerror text: ";
+                    print_r($json_response); echo "\n";
+                    exit(-1);
+            }
+            $response = json_decode($json_response, true);
+            $pna_envelope_id = $response["envelopeId"];
+            
+//            print_r( [
+//                    'ok' => true,
+//                    'envelopeId' => $envelopeId,
+//                    'accountId' => $accountId,
+//                    'baseUrl' => $baseUrl
+//            ]);
+        
+        
+        
+            //echo '<pre>';print_r($data);die;
           $information = array(
             "notice_status"   => $notice_status,
             "improvement_type"=> $improvement_type,
@@ -135,7 +272,7 @@ class NoticeAwardController extends Controller {
         {
             // $query = DB::table('project_notice_award')
             // ->insert(['pna_notice_status' => $notice_status, 'pna_improvement_type' => $improvement_type, 'pna_contactor_name' => $contactor_name, 'pna_contact_amount' => $contact_amount, 'pna_award_date' => $award_date, 'pna_notice_path' => $notice_path, 'pna_project_id' => $project_id, 'pna_user_id' => $user_id, 'pna_status' => $status]);
-            $notice_award = ProjectNoticeofAward::create(['pna_notice_status' => $notice_status, 'pna_improvement_type' => $improvement_type, 'pna_contactor_name' => $contactor_name, 'pna_contact_amount' => $contact_amount, 'pna_award_date' => $award_date, 'pna_notice_path' => $notice_path, 'pna_project_id' => $project_id, 'pna_user_id' => $user_id, 'pna_status' => $status]);
+            $notice_award = ProjectNoticeofAward::create(['pna_docusign_status'=>$pna_docusign_status,'pna_envelope_id'=>$pna_envelope_id,'pna_notice_status' => $notice_status, 'pna_improvement_type' => $improvement_type, 'pna_contactor_name' => $contactor_name, 'pna_contact_amount' => $contact_amount, 'pna_award_date' => $award_date, 'pna_notice_path' => $notice_path, 'pna_project_id' => $project_id, 'pna_user_id' => $user_id, 'pna_status' => $status]);
 
             $notice_award_id = $notice_award->id;
 

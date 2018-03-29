@@ -311,7 +311,7 @@ $(document).ready(function() {
 	                        '</div>'+
 	                        '<div class="col-xs-2">'+
 	                            '<a id="'+item_id+'abc'+count+'" class="btn btn-success add_bar_resource add_res"> + </a> '+
-                                    ' <a id="'+item_id+'abc'+count+'" class="btn btn-success add_bar_resource remove_res"> X </a>'+
+                                    ' <a id="'+item_id+'abc'+count+'" class="btn btn-success add_bar_resource remove_res"> - </a>'+
 	                        '</div>'+
 	                    '</div><div class="clearfix"></div>'+
 	                    '</div>';

@@ -325,7 +325,37 @@ $(document).ready(function() {
             $('#pdf_gen_bid_advertisement_date').text(data.data[0].bd_bid_advertisement_date);
         })
 
+    setTimeout(function(){
+        $('#signatory_container').delegate( 'a.remove_signatory', 'click', function () {
+            var id = $(this).attr("counter");
+            //alert(id);
+            $('.sign'+id).remove();
+            return;
+        });
+        $('#signatory_container').delegate( 'a.add_signatory', 'click', function () {
+            var signatory_counter = $("#signatory_counter").val();
+            signatory_counter++;
+            var html = '<div class="sign'+signatory_counter+'">\n\
+                        <div class="form-group col-md-5">\n\
+                            <label for="">Signatory Name</label>\n\
+                            <input class="form-control" name="signatory_name[]" type="text" id="">\n\
+                        </div>\n\
+                        <div class="form-group col-md-5">\n\
+                            <label for="">Signatory Email</label>\n\
+                            <input class="form-control" name="signatory_email[]" type="text" id="">\n\
+                        </div>\n\
+                        <div class="form-group col-md-2" style="padding-top: 25px;">\n\
+                            <a class="btn btn-success add_signatory" counter="'+signatory_counter+'">+</a>&nbsp;\n\
+                            <a class="btn btn-success remove_signatory" counter="'+signatory_counter+'">-</a>\n\
+                        </div>\n\
+                    </div>';
+       
+            $("#signatory_container").append(html);
+            $("#signatory_counter").val(signatory_counter);
+            return;
+        });
 
+    }, 1000);   
 
 });
 
@@ -479,7 +509,24 @@ $(document).ready(function() {
         var token                   = localStorage.getItem('u_token');
         var project_type_dropdown_new = $('#project_type_dropdown_new').val();
         var project_type_dropdown_old = $('#project_type_dropdown_old').val();
-
+        var signatory_name = [];
+        $('input[name^=signatory_name]').each(function(){
+            signatory_name.push($(this).val());
+        });
+        var signatory_email = [];
+        $('input[name^=signatory_email]').each(function(){
+            signatory_email.push($(this).val());
+        });
+        var item = {};
+        item['signatory_name'] 		= signatory_name;
+        item['signatory_email']         = signatory_email;
+        signatory_arr = [];
+        for (i = 0; i < signatory_email.length; i++) {
+            signatory_arr.push({
+		            "signatory_name" 		:  item['signatory_name'][i],
+		            "signatory_email" 		:  item['signatory_email'][i],
+		        });
+        }
         if(project_type_dropdown_new){
             var improvement_type    = project_type_dropdown_new;
         }
@@ -500,7 +547,8 @@ $(document).ready(function() {
                 "contact_amount"        : bid_amount,
                 "award_date"            : award_date,
                 "notice_path"           : upload_doc_id,
-                "project_id"            : project_id
+                "project_id"            : project_id,
+                "signatory_arr"         : signatory_arr,
             },
             headers: {
               "x-access-token": token
@@ -509,6 +557,7 @@ $(document).ready(function() {
             cache: false
         })
         .done(function(data, textStatus, jqXHR){
+            return false;
             $('.loading-submit').hide();
             $('html, body').animate({
                 scrollTop: $(".page-head").offset().top
@@ -593,3 +642,5 @@ $(document).ready(function() {
             
         }
     })
+    
+    

@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div id="alert_message"></div>
-<div class="col-md-6">
+<div class="col-md-12">
     <div class="row">
         <div class="form-group col-md-12">
             <label for="company_name"></label>
@@ -71,10 +71,10 @@
             </label>
         </div>
 
-        <div class="notice_award_new" style="display: none;">
+        <div class="notice_award_new" style="display:none;">
             <header class="panel-heading">Create Notice of Award</header>
 
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
 <!--                <label for="project_type">Project Improvement Type</label><br/>-->
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
@@ -89,7 +89,7 @@
                 </select>
             </div>
 
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
                 <label for="company_name" style="padding-top: 15px;">Contractor’s Name</label>
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
@@ -98,8 +98,8 @@
                 <select class="form-control" name="notice_award_company_name" id="company_name">
                 </select>
             </div>
-
-            <div class="form-group col-md-12">
+            <div class="clearfix"></div>
+            <div class="form-group col-md-6">
                 <label for="name_of_report">Bid/Award Amount</label>
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
@@ -110,8 +110,8 @@
                     <input class="form-control" name="notice_award_bid_amount" type="text" id="bid_amount" onkeypress="return isNumber(event)">
                 </div>
             </div>
-            <div class="clearfix"></div>
-            <div class="form-group col-md-12">
+            
+            <div class="form-group col-md-6">
                 <label>Notice of Award Date</label>
                 <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
                     <input type="text" name="notice_award_date" readonly="" value="<?php echo date("Y-m-d"); ?>" size="16" class="form-control"  id="award_date">
@@ -120,6 +120,24 @@
                     </span>
                 </div>
             </div>
+            <div class="clearfix"></div>
+            <input type="hidden" name="signatory_counter" id="signatory_counter" value="1">
+            <div id="signatory_container">
+                <div class="sign1">
+                    <div class="form-group col-md-5">
+                        <label for="">Signatory Name</label>
+                        <input class="form-control" name="signatory_name[]" type="text" id="">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="">Signatory Email</label>
+                        <input class="form-control" name="signatory_email[]" type="text" id="">
+                    </div>
+                    <div class="form-group col-md-2" style="padding-top: 25px;">
+                            <a class="btn btn-success add_signatory" counter="1">+</a>&nbsp;
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
             <div class="form-group col-md-12">
 <!--                <a data-href="{{ url('/dashboard/'.$project_id.'/notice_award') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
                 <a href="{{ url('/dashboard/'.$project_id.'/notice_award') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
@@ -134,7 +152,7 @@
 
         <div class="notice_award_exist" style="display: none;">
             <header class="panel-heading">Already have Notice of Award</header>
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
 <!--                <label for="project_type">Project Improvement Type</label><br/>-->
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
@@ -149,7 +167,7 @@
                 </select>
             </div>
 
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
                 <label for="name_of_report" style="padding-top: 15px;">Upload Notice of Award <span class="text-danger">*</span></label>
                 <section class="panel upload_doc_panel_performance" id="upload_performance">
                     <div class="panel-body" style="padding: 0px;">
