@@ -207,7 +207,7 @@ class NoticeAwardController extends Controller {
 //                    exit(-1);
             }
             $response = json_decode($json_response, true);
-            $pna_envelope_id = $response["envelopeId"];
+            echo $pna_envelope_id = $response["envelopeId"];
             
 //            print_r( [
 //                    'ok' => true,
