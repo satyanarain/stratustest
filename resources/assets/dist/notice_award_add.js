@@ -557,7 +557,6 @@ $(document).ready(function() {
             cache: false
         })
         .done(function(data, textStatus, jqXHR){
-            return false;
             $('.loading-submit').hide();
             $('html, body').animate({
                 scrollTop: $(".page-head").offset().top
