@@ -1429,4 +1429,31 @@ Mail::send('emails.reset_password_request', ['user' => $user_single], function (
             }
         }
      }
+     
+     public function change_password(Request $request) {
+        try
+        {
+            $userid = Auth::user()->id;
+            $password = Hash::make($request['password']);
+            $user_update = DB::table('users')
+            ->where('id', '=', $userid)
+            ->update(['password' => $password]);
+            if(count($user_update) < 1)
+            {
+              $result = array('code'=>400, "description"=>"No Records Found");
+              // $data = array('data' =>  $result);  
+              return $result = response()->json($result, 400);
+            }
+            else
+            {
+              $result = array('code'=>200, "description"=>"Password Updated");
+              // $data = array('data' =>  $result);  
+              return $result = response()->json($result, 200);
+            }
+        }
+        catch(Exception $e)
+        {
+          return response()->json(['error' => 'Something is wrong'], 500);
+        } 
+     }
 }

@@ -44,6 +44,9 @@ Route::post('upload_site_logo', 'Users\UserController@update_site_logo');
 Route::get('dashboard/users/{userid}', function () { 
     return view('/user_detail');   
 });
+Route::get('dashboard/change-password', function () { 
+    return view('/change-password');   
+});
 Route::get('dashboard/users', function () {
     return view('/view_users');
 });
@@ -86,7 +89,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('users/get_user_info/{id}', 'Users\UserController@get_user_info');
     Route::post('users/delete_user_data/', 'Users\UserController@delete_user_data');
     Route::post('users/get_user_new_role', 'Users\UserController@get_user_new_role');
-
+    Route::post('users/change_password', 'Users\UserController@change_password');
 });
 Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('users/{userid}', 'Users\UserController@get_profile');
@@ -95,6 +98,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('users/{userid}/suspend', 'Users\UserController@user_suspend');
     Route::post('users/add', 'Users\UserController@add_user');
     Route::get('users', 'Users\UserController@get_users');
+    
 });
 
 /*  --------------------------------------------------------------------------

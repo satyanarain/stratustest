@@ -289,6 +289,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu purple pull-right">
                                 <li id="my_profile_link"></li>
+                                <li id="change_password_link"></li>
                                <!--  <li>
                                     <a href="javascript:;">
                                         <span class="badge bg-danger pull-right">40%</span>

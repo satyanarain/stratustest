@@ -11,6 +11,7 @@ $(document).ready(function() {
 	var u_last_name 	= localStorage.getItem('u_last_name');
 	var role 		= localStorage.getItem('u_role');
 	$("#my_profile_link").html('<a href="'+baseUrl+'dashboard/users/'+u_id+'">Profile</a>');
+        $("#change_password_link").html('<a href="'+baseUrl+'dashboard/change-password">Change Password</a>');
 	$("#login_username").html(u_first_name+' '+u_last_name+'<span class=" fa fa-angle-down"></span>');
 
 	if(role == 'owner'){
