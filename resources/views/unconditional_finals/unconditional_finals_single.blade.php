@@ -80,7 +80,7 @@
                             </div><!-- panel-body Close -->
                         </section>
                         <div class="state-information">
-                            <a href="{{ url('/dashboard/'.$project_id.'/unconditional_finals') }}" class="btn btn-info pull-right">Back</a>
+                            <a href="{{ url('/dashboard/'.$project_id.'/unconditional_finals') }}" class="btn btn-info">Back</a>
                         </div>
                     </div>
                 </div>
