@@ -137,7 +137,7 @@
        </select>
     </div>
     <div class="form-group col-md-9">
-        <input class="form-control" type="text" id="pdr_sub_contractor_work_detail_comment" name="pdr_sub_contractor_work_detail_comment">
+        <input class="form-control" type="text" id="pdr_sub_contractor_work_detail_comment" name="pdr_sub_contractor_work_detail_comment" placeholder="Add Comments">
     </div>
 </div>
 

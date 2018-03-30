@@ -77,7 +77,8 @@
 		    // $('#report_weather_detail').html(data.data.pdr_weather + "<sup>o</sup> c");
 		    if(data.data.pdr_weather)
                         $('#report_weather_detail').html(data.data.pdr_weather);
-		    $('#report_custom_detail').text(data.data.pdr_custom_field);
+		    if(data.data.pdr_custom_field)
+                        $('#report_custom_detail').text(data.data.pdr_custom_field);
 
 		    var perform_work_day = data.data.pdr_perform_work_day;
 		    if(perform_work_day == 'no'){
@@ -111,7 +112,8 @@
 		    else {
 		    }
 		    $('#milestone').html(milestone_completed); 
-		    $('#milestone_detail').text(data.data.pdr_milestone_detail);
+                    if(data.data.pdr_milestone_detail)
+                        $('#milestone_detail').text(data.data.pdr_milestone_detail);
 
 		    var occur_detail = data.data.pdr_occur_detail;
 	          occur_detail = occur_detail.replace('[', '');

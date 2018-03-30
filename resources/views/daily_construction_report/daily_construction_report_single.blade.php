@@ -137,7 +137,7 @@
                                     
                                     <tr>
                                         <td colspan="4">
-                                            <a href="{{ url('/dashboard/'.$project_id.'/daily_construction_report') }}" class="btn btn-info pull-right">Back</a>
+                                            <a href="{{ url('/dashboard/'.$project_id.'/daily_construction_report') }}" class="btn btn-info">Back</a>
                                         </td>
                                     </tr>
                                 </tbody>
