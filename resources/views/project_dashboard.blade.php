@@ -442,7 +442,7 @@
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" style="font-size: 26px;">
-                                    REQUESTED CHANGE ORDERS
+                                    CHANGE ORDERS
                                 </a>
                             </h4>
                         </div>

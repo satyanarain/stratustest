@@ -105,7 +105,7 @@ class NotificationController extends Controller {
   {
     try
     {
-        $query = DB::table('project_notifications')
+        $query1 = DB::table('project_notifications')
         ->leftJoin('projects', 'project_notifications.pn_project_id', '=', 'projects.p_id')
         ->leftJoin('users', 'project_notifications.pn_sender_user_id', '=', 'users.id')
         ->select('project_notifications.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
@@ -114,13 +114,19 @@ class NotificationController extends Controller {
         ->orderBy('pn_id', 'desc')
         ->limit(5)
         ->get();
-        if(count($query) < 1)
+        if(count($query1) < 1)
         {
           $result = array('code'=>404, "description"=>"No Records Found");
           return response()->json($result, 404);
         }
         else
         {
+          foreach($query1 as $data)
+          {
+              //echo $data->pn_timestamp;die;
+              $data->pn_timestamp = date("Y-m-d h:i:s", strtotime($data->pn_timestamp));
+              $query[] = $data;
+          }
           $result = array('data'=>$query,'code'=>200);
           return response()->json($result, 200);
         }
@@ -140,20 +146,26 @@ class NotificationController extends Controller {
   {
     try
     {
-        $query = DB::table('project_notifications')
+        $query1 = DB::table('project_notifications')
         ->leftJoin('projects', 'project_notifications.pn_project_id', '=', 'projects.p_id')
         ->leftJoin('users', 'project_notifications.pn_sender_user_id', '=', 'users.id')
         ->select('project_notifications.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
         ->where('pn_receiver_user_id', '=', $user_id)
         ->orderBy('pn_id', 'desc')
         ->get();
-        if(count($query) < 1)
+        if(count($query1) < 1)
         {
           $result = array('code'=>404, "description"=>"No Records Found");
           return response()->json($result, 404);
         }
         else
         {
+          foreach($query1 as $data)
+          {
+              //echo $data->pn_timestamp;die;
+              $data->pn_timestamp = date("Y-m-d h:i:s", strtotime($data->pn_timestamp));
+              $query[] = $data;
+          }
           $result = array('data'=>$query,'code'=>200);
           return response()->json($result, 200);
         }
