@@ -188,7 +188,7 @@ class NoticeProceedController extends Controller {
                     }
                     $response = json_decode($json_response, true);
                     //print_r($data);
-                    $pna_envelope_id = $response["envelopeId"];die;
+                    $pna_envelope_id = $response["envelopeId"];
                 }
             }
             
