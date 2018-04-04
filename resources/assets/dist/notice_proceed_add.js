@@ -537,7 +537,7 @@ $('.create_notice').click(function () {
                         var item = {};
                         item['signatory_name'] 		= signatory_name;
                         item['signatory_email']         = signatory_email;
-                        $item['signatory_role']         = signatory_role;
+                        item['signatory_role']          = signatory_role;
                         signatory_arr = [];
                         for (i = 0; i < signatory_email.length; i++) {
                             signatory_arr.push({
