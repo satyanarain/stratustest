@@ -73,7 +73,7 @@
                 </label>
             </div>
 
-            <div class="newone newone col-md-12" id="newone" style="display: ">
+            <div class="newone newone col-md-12" id="newone" style="display: none;">
             <div class="form-group col-sm-6">
                 <label for="name_of_report" style="padding-top: 10px;">Date of Notice <span class="text-danger">*</span></label>
                 <!-- <input type="text" class="form-control" id="notice_date" value="<?php echo date("Y-m-d"); ?>"> -->
