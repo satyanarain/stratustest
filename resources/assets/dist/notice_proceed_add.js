@@ -518,6 +518,44 @@ $('.create_notice').click(function () {
                         var project_id              = $('#upload_project_id').val();
                         var token                   = localStorage.getItem('u_token');
                         var add_data_new            = $("#add_data_new").val();
+                        var signatory_name = [];
+                        $('input[name^=signatory_name]').each(function(){
+                            signatory_name.push($(this).val());
+                        });
+                        var signatory_email = [];
+                        $('input[name^=signatory_email]').each(function(){
+                            if($(this).val() != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())){
+                                signatory_email.push($(this).val());
+                            }else if($(this).val() != ""){
+                                html += '<li>Signatory email is invalid.</li>';
+                                is_error = true;
+                            }
+                        });
+                        var signatory_role = [];
+                        signatory_role.push('owner');
+                        signatory_role.push('contractor');
+                        var item = {};
+                        item['signatory_name'] 		= signatory_name;
+                        item['signatory_email']         = signatory_email;
+                        $item['signatory_role']         = signatory_role;
+                        signatory_arr = [];
+                        for (i = 0; i < signatory_email.length; i++) {
+                            signatory_arr.push({
+                                            "signatory_name" 		:   item['signatory_name'][i],
+                                            "signatory_email" 		:   item['signatory_email'][i],
+                                            "signatory_role"            :   item['signatory_role'][i],
+                                            "pdf_gen_contractor_name"   :   $('#pdf_gen_contractor_name').html(),
+                                            "pdf_gen_contractor_address":   $('#pdf_gen_contractor_address').html(),
+                                            "pdf_gen_ntp_date"          :   $('#pdf_gen_ntp_date').html(),
+                                            "pdf_gen_project_name"      :   $('#pdf_gen_project_name').html(),
+                                            "pdf_gen_project_type"      :   $('#pdf_gen_project_type').html(),
+                                            "pdf_gen_contractor_name_1" :   $('#pdf_gen_contractor_name_1').html(),
+                                            "pdf_gen_start_date"        :   $('#pdf_gen_start_date').html(),
+                                            "pdf_gen_working_days"      :   $('#pdf_gen_working_days').html(),
+                                            "pdf_gen_working_days_1"    :   $('#pdf_gen_working_days_1').html(),
+                                            "pdf_gen_amount"            :   $('#pdf_gen_amount').html(),
+                                        });
+                        }
                         console.log(cal_day);
                         jQuery.ajax({
                             url: baseUrl + "notice-proceed/add",

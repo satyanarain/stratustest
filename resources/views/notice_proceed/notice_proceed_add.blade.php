@@ -73,8 +73,8 @@
                 </label>
             </div>
 
-            <div class="newone newone col-md-6" id="newone" style="display: none">
-            <div class="form-group">
+            <div class="newone newone col-md-12" id="newone" style="display: ">
+            <div class="form-group col-sm-6">
                 <label for="name_of_report" style="padding-top: 10px;">Date of Notice <span class="text-danger">*</span></label>
                 <!-- <input type="text" class="form-control" id="notice_date" value="<?php echo date("Y-m-d"); ?>"> -->
                 <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
@@ -93,7 +93,7 @@
                 </div> -->
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-sm-6">
                 <label>Start Date <span class="text-danger">*</span></label>
                 <!-- <input type="text" class="form-control" id="notice_start_date" value="<?php echo date("Y-m-d"); ?>"> -->
                 <!-- <div class="form-group">
@@ -111,13 +111,13 @@
                     </span>
                 </div>
             </div>
-
-            <div class="form-group">
+            <div class="clearfix"></div>    
+            <div class="form-group col-sm-6">
                 <label>Duration (in days) <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" min="1" id="duration_days" required="required">
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-sm-6">
                 <label class="radio-inline">
                   <input type="radio"   name="days_working" id="days_working" value="calendar_day">Calendar Days
                 </label><br/>
@@ -125,8 +125,8 @@
                   <input type="radio"    name="days_working" id="days_working" value="working_day"> Working Days
                 </label>
             </div>
-
-            <div class="form-group">
+            <div class="clearfix"></div>
+            <div class="form-group col-sm-6">
                 <label class="col-md-4 nopadleft" style="padding-top: 5px;">Liquidated Damages <span class="text-danger">*</span></label>
                 <div class="col-md-4">
                     <!-- <input type="text" class="form-control" id="liquidated_amount"> -->
@@ -136,6 +136,36 @@
                     </div>
                 </div>
                 <label class="col-md-2" style="padding-top: 5px;">/ Day</label>
+            </div>
+            <div class="clearfix"></div>
+            <input type="hidden" name="signatory_counter" id="signatory_counter" value="2">
+            <div id="signatory_container">
+                <div class="sign1">
+                    <div class="form-group col-md-5">
+                        <label for="">Owner Name</label>
+                        <input class="form-control" name="signatory_name[]" type="text" id="">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="">Owner Email</label>
+                        <input class="form-control" name="signatory_email[]" type="text" id="">
+                    </div>
+                    <div class="form-group col-md-2" style="padding-top: 25px; display: none;">
+                            <a class="btn btn-success add_signatory" counter="1">+</a>&nbsp;
+                    </div>
+                </div>
+                <div class="sign2">
+                    <div class="form-group col-md-5">
+                        <label for="">Signatory Name</label>
+                        <input class="form-control" name="signatory_name[]" type="text" id="">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="">Signatory Email</label>
+                        <input class="form-control" name="signatory_email[]" type="text" id="">
+                    </div>
+                    <div class="form-group col-md-2" style="padding-top: 25px; display: none;">
+                            <a class="btn btn-success add_signatory" counter="1">+</a>&nbsp;
+                    </div>
+                </div>
             </div>
             <div class="clearfix"></div>
             <div class="form-group" style=" margin-top: 20px;">
@@ -192,7 +222,7 @@
     <div id="pdf_content" style="width:100%;">
         <h1 style="color:green; text-align:center;">Notice to Proceed</h1>
         <p style="width:50%; float: left;"><strong>To:</strong> <span id="pdf_gen_contractor_name"></span><br/><span id="pdf_gen_contractor_address"></span></p>
-        <p style="width:50%; float: left;"><strong>Date:</strong> <?php echo date("Y-m-d"); ?></p>
+        <p style="width:50%; float: left;"><strong>Date:</strong><span id="pdf_gen_ntp_date"> <?php echo date("Y-m-d"); ?></span></p>
         <div style="clear: both;"></div>
         <hr/>
         <div style="clear: both;"></div>

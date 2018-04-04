@@ -159,12 +159,12 @@ class NoticeAwardController extends Controller {
                 }
                 if(count($data))
                 {
-                    $docs = DB::table('documents')
-                        ->select('documents.*')
-                        ->where('doc_id', '=', $notice_path)
-                        ->first();
-                    //print_r($docs);die; 
-                    $documentFileName = env('APP_URL').$docs->doc_path;
+//                    $docs = DB::table('documents')
+//                        ->select('documents.*')
+//                        ->where('doc_id', '=', $notice_path)
+//                        ->first();
+//                    //print_r($docs);die; 
+//                    $documentFileName = env('APP_URL').$docs->doc_path;
                     $documentName = 'Notice Of Award';
                     $email = env('DOCUSIGN_EMAIL');
                     $password = env('DOCUSIGN_PASSWORD');

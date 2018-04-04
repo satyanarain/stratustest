@@ -63,6 +63,9 @@ class NoticeProceedController extends Controller {
         $project_id           = $request['project_id'];
         $user_id              = Auth::user()->id;
         $status               = 'active';
+        $signatory_arr      = $request['signatory_arr'];
+        $pna_envelope_id    = '';
+        $pna_docusign_status = 'pending';
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
       $permission_key = 'notice_proceed_add';
@@ -85,6 +88,100 @@ class NoticeProceedController extends Controller {
         );
 
         if($check_award_type == 'new'){
+            if(count($signatory_arr))
+            {
+                $data = array();
+                foreach($signatory_arr as $i=>$row){
+                    if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
+                    {
+                        $data[$i]["email"] = $row['signatory_email'];
+                        $data[$i]["name"] = $row['signatory_name'];
+                        $data[$i]["roleName"] = $row['signatory_role'];
+                        $data[$i]["tabs"]["textTabs"] =
+                                                array(array(
+                                                        "tabLabel" => "noa_company_name",
+                                                        "value" => $row['noa_company_name']),
+                                                        array (
+                                                        "tabLabel" => "noa_company_address",
+                                                        "value" => $row['noa_company_address']),
+                                                        array (
+                                                        "tabLabel" => "noa_project_name",
+                                                        "value" => $row['noa_project_name']),
+                                                        array (
+                                                        "tabLabel" => "noa_improvement_type",
+                                                        "value" => $row['noa_improvement_type']),
+                                                        array (
+                                                        "tabLabel" => "noa_bid_advertisement_date",
+                                                        "value" => $row['noa_bid_advertisement_date']),
+                                                        array (
+                                                        "tabLabel" => "noa_bid_amount",
+                                                        "value" => $row['noa_bid_amount']),
+                                                        array (
+                                                        "tabLabel" => "noa_date",
+                                                        "value" => date('m-d-Y')));
+
+                    }else{
+                        $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                        return response()->json($result, 400);
+                    }
+                }
+                if(count($data))
+                {
+                    
+                    $email = env('DOCUSIGN_EMAIL');
+                    $password = env('DOCUSIGN_PASSWORD');
+                    $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
+                    $templateId = "dc63edb8-d736-4882-92c5-b880c163dcb1";
+                    $url = env('DOCUSIGN_URL');
+                    $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
+                    $curl = curl_init($url);
+                    curl_setopt($curl, CURLOPT_HEADER, false);
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array("X-DocuSign-Authentication: $header"));
+                    $json_response = curl_exec($curl);
+                    $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if ( $status != 200 ) {
+                            $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $status,'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                            return response()->json($result, 400);
+                    }
+                    $response = json_decode($json_response, true);
+                    $accountId = $response["loginAccounts"][0]["accountId"];
+                    $baseUrl = $response["loginAccounts"][0]["baseUrl"];
+                    curl_close($curl);
+
+                    $data = array("accountId" => $accountId, 
+                        "emailSubject" => "Signature request for Notice to Proceed",
+                        "emailBlurb" => "Signature request for Notice to Proceed",
+                        "templateId" => $templateId, 
+                        "templateRoles" => $data,
+                        "status" => "sent");
+                    $data_string = json_encode($data); 
+                    
+                    // Send to the /envelopes end point, which is relative to the baseUrl received above. 
+                    $curl = curl_init($baseUrl . "/envelopes" );
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_POST, TRUE);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);                                                                  
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
+                            'Content-Type: application/json', 
+                            'Content-Length: ' . strlen($data_string),
+                            "X-DocuSign-Authentication: $header" )                                                                       
+                    );
+                    $json_response = curl_exec($curl); // Do it!
+                    $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if ( $status != 201 ) {
+                            $response = json_decode($json_response, true);
+                            $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                            return response()->json($result, 400);
+                    }
+                    $response = json_decode($json_response, true);
+                    $pna_envelope_id = $response["envelopeId"];
+                }
+            }
+            
           $rules = [
             'contractor_name'     => 'required',
             // 'date'                => 'required',
@@ -116,7 +213,7 @@ class NoticeProceedController extends Controller {
         {
             if($check_award_type == 'new'){
               $query = DB::table('project_notice_proceed')
-              ->insert(['pnp_contractor_name' => $contractor_name, 'pnp_type' => $check_award_type, 'pnp_date' => $date, 'pnp_start_date' => $start_date, 'pnp_duration' => $duration, 'pnp_cal_day' => $cal_day, 'pnp_liquidated_amount' => $liquidated_amount, 'pnp_path' => $path, 'pnp_project_id' => $project_id, 'pnp_user_id' => $user_id, 'pnp_status' => $status]);
+              ->insert(['pnp_docusign_status'=>$pna_docusign_status,'pnp_envelope_id'=>$pna_envelope_id,'pnp_contractor_name' => $contractor_name, 'pnp_type' => $check_award_type, 'pnp_date' => $date, 'pnp_start_date' => $start_date, 'pnp_duration' => $duration, 'pnp_cal_day' => $cal_day, 'pnp_liquidated_amount' => $liquidated_amount, 'pnp_path' => $path, 'pnp_project_id' => $project_id, 'pnp_user_id' => $user_id, 'pnp_status' => $status]);
 
             }
             else {
