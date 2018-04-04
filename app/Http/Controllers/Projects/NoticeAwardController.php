@@ -229,7 +229,7 @@ class NoticeAwardController extends Controller {
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);                                                                  
                     curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
                             'Content-Type: application/json', 
-                            'Content-Length: ' . strlen($requestBody),
+                            'Content-Length: ' . strlen($data_string),
                             "X-DocuSign-Authentication: $header" )                                                                       
                     );
                     $json_response = curl_exec($curl); // Do it!
