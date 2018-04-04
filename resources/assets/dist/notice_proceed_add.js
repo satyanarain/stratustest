@@ -569,7 +569,8 @@ $('.create_notice').click(function () {
                                 "cal_day"               : cal_day,
                                 "liquidated_amount"     : liquidated_amount,
                                 "path"                  : path,
-                                "project_id"            : project_id
+                                "project_id"            : project_id,
+                                "signatory_arr"         : signatory_arr,
                             },
                             headers: {
                                 "x-access-token": token
