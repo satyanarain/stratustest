@@ -132,7 +132,7 @@
                         <label for="">Signatory Email</label>
                         <input class="form-control" name="signatory_email[]" type="text" id="">
                     </div>
-                    <div class="form-group col-md-2" style="padding-top: 25px;">
+                    <div class="form-group col-md-2" style="padding-top: 25px; display: none;">
                             <a class="btn btn-success add_signatory" counter="1">+</a>&nbsp;
                     </div>
                 </div>
