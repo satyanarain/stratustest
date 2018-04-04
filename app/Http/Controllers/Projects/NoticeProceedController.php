@@ -99,26 +99,35 @@ class NoticeProceedController extends Controller {
                         $data[$i]["roleName"] = $row['signatory_role'];
                         $data[$i]["tabs"]["textTabs"] =
                                                 array(array(
-                                                        "tabLabel" => "noa_company_name",
-                                                        "value" => $row['noa_company_name']),
+                                                        "tabLabel" => "pdf_gen_contractor_name",
+                                                        "value" => $row['pdf_gen_contractor_name']),
                                                         array (
-                                                        "tabLabel" => "noa_company_address",
-                                                        "value" => $row['noa_company_address']),
+                                                        "tabLabel" => "pdf_gen_contractor_address",
+                                                        "value" => $row['pdf_gen_contractor_address']),
                                                         array (
-                                                        "tabLabel" => "noa_project_name",
-                                                        "value" => $row['noa_project_name']),
+                                                        "tabLabel" => "pdf_gen_project_name",
+                                                        "value" => $row['pdf_gen_project_name']),
                                                         array (
-                                                        "tabLabel" => "noa_improvement_type",
-                                                        "value" => $row['noa_improvement_type']),
+                                                        "tabLabel" => "pdf_gen_project_type",
+                                                        "value" => $row['pdf_gen_project_type']),
                                                         array (
-                                                        "tabLabel" => "noa_bid_advertisement_date",
-                                                        "value" => $row['noa_bid_advertisement_date']),
+                                                        "tabLabel" => "pdf_gen_contractor_name_1",
+                                                        "value" => $row['pdf_gen_contractor_name_1']),
                                                         array (
-                                                        "tabLabel" => "noa_bid_amount",
-                                                        "value" => $row['noa_bid_amount']),
+                                                        "tabLabel" => "pdf_gen_start_date",
+                                                        "value" => $row['pdf_gen_start_date']),
                                                         array (
-                                                        "tabLabel" => "noa_date",
-                                                        "value" => date('m-d-Y')));
+                                                        "tabLabel" => "pdf_gen_ntp_date",
+                                                        "value" => date('m-d-Y')),
+                                                        array (
+                                                        "tabLabel" => "pdf_gen_working_days",
+                                                        "value" => $row['pdf_gen_working_days']),
+                                                        array (
+                                                        "tabLabel" => "pdf_gen_working_days_1",
+                                                        "value" => $row['pdf_gen_working_days_1']),
+                                                        array (
+                                                        "tabLabel" => "pdf_gen_amount",
+                                                        "value" => $row['pdf_gen_amount']));
 
                     }else{
                         $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
