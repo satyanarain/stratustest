@@ -80,52 +80,77 @@ class NoticeAwardController extends Controller {
                 foreach($signatory_arr as $i=>$row){
                     if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
                     {
-                        $data[$i]['email'] = $row['signatory_email'];
-                        $data[$i]['name'] = $row['signatory_name'];
-                        $data[$i]['recipientId'] = $i+1;
-                        $data[$i]['tabs']['textTabs'] = array(
-                                            array(
-                                                "anchorString"=> "By:",
-                                                "anchorXOffset"=>30*($i+1),
-                                                //"anchorYOffset" => "200",
-                                                "tabLabel"=>"By",
-                                                "text"=>"By",
-                                                "pageNumber"=>"1",
-                                                "name"=>"By",
-                                                "required"=>"TRUE",
-                                                "anchorIgnoreIfNotPresent"=>TRUE,
-                                            ),
-                                            array(
-                                                "anchorString"=> "Title:",
-                                                "anchorXOffset"=>30*($i+1),
-                                                //"anchorYOffset" => "200",
-                                                "tabLabel"=>"Title",
-                                                "text"=>"Title",
-                                                "pageNumber"=>"1",
-                                                "name"=>"Title",
-                                                "required"=>"TRUE",
-                                                "anchorIgnoreIfNotPresent"=>TRUE,
-                                            ));
-                        $data[$i]['tabs']['dateSignedTabs'] =   array(
-                                    array(
-                                        "anchorString"=>null,
-                                        "documentId" => "1",
-                                        "pageNumber" => "1",
-                                        "tabLabel"=> "Date Signed",
-                                        "name"=> "Date Signed",
-                                        "xPosition"=> 100*($i+1),
-                                        "yPosition"=> 510*($i+1),
-
-                                    )
-                                );
-                        $data[$i]['tabs']["signHereTabs"] = array(
-                                    array(
-                                            "xPosition" => 100*($i+1),
-                                            "yPosition" => 700*($i+1),
-                                            "documentId" => "1",
-                                            "pageNumber" => "1"
-                                    )
-                            );
+                        $data[$i]["email"] = $row['signatory_email'];
+                        $data[$i]["name"] = $row['signatory_name'];
+                        $data[$i]["roleName"] = "contractor";
+                        $data[$i]["tabs"]["textTabs"] =
+                                                array(array(
+                                                        "tabLabel" => "noa_company_name",
+                                                        "value" => $row['noa_company_name']),
+                                                        array (
+                                                        "tabLabel" => "noa_company_address",
+                                                        "value" => $row['noa_company_address']),
+                                                        array (
+                                                        "tabLabel" => "noa_project_name",
+                                                        "value" => $row['noa_project_name']),
+                                                        array (
+                                                        "tabLabel" => "noa_improvement_type",
+                                                        "value" => $row['noa_improvement_type']),
+                                                        array (
+                                                        "tabLabel" => "noa_bid_advertisement_date",
+                                                        "value" => $row['noa_bid_advertisement_date']),
+                                                        array (
+                                                        "tabLabel" => "noa_bid_amount",
+                                                        "value" => $row['noa_bid_amount']),
+                                                        array (
+                                                        "tabLabel" => "noa_date",
+                                                        "value" => date('m-d-Y')));
+//                        $data[$i]['email'] = $row['signatory_email'];
+//                        $data[$i]['name'] = $row['signatory_name'];
+//                        $data[$i]['recipientId'] = $i+1;
+//                        $data[$i]['tabs']['textTabs'] = array(
+//                                            array(
+//                                                "anchorString"=> "By:",
+//                                                "anchorXOffset"=>30*($i+1),
+//                                                //"anchorYOffset" => "200",
+//                                                "tabLabel"=>"By",
+//                                                "text"=>"By",
+//                                                "pageNumber"=>"1",
+//                                                "name"=>"By",
+//                                                "required"=>"TRUE",
+//                                                "anchorIgnoreIfNotPresent"=>TRUE,
+//                                            ),
+//                                            array(
+//                                                "anchorString"=> "Title:",
+//                                                "anchorXOffset"=>30*($i+1),
+//                                                //"anchorYOffset" => "200",
+//                                                "tabLabel"=>"Title",
+//                                                "text"=>"Title",
+//                                                "pageNumber"=>"1",
+//                                                "name"=>"Title",
+//                                                "required"=>"TRUE",
+//                                                "anchorIgnoreIfNotPresent"=>TRUE,
+//                                            ));
+//                        $data[$i]['tabs']['dateSignedTabs'] =   array(
+//                                    array(
+//                                        "anchorString"=>null,
+//                                        "documentId" => "1",
+//                                        "pageNumber" => "1",
+//                                        "tabLabel"=> "Date Signed",
+//                                        "name"=> "Date Signed",
+//                                        "xPosition"=> 100*($i+1),
+//                                        "yPosition"=> 510*($i+1),
+//
+//                                    )
+//                                );
+//                        $data[$i]['tabs']["signHereTabs"] = array(
+//                                    array(
+//                                            "xPosition" => 100*($i+1),
+//                                            "yPosition" => 700*($i+1),
+//                                            "documentId" => "1",
+//                                            "pageNumber" => "1"
+//                                    )
+//                            );
                     }else{
                         $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
                                             "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
@@ -144,6 +169,7 @@ class NoticeAwardController extends Controller {
                     $email = env('DOCUSIGN_EMAIL');
                     $password = env('DOCUSIGN_PASSWORD');
                     $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
+                    $templateId = "0e301a1c-80c3-44b5-979b-7ed94a472290";
                     $url = env('DOCUSIGN_URL');
                     $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
                     $curl = curl_init($url);
@@ -161,42 +187,48 @@ class NoticeAwardController extends Controller {
                     $accountId = $response["loginAccounts"][0]["accountId"];
                     $baseUrl = $response["loginAccounts"][0]["baseUrl"];
                     curl_close($curl);
-                    $data = 
-                            array (
-                                    "emailSubject" => "DocuSign API - Please sign " . $documentName,
-                                    "documents" => array( 
-                                            array("documentId" => "1", "name" => $documentName)
-                                    ),
-                                    "recipients" => array( 
-                                            "signers" => $data
-                                    ),
-                                    "status" => "sent"
-                    );
+//                    $data = 
+//                            array (
+//                                    "emailSubject" => "DocuSign API - Please sign " . $documentName,
+//                                    "documents" => array( 
+//                                            array("documentId" => "1", "name" => $documentName)
+//                                    ),
+//                                    "recipients" => array( 
+//                                            "signers" => $data
+//                                    ),
+//                                    "status" => "sent"
+//                    );
+                    $data = array("accountId" => $accountId, 
+		"emailSubject" => "Signature request for Notice of Award",
+		"emailBlurb" => "Signature request for Notice of Award",
+		"templateId" => $templateId, 
+		"templateRoles" => $data,
+		"status" => "sent");
                     $data_string = json_encode($data); 
-                    $file_contents = file_get_contents($documentFileName);
+                    //$file_contents = file_get_contents($documentFileName);
                     // Create a multi-part request. First the form data, then the file content
-                    $requestBody = 
-                             "\r\n"
-                            ."\r\n"
-                            ."--myboundary\r\n"
-                            ."Content-Type: application/json\r\n"
-                            ."Content-Disposition: form-data\r\n"
-                            ."\r\n"
-                            ."$data_string\r\n"
-                            ."--myboundary\r\n"
-                            ."Content-Type:application/pdf\r\n"
-                            ."Content-Disposition: file; filename=\"$documentName\"; documentid=1 \r\n"
-                            ."\r\n"
-                            ."$file_contents\r\n"
-                            ."--myboundary--\r\n"
-                            ."\r\n";
+//                    $requestBody = 
+//                             "\r\n"
+//                            ."\r\n"
+//                            ."--myboundary\r\n"
+//                            ."Content-Type: application/json\r\n"
+//                            ."Content-Disposition: form-data\r\n"
+//                            ."\r\n"
+//                            ."$data_string\r\n"
+//                            ."--myboundary\r\n"
+//                            ."Content-Type:application/pdf\r\n"
+//                            ."Content-Disposition: file; filename=\"$documentName\"; documentid=1 \r\n"
+//                            ."\r\n"
+//                            ."$file_contents\r\n"
+//                            ."--myboundary--\r\n"
+//                            ."\r\n";
                     // Send to the /envelopes end point, which is relative to the baseUrl received above. 
                     $curl = curl_init($baseUrl . "/envelopes" );
                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($curl, CURLOPT_POST, true);
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $requestBody);                                                                  
+                    curl_setopt($curl, CURLOPT_POST, TRUE);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);                                                                  
                     curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
-                            'Content-Type: multipart/form-data;boundary=myboundary',
+                            'Content-Type: application/json', 
                             'Content-Length: ' . strlen($requestBody),
                             "X-DocuSign-Authentication: $header" )                                                                       
                     );

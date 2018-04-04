@@ -307,7 +307,7 @@ $(document).ready(function() {
             .done(function(data, textStatus, jqXHR) {
             // console.log(data.data.p_name);
             var project_name = data.data.p_name;
-            //$('#pdf_gen_project_name').text(project_name);
+            $('#pdf_gen_project_name').text(project_name);
         })
 
 
@@ -322,7 +322,7 @@ $(document).ready(function() {
         })
         .done(function(data, textStatus, jqXHR) {
             console.log(data.data[0].bd_bid_advertisement_date);
-            //$('#pdf_gen_bid_advertisement_date').text(data.data[0].bd_bid_advertisement_date);
+            $('#pdf_gen_bid_advertisement_date').text(data.data[0].bd_bid_advertisement_date);
         })
 
     setTimeout(function(){
@@ -403,12 +403,12 @@ $(document).ready(function() {
             //alert(data.data[0].pt_name);
             
             //$('#pdf_gen_project_type').text(data.data.pt_name);
-//            if(update_impv_type==1)
-//                $('#pdf_gen_project_type').text(data.data.pt_name);
-//            else
-//                $('#pdf_gen_project_type').text(latest_improvement_type_array.join(','));
+            if(update_impv_type==1)
+                $('#pdf_gen_project_type').text(data.data.pt_name);
+            else
+                $('#pdf_gen_project_type').text(latest_improvement_type_array.join(','));
             var bid_total_amount = $("#bid_amount").val();
-            //$("#pdf_gen_contract_amount").text(ReplaceNumberWithCommas(bid_total_amount));
+            $("#pdf_gen_contract_amount").text(ReplaceNumberWithCommas(bid_total_amount));
         })
 
 
@@ -426,9 +426,9 @@ $(document).ready(function() {
         })
         .done(function(data, textStatus, jqXHR) {
             var f_name = data.data.f_name;
-            //$('#pdf_gen_contractor_name').text(f_name);
+            $('#pdf_gen_contractor_name').text(f_name);
             var firm_address = data.data.f_address;
-            //$('#pdf_gen_contractor_address').text(firm_address);
+            $('#pdf_gen_contractor_address').text(firm_address);
         })
         setTimeout(function()
         {
@@ -533,8 +533,15 @@ $(document).ready(function() {
         signatory_arr = [];
         for (i = 0; i < signatory_email.length; i++) {
             signatory_arr.push({
-		            "signatory_name" 		:  item['signatory_name'][i],
-		            "signatory_email" 		:  item['signatory_email'][i],
+		            "signatory_name" 		:   item['signatory_name'][i],
+		            "signatory_email" 		:   item['signatory_email'][i],
+                            "noa_company_name"          :   $('#pdf_gen_contractor_name').html(),
+                            "noa_company_address"       :   $('#pdf_gen_contractor_address').html(),
+                            "noa_project_name"          :   $('#pdf_gen_project_name').html(),
+                            "noa_improvement_type"      :   $('#pdf_gen_project_type').html(),
+                            "noa_date"                  :   $('#pdf_gen_noa_date').html(),
+                            "noa_bid_advertisement_date":   $('#pdf_gen_bid_advertisement_date').html(),
+                            "noa_bid_amount"            :   $('#pdf_gen_contract_amount').html(),
 		        });
         }
         if(project_type_dropdown_new){

@@ -197,14 +197,14 @@
 </div><!-- Col 6 Close -->
 <div class="clearfix"></div>
 
-<div style="display: ;">
+<div style="display: none;">
 <!-- <div> -->
     <div id="notice_award_pdf_content" style="width:100%;">
         <h1 style="color:green; text-align:center;">NOTICE OF AWARD</h1>
         <p style="width:50%; float: left;">
         <strong>To:</strong> <span id="pdf_gen_contractor_name"></span><br/>
             <span id="pdf_gen_contractor_address"></span></p>
-        <p style="width:50%; float: right;"><strong>Date:</strong> <?php //echo date("Y-m-d"); ?></p>
+        <p style="width:50%; float: right;"><strong>Date:</strong><span id="pdf_gen_noa_date"><?php echo date("Y-m-d"); ?></span></p>
         <div style="clear: both;"></div>
 <!--        <p style="width:30%; float: left;"><strong>Project Description:</strong></p>-->
         <p style="width:70%; float: left;">
