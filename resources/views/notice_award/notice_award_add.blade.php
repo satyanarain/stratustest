@@ -125,11 +125,11 @@
             <div id="signatory_container">
                 <div class="sign1">
                     <div class="form-group col-md-5">
-                        <label for="">Signatory Name</label>
+                        <label for="">Contractor Name</label>
                         <input class="form-control" name="signatory_name[]" type="text" id="">
                     </div>
                     <div class="form-group col-md-5">
-                        <label for="">Signatory Email</label>
+                        <label for="">Contractor Email</label>
                         <input class="form-control" name="signatory_email[]" type="text" id="">
                     </div>
                     <div class="form-group col-md-2" style="padding-top: 25px; display: none;">
