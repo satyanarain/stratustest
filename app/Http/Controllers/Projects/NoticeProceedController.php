@@ -149,8 +149,8 @@ class NoticeProceedController extends Controller {
                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($curl, CURLOPT_HTTPHEADER, array("X-DocuSign-Authentication: $header"));
                     $json_response = curl_exec($curl);
-                    $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-                    if ( $status != 200 ) {
+                    $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if ( $statuscode != 200 ) {
                             $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $status,'docusign'=>1,
                                             "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
                             return response()->json($result, 400);
@@ -179,8 +179,8 @@ class NoticeProceedController extends Controller {
                             "X-DocuSign-Authentication: $header" )                                                                       
                     );
                     $json_response = curl_exec($curl); // Do it!
-                    $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-                    if ( $status != 201 ) {
+                    $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if ( $statuscode != 201 ) {
                             $response = json_decode($json_response, true);
                             $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1,
                                             "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
