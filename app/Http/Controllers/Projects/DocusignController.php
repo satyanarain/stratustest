@@ -96,7 +96,7 @@ class DocusignController extends Controller {
                             //echo "<pre>";print_r($document);die;
                             $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
                             if($status3==200){
-                                $file_upload_path = "uploads/notice_award/".$envelopeId . "-" . $document["name"];
+                                $file_upload_path = "/uploads/notice_award/".$envelopeId . "-" . $document["name"];
                                 file_put_contents(base_path().$file_upload_path, $data);
                                 if($document['type']=="content")
                                 {
@@ -159,7 +159,7 @@ class DocusignController extends Controller {
                             //echo "<pre>";print_r($document);die;
                             $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
                             if($status3==200){
-                                $file_upload_path = "uploads/notice_proceed/".$envelopeId . "-" . $document["name"];
+                                $file_upload_path = "/uploads/notice_proceed/".$envelopeId . "-" . $document["name"];
                                 file_put_contents(base_path().$file_upload_path, $data);
                                 if($document['type']=="content")
                                 {
