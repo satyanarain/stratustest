@@ -37,7 +37,7 @@
                                 <img src="{{ url('/resources/assets/img/loading-sidebar.svg') }}" alt=""/>
                             </div>
                             <div class="col-md-4" id="contractor_name_box" style="display:none;">
-                              <section class="green">
+                              <section class="blue">
                                 <div class="symbol">
                                     <i class="fa fa-user"></i>
                                 </div>

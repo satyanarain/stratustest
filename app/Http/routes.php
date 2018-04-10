@@ -709,7 +709,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('{report_id}/daily-resource-used', 'Projects\DailyReportController@get_daily_resource_used');
     Route::get('{report_id}/daily-material-delivered', 'Projects\DailyReportController@get_daily_material_delivered');
     Route::get('{report_id}/daily-video-photo', 'Projects\DailyReportController@get_daily_video_photo');
-    
+    Route::get('{report_id}/subcontractor-work-detail', 'Projects\DailyReportController@subcontractor_work_detail');
 });
     Route::get('get_weather', 'Projects\DailyReportController@get_weather');
 

@@ -158,15 +158,15 @@
 
 .btn-success,
 .input-group-btn>.btn.btn-success{
-    background-color: #5cc691;
-    border-color: #5cc691;
+    background-color: #007891;
+    border-color: #007891;
     color: #FFFFFF;
 }
 
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success,
 .input-group-btn>.btn.btn-success:hover{
-    background-color: #54b585;
-    border-color: #54b585;
+    background-color: #007891;
+    border-color: #007891;
     color: #FFFFFF;
 }
 

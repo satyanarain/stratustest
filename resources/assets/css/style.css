@@ -1610,7 +1610,7 @@ ul.drpdown-scroll{max-height: 300px; overflow-y: scroll;padding-left:0;}
 }
 
 .state-overview .blue {
-    background: #57c8f2;
+    background: #007891;
     color: #fff;
 }
 
@@ -2527,7 +2527,7 @@ a.add-btn {
 }
 
 .team-list.chat-list-side.info li:hover {
-    background: #35b575;
+    background: #007891;
 }
 
 .team-list.chat-list-side.info li span.value {
@@ -6644,7 +6644,7 @@ pre
 
 .tab-parent { clear: both; }
 .dataTables_wrapper .dt-buttons {float: left;margin: 15px 10px 15px;}
-.dataTables_wrapper .dt-buttons .dt-button { color: #fff; background: #5cc691; border-radius: 3px; padding: 5px 12px; margin-right: 10px; }
+.dataTables_wrapper .dt-buttons .dt-button { color: #fff; background: #007891; border-radius: 3px; padding: 5px 12px; margin-right: 10px; }
 
 .dataTables_filter {float: right;margin:15px 15px 0px;}
 #add_gallery_grid_wrapper .dataTables_filter {float: right;margin:0 0 20px;}
@@ -6985,7 +6985,7 @@ table.dataTable.order-column.hover tbody tr:hover.selected>.sorting_3 {
 .loading_data{position: absolute;margin:auto;left:0;right:0;top:0;bottom:0;z-index: 999999; background: rgba(255,255,255,0.9);height:100%;}
 .view-users tr td:last-child{width: 15%;}
 .view-firms tr td:last-child{width: 5%;}
-.btn-info, .input-group-btn>.btn.btn-info{  background-color: #66b78e; border-color: #58a07c;  color: #FFFFFF;}
+.btn-info, .input-group-btn>.btn.btn-info{  background-color: #007891; border-color: #007891;  color: #FFFFFF;}
 .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info, .input-group-btn>.btn.btn-info{ background-color: #5eab84; border-color: #58a07c; color: #FFFFFF;}
 .mt-15 { margin-top: 15px; }
 

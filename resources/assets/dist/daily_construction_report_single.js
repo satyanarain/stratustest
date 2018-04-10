@@ -4,8 +4,8 @@
 	   // Get login user profile data
 		var token = localStorage.getItem('u_token');
 		var url = $(location).attr('href').split( '/' );
-		report_id = url[ url.length - 1]; // report_id
-		project_id = url[ url.length - 3]; // report_id
+		report_id = url[ url.length - 3]; // report_id
+		project_id = url[ url.length - 5]; // report_id
 		console.log(report_id);
 
 		 // Check Permission
@@ -137,9 +137,9 @@
                         sub_contractor_work = '<span class="label label-danger">No</span>';
 		    }
 		    $('#subcontractor_work_day').html(sub_contractor_work);
-		    if(data.data.sub_contractor_work_detail)
-                        $('#subcontractor_work_detail').text(data.data.sub_contractor_work_detail);
-                    $('#subcontractor_work_detail_comment').text(data.data.pdr_sub_contractor_work_detail_comment);
+//		    if(data.data.sub_contractor_work_detail)
+//                        $('#subcontractor_work_detail').text(data.data.sub_contractor_work_detail);
+//                    $('#subcontractor_work_detail_comment').text(data.data.pdr_sub_contractor_work_detail_comment);
 		    $("#update_submittal_review_form").show();
 		    $(".loading_data").hide();
 		})
@@ -160,7 +160,43 @@
 		    }
 		}) 
 
+    jQuery.ajax({
+    url: baseUrl+report_id+"/subcontractor-work-detail",
+        type: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+    })
+    .done(function(data, textStatus, jqXHR) {
+            //console.log(data.data);
+            jQuery.each(data.data, function( i, val ) {
+                    $("#sub_contract_comment").append(
+                            '<tr><td>'+val.company_name+'</td>'+
+                            '<td colspan="3">'+val.comment+'</td>'+
+                            '</tr>'
+                    );
+            });
 
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        if(response == 403){
+            window.location.href = baseUrl + "403";
+            // console.log("403");
+        }
+        else if(response == 404){
+             console.log("404");
+        //	window.location.href = baseUrl + "404";
+        }
+        else {
+            // console.log("500");
+            window.location.href = baseUrl + "500";
+        }
+    }) 
 
 		jQuery.ajax({
 		url: baseUrl+report_id+"/daily-quantity-complete",

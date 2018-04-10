@@ -49,11 +49,18 @@
                                         <td colspan="4" id="subcontractor_work_day"></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" id="subcontractor_work_detail"></td>
+                                        <th colspan="1">Subcontractor Name</th>
+                                        <th colspan="3">Comments</th>
                                     </tr>
                                     <tr>
-                                        <td colspan="4" id="subcontractor_work_detail_comment"></td>
+                                        <tbody id="sub_contract_comment">
+                                        </tbody>
                                     </tr>
+<!--                                    <tr>
+                                        <td colspan="2" id="subcontractor_work_detail"></td>
+                                        <td colspan="4" id="subcontractor_work_detail_comment">sdf</td>
+                                    </tr>-->
+                                   
                                     <!-- <tr>
                                         <th colspan="4">What Contract Items were worked on?</th>
                                     </tr>

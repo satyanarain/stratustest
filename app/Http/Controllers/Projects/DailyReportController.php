@@ -1180,5 +1180,34 @@ class DailyReportController extends Controller {
       }
   }
 
-
+  /*
+  ----------------------------------------------------------------------------------
+   Get sub contractor comments by passing order_id
+  ----------------------------------------------------------------------------------
+  */
+  public function subcontractor_work_detail(Request $request, $report_id)
+  {
+      try
+      {
+          $query = DB::table('project_daily_report_subcontractor_comments')
+          ->select('project_daily_report_subcontractor_comments.*')
+          ->where('report_id', '=', $report_id)
+          ->get();
+          if(count($query) < 1)
+          {
+            $result = array('code'=>404, "description"=>"No Records Found");
+            return response()->json($result, 404);
+          }
+          else
+          {
+            $result = array('data'=>$query,'code'=>200);
+            return response()->json($result, 200);
+          }
+        
+      }
+      catch(Exception $e)
+      {
+        return response()->json(['error' => 'Something is wrong'], 500);
+      }
+  }
 }

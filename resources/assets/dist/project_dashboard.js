@@ -254,14 +254,14 @@ $(document).ready(function() {
 					        	var contract_amount = ReplaceNumberWithCommas(data.data[0].total_amount);
 					        }
 					        var contract_item = data.data[0].total_item;
-					        $('.state-overview').append('<div class="col-md-4"><section class="green">'+
+					        $('.state-overview').append('<div class="col-md-4"><section class="blue">'+
 		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;">'+currency_icon+'</div>'+
 		                          '<div class="value white">'+
 		                              '<h1 class="timer" data-from="0" data-to="'+contract_amount+'" data-speed="1000">'+contract_amount+'</h1>'+
 		                              '<p>Contract Amount</p>'+
 		                          '</div>'+
 		                      '</section></div>'+
-		                      '<div class="col-md-4"><section class="green">'+
+		                      '<div class="col-md-4"><section class="blue">'+
 		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div>'+
 		                          '<div class="value white">'+
 		                              '<h1 class="timer" data-from="0" data-to="'+contract_item+'" data-speed="1000">'+contract_item+'</h1>'+
