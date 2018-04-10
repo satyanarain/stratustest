@@ -297,8 +297,7 @@ $('#add_labor_compliance').click(function(e) {
             html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New Labor compliance document successfully uploaded!</div></div>';
             $("#alert_message").html(html);
             $("#date_140").removeAttr('value');
-            $('input[name="signatory_name"]').attr('value', '');
-            $('input[name="signatory_email"]').attr('value', '');
+            $('input[name^=signatory_name],input[name^=signatory_email]').each(function(){$(this).val('');});
             $("#date_142").removeAttr('value');
             $("#upload_doc_id_1").removeAttr('value');
             $("#date_143").removeAttr('value');

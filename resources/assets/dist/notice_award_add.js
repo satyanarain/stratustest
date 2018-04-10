@@ -603,8 +603,7 @@ $(document).ready(function() {
             $('#upload_doc_id').removeAttr('value');
             $('#bid_amount').removeAttr('value');
             $('#award_date').removeAttr('value');
-            $('input[name="signatory_name"]').attr('value', '');
-            $('input[name="signatory_email"]').attr('value', '');
+            $('input[name^=signatory_name],input[name^=signatory_email]').each(function(){$(this).val('');});
             $("#company_name").val('');
             $(".submit_notice_add_form").text('Save Another');
             $("#cmd").text('Save Another');

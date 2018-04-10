@@ -586,7 +586,7 @@ $('.create_notice').click(function () {
                             $('#notice_start_date').removeAttr('value');
                             $('input[name="days_working"]').attr('checked', false);
                             $('input[name="signatory_name"]').attr('value', '');
-                            $('input[name="signatory_email"]').attr('value', '');
+                            $('input[name^=signatory_name],input[name^=signatory_email]').each(function(){$(this).val('');});
                             $(".remove_file_drop").trigger("click");
                             $("#alert_message").show();
                             $('.loading-submit').hide();

@@ -680,6 +680,7 @@ $(document).ready(function() {
                         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New change order request added successfully!</div></div>';
                         $("#alert_message").html(html);
                         $('input[name="item_description[]"]').removeAttr('value');
+                        $('input[name^=signatory_name],input[name^=signatory_email],select[name^=signatory_role]').each(function(){$(this).val('');});
                         $('input[name="item_price[]"]').removeAttr('value');
                         $('input[name="item_unit_quantity[]"]').removeAttr('value');
                         $('input[name="item_unit_price[]"]').removeAttr('value');

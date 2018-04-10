@@ -678,6 +678,7 @@ $(document).ready(function() {
                     $("#noc_rec_name").removeAttr('value');
                     $("#noc_rec_street").removeAttr('value');
                     $("#noc_rec_adress").removeAttr('value');
+                    $('input[name^=signatory_name],input[name^=signatory_email]').each(function(){$(this).val('');});
                     $("#noc_notice_text_1").removeAttr('value');
                     $("#noc_notice_text_2").removeAttr('value');
                     $("#noc_notice_text_3").removeAttr('value');

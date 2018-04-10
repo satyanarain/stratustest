@@ -231,8 +231,7 @@ $('.add_unconditional_finals').click(function(e)
         $('#date_of_signed').removeAttr('value');
         $('input[name="disputed_claim_amount_yes"]').attr('checked', false);
         $('.disputed_claim_amount').css("display", "none");
-        $('input[name="signatory_name"]').attr('value', '');
-        $('input[name="signatory_email"]').attr('value', '');
+        $('input[name^=signatory_name],input[name^=signatory_email]').each(function(){$(this).val('');});
         $('#disputed_claim_amount').removeAttr('value');
         $("#alert_message").show();
         $(".remove_file_drop").trigger("click");
