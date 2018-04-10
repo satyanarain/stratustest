@@ -137,7 +137,7 @@
 			  	var liability_cert_path = val.liability_cert_path;
 			  	var liability_cert_path_value;
 			  	if(liability_cert_path == null){
-			  		liability_cert_path_value = '';
+			  		liability_cert_path_value = 'N/A';
 			  	}
 			  	else {
 			  		if(val.status == 'active'){
@@ -151,7 +151,7 @@
 			  	var work_comp_cert_path = val.work_comp_cert_path;
 			  	var work_cert_path_value;
 			  	if(work_comp_cert_path == null){
-			  		work_cert_path_value = '';
+			  		work_cert_path_value = 'N/A';
 			  	}
 			  	else {
 			  		if(val.status == 'active'){
@@ -165,7 +165,7 @@
 			  	var auto_liability_cert_path = val.auto_liability_cert_path;
 			  	var auto_cert_path_value;
 			  	if(auto_liability_cert_path == null){
-			  		auto_cert_path_value = '';
+			  		auto_cert_path_value = 'N/A';
 			  	}
 			  	else {
 			  		if(val.status == 'active'){
@@ -179,7 +179,7 @@
 			  	var umbrella_liability_cert_path = val.umbrella_liability_cert_path;
 			  	var umbrella_liability;
 			  	if(umbrella_liability_cert_path == null){
-			  		umbrella_liability = '';
+			  		umbrella_liability = 'N/A';
 			  	}
 			  	else {
 			  		if(val.status == 'active'){
@@ -193,7 +193,7 @@
 			  	var doc_cert_path = val.doc_cert_path;
 			  	var doc_cert_path;
 			  	if(doc_cert_path == null){
-			  		doc_cert = '';
+			  		doc_cert = 'N/A';
 			  	}
 			  	else {
 			  		if(val.status == 'active'){
@@ -213,7 +213,7 @@
 
 
 		  		if(val.liability_exp == '0000-00-00' || val.liability_exp == null){
-					var liability_exp = '';
+					var liability_exp = 'N/A';
 				}
 				else {
 					var someDate_now = new Date(val.liability_exp);
@@ -237,7 +237,7 @@
 				}
 
 				if(val.work_comp_exp == '0000-00-00' || val.work_comp_exp == null){
-					var work_comp_exp = '';
+					var work_comp_exp = 'N/A';
 				}
 				else {
 					var someDate_now = new Date(val.work_comp_exp);
@@ -261,7 +261,7 @@
 				}
 
 				if(val.auto_liability_exp == '0000-00-00' || val.auto_liability_exp == null){
-					var auto_liability_exp = '';
+					var auto_liability_exp = 'N/A';
 				}
 				else {
 					var someDate_now = new Date(val.auto_liability_exp);
@@ -285,7 +285,7 @@
 				}
 
 				if(val.umbrella_liability_exp == '0000-00-00' || val.umbrella_liability_exp == null){
-					var umbrella_liability_exp = '';
+					var umbrella_liability_exp = 'N/A';
 				}
 				else {
 					var someDate_now = new Date(val.umbrella_liability_exp);
@@ -312,17 +312,17 @@
                                 else
                                     var liability_currency = val.liability_currency;
 				if(val.liability_limit == 0 || val.liability_limit == null){
-					var liability_limit = '';
+					var liability_limit = 'N/A';
 				}
 				else {
 					var liability_limit = liability_currency+' '+ ReplaceNumberWithCommas(val.liability_limit);
 				}
                                 if(val.umbrella_liability_symbol=="" || val.umbrella_liability_symbol==null)
-                                    var umbrella_liability_symbol = '';        
+                                    var umbrella_liability_symbol = 'N/A';        
                                 else
                                     var umbrella_liability_symbol = val.umbrella_liability_symbol;
 				if(val.work_comp_limit == 0 || val.work_comp_limit == null){
-					var work_comp_limit = '';
+					var work_comp_limit = 'N/A';
 				}
 				else {
 					var work_comp_limit = umbrella_liability_symbol+' '+ ReplaceNumberWithCommas(val.work_comp_limit);
@@ -330,7 +330,7 @@
                                 
 				
 				if(val.auto_liability_limit == 0 || val.auto_liability_limit == null){
-					var auto_liability_limit = '';
+					var auto_liability_limit = 'N/A';
 				}
 				else {
 					var auto_liability_limit = liability_currency+' '+ ReplaceNumberWithCommas(val.auto_liability_limit);
@@ -338,7 +338,7 @@
 
 
 				if(val.umbrella_liability_limit == 0 || val.umbrella_liability_limit == null){
-					var umbrella_liability_limit = '';
+					var umbrella_liability_limit = 'N/A';
 				}
 				else {
 					var umbrella_liability_limit = val.umbrella_liability_symbol+' '+ ReplaceNumberWithCommas(val.umbrella_liability_limit);

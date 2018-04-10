@@ -369,5 +369,69 @@ class DocusignController extends Controller {
                 }else{continue;}
             }else{continue;}
         }
+        
+        
+        //UPDATE & DOWNLOAD CHANGE ORDER DOCUMENT FROM DOCUSIGN        
+        $nocs = DB::table('project_change_order_request_detail')
+                ->select('project_change_order_request_detail.*')
+                ->where('docusign_status', '=',"pending")
+                ->where('envelope_id', '!=',"")
+                ->get();
+        foreach($nocs as $noc){
+            $envelopeId = $noc->envelope_id;
+            $doc_id = $noc->pcd_file_path;
+            $noc_id = $noc->pcd_id;
+            $curl1 = curl_init($baseUrl . "/envelopes/" . $envelopeId);
+            curl_setopt($curl1, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl1, CURLOPT_HTTPHEADER, array(                                                                          
+                    "X-DocuSign-Authentication: $header" )                                                                       
+            );
+            $json_response1 = curl_exec($curl1);
+            $status1 = curl_getinfo($curl1, CURLINFO_HTTP_CODE);
+            if ($status1 == 200 ) {
+                $response1 = json_decode($json_response1, true);
+                //echo $response1["status"];die;
+                curl_close($curl1);
+                $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
+                curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
+                        "X-DocuSign-Authentication: $header" )                                                                       
+                );
+                $json_response2 = curl_exec($curl2);
+                $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
+                if ($status2 == 200 ) {
+                    $response2 = json_decode($json_response2, true);
+                    curl_close($curl2);
+                    //echo "<pre>";print_r($response2);die;
+                    foreach( $response2["envelopeDocuments"] as $document ) {
+                            $docUri = $document["uri"];
+                            $curl3 = curl_init($baseUrl . $docUri );
+                            curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
+                            curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
+                                    "X-DocuSign-Authentication: $header" )                                                                       
+                            );
+                            $data = curl_exec($curl3);
+                            //echo env('APP_URL').$envelopeId . "-" . $document["name"];
+                            //echo "<pre>";print_r($document);die;
+                            $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
+                            if($status3==200){
+                                $file_upload_path = "/uploads/cor/".$envelopeId . "-" . $document["name"];
+                                file_put_contents(base_path().$file_upload_path, $data);
+                                if($document['type']=="content")
+                                {
+                                    $query = DB::table('documents')
+                                    ->where('doc_id', '=', $doc_id)
+                                    ->update(['doc_path' => $file_upload_path]);
+                                    $query = DB::table('project_change_order_request_detail')
+                                    ->where('pcd_id', '=', $noc_id)
+                                    ->update(['docusign_status' => "complete"]);
+                                }
+                                curl_close($curl3);
+                            }else{continue;}
+                    }
+                }else{continue;}
+            }else{continue;}
+        }
     }
 }

@@ -34,6 +34,9 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         var project_name = data.data.p_name;
         $('#project_name_title').text("Project: " + project_name);
+        if(data.data.f_name)
+            $('#jurisdiction').val(data.data.f_name);
+        $('#project_name').val(project_name);
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
@@ -130,6 +133,47 @@ $(document).ready(function() {
             var response = jqXHR.responseJSON.code;
             console.log(response);
         });
+        
+    setTimeout(function(){
+        $('#signatory_container').delegate( 'a.remove_signatory', 'click', function () {
+            var id = $(this).attr("counter");
+            //alert(id);
+            $('.sign'+id).remove();
+            return;
+        });
+        $('#signatory_container').delegate( 'a.add_signatory', 'click', function () {
+            var signatory_counter = $("#signatory_counter").val();
+            signatory_counter++;
+            var html = '<div class="sign'+signatory_counter+'">\n\
+                        <div class="form-group col-md-3">\n\
+                            <label for="">Signatory Name</label>\n\
+                            <input class="form-control" name="signatory_name[]" type="text" id="">\n\
+                        </div>\n\
+                        <div class="form-group col-md-3">\n\
+                            <label for="">Signatory Email</label>\n\
+                            <input class="form-control" name="signatory_email[]" type="text" id="">\n\
+                        </div>\n\
+                        <div class="form-group col-md-3">\n\
+                            <label for="">Signatory Role</label>\n\
+                            <select class="form-control" name="signatory_role[]">\n\
+                            <option value="owner">Owner</option>\n\
+                            <option value="contractor">Contractor</option>\n\
+                            <option value="accountant">Fund Rep.</option>\n\
+                            <option value="jurisdiction">Jurisdiction Rep.</option>\n\
+                        </select>\n\
+                        </div>\n\
+                        <div class="form-group col-md-3" style="padding-top: 25px;">\n\
+                            <a class="btn btn-success add_signatory" counter="'+signatory_counter+'">+</a>&nbsp;\n\
+                            <a class="btn btn-success remove_signatory" counter="'+signatory_counter+'">-</a>\n\
+                        </div>\n\
+                    </div>';
+       
+            $("#signatory_container").append(html);
+            $("#signatory_counter").val(signatory_counter);
+            return;
+        });
+
+    }, 1000);  
 });
 
     $('body').delegate( '.rfi_yes', 'change', function () {
@@ -353,7 +397,39 @@ $(document).ready(function() {
         if(is_error_description == true){
             html += '<li> Item description field is invalid </li>';
         }
-
+        
+        var signatory_name = [];
+        $('input[name^=signatory_name]').each(function(){
+            signatory_name.push($(this).val());
+        });
+        var signatory_email = [];
+        $('input[name^=signatory_email]').each(function(){
+            if($(this).val() != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())){
+                signatory_email.push($(this).val());
+            }else if($(this).val() != ""){
+                html += '<li>Signatory email is invalid.</li>';
+                is_error = true;
+            }
+        });
+        var signatory_role = [];
+        $('select[name^=signatory_role]').each(function(){
+            signatory_role.push($(this).val());
+        });
+        var item = {};
+        item['signatory_name'] 		= signatory_name;
+        item['signatory_email']         = signatory_email;
+        item['signatory_role']          = signatory_role;
+        signatory_arr = [];
+        for (i = 0; i < signatory_email.length; i++) {
+            signatory_arr.push({
+		            "signatory_name" 		:   item['signatory_name'][i],
+		            "signatory_email" 		:   item['signatory_email'][i],
+                            "signatory_role" 		:   item['signatory_role'][i],
+                            "jurisdiction"              :   $('#jurisdiction').val(),
+                            "change_order_number"       :   $('#cor_new_number').val(),
+                            "project_name"              : $('#project_name').val(),
+		        });
+        }
         // var is_error_price = false;
         // $('input[name^=item_price]').each(function(){
         //     if($(this).val() == '')
@@ -561,7 +637,7 @@ $(document).ready(function() {
                     "order_number"              : cor_new_number,
                     "order_date"                : cor_date,
                     "order_contractor_name"     : order_contractor_name,
-                    "order_project_id"          : upload_project_id
+                    "order_project_id"          : upload_project_id,
                 },
                 headers: {
                   "x-access-token": token
@@ -587,7 +663,8 @@ $(document).ready(function() {
                             "order_file_path"       : val.order_file_path,
                             "order_rfi"             : val.order_rfi_details,
                             "order_parent_cor"      : data.change_order_id,
-                            "order_project_id"      : val.order_project_id
+                            "order_project_id"      : val.order_project_id,
+                            "signatory_arr"         : signatory_arr,
                         },
                         headers: {
                           "x-access-token": token

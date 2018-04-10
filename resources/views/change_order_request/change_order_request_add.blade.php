@@ -130,7 +130,7 @@
             <label>Upload Change Order Request <span class="text-danger">*</span></label>
             <section class="panel upload_doc_panel" id="upload_div">
                 <div class="panel-body" style="padding: 0px;">
-                    <form id="my-awesome-dropzone" action="{{ url('/group_doc/index.php') }}" class="dropzone">
+                    <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                         <input type="hidden" name="document_path" value="/uploads/cor/">
                     </form>
                     <input type="hidden" name="upload_doc_id[]" class="upload_doc_id" id="upload_doc_id_1" value="">
@@ -140,8 +140,39 @@
         </div>
     </div> <!-- material_delivered_detail close -->
 </div><!-- material_delivered_all clse -->
+<div class="clearfix"></div>  
+<input type="hidden" name="signatory_counter" id="signatory_counter" value="2">
+<input type="hidden" name="jurisdiction" id="jurisdiction">
+<input type="hidden" name="project_name" id="project_name">
 
-
+<div class="form-group col-md-12 nopadleft">
+            <div id="signatory_container">
+                <div class="sign1">
+                    <div class="form-group col-md-3">
+                        <label for="">Signatory Name</label>
+                        <input class="form-control" name="signatory_name[]" type="text" id="">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="">Signatory Email</label>
+                        <input class="form-control" name="signatory_email[]" type="text" id="">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="">Signatory Role</label>
+                        <select class="form-control" name="signatory_role[]">
+                            <option value="owner">Owner</option>
+                            <option value="contractor">Contractor</option>
+                            <option value="accountant">Fund Rep.</option>
+                            <option value="jurisdiction">Jurisdiction Rep.</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3" style="padding-top: 25px;">
+                            <a class="btn btn-success add_signatory" counter="1">+</a>&nbsp;
+                    </div>
+                </div>
+                
+            </div>
+                            </div>
+            <div class="clearfix"></div>  
                                 <div class="form-group col-md-12 nopadleft">
 
                                     <input type="hidden" name="standard_upload" id="upload_doc_meta" value="cor">
@@ -168,7 +199,7 @@
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js?v=1.0') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js?v=1.0') }}"></script>
 <script src="{{ url('/resources/assets/dist/change_order_request_add.js?v=1.0') }}"></script>
-<script src="{{ url('/resources/assets/js/dropzone_groupdoc.js?v=1.0') }}"></script>
+<script src="{{ url('/resources/assets/js/dropzone.js?v=1.0') }}"></script>
 
 <script type="text/javascript">
     //$('body').delegate( "input[type='radio']", "click", function () {

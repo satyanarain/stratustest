@@ -54,11 +54,13 @@ class ChangeOrderRequestController extends Controller {
         $order_number             = $request['order_number'];
         $order_date               = $request['order_date'];
         $order_contractor_name    = $request['order_contractor_name'];
-        // $order_rfi                = $request['order_rfi'];
-        $order_status             = ''; // $request['order_status'];
+        //$order_rfi              = $request['order_rfi'];
+        $order_status             = '';//$request['order_status'];
         $order_project_id         = $request['order_project_id'];
         $order_user_id            = Auth::user()->id;
         $status                   = 'active'; // $request['status'];
+        
+        
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
       $permission_key = 'cor_add';
@@ -201,6 +203,9 @@ class ChangeOrderRequestController extends Controller {
         $order_parent_cor         = $request['order_parent_cor'];
         $order_project_id         = $request['order_project_id'];
         $order_user_id            = Auth::user()->id;
+        $signatory_arr      = $request['signatory_arr'];
+        $envelope_id    = '';
+        $docusign_status = 'pending';
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
       $permission_key = 'cor_add';
@@ -210,6 +215,91 @@ class ChangeOrderRequestController extends Controller {
         return response()->json($result, 403);
       }
       else {
+          if(count($signatory_arr))
+            {
+                $data = array();
+                foreach($signatory_arr as $i=>$row){
+                    if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
+                    {
+                        $data[$i]["email"] = $row['signatory_email'];
+                        $data[$i]["name"] = $row['signatory_name'];
+                        $data[$i]["roleName"] = $row['signatory_role'];
+                        $data[$i]["tabs"]["textTabs"] =
+                                                array(array(
+                                                        "tabLabel" => "jurisdiction",
+                                                        "value" => $row['jurisdiction']),
+                                                        array (
+                                                        "tabLabel" => "change_order_number",
+                                                        "value" => $row['change_order_number']),
+                                                        array (
+                                                        "tabLabel" => "project_name",
+                                                        "value" => $row['project_name']),
+                                                        array (
+                                                        "tabLabel" => "change_order_date",
+                                                        "value" => date('m-d-Y')));
+                    }else{
+                        $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                        return response()->json($result, 400);
+                    }
+                }
+                if(count($data))
+                {
+                    
+                    $email = env('DOCUSIGN_EMAIL');
+                    $password = env('DOCUSIGN_PASSWORD');
+                    $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
+                    $templateId = "dda2bd94-6399-4e6c-ad26-ac2a381737ff";
+                    $url = env('DOCUSIGN_URL');
+                    $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
+                    $curl = curl_init($url);
+                    curl_setopt($curl, CURLOPT_HEADER, false);
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array("X-DocuSign-Authentication: $header"));
+                    $json_response = curl_exec($curl);
+                    $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if ( $statuscode != 200 ) {
+                            $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $status,'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                            return response()->json($result, 400);
+                    }
+                    $response = json_decode($json_response, true);
+                    $accountId = $response["loginAccounts"][0]["accountId"];
+                    $baseUrl = $response["loginAccounts"][0]["baseUrl"];
+                    curl_close($curl);
+
+                    $data = array("accountId" => $accountId, 
+                        "emailSubject" => "Signature request for Change Order",
+                        "emailBlurb" => "Signature request for Change Order",
+                        "templateId" => $templateId, 
+                        "templateRoles" => $data,
+                        "status" => "sent");
+                    $data_string = json_encode($data); 
+                    
+                    // Send to the /envelopes end point, which is relative to the baseUrl received above. 
+                    $curl = curl_init($baseUrl . "/envelopes" );
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_POST, TRUE);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);                                                                  
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
+                            'Content-Type: application/json', 
+                            'Content-Length: ' . strlen($data_string),
+                            "X-DocuSign-Authentication: $header" )                                                                       
+                    );
+                    $json_response = curl_exec($curl); // Do it!
+                    $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if ( $statuscode != 201 ) {
+                            $response = json_decode($json_response, true);
+                            $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                            return response()->json($result, 400);
+                    }
+                    $response = json_decode($json_response, true);
+                    //print_r($data);
+                    $envelope_id = $response["envelopeId"];
+                }
+            }
+
         $information = array(
             "pcd_description"     => $order_description,
             "pcd_price"           => $order_price,
@@ -243,7 +333,7 @@ class ChangeOrderRequestController extends Controller {
         {
             
             $query = DB::table('project_change_order_request_detail')
-            ->insert(['pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
+            ->insert(['docusign_status'=>$docusign_status,'envelope_id'=>$envelope_id,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
 
             if(count($query) < 1)
             {
