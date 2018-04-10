@@ -6986,7 +6986,7 @@ table.dataTable.order-column.hover tbody tr:hover.selected>.sorting_3 {
 .view-users tr td:last-child{width: 15%;}
 .view-firms tr td:last-child{width: 5%;}
 .btn-info, .input-group-btn>.btn.btn-info{  background-color: #007891; border-color: #007891;  color: #FFFFFF;}
-.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info, .input-group-btn>.btn.btn-info{ background-color: #5eab84; border-color: #58a07c; color: #FFFFFF;}
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info, .input-group-btn>.btn.btn-info{ background-color: #02aed1; border-color: #02aed1; color: #FFFFFF;}
 .mt-15 { margin-top: 15px; }
 
 table.view-contacts tr td:last-child{width: 25%;}
