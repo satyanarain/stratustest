@@ -158,6 +158,7 @@ $('#add_labor_compliance').click(function(e) {
             html += '<li>Contractor name is invalid.</li>';
             is_error = true;
         }
+        signatory_arr = [];
         if($("#140_option_show").is(':checked')){
             if(date_140 == ''){
                 html += '<li>140 date is invalid.</li>';
@@ -209,13 +210,39 @@ $('#add_labor_compliance').click(function(e) {
             }
         }
         if($("#compliance_option_show").is(':checked')){
-            if(compliance_date == ''){
-                html += '<li>Compliance date is invalid.</li>';
-                is_error = true;
+            if($('input:radio[name=check_statement_compliance_type]:checked').val() == "exist"){
+                if(compliance_date == ''){
+                    html += '<li>Compliance date is invalid.</li>';
+                    is_error = true;
+                }
+                if(doc_compliance == ''){
+                    html += '<li>Compliance document is invalid.</li>';
+                    is_error = true;
+                }
             }
-            if(doc_compliance == ''){
-                html += '<li>Compliance document is invalid.</li>';
-                is_error = true;
+            var signatory_name = [];
+            $('input[name^=signatory_name]').each(function(){
+                signatory_name.push($(this).val());
+            });
+            var signatory_email = [];
+            $('input[name^=signatory_email]').each(function(){
+                if($(this).val() != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())){
+                    signatory_email.push($(this).val());
+                }else if($(this).val() != ""){
+                    html += '<li>Signatory email is invalid.</li>';
+                    is_error = true;
+                }
+            });
+            var item = {};
+            item['signatory_name'] 		= signatory_name;
+            item['signatory_email']         = signatory_email;
+            
+            for (i = 0; i < signatory_email.length; i++) {
+                signatory_arr.push({
+                    "signatory_name"            :   item['signatory_name'][i],
+                    "signatory_email"           :   item['signatory_email'][i],
+                    "company_name"              :   $("#company_name option:selected").text(),
+                });
             }
         }
 
@@ -251,7 +278,8 @@ $('#add_labor_compliance').click(function(e) {
                 "cpr_date"          : weekly_date,
                 "compliance"        : doc_compliance,
                 "compliance_date"   : compliance_date,
-                "project_id"        : project_id
+                "project_id"        : project_id,
+                "signatory_arr"     : signatory_arr,
             },
             headers: {
                 "x-access-token": token
@@ -269,6 +297,8 @@ $('#add_labor_compliance').click(function(e) {
             html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New Labor compliance document successfully uploaded!</div></div>';
             $("#alert_message").html(html);
             $("#date_140").removeAttr('value');
+            $('input[name="signatory_name"]').attr('value', '');
+            $('input[name="signatory_email"]').attr('value', '');
             $("#date_142").removeAttr('value');
             $("#upload_doc_id_1").removeAttr('value');
             $("#date_143").removeAttr('value');

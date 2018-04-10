@@ -98,6 +98,18 @@ $(document).ready(function() {
         });
      fetchCompanyName(role,check_user_access);
      fetchAgencyName(role,check_user_access);
+     
+     $('#disputed_claim_amount_yes').change(function() {
+        if($(this).is(":checked")) {
+            $('.disputed_claim_amount').css("display", "block");
+            $('#disputed_claim_amount').val('');
+        }
+        else {
+            $('.disputed_claim_amount').css("display", "none");
+            $('#disputed_claim_amount').val('0');
+        }
+    });
+ 
 });
 
 $('.add_unconditional_finals').click(function(e)
@@ -111,12 +123,45 @@ $('.add_unconditional_finals').click(function(e)
     var job_location            = $('#job_location').val();
     var owner_name              = $('#agency_name').val();
     var unconditional_finals    = $('#upload_single_doc_id').val();
-
+   
+    if($('#disputed_claim_amount_yes').is(":checked"))
+        var disputed_claim_amount   = $('#disputed_claim_amount').val();
+    else
+        var disputed_claim_amount = '0';
     // Validation Certificate
     var html;
     var is_error = false;
     html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
 
+    var signatory_name = [];
+    $('input[name^=signatory_name]').each(function(){
+        signatory_name.push($(this).val());
+    });
+    var signatory_email = [];
+    $('input[name^=signatory_email]').each(function(){
+        if($(this).val() != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())){
+            signatory_email.push($(this).val());
+        }else if($(this).val() != ""){
+            html += '<li>Signatory email is invalid.</li>';
+            is_error = true;
+        }
+    });
+    var item = {};
+    item['signatory_name'] 		= signatory_name;
+    item['signatory_email']         = signatory_email;
+    signatory_arr = [];
+    for (i = 0; i < signatory_email.length; i++) {
+        signatory_arr.push({
+                        "signatory_name"            :   item['signatory_name'][i],
+                        "signatory_email"           :   item['signatory_email'][i],
+                        "name_of_claimant"          :   $("#name_claimant option:selected").text(),
+                        "name_of_customer"          :   $("#name_customer option:selected").text(),
+                        "job_location"              :   $("#name_customer option:selected").text(),
+                        "owner"                     :   $("#name_customer option:selected").text(),
+                        "disputed_claim_amount"     :   $("#disputed_claim_amount").val(),
+                    });
+    }
+        
     if(date_of_signed == '' || date_of_signed == null){
         html += '<li>Date of signature is invalid.</li>';
         is_error = true;
@@ -169,7 +214,9 @@ $('.add_unconditional_finals').click(function(e)
             "job_location"          : job_location,
             "owner"                 : owner_name,
             "file_path"             : unconditional_finals,
-            "project_id"            : project_id
+            "project_id"            : project_id,
+            "disputed_claim_amount" : disputed_claim_amount,
+            "signatory_arr"         : signatory_arr,
     },
         headers: {
             "x-access-token": token
@@ -182,6 +229,11 @@ $('.add_unconditional_finals').click(function(e)
         $("#upload_single_doc_id").removeAttr('value');
         $('#job_location').removeAttr('value');
         $('#date_of_signed').removeAttr('value');
+        $('input[name="disputed_claim_amount_yes"]').attr('checked', false);
+        $('.disputed_claim_amount').css("display", "none");
+        $('input[name="signatory_name"]').attr('value', '');
+        $('input[name="signatory_email"]').attr('value', '');
+        $('#disputed_claim_amount').removeAttr('value');
         $("#alert_message").show();
         $(".remove_file_drop").trigger("click");
         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New unconditional final added successfully!</div></div>';

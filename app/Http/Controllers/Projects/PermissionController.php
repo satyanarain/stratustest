@@ -67,14 +67,24 @@ class PermissionController extends Controller {
     {
         try
         {
-          $check_project_user_notification = DB::table('project_user_notification')
+          $check_admin_user = DB::table('users')
           ->select()
-          ->where('pun_project_id', '=', $project_id)
-          ->where('pun_user_id', '=', $user_id)
-          ->where('pun_notification_key', '=', $notification_key)
+          ->where('id', '=', $user_id)
           ->get();
-
-          return $check_project_user_notification;
+            //print_r($check_admin_user);die;
+            if($check_admin_user[0]->role=="owner")
+            {
+                return $check_admin_user[0];
+            }else{
+                $check_project_user_notification = DB::table('project_user_notification')
+                ->select()
+                ->where('pun_project_id', '=', $project_id)
+                ->where('pun_user_id', '=', $user_id)
+                ->where('pun_notification_key', '=', $notification_key)
+                ->get();
+                return $check_project_user_notification;
+            }
+          
         }
         catch(Exception $e)
         {

@@ -165,12 +165,12 @@ $(document).ready(function() {
 		    cache: false
 		})
 	    .done(function(data, textStatus, jqXHR) {
-                $("#subcontractor_work_detail").append(
+                $(".subcontractor_work_detail").append(
                     '<option value="">Select Subcontractor</option>'
                 )
 	        jQuery.each(data.data, function( i, val ) {
 	            if(val.f_status == 'active'){
-	                $("#subcontractor_work_detail").append(
+	                $(".subcontractor_work_detail").append(
 	                    '<option value="'+val.f_id+'">'+val.f_name+'</option>'
 	                )
 	            }else {
@@ -179,7 +179,7 @@ $(document).ready(function() {
 	        });
                 var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
                 if(add_company_on_fly_permission>0 || role=="owner"){
-                $("#subcontractor_work_detail").append(
+                $(".subcontractor_work_detail").append(
                     '<option style="font-weight:bold;">Add New Subcontractor</option>'
                 )}
 		})
@@ -784,7 +784,7 @@ $(document).ready(function() {
 			    return;
 			});
 		}, 5000);
-    $('#subcontractor_work_detail').change(function(){
+    $('.subcontractor_work_detail').change(function(){
         var company = $(this).val();
         if(company=="Add New Subcontractor")
         {
@@ -945,12 +945,34 @@ $(document).ready(function() {
         $('input[name^=accur_detail]:checked').each(function(){
             accur_detail.push($(this).val());
         });
+        var subcontractor_name = [];
+        $('select[name^=subcontractor_work_detail]').each(function(){
+            subcontractor_name.push($(this).find(":selected").text());
+            //alert($(this).val());
+        });
+        //console.log(subcontractor_name);
+        
+        var subcontractor_comm_arr = [];
+        $('input[name^=sub_contractor_work_detail_comment]').each(function(){
+            subcontractor_comm_arr.push($(this).val());
+        });
+        //console.log(subcontractor_comm_arr);
+        var item = {};
+        item['subcontractor_name']      = subcontractor_name;
+        item['subcontractor_comments']  = subcontractor_comm_arr;
+        subcontractor_arr = [];
+        for (i = 0; i < subcontractor_name.length; i++) {
+            subcontractor_arr.push({
+		            "subcontractor_name" 		:   item['subcontractor_name'][i],
+		            "subcontractor_comments" 		:   item['subcontractor_comments'][i],
+            });
+        }
         var accur_details = JSON.stringify(accur_detail);
-	    var general_note 				= $("#general_note_detail").val();
-	    var photo_video 	 			= $("input[name='photo_video_field']:checked"). val();
-	    var subcontractor 				= $("input[name='subcontractor_field']:checked"). val();
-	    var subcontractor_work_detail 	= $("#subcontractor_work_detail"). val();
-            var pdr_sub_contractor_work_detail_comment = $("#pdr_sub_contractor_work_detail_comment").val();
+	    var general_note                = $("#general_note_detail").val();
+	    var photo_video                 = $("input[name='photo_video_field']:checked"). val();
+	    var subcontractor               = $("input[name='subcontractor_field']:checked"). val();
+	    //var subcontractor_work_detail   = $("#subcontractor_work_detail"). val();
+            //var pdr_sub_contractor_work_detail_comment = $("#pdr_sub_contractor_work_detail_comment").val();
 	    var project_id 					= $('#upload_project_id').val();
 	    console.log(accur_details);
 
@@ -969,9 +991,10 @@ $(document).ready(function() {
                 "report_general_notes" 				: general_note,
                 "report_picture_video" 				: photo_video,
                 "report_subcontractor_work_day" 	: subcontractor,
-                "report_subcontractor_work_detail" 	: subcontractor_work_detail,
-                "pdr_sub_contractor_work_detail_comment": pdr_sub_contractor_work_detail_comment,
-                "project_id" 						: project_id
+                //"report_subcontractor_work_detail" 	: subcontractor_work_detail,
+                //"pdr_sub_contractor_work_detail_comment": pdr_sub_contractor_work_detail_comment,
+                "project_id" 						: project_id,
+                "subcontractor_arr"                     : subcontractor_arr,
             },
             headers: {
               "x-access-token": token
@@ -1004,3 +1027,48 @@ $(document).ready(function() {
                 $("#alert_message").html(html);
         })
     });
+    
+    setTimeout(function(){
+        $('.subcontractor_detail').delegate( 'a.remove_subcontract', 'click', function () {
+            var id = $(this).attr("counter");
+            //alert(id);
+            $('.sub_contractor_'+id).remove();
+            return;
+        });
+        $('.subcontractor_detail').delegate( 'a.add_subcontractor', 'click', function () {
+            var subcontractor_counter = $("#subcontractor_counter").val();
+            subcontractor_counter++;
+            var sub_contractors = $('#subcontractor_work_detail').html();
+            var html = '<div class="sub_contractor_'+subcontractor_counter+'">\n\
+                            <div class="form-group col-md-3">\n\
+                                <select class="form-control subcontractor_work_detail" name="subcontractor_work_detail[]">'+sub_contractors+'</select>\n\
+                            </div>\n\
+                            <div class="form-group col-md-9">\n\
+                                <div class="col-xs-10">\n\
+                                    <input class="form-control" type="text" name="sub_contractor_work_detail_comment[]" placeholder="Add Comments">\n\
+                                </div>\n\
+                                <div class="col-xs-2">\n\
+                                    <a class="btn btn-success add_subcontractor" counter="'+subcontractor_counter+'">+</a>\n\
+                                    <a class="btn btn-success remove_subcontract" counter="'+subcontractor_counter+'">-</a>\n\
+                                </div>\n\
+                            </div>\n\
+                        </div>';
+       
+            $(".subcontractor_detail").append(html);
+            $('.subcontractor_work_detail').change(function(){
+                var company = $(this).val();
+                if(company=="Add New Subcontractor")
+                {
+                    $('#add-company').modal('show');
+                    $('#add-company').on('shown.bs.modal',function(){
+                        google.maps.event.trigger(map, "resize");
+                      });
+
+                }
+            })
+            $("#subcontractor_counter").val(subcontractor_counter);
+            return;
+        });
+        
+
+    }, 500);

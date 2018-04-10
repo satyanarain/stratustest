@@ -405,7 +405,37 @@
                                     <option>Select Improvement Type</option>
                                 </select>
                             </div>
-                            <div class="clearfix"></div>    
+                            <div class="clearfix"></div>
+            <input type="hidden" name="signatory_counter" id="signatory_counter" value="2">
+            <div id="signatory_container">
+                <div class="sign1">
+                    <div class="form-group col-md-6">
+                        <label for="">Owner Name</label>
+                        <input class="form-control" name="signatory_name[]" type="text" id="">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="">Owner Email</label>
+                        <input class="form-control" name="signatory_email[]" type="text" id="">
+                    </div>
+                    <div class="form-group col-md-2" style="padding-top: 25px; display: none;">
+                            <a class="btn btn-success add_signatory" counter="1">+</a>&nbsp;
+                    </div>
+                </div>
+                <div class="sign2">
+                    <div class="form-group col-md-6">
+                        <label for="">Contractor Name</label>
+                        <input class="form-control" name="signatory_name[]" type="text" id="">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="">Contractor Email</label>
+                        <input class="form-control" name="signatory_email[]" type="text" id="">
+                    </div>
+                    <div class="form-group col-md-2" style="padding-top: 25px; display: none;">
+                            <a class="btn btn-success add_signatory" counter="1">+</a>&nbsp;
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>  
                             <div class="form-group col-md-12 nopadleft">
 
 <!--                              <a data-href="{{ url('/dashboard/'.$project_id.'/notice_completion') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->

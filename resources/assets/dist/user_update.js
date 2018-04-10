@@ -306,23 +306,29 @@ $(document).ready(function() {
                         console.log(data);
                         var wrapper         = $(".input_fields_wrap"); //Fields wrapper
                         var add_button      = $(".add_field_button"); //Add button ID
-                        for(var i =0;i<data.data.length;i++)
+                        if(data.data.length)
                         {
-                                if(i==0)
-                                {
-                                    $(wrapper).append('<div class="form-group col-md-6 append"><label for="pnum">Phone Number</label><a href="#" class="add_field_button btn btn-success m-b-10 pull-right">Add Phone</a><select class="form-control" id="phone_type_'+i+'" name="phone_type[]" ><option value="mobile">Mobile</option><option value="home">Home</option><option value="work">Work</option><option value="work_fax">Work Fax</option><option value="home_fax">Home Fax</option><option value="skype">Skype</option><option value="pager">Pager</option><option value="work_email">Email</option><option value="other">Other</option></select><input type="text" required="required" class="form-control" id="pnum_'+i+'" name="phone_num[]"></div>');
-                                    $("#phone_type_"+i).val(data.data[i].u_phone_type);
-                                    $("#pnum_"+i).val(data.data[i].u_phone_detail);
+                            for(var i =0;i<data.data.length;i++)
+                            {
+                                    if(i==0)
+                                    {
+                                        $(wrapper).append('<div class="form-group col-md-6 append"><label for="pnum">Phone Number</label><a href="#" class="add_field_button btn btn-success m-b-10 pull-right">Add Phone</a><select class="form-control" id="phone_type_'+i+'" name="phone_type[]" ><option value="mobile">Mobile</option><option value="home">Home</option><option value="work">Work</option><option value="work_fax">Work Fax</option><option value="home_fax">Home Fax</option><option value="skype">Skype</option><option value="pager">Pager</option><option value="work_email">Email</option><option value="other">Other</option></select><input type="text" required="required" class="form-control" id="pnum_'+i+'" name="phone_num[]"></div>');
+                                        $("#phone_type_"+i).val(data.data[i].u_phone_type);
+                                        $("#pnum_"+i).val(data.data[i].u_phone_detail);
 
-                                }
-                            else{
-                                    $(wrapper).append('<div class="form-group col-md-6 append"><label for="pnum">Phone Number</label><a href="#" class="remove_field btn btn-danger m-b-10 pull-right">Remove</a><select class="form-control" id="phone_type_'+i+'" name="phone_type[]" ><option value="mobile">Mobile</option><option value="home">Home</option><option value="work">Work</option><option value="work_fax">Work Fax</option><option value="home_fax">Home Fax</option><option value="skype">Skype</option><option value="pager">Pager</option><option value="work_email">Email</option><option value="other">Other</option></select><input type="text" required="required" class="form-control" id="pnum_'+i+'" name="phone_num[]"></div>'); //add input box
-                                    $("#phone_type_"+i).val(data.data[i].u_phone_type);
-                                    $("#pnum_"+i).val(data.data[i].u_phone_detail);
-                                }
-//                            alert(data.data[i].u_phone_type);
-//                            alert(data.data[i].u_phone_detail)
+                                    }
+                                else{
+                                        $(wrapper).append('<div class="form-group col-md-6 append"><label for="pnum">Phone Number</label><a href="#" class="remove_field btn btn-danger m-b-10 pull-right">Remove</a><select class="form-control" id="phone_type_'+i+'" name="phone_type[]" ><option value="mobile">Mobile</option><option value="home">Home</option><option value="work">Work</option><option value="work_fax">Work Fax</option><option value="home_fax">Home Fax</option><option value="skype">Skype</option><option value="pager">Pager</option><option value="work_email">Email</option><option value="other">Other</option></select><input type="text" required="required" class="form-control" id="pnum_'+i+'" name="phone_num[]"></div>'); //add input box
+                                        $("#phone_type_"+i).val(data.data[i].u_phone_type);
+                                        $("#pnum_"+i).val(data.data[i].u_phone_detail);
+                                    }
+    //                            alert(data.data[i].u_phone_type);
+    //                            alert(data.data[i].u_phone_detail)
+                            }
                         }
+//                        else{
+//                            $(wrapper).append('<div class="form-group col-md-6 append"><label for="pnum">Phone Number</label><a href="#" class="add_field_button btn btn-success m-b-10 pull-right">Add Phone</a><select class="form-control" id="phone_type_'+i+'" name="phone_type[]" ><option value="mobile">Mobile</option><option value="home">Home</option><option value="work">Work</option><option value="work_fax">Work Fax</option><option value="home_fax">Home Fax</option><option value="skype">Skype</option><option value="pager">Pager</option><option value="work_email">Email</option><option value="other">Other</option></select><input type="text" required="required" class="form-control" id="pnum_'+i+'" name="phone_num[]"></div>');
+//                        }
                     })
 
 			    var username = data.data.username;

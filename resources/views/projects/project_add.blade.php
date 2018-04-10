@@ -130,6 +130,7 @@
                                             <div class="form-group col-md-6">
                                                 <label>&nbsp;</label>
                                                 <button type="submit" id="add_improvement_type" class="btn btn-info sub-btn">Add Improvement Type in list</button>
+<!--                                                <button type="submit" id="cancel_improvement_type" class="btn btn-info sub-btn">Cancel</button>-->
                                             </div>
                                         </div>
 

@@ -385,11 +385,13 @@ class DailyReportController extends Controller {
         $report_general_notes               = $request['report_general_notes'];
         $report_picture_video               = $request['report_picture_video'];
         $report_subcontractor_work_day      = $request['report_subcontractor_work_day'];
-        $report_subcontractor_work_detail   = $request['report_subcontractor_work_detail'];
-        $pdr_sub_contractor_work_detail_comment = $request['pdr_sub_contractor_work_detail_comment'];
+        //$report_subcontractor_work_detail   = $request['report_subcontractor_work_detail'];
+        //$pdr_sub_contractor_work_detail_comment = $request['pdr_sub_contractor_work_detail_comment'];
         $project_id                         = $request['project_id'];
         $user_id                            = Auth::user()->id;
         $status                             = 'complete';
+        $subcontractor_arr                  = $request['subcontractor_arr'];
+        //echo '<pre>';print_r($subcontractor_arr);die;
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
       $permission_key = 'daily_construction_report_update';
@@ -417,7 +419,14 @@ class DailyReportController extends Controller {
         {
             $query = DB::table('project_daily_report_logs')
             ->where('pdrl_id', '=', $report_id)
-            ->update(['pdr_weather' => $report_weather, 'pdr_custom_field' => $report_custum_field, 'pdr_perform_work_day' => $report_perform_work_day, 'pdr_material_delivery' =>$report_material_delivery, 'pdr_milestone_completed' =>$report_milestone_completed, 'pdr_milestone_detail' =>$report_milestone_detail, 'pdr_occur_detail' =>$report_occur_detail, 'pdr_general_notes' =>$report_general_notes, 'pdr_picture_video' =>$report_picture_video, 'pdr_sub_contractor_work' =>$report_subcontractor_work_day, 'pdr_sub_contractor_work_detail' => $report_subcontractor_work_detail,'pdr_sub_contractor_work_detail_comment'=>$pdr_sub_contractor_work_detail_comment ,'pdr_status' => $status, 'pdr_project_id' => $project_id, 'pdr_user_id' => $user_id]);
+            ->update(['pdr_weather' => $report_weather, 'pdr_custom_field' => $report_custum_field, 'pdr_perform_work_day' => $report_perform_work_day, 'pdr_material_delivery' =>$report_material_delivery, 'pdr_milestone_completed' =>$report_milestone_completed, 'pdr_milestone_detail' =>$report_milestone_detail, 'pdr_occur_detail' =>$report_occur_detail, 'pdr_general_notes' =>$report_general_notes, 'pdr_picture_video' =>$report_picture_video, 'pdr_sub_contractor_work' =>$report_subcontractor_work_day,'pdr_status' => $status, 'pdr_project_id' => $project_id, 'pdr_user_id' => $user_id]);
+            foreach($subcontractor_arr as $row)
+            {
+                $query = DB::table('project_daily_report_subcontractor_comments')
+                ->insert(['report_id' => $report_id,'company_name' => $row['subcontractor_name'],'comment' => $row['subcontractor_comments']]);
+            }
+            
+            
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");

@@ -36,6 +36,7 @@
                                     <th>Job Location</th>
                                     <th>Owner</th>
                                     <th>Document</th>
+                                    <th>Disputed Claim Amount</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>

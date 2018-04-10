@@ -131,13 +131,17 @@
         <input type="radio" name="subcontractor_field" id="subcontractor_field" value="no"> No
     </label>
 </div>
+<input type="hidden" name="subcontractor_counter" id="subcontractor_counter" value="1">
 <div class="subcontractor_detail" style="display: none;">
+    <div class="sub_contractor_1">
     <div class="form-group col-md-3">
-       <select class="form-control" name="" id="subcontractor_work_detail">
+       <select class="form-control subcontractor_work_detail" name="subcontractor_work_detail[]" id="subcontractor_work_detail">
        </select>
     </div>
     <div class="form-group col-md-9">
-        <input class="form-control" type="text" id="pdr_sub_contractor_work_detail_comment" name="pdr_sub_contractor_work_detail_comment" placeholder="Add Comments">
+        <div class="col-xs-10"><input class="form-control" type="text" id="pdr_sub_contractor_work_detail_comment" name="sub_contractor_work_detail_comment[]" placeholder="Add Comments"></div>
+        <div class="col-xs-2"><a class="btn btn-success add_subcontractor">+</a></div>
+    </div>
     </div>
 </div>
 

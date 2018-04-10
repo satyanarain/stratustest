@@ -494,10 +494,14 @@ $(document).ready(function() {
             })
         },3000)
     });
-
-    $('.add-impvtypes').click(function(){
-        $('#add-impvtypes').modal('show');
-    }) 
+    var project_add_impvtype_on_fly = jQuery.inArray("project_add_impvtype_on_fly", check_user_access );
+    if(project_add_impvtype_on_fly>0 || role=="owner"){
+        $('.add-impvtypes').click(function(){
+            $('#add-impvtypes').modal('show');
+        }) 
+    }else{
+        $('.add-impvtypes').hide();
+    }
 
     function add_notice_award_data(){
         var check_award_type        = $("input[name='check_award_type']:checked"). val();
@@ -599,6 +603,8 @@ $(document).ready(function() {
             $('#upload_doc_id').removeAttr('value');
             $('#bid_amount').removeAttr('value');
             $('#award_date').removeAttr('value');
+            $('input[name="signatory_name"]').attr('value', '');
+            $('input[name="signatory_email"]').attr('value', '');
             $("#company_name").val('');
             $(".submit_notice_add_form").text('Save Another');
             $("#cmd").text('Save Another');

@@ -60,7 +60,10 @@ class UnconditionalFinalsController extends Controller {
             $project_id          = $request['project_id'];
             $status              = 'active';
             $user_id             = Auth::user()->id;
-
+            $disputed_claim_amount = $request['disputed_claim_amount'];
+            $signatory_arr       = $request['signatory_arr'];
+            $envelope_id         = '';
+            $docusign_status     = 'pending';
             // Check User Permission Parameter 
             $user_id = Auth::user()->id;
             $permission_key = 'unconditional_finals_add';
@@ -70,6 +73,92 @@ class UnconditionalFinalsController extends Controller {
               return response()->json($result, 403);
             }
             else {
+                if(count($signatory_arr))
+                {
+                $data = array();
+                foreach($signatory_arr as $i=>$row){
+                    if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
+                    {
+                        $data[$i]["email"] = $row['signatory_email'];
+                        $data[$i]["name"] = $row['signatory_name'];
+                        $data[$i]["roleName"] = "contractor";
+                        $data[$i]["tabs"]["textTabs"] =
+                                                array(array(
+                                                        "tabLabel" => "name_of_claimant",
+                                                        "value" => $row['name_of_claimant']),
+                                                        array (
+                                                        "tabLabel" => "name_of_customer",
+                                                        "value" => $row['name_of_customer']),
+                                                        array (
+                                                        "tabLabel" => "job_location",
+                                                        "value" => $row['job_location']),
+                                                        array (
+                                                        "tabLabel" => "owner",
+                                                        "value" => $row['owner']),
+                                                        array (
+                                                        "tabLabel" => "disputed_claim_amount",
+                                                        "value" => $row['disputed_claim_amount']));
+
+                    }else{
+                        $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                        return response()->json($result, 400);
+                    }
+                }
+                if(count($data))
+                {
+                    $documentName = 'Unconditional Finals';
+                    $email = env('DOCUSIGN_EMAIL');
+                    $password = env('DOCUSIGN_PASSWORD');
+                    $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
+                    $templateId = "d656b6f8-9443-47fc-af2c-c9570206ec54";
+                    $url = env('DOCUSIGN_URL');
+                    $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
+                    $curl = curl_init($url);
+                    curl_setopt($curl, CURLOPT_HEADER, false);
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array("X-DocuSign-Authentication: $header"));
+                    $json_response = curl_exec($curl);
+                    $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if ( $statuscode != 200 ) {
+                        $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $status,'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                        return response()->json($result, 400);
+                    }
+                    $response = json_decode($json_response, true);
+                    $accountId = $response["loginAccounts"][0]["accountId"];
+                    $baseUrl = $response["loginAccounts"][0]["baseUrl"];
+                    curl_close($curl);
+
+                    $data = array("accountId" => $accountId, 
+                        "emailSubject" => "Signature request for Unconditional Finals",
+                        "emailBlurb" => "Signature request for Unconditional Finals",
+                        "templateId" => $templateId, 
+                        "templateRoles" => $data,
+                        "status" => "sent");
+                    $data_string = json_encode($data); 
+                    // Send to the /envelopes end point, which is relative to the baseUrl received above. 
+                    $curl = curl_init($baseUrl . "/envelopes" );
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_POST, TRUE);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);                                                                  
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
+                            'Content-Type: application/json', 
+                            'Content-Length: ' . strlen($data_string),
+                            "X-DocuSign-Authentication: $header" )                                                                       
+                    );
+                    $json_response = curl_exec($curl); // Do it!
+                    $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if ( $statuscode != 201 ) {
+                            $response = json_decode($json_response, true);
+                            $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                            return response()->json($result, 400);
+                    }
+                    $response = json_decode($json_response, true);
+                    $envelope_id = $response["envelopeId"];
+                }
+            }
                 $information = array(
                     "puf_date_of_signature"     => $date_of_signature,
                     "puf_name_of_claimant"      => $name_of_claimant,
@@ -79,7 +168,10 @@ class UnconditionalFinalsController extends Controller {
                     "puf_file_path"             => $file_path,
                     "puf_project_id"            => $project_id,
                     "puf_status"                => $status,
-                    "puf_user_id"               => $user_id
+                    "puf_user_id"               => $user_id,
+                    "disputed_claim_amount"     => $disputed_claim_amount,
+                    "docusign_status"           => $docusign_status,
+                    "envelope_id"               => $envelope_id,
                 );
                 $rules = [
                     'puf_date_of_signature'     => 'required',

@@ -134,14 +134,17 @@ $(document).ready(function() {
 
     $('body').delegate( '.rfi_yes', 'change', function () {
         var id = $(this).find(".rfi_add_div:first").attr("id");
+        var id1 = "rfi_add_1";
         console.log(id);
         // $('#'+id).change(function() {
             $('#'+id).show();
-            if($('#'+id).is(":checked")) {
+            if($('#'+id1).is(":checked")) {
+                //alert('check');
                 $('#'+id).show();
             }
             else {
-               $(id).hide();
+                //alert('notcheck');
+               $('#'+id).hide();
             }
         // });
         return;

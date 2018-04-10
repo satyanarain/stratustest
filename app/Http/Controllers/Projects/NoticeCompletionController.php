@@ -113,6 +113,9 @@ class NoticeCompletionController extends Controller {
         $improvement_type       = $request['improvement_type'];
         $noc_user_id            = Auth::user()->id;
         $noc_status             = 'active';
+        $signatory_arr      = $request['signatory_arr'];
+        $envelope_id    = '';
+        $docusign_status = 'pending';
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
       $permission_key = 'notice_completion_add';
@@ -122,6 +125,78 @@ class NoticeCompletionController extends Controller {
         return response()->json($result, 403);
       }
       else {
+          
+        if(count($signatory_arr))
+            {
+                $data = array();
+                foreach($signatory_arr as $i=>$row){
+                    if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
+                    {
+                        $data[$i]["email"] = $row['signatory_email'];
+                        $data[$i]["name"] = $row['signatory_name'];
+                        $data[$i]["roleName"] = $row['signatory_role'];
+                    }else{
+                        $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                        return response()->json($result, 400);
+                    }
+                }
+                if(count($data))
+                {
+                    
+                    $email = env('DOCUSIGN_EMAIL');
+                    $password = env('DOCUSIGN_PASSWORD');
+                    $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
+                    $templateId = "e7fd71fb-0122-436d-9928-e9a4f5404ffb";
+                    $url = env('DOCUSIGN_URL');
+                    $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
+                    $curl = curl_init($url);
+                    curl_setopt($curl, CURLOPT_HEADER, false);
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array("X-DocuSign-Authentication: $header"));
+                    $json_response = curl_exec($curl);
+                    $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if ( $statuscode != 200 ) {
+                            $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $status,'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                            return response()->json($result, 400);
+                    }
+                    $response = json_decode($json_response, true);
+                    $accountId = $response["loginAccounts"][0]["accountId"];
+                    $baseUrl = $response["loginAccounts"][0]["baseUrl"];
+                    curl_close($curl);
+
+                    $data = array("accountId" => $accountId, 
+                        "emailSubject" => "Signature request for Notice of Completion",
+                        "emailBlurb" => "Signature request for Notice of Completion",
+                        "templateId" => $templateId, 
+                        "templateRoles" => $data,
+                        "status" => "sent");
+                    $data_string = json_encode($data); 
+                    
+                    // Send to the /envelopes end point, which is relative to the baseUrl received above. 
+                    $curl = curl_init($baseUrl . "/envelopes" );
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl, CURLOPT_POST, TRUE);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);                                                                  
+                    curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
+                            'Content-Type: application/json', 
+                            'Content-Length: ' . strlen($data_string),
+                            "X-DocuSign-Authentication: $header" )                                                                       
+                    );
+                    $json_response = curl_exec($curl); // Do it!
+                    $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    if ( $statuscode != 201 ) {
+                            $response = json_decode($json_response, true);
+                            $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                            return response()->json($result, 400);
+                    }
+                    $response = json_decode($json_response, true);
+                    //print_r($data);
+                    $envelope_id = $response["envelopeId"];
+                }
+            }
         $information = array(
             // "noc_rec_text"        => $noc_rec_text,
             // "noc_rec_name"        => $noc_rec_name,
@@ -149,7 +224,7 @@ class NoticeCompletionController extends Controller {
         else
         {
              $query = DB::table('project_notice_of_completion')
-            ->insert(['date_noc_filed'=>$date_noc_filed,'improvement_type'=>$improvement_type,'noc_rec_text' => $noc_rec_text, 'noc_rec_name' => $noc_rec_name, 'noc_rec_street' => $noc_rec_street, 'noc_rec_adress' => $noc_rec_adress, 'noc_notice_text_1' => $noc_notice_text_1, 'noc_notice_text_2' => $noc_notice_text_2, 'noc_notice_text_3' => $noc_notice_text_3, 'noc_notice_text_4' => $noc_notice_text_4, 'noc_notice_text_5' => $noc_notice_text_5, 'noc_notice_text_6' => $noc_notice_text_6, 'noc_notice_text_7' => $noc_notice_text_7, 'noc_notice_text_8' => $noc_notice_text_8, 'noc_notice_text_9' => $noc_notice_text_9, 'noc_notice_text_10' => $noc_notice_text_10, 'noc_notice_text_11' => $noc_notice_text_11, 'noc_notice_text_12' => $noc_notice_text_12, 'noc_notice_text_13' => $noc_notice_text_13, 'noc_notice_text_14' => $noc_notice_text_14, 'noc_notice_text_15' => $noc_notice_text_15, 'noc_notice_text_16' => $noc_notice_text_16, 'noc_notice_text_17' => $noc_notice_text_17, 'noc_notice_text_18' => $noc_notice_text_18, 'noc_notice_text_19' => $noc_notice_text_19, 'noc_notice_text_20' => $noc_notice_text_20, 'noc_notice_text_21' => $noc_notice_text_21, 'noc_notice_text_22' => $noc_notice_text_22, 'noc_ver_text_1' => $noc_ver_text_1, 'noc_ver_text_2' => $noc_ver_text_2, 'noc_ver_text_3' => $noc_ver_text_3, 'noc_ver_text_4' => $noc_ver_text_4, 'noc_ver_text_5' => $noc_ver_text_5, 'noc_ver_text_6' => $noc_ver_text_6, 'noc_ver_text_7' => $noc_ver_text_7, 'noc_ser_text_1' => $noc_ser_text_1, 'noc_ser_text_2' => $noc_ser_text_2, 'noc_ser_text_3' => $noc_ser_text_3, 'noc_ser_text_4' => $noc_ser_text_4, 'noc_ser_text_5' => $noc_ser_text_5, 'noc_ser_text_6' => $noc_ser_text_6, 'noc_ser_text_7' => $noc_ser_text_7, 'noc_ser_text_8' => $noc_ser_text_8, 'noc_ser_text_9' => $noc_ser_text_9, 'noc_ser_text_10' => $noc_ser_text_10, 'noc_ser_text_11' => $noc_ser_text_11, 'noc_ser_text_12' => $noc_ser_text_12, 'noc_ser_text_13' => $noc_ser_text_13, 'noc_ser_text_14' => $noc_ser_text_14, 'noc_ser_text_15' => $noc_ser_text_15, 'noc_ser_text_16' => $noc_ser_text_16, 'noc_ser_text_17' => $noc_ser_text_17, 'noc_con_text_1' => $noc_con_text_1, 'noc_con_text_2' => $noc_con_text_2, 'noc_con_text_3' => $noc_con_text_3, 'noc_con_text_4' => $noc_con_text_4, 'noc_con_text_5' => $noc_con_text_5, 'noc_con_text_6' => $noc_con_text_6, 'noc_all_potential_claimants' => $noc_all_potential_claimants, 'noc_project_id' => $noc_project_id, 'noc_file_path' => $noc_file_path, 'noc_user_id' => $noc_user_id, 'noc_status' => $noc_status]);
+            ->insert(['docusign_status'=>$docusign_status,'envelope_id'=>$envelope_id,'date_noc_filed'=>$date_noc_filed,'improvement_type'=>$improvement_type,'noc_rec_text' => $noc_rec_text, 'noc_rec_name' => $noc_rec_name, 'noc_rec_street' => $noc_rec_street, 'noc_rec_adress' => $noc_rec_adress, 'noc_notice_text_1' => $noc_notice_text_1, 'noc_notice_text_2' => $noc_notice_text_2, 'noc_notice_text_3' => $noc_notice_text_3, 'noc_notice_text_4' => $noc_notice_text_4, 'noc_notice_text_5' => $noc_notice_text_5, 'noc_notice_text_6' => $noc_notice_text_6, 'noc_notice_text_7' => $noc_notice_text_7, 'noc_notice_text_8' => $noc_notice_text_8, 'noc_notice_text_9' => $noc_notice_text_9, 'noc_notice_text_10' => $noc_notice_text_10, 'noc_notice_text_11' => $noc_notice_text_11, 'noc_notice_text_12' => $noc_notice_text_12, 'noc_notice_text_13' => $noc_notice_text_13, 'noc_notice_text_14' => $noc_notice_text_14, 'noc_notice_text_15' => $noc_notice_text_15, 'noc_notice_text_16' => $noc_notice_text_16, 'noc_notice_text_17' => $noc_notice_text_17, 'noc_notice_text_18' => $noc_notice_text_18, 'noc_notice_text_19' => $noc_notice_text_19, 'noc_notice_text_20' => $noc_notice_text_20, 'noc_notice_text_21' => $noc_notice_text_21, 'noc_notice_text_22' => $noc_notice_text_22, 'noc_ver_text_1' => $noc_ver_text_1, 'noc_ver_text_2' => $noc_ver_text_2, 'noc_ver_text_3' => $noc_ver_text_3, 'noc_ver_text_4' => $noc_ver_text_4, 'noc_ver_text_5' => $noc_ver_text_5, 'noc_ver_text_6' => $noc_ver_text_6, 'noc_ver_text_7' => $noc_ver_text_7, 'noc_ser_text_1' => $noc_ser_text_1, 'noc_ser_text_2' => $noc_ser_text_2, 'noc_ser_text_3' => $noc_ser_text_3, 'noc_ser_text_4' => $noc_ser_text_4, 'noc_ser_text_5' => $noc_ser_text_5, 'noc_ser_text_6' => $noc_ser_text_6, 'noc_ser_text_7' => $noc_ser_text_7, 'noc_ser_text_8' => $noc_ser_text_8, 'noc_ser_text_9' => $noc_ser_text_9, 'noc_ser_text_10' => $noc_ser_text_10, 'noc_ser_text_11' => $noc_ser_text_11, 'noc_ser_text_12' => $noc_ser_text_12, 'noc_ser_text_13' => $noc_ser_text_13, 'noc_ser_text_14' => $noc_ser_text_14, 'noc_ser_text_15' => $noc_ser_text_15, 'noc_ser_text_16' => $noc_ser_text_16, 'noc_ser_text_17' => $noc_ser_text_17, 'noc_con_text_1' => $noc_con_text_1, 'noc_con_text_2' => $noc_con_text_2, 'noc_con_text_3' => $noc_con_text_3, 'noc_con_text_4' => $noc_con_text_4, 'noc_con_text_5' => $noc_con_text_5, 'noc_con_text_6' => $noc_con_text_6, 'noc_all_potential_claimants' => $noc_all_potential_claimants, 'noc_project_id' => $noc_project_id, 'noc_file_path' => $noc_file_path, 'noc_user_id' => $noc_user_id, 'noc_status' => $noc_status]);
 
             if(count($query) < 1)
             {

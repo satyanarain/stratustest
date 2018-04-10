@@ -27,22 +27,33 @@
                             </div>
                         <table class="table convert-data-table data-table custom-grid table_scroll_x_axis table-bordered" id="view_users_table">
                         <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th style="text-align: center" colspan="3">General Liability</th>
+                                <th colspan="3">Workers Comp </th>
+                                <th colspan="3">Auto Liability </th>
+                                <th colspan="3">Umbrella Liability </th>
+                                <th>Insurance Summary</th>
+                                <th></th>
+                                <th></th>
+                            </tr>    
                         <tr>
                             <th>#</th>
                             <th>Contractor Name</th>
-                            <th>General Liability Amount</th>
-                            <th>General Liability Date</th>
-                            <th>General Liability Certificate</th>
-                            <th>Workers Comp Amount</th>
-                            <th>Workers Comp Date</th>
-                            <th>Workers Comp Certificate</th>
-                            <th>Auto Liability Amount</th>
-                            <th>Auto Liability Date</th>
-                            <th>Auto Liability Certificate</th>
-                            <th>Umbrella Liability Amount</th>
-                            <th>Umbrella Liability Date</th>
-                            <th>Umbrella Liability Certificate</th>
-                            <th>Certificate of Insurance Summary</th>
+                            <th> Amount</th>
+                            <th>Date</th>
+                            <th>Certificate</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Certificate</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Certificate</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Certificate</th>
+                            <th>Certificate</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>

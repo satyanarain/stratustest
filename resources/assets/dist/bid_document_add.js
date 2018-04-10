@@ -293,7 +293,14 @@ $(document).ready(function() {
 //            }
 //        }) 
 
-   
+    var project_add_impvtype_on_fly = jQuery.inArray("project_add_impvtype_on_fly", check_user_access );
+    if(project_add_impvtype_on_fly>0 || role=="owner"){
+        $('.add-impvtypes').click(function(){
+            $('#add-impvtypes').modal('show');
+        }) 
+    }else{
+        $('.add-impvtypes').hide();
+    }
 }); 
 
     $('#bid_advertisement_yes').change(function() {
@@ -592,6 +599,6 @@ $(document).ready(function() {
             
         }
     })
-    $('.add-impvtypes').click(function(){
-        $('#add-impvtypes').modal('show');
-    })    
+    
+    
+       

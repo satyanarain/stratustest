@@ -314,7 +314,7 @@ class NotificationController extends Controller {
         $date                 = date("M d, Y h:i a");
         $email_description    = 'Notification for Certificate of Insurance expiration. <br> <a href="'.$url.$link.'"> Click Here to see </a>';
         $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
-        
+        //echo '<pre>';print_r($check_single_user_permission);die;
         if(count($check_single_user_permission) < 1){
           continue;
         }
@@ -322,6 +322,7 @@ class NotificationController extends Controller {
           //echo '<pre>';print_r($records);die;
             //echo '<pre>';print_r($check_single_user_permission);die;
             $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);
+            //echo '<pre>';print_r($check_project_user_notification);die;
             if(count($check_project_user_notification) < 1){
               continue;
             }else{

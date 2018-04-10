@@ -93,9 +93,28 @@
                                         <select class="form-control " id="agency_name" ></select>
 
                                     </div>
-                                   
-                                   
+                                   <div class="form-group disputed_claim_amount_checkbox">
+                                        <div class="col-md-12">
+                                            <label class="checkbox-custom check-success">
+                                                <input type="checkbox" name="disputed_claim_amount_yes" value=" " id="disputed_claim_amount_yes">
+                                                <label for="disputed_claim_amount_yes">Is there a disputed claim amount for extras associated with this unconditional final?</label>
+                                            </label>
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group col-md-12 disputed_claim_amount" style="display: none;">
+                                        <label for="disputed_claim_amount">Claim Amount</label>
+                                        <input type="number" name="disputed_claim_amount" class="form-control" value="0" id="disputed_claim_amount">
+                                    </div>
+                                   <div class="form-group col-md-12">
+                                        <label for="">Contractor Name</label>
+                                        <input class="form-control" name="signatory_name[]" type="text" id="">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                         <label for="">Contractor Email</label>
+                                         <input class="form-control" name="signatory_email[]" type="text" id="">
+                                    </div>
+                            
                                     <input type="hidden" id="upload_doc_id">
                                     <div class="form-group col-md-12">
 <!--                                        <a data-href="{{ url('/dashboard/'.$project_id.'/unconditional_finals') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
@@ -127,7 +146,7 @@
                             <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $project_id; ?>">
                             <div class="clearfix"></div>
                         </div>
-
+                        
                     </div>
                 </section>
             </div>

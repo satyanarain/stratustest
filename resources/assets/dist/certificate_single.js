@@ -94,54 +94,74 @@
 		})
 		.done(function(data, textStatus, jqXHR) {
 		    console.log(data);
-		    
-            var amount = data.data.liability_currency+' '+ ReplaceNumberWithCommas(data.data.liability_limit);
+            if(data.data.liability_limit>0)
+                var amount = data.data.liability_currency+' '+ ReplaceNumberWithCommas(data.data.liability_limit);
+            else
+                var amount = 'NA';
             $('#general_liability_amount').text(amount);
-            $('#general_liability_date').text(data.data.liability_exp);
+            if(data.data.liability_exp!="0000-00-00" && data.data.liability_exp!='NULL')
+                $('#general_liability_date').text(data.data.liability_exp);
+            else
+                $('#general_liability_date').text('NA');
             var liability_cert_path = data.data.liability_cert_path;
             var liability_cert_path_value;
             if(liability_cert_path == null){
-                liability_cert_path_value = '-';
+                liability_cert_path_value = 'NA';
             }
             else {
                 liability_cert_path_value = '<a href="'+baseUrl+liability_cert_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf.svg" width="40"/></a>';
             }
 		    $('#general_liability_doc_link').html(liability_cert_path_value);
-
-            var amount = data.data.auto_liability_currency+' '+ ReplaceNumberWithCommas(data.data.auto_liability_limit);
+            if(data.data.auto_liability_limit>0)
+                var amount = data.data.auto_liability_currency+' '+ ReplaceNumberWithCommas(data.data.auto_liability_limit);
+            else
+                var amount = 'NA';
             $('#auto_liability_amount').text(amount);
-            $('#auto_liability_date').text(data.data.auto_liability_exp);
+            if(data.data.auto_liability_exp!="0000-00-00" && data.data.auto_liability_exp!='NULL')
+                $('#auto_liability_date').text(data.data.auto_liability_exp);
+            else
+                $('#auto_liability_date').text('NA');
             var auto_liability_cert_path = data.data.auto_liability_cert_path;
             var auto_liability_cert_path_value;
             if(auto_liability_cert_path == null){
-                auto_liability_cert_path_value = '-';
+                auto_liability_cert_path_value = 'NA';
             }
             else {
                 auto_liability_cert_path_value = '<a href="'+baseUrl+auto_liability_cert_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf.svg" width="40"/></a>';
             }
             $('#auto_liability_doc_link').html(auto_liability_cert_path_value);
-
-            var amount = data.data.work_comp_currency+' '+ ReplaceNumberWithCommas(data.data.work_comp_limit);
+            if(data.data.work_comp_limit>0)
+                var amount = data.data.work_comp_currency+' '+ ReplaceNumberWithCommas(data.data.work_comp_limit);
+            else
+                var amount = 'NA';
             $('#work_comp_amount').text(amount);
-            $('#work_comp_date').text(data.data.work_comp_exp);
+            if(data.data.work_comp_exp!="0000-00-00" && data.data.work_comp_exp!='NULL')
+                $('#work_comp_date').text(data.data.work_comp_exp);
+            else
+                $('#work_comp_date').text('NA');
             var work_comp_cert_path = data.data.work_comp_cert_path;
             var work_comp_cert_path_value;
             if(work_comp_cert_path == null){
-                work_comp_cert_path_value = '-';
+                work_comp_cert_path_value = 'NA';
             }
             else {
                 work_comp_cert_path_value = '<a href="'+baseUrl+work_comp_cert_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf.svg" width="40"/></a>';
             }
             $('#work_comp_doc_link').html(work_comp_cert_path_value);
-
-            var amount = data.data.umbrella_liability_currency+' '+ ReplaceNumberWithCommas(data.data.umbrella_liability_limit);
+            if(data.data.umbrella_liability_limit>0)
+                var amount = data.data.umbrella_liability_currency+' '+ ReplaceNumberWithCommas(data.data.umbrella_liability_limit);
+            else
+                var amount = "NA";
             console.log(amount);
-            $('#umbrella_liability_amount').text(amount);
-            $('#umbrella_liability_date').text(data.data.umbrella_liability_exp);
+                $('#umbrella_liability_amount').text(amount);
+            if(data.data.umbrella_liability_exp!="0000-00-00" && data.data.umbrella_liability_exp!='NULL')
+                $('#umbrella_liability_date').text(data.data.umbrella_liability_exp);
+            else
+                $('#umbrella_liability_date').text("NA");
             var umbrella_liability_cert_path = data.data.umbrella_liability_cert_path;
             var umbrella_liability_cert_path_value;
             if(umbrella_liability_cert_path == null){
-                umbrella_liability_cert_path_value = '-';
+                umbrella_liability_cert_path_value = 'NA';
             }
             else {
                 umbrella_liability_cert_path_value = '<a href="'+baseUrl+umbrella_liability_cert_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf.svg" width="40"/></a>';

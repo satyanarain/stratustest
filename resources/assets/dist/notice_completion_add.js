@@ -86,7 +86,14 @@ $(document).ready(function() {
             window.location.href = baseUrl + "500";
         }
     })
-
+    var project_add_impvtype_on_fly = jQuery.inArray("project_add_impvtype_on_fly", check_user_access );
+    if(project_add_impvtype_on_fly>0 || role=="owner"){
+        $('.add-impvtypes').click(function(){
+            $('#add-impvtypes').modal('show');
+        }) 
+    }else{
+        $('.add-impvtypes').hide();
+    }
 });
 
 
@@ -160,6 +167,34 @@ $(document).ready(function() {
         var is_error = false;
         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
         // Check Validation
+        var signatory_name = [];
+        $('input[name^=signatory_name]').each(function(){
+            signatory_name.push($(this).val());
+        });
+        var signatory_email = [];
+        $('input[name^=signatory_email]').each(function(){
+            if($(this).val() != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())){
+                signatory_email.push($(this).val());
+            }else if($(this).val() != ""){
+                html += '<li>Signatory email is invalid.</li>';
+                is_error = true;
+            }
+        });
+        var signatory_role = [];
+        signatory_role.push('owner');
+        signatory_role.push('contractor');
+        var item = {};
+        item['signatory_name'] 		= signatory_name;
+        item['signatory_email']         = signatory_email;
+        item['signatory_role']          = signatory_role;
+        signatory_arr = [];
+        for (i = 0; i < signatory_email.length; i++) {
+            signatory_arr.push({
+                            "signatory_name" 		:   item['signatory_name'][i],
+                            "signatory_email" 		:   item['signatory_email'][i],
+                            "signatory_role"            :   item['signatory_role'][i],
+                        });
+        }
         if(noc_type == "complete_form_noc"){
             // alert('full form');
             if(noc_rec_text == ''){
@@ -619,7 +654,8 @@ $(document).ready(function() {
                         "noc_project_id" : upload_project_id,
                         "noc_file_path" : upload_doc_id,
                         "date_noc_filed" : date_noc_filed,
-                        "improvement_type" : improvement_type
+                        "improvement_type" : improvement_type,
+                        "signatory_arr"    : signatory_arr,
                     },
                     headers: {
                         "x-access-token": token
@@ -726,6 +762,4 @@ $(document).ready(function() {
         }
     });
     
-    $('.add-impvtypes').click(function(){
-        $('#add-impvtypes').modal('show');
-    }) 
+    

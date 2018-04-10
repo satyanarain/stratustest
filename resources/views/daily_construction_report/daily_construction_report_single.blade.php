@@ -6,6 +6,7 @@
         <div class="body-content" >
             <?php $project_id = Request::segment(2); ?>
             <?php $report_id = Request::segment(4); ?>
+            <?php $serial_id = Request::segment(6); ?>
           @include('include/top_bar')
 
             <!--body wrapper start-->
@@ -13,7 +14,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h3 class="m-b-less project_name" id="project_name_title"></h3><br/>
-                        <h2>Daily Construction Management Report # <?php echo $report_id; ?> <span id="status" style="float: right; margin-bottom: 10px;"></span></h2>
+                        <h2>Daily Construction Management Report # <?php echo $serial_id; ?> <span id="status" style="float: right; margin-bottom: 10px;"></span></h2>
                     </div>
 
                     <div class="col-sm-12">
@@ -25,7 +26,7 @@
                                 <tbody>
                                     <tr>
                                         <th width="25%">Daily Report :</th>
-                                        <td width="25%"># <?php echo $report_id; ?></td>
+                                        <td width="25%"># <?php echo $serial_id; ?></td>
                                         <th width="25%">Date of Report: </th>
                                         <td width="25%" id="report_date"></td>
                                     </tr>

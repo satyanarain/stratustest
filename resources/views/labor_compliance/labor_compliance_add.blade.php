@@ -282,7 +282,15 @@
                                     </div><!-- Close Panel -->
 
                                     <div class="col-sm-12 nopadleft" id="compliance_div_show" style="display: none;">
-                                        <div class="form-group col-sm-6 nopadleft clearfix">
+                                        <div class="col-md-12 check_statement_compliance_type" style="margin-bottom:50px;">
+                                            <label for="standard_link">Would you like to upload your own form or fill out and submit via docusign?</label><br/>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="check_statement_compliance_type" id="signed_statement_compliance" value="exist"> Upload your own form</label><br/>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="check_statement_compliance_type" id="unsigned_statement_compliance" value="new"> Submit via docusign</label>
+                                        </div>
+                                        <div class="signed_statement_compliance" style="display: none;">
+                                            <div class="form-group col-sm-6 nopadleft clearfix">
                                             <label class="nopadleft control-label">
                                                 <strong>Statement of Compliance </strong>
                                             </label><br/>
@@ -296,7 +304,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-sm-6 clearfix">
+                                            <div class="form-group col-sm-6 clearfix">
                                             <label class="nopadleft control-label">
                                                 <strong>Upload Statement of Compliance <span class="text-danger">*</span></strong>
                                             </label><br/>
@@ -309,6 +317,17 @@
 <input type="hidden" name="upload_doc_id[]" class="upload_doc_id" id="upload_doc_id_6" value="">
                                                 </div>
                                             </section>
+                                        </div>
+                                        </div>
+                                        <div class="unsigned_statement_compliance" style="display: none;">
+                                            <div class="form-group col-md-6">
+                                                <label for="">Contractor Name</label>
+                                                <input class="form-control" name="signatory_name[]" type="text" id="">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                 <label for="">Contractor Email</label>
+                                                 <input class="form-control" name="signatory_email[]" type="text" id="">
+                                            </div>
                                         </div>
                                     </div><!-- Close Panel -->
 
@@ -407,5 +426,17 @@
            $('#compliance_div_show').css("display", "none");
         }
     });
+</script>
+<script type="text/javascript">
+$("input[name='check_statement_compliance_type']").click(function(){
+    if($('input:radio[name=check_statement_compliance_type]:checked').val() == "exist"){
+        $('.signed_statement_compliance').show();
+        $('.unsigned_statement_compliance').hide();
+    }
+    else {
+        $('.unsigned_statement_compliance').show();
+        $('.signed_statement_compliance').hide();
+    }
+});
 </script>
 @include('include/footer')

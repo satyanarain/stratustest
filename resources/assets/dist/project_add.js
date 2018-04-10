@@ -380,3 +380,8 @@ $("#add_more").click(function(e){
     $('#diplay').show();
     e.preventDefault();
 })
+$("#cancel_improvement_type").click(function(e){
+    $("#imp_type").removeAttr('value');
+    $('#diplay').hide();
+    e.preventDefault();
+})
