@@ -99,15 +99,16 @@
                 <div class="form-group">
                     <label for="name_of_report" style="padding-top: 15px;">Amount of Performance Bond</label>
                     <div class="clearfix"></div>
-                    <div class="col-xs-3" style="padding: 0px;">
+                    <div class="col-xs-3" style="padding: 0px;display: none;">
                         <div class="loading_data" style="text-align: center;">
                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                         </div>
                         <select name="performance_bond_cur_symbol" class="form-control currency_symbol" id="performance_bond_cur_symbol">
+                            <option value="$">$</option>
                         </select>
                     </div>
-                    <div class="col-xs-9">
-                        <input type="text" name="performance_bond_amount" class="form-control" id="performance_bond_amount" onkeypress="return isNumber(event)">
+                    <div class="col-xs-12 nopadleft">
+                        <input type="text" placeholder="$" name="performance_bond_amount" class="form-control" id="performance_bond_amount" onkeypress="return isNumber(event)">
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -164,15 +165,16 @@
                 <div class="form-group">
                     <label for="name_of_report" style="padding-top: 15px;">Amount of Payment Bond</label>
                     <div class="clearfix"></div>
-                    <div class="col-xs-3" style="padding: 0px;">
+                    <div class="col-xs-3" style="padding: 0px; display: none;">
                         <div class="loading_data" style="text-align: center;">
                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                         </div>
                         <select name="payment_bond_cur_symbol" class="form-control currency_symbol" id="payment_bond_cur_symbol">
+                        <option value="$">$</option>
                         </select>
                     </div>
-                    <div class="col-xs-9">
-                        <input type="text" class="form-control" name="payment_bond_amount" id="payment_bond_amount" onkeypress="return isNumber(event)">
+                    <div class="col-xs-12 nopadleft">
+                        <input type="text" placeholder="$" class="form-control" name="payment_bond_amount" id="payment_bond_amount" onkeypress="return isNumber(event)">
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -227,15 +229,16 @@
                 <div class="form-group">
                     <label for="name_of_report" style="padding-top: 15px;">Amount of Maintenance Bond</label>
                     <div class="clearfix"></div>
-                    <div class="col-xs-3" style="padding: 0px;">
+                    <div class="col-xs-3" style="padding: 0px; display: none;">
                         <div class="loading_data" style="text-align: center;">
                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                         </div>
                         <select name="maintenance_bond_cur_symbol" class="form-control currency_symbol" id="maintenance_bond_cur_symbol">
+                        <option value="$">$</option>
                         </select>
                     </div>
-                    <div class="col-xs-9">
-                        <input type="text" class="form-control" name="maintenance_bond_amount" id="maintenance_bond_amount" onkeypress="return isNumber(event)">
+                    <div class="col-xs-12 nopadleft">
+                        <input type="text" placeholder="$" class="form-control" name="maintenance_bond_amount" id="maintenance_bond_amount" onkeypress="return isNumber(event)">
                     </div>
                 </div>
                 <div class="clearfix"></div>

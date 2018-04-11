@@ -76,15 +76,16 @@
                                     <div class="form-group">
                                         <label for="name_of_report" style="padding-top: 15px;">General Liability Limit <span class="text-danger">*</span></label>
                                         <div class="clearfix"></div>
-                                        <div class="col-xs-3" style="padding: 0px;">
+                                        <div class="col-xs-3" style="padding: 0px; display: none;">
                                             <div class="loading_data" style="text-align: center;">
                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                             </div>
                                             <select class="form-control currency_symbol" name="general_liability_cur_symbol" id="general_liability_cur_symbol">
+                                                <option value="$">$</option>
                                             </select>
                                         </div>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" id="general_liability_amount" onkeypress="return isNumber(event)">
+                                        <div class="col-xs-12 nopadleft">
+                                            <input type="text" placeholder="$" class="form-control" id="general_liability_amount" onkeypress="return isNumber(event)">
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -141,15 +142,16 @@
                                     <div class="form-group">
                                         <label for="name_of_report" style="padding-top: 15px;">Workers Compensation Limit <span class="text-danger">*</span></label>
                                         <div class="clearfix"></div>
-                                        <div class="col-xs-3" style="padding: 0px;">
+                                        <div class="col-xs-3" style="padding: 0px; display: none;">
                                             <div class="loading_data" style="text-align: center;">
                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                             </div>
                                             <select class="form-control currency_symbol" name="works_compensation_cur_symbol" id="works_compensation_cur_symbol">
+                                            <option value="$">$</option>
                                             </select>
                                         </div>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" id="works_compensation_currency" onkeypress="return isNumber(event)">
+                                        <div class="col-xs-12 nopadleft">
+                                            <input type="text" placeholder="$" class="form-control" id="works_compensation_currency" onkeypress="return isNumber(event)">
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -214,15 +216,16 @@
                                     <div class="form-group">
                                         <label for="name_of_report" style="padding-top: 15px;">Auto Liability Limit <span class="text-danger">*</span></label>
                                         <div class="clearfix"></div>
-                                        <div class="col-xs-3" style="padding: 0px;">
+                                        <div class="col-xs-3" style="padding: 0px; display: none;">
                                             <div class="loading_data" style="text-align: center;">
                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                             </div>
                                             <select class="form-control currency_symbol" name="auto_compensation_cur_symbol" id="auto_compensation_cur_symbol">
+                                            <option value="$">$</option>
                                             </select>
                                         </div>
-                                        <div class="col-xs-9">
-                                            <input type="text" class="form-control" id="auto_compensation_currency" onkeypress="return isNumber(event)">
+                                        <div class="col-xs-12 nopadleft">
+                                            <input type="text" placeholder="$" class="form-control" id="auto_compensation_currency" onkeypress="return isNumber(event)">
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -293,15 +296,16 @@
                                         <div class="form-group">
                                             <label for="name_of_report" style="padding-top: 15px;">Umbrella Liability Limit</label>
                                             <div class="clearfix"></div>
-                                            <div class="col-xs-3" style="padding: 0px;">
+                                            <div class="col-xs-3" style="padding: 0px; display: none;">
                                                 <div class="loading_data" style="text-align: center;">
                                                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                                 </div>
                                                 <select class="form-control currency_symbol" name="umbrella_liability_cur_symbol" id="umbrella_liability_cur_symbol">
+                                                <option value="$">$</option>
                                                 </select>
                                             </div>
-                                            <div class="col-xs-9">
-                                                <input type="text" class="form-control" id="umbrella_liability_currency" value="" onkeypress="return isNumber(event)">
+                                            <div class="col-xs-12 nopadleft">
+                                                <input type="text" placeholder="$" class="form-control" id="umbrella_liability_currency" value="" onkeypress="return isNumber(event)">
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
@@ -644,15 +648,16 @@ $("#add_more_certificate").click(function() {
                 '<div class="clearfix"></div>'+
                 '<label for="name_of_report" style="padding-top: 15px;">Policy Limit</label>'+
                 '<div class="clearfix"></div>'+
-                '<div class="col-xs-3" style="padding: 0px;">'+
+                '<div class="col-xs-3" style="padding: 0px;display:none;">'+
                     '<div class="loading_data" style="text-align: center;">'+
                        '<img src="'+baseUrl+'/resources/assets/img/loading_bar.gif" alt=""/>'+
                     '</div>'+
                     '<select class="form-control currency_symbol_more" name="custom_certificate_cur_symbol[]" id="custom_certificate_cur_symbol">'+
+                    '<option value="$">$</option>'+
                     '</select>'+
                 '</div>'+
-                '<div class="col-xs-9">'+
-                    '<input type="text" class="form-control" name="custom_certificate_currency[]" id="custom_certificate_currency" onkeypress="return isNumber(event)">'+
+                '<div class="col-xs-12 nopadleft">'+
+                    '<input type="text" placeholder="$" class="form-control" name="custom_certificate_currency[]" id="custom_certificate_currency" onkeypress="return isNumber(event)">'+
                 '</div>'+
             '</div>'+
             '<div class="clearfix"></div>'+

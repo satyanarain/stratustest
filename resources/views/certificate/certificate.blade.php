@@ -63,14 +63,15 @@
                                         <div class="form-group col-md-12">
                                             <label for="name_of_report" style="padding-top: 15px;">General Liability Limit</label>
                                             <div class="clearfix"></div>
-                                            <div class="col-xs-3" style="padding: 0px;">
+                                            <div class="col-xs-3" style="padding: 0px; display: none;">
                                                 <div class="loading_data" style="text-align: center;">
                                                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                                 </div>
                                                 <select class="form-control currency_symbol" id="general_liability_cur_symbol">
+                                                    <option value="$">$</option>
                                                 </select>
                                             </div>
-                                            <div class="col-xs-9">
+                                            <div class="col-xs-12 nopadleft">
                                                 <input type="text" class="form-control" id="general_liability_amount">
                                             </div>
                                         </div>
