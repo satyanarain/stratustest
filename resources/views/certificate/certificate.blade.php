@@ -68,7 +68,7 @@
                                                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                                 </div>
                                                 <select class="form-control currency_symbol" id="general_liability_cur_symbol">
-                                                    <option value="$">$</option>
+                                                    <option value="1">$</option>
                                                 </select>
                                             </div>
                                             <div class="col-xs-12 nopadleft">

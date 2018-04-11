@@ -81,7 +81,7 @@
                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                             </div>
                                             <select class="form-control currency_symbol" name="general_liability_cur_symbol" id="general_liability_cur_symbol">
-                                                <option value="$">$</option>
+                                                <option value="1">$</option>
                                             </select>
                                         </div>
                                         <div class="col-xs-12 nopadleft">
@@ -147,7 +147,7 @@
                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                             </div>
                                             <select class="form-control currency_symbol" name="works_compensation_cur_symbol" id="works_compensation_cur_symbol">
-                                            <option value="$">$</option>
+                                            <option value="1">$</option>
                                             </select>
                                         </div>
                                         <div class="col-xs-12 nopadleft">
@@ -221,7 +221,7 @@
                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                             </div>
                                             <select class="form-control currency_symbol" name="auto_compensation_cur_symbol" id="auto_compensation_cur_symbol">
-                                            <option value="$">$</option>
+                                            <option value="1">$</option>
                                             </select>
                                         </div>
                                         <div class="col-xs-12 nopadleft">
@@ -301,7 +301,7 @@
                                                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                                 </div>
                                                 <select class="form-control currency_symbol" name="umbrella_liability_cur_symbol" id="umbrella_liability_cur_symbol">
-                                                <option value="$">$</option>
+                                                <option value="1">$</option>
                                                 </select>
                                             </div>
                                             <div class="col-xs-12 nopadleft">
@@ -653,7 +653,7 @@ $("#add_more_certificate").click(function() {
                        '<img src="'+baseUrl+'/resources/assets/img/loading_bar.gif" alt=""/>'+
                     '</div>'+
                     '<select class="form-control currency_symbol_more" name="custom_certificate_cur_symbol[]" id="custom_certificate_cur_symbol">'+
-                    '<option value="$">$</option>'+
+                    '<option value="1">$</option>'+
                     '</select>'+
                 '</div>'+
                 '<div class="col-xs-12 nopadleft">'+
