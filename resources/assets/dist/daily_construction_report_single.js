@@ -159,7 +159,7 @@
 		    	window.location.href = baseUrl + "500";
 		    }
 		}) 
-
+    
     jQuery.ajax({
     url: baseUrl+report_id+"/subcontractor-work-detail",
         type: "GET",
@@ -197,7 +197,7 @@
             window.location.href = baseUrl + "500";
         }
     }) 
-
+    
 		jQuery.ajax({
 		url: baseUrl+report_id+"/daily-quantity-complete",
 		    type: "GET",
@@ -296,7 +296,7 @@
 			  	 	var	file_path_value = '-';
 			  	}
 			  	else {
-			  		var file_path_value = '<a href="'+baseUrl+val.doc_path+'"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+			  		var file_path_value = '<a href="'+baseUrl+val.doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
 			  	}
 
 				$("#material_type").append(
@@ -340,6 +340,7 @@
 		})
 		.done(function(data, textStatus, jqXHR) {
 			console.log(data.data);
+                        $('#report_photo_uploaded').html('<span class="label label-success">Yes</span>');
 			jQuery.each(data.data, function( i, val ) {
 				 var file_path = val.doc_path;
 			    if(file_path == null){
@@ -358,6 +359,7 @@
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 		    console.log("HTTP Request Failed");
+                    $('#report_photo_uploaded').html('<span class="label label-danger">No</span>');
 		    var response = jqXHR.responseJSON.code;
 		    if(response == 403){
 		    	window.location.href = baseUrl + "403";

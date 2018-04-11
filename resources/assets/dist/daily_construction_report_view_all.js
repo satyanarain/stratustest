@@ -90,7 +90,7 @@
 					var update_permission = '';
 				}
 				else {
-					var update_permission = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/daily_construction_report/'+val.pdr_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
+					var update_permission = '<a href="'+baseUrl+'dashboard/'+val.p_id+'/daily_construction_report/'+val.pdr_id+'/serial/'+count+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
 				}
 
 				var status = val.pdr_status;

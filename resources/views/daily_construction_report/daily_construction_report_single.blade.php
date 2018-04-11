@@ -135,6 +135,9 @@
                                         <th colspan="4">Were any photos or videos taken this day?</th>
                                     </tr>
                                     <tr>
+                                        <td colspan="4" id="report_photo_uploaded"></td>
+                                    </tr>
+                                    <tr>
                                         <th colspan="2">Photo / Video Description</th>
                                         <th colspan="2">Photo / Video </th>
                                     </tr>

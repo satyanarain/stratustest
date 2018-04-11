@@ -13,8 +13,9 @@ $(document).ready(function() {
     var role = localStorage.getItem('u_role');
     var token = localStorage.getItem('u_token');
     var url = $(location).attr('href').split( '/' );
-    project_id = url[ url.length - 4 ]; // projects
-    report_id = url[ url.length - 2 ]; // projects
+    project_id = url[ url.length - 6 ]; // projects
+    report_id = url[ url.length - 4 ]; // projects
+    var report_number = url[ url.length - 2 ];
     console.log(project_id);
     //alert(report_id);
     jQuery.ajax({
@@ -106,7 +107,7 @@ $(document).ready(function() {
 			//var report_date = year + '-' + month + '-' + day;
                         var report_date = data.data.pdr_date;//var report_date = $.datepicker.formatDate('yy-mm-dd', new Date(data.data.pdr_date.replace(' ', 'T')));
 		    $('#report_name').text(report_date);
-		    $('#report_number').text(data.data.pdrl_id);
+		    $('#report_number').text(report_number);
 		    $('#report_date').text(report_date);
 		    $('#project_weather').html(data.data.pdr_weather + "<sup>o</sup> c");
 
@@ -192,12 +193,12 @@ $(document).ready(function() {
 	        }
 	        else if(response == 404){
 	            console.log("404");
-                    $("#subcontractor_work_detail").append(
+                    $(".subcontractor_work_detail").append(
                         '<option value="">Select Subcontractor</option>'
                     )
                     var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
                     if(add_company_on_fly_permission>0 || role=="owner"){
-                    $("#subcontractor_work_detail").append(
+                    $(".subcontractor_work_detail").append(
                         '<option style="font-weight:bold;">Add New Subcontractor</option>'
                     )}
 	            // window.location.href = baseUrl + "404";
@@ -947,7 +948,8 @@ $(document).ready(function() {
         });
         var subcontractor_name = [];
         $('select[name^=subcontractor_work_detail]').each(function(){
-            subcontractor_name.push($(this).find(":selected").text());
+            if($(this).find(":selected").text()!="Select Subcontractor")
+                subcontractor_name.push($(this).find(":selected").text());
             //alert($(this).val());
         });
         //console.log(subcontractor_name);

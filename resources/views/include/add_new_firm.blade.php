@@ -381,8 +381,8 @@ $(document).ready(function() {
         }
     });
                 }
-                if($("#subcontractor_work_detail").length > 0) {
-                    var ele_name = '#subcontractor_work_detail';
+                if($(".subcontractor_work_detail").length > 0) {
+                    var ele_name = '.subcontractor_work_detail';
                     $(ele_name).empty();
                     $(ele_name).append('<option value="">Select Subcontractor</option>');
                     jQuery.each(data.data, function( i, val ) {

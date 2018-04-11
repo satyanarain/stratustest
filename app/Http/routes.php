@@ -720,7 +720,7 @@ Route::get('dashboard/{project_id}/daily_construction_report', function () {
 Route::get('dashboard/{project_id}/daily_construction_report/{daily_construction_report_id}/serial/{serial_id}', function () {
     return view('/daily_construction_report/daily_construction_report_single');
 });
-Route::get('dashboard/{project_id}/daily_construction_report/{daily_construction_report_id}/update', function () {
+Route::get('dashboard/{project_id}/daily_construction_report/{daily_construction_report_id}/serial/{serial_id}/update', function () {
     return view('/daily_construction_report/daily_construction_report_update');
 });
 Route::get('dashboard/{project_id}/daily_construction_report/{daily_construction_report_id}/logs', function () {
