@@ -112,15 +112,15 @@
             <div class="col-sm-6">
                 <label class="checkbox-custom check-success">
                     <input type="checkbox" value=" " id="weekly_option_show">
-                    <label for="weekly_option_show">Weekly Certified Payroll Reports </label>
+                    <label for="weekly_option_show">Weekly Certified Payroll Reports/Statement of Compliance</label>
                 </label>
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-6">
                 <label class="checkbox-custom check-success">
-                    <input type="checkbox" value=" " id="compliance_option_show">
-                    <label for="compliance_option_show">Statement of Compliance </label>
+                    <input type="checkbox" value=" " id="non_performance_compliance_option_show">
+                    <label for="non_performance_compliance_option_show">Statement of Non Performance </label>
                 </label>
             </div>
         </div>
@@ -251,10 +251,19 @@
                                     </div><!-- Close Panel -->
 
                                     <div class="col-sm-12 nopadleft" id="weekly_div_show" style="display: none;">
-                                        <div class="form-group col-sm-6 nopadleft clearfix">
+                                        <div class="col-md-12 check_statement_compliance_type" style="margin-bottom:50px;">
                                             <label class="nopadleft control-label">
-                                                <strong>Weekly Certified Payroll Reports (CPR) </strong>
+                                                <strong>Weekly Certified Payroll Reports/Statement of Compliance</strong>
                                             </label><br/>
+                                            <label for="standard_link">Would you like to upload your own form or fill out and submit via docusign?</label><br/>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="check_statement_compliance_type" id="signed_statement_compliance" value="exist"> Upload your own form</label><br/>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="check_statement_compliance_type" id="unsigned_statement_compliance" value="new"> Submit via docusign</label>
+                                        </div>
+                                        <div class="signed_statement_compliance" style="display: none;">
+                                            <div class="form-group col-sm-6 nopadleft clearfix">
+                                            
                                             <label class="nopadleft control-label mt-6">Week Ending <span class="text-danger">*</span></label>
                                             <div class="nopadleft">
                                                 <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
@@ -265,7 +274,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-sm-6 clearfix">
+                                            <div class="form-group col-sm-6 clearfix">
                                             <label class="nopadleft control-label">
                                                 <strong>Upload Weekly Certified Payroll Reports (CPR) <span class="text-danger">*</span></strong>
                                             </label><br/>
@@ -278,6 +287,37 @@
 <input type="hidden" name="upload_doc_id[]" class="upload_doc_id" id="upload_doc_id_5" value="">
                                                 </div>
                                             </section>
+                                        </div>
+                                            <div class="form-group col-sm-6 nopadleft clearfix">
+                                            
+                                            
+                                        </div>
+                                            <div class="form-group col-sm-6 clearfix">
+                                            <label class="nopadleft control-label">
+                                                <strong>Upload Statement of Compliance <span class="text-danger">*</span></strong>
+                                            </label><br/>
+                                            <section class="panel upload_doc_panel" id="upload_div">
+                                                <div class="panel-body" style="padding: 0px;">
+                                                    <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
+                                                        <input type="hidden" name="document_path" value="/uploads/labor_compliance/">
+                                                    </form>
+                                            <input type="hidden" name="upload_type" id="upload_type" value="multiple_upload">
+                                            <input type="hidden" name="upload_doc_id[]" class="upload_doc_id" id="upload_doc_id_6" value="">
+                                                </div>
+                                            </section>
+                                        </div>
+                                        </div>
+                                        <div class="unsigned_statement_compliance" style="display: none;">
+                                            <div class="form-group col-md-12 ">Please fill out the fields below for Docusign integration.</div>
+                                            <div class="clearfix"></div>  
+                                            <div class="form-group col-md-6">
+                                                <label for="">Contractor: Contact Name</label>
+                                                <input class="form-control" name="signatory_name[]" type="text" id="">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                 <label for="">Contractor: Contact Email</label>
+                                                 <input class="form-control" name="signatory_email[]" type="text" id="">
+                                            </div>
                                         </div>
                                     </div><!-- Close Panel -->
 
@@ -292,7 +332,7 @@
                                         <div class="signed_statement_compliance" style="display: none;">
                                             <div class="form-group col-sm-6 nopadleft clearfix">
                                             <label class="nopadleft control-label">
-                                                <strong>Statement of Compliance </strong>
+                                                <strong>Statement of Non Performance </strong>
                                             </label><br/>
                                             <label class="nopadleft control-label mt-6">Week Ending <span class="text-danger">*</span></label>
                                             <div class="nopadleft">
@@ -306,30 +346,32 @@
                                         </div>
                                             <div class="form-group col-sm-6 clearfix">
                                             <label class="nopadleft control-label">
-                                                <strong>Upload Statement of Compliance <span class="text-danger">*</span></strong>
+                                                <strong>Upload Statement of Non Performance <span class="text-danger">*</span></strong>
                                             </label><br/>
                                             <section class="panel upload_doc_panel" id="upload_div">
                                                 <div class="panel-body" style="padding: 0px;">
                                                     <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                         <input type="hidden" name="document_path" value="/uploads/labor_compliance/">
                                                     </form>
-<input type="hidden" name="upload_type" id="upload_type" value="multiple_upload">
-<input type="hidden" name="upload_doc_id[]" class="upload_doc_id" id="upload_doc_id_6" value="">
+                                            <input type="hidden" name="upload_type" id="upload_type" value="multiple_upload">
+                                            <input type="hidden" name="upload_doc_id[]" class="upload_doc_id" id="upload_doc_id_7" value="">
                                                 </div>
                                             </section>
                                         </div>
                                         </div>
                                         <div class="unsigned_statement_compliance" style="display: none;">
+                                            <div class="form-group col-md-12 ">Please fill out the fields below for Docusign integration.</div>
+<div class="clearfix"></div>  
                                             <div class="form-group col-md-6">
-                                                <label for="">Contractor Name</label>
-                                                <input class="form-control" name="signatory_name[]" type="text" id="">
+                                                <label for="">Owner: Contact Name</label>
+                                                <input class="form-control" name="performance_signatory_name[]" type="text" id="">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                 <label for="">Contractor Email</label>
-                                                 <input class="form-control" name="signatory_email[]" type="text" id="">
+                                                 <label for="">Owner: Contact Email</label>
+                                                 <input class="form-control" name="performance_signatory_email[]" type="text" id="">
                                             </div>
                                         </div>
-                                    </div><!-- Close Panel -->
+                                    </div>
 
 
 
@@ -418,7 +460,7 @@
         }
     });
 
-    $('#compliance_option_show').change(function() {
+    $('#non_performance_compliance_option_show').change(function() {
         if($(this).is(":checked")) {
             $('#compliance_div_show').css("display", "block");
         }

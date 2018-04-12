@@ -156,8 +156,8 @@ $('.add_unconditional_finals').click(function(e)
                         "signatory_email"           :   item['signatory_email'][i],
                         "name_of_claimant"          :   $("#name_claimant option:selected").text(),
                         "name_of_customer"          :   $("#name_customer option:selected").text(),
-                        "job_location"              :   $("#name_customer option:selected").text(),
-                        "owner"                     :   $("#name_customer option:selected").text(),
+                        "job_location"              :   $("#job_location").val(),
+                        "owner"                     :   $("#agency_name option:selected").text(),
                         "disputed_claim_amount"     :   $("#disputed_claim_amount").val(),
                     });
     }

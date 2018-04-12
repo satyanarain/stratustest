@@ -146,15 +146,15 @@ $(document).ready(function() {
             signatory_counter++;
             var html = '<div class="sign'+signatory_counter+'">\n\
                         <div class="form-group col-md-3">\n\
-                            <label for="">Signatory Name</label>\n\
+                            <label for="">Signatory: Contact Name</label>\n\
                             <input class="form-control" name="signatory_name[]" type="text" id="">\n\
                         </div>\n\
                         <div class="form-group col-md-3">\n\
-                            <label for="">Signatory Email</label>\n\
+                            <label for="">Signatory: Contact Email</label>\n\
                             <input class="form-control" name="signatory_email[]" type="text" id="">\n\
                         </div>\n\
                         <div class="form-group col-md-3">\n\
-                            <label for="">Signatory Role</label>\n\
+                            <label for="">Signatory: Role</label>\n\
                             <select class="form-control" name="signatory_role[]">\n\
                             <option value="owner">Owner</option>\n\
                             <option value="contractor">Contractor</option>\n\

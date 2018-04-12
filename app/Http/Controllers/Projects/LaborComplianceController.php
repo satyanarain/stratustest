@@ -62,6 +62,7 @@ class LaborComplianceController extends Controller {
                 $plc_cpr                = $request['cpr'];
                 $plc_cpr_date           = $request['cpr_date'];
                 $plc_compliance         = $request['compliance'];
+                $doc_nonperformance     = $request['doc_nonperformance'];
                 $plc_compliance_date    = $request['compliance_date'];
                 $plc_project_id         = $request['project_id'];
                 $status                 = 'active';
@@ -69,6 +70,9 @@ class LaborComplianceController extends Controller {
                 $signatory_arr          = $request['signatory_arr'];
                 $envelope_id            = '';
                 $docusign_status        = 'pending';
+                $performance_signatory_arr= $request['performance_signatory_arr'];
+                $performance_envelope_id            = '';
+                $performance_docusign_status        = 'pending';
             // Check User Permission Parameter 
             $user_id = Auth::user()->id;
             $permission_key = 'labor_compliance_add';
@@ -78,6 +82,7 @@ class LaborComplianceController extends Controller {
               return response()->json($result, 403);
             }
             else {
+                //DOCUSIGN INTEGRATION FOR STATEMENT OF COMPLIANCE
                 if(count($signatory_arr))
                 {
                     $data = array();
@@ -152,6 +157,82 @@ class LaborComplianceController extends Controller {
                         $envelope_id = $response["envelopeId"];
                     }
             }
+                //DOCUSIGN INTEGRATION FOR STATEMENT OF COMPLIANCE
+                if(count($performance_signatory_arr))
+                {
+                    $data = array();
+                    foreach($performance_signatory_arr as $i=>$row){
+                    if(filter_var($row['performance_signatory_email'], FILTER_VALIDATE_EMAIL))
+                    {
+                        $data[$i]["email"] = $row['performance_signatory_email'];
+                        $data[$i]["name"] = $row['performance_signatory_name'];
+                        $data[$i]["roleName"] = "owner";
+                        $data[$i]["tabs"]["textTabs"] =
+                                                array(array(
+                                                        "tabLabel" => "company_name",
+                                                        "value" => $row['company_name']));
+
+                    }else{
+                        $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
+                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                        return response()->json($result, 400);
+                    }
+                }
+                    if(count($data))
+                    {
+                        $documentName = 'Statement of Non Performance';
+                        $email = env('DOCUSIGN_EMAIL');
+                        $password = env('DOCUSIGN_PASSWORD');
+                        $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
+                        $templateId = "ed428d2e-35db-4c31-978e-e0a66666e0e6";
+                        $url = env('DOCUSIGN_URL');
+                        $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
+                        $curl = curl_init($url);
+                        curl_setopt($curl, CURLOPT_HEADER, false);
+                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                        curl_setopt($curl, CURLOPT_HTTPHEADER, array("X-DocuSign-Authentication: $header"));
+                        $json_response = curl_exec($curl);
+                        $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                        if ( $statuscode != 200 ) {
+                            $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $status,'docusign'=>1,
+                                                "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                            return response()->json($result, 400);
+                        }
+                        $response = json_decode($json_response, true);
+                        $accountId = $response["loginAccounts"][0]["accountId"];
+                        $baseUrl = $response["loginAccounts"][0]["baseUrl"];
+                        curl_close($curl);
+
+                        $data = array("accountId" => $accountId, 
+                            "emailSubject" => "Signature request for Statement of Non Performance_",
+                            "emailBlurb" => "Signature request for Statement of Non Performance_",
+                            "templateId" => $templateId, 
+                            "templateRoles" => $data,
+                            "status" => "sent");
+                        $data_string = json_encode($data); 
+                        // Send to the /envelopes end point, which is relative to the baseUrl received above. 
+                        $curl = curl_init($baseUrl . "/envelopes" );
+                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                        curl_setopt($curl, CURLOPT_POST, TRUE);
+                        curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);                                                                  
+                        curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
+                                'Content-Type: application/json', 
+                                'Content-Length: ' . strlen($data_string),
+                                "X-DocuSign-Authentication: $header" )                                                                       
+                        );
+                        $json_response = curl_exec($curl); // Do it!
+                        $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                        if ( $statuscode != 201 ) {
+                                $response = json_decode($json_response, true);
+                                $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1,
+                                                "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                                return response()->json($result, 400);
+                        }
+                        $response = json_decode($json_response, true);
+                        $performance_envelope_id = $response["envelopeId"];
+                    }
+            }
+            
                 $information = array(
                     "contactor_id"      => $plc_contactor_id,
                     "project_id"        => $plc_project_id,
@@ -173,7 +254,7 @@ class LaborComplianceController extends Controller {
                 else
                 {
                     $query = DB::table('project_labor_compliance')
-                    ->insertGetId(['docusign_status'=>$docusign_status,'envelope_id'=>$envelope_id,'plc_contactor_id' => $plc_contactor_id, 'plc_140' => $plc_140, 'plc_140_date' => $plc_140_date, 'plc_142' => $plc_142, 'plc_142_date' => $plc_142_date, 'plc_fringe' => $plc_fringe, 'plc_fringe_date' => $plc_fringe_date, 'plc_cac2' => $plc_cac2, 'plc_cac2_date' => $plc_cac2_date, 'plc_cpr' => $plc_cpr, 'plc_cpr_date' => $plc_cpr_date, 'plc_compliance' => $plc_compliance, 'plc_compliance_date' => $plc_compliance_date, 'plc_project_id' => $plc_project_id, 'plc_user_id' => $user_id, 'plc_status' => $status]);
+                    ->insertGetId(['performance_docusign_status'=>$performance_docusign_status,'performance_envelope_id'=>$performance_envelope_id,'docusign_status'=>$docusign_status,'envelope_id'=>$envelope_id,'plc_contactor_id' => $plc_contactor_id, 'plc_140' => $plc_140, 'plc_140_date' => $plc_140_date, 'plc_142' => $plc_142, 'plc_142_date' => $plc_142_date, 'plc_fringe' => $plc_fringe, 'plc_fringe_date' => $plc_fringe_date, 'plc_cac2' => $plc_cac2, 'plc_cac2_date' => $plc_cac2_date, 'plc_cpr' => $plc_cpr, 'plc_cpr_date' => $plc_cpr_date, 'plc_compliance' => $plc_compliance,'plc_compliance_non_performance'=>$doc_nonperformance, 'plc_compliance_date' => $plc_compliance_date, 'plc_project_id' => $plc_project_id, 'plc_user_id' => $user_id, 'plc_status' => $status]);
                     $doc_attached = "<br><br>Documents added in Labor Compliance are :- <br>";
                     if($plc_140)
                         $doc_attached.="140 – PW Contractor Award Info<br>";
@@ -187,6 +268,8 @@ class LaborComplianceController extends Controller {
                         $doc_attached.="Weekly Certified Payroll Reports<br>";
                     if($plc_compliance)
                         $doc_attached.="Statement of Compliance<br>";
+                    if($doc_nonperformance)
+                        $doc_attached.="Statement of Non Performance";
                     
                     $project_id = $plc_project_id;
                     // Start Check User Permission and send notification and email  
@@ -484,10 +567,11 @@ class LaborComplianceController extends Controller {
 ->leftJoin('documents as cac2_doc', 'project_labor_compliance.plc_cac2', '=', 'cac2_doc.doc_id')
 ->leftJoin('documents as cpr_doc', 'project_labor_compliance.plc_cpr', '=', 'cpr_doc.doc_id')
 ->leftJoin('documents as compliance', 'project_labor_compliance.plc_compliance', '=', 'compliance.doc_id')
+->leftJoin('documents as nonperformance', 'project_labor_compliance.plc_compliance_non_performance', '=', 'nonperformance.doc_id')                        
 ->leftJoin('projects', 'project_labor_compliance.plc_project_id', '=', 'projects.p_id')
 ->leftJoin('project_firm as contractor_name', 'project_labor_compliance.plc_contactor_id', '=', 'contractor_name.f_id')
 ->leftJoin('users', 'project_labor_compliance.plc_user_id', '=', 'users.id')
-                ->select('contractor_name.f_name', '140_doc.doc_path as doc_140', '142_doc.doc_path as doc_142', 'fringe_doc.doc_path as fringe_doc', 'cac2_doc.doc_path as cac2_doc', 'cpr_doc.doc_path as cpr_doc', 'compliance.doc_path as compliance', 'project_labor_compliance.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+                ->select('contractor_name.f_name', '140_doc.doc_path as doc_140', '142_doc.doc_path as doc_142', 'fringe_doc.doc_path as fringe_doc', 'cac2_doc.doc_path as cac2_doc', 'cpr_doc.doc_path as cpr_doc', 'compliance.doc_path as compliance','nonperformance.doc_path as compliance_non_performance', 'project_labor_compliance.*', 'projects.*', 'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
                 ->where('plc_id', '=', $plc_id)
                 ->first();
                 if(count($query) < 1)

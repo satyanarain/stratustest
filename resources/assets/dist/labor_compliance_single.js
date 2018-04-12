@@ -192,6 +192,17 @@ $(document).ready(function() {
             doc_compliance_value = '<a href="'+baseUrl+data.data.compliance+'" target="_blank" ><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40" /></a>';
         }
         $('#doc_compliance').html(doc_compliance_value);
+        
+        var doc_nonperformance_compliance = data.data.compliance_non_performance;
+        var doc_nonperformance_compliance_value;
+        if(doc_nonperformance_compliance == null){
+            doc_nonperformance_compliance_value = ' --- ';
+        }
+        else {
+            doc_nonperformance_compliance_value = '<a href="'+baseUrl+data.data.compliance_non_performance+'" target="_blank" ><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40" /></a>';
+        }
+        $('#doc_non_performance').html(doc_nonperformance_compliance_value);
+        
         if(data.data.plc_compliance_date == '0000-00-00' || data.data.plc_compliance_date == null){
             var plc_compliance_date = '';
         }

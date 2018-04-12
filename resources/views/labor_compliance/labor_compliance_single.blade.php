@@ -83,12 +83,12 @@
                                         <tr>
                                             <td>CPR - Weekly Certified Payroll Reports</td>
                                             <td id="date_cpr"></td>
-                                            <td id="doc_cpr"></td>
+                                            <td><span id="doc_cpr"></span><span id="doc_compliance"></span></td>
                                         </tr>
                                         <tr>
-                                            <td>Statement of Compliance</td>
+                                            <td>Statement of Non Performance</td>
                                             <td id="date_compliance"></td>
-                                            <td id="doc_compliance"></td>
+                                            <td id="doc_non_performance"></td>
                                         </tr>
                                       </tbody>
                                     </table>

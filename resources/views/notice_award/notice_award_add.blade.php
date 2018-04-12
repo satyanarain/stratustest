@@ -90,7 +90,7 @@
             </div>
 
             <div class="form-group col-md-6">
-                <label for="company_name" style="padding-top: 15px;">Contractor’s Name</label>
+                <label for="company_name" style="padding-top: 15px;">Contractor Name</label>
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
@@ -121,15 +121,17 @@
                 </div>
             </div>
             <div class="clearfix"></div>
+            <div class="form-group col-md-12">Please fill out the fields below for Docusign integration.</div>
+            <div class="clearfix"></div>  
             <input type="hidden" name="signatory_counter" id="signatory_counter" value="1">
             <div id="signatory_container">
                 <div class="sign1">
                     <div class="form-group col-md-5">
-                        <label for="">Contractor Name</label>
+                        <label for="">Contractor: Contact Name</label>
                         <input class="form-control" name="signatory_name[]" type="text" id="">
                     </div>
                     <div class="form-group col-md-5">
-                        <label for="">Contractor Email</label>
+                        <label for="">Contractor: Contact Email</label>
                         <input class="form-control" name="signatory_email[]" type="text" id="">
                     </div>
                     <div class="form-group col-md-2" style="padding-top: 25px; display: none;">

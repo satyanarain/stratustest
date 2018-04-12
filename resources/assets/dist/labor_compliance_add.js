@@ -133,7 +133,7 @@ $(document).ready(function() {
 $('#add_labor_compliance').click(function(e) {
   $('.loading-submit').show();
     e.preventDefault();
-    if($("#140_option_show").is(':checked') || $("#142_option_show").is(':checked') || $("#fringe_option_show").is(':checked') || $("#cac_option_show").is(':checked') || $("#weekly_option_show").is(':checked') || $("#compliance_option_show").is(':checked')){
+    if($("#140_option_show").is(':checked') || $("#142_option_show").is(':checked') || $("#fringe_option_show").is(':checked') || $("#cac_option_show").is(':checked') || $("#weekly_option_show").is(':checked') || $("#non_performance_compliance_option_show").is(':checked')){
     var company_name                = $('#company_name').val();
     var date_140                    = $('#date_140').val();
     var doc_140                     = $('#upload_doc_id_1').val();
@@ -147,6 +147,7 @@ $('#add_labor_compliance').click(function(e) {
     var doc_weekly                  = $('#upload_doc_id_5').val();
     var compliance_date             = $('#compliance_date').val();
     var doc_compliance              = $('#upload_doc_id_6').val();
+    var doc_nonperformance          = $('#upload_doc_id_7').val();
     var project_id                  = $('#upload_project_id').val();
     var token                       = localStorage.getItem('u_token');
 
@@ -200,19 +201,13 @@ $('#add_labor_compliance').click(function(e) {
             }
         }
         if($("#weekly_option_show").is(':checked')){
-            if(weekly_date == ''){
-                html += '<li>Weekly date is invalid.</li>';
-                is_error = true;
-            }
-            if(doc_weekly == ''){
-                html += '<li>Weekly document is invalid.</li>';
-                is_error = true;
-            }
-        }
-        if($("#compliance_option_show").is(':checked')){
             if($('input:radio[name=check_statement_compliance_type]:checked').val() == "exist"){
-                if(compliance_date == ''){
-                    html += '<li>Compliance date is invalid.</li>';
+                if(weekly_date == ''){
+                    html += '<li>Weekly date is invalid.</li>';
+                    is_error = true;
+                }
+                if(doc_weekly == ''){
+                    html += '<li>Weekly document is invalid.</li>';
                     is_error = true;
                 }
                 if(doc_compliance == ''){
@@ -241,6 +236,43 @@ $('#add_labor_compliance').click(function(e) {
                 signatory_arr.push({
                     "signatory_name"            :   item['signatory_name'][i],
                     "signatory_email"           :   item['signatory_email'][i],
+                    "company_name"              :   $("#company_name option:selected").text(),
+                });
+            }
+            
+        }
+        if($("#non_performance_compliance_option_show").is(':checked')){
+            if($('input:radio[name=check_statement_compliance_type]:checked').val() == "exist"){
+                if(compliance_date == ''){
+                    html += '<li>Compliance Non Performance date is invalid.</li>';
+                    is_error = true;
+                }
+                if(doc_nonperformance == ''){
+                    html += '<li>Non Performance document is invalid.</li>';
+                    is_error = true;
+                }
+            }
+            var performance_signatory_name = [];
+            $('input[name^=performance_signatory_name]').each(function(){
+                performance_signatory_name.push($(this).val());
+            });
+            var performance_signatory_email = [];
+            $('input[name^=performance_signatory_email]').each(function(){
+                if($(this).val() != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())){
+                    performance_signatory_email.push($(this).val());
+                }else if($(this).val() != ""){
+                    html += '<li>Non Performance Signatory email is invalid.</li>';
+                    is_error = true;
+                }
+            });
+            var item = {};
+            item['performance_signatory_name']          = performance_signatory_name;
+            item['performance_signatory_email']         = performance_signatory_email;
+            
+            for (i = 0; i < performance_signatory_email.length; i++) {
+                performance_signatory_arr.push({
+                    "performance_signatory_name"            :   item['performance_signatory_name'][i],
+                    "performance_signatory_email"           :   item['performance_signatory_email'][i],
                     "company_name"              :   $("#company_name option:selected").text(),
                 });
             }
@@ -277,9 +309,11 @@ $('#add_labor_compliance').click(function(e) {
                 "cpr"               : doc_weekly,
                 "cpr_date"          : weekly_date,
                 "compliance"        : doc_compliance,
+                "doc_nonperformance": doc_nonperformance,
                 "compliance_date"   : compliance_date,
                 "project_id"        : project_id,
                 "signatory_arr"     : signatory_arr,
+                "performance_signatory_arr" : performance_signatory_arr,
             },
             headers: {
                 "x-access-token": token

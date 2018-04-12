@@ -144,20 +144,21 @@
 <input type="hidden" name="signatory_counter" id="signatory_counter" value="2">
 <input type="hidden" name="jurisdiction" id="jurisdiction">
 <input type="hidden" name="project_name" id="project_name">
-
+<div class="form-group col-md-12 nopadleft">Please fill out the fields below for Docusign integration.</div>
+<div class="clearfix"></div>  
 <div class="form-group col-md-12 nopadleft">
             <div id="signatory_container">
                 <div class="sign1">
                     <div class="form-group col-md-3">
-                        <label for="">Signatory Name</label>
+                        <label for="">Signatory: Contact Name</label>
                         <input class="form-control" name="signatory_name[]" type="text" id="">
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="">Signatory Email</label>
+                        <label for="">Signatory: Contact Email</label>
                         <input class="form-control" name="signatory_email[]" type="text" id="">
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="">Signatory Role</label>
+                        <label for="">Signatory: Role</label>
                         <select class="form-control" name="signatory_role[]">
                             <option value="owner">Owner</option>
                             <option value="contractor">Contractor</option>

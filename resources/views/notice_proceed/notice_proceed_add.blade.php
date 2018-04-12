@@ -139,14 +139,16 @@
             </div>
             <div class="clearfix"></div>
             <input type="hidden" name="signatory_counter" id="signatory_counter" value="2">
+            <div class="form-group col-md-12">Please fill out the fields below for Docusign integration.</div>
+            <div class="clearfix"></div>  
             <div id="signatory_container">
                 <div class="sign1">
                     <div class="form-group col-md-5">
-                        <label for="">Owner Name</label>
+                        <label for="">Owner: Contact Name</label>
                         <input class="form-control" name="signatory_name[]" type="text" id="">
                     </div>
                     <div class="form-group col-md-5">
-                        <label for="">Owner Email</label>
+                        <label for="">Owner: Contact Email</label>
                         <input class="form-control" name="signatory_email[]" type="text" id="">
                     </div>
                     <div class="form-group col-md-2" style="padding-top: 25px; display: none;">
@@ -155,11 +157,11 @@
                 </div>
                 <div class="sign2">
                     <div class="form-group col-md-5">
-                        <label for="">Contractor Name</label>
+                        <label for="">Contractor: Contact Name</label>
                         <input class="form-control" name="signatory_name[]" type="text" id="">
                     </div>
                     <div class="form-group col-md-5">
-                        <label for="">Contractor Email</label>
+                        <label for="">Contractor: Contact Email</label>
                         <input class="form-control" name="signatory_email[]" type="text" id="">
                     </div>
                     <div class="form-group col-md-2" style="padding-top: 25px; display: none;">

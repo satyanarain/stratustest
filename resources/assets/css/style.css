@@ -7266,14 +7266,11 @@ ul.lower-alpha {list-style-type: none;padding:0 ;margin:0;}
 .project_name   { padding-bottom: 5px; display: inline-block !important; font-size: 18px !important; font-weight: 500 !important; border-bottom: 1px solid #333; margin-bottom: 5px !important; }
 /*.wrap-div{width: 300px;text-overflow:ellipsis;overflow: hidden;}*/
 
-.profile-pic-container{ position:relative; width:92%; height:50px;}
-.circle1 {border-radius:0% !important;overflow: hidden;width:100% !important;height:50px;position: absolute;top: 0px;max-width:100% !important;max-height:100% !important;}
-.circle1 img {width: auto !important;height:100% !important; max-width:100% !important; max-height:100% !important;}
-.profile-pic {width:100%;max-height:100%;display: block;}
-.p-image {position: absolute;top:10px;right:1px;color: #666666;transition: all .3s cubic-bezier(.175, .885, .32, 1.275);}
-.p-image:hover {transition: all .3s cubic-bezier(.175, .885, .32, 1.275);}
-.upload-button {background:#32323a;color:#FFF;font-size:13px; cursor:pointer;border-radius:3px; padding:2px 3px;}
-.upload-button:hover{background:#5cc691;transition: all .3s cubic-bezier(.175, .885, .32, 1.275);color: #FFF;}
+.image-container{position:relative; width:92%; height:50px;}
+.logo-image{display: block;width: auto !important;height:100% !important; max-width:100% !important; max-height:100% !important;}
+.overlay{position: absolute;top: 0;bottom: 0;left: 0;right: 0;height: 100%;width: 100%;opacity: 0;transition: .5s ease;background-color:#000;}
+.image-container:hover .overlay {opacity:0.7;}
+.edit-icon{color:#FFF;font-size:20px; cursor:pointer;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);text-align: center;}
 .file-upload {display:none !important;}
 .custom-pull-top{ margin-top:5px;}
 .custom-pull-left{ margin-left:2px;}

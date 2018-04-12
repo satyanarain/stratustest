@@ -106,12 +106,14 @@
                                         <label for="disputed_claim_amount">Claim Amount</label>
                                         <input type="number" name="disputed_claim_amount" class="form-control" value="0" id="disputed_claim_amount">
                                     </div>
+                                    <div class="form-group col-md-12">Please fill out the fields below for Docusign integration.</div>
+<div class="clearfix"></div>  
                                    <div class="form-group col-md-12">
-                                        <label for="">Contractor Name</label>
+                                        <label for="">Contractor: Contact Name</label>
                                         <input class="form-control" name="signatory_name[]" type="text" id="">
                                     </div>
                                     <div class="form-group col-md-12">
-                                         <label for="">Contractor Email</label>
+                                         <label for="">Contractor: Contact Email</label>
                                          <input class="form-control" name="signatory_email[]" type="text" id="">
                                     </div>
                             

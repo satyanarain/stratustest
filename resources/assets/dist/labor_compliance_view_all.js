@@ -64,6 +64,8 @@
 		.done(function(data, textStatus, jqXHR) {
 		    // console.log(data);
 		    $('#wage_determination').text(data.data.p_wage_determination);
+                    if(data.data.p_term=="yes")
+                        $('.hide_add_permission').remove();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 		    console.log("HTTP Request Failed");

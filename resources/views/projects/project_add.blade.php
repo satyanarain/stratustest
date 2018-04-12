@@ -160,7 +160,7 @@
                                         <div class="col-md-12">
                                             <label class="checkbox-custom check-success">
                                                 <input type="checkbox" name="project_terms" value="" id="project_terms">
-                                                <label for="project_terms">Will any portion of this improvement be reimbursed with public funds? <span class="text-danger">*</span></label>
+                                                <label for="project_terms">Does this improvement type involve public funds and/or a public works improvement? <span class="text-danger">*</span></label>
                                             </label>
                                         </div>
                                     </div>

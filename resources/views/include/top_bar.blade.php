@@ -3,29 +3,49 @@
 
                 <!--logo and logo icon start-->
                 <div class="logo dark-logo-bg hidden-xs hidden-sm">
-                    <div class="profile-pic-container custom-pull-top">
+                    
+                    <div class="image-container custom-pull-top">
+                         <img src="/resources/assets/img/logo.png" alt="" class="logo-image profile-pic-js">
+                         <div class="overlay">
+                             <div class="edit-icon">
+                               <i class="fa fa-pencil upload-button-js" title="Edit Profile"></i>
+                               <input class="file-upload file-upload-js" type="file" accept="image/*"/>
+                             </div>
+                         </div>
+                     </div>
+                    
+<!--                    <div class="profile-pic-container custom-pull-top">
                          <div class="circle1">
-<!--                           <img class="profile-pic profile-pic-js" src="/resources/assets/img/logo.png">-->
+                           <img class="profile-pic profile-pic-js" src="/resources/assets/img/logo.png">
                              <img class="profile-pic profile-pic-js" src="">
                          </div>
                          <div class="p-image">
                            <i class="fa fa-pencil upload-button upload-button-js" title="Edit Profile"></i>
                             <input class="file-upload file-upload-js" type="file" accept="image/*"/>
                          </div>
-                      </div>
+                      </div>-->
                 </div>
 
                 <div class="icon-logo dark-logo-bg hidden-xs hidden-sm">
-                   <div class="profile-pic-container custom-pull-left">
+                    <div class="image-container custom-pull-left">
+                         <img src="/resources/assets/img/logo-icon.png" alt="" class="logo-image profile-pic-js1">
+                         <div class="overlay">
+                             <div class="edit-icon">
+                               <i class="fa fa-pencil upload-button-js1" title="Edit Profile"></i>
+                               <input class="file-upload file-upload-js1" type="file" accept="image/*"/>
+                             </div>
+                         </div>
+                     </div>
+<!--                   <div class="profile-pic-container custom-pull-left">
                      <div class="circle1">
-<!--                       <img class="profile-pic profile-pic-js1" src="/resources/assets/img/logo-icon.png">-->
+                       <img class="profile-pic profile-pic-js1" src="/resources/assets/img/logo-icon.png">
                          <img class="profile-pic profile-pic-js1" src="">
                      </div>
                      <div class="p-image">
                        <i class="fa fa-pencil upload-button upload-button-js1" title="Edit Profile"></i>
                         <input class="file-upload file-upload-js1" type="file" accept="image/*"/>
                      </div>
-                  </div>
+                  </div>-->
                 </div>
                 <!--logo and logo icon end-->
 
