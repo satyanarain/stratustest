@@ -164,6 +164,7 @@
                             <option value="contractor">Contractor</option>
                             <option value="accountant">Fund Rep.</option>
                             <option value="jurisdiction">Jurisdiction Rep.</option>
+                            <option value="construction_manager">Construction Manager</option>
                         </select>
                     </div>
                     <div class="form-group col-md-3" style="padding-top: 25px;">

@@ -939,6 +939,7 @@ Route::get('dashboard/{project_id}/payment_quantity_verification/{report_id}/upd
 Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('change_order_request/add', 'Projects\ChangeOrderRequestController@add_change_order_request');
     Route::post('change_order_request_item/add', 'Projects\ChangeOrderRequestController@add_change_order_request_item');
+    Route::post('docusign_change_order_request_send', 'Projects\ChangeOrderRequestController@docusign_change_order_request_send');
     Route::post('change_order_request/{pco_id}/update', 'Projects\ChangeOrderRequestController@update_change_order_request');
     Route::post('change_order_request_item/{pcd_id}/update', 'Projects\ChangeOrderRequestController@update_change_order_request_item');
     Route::get('change_order_request/{pco_id}', 'Projects\ChangeOrderRequestController@get_change_order_request_single');

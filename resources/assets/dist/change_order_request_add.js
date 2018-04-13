@@ -160,6 +160,7 @@ $(document).ready(function() {
                             <option value="contractor">Contractor</option>\n\
                             <option value="accountant">Fund Rep.</option>\n\
                             <option value="jurisdiction">Jurisdiction Rep.</option>\n\
+                            <option value="construction_manager">Construction Manager</option>\n\
                         </select>\n\
                         </div>\n\
                         <div class="form-group col-md-3" style="padding-top: 25px;">\n\
@@ -301,7 +302,23 @@ $(document).ready(function() {
                     '</div>';
                 $(".material_delivered_all").append(html);
                 $('.material_delivered_detail:last .upload_doc_panel .panel-body form').dropzone({url: baseUrl+'group_doc/index.php'});
-
+                $("input[type='radio']").click(function(){
+                    // alert('faizan');
+                    if($('input:radio[name=select_type]:checked').val() == "price"){
+                        // alert('Price');
+                        var id = $(this).attr("class");
+                        // alert(id);
+                        $('#'+id+' .item_unit').hide();
+                        $('#'+id+' .item_price').show();
+                    }
+                    else {
+                        // alert('Unit');
+                        var id = $(this).attr("class");;
+                        // alert(id);
+                        $('#'+id+' .item_price').hide();
+                        $('#'+id+' .item_unit').show();
+                    }
+                });
                 jQuery.ajax({
                 url: baseUrl +project_id+"/request-information",
                     type: "GET",
@@ -373,6 +390,7 @@ $(document).ready(function() {
                 window.location.href = baseUrl + "500";
             }
         });
+        return;
     }
 
     $('.add_cor').click(function(e) {
@@ -398,38 +416,7 @@ $(document).ready(function() {
             html += '<li> Item description field is invalid </li>';
         }
         
-        var signatory_name = [];
-        $('input[name^=signatory_name]').each(function(){
-            signatory_name.push($(this).val());
-        });
-        var signatory_email = [];
-        $('input[name^=signatory_email]').each(function(){
-            if($(this).val() != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())){
-                signatory_email.push($(this).val());
-            }else if($(this).val() != ""){
-                html += '<li>Signatory email is invalid.</li>';
-                is_error = true;
-            }
-        });
-        var signatory_role = [];
-        $('select[name^=signatory_role]').each(function(){
-            signatory_role.push($(this).val());
-        });
-        var item = {};
-        item['signatory_name'] 		= signatory_name;
-        item['signatory_email']         = signatory_email;
-        item['signatory_role']          = signatory_role;
-        signatory_arr = [];
-        for (i = 0; i < signatory_email.length; i++) {
-            signatory_arr.push({
-		            "signatory_name" 		:   item['signatory_name'][i],
-		            "signatory_email" 		:   item['signatory_email'][i],
-                            "signatory_role" 		:   item['signatory_role'][i],
-                            "jurisdiction"              :   $('#jurisdiction').val(),
-                            "change_order_number"       :   $('#cor_new_number').val(),
-                            "project_name"              : $('#project_name').val(),
-		        });
-        }
+        
         // var is_error_price = false;
         // $('input[name^=item_price]').each(function(){
         //     if($(this).val() == '')
@@ -648,12 +635,13 @@ $(document).ready(function() {
             .done(function(data, textStatus, jqXHR){
                 console.log(data);
                 var token                       = localStorage.getItem('u_token');
-
+                var pcd_id                      = [];
                 jQuery.each(item_final, function(i, val) {
                     console.log(val);
                     jQuery.ajax({
                         url: baseUrl+"change_order_request_item/add",
                         type: "POST",
+                        async:false,
                         data: {
                             "order_description"     : val.order_description,
                             "order_price"           : val.order_price,
@@ -664,7 +652,7 @@ $(document).ready(function() {
                             "order_rfi"             : val.order_rfi_details,
                             "order_parent_cor"      : data.change_order_id,
                             "order_project_id"      : val.order_project_id,
-                            "signatory_arr"         : signatory_arr,
+                            //"signatory_arr"         : signatory_arr,
                         },
                         headers: {
                           "x-access-token": token
@@ -674,13 +662,14 @@ $(document).ready(function() {
                     })
                     .done(function(data, textStatus, jqXHR) {
                         console.log(data);
-
+                        
+                        pcd_id.push(data.pcd_id);
+                        //alert(data.pcd_id);
                         $("#alert_message").show();
                         $('.loading-submit').hide();
                         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New change order request added successfully!</div></div>';
                         $("#alert_message").html(html);
                         $('input[name="item_description[]"]').removeAttr('value');
-                        $('input[name^=signatory_name],input[name^=signatory_email],select[name^=signatory_role]').each(function(){$(this).val('');});
                         $('input[name="item_price[]"]').removeAttr('value');
                         $('input[name="item_unit_quantity[]"]').removeAttr('value');
                         $('input[name="item_unit_price[]"]').removeAttr('value');
@@ -706,7 +695,64 @@ $(document).ready(function() {
                         responseText = JSON.parse(jqXHR.responseText);
                         console.log(responseText);
                     })
+                    
                 });
+                
+                var signatory_name = [];
+                    $('input[name^=signatory_name]').each(function(){
+                        signatory_name.push($(this).val());
+                    });
+                    var signatory_email = [];
+                    $('input[name^=signatory_email]').each(function(){
+                        if($(this).val() != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())){
+                            signatory_email.push($(this).val());
+                        }else if($(this).val() != ""){
+                            html += '<li>Signatory email is invalid.</li>';
+                            is_error = true;
+                        }
+                    });
+                    console.log(signatory_email);
+                    var signatory_role = [];
+                    $('select[name^=signatory_role]').each(function(){
+                        signatory_role.push($(this).val());
+                    });
+                    var item = {};
+                    item['signatory_name'] 		= signatory_name;
+                    item['signatory_email']         = signatory_email;
+                    item['signatory_role']          = signatory_role;
+                    //item['pcd_id']                  = pcd_id;
+                    signatory_arr = [];
+                    for (i = 0; i < signatory_email.length; i++) {
+                        signatory_arr.push({
+                                        "signatory_name"            :   item['signatory_name'][i],
+                                        "signatory_email"           :   item['signatory_email'][i],
+                                        "signatory_role"            :   item['signatory_role'][i],
+                                        "jurisdiction"              :   $('#jurisdiction').val(),
+                                        "change_order_number"       :   $('#cor_new_number').val(),
+                                        "project_name"              : $('#project_name').val(),
+                                        //"pcd_id"                    : item['pcd_id'][i],
+                                        "project_id"                : project_id,
+                                    });
+                    }
+                    //console.log(signatory_arr);
+                    jQuery.ajax({
+                        url: baseUrl+"docusign_change_order_request_send",
+                        type: "POST",
+                        data: {
+                            "signatory_arr"     : signatory_arr,
+                            "pcd_id"            : pcd_id,
+                        },
+                        headers: {
+                          "x-access-token": token
+                        },
+                        contentType: "application/x-www-form-urlencoded",
+                        cache: false
+                    })
+                    .done(function(data, textStatus, jqXHR) {
+                        $('input[name^=signatory_name],input[name^=signatory_email],select[name^=signatory_role]').each(function(){$(this).val('');});
+                    })
+                
+                
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
                 console.log("HTTP Request Failed");

@@ -377,7 +377,7 @@
 
 
                                 </div>
-
+                                <input type="hidden" id="project_name">
                                 <div class="col-sm-6">
                                     <input type="hidden" name="standard_upload" id="upload_doc_meta" value="labor_compliance">
                                     <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $project_id; ?>">

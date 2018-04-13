@@ -32,6 +32,7 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         var project_name = data.data.p_name;
         $('#project_name_title').text("Project: " + project_name);
+        $('#project_name').val(project_name);
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
@@ -237,6 +238,7 @@ $('#add_labor_compliance').click(function(e) {
                     "signatory_name"            :   item['signatory_name'][i],
                     "signatory_email"           :   item['signatory_email'][i],
                     "company_name"              :   $("#company_name option:selected").text(),
+                    "project_name"              : $('#project_name').val(),
                 });
             }
             
@@ -268,12 +270,13 @@ $('#add_labor_compliance').click(function(e) {
             var item = {};
             item['performance_signatory_name']          = performance_signatory_name;
             item['performance_signatory_email']         = performance_signatory_email;
-            
+            performance_signatory_arr = [];
             for (i = 0; i < performance_signatory_email.length; i++) {
                 performance_signatory_arr.push({
                     "performance_signatory_name"            :   item['performance_signatory_name'][i],
                     "performance_signatory_email"           :   item['performance_signatory_email'][i],
                     "company_name"              :   $("#company_name option:selected").text(),
+                    "project_name"              : $('#project_name').val(),
                 });
             }
         }
@@ -332,6 +335,7 @@ $('#add_labor_compliance').click(function(e) {
             $("#alert_message").html(html);
             $("#date_140").removeAttr('value');
             $('input[name^=signatory_name],input[name^=signatory_email]').each(function(){$(this).val('');});
+            $('input[name^=performance_signatory_name],input[name^=performance_signatory_email]').each(function(){$(this).val('');});
             $("#date_142").removeAttr('value');
             $("#upload_doc_id_1").removeAttr('value');
             $("#date_143").removeAttr('value');

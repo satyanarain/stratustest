@@ -27,10 +27,12 @@ use App\Document; //your model
 use App\ProjectChangeOrderRequest; //your model
 use App\Repositories\Custom\Resource\Post as Resource_Post; 
 use App\Repositories\Util\AclPolicy;
+use App\Traits\ProjectImprovement;
+
  
 
 class ChangeOrderRequestController extends Controller {
-
+use ProjectImprovement;
   /*
   --------------------------------------------------------------------------
    ADD Change Order Request
@@ -203,9 +205,6 @@ class ChangeOrderRequestController extends Controller {
         $order_parent_cor         = $request['order_parent_cor'];
         $order_project_id         = $request['order_project_id'];
         $order_user_id            = Auth::user()->id;
-        $signatory_arr      = $request['signatory_arr'];
-        $envelope_id    = '';
-        $docusign_status = 'pending';
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
       $permission_key = 'cor_add';
@@ -215,91 +214,6 @@ class ChangeOrderRequestController extends Controller {
         return response()->json($result, 403);
       }
       else {
-          if(count($signatory_arr))
-            {
-                $data = array();
-                foreach($signatory_arr as $i=>$row){
-                    if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
-                    {
-                        $data[$i]["email"] = $row['signatory_email'];
-                        $data[$i]["name"] = $row['signatory_name'];
-                        $data[$i]["roleName"] = $row['signatory_role'];
-                        $data[$i]["tabs"]["textTabs"] =
-                                                array(array(
-                                                        "tabLabel" => "jurisdiction",
-                                                        "value" => $row['jurisdiction']),
-                                                        array (
-                                                        "tabLabel" => "change_order_number",
-                                                        "value" => $row['change_order_number']),
-                                                        array (
-                                                        "tabLabel" => "project_name",
-                                                        "value" => $row['project_name']),
-                                                        array (
-                                                        "tabLabel" => "change_order_date",
-                                                        "value" => date('m-d-Y')));
-                    }else{
-                        $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
-                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
-                        return response()->json($result, 400);
-                    }
-                }
-                if(count($data))
-                {
-                    
-                    $email = env('DOCUSIGN_EMAIL');
-                    $password = env('DOCUSIGN_PASSWORD');
-                    $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
-                    $templateId = "dda2bd94-6399-4e6c-ad26-ac2a381737ff";
-                    $url = env('DOCUSIGN_URL');
-                    $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
-                    $curl = curl_init($url);
-                    curl_setopt($curl, CURLOPT_HEADER, false);
-                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($curl, CURLOPT_HTTPHEADER, array("X-DocuSign-Authentication: $header"));
-                    $json_response = curl_exec($curl);
-                    $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-                    if ( $statuscode != 200 ) {
-                            $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $status,'docusign'=>1,
-                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
-                            return response()->json($result, 400);
-                    }
-                    $response = json_decode($json_response, true);
-                    $accountId = $response["loginAccounts"][0]["accountId"];
-                    $baseUrl = $response["loginAccounts"][0]["baseUrl"];
-                    curl_close($curl);
-
-                    $data = array("accountId" => $accountId, 
-                        "emailSubject" => "Signature request for Change Order",
-                        "emailBlurb" => "Signature request for Change Order",
-                        "templateId" => $templateId, 
-                        "templateRoles" => $data,
-                        "status" => "sent");
-                    $data_string = json_encode($data); 
-                    
-                    // Send to the /envelopes end point, which is relative to the baseUrl received above. 
-                    $curl = curl_init($baseUrl . "/envelopes" );
-                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($curl, CURLOPT_POST, TRUE);
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);                                                                  
-                    curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
-                            'Content-Type: application/json', 
-                            'Content-Length: ' . strlen($data_string),
-                            "X-DocuSign-Authentication: $header" )                                                                       
-                    );
-                    $json_response = curl_exec($curl); // Do it!
-                    $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-                    if ( $statuscode != 201 ) {
-                            $response = json_decode($json_response, true);
-                            $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1,
-                                            "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
-                            return response()->json($result, 400);
-                    }
-                    $response = json_decode($json_response, true);
-                    //print_r($data);
-                    $envelope_id = $response["envelopeId"];
-                }
-            }
-
         $information = array(
             "pcd_description"     => $order_description,
             "pcd_price"           => $order_price,
@@ -333,8 +247,7 @@ class ChangeOrderRequestController extends Controller {
         {
             
             $query = DB::table('project_change_order_request_detail')
-            ->insert(['docusign_status'=>$docusign_status,'envelope_id'=>$envelope_id,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
-
+            ->insert(['pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
@@ -342,7 +255,7 @@ class ChangeOrderRequestController extends Controller {
             }
             else
             {
-              $result = array('description'=>"Add change order request successfully",'code'=>200);
+              $result = array('pcd_id'=>DB::getPdo()->lastInsertId(),'description'=>"Add change order request successfully",'code'=>200);
               return response()->json($result, 200);
             }
         }
@@ -847,5 +760,204 @@ class ChangeOrderRequestController extends Controller {
       }
   }
 
+  /*
+  --------------------------------------------------------------------------
+   ADD Change Order Request Item
+  --------------------------------------------------------------------------
+  */
+  public function docusign_change_order_request_send(Request $request)
+  {
+    try
+    {
+        $order_user_id  = Auth::user()->id;
+        $signatory_arr  = $request['signatory_arr'];
+        $envelope_id    = '';
+        $docusign_status = 'pending';
+        $user_id = Auth::user()->id;
+        echo '<pre>';//print_r($request['pcd_id']);die;
+        $contract_amount = $this->get_contract_amount($signatory_arr[0]['project_id']);
+        $improvementType = $this->getType($signatory_arr[0]['project_id']);
+        $improvementTypes = '';
+        foreach($improvementType as $row)
+            $improvementTypes.=$row->pt_name;
+        $netchange = $this->netChange($request['pcd_id'],$signatory_arr[0]['project_id']);
+        $change_order_items = $this->contractSumIncreased($request['pcd_id'],$signatory_arr[0]['project_id']);
+        //print_r($netchange);die;
+        
+        if(count($signatory_arr))
+          {
+              $projectDetail = DB::table('projects')
+                    ->leftJoin('project_firm', 'projects.p_lead_agency', '=', 'project_firm.f_id')
+                    ->select('p_name','p_term','p_lead_agency','project_firm.*')
+                    ->where('p_id', '=', $signatory_arr[0]['project_id'])
+                    ->first();
+              $contracts = DB::table('project_contract')
+                    ->select('con_contract_date')
+                    ->where('con_project_id', '=', $signatory_arr[0]['project_id'])
+                    ->orderBy('project_contract.con_id','ASC')
+                    ->first();
+              $contractor = DB::table('project_notice_award')
+                    ->leftJoin('project_firm', 'project_notice_award.pna_contactor_name', '=', 'project_firm.f_id')
+                    ->select('project_notice_award.pna_contactor_name','project_firm.*')
+                    ->where('project_notice_award.pna_project_id', '=', $signatory_arr[0]['project_id'])
+                    ->orderBy('project_notice_award.pna_id','ASC')
+                    ->first();
+              //$projectDetail = $project[]
+                //print_r($contracts);die;
+              $test = array();
+            $i=0;
+            foreach($change_order_items as $key=>$item){
 
+                $test[++$i]['tabLabel'] = 'item'.($key+1);
+                $test[$i]['value'] = $key+1;
+                $test[++$i]['tabLabel'] = 'item_description'.($key+1);
+                $test[$i]['value'] = $item->pcd_description;
+                if($item->pcd_price)
+                {
+                    $test[++$i]['tabLabel'] = 'change_order_item'.($key+1);
+                    $test[$i]['value'] = 1;
+                    $test[++$i]['tabLabel'] = 'item_unit_cost'.($key+1);
+                    $test[$i]['value'] = $item->pcd_price;
+                }else{
+                    $test[++$i]['tabLabel'] = 'change_order_item'.($key+1);
+                    $test[$i]['value'] = $item->pcd_unit_number;
+                    $test[++$i]['tabLabel'] = 'item_unit_cost'.($key+1);
+                    $test[$i]['value'] = $item->pcd_unit_price;
+                }
+            }
+            //print_r($test);
+              $data = array();
+              foreach($signatory_arr as $i=>$row){
+                  
+                 // echo '<pre>';print_r($test);die;
+                  if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
+                  {
+                      $data[$i]["email"] = $row['signatory_email'];
+                      $data[$i]["name"] = $row['signatory_name'];
+                      $data[$i]["roleName"] = $row['signatory_role'];
+                      $data[$i]["tabs"]["textTabs"] =
+                                              array(array(
+                                                      "tabLabel" => "jurisdiction",
+                                                      "value" => $row['jurisdiction']),
+                                                    array (
+                                                      "tabLabel" => "change_order_number",
+                                                      "value" => $row['change_order_number']),
+                                                    array (
+                                                      "tabLabel" => "project_name",
+                                                      "value" => $row['project_name']),
+                                                    array (
+                                                      "tabLabel" => "change_order_date",
+                                                      "value" => date('m-d-Y')),
+                                                    array (
+                                                      "tabLabel" => "project_name",
+                                                      "value" => $row['project_name']),
+                                                    array (
+                                                      "tabLabel" => "improvement_types",
+                                                      "value" => $improvementTypes),
+                                                    array (
+                                                      "tabLabel" => "agreement_date",
+                                                      "value" => date('m-d-Y',strtotime($contracts->con_contract_date))),
+                                                    array (
+                                                      "tabLabel" => "contractor_name",
+                                                      "value" => $contractor->f_name),
+                                                    array (
+                                                      "tabLabel" => "contractor_address",
+                                                      "value" => $contractor->f_address),
+                                                    array (
+                                                      "tabLabel" => "original_contract_sum",
+                                                      "value" => $contract_amount[0]->total_amount),
+                                                    array (
+                                                      "tabLabel" => "net_change",
+                                                      "value" => $netchange));
+                     
+                                      
+                  }else{
+                      $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
+                                          "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                      return response()->json($result, 400);
+                  }
+                  $k=array();
+                  $k = array_merge($data[$i]["tabs"]["textTabs"],$test);
+                  $data[$i]["tabs"]["textTabs"] = $k;
+              }
+              //array_merge($data,$test);
+              echo '<pre>';print_r($data);
+              if(count($data))
+              {
+
+                  $email = env('DOCUSIGN_EMAIL');
+                  $password = env('DOCUSIGN_PASSWORD');
+                  $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
+                  $templateId = "dda2bd94-6399-4e6c-ad26-ac2a381737ff";
+                  $url = env('DOCUSIGN_URL');
+                  $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
+                  $curl = curl_init($url);
+                  curl_setopt($curl, CURLOPT_HEADER, false);
+                  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                  curl_setopt($curl, CURLOPT_HTTPHEADER, array("X-DocuSign-Authentication: $header"));
+                  $json_response = curl_exec($curl);
+                  $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                  if ( $statuscode != 200 ) {
+                          $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $status,'docusign'=>1));
+                          return response()->json($result, 400);
+                  }
+                  $response = json_decode($json_response, true);
+                  $accountId = $response["loginAccounts"][0]["accountId"];
+                  $baseUrl = $response["loginAccounts"][0]["baseUrl"];
+                  curl_close($curl);
+
+                  $data = array("accountId" => $accountId, 
+                      "emailSubject" => "Signature request for Change Order",
+                      "emailBlurb" => "Signature request for Change Order",
+                      "templateId" => $templateId, 
+                      "templateRoles" => $data,
+                      "status" => "sent");
+                  $data_string = json_encode($data); 
+
+                  // Send to the /envelopes end point, which is relative to the baseUrl received above. 
+                  $curl = curl_init($baseUrl . "/envelopes" );
+                  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                  curl_setopt($curl, CURLOPT_POST, TRUE);
+                  curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);                                                                  
+                  curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
+                          'Content-Type: application/json', 
+                          'Content-Length: ' . strlen($data_string),
+                          "X-DocuSign-Authentication: $header" )                                                                       
+                  );
+                  $json_response = curl_exec($curl); // Do it!
+                  $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                  if ( $statuscode != 201 ) {
+                          $response = json_decode($json_response, true);
+                          $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1,
+                                          "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                          return response()->json($result, 400);
+                  }
+                  $response = json_decode($json_response, true);
+                  //print_r($data);
+                  $envelope_id = $response["envelopeId"];
+              }
+
+            //$query = DB::table('project_change_order_request_detail')
+                  //->insert(['docusign_status'=>$docusign_status,'envelope_id'=>$envelope_id,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
+
+//            if(count($query) < 1)
+//            {
+//              $result = array('code'=>400, "description"=>"No records found");
+//              return response()->json($result, 400);
+//            }
+//            else
+//            {
+//              $result = array('description'=>"Add change order request successfully",'code'=>200);
+//              return response()->json($result, 200);
+//            }
+          }else{
+            $result = array('code'=>400, "description"=>"No records found");
+            return response()->json($result, 400);
+          }
+    }
+    catch(Exception $e)
+    {
+      return response()->json(['error' => 'Something is wrong'], 500);
+    }
+  }
 }
