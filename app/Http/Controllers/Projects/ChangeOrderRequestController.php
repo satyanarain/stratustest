@@ -784,8 +784,7 @@ use ProjectImprovement;
         $change_order_items = $this->contractSumIncreased($request['pcd_id'],$signatory_arr[0]['project_id']);
         //print_r($improvementTypes);die;
         
-        foreach ($request['pcd_id'] as $pcd_id)
-        {
+        
         if(count($signatory_arr))
           {
               $projectDetail = DB::table('projects')
@@ -823,7 +822,7 @@ use ProjectImprovement;
                     $numberTabs[$i]['tabLabel'] = 'itemqty'.($j);
                     $numberTabs[$i]['value'] = 1;
                     $numberTabs[++$i]['tabLabel'] = 'item_unit_cost'.($j);
-                    $numberTabs[$i]['value'] = $item->pcd_price;
+                    $numberTabs[$i]['value'] = number_format($item->pcd_price, 2, '.', ',');
                     $formulaTabs[]=array (
                                             "tabLabel" => "total".$j,
                                             "formula" => $item->pcd_price);
@@ -832,7 +831,7 @@ use ProjectImprovement;
                     $numberTabs[++$i]['tabLabel'] = 'itemqty'.($j);
                     $numberTabs[$i]['value'] = $item->pcd_unit_number;
                     $numberTabs[++$i]['tabLabel'] = 'item_unit_cost'.($j);
-                    $numberTabs[$i]['value'] = $item->pcd_unit_price;
+                    $numberTabs[$i]['value'] = number_format($item->pcd_unit_price, 2, '.', ',');
                     $formulaTabs[]=array (
                                             "tabLabel" => "total".$j,
                                             "formula" => $item->pcd_unit_price*$item->pcd_unit_number);
@@ -849,10 +848,10 @@ use ProjectImprovement;
                     $templateId = "089d01b3-3b40-4966-8cbd-db73956dc6c1";
                   $data[$i]["tabs"]["numberTabs"]=array(array (
                                                       "tabLabel" => "original_contract_sum",
-                                                      "value" => $contract_amount[0]->total_amount),
+                                                      "value" => number_format($contract_amount[0]->total_amount, 2, '.', ',')),
                                                     array (
                                                       "tabLabel" => "net_change",
-                                                      "value" => $netchange));
+                                                      "value" => number_format($netchange, 2, '.', ',')));
                 $temp=array();
                 $temp = array_merge($data[$i]["tabs"]["numberTabs"],$numberTabs);
                 $data[$i]["tabs"]["numberTabs"] = $temp;
@@ -978,10 +977,18 @@ use ProjectImprovement;
                   $envelope_id = $response["envelopeId"];
               }
     
+            
+          
+          }else{
+            $result = array('code'=>400, "description"=>"No records found");
+            return response()->json($result, 400);
+          }
+        foreach ($request['pcd_id'] as $pcd_id)
+        {
             $query = DB::table('project_change_order_request_detail')
             ->where('pcd_id', '=', $pcd_id)
              ->update(['envelope_id' => $envelope_id]);
-          if(count($query) < 1)
+            if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
               return response()->json($result, 400);
@@ -991,12 +998,8 @@ use ProjectImprovement;
               $result = array('description'=>"Add change order request successfully",'code'=>200);
               return response()->json($result, 200);
             }
-          }else{
-            $result = array('code'=>400, "description"=>"No records found");
-            return response()->json($result, 400);
-          }
-          
-        }
+        }  
+        
     }
     catch(Exception $e)
     {
