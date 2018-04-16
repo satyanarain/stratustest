@@ -64,7 +64,7 @@
 		.done(function(data, textStatus, jqXHR) {
 		    // console.log(data);
 		    $('#wage_determination').text(data.data.p_wage_determination);
-                    if(data.data.p_term=="yes")
+                    if(data.data.p_term=="no")
                         $('.hide_add_permission').remove();
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
