@@ -308,7 +308,7 @@
                                         </div>
                                         </div>
                                         <div class="unsigned_statement_compliance" style="display: none;">
-                                            <div class="form-group col-md-12 ">Please fill out the fields below for Docusign integration.</div>
+                                            <div class="form-group col-md-12 "><span class="label label-inverse"><b>Please fill out the fields below for Docusign integration.</b></span></div>
                                             <div class="clearfix"></div>  
                                             <div class="form-group col-md-6">
                                                 <label for="">Contractor: Contact Name</label>
@@ -360,7 +360,7 @@
                                         </div>
                                         </div>
                                         <div class="unsigned_statement_compliance" style="display: none;">
-                                            <div class="form-group col-md-12 ">Please fill out the fields below for Docusign integration.</div>
+                                            <div class="form-group col-md-12 "><span class="label label-inverse"><b>Please fill out the fields below for Docusign integration.</b></span></div>
 <div class="clearfix"></div>  
                                             <div class="form-group col-md-6">
                                                 <label for="">Owner: Contact Name</label>

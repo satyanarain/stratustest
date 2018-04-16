@@ -128,7 +128,7 @@ use ProjectImprovement;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/change_order_request_review/".$change_order->id."/update";
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'New change order request # '.$order_number.' added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'A new change order request # '.$order_number.' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){
@@ -774,7 +774,7 @@ use ProjectImprovement;
         $envelope_id    = '';
         $docusign_status = 'pending';
         $user_id = Auth::user()->id;
-        echo '<pre>';//print_r($request['pcd_id']);die;
+        //echo '<pre>';//print_r($request['pcd_id']);die;
         $contract_amount = $this->get_contract_amount($signatory_arr[0]['project_id']);
         $improvementType = $this->getType($signatory_arr[0]['project_id']);
         $improvementTypes = '';
@@ -782,8 +782,10 @@ use ProjectImprovement;
             $improvementTypes.=$row->pt_name;
         $netchange = $this->netChange($request['pcd_id'],$signatory_arr[0]['project_id']);
         $change_order_items = $this->contractSumIncreased($request['pcd_id'],$signatory_arr[0]['project_id']);
-        //print_r($netchange);die;
+        //print_r($improvementTypes);die;
         
+        foreach ($request['pcd_id'] as $pcd_id)
+        {
         if(count($signatory_arr))
           {
               $projectDetail = DB::table('projects')
@@ -804,39 +806,82 @@ use ProjectImprovement;
                     ->first();
               //$projectDetail = $project[]
                 //print_r($contracts);die;
-              $test = array();
+            $test = array();
             $i=0;
+            $data = array();
+            $formulaTabs = array();
+            $numberTabs = array();
+            $j=1;
+            $item_total =0;
             foreach($change_order_items as $key=>$item){
-
-                $test[++$i]['tabLabel'] = 'item'.($key+1);
-                $test[$i]['value'] = $key+1;
-                $test[++$i]['tabLabel'] = 'item_description'.($key+1);
+                $test[++$i]['tabLabel'] = 'item'.($j);
+                $test[$i]['value'] = $j;
+                $test[++$i]['tabLabel'] = 'item_description'.($j);
                 $test[$i]['value'] = $item->pcd_description;
                 if($item->pcd_price)
                 {
-                    $test[++$i]['tabLabel'] = 'change_order_item'.($key+1);
-                    $test[$i]['value'] = 1;
-                    $test[++$i]['tabLabel'] = 'item_unit_cost'.($key+1);
-                    $test[$i]['value'] = $item->pcd_price;
+                    $numberTabs[$i]['tabLabel'] = 'itemqty'.($j);
+                    $numberTabs[$i]['value'] = 1;
+                    $numberTabs[++$i]['tabLabel'] = 'item_unit_cost'.($j);
+                    $numberTabs[$i]['value'] = $item->pcd_price;
+                    $formulaTabs[]=array (
+                                            "tabLabel" => "total".$j,
+                                            "formula" => $item->pcd_price);
+                    $item_total+=$item->pcd_price;
                 }else{
-                    $test[++$i]['tabLabel'] = 'change_order_item'.($key+1);
-                    $test[$i]['value'] = $item->pcd_unit_number;
-                    $test[++$i]['tabLabel'] = 'item_unit_cost'.($key+1);
-                    $test[$i]['value'] = $item->pcd_unit_price;
+                    $numberTabs[++$i]['tabLabel'] = 'itemqty'.($j);
+                    $numberTabs[$i]['value'] = $item->pcd_unit_number;
+                    $numberTabs[++$i]['tabLabel'] = 'item_unit_cost'.($j);
+                    $numberTabs[$i]['value'] = $item->pcd_unit_price;
+                    $formulaTabs[]=array (
+                                            "tabLabel" => "total".$j,
+                                            "formula" => $item->pcd_unit_price*$item->pcd_unit_number);
+                    $item_total+=$item->pcd_unit_price*$item->pcd_unit_number;
                 }
+                $j++;
             }
             //print_r($test);
-              $data = array();
+              $i=0;
               foreach($signatory_arr as $i=>$row){
+                  if($row['jurisdiction']!="")
+                    $templateId = "dda2bd94-6399-4e6c-ad26-ac2a381737ff";
+                  else
+                    $templateId = "089d01b3-3b40-4966-8cbd-db73956dc6c1";
+                  $data[$i]["tabs"]["numberTabs"]=array(array (
+                                                      "tabLabel" => "original_contract_sum",
+                                                      "value" => $contract_amount[0]->total_amount),
+                                                    array (
+                                                      "tabLabel" => "net_change",
+                                                      "value" => $netchange));
+                $temp=array();
+                $temp = array_merge($data[$i]["tabs"]["numberTabs"],$numberTabs);
+                $data[$i]["tabs"]["numberTabs"] = $temp;
+                  $data[$i]["tabs"]["formulaTabs"]=array(
+                                                    array (
+                                                      "tabLabel" => "item_total",
+                                                      "formula" => $item_total),
+                                                    array (
+                                                      "tabLabel" => "contract_sum",
+                                                      "formula" => $contract_amount[0]->total_amount+$netchange),
+                                                    array (
+                                                      "tabLabel" => "contract_sum_increased",
+                                                      "formula" => $item_total),
+                                                    array (
+                                                      "tabLabel" => "new_contract_sum",
+                                                      "formula" => $contract_amount[0]->total_amount+$netchange+$item_total));
+                $temp=array();
+                $temp = array_merge($data[$i]["tabs"]["formulaTabs"],$formulaTabs);
+                $data[$i]["tabs"]["formulaTabs"] = $temp;
                   
-                 // echo '<pre>';print_r($test);die;
+                // echo '<pre>';print_r($test);die;
                   if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
                   {
                       $data[$i]["email"] = $row['signatory_email'];
                       $data[$i]["name"] = $row['signatory_name'];
                       $data[$i]["roleName"] = $row['signatory_role'];
                       $data[$i]["tabs"]["textTabs"] =
-                                              array(array(
+                                              array(
+                                                  array(
                                                       "tabLabel" => "jurisdiction",
                                                       "value" => $row['jurisdiction']),
                                                     array (
@@ -862,13 +907,8 @@ use ProjectImprovement;
                                                       "value" => $contractor->f_name),
                                                     array (
                                                       "tabLabel" => "contractor_address",
-                                                      "value" => $contractor->f_address),
-                                                    array (
-                                                      "tabLabel" => "original_contract_sum",
-                                                      "value" => $contract_amount[0]->total_amount),
-                                                    array (
-                                                      "tabLabel" => "net_change",
-                                                      "value" => $netchange));
+                                                      "value" => $contractor->f_address));
+                    
                      
                                       
                   }else{
@@ -876,19 +916,20 @@ use ProjectImprovement;
                                           "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
                       return response()->json($result, 400);
                   }
-                  $k=array();
-                  $k = array_merge($data[$i]["tabs"]["textTabs"],$test);
-                  $data[$i]["tabs"]["textTabs"] = $k;
+                  $temp=array();
+                  $temp = array_merge($data[$i]["tabs"]["textTabs"],$test);
+                  $data[$i]["tabs"]["textTabs"] = $temp;
+                  //echo '<pre>';print_r($test);die;
+                  
               }
               //array_merge($data,$test);
-              echo '<pre>';print_r($data);
+              //echo '<pre>';print_r($data);
               if(count($data))
               {
-
                   $email = env('DOCUSIGN_EMAIL');
                   $password = env('DOCUSIGN_PASSWORD');
                   $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
-                  $templateId = "dda2bd94-6399-4e6c-ad26-ac2a381737ff";
+                  
                   $url = env('DOCUSIGN_URL');
                   $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
                   $curl = curl_init($url);
@@ -898,7 +939,7 @@ use ProjectImprovement;
                   $json_response = curl_exec($curl);
                   $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
                   if ( $statuscode != 200 ) {
-                          $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $status,'docusign'=>1));
+                          $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $statuscode,'docusign'=>1));
                           return response()->json($result, 400);
                   }
                   $response = json_decode($json_response, true);
@@ -936,24 +977,26 @@ use ProjectImprovement;
                   //print_r($data);
                   $envelope_id = $response["envelopeId"];
               }
-
-            //$query = DB::table('project_change_order_request_detail')
-                  //->insert(['docusign_status'=>$docusign_status,'envelope_id'=>$envelope_id,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
-
-//            if(count($query) < 1)
-//            {
-//              $result = array('code'=>400, "description"=>"No records found");
-//              return response()->json($result, 400);
-//            }
-//            else
-//            {
-//              $result = array('description'=>"Add change order request successfully",'code'=>200);
-//              return response()->json($result, 200);
-//            }
+    
+            $query = DB::table('project_change_order_request_detail')
+            ->where('pcd_id', '=', $pcd_id)
+             ->update(['envelope_id' => $envelope_id]);
+          if(count($query) < 1)
+            {
+              $result = array('code'=>400, "description"=>"No records found");
+              return response()->json($result, 400);
+            }
+            else
+            {
+              $result = array('description'=>"Add change order request successfully",'code'=>200);
+              return response()->json($result, 200);
+            }
           }else{
             $result = array('code'=>400, "description"=>"No records found");
             return response()->json($result, 400);
           }
+          
+        }
     }
     catch(Exception $e)
     {

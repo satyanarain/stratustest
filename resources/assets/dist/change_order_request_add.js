@@ -154,7 +154,7 @@ $(document).ready(function() {
                             <input class="form-control" name="signatory_email[]" type="text" id="">\n\
                         </div>\n\
                         <div class="form-group col-md-3">\n\
-                            <label for="">Signatory: Role</label>\n\
+                            <label for="">Signatory: Contact Role</label>\n\
                             <select class="form-control" name="signatory_role[]">\n\
                             <option value="owner">Owner</option>\n\
                             <option value="contractor">Contractor</option>\n\
@@ -291,7 +291,7 @@ $(document).ready(function() {
                             '<label>Upload Change Order Request  <span class="text-danger">*</span></label>'+
                             '<section class="panel upload_doc_panel" id="upload_div">'+
                                 '<div class="panel-body" style="padding: 0px;">'+
-                                    '<form id="my-awesome-dropzone" action="'+baseUrl+'group_doc/index.php" class="dropzone">'+
+                                    '<form id="my-awesome-dropzone" action="'+baseUrl+'document/uploadFiles" class="dropzone">'+
                                         '<input type="hidden" name="document_path" value="/uploads/cor/">'+
                                     '</form> '+
                                     '<input type="hidden" name="upload_doc_id[]" class="upload_doc_id" id="upload_doc_id_'+randum_number+'" value="">'+
@@ -301,7 +301,7 @@ $(document).ready(function() {
                         '</div>'+
                     '</div>';
                 $(".material_delivered_all").append(html);
-                $('.material_delivered_detail:last .upload_doc_panel .panel-body form').dropzone({url: baseUrl+'group_doc/index.php'});
+                $('.material_delivered_detail:last .upload_doc_panel .panel-body form').dropzone({url: baseUrl+'document/uploadFiles'});
                 $("input[type='radio']").click(function(){
                     // alert('faizan');
                     if($('input:radio[name=select_type]:checked').val() == "price"){
