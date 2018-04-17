@@ -1320,6 +1320,18 @@ Mail::send('emails.reset_password_request', ['user' => $user_single], function (
      
 
      public function update_site_logo(Request $request) {
+         //echo $userid = Auth::user()->user_parent;die;echo '<pre>';print_r(Auth::user());die;
+        if(Auth::user()->role=="user")
+        {
+            $user = DB::table('users')
+                ->select('id','company_name')
+                ->where('id', '=', Auth::user()->user_parent)
+                ->first();
+            $company_name = $user->company_name;
+            //echo '<pre>';print_r($user);die;
+        }else{
+           $company_name = Auth::user()->company_name;
+        }
          $ws_key = $request['ws_key'];
          // Decode base64 data
         list($type, $data) = explode(';', $request['ws_value']);
@@ -1345,9 +1357,22 @@ Mail::send('emails.reset_password_request', ['user' => $user_single], function (
                 // Set a unique name to the file and save
                 $file_name = 'uploads/'.uniqid() . '.' . $file_type;
                 file_put_contents($file_name, $file_data);
-                $query = DB::table('website_settings')
-                ->where('ws_key', $ws_key)
-                ->update(['ws_value' => $file_name]);
+                
+                $company = DB::table('website_settings')
+                ->select('website_settings.*')
+                ->where('company_id', '=',$company_name)
+                ->first();
+                if($company)
+                {
+                    $query = DB::table('website_settings')
+                        ->where('ws_key', $ws_key)
+                        ->where('company_id', $company_name)
+                        ->update(['ws_value' => $file_name]);
+                }else{
+                    $query_contact = DB::table('website_settings')
+                        ->insert(['ws_key' => $ws_key,'ws_value'=>$file_name,'company_id'=>$company_name]);
+                }
+                
                 
                 $result = array('description'=>"Website logo updated Successfully",'code'=>200,'site_logo'=>$file_name);
                 return response()->json($result, 200);
@@ -1361,9 +1386,22 @@ Mail::send('emails.reset_password_request', ['user' => $user_single], function (
      }
      
      public function get_site_logo(Request $request) {
+        if(Auth::user()->role=="user")
+        {
+            $user = DB::table('users')
+                ->select('id','company_name')
+                ->where('id', '=', Auth::user()->user_parent)
+                ->first();
+            $company_name = $user->company_name;
+            //echo '<pre>';print_r($user);die;
+        }else{
+           $company_name = Auth::user()->company_name;
+        }
          $user = DB::table('website_settings')
                 ->select('ws_value')
-                ->where('ws_key', '=','website_logo')->get();
+                ->where('ws_key', '=','website_logo')
+                ->where('company_id', '=',$company_name)
+                ->get();
                 $result = array('code'=>200, "data"=>$user);
                 return $result = response()->json($result, 200);
      }

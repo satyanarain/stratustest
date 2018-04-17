@@ -359,7 +359,7 @@
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 		    console.log("HTTP Request Failed");
-                    $('#report_photo_uploaded').html('<span class="label label-danger">No</span>');
+                    //$('#report_photo_uploaded').html('<span class="label label-danger">No</span>');
 		    var response = jqXHR.responseJSON.code;
 		    if(response == 403){
 		    	window.location.href = baseUrl + "403";

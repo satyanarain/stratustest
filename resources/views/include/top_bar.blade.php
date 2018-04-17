@@ -5,7 +5,7 @@
                 <div class="logo dark-logo-bg hidden-xs hidden-sm">
                     
                     <div class="image-container custom-pull-top">
-                         <img src="/resources/assets/img/logo.png" alt="" class="logo-image profile-pic-js">
+                         <img src="" alt="" class="logo-image profile-pic-js">
                          <div class="overlay">
                              <div class="edit-icon">
                                <i class="fa fa-pencil upload-button-js" title="Edit Profile"></i>
@@ -28,7 +28,7 @@
 
                 <div class="icon-logo dark-logo-bg hidden-xs hidden-sm">
                     <div class="image-container custom-pull-left">
-                         <img src="/resources/assets/img/logo-icon.png" alt="" class="logo-image profile-pic-js1">
+                         <img src="" alt="" class="logo-image profile-pic-js1">
                          <div class="overlay">
                              <div class="edit-icon">
                                <i class="fa fa-pencil upload-button-js1" title="Edit Profile"></i>
