@@ -81,7 +81,12 @@ $(document).ready(function() {
 		    $('#project_location1').text(project_location);
 		    var project_description = data.data.p_description;
 		    $('#project_description').text(project_description);
-
+                    
+                    if(data.data.f_name ==null)
+                        $('.project_lead_agency_li').remove();
+                    else
+                        $('#project_lead_agency').text(data.data.f_name);
+                        
 		    var status = data.data.p_status;
 		    if(status == "active"){
 		    	status = '<span class="label label-success">Activate</span>';

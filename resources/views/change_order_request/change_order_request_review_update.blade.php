@@ -102,12 +102,16 @@
                                                                     <th>Status</th>
                                                                     <td id="cor_status"></td>
                                                                 </tr>
+                                                                <tr class="rfi_available">
+                                                                    <th>RFI Detail:</th>
+                                                                    <td id="cor_rfi_detail"></td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
 
 
-                                                    <div class="tab-parent rfi_available" style="overflow-x:scroll;">
+<!--                                                    <div class="tab-parent rfi_available" style="overflow-x:scroll;">
                                                         <table class="table table-striped custom-grid">
                                                             <tbody>
                                                                 <tr>
@@ -116,7 +120,7 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                    </div>
+                                                    </div>-->
                                                 </section>
                                             </div>
 

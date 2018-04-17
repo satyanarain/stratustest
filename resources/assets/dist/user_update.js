@@ -326,9 +326,9 @@ $(document).ready(function() {
     //                            alert(data.data[i].u_phone_detail)
                             }
                         }
-//                        else{
-//                            $(wrapper).append('<div class="form-group col-md-6 append"><label for="pnum">Phone Number</label><a href="#" class="add_field_button btn btn-success m-b-10 pull-right">Add Phone</a><select class="form-control" id="phone_type_'+i+'" name="phone_type[]" ><option value="mobile">Mobile</option><option value="home">Home</option><option value="work">Work</option><option value="work_fax">Work Fax</option><option value="home_fax">Home Fax</option><option value="skype">Skype</option><option value="pager">Pager</option><option value="work_email">Email</option><option value="other">Other</option></select><input type="text" required="required" class="form-control" id="pnum_'+i+'" name="phone_num[]"></div>');
-//                        }
+                        else{
+                            $(wrapper).append('<div class="form-group col-md-6 append"><label for="pnum">Phone Number</label><a href="#" class="add_field_button btn btn-success m-b-10 pull-right">Add Phone</a><select class="form-control" id="phone_type_'+i+'" name="phone_type[]" ><option value="mobile">Mobile</option><option value="home">Home</option><option value="work">Work</option><option value="work_fax">Work Fax</option><option value="home_fax">Home Fax</option><option value="skype">Skype</option><option value="pager">Pager</option><option value="work_email">Email</option><option value="other">Other</option></select><input type="text" required="required" class="form-control" id="pnum_'+i+'" name="phone_num[]"></div>');
+                        }
                     })
 
 			    var username = data.data.username;

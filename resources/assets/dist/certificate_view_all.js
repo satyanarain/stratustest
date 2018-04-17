@@ -45,7 +45,7 @@
 	 //        })
 	 //        .done(function(data, textStatus, jqXHR) {
 	 //            console.log(data.data.cur_symbol);
-	 //            $('.project_currency').text(data.data.cur_symbol+' ');
+	 //            $('.project_currency').text(data.data.cur_symbol+'');
 	 //        })
 	 //    })
 
@@ -315,7 +315,7 @@
 					var liability_limit = 'N/A';
 				}
 				else {
-					var liability_limit = liability_currency+' '+ ReplaceNumberWithCommas(val.liability_limit);
+					var liability_limit = liability_currency+''+ ReplaceNumberWithCommas(val.liability_limit);
 				}
                                 if(val.umbrella_liability_symbol=="" || val.umbrella_liability_symbol==null)
                                     var umbrella_liability_symbol = 'N/A';        
@@ -325,7 +325,7 @@
 					var work_comp_limit = 'N/A';
 				}
 				else {
-					var work_comp_limit = umbrella_liability_symbol+' '+ ReplaceNumberWithCommas(val.work_comp_limit);
+					var work_comp_limit = umbrella_liability_symbol+''+ ReplaceNumberWithCommas(val.work_comp_limit);
 				}
                                 
 				
@@ -333,7 +333,7 @@
 					var auto_liability_limit = 'N/A';
 				}
 				else {
-					var auto_liability_limit = liability_currency+' '+ ReplaceNumberWithCommas(val.auto_liability_limit);
+					var auto_liability_limit = liability_currency+''+ ReplaceNumberWithCommas(val.auto_liability_limit);
 				}
 
 
@@ -341,7 +341,7 @@
 					var umbrella_liability_limit = 'N/A';
 				}
 				else {
-					var umbrella_liability_limit = val.umbrella_liability_symbol+' '+ ReplaceNumberWithCommas(val.umbrella_liability_limit);
+					var umbrella_liability_limit = val.umbrella_liability_symbol+''+ ReplaceNumberWithCommas(val.umbrella_liability_limit);
 				}
 
 			  var t = $('#view_users_table').DataTable();

@@ -173,6 +173,12 @@
                                   <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                 </div>
                               </li>
+                              <li class="project_lead_agency_li">
+                                <strong style="width: 150px;display: block;float: left;">Lead Agency: </strong><span id="project_lead_agency"></span>
+                                <div class="loading_project_detail" style="text-align: center;">
+                                  <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
+                                </div>
+                              </li>
                              <!--  <li>
                                 <strong style="width: 150px;display: block;float: left;">Project Description: </strong><span id="project_description"></span>
                                 <div class="loading_project_detail" style="text-align: center;">

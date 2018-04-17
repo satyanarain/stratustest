@@ -31,10 +31,10 @@
                                 <th></th>
                                 <th></th>
                                 <th style="text-align: center" colspan="3">General Liability</th>
-                                <th colspan="3">Workers Comp </th>
-                                <th colspan="3">Auto Liability </th>
-                                <th colspan="3">Umbrella Liability </th>
-                                <th>Insurance Summary</th>
+                                <th style="text-align: center" colspan="3">Workers Comp </th>
+                                <th style="text-align: center" colspan="3">Auto Liability </th>
+                                <th style="text-align: center" colspan="3">Umbrella Liability </th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                             </tr>    
@@ -53,7 +53,7 @@
                             <th>Amount</th>
                             <th>Date</th>
                             <th>Certificate</th>
-                            <th>Certificate</th>
+                            <th>Insurance Summary</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>

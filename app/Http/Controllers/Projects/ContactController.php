@@ -50,13 +50,13 @@ class ContactController extends Controller {
         // else {
         // Check User Permission Parameter 
         $user_id = Auth::user()->id;
-        $permission_key = 'contact_view_permission_all';
-        $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
-        if(count($check_single_user_permission) < 1){
-          $result = array('code'=>403, "description"=>"Access Denies");
-          return response()->json($result, 403);
-        }
-        else {
+//        $permission_key = 'contact_view_permission_all';
+//        $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+//        if(count($check_single_user_permission) < 1){
+//          $result = array('code'=>403, "description"=>"Access Denies");
+//          return response()->json($result, 403);
+//        }
+//        else {
           $query = DB::table('users')
           ->leftJoin('project_contact', 'users.id', '=', 'project_contact.c_user_id')
           ->leftJoin('projects', 'project_contact.c_project_id', '=', 'projects.p_id')
@@ -84,7 +84,7 @@ class ContactController extends Controller {
             $result = array('data'=>$query,'code'=>200);
             return response()->json($result, 200);
           }
-        }
+        //}
       }
       catch(Exception $e)
       {
