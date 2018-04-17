@@ -489,11 +489,19 @@ $(document).ready(function() {
         })
         .done(function(data, textStatus, jqXHR) {
             //console.log(baseUrl+data.data[0].ws_value);
-            $('.login-logo img').attr('src', baseUrl+data.data[0].ws_value);
-            localStorage.setItem('site_logo',data.data[0].ws_value);
+            if(data.data==null)
+            {
+                $('.login-logo img').attr('src', baseUrl+'/resources/assets/img/logo.png');
+                var logourl = '/resources/assets/img/logo.png';
+                
+            }else{
+                $('.login-logo img').attr('src', baseUrl+data.data[0].ws_value);
+                var logourl = data.data[0].ws_value;
+            }
+            localStorage.setItem('site_logo',logourl);
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
-            //$('.login-logo img').attr('src', baseUrl+'/resources/assets/img/logo.png');
+                $('.login-logo img').attr('src', baseUrl+'/resources/assets/img/logo.png');
                 console.log("HTTP Request Failed");
                 var responseText, html;
                 responseText = JSON.parse(jqXHR.responseText);
