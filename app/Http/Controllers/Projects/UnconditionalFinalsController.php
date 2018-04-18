@@ -132,7 +132,7 @@ class UnconditionalFinalsController extends Controller {
 
                     $data = array("accountId" => $accountId, 
                         "emailSubject" => "Signature request for Unconditional Final",
-                        "emailBlurb" => "",
+                        "emailBlurb" => "signature for the Unconditional Final",
                         "templateId" => $templateId, 
                         "templateRoles" => $data,
                         "status" => "sent");
