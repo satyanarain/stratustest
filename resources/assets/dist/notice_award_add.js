@@ -1,3 +1,7 @@
+var role = localStorage.getItem('u_role');
+var token = localStorage.getItem('u_token');
+var check_user_access = JSON.parse(localStorage.getItem("access_permission"));
+var check_permission = jQuery.inArray("notice_award_add", check_user_access );
 $(document).ready(function() {
 
 
@@ -9,12 +13,10 @@ $(document).ready(function() {
     project_id = url[ url.length - 3]; // projects
     console.log(project_id);
 
-    var role = localStorage.getItem('u_role');
-    var token = localStorage.getItem('u_token');
+    
 
     // Check Permission
-    var check_user_access = JSON.parse(localStorage.getItem("access_permission"));
-    var check_permission = jQuery.inArray("notice_award_add", check_user_access );
+    
     console.log(check_permission);
     if(check_permission < 1){
         window.location.href = baseUrl + "403";

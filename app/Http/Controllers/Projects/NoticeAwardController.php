@@ -199,10 +199,11 @@ class NoticeAwardController extends Controller {
 //                                    "status" => "sent"
 //                    );
                     $data = array("accountId" => $accountId, 
-		"emailSubject" => "Signature request for Notice of Award",
-		"emailBlurb" => "Signature request for Notice of Award",
+		"emailSubject" => "signature for the Notice of Award",
+		"emailBlurb" => "Signature for the Notice of Award",
 		"templateId" => $templateId, 
 		"templateRoles" => $data,
+                "brandId" => "120df7c0-bf59-4eb2-94fc-dd5b4aaf1d28",
 		"status" => "sent");
                     $data_string = json_encode($data); 
                     //$file_contents = file_get_contents($documentFileName);
