@@ -663,12 +663,12 @@
                                 <label for="project_add_company_on_fly">Add Company On Fly</label>
                         </div>
                         <div class="clearfix"></div>
-<!--                        <h4>Add Improvement Type On Fly</h4>
+                        <h4>Add Improvement Type On Fly</h4>
                         <div class="col-sm-3 nopadleft">
                                 <input type="checkbox" class="non_read_only" name="permission_key[]" id="project_add_impvtype_on_fly" value="project_add_impvtype_on_fly">
                                 <label for="project_add_impvtype_on_fly">Add Improvement Type On Fly</label>
                         </div>
-                        <div class="clearfix"></div>-->
+                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
