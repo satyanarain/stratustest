@@ -947,8 +947,8 @@ use ProjectImprovement;
                   curl_close($curl);
 
                   $data = array("accountId" => $accountId, 
-                      "emailSubject" => "Signature request for Change Order",
-                      "emailBlurb" => "Signature request for Change Order",
+                      "emailSubject" => "signature for the Change Order",
+                      "emailBlurb" => "",
                       "templateId" => $templateId, 
                       "templateRoles" => $data,
                       "status" => "sent");

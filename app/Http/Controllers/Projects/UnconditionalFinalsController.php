@@ -131,8 +131,8 @@ class UnconditionalFinalsController extends Controller {
                     curl_close($curl);
 
                     $data = array("accountId" => $accountId, 
-                        "emailSubject" => "Signature request for Unconditional Finals",
-                        "emailBlurb" => "Signature request for Unconditional Finals",
+                        "emailSubject" => "Signature request for Unconditional Final",
+                        "emailBlurb" => "",
                         "templateId" => $templateId, 
                         "templateRoles" => $data,
                         "status" => "sent");

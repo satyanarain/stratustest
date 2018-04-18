@@ -199,8 +199,8 @@ class NoticeAwardController extends Controller {
 //                                    "status" => "sent"
 //                    );
                     $data = array("accountId" => $accountId, 
-		"emailSubject" => "signature for the Notice of Award",
-		"emailBlurb" => "Signature for the Notice of Award",
+		"emailSubject" => "Signature for the Notice of Award",
+		"emailBlurb" => "signature for the Notice of Award",
 		"templateId" => $templateId, 
 		"templateRoles" => $data,
                 "brandId" => "120df7c0-bf59-4eb2-94fc-dd5b4aaf1d28",
