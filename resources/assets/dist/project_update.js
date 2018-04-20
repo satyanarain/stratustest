@@ -1,4 +1,4 @@
- $(document).ready(function() {
+  $(document).ready(function() {
 
    // Get Project Type project_type_improvement table
     $("#project_type_dropdown").hide();
@@ -294,4 +294,61 @@
 
      $('#diplay').show();
      e.preventDefault();
- })
+ });
+
+ 
+
+   jQuery.ajax({
+        url: baseUrl+"/agency-name",
+        type: "GET",
+        headers: {
+            "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+    })
+    .done(function(data, textStatus, jqXHR) {
+        // console.log(data.data);
+        // Foreach Loop
+        $("#project_lead_agency").append(
+            '<option value="">Select Agency Name</option>'
+        )
+        jQuery.each(data.data, function( i, val ) {
+            if(val.f_status == 'active'){
+                $("#project_lead_agency").append(
+                    '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                )
+            }else {
+
+            }
+        });
+        $("#project_lead_agency").append(
+            '<option style="font-weight:bold;">Add New Agency</option>'
+        )
+        // $( "h2" ).appendTo( $( ".container" ) );
+
+        $(".loading_data").remove();
+        $("#company_name").show();
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(response);
+        if(response == 403){
+            console.log('Company name 403');
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            $("#project_lead_agency").append(
+                '<option value="">Select Agency Name</option>'
+            )
+            $("#project_lead_agency").append(
+                '<option style="font-weight:bold;">Add New Agency</option>'
+            )
+            console.log('Company name 404');
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
