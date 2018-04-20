@@ -656,7 +656,136 @@ $(document).ready(function() {
   })  
 
 function initMap1() {
-        var map = new google.maps.Map(document.getElementById('map1'), {
+      
+      }
+</script>
+
+
+
+
+<!-- <script src="{{ url('/resources/assets/dist/project_add.js') }}"></script> -->
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEf-8-SoRe54t6wZL8_rkiuNIAhwgffIU&libraries=places&callback=initMap" async defer></script>-->
+
+<script>
+
+
+
+
+
+    var script = document.createElement('script');
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDEf-8-SoRe54t6wZL8_rkiuNIAhwgffIU&libraries=places&callback=initMap";
+    setTimeout(function(){
+        document.body.appendChild(script);
+    },8000);
+
+   // setTimeout(function () {
+   //      document.getElementById('project_location').style.display='block';
+   //  }, 6000);
+
+
+
+    $(document).ready(function() {
+        // $('.wysihtml5').wysihtml5();
+
+        // $('.summernote').summernote({
+        //     height: 200,                 // set editor height
+        //     minHeight: null,             // set minimum height of editor
+        //     maxHeight: null,             // set maximum height of editor
+        //     focus: true                 // set focus to editable area after initializing summernote
+        // });
+
+        // $('#project_location').css("display", "inline-block");
+        // $('#project_location').css("z-index", "9999");
+        // $('#project_location').css("position", "relative");
+        // $('#project_location').css("left", "0px");
+        // $('#project_location').css("top", "-50px");
+    });
+
+
+
+
+    function initMap()
+    {
+
+        var lat =  parseFloat($('#project_latitude').val());
+        var long =  parseFloat($('#project_longitude').val());
+        var the_position = { // ADDED THIS
+            lat: 0,
+            lng: 0
+        };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: lat, lng: long},
+            mapTypeId: google.maps.MapTypeId.TERRAIN,
+            zoom: 7,
+            scrollwheel: false
+        });
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(lat, long),
+            map: map,
+            label: document.getElementById('project_location').value
+        });
+        marker.setVisible(true);
+
+        var input = /** @type {!HTMLInputElement} */(
+            document.getElementById('project_location'));
+
+        var types = document.getElementById('type-selector');
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+            map: map,
+            anchorPoint: new google.maps.Point(0, -29)
+        });
+
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                window.alert("Autocomplete's returned place contains no geometry");
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);  // Why 17? Because it looks good.
+            }
+            marker.setIcon(/** @type {google.maps.Icon} */({
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(35, 35)
+            }));
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+
+            var address = '';
+            if (place.address_components) {
+                address = [
+                    (place.address_components[0] && place.address_components[0].short_name || ''),
+                    (place.address_components[1] && place.address_components[1].short_name || ''),
+                    (place.address_components[2] && place.address_components[2].short_name || '')
+                ].join(' ');
+            }
+
+            $("#project_latitude").val(place.geometry.location.lat());
+            $("#project_longitude").val(place.geometry.location.lng())
+
+
+
+            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+            infowindow.open(map, marker);
+        });
+
+
+          var map = new google.maps.Map(document.getElementById('map1'), {
           center: {lat: 33.7174708, lng: -117.83114280000001},
           zoom: 11,
           scrollwheel: false
@@ -779,138 +908,6 @@ function initMap1() {
           infowindow.open(map1, marker);
           return false;
 
-        });
-      }
-</script>
-
-
-
-
-<!-- <script src="{{ url('/resources/assets/dist/project_add.js') }}"></script> -->
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEf-8-SoRe54t6wZL8_rkiuNIAhwgffIU&libraries=places&callback=initMap" async defer></script>-->
-
-<script>
-
-
-
-
-
-    var script = document.createElement('script');
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDEf-8-SoRe54t6wZL8_rkiuNIAhwgffIU&libraries=places&callback=initMap";
-    setTimeout(function(){
-        document.body.appendChild(script);
-    },8000);
-
-  var script = document.createElement('script');
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDEf-8-SoRe54t6wZL8_rkiuNIAhwgffIU&libraries=places&callback=initMap1";
-    setTimeout(function(){
-        document.body.appendChild(script);
-    },8000);
-
-   // setTimeout(function () {
-   //      document.getElementById('project_location').style.display='block';
-   //  }, 6000);
-
-
-
-    $(document).ready(function() {
-        // $('.wysihtml5').wysihtml5();
-
-        // $('.summernote').summernote({
-        //     height: 200,                 // set editor height
-        //     minHeight: null,             // set minimum height of editor
-        //     maxHeight: null,             // set maximum height of editor
-        //     focus: true                 // set focus to editable area after initializing summernote
-        // });
-
-        // $('#project_location').css("display", "inline-block");
-        // $('#project_location').css("z-index", "9999");
-        // $('#project_location').css("position", "relative");
-        // $('#project_location').css("left", "0px");
-        // $('#project_location').css("top", "-50px");
-    });
-
-
-
-
-    function initMap()
-    {
-
-        var lat =  parseFloat($('#project_latitude').val());
-        var long =  parseFloat($('#project_longitude').val());
-        var the_position = { // ADDED THIS
-            lat: 0,
-            lng: 0
-        };
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: lat, lng: long},
-            mapTypeId: google.maps.MapTypeId.TERRAIN,
-            zoom: 7,
-            scrollwheel: false
-        });
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(lat, long),
-            map: map,
-            label: document.getElementById('project_location').value
-        });
-        marker.setVisible(true);
-
-        var input = /** @type {!HTMLInputElement} */(
-            document.getElementById('project_location'));
-
-        var types = document.getElementById('type-selector');
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
-
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.bindTo('bounds', map);
-
-        var infowindow = new google.maps.InfoWindow();
-        var marker = new google.maps.Marker({
-            map: map,
-            anchorPoint: new google.maps.Point(0, -29)
-        });
-
-        autocomplete.addListener('place_changed', function() {
-            var place = autocomplete.getPlace();
-            if (!place.geometry) {
-                window.alert("Autocomplete's returned place contains no geometry");
-                return;
-            }
-
-            // If the place has a geometry, then present it on a map.
-            if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-            } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(17);  // Why 17? Because it looks good.
-            }
-            marker.setIcon(/** @type {google.maps.Icon} */({
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(35, 35)
-            }));
-            marker.setPosition(place.geometry.location);
-            marker.setVisible(true);
-
-            var address = '';
-            if (place.address_components) {
-                address = [
-                    (place.address_components[0] && place.address_components[0].short_name || ''),
-                    (place.address_components[1] && place.address_components[1].short_name || ''),
-                    (place.address_components[2] && place.address_components[2].short_name || '')
-                ].join(' ');
-            }
-
-            $("#project_latitude").val(place.geometry.location.lat());
-            $("#project_longitude").val(place.geometry.location.lng())
-
-
-
-            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-            infowindow.open(map, marker);
         });
 
 //        marker = new google.maps.Marker({
