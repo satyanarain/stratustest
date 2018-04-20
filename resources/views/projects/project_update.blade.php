@@ -655,8 +655,6 @@ $(document).ready(function() {
     })
   })  
 
-
-
 function initMap1() {
         var map = new google.maps.Map(document.getElementById('map1'), {
           center: {lat: 33.7174708, lng: -117.83114280000001},
@@ -803,6 +801,11 @@ function initMap1() {
         document.body.appendChild(script);
     },8000);
 
+  var script = document.createElement('script');
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDEf-8-SoRe54t6wZL8_rkiuNIAhwgffIU&libraries=places&callback=initMap1";
+    setTimeout(function(){
+        document.body.appendChild(script);
+    },8000);
 
    // setTimeout(function () {
    //      document.getElementById('project_location').style.display='block';
