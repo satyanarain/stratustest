@@ -230,11 +230,10 @@
 <style>
   #map1 {
     height: 200px;
-    width: 200px;
-     /* position: relative !important;
-      overflow: inherit !important;*/
-      margin-top: 20px !important;
-      overflow:visible !important;
+   /* position: relative !important;
+        overflow: inherit !important;*/
+        margin-top: 40px !important;
+        overflow:visible !important;
   }
 
     .gm-style {
