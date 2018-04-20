@@ -744,6 +744,12 @@ $(document).ready(function() {
         document.body.appendChild(script);
     },8000);
 
+    var script = document.createElement('script');
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDEf-8-SoRe54t6wZL8_rkiuNIAhwgffIU&libraries=places&callback=initMap1";
+    setTimeout(function(){
+        document.body.appendChild(script);
+    },8000);
+
 
    // setTimeout(function () {
    //      document.getElementById('project_location').style.display='block';
@@ -889,11 +895,7 @@ $(document).ready(function() {
 </script>
 
 <script>
-var script = document.createElement('script');
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDEf-8-SoRe54t6wZL8_rkiuNIAhwgffIU&libraries=places&callback=initMap1";
-    setTimeout(function(){
-        document.body.appendChild(script);
-    },1000);
+
 
 $(document).ready(function() {
     // $('.wysihtml5').wysihtml5();
