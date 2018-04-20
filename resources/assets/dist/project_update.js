@@ -68,7 +68,7 @@
             $('#add-agency').modal('show');
             $('#add-agency').on('shown.bs.modal',function(){
                 google.maps.event.trigger(map, "resize");
-                google.maps.event.trigger(map1, "resize");
+              //  google.maps.event.trigger(map1, "resize");
               });
         }
     });
