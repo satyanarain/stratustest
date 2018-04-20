@@ -951,17 +951,7 @@ function initMap1() {
     }
   });
 
-        $('#project_lead_agency').change(function(){
-        var company = $(this).val();
-        if(company=="Add New Agency")
-        {
-            $('#add-agency').modal('show');
-            $('#add-agency').on('shown.bs.modal',function(){
-                google.maps.event.trigger(map, "resize");
-                google.maps.event.trigger(map1, "resize");
-              });
-        }
-    });
+ 
 </script>
 
 @include('include/footer')
