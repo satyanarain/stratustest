@@ -228,7 +228,7 @@
 </div>
 <!-- page head end-->
 <style>
-  #map1 {
+  #map {
     height: 300px;
      /* position: relative !important;
       overflow: inherit !important;*/
@@ -316,7 +316,7 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group col-md-12">
-                            <div class="map-wrapper"><div id="map1"></div></div>
+                            <div class="map-wrapper"><div id="map"></div></div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group col-md-12">
@@ -347,6 +347,376 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
+
+<script>
+$(document).ready(function() {
+    var curr_url = $(location).attr('href')
+    $(".close-add-firm-btn").attr("href",curr_url);
+    //alert();return false;
+    // $('.wysihtml5').wysihtml5();
+
+    // $('.summernote').summernote({
+    //     height: 200,                 // set editor height
+    //     minHeight: null,             // set minimum height of editor
+    //     maxHeight: null,             // set maximum height of editor
+    //     focus: true                 // set focus to editable area after initializing summernote
+    // });
+
+    $('#firm_address').css("display", "inline-block");
+    $('#firm_address').css("z-index", "9999");
+    $('#firm_address').css("position", "relative");
+    $('#firm_address').css("left", "0px");
+    $('#firm_address').css("top", "-50px");
+    
+    $("#s2id_firm_type").hide();
+    var role = localStorage.getItem('u_role');
+    var token = localStorage.getItem('u_token');
+    var check_user_access = JSON.parse(localStorage.getItem("access_permission"));
+    jQuery.ajax({
+        url: baseUrl + "company-type",
+            type: "GET",
+            headers: {
+              "x-access-token": token
+            },
+            contentType: "application/json",
+            cache: false
+        })
+    .done(function(data, textStatus, jqXHR) {
+            // console.log(data.data);
+            // Foreach Loop 
+            $("#firm_type").append('<option value="">Select Agency Type</option>');
+            jQuery.each(data.data, function( i, val ) {
+                if(val.ct_status == 'active'){
+                    $("#firm_type").append(
+                        '<option value="'+val.ct_id+'">'+val.ct_name+'</option>'
+                    )
+                }else {
+
+                }
+            });
+            // $( "h2" ).appendTo( $( ".container" ) );
+            $(".loading_data").remove();
+            $("#s2id_firm_type").show();
+        })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log("HTTP Request Failed");
+            var response = jqXHR.responseJSON.code;
+            console.log(response);
+            if(response == 403){
+                window.location.href = baseUrl + "403";
+            }
+            else if(response == 404){
+                console.log('Company Type 404');
+                alert("You can't add company, first add company type!");
+                // window.location.href = baseUrl + "404";
+            }
+            else {
+                window.location.href = baseUrl + "500";
+            }
+        });
+        
+    $('.add_firm_form').click(function(e) {
+        e.preventDefault();
+        var token = localStorage.getItem('u_token');
+        var firm_name = $('#firm_name').val();
+        var firm_description = $('#firm_description').val();
+        var firm_address = $('#firm_address').val();
+        var firm_type = $('#firm_type').val();
+        var lat =  $("#project_latitude1").val();
+        var long =  $("#project_longitude1").val();
+        var company_type = $("#company_type").val();
+        jQuery.ajax({
+            url: baseUrl + "firm-name/add",
+            type: "POST",
+            data:
+            {
+                "firm_name"     : firm_name,
+                "firm_detail"   : firm_description,
+                "firm_address"  : firm_address,
+                "firm_type"     : firm_type,
+                "company_type"  : company_type,
+                "project_long" :long,
+                "project_lat":lat
+            },
+            headers: {
+              "x-access-token": token
+            },
+            contentType: "application/x-www-form-urlencoded",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+            console.log(data.description);
+            $('html, body').animate({
+                    scrollTop: $(".page-head").offset().top
+            }, 'fast')
+            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast toast-success">New firm added successfully!</div></div>';
+            $("#alert_message").html(html);
+            $(".first_button1").hide();
+            
+            $("#project_latitude1").removeAttr('value');
+            $("#project_longitude1").removeAttr('value');
+            $("#firm_type").val('');
+            $("#company_type").val('');
+            $(".another_button").show();
+            setTimeout(function()
+                {
+                    $("#toast-container").fadeOut(1000);
+                },5000)
+            $("#toast-container").fadeOut(10000);
+            $("#firm_name").removeAttr('value');
+            $("#firm_description").removeAttr('value');
+            //$("#firm_address").removeAttr('value');
+            jQuery.ajax({
+                url: baseUrl+"agency-name",
+                type: "GET",
+                headers: {
+                  "x-access-token": token
+                },
+                contentType: "application/json",
+                cache: false
+                })
+            .done(function(data, textStatus, jqXHR) {
+                if($("#project_lead_agency").length > 0) {
+                    var ele_name = '#project_lead_agency';
+                    $(ele_name).empty();
+                    $("#project_lead_agency").append(
+                        '<option value="">Select Agency Name</option>'
+                    )
+                    jQuery.each(data.data, function( i, val ) {
+                        if(val.f_status == 'active'){
+                            $(ele_name).append(
+                                '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                            )
+                        }else {
+
+                        }
+                    });
+                    var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+                    console.log(add_company_on_fly_permission+'company_fly');
+                    if(add_company_on_fly_permission>0 || role=="owner" || role=="admin"){
+                        $(ele_name).append(
+                            '<option style="font-weight:bold;">Add New Agency</option>'
+                        )
+                    }
+                }
+                $(".loading_data").remove();
+                $("#project_lead_agency").show();
+                $('#add-agency').modal('hide');
+                //$('#firm_address').val("");
+                //$('#project_latitude1').val("");
+                //$('#project_longitude1').val("");
+                $('#firm_address').css("display", "inline-block");
+                $('#firm_address').css("z-index", "9999");
+                $('#firm_address').css("position", "relative");
+                $('#firm_address').css("left", "0px");
+                $('#firm_address').css("top", "-50px");
+                //map.clear();
+                info_Window = new google.maps.InfoWindow();
+                info_Window.close();
+                for (var i = 0; i < marker.length; i++) {
+                    marker[i].setMap(null);
+                }
+                marker.length = 0;
+                for(var i=0;i<location.length;i++){
+                    location[i].setMap(null);
+                }
+                location.length=0;
+                marker = [];
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("HTTP Request Failed");
+                var response = jqXHR.responseJSON.code;
+                console.log(jqXHR);
+                if(response == 403){
+                    console.log('Company name 403');
+                    // window.location.href = baseUrl + "403";
+                }
+                else if(response == 404){
+                    console.log('Company name 404');
+                    // window.location.href = baseUrl + "404";
+                }
+                else {
+                    window.location.href = baseUrl + "500";
+                }
+            });
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus);
+                console.log("HTTP Request Failed");
+                var responseText, html;
+                responseText = JSON.parse(jqXHR.responseText);
+                console.log(responseText.data);
+                $('html, body').animate({
+                    scrollTop: $(".page-head").offset().top
+                }, 'fast')
+                $("#alert_message").fadeIn(1000);
+                html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast toast-error"><ul>';
+                if(responseText.data.firm_name != null){
+                    html += '<li>Agency name field is Invalid</li>';
+                }
+                if(responseText.data.firm_detail != null){
+                    html += '<li>Agency description field is Invalid</li>';
+                }
+                if(responseText.data.firm_address != null){
+                    html += '<li>Agency address field is Invalid</li>';
+                }
+                if(responseText.data.firm_type != null){
+                    html += '<li>Agency type field is Invalid</li>';
+                }
+                html += '</ul></div></div>';
+                $("#alert_message").html(html);
+                $("#toast-container").fadeOut(10000);
+
+        })
+    });
+            
+    $('.close-add-firm-btn').click(function(){
+        if(isFilled===true)
+        {
+            $('#confirm-back').modal('show');
+        }else{
+            jQuery.ajax({
+        url: baseUrl+"agency-name",
+        type: "GET",
+        headers: {
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+        })
+            .done(function(data, textStatus, jqXHR) {
+        $('#project_lead_agency').empty();
+        jQuery.each(data.data, function( i, val ) {
+            if(val.f_status == 'active'){
+                $("#project_lead_agency").append(
+                    '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                )
+            }else {
+
+            }
+        });
+        var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+        console.log(add_company_on_fly_permission+'company_fly');
+        if(add_company_on_fly_permission>0 || role=="owner" || role=="admin"){
+            $("#project_lead_agency").append(
+                '<option style="font-weight:bold;">Add New Company</option>'
+            )
+        }
+        // $( "h2" ).appendTo( $( ".container" ) );
+       
+        $(".loading_data").remove();
+        $("#project_lead_agency").show();
+        $('#add-agency').modal('hide');
+        //$('#firm_address').val("");
+        //$('#project_latitude1').val("");
+        //$('#project_longitude1').val("");
+        
+//        var map = new google.maps.Map(document.getElementById('map'), {
+//          center: {lat: 36.443796, lng: -119.369653},
+//          zoom: 7,
+//          scrollwheel: false
+//        });
+        $('#firm_address').css("display", "inline-block");
+    $('#firm_address').css("z-index", "9999");
+    $('#firm_address').css("position", "relative");
+    $('#firm_address').css("left", "0px");
+    $('#firm_address').css("top", "-50px");
+        map.clear();
+        info_Window = new google.maps.InfoWindow();
+            info_Window.close();
+            for (var i = 0; i < marker.length; i++) {
+                marker[i].setMap(null);
+            }
+            marker.length = 0;
+            for(var i=0;i<location.length;i++){
+                location[i].setMap(null);
+            }
+            location.length=0;
+            marker = [];
+    })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(jqXHR);
+        if(response == 403){
+            console.log('Company name 403');
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            console.log('Company name 404');
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
+        }
+        
+    })
+  })  
+  function initMap1() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 33.7174708, lng: -117.83114280000001},
+          zoom: 11,
+          scrollwheel: false
+        });
+        var input = /** @type {!HTMLInputElement} */(
+            document.getElementById('firm_address'));
+
+        var types = document.getElementById('type-selector');
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, -29)
+        });
+
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            window.alert("Autocomplete's returned place contains no geometry");
+            return;
+          }
+
+          // If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);  // Why 17? Because it looks good.
+          }
+          marker.setIcon(/** @type {google.maps.Icon} */({
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(35, 35)
+          }));
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+
+          var address = '';
+          if (place.address_components) {
+            address = [
+              (place.address_components[0] && place.address_components[0].short_name || ''),
+              (place.address_components[1] && place.address_components[1].short_name || ''),
+              (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+          }
+            $("#project_latitude").val(place.geometry.location.lat());
+            $("#project_longitude").val(place.geometry.location.lng());
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+          infowindow.open(map, marker);
+        });
+      }
+</script>
 
 <script src="{{ url('/resources/assets/dist/project_update.js') }}"></script>
 
