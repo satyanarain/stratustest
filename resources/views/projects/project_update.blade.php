@@ -228,7 +228,7 @@
 </div>
 <!-- page head end-->
 <style>
-  #map {
+  #map1 {
     height: 300px;
      /* position: relative !important;
       overflow: inherit !important;*/
