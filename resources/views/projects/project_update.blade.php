@@ -377,7 +377,14 @@
         document.getElementById('project_location').style.display='block';
     },8000);
 
-
+  $('#project_terms').change(function() {
+    if($(this).is(":checked")) {
+        $('.lead_agency_class').css("display", "block");
+    }
+    else {
+        $('.lead_agency_class').css("display", "none");
+    }
+  });
 
 </script>
 
