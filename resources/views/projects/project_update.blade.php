@@ -236,39 +236,6 @@
       overflow:visible !important;
   }
 
-    .gm-style {
-    overflow: inherit !important;
-     }
-
-  #type-selector {
-    color: #fff;
-    background-color: #4d90fe;
-    padding: 5px 11px 0px 11px;
-  }
-
-  #type-selector label {
-    font-family: Roboto;
-    font-size: 13px;
-    font-weight: 300;
-  }
-
-  /*#firm_address {
-    display: inline-block !important;
-    z-index: 9999 !important;
-    position: relative !important;
-    left: 0px !important;
-    top: -50px !important;
-  }*/
-
-   #firm_address {
-    z-index: 9999 !important;
-    position: relative !important;
-    left: 0px !important;
-    top: -117px !important;
-    box-shadow: rgba(255, 255, 255, 1) 0px 0px 15px 30px;
-    border-radius: 0;
-  }
-  .pac-container { z-index: 100000; }
 </style>
 
 <!--body wrapper start-->
