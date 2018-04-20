@@ -338,6 +338,16 @@
 </div>
             <!--body wrapper end-->
 
+
+         </div>
+     </div>
+ </div>
+<!-- end of modal of add new agency-->
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
+<script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
+
 <script>
 $(document).ready(function() {
     var curr_url = $(location).attr('href')
@@ -708,16 +718,8 @@ $(document).ready(function() {
       }
 </script>
 
-
-         </div>
-     </div>
- </div>
-<!-- end of modal of add new agency-->
-
-<!-- Placed js at the end of the document so the pages load faster -->
-<script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
-<script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/project_update.js') }}"></script>
+
 
 <!-- <script src="{{ url('/resources/assets/dist/project_add.js') }}"></script> -->
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEf-8-SoRe54t6wZL8_rkiuNIAhwgffIU&libraries=places&callback=initMap" async defer></script>-->
