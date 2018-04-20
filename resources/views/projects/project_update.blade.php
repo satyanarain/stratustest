@@ -229,7 +229,8 @@
 <!-- page head end-->
 <style>
   #map1 {
-    height: 300px;
+    height: 200px;
+    width: 200px;
      /* position: relative !important;
       overflow: inherit !important;*/
       margin-top: 20px !important;
