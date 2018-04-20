@@ -172,6 +172,22 @@
                             </div>
                             <div class="clearfix"></div>
 
+                             <div class="clearfix"></div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label class="checkbox-custom check-success">
+                                                <input type="checkbox" name="project_terms" value="" id="project_terms">
+                                                <label for="project_terms">Does this improvement type involve public funds and/or a public works improvement? <span class="text-danger">*</span></label>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="form-group col-md-6 lead_agency_class" style="display: none;">
+                                        <label for="project_name">Lead Agency<span class="text-danger">*</span></label>
+                                        <select class="form-control" id="project_lead_agency">
+                                        </select>
+                                    </div>
+
                             <!-- <div class="form-group">
                                 <div class="col-md-12">
                                     <label class="checkbox-custom check-success">
