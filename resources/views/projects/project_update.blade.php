@@ -316,7 +316,7 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group col-md-12">
-                            <div class="map-wrapper"><div id="map"></div></div>
+                            <div class="map-wrapper"><div id="map1"></div></div>
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group col-md-12">
