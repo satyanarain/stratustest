@@ -81,7 +81,7 @@
         border-radius: 0;
       }
 
-    .map-wrapper{overflow: visible; padding-top: 0;}
+  
 
 </style>
 
