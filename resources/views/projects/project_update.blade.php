@@ -200,6 +200,7 @@
 
                             <div class="form-group col-md-12">
 
+
 <!--                                <a data-href="{{ url('/dashboard/') }}" class="btn btn-info back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
                                 <a href="{{ url('/dashboard') }}" class="btn btn-info btn_back1">Back</a>
 

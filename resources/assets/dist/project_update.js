@@ -1,4 +1,4 @@
-  $(document).ready(function() {
+   $(document).ready(function() {
 
    // Get Project Type project_type_improvement table
     $("#project_type_dropdown").hide();
@@ -165,6 +165,16 @@
       $('.loading-submit').show();
         e.preventDefault();
         // var project_number      = $('#project_number').val();
+
+          var project_terms ='';
+        var check_box = document.getElementById("project_terms").checked;
+        if(check_box ==true){
+            project_terms = "yes";
+        }
+        else if(check_box==false){
+            project_terms = 'no';
+        }
+
         var project_name        = $('#project_name').val();
         var project_location    = $('#project_location').val();
         var project_long        = $('#project_longitude').val();
@@ -173,11 +183,13 @@
         var project_description = $('#project_description').val();
         var project_wage_determination = $('#project_wage_determination').val();
         var project_status	 	= $('#status').val();
+        var project_lead_agency         = $('#project_lead_agency').val();
         // var project_terms       = $("input[name='project_terms']:checked"). val();
 
         var token = localStorage.getItem('u_token');
         project_type = JSON.stringify(project_type);
         console.log(project_wage_determination);
+       
         jQuery.ajax({
             url: baseUrl + "projects/"+project_id+"/update",
             type: "POST",
@@ -188,9 +200,11 @@
                 "project_long" 			: project_long,
                 "project_lat" 			: project_lat,
                 "project_type" 			: project_type,
+                "project_terms" : project_terms,
                 // "project_description"    : project_description,
                 "project_wage_determination" 	: project_wage_determination,
                 "project_status" 		: project_status,
+                "project_lead_agency" : project_lead_agency
             },
             headers: {
               "x-access-token": token
