@@ -167,7 +167,7 @@ class NoticeCompletionController extends Controller {
                     curl_close($curl);
 
                     $data = array("accountId" => $accountId, 
-                        "emailSubject" => "signature for the Notice of Completion",
+                        "emailSubject" => "signature for a Notice of Completion",
                         "emailBlurb" => "This is a signature request for a Notice of Completion",
                         "templateId" => $templateId, 
                         "templateRoles" => $data,
