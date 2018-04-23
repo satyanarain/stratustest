@@ -74,7 +74,103 @@
                 doc_path_value = '<a href="'+baseUrl+doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
             }
             //$('#doc_file_path').html(doc_path_value);
+            $("#bid_amount").val(data.data.pna_contact_amount);
+            $("#award_date").val(data.data.pna_award_date);
+            var pna_contactor_name = data.data.pna_contactor_name;
+            var pna_improvement_type = data.data.pna_improvement_type;
+            // Get All agencies Name
+            jQuery.ajax({
+            url: baseUrl+project_id+"/company_name_user",
+                type: "GET",
+                headers: {
+                  "x-access-token": token
+                },
+                contentType: "application/json",
+                cache: false
+            })
+            .done(function(data, textStatus, jqXHR) {
+                // console.log(data.data);
+                // Foreach Loop
+                $("#company_name").append(
+                    '<option value="">Select Contractor Name</option>'
+                )
+                jQuery.each(data.data, function( i, val ) {
+                    if(val.f_status == 'active'){
+                        $("#company_name").append(
+                            '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                        )
+                    }else {
 
+                    }
+                });
+                $("#company_name").val(pna_contactor_name);
+                
+                // $( "h2" ).appendTo( $( ".container" ) );
+
+                // $(".loading_data").remove();
+                $("#company_name").show();
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+//        console.log("HTTP Request Failed");
+//        var response = jqXHR.responseJSON.code;
+//        console.log(response);
+//        if(response == 403){
+//        console.log('Company name 403');
+//            // window.location.href = baseUrl + "403";
+//        }
+//        else if(response == 404){
+//            console.log('Company name 404');
+//            // window.location.href = baseUrl + "404";
+//        }
+//        else {
+//            window.location.href = baseUrl + "500";
+//        }
+    });
+            jQuery.ajax({
+            url: baseUrl + project_id +"/improvement-type-by-owner",
+                type: "GET",
+                headers: {
+                  "x-access-token": token
+                },
+                contentType: "application/json",
+                cache: false
+            })
+            .done(function(data, textStatus, jqXHR) {
+                // console.log(data.data);
+                // Foreach Loop 
+                $(".project_type_dropdown").append(
+                    '<option value="">Select Improvement Type</option>'
+                )
+                jQuery.each(data.data, function( i, val ) {
+                    if(val.pt_status == 'active'){
+                        $(".project_type_dropdown").append(
+                            '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
+                        )
+                    }
+                });
+                // $( "h2" ).appendTo( $( ".container" ) );
+               $("#project_type_dropdown_new").val(pna_improvement_type);
+                $(".loading_data").remove();
+                $("#s2id_project_type_dropdown").show();
+                // $("#add_project_form").show();
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(response);
+        if(response == 403){
+        console.log('All Improvement 403');
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            console.log('All Improvement 404');
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    }); 
+            
             var doc_path = data.data.owner_sign_doc_path;
             var doc_path_value;
             if(doc_path == null){
@@ -129,63 +225,17 @@
 		    }
 		})
         
-        // Selected Improvement Type
-    jQuery.ajax({
-    //url: baseUrl +project_id+"/improvement-type",
-    url: baseUrl +project_id+"/improvement-type",
-        type: "GET",
-        headers: {
-          "x-access-token": token
-        },
-        contentType: "application/json",
-        cache: false
-    })
-    .done(function(data, textStatus, jqXHR) {
-        console.log(data);
-        window.improvement_type_array = [];
-        window.latest_improvement_type_array = [];
-        // Foreach Loop
-//        $("#project_type_dropdown_new").append(
-//            '<option value="">Select Improvement Type</option>'
-//        )
-        jQuery.each(data.data, function( i, val ) {
-            if(val.pt_status == 'active'){
-                $(".project_type").append(
-                    '<span class="label label-inverse" style="display: inline-block; font-size: 14px; margin: 10px 15px 10px 0px; padding: 5px 15px;">'+val.pt_name+'</span>'
-                )
-
-//                $("#project_type_dropdown_new").append(
-//                    '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
-//                )
-//                $("#project_type_dropdown_old").append(
-//                    '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
-//                )
-                improvement_type_array.push(val.pt_id);
-                latest_improvement_type_array.push(val.pt_name);
-            }else {
-
-            }
-        });
-        $(".loading_data").remove();
-        $("#project_type_dropdown_new").show();
-        $("#project_type_dropdown_old").show();
-        $(".project_type").show();
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) {
-        console.log("HTTP Request Failed");
-        var response = jqXHR.responseJSON.code;
-        console.log(response);
-        if(response == 403){
-            // window.location.href = baseUrl + "403";
-        }
-        else if(response == 404){
-            $("#s2id_project_type").show();
-            //window.location.href = baseUrl + "404";
-        }
-        else {
-            window.location.href = baseUrl + "500";
-        }
-    });
+       
+    
+    
+    // All Improvement Type
+    
+    
+    
+    
+    
+    
+    
     });
 
 
@@ -198,6 +248,10 @@
         var notice_review_contractor    = $('#review_contractor').val();
         var status               	    = $('#status').val();
         var project_id                  = $('#upload_project_id').val();
+        var project_type_dropdown_new = $('#project_type_dropdown_new').val();
+        var company_name = $("#company_name").val();
+        var bid_amount              = $('#bid_amount').val();
+        var award_date              = $('#award_date').val();
 	    var token                       = localStorage.getItem('u_token');
 
         var token = localStorage.getItem('u_token');
@@ -210,7 +264,12 @@
                 "notice_sign_contractor"   : notice_sign_contractor,
                 "notice_review_contractor" : notice_review_contractor,
          	    "status"                   : status,
-                "project_id"               : project_id
+                "project_id"               : project_id,
+                "improvement_type": project_type_dropdown_new,
+                "contactor_name"             : company_name,
+                "contact_amount"                : bid_amount,
+                "award_date"                : award_date,
+                
             },
             headers: {
               "x-access-token": token

@@ -119,7 +119,7 @@
 
             <div class="form-group col-sm-6">
                 <label class="radio-inline">
-                  <input type="radio"   name="days_working" id="days_working" value="calendar_day">Calendar Days
+                    <input type="radio"   name="days_working" id="days_working" value="calendar_day" checked="checked">Calendar Days
                 </label><br/>
                 <label class="radio-inline">
                   <input type="radio"    name="days_working" id="days_working" value="working_day"> Working Days

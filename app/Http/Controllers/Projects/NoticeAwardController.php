@@ -423,6 +423,10 @@ class NoticeAwardController extends Controller {
         $notice_sign_contractor   = $request['notice_sign_contractor'];
         $notice_review_contractor = $request['notice_review_contractor'];
         $project_id               = $request['project_id'];
+        $contactor_name     = $request['contactor_name'];
+        $improvement_type   = $request['improvement_type'];
+        $contact_amount     = $request['contact_amount'];
+        $award_date         = $request['award_date'];
         $user_id                  = Auth::user()->id;
         $status                   = $request['status'];
     // Check User Permission Parameter 
@@ -468,7 +472,7 @@ class NoticeAwardController extends Controller {
             $query = DB::table('project_notice_award')
             ->where('pna_id', '=', $pna_id)
             // ->update(['pna_notice_status' => $notice_status, 'pna_contactor_name' => $contactor_name, 'pna_currency' => $currency, 'pna_contact_amount' => $contact_amount, 'pna_award_date' => $award_date, 'pna_notice_path' => $notice_path, 'pna_notice_sign' => $notice_sign, 'pna_project_id' => $project_id, 'pna_user_id' => $user_id, 'pna_status' => $status]);
-            ->update(['pna_project_id' => $project_id, 'pna_notice_sign_owner' => $notice_sign_owner, 'pna_notice_review_owner' => $notice_review_owner, 'pna_notice_sign_contractor' => $notice_sign_contractor, 'pna_notice_review_contractor' => $notice_review_contractor, 'pna_user_id' => $user_id, 'pna_status' => $status]);
+            ->update(['pna_improvement_type' => $improvement_type,'pna_contact_amount' => $contact_amount,'pna_contactor_name' => $contactor_name,'pna_award_date' => $award_date,'pna_project_id' => $project_id, 'pna_notice_sign_owner' => $notice_sign_owner, 'pna_notice_review_owner' => $notice_review_owner, 'pna_notice_sign_contractor' => $notice_sign_contractor, 'pna_notice_review_contractor' => $notice_review_contractor, 'pna_user_id' => $user_id, 'pna_status' => $status]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
