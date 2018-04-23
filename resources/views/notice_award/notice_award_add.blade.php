@@ -217,7 +217,7 @@
         </p>
         <div style="clear: both;"></div>
         <p style="width:100%;">The OWNER has considered the bid submitted by you for the above described WORK in response to its Bid Advertisement, dated <strong><span id="pdf_gen_bid_advertisement_date"></span></strong>. You are hereby notified that your submitted bid has been accepted for items in the amount of <strong><span class="pdf_gen_project_currency"></span><span id="pdf_gen_contract_amount"></span></strong>.</p>
-        <p>You are hereby required by the Information for Bidders to execute the Agreement and furnish the required Contractor’s Performance Bond, Payment Bond and Certificate of Insurance within seven (7) calendar days from the contract date. The Contractor shall furnish original copies of the above mentioned documents to both the OWNER and OWNER’S Construction Management representative.</p>
+        <p>You are hereby required by the Information for Bidders to execute the Agreement and furnish  required Contractor’s Certificate of Insurance within seven (7) calendar days from the contract date. The Contractor shall furnish original copies of the above mentioned documents to both the OWNER and OWNER’S Construction Management representative.</p>
         <p>If you fail to execute said Agreement and to furnish said bonds as well as certificates of insurance within seven (7) calendar days from the date of this Notice, said OWNER will be entitled to consider all your rights arising out of the OWNER’s acceptance of your bid as abandoned and as a forfeiture of your bid bond. The OWNER will be entitled to such other rights as may be granted by law.</p>
         <br/>
         <p style="width:100%;"><strong>ACCEPTANCE OF NOTICE:</strong></p>
