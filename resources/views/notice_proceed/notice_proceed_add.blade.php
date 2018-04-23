@@ -143,11 +143,11 @@
             <div class="clearfix"></div>  
             <div id="signatory_container">
                 <div class="sign1">
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-6">
                         <label for="">Owner: Contact Name</label>
                         <input class="form-control" name="signatory_name[]" type="text" id="">
                     </div>
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-6">
                         <label for="">Owner: Contact Email</label>
                         <input class="form-control" name="signatory_email[]" type="text" id="">
                     </div>
@@ -156,11 +156,11 @@
                     </div>
                 </div>
                 <div class="sign2">
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-6">
                         <label for="">Contractor: Contact Name</label>
                         <input class="form-control" name="signatory_name[]" type="text" id="">
                     </div>
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-6">
                         <label for="">Contractor: Contact Email</label>
                         <input class="form-control" name="signatory_email[]" type="text" id="">
                     </div>
