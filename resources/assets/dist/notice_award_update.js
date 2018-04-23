@@ -73,7 +73,7 @@
             else {
                 doc_path_value = '<a href="'+baseUrl+doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
             }
-            $('#doc_file_path').html(doc_path_value);
+            //$('#doc_file_path').html(doc_path_value);
 
             var doc_path = data.data.owner_sign_doc_path;
             var doc_path_value;
@@ -127,7 +127,65 @@
 		    	// console.log("500");
 		    	window.location.href = baseUrl + "500";
 		    }
-		}) 
+		})
+        
+        // Selected Improvement Type
+    jQuery.ajax({
+    //url: baseUrl +project_id+"/improvement-type",
+    url: baseUrl +project_id+"/improvement-type",
+        type: "GET",
+        headers: {
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+    })
+    .done(function(data, textStatus, jqXHR) {
+        console.log(data);
+        window.improvement_type_array = [];
+        window.latest_improvement_type_array = [];
+        // Foreach Loop
+//        $("#project_type_dropdown_new").append(
+//            '<option value="">Select Improvement Type</option>'
+//        )
+        jQuery.each(data.data, function( i, val ) {
+            if(val.pt_status == 'active'){
+                $(".project_type").append(
+                    '<span class="label label-inverse" style="display: inline-block; font-size: 14px; margin: 10px 15px 10px 0px; padding: 5px 15px;">'+val.pt_name+'</span>'
+                )
+
+//                $("#project_type_dropdown_new").append(
+//                    '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
+//                )
+//                $("#project_type_dropdown_old").append(
+//                    '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
+//                )
+                improvement_type_array.push(val.pt_id);
+                latest_improvement_type_array.push(val.pt_name);
+            }else {
+
+            }
+        });
+        $(".loading_data").remove();
+        $("#project_type_dropdown_new").show();
+        $("#project_type_dropdown_old").show();
+        $(".project_type").show();
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(response);
+        if(response == 403){
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            $("#s2id_project_type").show();
+            //window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
     });
 
 

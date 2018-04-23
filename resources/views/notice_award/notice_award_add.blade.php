@@ -120,17 +120,18 @@
                     </span>
                 </div>
             </div>
+            
             <div class="clearfix"></div>
             <div class="form-group col-md-12"><span class="label label-inverse"><b>Please fill out the fields below for Docusign integration.</b></span></div>
             <div class="clearfix"></div>  
             <input type="hidden" name="signatory_counter" id="signatory_counter" value="1">
             <div id="signatory_container">
                 <div class="sign1">
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-6">
                         <label for="">Contractor: Contact Name</label>
                         <input class="form-control" name="signatory_name[]" type="text" id="">
                     </div>
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-6">
                         <label for="">Contractor: Contact Email</label>
                         <input class="form-control" name="signatory_email[]" type="text" id="">
                     </div>

@@ -41,16 +41,16 @@
     </section>
 </div>
 <div class="clearfix"></div>
-<div class="form-group col-md-6">
+<!--<div class="form-group col-md-6">
     <label>Download Notice of Award</label>
 </div>
 <div class="form-group col-md-6" id="doc_file_path">
     
-</div>
+</div>-->
 <div class="form-group col-md-12">
     <hr/>
 </div>
-<div class="form-group col-md-6">
+<div class="form-group col-md-6" style="display: none;">
     <label for="name_of_report">Review &amp; E-sign by Owner/Owner Rep</label>
     <br/>
     <div class="before_review_owner" style="display: none;">
@@ -74,7 +74,7 @@
     </div>
 </div>
 
-<div class="form-group col-md-6">
+<div class="form-group col-md-6" style="display: none;">
     <label for="company_name">Review &amp; E-sign /Accept by Contractor</label>
     <br/>
     <div class="before_review_contractor" style="display: none;">
@@ -105,7 +105,56 @@
                                             <option value="deactive">Deactivate</option>
                                         </select>
                                     </div>
-                                    <div class="clearfix"></div>
+
+            <div class="form-group col-md-6">
+<!--                <label for="project_type">Project Improvement Type</label><br/>-->
+                <div class="loading_data" style="text-align: center;">
+                   <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
+                </div>
+                <span class="project_type"></span>
+                <label class="sub-title">Select improvement type if you want to change</label>
+                
+                <div class="loading_data" style="text-align: center;">
+                   <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
+                </div>
+                <select class="form-control project_type_dropdown" name="notice_award_project_type_dropdown" id="project_type_dropdown_new" placeholder="Select Improvement Types">
+                </select>
+            </div>
+<div class="clearfix"></div>
+            <div class="form-group col-md-6">
+                <label for="company_name" style="">Contractor Name</label>
+                <div class="loading_data" style="text-align: center;">
+                   <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
+                </div>
+                <!-- <select class="form-control select2" id="company_name"> -->
+                <select class="form-control" name="notice_award_company_name" id="company_name">
+                </select>
+            </div>
+            
+            <div class="form-group col-md-6">
+                <label for="name_of_report">Bid/Award Amount</label>
+                <div class="loading_data" style="text-align: center;">
+                   <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
+                </div>
+                <!-- <input type="text" class="form-control" id="bid_amount"> -->
+                <div class="input-group m-b-10">
+                    <span class="input-group-addon project_currency"></span>
+                    <input class="form-control" name="notice_award_bid_amount" type="text" id="bid_amount" onkeypress="return isNumber(event)">
+                </div>
+            </div>
+        <div class="clearfix"></div>    
+            <div class="form-group col-md-6">
+                <label>Notice of Award Date</label>
+                <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
+                    <input type="text" name="notice_award_date" readonly="" value="<?php echo date("Y-m-d"); ?>" size="16" class="form-control"  id="award_date">
+                    <span class="input-group-btn add-on">
+                    <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="clearfix"></div>
+                                    
 
 
                                     <div class="form-group col-md-12">
