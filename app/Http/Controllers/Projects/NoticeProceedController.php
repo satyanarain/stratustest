@@ -161,7 +161,7 @@ class NoticeProceedController extends Controller {
                     curl_close($curl);
 
                     $data = array("accountId" => $accountId, 
-                        "emailSubject" => "Signature for the Notice to Proceed",
+                        "emailSubject" => "Signature for a Notice to Proceed",
                         "emailBlurb" => "This is a signature request for a Notice to Proceed",
                         "templateId" => $templateId, 
                         "templateRoles" => $data,
