@@ -43,7 +43,7 @@ $(document).ready(function() {
             $('#phone').text(phone);
 
             var role = data.data.role;
-            $('#role').text(role);
+            $('#role').text('App '+role);
 
 
             var position_title = data.data.position_title;
