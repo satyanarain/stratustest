@@ -37,9 +37,9 @@
 <!--    <label class="radio-inline">
       <input type="radio" name="noc_type" id="noc_type" value="complete_form_noc"> Complete NOC FORM
     </label><br/>-->
-    <label class="radio-inline">
+   <!-- <label class="radio-inline">
         <input checked="checked" type="radio" name="noc_type" id="noc_type" value="upload_form_noc"> Upload Recorded NOC
-    </label>
+    </label>  -->
   </div>
 </div>
 <div class="col-sm-6 nopadleft">
@@ -47,7 +47,7 @@
 </div>
 <div class="clearfix"></div>
                               <div class="col-sm-6 nopadleft">
-                                   <label class="upload_exist" style="display: none;">Upload Notice of Completion <span class="text-danger">*</span></label>
+                                   <label class="upload_exist" >Upload recorded Notice of Completion <span class="text-danger">*</span></label>
                                   <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone" class="upload_exist"  style="display: block;">
                                       <input type="hidden" name="document_path" value="/uploads/notice_completion/">
                                   </form>
