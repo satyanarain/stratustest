@@ -162,7 +162,7 @@ class NoticeProceedController extends Controller {
 
                     $data = array("accountId" => $accountId, 
                         "emailSubject" => "Signature for the Notice to Proceed",
-                        "emailBlurb" => "signature request for the Notice to Proceed",
+                        "emailBlurb" => "This is a signature request for a Notice to Proceed",
                         "templateId" => $templateId, 
                         "templateRoles" => $data,
                         "status" => "sent");

@@ -948,7 +948,7 @@ use ProjectImprovement;
 
                   $data = array("accountId" => $accountId, 
                       "emailSubject" => "Signature for the Change Order",
-                      "emailBlurb" => "signature for the Change Order",
+                      "emailBlurb" => "This is a signature request for a Change Order",
                       "templateId" => $templateId, 
                       "templateRoles" => $data,
                       "status" => "sent");

@@ -208,7 +208,7 @@ class LaborComplianceController extends Controller {
 
                         $data = array("accountId" => $accountId, 
                             "emailSubject" => "Signature for the Statement of Non-Performance",
-                            "emailBlurb" => "signature for the Statement of Non-Performance",
+                            "emailBlurb" => "This is a signature request for a Statement of Non-Performance",
                             "templateId" => $templateId, 
                             "templateRoles" => $data,
                             "status" => "sent");
