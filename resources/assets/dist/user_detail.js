@@ -131,6 +131,7 @@ var token = localStorage.getItem('u_token');
                 cache: false
             })
                 .done(function(data, textStatus, jqXHR) {
+                    console.log(data);
                                 if(data.data.user_image_path!=''){
                                     var user_image_path = '<img src="'+baseUrl+data.data.user_image_path+'" width="50px">';
                                     $("#old_image_path").val(data.data.user_image_path);
@@ -198,7 +199,7 @@ var token = localStorage.getItem('u_token');
                 var position_title = data.data.position_title;
                 $('#position').val(position_title);
 
-                var role = data.data.role;
+            /*    var role = data.data.role;
                 $('.user_type_value').val(role);
                 // console.log(data.data.role);
                 if(data.data.role == "admin"){
@@ -206,7 +207,7 @@ var token = localStorage.getItem('u_token');
                 }
                 else {
                     $('.role_normal_hide').remove();
-                }
+                }*/
 
             /*    var status = data.data.status;
                 if(status == 1){
@@ -220,7 +221,7 @@ var token = localStorage.getItem('u_token');
                 }
                 $('.user_status').val(data.data.status); */
                 // $('#project_name').val(data.data.project_id);
-                $('#user_role').val(data.data.user_type);
+              //  $('#user_role').val(data.data.user_type);
                 
                 $(".loading_data").hide();
                 $("#update_profile_form").show();

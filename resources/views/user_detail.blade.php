@@ -89,18 +89,18 @@
                                         <label for="lname">Last Name</label>
                                         <input type="text" class="form-control" id="lname">
                                     </div>
-                                    <div class="form-group col-md-6">
+                                <!--    <div class="form-group col-md-6">
                                         <label for="cname">Company Name</label>
                                         <!-- <div class="loading_data" style="text-align: center;">
                                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                         </div> -->
-                                        <select class="form-control" id="firm_name">
+                                      <!--  <select class="form-control" id="firm_name">
                                         </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
+                                    </div> -->
+                                  <!--  <div class="form-group col-md-6">
                                         <label for="position">Position / Title</label>
                                         <input type="text" class="form-control" id="position">
-                                    </div>
+                                    </div> -->
                                     <div class="clearfix"></div>
                                     <!-- <div class="form-group col-md-6">
                                         <label for="pnum">Phone Number</label>
@@ -112,7 +112,7 @@
                                     <div class="form-group col-md-6"></div>
                                     <div class="clearfix"></div>
 
-                                    <div class="form-group col-md-6">
+                                 <!--   <div class="form-group col-md-6">
                                         <label for="pass">Password</label>
                                         <input type="password" class="form-control" id="pass">
                                     </div>
@@ -120,7 +120,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="cpass">Confirm Password</label>
                                         <input type="password" class="form-control" id="cpass">
-                                    </div>
+                                    </div>  -->
 
 
                                     <input type="hidden" class="form-control role_normal_hide user_role" id="role">
