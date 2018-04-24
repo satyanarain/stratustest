@@ -70,47 +70,50 @@ class DocusignController extends Controller {
             $status1 = curl_getinfo($curl1, CURLINFO_HTTP_CODE);
             if ($status1 == 200 ) {
                 $response1 = json_decode($json_response1, true);
-                print_r($response1);die;
-                echo $response1["status"];die;
+                //print_r($response1);die;
+                //echo $response1["status"];die;
                 curl_close($curl1);
-                $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
-                curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
-                        "X-DocuSign-Authentication: $header" )                                                                       
-                );
-                $json_response2 = curl_exec($curl2);
-                $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
-                if ($status2 == 200 ) {
-                    $response2 = json_decode($json_response2, true);
-                    curl_close($curl2);
-                    //echo "<pre>";print_r($response2);die;
-                    foreach( $response2["envelopeDocuments"] as $document ) {
-                            $docUri = $document["uri"];
-                            $curl3 = curl_init($baseUrl . $docUri );
-                            curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
-                            curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
-                            curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
-                                    "X-DocuSign-Authentication: $header" )                                                                       
-                            );
-                            $data = curl_exec($curl3);
-                            //echo env('APP_URL').$envelopeId . "-" . $document["name"];
-                            //echo "<pre>";print_r($document);die;
-                            $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
-                            if($status3==200){
-                                $file_upload_path = "/uploads/notice_award/".$envelopeId . "-" . $document["name"];
-                                file_put_contents(base_path().$file_upload_path, $data);
-                                if($document['type']=="content")
-                                {
-                                    $query = DB::table('documents')
-                                    ->where('doc_id', '=', $doc_id)
-                                    ->update(['doc_path' => $file_upload_path]);
-                                    $query = DB::table('project_notice_award')
-                                    ->where('pna_id', '=', $pna_id)
-                                    ->update(['pna_docusign_status' => "complete"]);
-                                }
-                                curl_close($curl3);
-                            }else{continue;}
-                    }
+                if($response1["status"]=="completed")
+                {
+                    $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
+                    curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
+                            "X-DocuSign-Authentication: $header" )                                                                       
+                    );
+                    $json_response2 = curl_exec($curl2);
+                    $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
+                    if ($status2 == 200 ) {
+                        $response2 = json_decode($json_response2, true);
+                        curl_close($curl2);
+                        //echo "<pre>";print_r($response2);die;
+                        foreach( $response2["envelopeDocuments"] as $document ) {
+                                $docUri = $document["uri"];
+                                $curl3 = curl_init($baseUrl . $docUri );
+                                curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
+                                curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
+                                curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
+                                        "X-DocuSign-Authentication: $header" )                                                                       
+                                );
+                                $data = curl_exec($curl3);
+                                //echo env('APP_URL').$envelopeId . "-" . $document["name"];
+                                //echo "<pre>";print_r($document);die;
+                                $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
+                                if($status3==200){
+                                    $file_upload_path = "/uploads/notice_award/".$envelopeId . "-" . $document["name"];
+                                    file_put_contents(base_path().$file_upload_path, $data);
+                                    if($document['type']=="content")
+                                    {
+                                        $query = DB::table('documents')
+                                        ->where('doc_id', '=', $doc_id)
+                                        ->update(['doc_path' => $file_upload_path]);
+                                        $query = DB::table('project_notice_award')
+                                        ->where('pna_id', '=', $pna_id)
+                                        ->update(['pna_docusign_status' => "complete"]);
+                                    }
+                                    curl_close($curl3);
+                                }else{continue;}
+                        }
+                    }else{continue;}
                 }else{continue;}
             }else{continue;}
         }
@@ -135,46 +138,52 @@ class DocusignController extends Controller {
             if ($status1 == 200 ) {
                 $response1 = json_decode($json_response1, true);
                 //echo $response1["status"];die;
+                
                 curl_close($curl1);
-                $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
-                curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
-                        "X-DocuSign-Authentication: $header" )                                                                       
-                );
-                $json_response2 = curl_exec($curl2);
-                $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
-                if ($status2 == 200 ) {
-                    $response2 = json_decode($json_response2, true);
-                    curl_close($curl2);
-                    //echo "<pre>";print_r($response2);die;
-                    foreach( $response2["envelopeDocuments"] as $document ) {
-                            $docUri = $document["uri"];
-                            $curl3 = curl_init($baseUrl . $docUri );
-                            curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
-                            curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
-                            curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
-                                    "X-DocuSign-Authentication: $header" )                                                                       
-                            );
-                            $data = curl_exec($curl3);
-                            //echo env('APP_URL').$envelopeId . "-" . $document["name"];
-                            //echo "<pre>";print_r($document);die;
-                            $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
-                            if($status3==200){
-                                $file_upload_path = "/uploads/notice_proceed/".$envelopeId . "-" . $document["name"];
-                                file_put_contents(base_path().$file_upload_path, $data);
-                                if($document['type']=="content")
-                                {
-                                    $query = DB::table('documents')
-                                    ->where('doc_id', '=', $doc_id)
-                                    ->update(['doc_path' => $file_upload_path]);
-                                    $query = DB::table('project_notice_proceed')
-                                    ->where('pnp_id', '=', $pna_id)
-                                    ->update(['pnp_docusign_status' => "complete"]);
-                                }
-                                curl_close($curl3);
-                            }else{continue;}
-                    }
-                }else{continue;}
+                if($response1["status"]=="completed")
+                {
+                    $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
+                    curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
+                            "X-DocuSign-Authentication: $header" )                                                                       
+                    );
+                    $json_response2 = curl_exec($curl2);
+                    $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
+                    if ($status2 == 200 ) {
+                        $response2 = json_decode($json_response2, true);
+                        curl_close($curl2);
+                        //echo "<pre>";print_r($response2);die;
+                        foreach( $response2["envelopeDocuments"] as $document ) {
+                                $docUri = $document["uri"];
+                                $curl3 = curl_init($baseUrl . $docUri );
+                                curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
+                                curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
+                                curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
+                                        "X-DocuSign-Authentication: $header" )                                                                       
+                                );
+                                $data = curl_exec($curl3);
+                                //echo env('APP_URL').$envelopeId . "-" . $document["name"];
+                                //echo "<pre>";print_r($document);die;
+                                $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
+                                if($status3==200){
+                                    $file_upload_path = "/uploads/notice_proceed/".$envelopeId . "-" . $document["name"];
+                                    file_put_contents(base_path().$file_upload_path, $data);
+                                    if($document['type']=="content")
+                                    {
+                                        $query = DB::table('documents')
+                                        ->where('doc_id', '=', $doc_id)
+                                        ->update(['doc_path' => $file_upload_path]);
+                                        $query = DB::table('project_notice_proceed')
+                                        ->where('pnp_id', '=', $pna_id)
+                                        ->update(['pnp_docusign_status' => "complete"]);
+                                    }
+                                    curl_close($curl3);
+                                }else{continue;}
+                        }
+                    }else{continue;}
+                } else {
+                    continue;
+                }
             }else{continue;}
         }
         
@@ -199,44 +208,47 @@ class DocusignController extends Controller {
                 $response1 = json_decode($json_response1, true);
                 //echo $response1["status"];die;
                 curl_close($curl1);
-                $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
-                curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
-                        "X-DocuSign-Authentication: $header" )                                                                       
-                );
-                $json_response2 = curl_exec($curl2);
-                $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
-                if ($status2 == 200 ) {
-                    $response2 = json_decode($json_response2, true);
-                    curl_close($curl2);
-                    //echo "<pre>";print_r($response2);die;
-                    foreach( $response2["envelopeDocuments"] as $document ) {
-                            $docUri = $document["uri"];
-                            $curl3 = curl_init($baseUrl . $docUri );
-                            curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
-                            curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
-                            curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
-                                    "X-DocuSign-Authentication: $header" )                                                                       
-                            );
-                            $data = curl_exec($curl3);
-                            //echo env('APP_URL').$envelopeId . "-" . $document["name"];
-                            //echo "<pre>";print_r($document);die;
-                            $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
-                            if($status3==200){
-                                $file_upload_path = "/uploads/unconditional_finals/".$envelopeId . "-" . $document["name"];
-                                file_put_contents(base_path().$file_upload_path, $data);
-                                if($document['type']=="content")
-                                {
-                                    $query = DB::table('documents')
-                                    ->where('doc_id', '=', $doc_id)
-                                    ->update(['doc_path' => $file_upload_path]);
-                                    $query = DB::table('project_unconditional_finals')
-                                    ->where('puf_id', '=', $pna_id)
-                                    ->update(['docusign_status' => "complete"]);
-                                }
-                                curl_close($curl3);
-                            }else{continue;}
-                    }
+                if($response1["status"]=="completed")
+                {
+                    $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
+                    curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
+                            "X-DocuSign-Authentication: $header" )                                                                       
+                    );
+                    $json_response2 = curl_exec($curl2);
+                    $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
+                    if ($status2 == 200 ) {
+                        $response2 = json_decode($json_response2, true);
+                        curl_close($curl2);
+                        //echo "<pre>";print_r($response2);die;
+                        foreach( $response2["envelopeDocuments"] as $document ) {
+                                $docUri = $document["uri"];
+                                $curl3 = curl_init($baseUrl . $docUri );
+                                curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
+                                curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
+                                curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
+                                        "X-DocuSign-Authentication: $header" )                                                                       
+                                );
+                                $data = curl_exec($curl3);
+                                //echo env('APP_URL').$envelopeId . "-" . $document["name"];
+                                //echo "<pre>";print_r($document);die;
+                                $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
+                                if($status3==200){
+                                    $file_upload_path = "/uploads/unconditional_finals/".$envelopeId . "-" . $document["name"];
+                                    file_put_contents(base_path().$file_upload_path, $data);
+                                    if($document['type']=="content")
+                                    {
+                                        $query = DB::table('documents')
+                                        ->where('doc_id', '=', $doc_id)
+                                        ->update(['doc_path' => $file_upload_path]);
+                                        $query = DB::table('project_unconditional_finals')
+                                        ->where('puf_id', '=', $pna_id)
+                                        ->update(['docusign_status' => "complete"]);
+                                    }
+                                    curl_close($curl3);
+                                }else{continue;}
+                        }
+                    }else{continue;}
                 }else{continue;}
             }else{continue;}
         }
@@ -261,49 +273,52 @@ class DocusignController extends Controller {
                 $response1 = json_decode($json_response1, true);
                 //echo $response1["status"];die;
                 curl_close($curl1);
-                $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
-                curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
-                        "X-DocuSign-Authentication: $header" )                                                                       
-                );
-                $json_response2 = curl_exec($curl2);
-                $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
-                if ($status2 == 200 ) {
-                    $response2 = json_decode($json_response2, true);
-                    curl_close($curl2);
-                    //echo "<pre>";print_r($response2);die;
-                    foreach( $response2["envelopeDocuments"] as $document ) {
-                            $docUri = $document["uri"];
-                            $curl3 = curl_init($baseUrl . $docUri );
-                            curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
-                            curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
-                            curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
-                                    "X-DocuSign-Authentication: $header" )                                                                       
-                            );
-                            $data = curl_exec($curl3);
-                            //echo env('APP_URL').$envelopeId . "-" . $document["name"];
-                            //echo "<pre>";print_r($document);die;
-                            $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
-                            if($status3==200){
-                                $file_upload_path = "/uploads/labor_compliance/".$envelopeId . "-" . $document["name"];
-                                file_put_contents(base_path().$file_upload_path, $data);
-                                if($document['type']=="content")
-                                {
-                                    $information = array(
-                                        "doc_status"     => "active",
-                                        "doc_project_id" => $compliance->plc_project_id,
-                                        "doc_user_id"    => 0,
-                                        "doc_name"       => $document["name"],
-                                        "doc_path"       => $file_upload_path,
-                                    );
-                                    $doc_id = DB::table('documents')->insertGetId($information);
-                                    $query = DB::table('project_labor_compliance')
-                                    ->where('plc_id', '=', $pna_id)
-                                    ->update(['docusign_status' => "complete",'plc_compliance'=>$doc_id]);
-                                }
-                                curl_close($curl3);
-                            }else{continue;}
-                    }
+                if($response1["status"]=="completed")
+                {
+                    $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
+                    curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
+                            "X-DocuSign-Authentication: $header" )                                                                       
+                    );
+                    $json_response2 = curl_exec($curl2);
+                    $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
+                    if ($status2 == 200 ) {
+                        $response2 = json_decode($json_response2, true);
+                        curl_close($curl2);
+                        //echo "<pre>";print_r($response2);die;
+                        foreach( $response2["envelopeDocuments"] as $document ) {
+                                $docUri = $document["uri"];
+                                $curl3 = curl_init($baseUrl . $docUri );
+                                curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
+                                curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
+                                curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
+                                        "X-DocuSign-Authentication: $header" )                                                                       
+                                );
+                                $data = curl_exec($curl3);
+                                //echo env('APP_URL').$envelopeId . "-" . $document["name"];
+                                //echo "<pre>";print_r($document);die;
+                                $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
+                                if($status3==200){
+                                    $file_upload_path = "/uploads/labor_compliance/".$envelopeId . "-" . $document["name"];
+                                    file_put_contents(base_path().$file_upload_path, $data);
+                                    if($document['type']=="content")
+                                    {
+                                        $information = array(
+                                            "doc_status"     => "active",
+                                            "doc_project_id" => $compliance->plc_project_id,
+                                            "doc_user_id"    => 0,
+                                            "doc_name"       => $document["name"],
+                                            "doc_path"       => $file_upload_path,
+                                        );
+                                        $doc_id = DB::table('documents')->insertGetId($information);
+                                        $query = DB::table('project_labor_compliance')
+                                        ->where('plc_id', '=', $pna_id)
+                                        ->update(['docusign_status' => "complete",'plc_compliance'=>$doc_id]);
+                                    }
+                                    curl_close($curl3);
+                                }else{continue;}
+                        }
+                    }else{continue;}
                 }else{continue;}
             }else{continue;}
         }
@@ -328,49 +343,52 @@ class DocusignController extends Controller {
                 $response1 = json_decode($json_response1, true);
                 //echo $response1["status"];die;
                 curl_close($curl1);
-                $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
-                curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
-                        "X-DocuSign-Authentication: $header" )                                                                       
-                );
-                $json_response2 = curl_exec($curl2);
-                $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
-                if ($status2 == 200 ) {
-                    $response2 = json_decode($json_response2, true);
-                    curl_close($curl2);
-                    //echo "<pre>";print_r($response2);die;
-                    foreach( $response2["envelopeDocuments"] as $document ) {
-                            $docUri = $document["uri"];
-                            $curl3 = curl_init($baseUrl . $docUri );
-                            curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
-                            curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
-                            curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
-                                    "X-DocuSign-Authentication: $header" )                                                                       
-                            );
-                            $data = curl_exec($curl3);
-                            //echo env('APP_URL').$envelopeId . "-" . $document["name"];
-                            //echo "<pre>";print_r($document);die;
-                            $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
-                            if($status3==200){
-                                $file_upload_path = "/uploads/labor_compliance/".$envelopeId . "-" . $document["name"];
-                                file_put_contents(base_path().$file_upload_path, $data);
-                                if($document['type']=="content")
-                                {
-                                    $information = array(
-                                        "doc_status"     => "active",
-                                        "doc_project_id" => $compliance->plc_project_id,
-                                        "doc_user_id"    => 0,
-                                        "doc_name"       => $document["name"],
-                                        "doc_path"       => $file_upload_path,
-                                    );
-                                    $doc_id = DB::table('documents')->insertGetId($information);
-                                    $query = DB::table('project_labor_compliance')
-                                    ->where('plc_id', '=', $pna_id)
-                                    ->update(['performance_docusign_status' => "complete",'plc_compliance_non_performance'=>$doc_id]);
-                                }
-                                curl_close($curl3);
-                            }else{continue;}
-                    }
+                if($response1["status"]=="completed")
+                {
+                    $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
+                    curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
+                            "X-DocuSign-Authentication: $header" )                                                                       
+                    );
+                    $json_response2 = curl_exec($curl2);
+                    $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
+                    if ($status2 == 200 ) {
+                        $response2 = json_decode($json_response2, true);
+                        curl_close($curl2);
+                        //echo "<pre>";print_r($response2);die;
+                        foreach( $response2["envelopeDocuments"] as $document ) {
+                                $docUri = $document["uri"];
+                                $curl3 = curl_init($baseUrl . $docUri );
+                                curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
+                                curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
+                                curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
+                                        "X-DocuSign-Authentication: $header" )                                                                       
+                                );
+                                $data = curl_exec($curl3);
+                                //echo env('APP_URL').$envelopeId . "-" . $document["name"];
+                                //echo "<pre>";print_r($document);die;
+                                $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
+                                if($status3==200){
+                                    $file_upload_path = "/uploads/labor_compliance/".$envelopeId . "-" . $document["name"];
+                                    file_put_contents(base_path().$file_upload_path, $data);
+                                    if($document['type']=="content")
+                                    {
+                                        $information = array(
+                                            "doc_status"     => "active",
+                                            "doc_project_id" => $compliance->plc_project_id,
+                                            "doc_user_id"    => 0,
+                                            "doc_name"       => $document["name"],
+                                            "doc_path"       => $file_upload_path,
+                                        );
+                                        $doc_id = DB::table('documents')->insertGetId($information);
+                                        $query = DB::table('project_labor_compliance')
+                                        ->where('plc_id', '=', $pna_id)
+                                        ->update(['performance_docusign_status' => "complete",'plc_compliance_non_performance'=>$doc_id]);
+                                    }
+                                    curl_close($curl3);
+                                }else{continue;}
+                        }
+                    }else{continue;}
                 }else{continue;}
             }else{continue;}
         }
@@ -396,44 +414,47 @@ class DocusignController extends Controller {
                 $response1 = json_decode($json_response1, true);
                 //echo $response1["status"];die;
                 curl_close($curl1);
-                $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
-                curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
-                        "X-DocuSign-Authentication: $header" )                                                                       
-                );
-                $json_response2 = curl_exec($curl2);
-                $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
-                if ($status2 == 200 ) {
-                    $response2 = json_decode($json_response2, true);
-                    curl_close($curl2);
-                    //echo "<pre>";print_r($response2);die;
-                    foreach( $response2["envelopeDocuments"] as $document ) {
-                            $docUri = $document["uri"];
-                            $curl3 = curl_init($baseUrl . $docUri );
-                            curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
-                            curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
-                            curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
-                                    "X-DocuSign-Authentication: $header" )                                                                       
-                            );
-                            $data = curl_exec($curl3);
-                            //echo env('APP_URL').$envelopeId . "-" . $document["name"];
-                            //echo "<pre>";print_r($document);die;
-                            $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
-                            if($status3==200){
-                                $file_upload_path = "/uploads/notice_completion/".$envelopeId . "-" . $document["name"];
-                                file_put_contents(base_path().$file_upload_path, $data);
-                                if($document['type']=="content")
-                                {
-                                    $query = DB::table('documents')
-                                    ->where('doc_id', '=', $doc_id)
-                                    ->update(['doc_path' => $file_upload_path]);
-                                    $query = DB::table('project_notice_of_completion')
-                                    ->where('noc_id', '=', $noc_id)
-                                    ->update(['docusign_status' => "complete"]);
-                                }
-                                curl_close($curl3);
-                            }else{continue;}
-                    }
+                if($response1["status"]=="completed")
+                {
+                    $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
+                    curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
+                            "X-DocuSign-Authentication: $header" )                                                                       
+                    );
+                    $json_response2 = curl_exec($curl2);
+                    $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
+                    if ($status2 == 200 ) {
+                        $response2 = json_decode($json_response2, true);
+                        curl_close($curl2);
+                        //echo "<pre>";print_r($response2);die;
+                        foreach( $response2["envelopeDocuments"] as $document ) {
+                                $docUri = $document["uri"];
+                                $curl3 = curl_init($baseUrl . $docUri );
+                                curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
+                                curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
+                                curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
+                                        "X-DocuSign-Authentication: $header" )                                                                       
+                                );
+                                $data = curl_exec($curl3);
+                                //echo env('APP_URL').$envelopeId . "-" . $document["name"];
+                                //echo "<pre>";print_r($document);die;
+                                $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
+                                if($status3==200){
+                                    $file_upload_path = "/uploads/notice_completion/".$envelopeId . "-" . $document["name"];
+                                    file_put_contents(base_path().$file_upload_path, $data);
+                                    if($document['type']=="content")
+                                    {
+                                        $query = DB::table('documents')
+                                        ->where('doc_id', '=', $doc_id)
+                                        ->update(['doc_path' => $file_upload_path]);
+                                        $query = DB::table('project_notice_of_completion')
+                                        ->where('noc_id', '=', $noc_id)
+                                        ->update(['docusign_status' => "complete"]);
+                                    }
+                                    curl_close($curl3);
+                                }else{continue;}
+                        }
+                    }else{continue;}
                 }else{continue;}
             }else{continue;}
         }
@@ -460,44 +481,47 @@ class DocusignController extends Controller {
                 $response1 = json_decode($json_response1, true);
                 //echo $response1["status"];die;
                 curl_close($curl1);
-                $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
-                curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
-                        "X-DocuSign-Authentication: $header" )                                                                       
-                );
-                $json_response2 = curl_exec($curl2);
-                $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
-                if ($status2 == 200 ) {
-                    $response2 = json_decode($json_response2, true);
-                    curl_close($curl2);
-                    //echo "<pre>";print_r($response2);die;
-                    foreach( $response2["envelopeDocuments"] as $document ) {
-                            $docUri = $document["uri"];
-                            $curl3 = curl_init($baseUrl . $docUri );
-                            curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
-                            curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
-                            curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
-                                    "X-DocuSign-Authentication: $header" )                                                                       
-                            );
-                            $data = curl_exec($curl3);
-                            //echo env('APP_URL').$envelopeId . "-" . $document["name"];
-                            //echo "<pre>";print_r($document);die;
-                            $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
-                            if($status3==200){
-                                $file_upload_path = "/uploads/cor/".$envelopeId . "-" . $document["name"];
-                                file_put_contents(base_path().$file_upload_path, $data);
-                                if($document['type']=="content")
-                                {
-                                    $query = DB::table('documents')
-                                    ->where('doc_id', '=', $doc_id)
-                                    ->update(['doc_path' => $file_upload_path]);
-                                    $query = DB::table('project_change_order_request_detail')
-                                    ->where('pcd_id', '=', $noc_id)
-                                    ->update(['docusign_status' => "complete"]);
-                                }
-                                curl_close($curl3);
-                            }else{continue;}
-                    }
+                if($response1["status"]=="completed")
+                {
+                    $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
+                    curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
+                            "X-DocuSign-Authentication: $header" )                                                                       
+                    );
+                    $json_response2 = curl_exec($curl2);
+                    $status2 = curl_getinfo($curl2, CURLINFO_HTTP_CODE);
+                    if ($status2 == 200 ) {
+                        $response2 = json_decode($json_response2, true);
+                        curl_close($curl2);
+                        //echo "<pre>";print_r($response2);die;
+                        foreach( $response2["envelopeDocuments"] as $document ) {
+                                $docUri = $document["uri"];
+                                $curl3 = curl_init($baseUrl . $docUri );
+                                curl_setopt($curl3, CURLOPT_RETURNTRANSFER, true);
+                                curl_setopt($curl3, CURLOPT_BINARYTRANSFER, true);  
+                                curl_setopt($curl3, CURLOPT_HTTPHEADER, array(                                                                          
+                                        "X-DocuSign-Authentication: $header" )                                                                       
+                                );
+                                $data = curl_exec($curl3);
+                                //echo env('APP_URL').$envelopeId . "-" . $document["name"];
+                                //echo "<pre>";print_r($document);die;
+                                $status3 = curl_getinfo($curl3, CURLINFO_HTTP_CODE);
+                                if($status3==200){
+                                    $file_upload_path = "/uploads/cor/".$envelopeId . "-" . $document["name"];
+                                    file_put_contents(base_path().$file_upload_path, $data);
+                                    if($document['type']=="content")
+                                    {
+                                        $query = DB::table('documents')
+                                        ->where('doc_id', '=', $doc_id)
+                                        ->update(['doc_path' => $file_upload_path]);
+                                        $query = DB::table('project_change_order_request_detail')
+                                        ->where('pcd_id', '=', $noc_id)
+                                        ->update(['docusign_status' => "complete"]);
+                                    }
+                                    curl_close($curl3);
+                                }else{continue;}
+                        }
+                    }else{continue;}
                 }else{continue;}
             }else{continue;}
         }
