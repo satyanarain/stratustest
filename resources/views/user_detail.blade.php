@@ -72,15 +72,7 @@
                             <div class="panel-body">
                             <div id="updateuserinfo" style="display: none"></div>
                                     <div class="row">
-                                    <div class="form-group col-md-6 hide_user">
-                                        <label for="uname">Username <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="uname" disabled>
-                                    </div>
-                                    <div class="form-group col-md-6 hide_user">
-                                        <label for="email">Email Address <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="email" disabled>
-                                    </div>
-
+                           
                                     <div class="form-group col-md-6">
                                         <label for="fname">First Name</label>
                                         <input type="text" class="form-control" id="fname">
@@ -89,14 +81,7 @@
                                         <label for="lname">Last Name</label>
                                         <input type="text" class="form-control" id="lname">
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="cname">Company Name</label>
-                                        <!-- <div class="loading_data" style="text-align: center;">
-                                           <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
-                                        </div> -->
-                                        <select class="form-control" id="firm_name">
-                                        </select>
-                                    </div>
+                               
                                     <div class="form-group col-md-6">
                                         <label for="position">Position / Title</label>
                                         <input type="text" class="form-control" id="position">
@@ -112,27 +97,9 @@
                                     <div class="form-group col-md-6"></div>
                                     <div class="clearfix"></div>
 
-                                    <div class="form-group col-md-6">
-                                        <label for="pass">Password</label>
-                                        <input type="password" class="form-control" id="pass">
-                                    </div>
-
-                                    <div class="form-group col-md-6">
-                                        <label for="cpass">Confirm Password</label>
-                                        <input type="password" class="form-control" id="cpass">
-                                    </div>
-
 
                                     <input type="hidden" class="form-control role_normal_hide user_role" id="role">
                                     <input type="hidden" class="form-control role_normal_hide user_status" id="status">
-                                    <div class="col-md-6 hide_user role_admin_hide">
-                                        <label>Status</label>
-                                        <select class="form-control user_status" id="status">
-                                            <option value="1">Verified</option>
-                                            <option value="0">Unverifed</option>
-                                            <option value="2">Suspended</option>
-                                        </select>
-                                    </div>
                                     <div class="col-sm-6">
                                         <label for="standard_name">User Image <span class="text-danger">*</span><span id="old_image_link"></span><input type="hidden" id="old_image_path"></span> </label>
                                         <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">

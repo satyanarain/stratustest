@@ -176,13 +176,13 @@ function openProfileUpdate() {
                             $(wrapper).append('<div class="form-group col-md-6 append"><label for="pnum">Phone Number</label><a href="#" class="add_field_button btn btn-success m-b-10 pull-right">Add Phone</a><select class="form-control" id="phone_type_'+i+'" name="phone_type[]" ><option value="mobile">Mobile</option><option value="home">Home</option><option value="work">Work</option><option value="work_fax">Work Fax</option><option value="home_fax">Home Fax</option><option value="skype">Skype</option><option value="pager">Pager</option><option value="work_email">Email</option><option value="other">Other</option></select><input type="text" required="required" class="form-control" id="pnum_'+i+'" name="phone_num[]"></div>');
                         }
                     })
-
+/*
                 var username = data.data.username;
                 $('#uname').val(username);
 
                 var email = data.data.email;
                 $('#email').val(email);
-
+*/
                 var lastname = data.data.last_name;
                 $('#lname').val(lastname);
 
@@ -207,7 +207,7 @@ function openProfileUpdate() {
                 else {
                     $('.role_normal_hide').remove();
                 }
-
+/*
                 var status = data.data.status;
                 if(status == 1){
                     status = 'Verified';
@@ -218,7 +218,7 @@ function openProfileUpdate() {
                 else {
                     status = "Account Disable";
                 }
-                $('.user_status').val(data.data.status);
+                $('.user_status').val(data.data.status);*/
                 // $('#project_name').val(data.data.project_id);
                 $('#user_role').val(data.data.user_type);
                 
