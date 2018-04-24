@@ -115,6 +115,10 @@ $(document).ready(function() {
                 }
                 
                 var t = $('#view_users_table').DataTable();
+                if(parseInt(val.disputed_claim_amount)>0)
+                    var disputed_claim_amount = '$ '+ ReplaceNumberWithCommas(val.disputed_claim_amount);
+                else
+                    var disputed_claim_amount = '';
                 t.row.add([
                     count, // val.puf_id,
                     val.puf_date_of_signature,
@@ -123,8 +127,8 @@ $(document).ready(function() {
                     val.puf_job_location,
                     val.owner_name,
                     pnp_path_value,
-                    val.currency_symbol+' '+ ReplaceNumberWithCommas(val.disputed_claim_amount),
-                    val.disputed_claim_amount,
+                    disputed_claim_amount,
+                    //val.disputed_claim_amount,
                     status,
                     update_permission+ single_view
                 ]).draw( false );
