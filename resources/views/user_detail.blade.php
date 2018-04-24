@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="form-group col-md-6 hide_user">
                                         <label for="email">Email Address <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="email" disabled>
+                                        <input type="text" class="form-control" id="emailp" disabled>
                                     </div>
 
                                     <div class="form-group col-md-6">

@@ -182,7 +182,7 @@ var token = localStorage.getItem('u_token');
                 $('#uname').val(username);
 
                 var email = data.data.email;
-                $('#email').val(email);
+                $('#emailp').val(email);
 
                 var lastname = data.data.last_name;
                 $('#lname').val(lastname);
