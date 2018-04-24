@@ -97,8 +97,10 @@ $(document).ready(function() {
 });
 
 
+
     $('#add_noc').click(function(e) {
         $('.loading-submit').show();
+
         var noc_type            = $('#noc_type').val();
         var noc_potential       = $('input:radio[name=noc_potential]:checked').val();
         var upload_doc_id       = $("#upload_single_doc_id").val();
