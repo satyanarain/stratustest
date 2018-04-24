@@ -126,8 +126,8 @@ $(document).ready(function() {
                     val.name_of_customer,
                     val.puf_job_location,
                     val.owner_name,
-                    pnp_path_value,
                     disputed_claim_amount,
+                    pnp_path_value,
                     //val.disputed_claim_amount,
                     status,
                     update_permission+ single_view
