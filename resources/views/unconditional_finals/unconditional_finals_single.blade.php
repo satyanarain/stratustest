@@ -65,6 +65,14 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Disputed Claim Amount</td>
+                                            <td class="disputed_claim_amount">
+                                                <div class="loading_data" style="text-align: center;">
+                                                   <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td>Document</td>
                                             <td class="document">
                                                 <div class="loading_data" style="text-align: center;">

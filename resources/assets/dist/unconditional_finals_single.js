@@ -82,7 +82,8 @@ $(document).ready(function() {
 
             var owner_name = data.data.owner_name;
             $('.owner_name').text(owner_name);
-
+            if(parseInt(data.data.disputed_claim_amount)>0)
+                    $('.disputed_claim_amount').text('$ '+ ReplaceNumberWithCommas(data.data.disputed_claim_amount));
             var file_path = data.data.doc_path;
             var file_path_value;
             if(file_path == null){
