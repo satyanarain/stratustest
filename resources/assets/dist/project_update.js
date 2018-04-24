@@ -233,7 +233,7 @@
                 console.log("HTTP Request Failed");
                 var responseText, html;
                 responseText = JSON.parse(jqXHR.responseText);
-                console.log(responseText.data.currency_name);
+                //console.log(responseText.data.currency_name);
                 $('html, body').animate({
                     scrollTop: $(".page-head").offset().top
                 }, 'fast')
