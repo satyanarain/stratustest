@@ -288,7 +288,7 @@ $(document).ready(function() {
             '</div>'+
                         '</div>'+
                         '<div class="col-sm-6 m-b-30">'+
-                            '<label>Upload Change Order Request  <span class="text-danger">*</span></label>'+
+                            '<label>Upload Change Order Request</label>'+
                             '<section class="panel upload_doc_panel" id="upload_div">'+
                                 '<div class="panel-body" style="padding: 0px;">'+
                                     '<form id="my-awesome-dropzone" action="'+baseUrl+'document/uploadFiles" class="dropzone">'+
@@ -466,16 +466,16 @@ $(document).ready(function() {
         }
 
         var is_error_upload_doc_id = false;
-        $('input[name^=upload_doc_id]').each(function(){
-            if($(this).val() == '')
-            {
-                is_error_upload_doc_id = true;
-                is_error = true;
-            }
-        });
-        if(is_error_upload_doc_id == true){
-            html += '<li> Document field is invalid </li>';
-        }
+//        $('input[name^=upload_doc_id]').each(function(){
+//            if($(this).val() == '')
+//            {
+//                is_error_upload_doc_id = true;
+//                is_error = true;
+//            }
+//        });
+//        if(is_error_upload_doc_id == true){
+//            html += '<li> Document field is invalid </li>';
+//        }
 
         html += '</ul></div>';
 

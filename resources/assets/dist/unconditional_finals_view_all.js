@@ -123,6 +123,7 @@ $(document).ready(function() {
                     val.puf_job_location,
                     val.owner_name,
                     pnp_path_value,
+                    val.currency_symbol+' '+ ReplaceNumberWithCommas(val.disputed_claim_amount),
                     val.disputed_claim_amount,
                     status,
                     update_permission+ single_view

@@ -233,7 +233,7 @@ use ProjectImprovement;
             // 'pcd_unit_number'     => 'required|numeric',
             // 'pcd_unit_price'      => 'required',
             'pcd_days'            => 'required|numeric',
-            'pcd_file_path'       => 'required|numeric',
+            //'pcd_file_path'       => 'required|numeric',
             'pcd_parent_cor'      => 'required|numeric',
             'pcd_project_id'      => 'required|numeric',
             'pcd_user_id'         => 'required|numeric'

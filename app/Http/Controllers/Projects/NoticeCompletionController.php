@@ -212,7 +212,7 @@ class NoticeCompletionController extends Controller {
             // 'noc_rec_name'        => 'required',
             // 'noc_rec_street'      => 'required',
             // 'noc_rec_adress'      => 'required',
-            'noc_file_path'       => 'required|numeric',
+            //'noc_file_path'       => 'required|numeric',
             'noc_project_id'      => 'required|numeric',
             'noc_user_id'         => 'required|numeric'
         ];

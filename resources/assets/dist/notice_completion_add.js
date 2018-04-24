@@ -99,7 +99,7 @@ $(document).ready(function() {
 
     $('#add_noc').click(function(e) {
         $('.loading-submit').show();
-        var noc_type            = $('input:radio[name=noc_type]:checked').val();
+        var noc_type            = $('#noc_type').val();
         var noc_potential       = $('input:radio[name=noc_potential]:checked').val();
         var upload_doc_id       = $("#upload_single_doc_id").val();
         var noc_rec_text        = $("#noc_rec_text").val();
@@ -216,10 +216,10 @@ $(document).ready(function() {
         }
         else if(noc_type == "upload_form_noc"){
             // alert('upload form');
-            if(upload_doc_id == ''){
-                html += '<li>Document is invalid.</li>';
-                is_error = true;
-            }
+//            if(upload_doc_id == ''){
+//                html += '<li>Document is invalid.</li>';
+//                is_error = true;
+//            }
             if(date_noc_filed == ''){
                 html += '<li>Please select NOC filed date.</li>';
                 is_error = true;

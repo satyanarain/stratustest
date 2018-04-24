@@ -180,7 +180,7 @@ class UnconditionalFinalsController extends Controller {
                     'puf_name_of_customer'      => 'required',
                     'puf_job_location'          => 'required',
                     'puf_owner'                 => 'required',
-                    'puf_file_path'             => 'required',
+                    //'puf_file_path'             => 'required',
                     'puf_project_id'            => 'required',
                     'puf_status'                => 'required',
                     'puf_user_id'               => 'required'

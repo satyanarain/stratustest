@@ -64,7 +64,7 @@
 
         <div class="col-sm-12 nopadleft">
             <div class="col-md-12 check_award_type" style="margin-bottom:50px;">
-                <label for="standard_link">Would you like to create a Notice to Proceed or has one already been created, the options should be the following:</label><br/>
+                <label for="standard_link">Would you like to create a Notice to Proceed or has one already been created?</label><br/>
                 <label class="radio-inline">
                     <input type="radio" name="check_award_type" id="upload" value="new">  Create Notice to Proceed
                 </label><br/>
@@ -75,7 +75,7 @@
 
             <div class="newone newone col-md-12" id="newone" style="display: none;">
             <div class="form-group col-sm-6">
-                <label for="name_of_report" style="padding-top: 10px;">Date of Notice <span class="text-danger">*</span></label>
+                <label for="name_of_report" style="">Date of Notice <span class="text-danger">*</span></label>
                 <!-- <input type="text" class="form-control" id="notice_date" value="<?php echo date("Y-m-d"); ?>"> -->
                 <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
                     <input type="text" readonly="" value="" size="16" class="form-control"  id="notice_date">
@@ -117,7 +117,7 @@
                 <input type="number" class="form-control" min="1" id="duration_days" required="required">
             </div>
 
-            <div class="form-group col-sm-6">
+            <div class="form-group col-sm-6" style="padding-top: 20px;">
                 <label class="radio-inline">
                     <input type="radio"   name="days_working" id="days_working" value="calendar_day" checked="checked">Calendar Days
                 </label><br/>

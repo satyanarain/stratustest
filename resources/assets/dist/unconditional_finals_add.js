@@ -182,10 +182,10 @@ $('.add_unconditional_finals').click(function(e)
         html += '<li>Owner name is invalid.</li>';
         is_error = true;
     }
-    if(unconditional_finals == '' || unconditional_finals == null){
-        html += '<li>Document is invalid.</li>';
-        is_error = true;
-    }
+//    if(unconditional_finals == '' || unconditional_finals == null){
+//        html += '<li>Document is invalid.</li>';
+//        is_error = true;
+//    }
 
     if(is_error == true){
         html += '</ul></div>';

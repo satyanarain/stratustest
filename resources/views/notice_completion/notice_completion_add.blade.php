@@ -50,7 +50,7 @@
 </div>
 <div class="clearfix"></div>
                               <div class="col-sm-6 nopadleft">
-                                   <label class="upload_exist" >Upload recorded Notice of Completion <span class="text-danger">*</span></label>
+                                   <label class="upload_exist" >Upload recorded Notice of Completion</label>
                                   <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone" class="upload_exist"  style="display: block;">
                                       <input type="hidden" name="document_path" value="/uploads/notice_completion/">
                                   </form>

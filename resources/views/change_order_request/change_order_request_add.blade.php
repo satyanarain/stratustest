@@ -127,7 +127,7 @@
         </div>
 
         <div class="col-sm-6 m-b-30">
-            <label>Upload Change Order Request <span class="text-danger">*</span></label>
+            <label>Upload Change Order Request</label>
             <section class="panel upload_doc_panel" id="upload_div">
                 <div class="panel-body" style="padding: 0px;">
                     <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">

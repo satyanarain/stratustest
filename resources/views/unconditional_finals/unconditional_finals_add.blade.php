@@ -134,7 +134,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                          <label class="m-b-2">Upload Unconditional Final <span class="text-danger">*</span></label>
+                          <label class="m-b-2">Upload Unconditional Final</label>
                             <section class="panel upload_doc_panel_performance" id="upload_performance">
                                 <div class="panel-body" style="padding:0px;">
                                     <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
