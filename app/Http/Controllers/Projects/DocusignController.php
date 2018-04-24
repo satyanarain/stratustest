@@ -70,6 +70,7 @@ class DocusignController extends Controller {
             $status1 = curl_getinfo($curl1, CURLINFO_HTTP_CODE);
             if ($status1 == 200 ) {
                 $response1 = json_decode($json_response1, true);
+                print_r($response1);die;
                 echo $response1["status"];die;
                 curl_close($curl1);
                 $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
