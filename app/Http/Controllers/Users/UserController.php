@@ -753,7 +753,7 @@ class UserController extends Controller {
             $user = DB::table('users')
             ->where('id', '=', $u_id)
             // ->update(['first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'phone_number' => $phone_number, 'username' => $username, 'position_title' => $position_title, 'email' => $email, 'password' => $password, 'status' => $status, 'role' => $role]);
-            ->update(['first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'phone_number' => $phone_number,'email' => $email, 'username' => $username, 'user_image_path' => $user_image_path]);
+            ->update(['first_name' => $first_name, 'last_name' => $last_name, 'phone_number' => $phone_number,'email' => $email, 'username' => $username, 'user_image_path' => $user_image_path]);
 
             // $user = DB::table('project_contact')
             // ->where('c_user_id', '=', $u_id)
