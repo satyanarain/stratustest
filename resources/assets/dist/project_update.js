@@ -87,7 +87,7 @@
 		    cache: false
 		})
 		    .done(function(data, textStatus, jqXHR) {
-		    // console.log(data);
+		    console.log(data);
 		    var project_number = data.data.p_number;
 		    $('#project_number').val(project_number);
 		    var project_name = data.data.p_name;
@@ -190,7 +190,7 @@
         project_type = JSON.stringify(project_type);
         console.log(project_wage_determination);
        
-        jQuery.ajax({
+         jQuery.ajax({
             url: baseUrl + "projects/"+project_id+"/update",
             type: "POST",
             data: {
@@ -233,7 +233,7 @@
                 console.log("HTTP Request Failed");
                 var responseText, html;
                 responseText = JSON.parse(jqXHR.responseText);
-                console.log(responseText.data.currency_name);
+                //console.log(responseText.data.currency_name);
                 $('html, body').animate({
                     scrollTop: $(".page-head").offset().top
                 }, 'fast')
