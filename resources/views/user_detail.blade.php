@@ -45,7 +45,7 @@
                                        </div>
                                         <div class="form-group col-md-12">
                                           <a href="{{ url('/dashboard') }}" class="btn btn-info sub-btn">Back</a>
-                                             <a href="#" class="btn btn-info sub-btn" onclick="openProfileUpdate()">Update User</a>
+                                             <a href="#" class="btn btn-info sub-btn" onclick="openProfileUpdatelink()">Update User</a>
                                         </div>
                                    </div>
 
@@ -89,18 +89,18 @@
                                         <label for="lname">Last Name</label>
                                         <input type="text" class="form-control" id="lname">
                                     </div>
-                                <!--    <div class="form-group col-md-6">
+                              <div class="form-group col-md-6">
                                         <label for="cname">Company Name</label>
-                                        <!-- <div class="loading_data" style="text-align: center;">
+                                        <div class="loading_data" style="text-align: center;">
                                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
-                                        </div> -->
+                                        </div> 
                                       <!--  <select class="form-control" id="firm_name">
                                         </select>
                                     </div> -->
-                                  <!--  <div class="form-group col-md-6">
+                                  <div class="form-group col-md-6">
                                         <label for="position">Position / Title</label>
                                         <input type="text" class="form-control" id="position">
-                                    </div> -->
+                                    </div> 
                                     <div class="clearfix"></div>
                                     <!-- <div class="form-group col-md-6">
                                         <label for="pnum">Phone Number</label>
