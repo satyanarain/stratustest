@@ -82,9 +82,6 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
 <script src="{{ url('/resources/assets/dist/user_detail.js') }}"></script>
 
 
