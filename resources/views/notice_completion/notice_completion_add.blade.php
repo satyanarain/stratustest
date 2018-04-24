@@ -33,7 +33,7 @@
                             <div class="panel-body clearfix">
 <div class="col-sm-6 nopadleft">
   <div class="form-group">
-    
+
 <!--    <label>Which would you like to do?</label><br/>-->
 <!--    <label class="radio-inline">
       <input type="radio" name="noc_type" id="noc_type" value="complete_form_noc"> Complete NOC FORM
@@ -41,6 +41,8 @@
    <!-- <label class="radio-inline">
         <input checked="checked" type="radio" name="noc_type" id="noc_type" value="upload_form_noc"> Upload Recorded NOC
     </label>  -->
+
+    <input type="hidden" name="noc_type" id="noc_type" value="upload_form_noc">
   </div>
 </div>
 <div class="col-sm-6 nopadleft">
