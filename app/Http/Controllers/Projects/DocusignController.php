@@ -103,12 +103,27 @@ class DocusignController extends Controller {
                                     file_put_contents(base_path().$file_upload_path, $data);
                                     if($document['type']=="content")
                                     {
-                                        $query = DB::table('documents')
-                                        ->where('doc_id', '=', $doc_id)
-                                        ->update(['doc_path' => $file_upload_path]);
-                                        $query = DB::table('project_notice_award')
-                                        ->where('pna_id', '=', $pna_id)
-                                        ->update(['pna_docusign_status' => "complete"]);
+                                        if($doc_id>0){
+                                            $query = DB::table('documents')
+                                            ->where('doc_id', '=', $doc_id)
+                                            ->update(['doc_path' => $file_upload_path]);
+                                            $query = DB::table('project_notice_award')
+                                            ->where('pna_id', '=', $pna_id)
+                                            ->update(['pna_docusign_status' => "complete"]);
+                                        }else{
+                                            $information = array(
+                                            "doc_status"     => "active",
+                                            "doc_project_id" => $award->pna_project_id,
+                                            "doc_user_id"    => 0,
+                                            "doc_name"       => $file_upload_path,
+                                            "doc_path"       => $file_upload_path,
+                                            );
+                                            $doc_id = DB::table('documents')->insertGetId($information);
+                                            $query = DB::table('project_notice_award')
+                                            ->where('pna_id', '=', $pna_id)
+                                            ->update(['docusign_status' => "complete",'pna_notice_path'=>$doc_id]);
+                                        }
+                                        
                                     }
                                     curl_close($curl3);
                                 }else{continue;}
@@ -170,12 +185,27 @@ class DocusignController extends Controller {
                                     file_put_contents(base_path().$file_upload_path, $data);
                                     if($document['type']=="content")
                                     {
-                                        $query = DB::table('documents')
-                                        ->where('doc_id', '=', $doc_id)
-                                        ->update(['doc_path' => $file_upload_path]);
-                                        $query = DB::table('project_notice_proceed')
-                                        ->where('pnp_id', '=', $pna_id)
-                                        ->update(['pnp_docusign_status' => "complete"]);
+                                        if($doc_id)
+                                        {
+                                            $query = DB::table('documents')
+                                            ->where('doc_id', '=', $doc_id)
+                                            ->update(['doc_path' => $file_upload_path]);
+                                            $query = DB::table('project_notice_proceed')
+                                            ->where('pnp_id', '=', $pna_id)
+                                            ->update(['pnp_docusign_status' => "complete"]);
+                                        }else{
+                                            $information = array(
+                                            "doc_status"     => "active",
+                                            "doc_project_id" => $award->pnp_project_id,
+                                            "doc_user_id"    => 0,
+                                            "doc_name"       => $file_upload_path,
+                                            "doc_path"       => $file_upload_path,
+                                            );
+                                            $doc_id = DB::table('documents')->insertGetId($information);
+                                            $query = DB::table('project_notice_proceed')
+                                            ->where('pnp_id', '=', $pna_id)
+                                            ->update(['docusign_status' => "complete",'pnp_path'=>$doc_id]);
+                                        }
                                     }
                                     curl_close($curl3);
                                 }else{continue;}
@@ -238,12 +268,27 @@ class DocusignController extends Controller {
                                     file_put_contents(base_path().$file_upload_path, $data);
                                     if($document['type']=="content")
                                     {
-                                        $query = DB::table('documents')
-                                        ->where('doc_id', '=', $doc_id)
-                                        ->update(['doc_path' => $file_upload_path]);
-                                        $query = DB::table('project_unconditional_finals')
-                                        ->where('puf_id', '=', $pna_id)
-                                        ->update(['docusign_status' => "complete"]);
+                                        if($doc_id>0)
+                                        {
+                                            $query = DB::table('documents')
+                                            ->where('doc_id', '=', $doc_id)
+                                            ->update(['doc_path' => $file_upload_path]);
+                                            $query = DB::table('project_unconditional_finals')
+                                            ->where('puf_id', '=', $pna_id)
+                                            ->update(['docusign_status' => "complete"]);
+                                        }else{
+                                            $information = array(
+                                            "doc_status"     => "active",
+                                            "doc_project_id" => $final->puf_project_id,
+                                            "doc_user_id"    => 0,
+                                            "doc_name"       => $file_upload_path,
+                                            "doc_path"       => $file_upload_path,
+                                            );
+                                            $doc_id = DB::table('documents')->insertGetId($information);
+                                            $query = DB::table('project_unconditional_finals')
+                                            ->where('puf_id', '=', $pna_id)
+                                            ->update(['docusign_status' => "complete",'puf_file_path'=>$doc_id]);
+                                        }
                                     }
                                     curl_close($curl3);
                                 }else{continue;}
@@ -444,12 +489,27 @@ class DocusignController extends Controller {
                                     file_put_contents(base_path().$file_upload_path, $data);
                                     if($document['type']=="content")
                                     {
-                                        $query = DB::table('documents')
-                                        ->where('doc_id', '=', $doc_id)
-                                        ->update(['doc_path' => $file_upload_path]);
-                                        $query = DB::table('project_notice_of_completion')
-                                        ->where('noc_id', '=', $noc_id)
-                                        ->update(['docusign_status' => "complete"]);
+                                        if($doc_id>0)
+                                        {
+                                            $query = DB::table('documents')
+                                            ->where('doc_id', '=', $doc_id)
+                                            ->update(['doc_path' => $file_upload_path]);
+                                            $query = DB::table('project_notice_of_completion')
+                                            ->where('noc_id', '=', $noc_id)
+                                            ->update(['docusign_status' => "complete"]);
+                                        }else{
+                                            $information = array(
+                                            "doc_status"     => "active",
+                                            "doc_project_id" => $noc->noc_id,
+                                            "doc_user_id"    => 0,
+                                            "doc_name"       => $file_upload_path,
+                                            "doc_path"       => $file_upload_path,
+                                            );
+                                            $doc_id = DB::table('documents')->insertGetId($information);
+                                            $query = DB::table('project_notice_of_completion')
+                                            ->where('noc_id', '=', $noc_id)
+                                            ->update(['docusign_status' => "complete",'noc_file_path'=>$doc_id]);
+                                        }
                                     }
                                     curl_close($curl3);
                                 }else{continue;}
@@ -511,12 +571,27 @@ class DocusignController extends Controller {
                                     file_put_contents(base_path().$file_upload_path, $data);
                                     if($document['type']=="content")
                                     {
-                                        $query = DB::table('documents')
-                                        ->where('doc_id', '=', $doc_id)
-                                        ->update(['doc_path' => $file_upload_path]);
-                                        $query = DB::table('project_change_order_request_detail')
-                                        ->where('pcd_id', '=', $noc_id)
-                                        ->update(['docusign_status' => "complete"]);
+                                        if($doc_id>0)
+                                        {
+                                            $query = DB::table('documents')
+                                            ->where('doc_id', '=', $doc_id)
+                                            ->update(['doc_path' => $file_upload_path]);
+                                            $query = DB::table('project_change_order_request_detail')
+                                            ->where('pcd_id', '=', $noc_id)
+                                            ->update(['docusign_status' => "complete"]);
+                                        }else{
+                                            $information = array(
+                                            "doc_status"     => "active",
+                                            "doc_project_id" => $noc->pcd_project_id,
+                                            "doc_user_id"    => 0,
+                                            "doc_name"       => $file_upload_path,
+                                            "doc_path"       => $file_upload_path,
+                                            );
+                                            $doc_id = DB::table('documents')->insertGetId($information);
+                                            $query = DB::table('project_change_order_request_detail')
+                                            ->where('pcd_id', '=', $noc_id)
+                                            ->update(['docusign_status' => "complete",'pcd_file_path'=>$doc_id]);
+                                        }
                                     }
                                     curl_close($curl3);
                                 }else{continue;}
