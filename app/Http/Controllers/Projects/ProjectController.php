@@ -382,13 +382,13 @@ class ProjectController extends Controller {
         'role'      => Auth::user()->role
       );
       $user = (object) $user;
-      echo "<pre> Data :".print_r($user , TRUE )."</pre>";
+     // echo "<pre> Data :".print_r($user , TRUE )."</pre>";
       $post = new Resource_Post(); // You create a new resource Post instance
-      if (Gate::forUser($user)->denies('allow_admin_owner_user', [$post,false])) { 
+   /*  if (Gate::forUser($user)->denies('allow_admin_owner_user', [$post,false])) { 
         $result = array('code'=>403, "description"=>"Access denies");
         return response()->json($result, 403);
       } 
-      else {
+      else {*/
         $project_id           = $project_id;
         // $project_number       = $request['project_number'];
         $project_name         = $request['project_name'];
@@ -454,7 +454,7 @@ class ProjectController extends Controller {
               return response()->json($result, 200);
             }
         }
-      }
+    //  }
     }
     catch(Exception $e)
     {
