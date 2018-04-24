@@ -667,6 +667,116 @@ class UserController extends Controller {
     }
   }
 
+
+
+  /*
+  --------------------------------------------------------------------------
+   Update single user detail passing user ID from profile
+  --------------------------------------------------------------------------
+  */
+  public function update_user_profile(Request $request, $userid)
+  {
+    try
+    {
+      $u_id = $userid;
+      // $user = array(
+      //   'id'        => $u_id,
+      //   'userid'    => Auth::user()->id,
+      //   'role'      => Auth::user()->role
+      // );
+      // $user = (object) $user;
+      // $post = new Resource_Post(); // You create a new resource Post instance
+      // if (Gate::forUser($user)->denies('allow_admin_user', [$post,false])) { 
+      //   $result = array('code'=>403, "description"=>"Access Denies");
+      //   return response()->json($result, 403);
+      // } 
+      // else {
+        $first_name         = $request['first_name'];
+        $last_name          = $request['last_name'];
+      //  $company_name       = $request['company_name'];
+        $phone_number       = $request['phone_number'];
+        $username           = $request['username'];
+         $email              = $request['email'];
+       // $role               = $request['role'];
+       // $status             = $request['status'];
+       // $position_title     = $request['position_title'];
+        // $user_role          = $request['user_role'];
+       // $password           = $request['password'];
+        // $project_id         = $request['project_id'];
+       // $confirm_password   = $request['confirm_password'];
+        $user_image_path = $request['user_image_path'];
+        
+        $information = array(
+            "first_name"        => $first_name,
+            "last_name"         => $last_name,
+         //   "company_name"      => $company_name,
+
+             "username"          => $username,
+            "email"             => $email,
+          //  "password"          => $password,
+          //  "confirm_password"  => $confirm_password
+        );
+
+        $rules = [
+            'first_name'        => 'required',
+            'last_name'         => 'required',
+           // 'company_name'      => 'required',
+
+             'username'          => 'max:255',
+             'email'             => 'email|max:255',
+            'password'          => 'min:6',
+            'confirm_password'  => 'min:6|same:password'
+        ];
+        $validator = Validator::make($information, $rules);
+        if ($validator->fails()) 
+        {
+            return $result = response()->json(["data" => $validator->messages()],400);
+        }
+        else
+        {
+
+            $user_detail = DB::table('users')
+            ->select()
+            ->where('id', '=', $u_id)
+            ->first();
+       //   if(($password == "") ? $password = $user_detail->password : $password = Hash::make($password));
+        //  if(($role == "") ? $role = $user_detail->role : $role = $role);
+         // if(($status == "") ? $status = $user_detail->status : $status = $status);
+           if(($email == "") ? $email = $user_detail->email : $email = $email);
+           if(($username == "") ? $username = $user_detail->username : $username = $username);
+          //if(($position_title == "") ? $position_title = $user_detail->position_title : $position_title = $position_title);
+            
+            // echo '<pre>';
+            // print_r($username);
+            // echo '</pre>';
+            // exit;
+            $user = DB::table('users')
+            ->where('id', '=', $u_id)
+            // ->update(['first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'phone_number' => $phone_number, 'username' => $username, 'position_title' => $position_title, 'email' => $email, 'password' => $password, 'status' => $status, 'role' => $role]);
+            ->update(['first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'phone_number' => $phone_number,'email' => $email, 'username' => $username, 'user_image_path' => $user_image_path]);
+
+            // $user = DB::table('project_contact')
+            // ->where('c_user_id', '=', $u_id)
+            // ->update(['c_position_title' => $position, 'c_user_type' => $user_role]);            
+
+            if(count($user) < 1)
+            {
+              $result = array('code'=>400, "description"=>"No Records Found");
+              return response()->json($result, 400);
+            }
+            else
+            {
+              $result = array('data'=>$user,'code'=>200);
+              return response()->json($result, 200);
+            }
+        // }
+      }
+    }
+    catch(Exception $e)
+    {
+      return response()->json(['error' => 'Something is wrong'], 500);
+    }
+  }
   /*
   --------------------------------------------------------------------------
    Suspend user only admin can perform this action
