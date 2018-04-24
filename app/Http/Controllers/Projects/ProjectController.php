@@ -382,6 +382,7 @@ class ProjectController extends Controller {
         'role'      => Auth::user()->role
       );
       $user = (object) $user;
+      echo "<pre> Data :".print_r($user , TRUE )."</pre>";
       $post = new Resource_Post(); // You create a new resource Post instance
       if (Gate::forUser($user)->denies('allow_admin_owner_user', [$post,false])) { 
         $result = array('code'=>403, "description"=>"Access denies");
