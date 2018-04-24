@@ -51,8 +51,7 @@
                            </div>
                        </section>
                    </div>
-               </div>
-                 <!-- Modal -->
+                                    <!-- Modal -->
 <div id="profile_update" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -66,6 +65,8 @@
         <button class="btn btn-primary">Save changes</button>
     </div>
 </div>
+               </div>
+
            </div>
            <!--body wrapper end-->
 
