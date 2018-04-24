@@ -53,7 +53,7 @@ Route::get('dashboard/users/{userid}/update', function () {
     return view('/user_update');
 });
 Route::get('dashboard/users/{userid}/updateprofile', function () {
-    return view('/user_update');
+    return view('/user_update_profile');
 });
 
 Route::get('users/add', function () {
