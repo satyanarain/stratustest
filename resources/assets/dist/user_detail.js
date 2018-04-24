@@ -115,9 +115,10 @@ function openProfileUpdate() {
 
     $('#profile_update').modal('show');
 
-        var token = localStorage.getItem('u_token');
-            var url = $(location).attr('href').split( '/' );
-            userid = url[ url.length - 2 ]; // projects
+            var token = localStorage.getItem('u_token');
+            var url = window.location.pathname;
+
+            var userid = url.substring(url.lastIndexOf('/') + 1);
             // console.log(userid);
             jQuery.ajax({
             url: baseUrl + "users_profile/"+userid,
@@ -241,6 +242,6 @@ function openProfileUpdate() {
                     // console.log("500");
                     window.location.href = baseUrl + "500";
                 }
-            }) 
+            }); 
     
 }
