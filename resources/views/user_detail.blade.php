@@ -44,7 +44,7 @@
                                        </div>
                                         <div class="form-group col-md-12">
                                           <a href="{{ url('/dashboard') }}" class="btn btn-info sub-btn">Back</a>
-                                             <a href="#" class="btn btn-info sub-btn" onclick="openProfileUpdate()">Back</a>
+                                             <a href="#" class="btn btn-info sub-btn" onclick="openProfileUpdate()">Update User</a>
                                         </div>
                                    </div>
 
