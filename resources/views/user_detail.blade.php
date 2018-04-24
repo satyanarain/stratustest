@@ -164,6 +164,7 @@
                 </div>
         </div>
         <div class="modal-footer">
+          <button type="submit" id="update_profile_form" class="btn btn-info sub-btn">Save</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>

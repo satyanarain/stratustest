@@ -246,3 +246,151 @@ var token = localStorage.getItem('u_token');
             }); 
     
 }
+
+$('#update_profile_form').click(function(e) {
+    e.preventDefault();
+    // console.log('faizan');
+    // console.log(userid);
+    // var username = $('#uname').val();
+    // var email = $('#email').val();
+    var last_name       = $('#lname').val();
+    var first_name      = $('#fname').val();
+   // var company_name    = $('#firm_name').val();
+    var phone           = $('#pnum').val();
+    var uname           = $('#uname').val();
+    var email           = $('#email').val();
+   // var pass            = $('#pass').val();
+   // var cpass           = $('#cpass').val();
+   // var role            = $('#role').val();
+    //var position_title        = $('#position').val();
+    // var user_role       = $('#user_role').val();
+    // var project_id       = $('#project_name').val();
+    var user_image_path =    $("#user_image_path").val();
+    if(user_image_path!="")
+        $("#old_image_link").html('');
+    else
+        user_image_path = $("#old_image_path").val();
+   // var status          = $('#status').val();
+    // console.log(project_id);
+    // console.log(position_title);
+    var token = localStorage.getItem('u_token');
+     var url = window.location.pathname;
+
+    var userid = url.substring(url.lastIndexOf('/') + 1);
+    jQuery.ajax({
+        url: baseUrl + "users/"+userid+"/updateprofile",
+        type: "POST",
+        data: {
+            "first_name" : first_name,
+            "last_name" : last_name,
+           // "company_name" : company_name,
+            "phone_number" : phone,
+            "username" : uname,
+            "email" : email,
+          //  "confirm_password" : cpass,
+           // "password" : pass,
+           // "role" : role,
+           // "position_title" : position_title,
+            // "user_role" : user_role,
+            // "project_id" : project_id,
+          //  "status" : status,
+            "user_image_path" : user_image_path,
+        },
+        headers: {
+            "x-access-token": token
+        },
+        contentType: "application/x-www-form-urlencoded",
+        cache: false
+    })
+        .done(function(data, textStatus, jqXHR) {
+
+            jQuery.ajax({
+                url: baseUrl + "users/delete_user_data",
+                type: "POST",
+                data:JSON.stringify(
+                    { "user_id":userid
+
+                    }
+                ),
+                headers: {
+                    "x-access-token": token
+                },
+                contentType: 'application/json',
+                cache: true
+            })
+            var inp_phone_num = document.getElementsByName('phone_num[]');
+            var inp_phone_type = document.getElementsByName('phone_type[]');
+            for (var i = 0; i <inp_phone_num.length; i++) {
+                var inp_phone_type_value=inp_phone_type[i];
+                var inp_phone_num_value =inp_phone_num[i];
+                var phone_type =  inp_phone_type_value.value;
+                var phone_value = inp_phone_num_value.value;
+                console.log(phone_type);
+                console.log(phone_value);
+                jQuery.ajax({
+                    url: baseUrl + "users/insert_user_data",
+                    type: "POST",
+                    data:JSON.stringify(
+                        { "user_id":userid,
+                            "phone_type": phone_type,
+                            "phone_detail": phone_value
+                        }
+                    ),
+                    headers: {
+                        "x-access-token": token
+                    },
+                    contentType: 'application/json',
+                    cache: true
+                })
+            }
+
+            // html = '<div class="alert alert-block alert-success fade in">Profile updated!</div>';
+            // $("#updateuserinfo").html(html);
+            $('html, body').animate({
+                scrollTop: $(".page-head").offset().top
+            }, 'fast')
+
+            $("#updateuserinfo").show();
+            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">User updated successfully!</div></div>';
+            $("#updateuserinfo").html(html);
+            setTimeout(function(){
+                $("#updateuserinfo").hide();
+            },5000)
+
+
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log("HTTP Request Failed");
+            var responseText, html;
+            responseText = JSON.parse(jqXHR.responseText);
+            console.log(responseText.data.phone_number);
+            $('html, body').animate({
+                scrollTop: $(".page-head").offset().top
+            }, 'fast')
+            $("#updateuserinfo").show();
+            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast toast-error"><ul>';
+            if(responseText.data.phone_number != null){
+                html += '<li>'+responseText.data.phone_number+'</li>';
+            }
+            if(responseText.data.username != null){
+                html += '<li>'+responseText.data.username+'</li>';
+            }
+            if(responseText.data.email != null){
+                html += '<li>'+responseText.data.email+'</li>';
+            }
+            if(responseText.data.password != null){
+                html += '<li>'+responseText.data.password+'</li>';
+            }
+            if(responseText.data.confirm_password != null){
+                html += '<li>'+responseText.data.confirm_password+'</li>';
+            }
+            if(responseText.data.company_name != null){
+                html += '<li>'+responseText.data.company_name+'</li>';
+            }
+            html += '</ul></div>';
+            $("#updateuserinfo").html(html);
+            setTimeout(function(){
+                $("#updateuserinfo").hide();
+            },5000)
+        })
+});
