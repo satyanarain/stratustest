@@ -346,7 +346,7 @@ $('#update_profile_form').click(function(e) {
 
             // html = '<div class="alert alert-block alert-success fade in">Profile updated!</div>';
             // $("#updateuserinfo").html(html);
-            $('html, body').animate({
+          /*  $('html, body').animate({
                 scrollTop: $(".page-head").offset().top
             }, 'fast')
 
@@ -355,7 +355,8 @@ $('#update_profile_form').click(function(e) {
             $("#updateuserinfo").html(html);
             setTimeout(function(){
                 $("#updateuserinfo").hide();
-            },5000)
+            },5000)*/
+            location.reload();
 
 
         })
