@@ -398,8 +398,6 @@ $('#update_profile_form').click(function(e) {
 
 function openProfileUpdatelink() {
 
-    $('#profile_update').modal('show');
-
 var token = localStorage.getItem('u_token');
   var url = window.location.pathname;
 
