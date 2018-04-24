@@ -44,6 +44,7 @@
                                        </div>
                                         <div class="form-group col-md-12">
                                           <a href="{{ url('/dashboard') }}" class="btn btn-info sub-btn">Back</a>
+                                             <a href="#" class="btn btn-info sub-btn" onclick="openProfileUpdate()">Back</a>
                                         </div>
                                    </div>
 
@@ -53,6 +54,21 @@
                </div>
            </div>
            <!--body wrapper end-->
+
+           <!-- Modal -->
+<div id="profile_update" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Profile Update </h3>
+    </div>
+    <div class="modal-body">
+        <p>modal body</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary">Save changes</button>
+    </div>
+</div>
 
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>

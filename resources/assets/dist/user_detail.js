@@ -110,3 +110,47 @@ $(document).ready(function() {
 //		    }
         })
 });
+
+function openProfileUpdate() {
+
+    $('#profile_update').modal('show');
+     var url = window.location.pathname;
+
+    var userid = url.substring(url.lastIndexOf('/') + 1);
+
+
+
+    var token = localStorage.getItem('u_token');
+    jQuery.ajax({
+        url: baseUrl + "users/"+userid,
+        type: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+    })
+        .done(function(data, textStatus, jqXHR) {
+            console.log(data);
+          
+
+            $(".loading_data").hide();
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+
+
+            console.log("HTTP Request Failed");
+            var response = jqXHR.responseJSON.code;
+            return false;
+//          if(response == 403){
+//              window.location.href = baseUrl + "403";
+//          }
+//          else if(response == 404){
+//              window.location.href = baseUrl + "404";
+//          }
+//          else {
+//              window.location.href = baseUrl + "500";
+//          }
+        })
+}
