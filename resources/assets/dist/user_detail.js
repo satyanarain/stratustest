@@ -255,14 +255,14 @@ $('#update_profile_form').click(function(e) {
     // var email = $('#email').val();
     var last_name       = $('#lname').val();
     var first_name      = $('#fname').val();
-   // var company_name    = $('#firm_name').val();
+   var company_name    = $('#firm_name').val();
     var phone           = $('#pnum').val();
     var uname           = $('#uname').val();
     var email           = $('#email').val();
    // var pass            = $('#pass').val();
    // var cpass           = $('#cpass').val();
-   // var role            = $('#role').val();
-    //var position_title        = $('#position').val();
+   var role            = $('#role').val();
+    var position_title        = $('#position').val();
     // var user_role       = $('#user_role').val();
     // var project_id       = $('#project_name').val();
     var user_image_path =    $("#user_image_path").val();
@@ -283,14 +283,14 @@ $('#update_profile_form').click(function(e) {
         data: {
             "first_name" : first_name,
             "last_name" : last_name,
-           // "company_name" : company_name,
+           "company_name" : company_name,
             "phone_number" : phone,
             "username" : uname,
             "email" : email,
           //  "confirm_password" : cpass,
            // "password" : pass,
-           // "role" : role,
-           // "position_title" : position_title,
+            "role" : role,
+            "position_title" : position_title,
             // "user_role" : user_role,
             // "project_id" : project_id,
           //  "status" : status,
@@ -395,3 +395,16 @@ $('#update_profile_form').click(function(e) {
             },5000)
         })
 });
+
+function openProfileUpdatelink() {
+
+    $('#profile_update').modal('show');
+
+var token = localStorage.getItem('u_token');
+  var url = window.location.pathname;
+
+    var userid = url.substring(url.lastIndexOf('/') + 1);
+
+    window.location.href="/dashboard/users/"+userid+"/updateprofile";
+
+}
