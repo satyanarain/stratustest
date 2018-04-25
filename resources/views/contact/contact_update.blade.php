@@ -98,6 +98,18 @@
                         </select>
                     </div>
 
+                         <div class="col-sm-6">
+                                        <label for="standard_name">User Image <span class="text-danger">*</span><span id="old_image_link"></span><input type="hidden" id="old_image_path"></span> </label>
+                                        <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
+                                            <input type="hidden" name="document_path" value="/uploads/users/">
+                                        </form>
+
+                                        <div class="form-group">
+                                            <input type="hidden" name="user_image_path" id="user_image_path" value="">
+                                            
+                                        </div>
+                                    </div>
+
                     <input type="hidden" class="form-control role_normal_hide user_role" id="role">
                     <div class="col-md-6 hide_user role_admin_hide">
                         <!-- <label>User Type <span class="text-danger">*</span></label>
