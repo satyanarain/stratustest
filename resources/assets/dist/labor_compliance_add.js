@@ -151,7 +151,8 @@ $('#add_labor_compliance').click(function(e) {
     var doc_nonperformance          = $('#upload_doc_id_7').val();
     var project_id                  = $('#upload_project_id').val();
     var token                       = localStorage.getItem('u_token');
-
+    var performance_signatory_arr = [];
+    var documents_counter = 0;
         // Validation Certificate
         var html;
         var is_error = false;
@@ -170,6 +171,7 @@ $('#add_labor_compliance').click(function(e) {
                 html += '<li>140 document is invalid.</li>';
                 is_error = true;
             }
+            documents_counter++;
         }
         if($("#142_option_show").is(':checked')){
             if(date_142 == ''){
@@ -180,6 +182,7 @@ $('#add_labor_compliance').click(function(e) {
                 html += '<li>142 document is invalid.</li>';
                 is_error = true;
             }
+            documents_counter++;
         }
         if($("#fringe_option_show").is(':checked')){
             if(fringe_date == ''){
@@ -190,6 +193,7 @@ $('#add_labor_compliance').click(function(e) {
                 html += '<li>Fringe document is invalid.</li>';
                 is_error = true;
             }
+            documents_counter++;
         }
         if($("#cac_option_show").is(':checked')){
             if(cac2_date == ''){
@@ -200,6 +204,7 @@ $('#add_labor_compliance').click(function(e) {
                 html += '<li>CAC2 document is invalid.</li>';
                 is_error = true;
             }
+            documents_counter++;
         }
         if($("#weekly_option_show").is(':checked')){
             if($('input:radio[name=check_statement_compliance_type]:checked').val() == "exist"){
@@ -215,6 +220,7 @@ $('#add_labor_compliance').click(function(e) {
                     html += '<li>Compliance document is invalid.</li>';
                     is_error = true;
                 }
+                documents_counter++;
             }
             var signatory_name = [];
             $('input[name^=signatory_name]').each(function(){
@@ -253,6 +259,7 @@ $('#add_labor_compliance').click(function(e) {
                     html += '<li>Non Performance document is invalid.</li>';
                     is_error = true;
                 }
+                documents_counter++;
             }
             var performance_signatory_name = [];
             $('input[name^=performance_signatory_name]').each(function(){
@@ -270,7 +277,7 @@ $('#add_labor_compliance').click(function(e) {
             var item = {};
             item['performance_signatory_name']          = performance_signatory_name;
             item['performance_signatory_email']         = performance_signatory_email;
-            performance_signatory_arr = [];
+            
             for (i = 0; i < performance_signatory_email.length; i++) {
                 performance_signatory_arr.push({
                     "performance_signatory_name"            :   item['performance_signatory_name'][i],
@@ -331,7 +338,10 @@ $('#add_labor_compliance').click(function(e) {
             }, 'fast')
             $("#alert_message").show();
             $('.loading-submit').hide();
-            html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New Labor compliance document successfully uploaded!</div></div>';
+            if(parseInt(documents_counter)>1)
+                html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New Labor compliance documents successfully uploaded!</div></div>';
+            else
+                html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New Labor compliance document successfully uploaded!</div></div>';
             $("#alert_message").html(html);
             $("#date_140").removeAttr('value');
             $('input[name^=signatory_name],input[name^=signatory_email]').each(function(){$(this).val('');});

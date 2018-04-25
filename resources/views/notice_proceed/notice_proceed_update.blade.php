@@ -57,7 +57,7 @@
 <div class="form-group col-md-12">
     <hr/>
 </div>
-<div class="form-group col-md-6">
+<div class="form-group col-md-6" style="display: none;">
     <label for="name_of_report">Review &amp; E-sign by Owner/Owner Rep</label>
     <br/>
     <div class="before_review_owner" style="display: none;">
@@ -81,7 +81,7 @@
     </div>
 </div>
 
-<div class="form-group col-md-6">
+<div class="form-group col-md-6" style="display: none;">
     <label for="company_name">Review &amp; E-sign /Accept by Contractor</label>
     <br/>
     <div class="before_review_contractor" style="display: none;">
@@ -111,7 +111,69 @@
                                             <option value="deactive">Deactivate</option>
                                         </select>
                                     </div>
+                                    <div class="form-group col-sm-6">
+                <label for="name_of_report" style="">Date of Notice <span class="text-danger">*</span></label>
+                <!-- <input type="text" class="form-control" id="notice_date" value="<?php echo date("Y-m-d"); ?>"> -->
+                <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
+                    <input type="text" readonly="" value="" size="16" class="form-control"  id="notice_date">
+                    <span class="input-group-btn add-on">
+                    <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                    </span>
+                </div>
+                <!-- <div class="form-group">
+                  <div class='input-group date' id='datetimepicker6'>
+                      <input type='text' readonly class="form-control" id="notice_date"/>
+                      <span class="input-group-addon btn btn-primary">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
+                </div> -->
+            </div>
+<div class="clearfix"></div>
+            <div class="form-group col-sm-6">
+                <label>Start Date <span class="text-danger">*</span></label>
+                <!-- <input type="text" class="form-control" id="notice_start_date" value="<?php echo date("Y-m-d"); ?>"> -->
+                <!-- <div class="form-group">
+                  <div class='input-group date' id='datetimepicker7'>
+                      <input type='text' readonly class="form-control" id="notice_start_date" />
+                      <span class="input-group-addon btn btn-primary">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                </div> -->
+                <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
+                    <input type="text" readonly="" value="" size="16" class="form-control"  id="notice_start_date">
+                    <span class="input-group-btn add-on">
+                    <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-md-4 nopadleft" style="padding-top: 5px;">Liquidated Damages <span class="text-danger">*</span></label>
+                <div class="col-md-4">
+                    <!-- <input type="text" class="form-control" id="liquidated_amount"> -->
+                    <div class="input-group m-b-10">
+                        <span class="input-group-addon project_currency"></span>
+                        <input class="form-control" type="number" min="1" id="liquidated_amount">
+                    </div>
+                </div>
+                <label class="col-md-2" style="padding-top: 5px;">/ Day</label>
+            </div>
+<div class="clearfix"></div>
+            <div class="form-group col-sm-6">
+                <label>Duration (in days) <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" min="1" id="duration_days" required="required">
+            </div>
 
+            <div class="form-group col-sm-6" style="padding-top: 20px;">
+                <label class="radio-inline">
+                    <input type="radio"   name="days_working" id="days_calendar" value="calendar_day" checked="checked">Calendar Days
+                </label><br/>
+                <label class="radio-inline">
+                  <input type="radio"    name="days_working" id="days_working" value="working_day"> Working Days
+                </label>
+            </div>
+           <div class="clearfix"></div> 
 
                                     <div class="form-group col-md-12">
                                        <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $project_id; ?>">
