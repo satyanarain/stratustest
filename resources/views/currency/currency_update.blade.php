@@ -34,8 +34,8 @@
                                         <div class="form-group col-md-4 col-sm-4">
                                             <label>Status</label>
                                             <select class="form-control" id="status">
-                                                <option value="active">Activate</option>
-                                                <option value="deactive">Deactivate</option>
+                                                <option value="active">Active</option>
+                                                <option value="deactive">Inactive</option>
                                             </select>
                                         </div>
                                     </div>

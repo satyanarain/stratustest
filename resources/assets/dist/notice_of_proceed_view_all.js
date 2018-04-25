@@ -47,10 +47,10 @@
 
 				var status = val.pnp_status;
 				if(status == 'active'){
-		    	status = '<span class="label label-success">Activate</span>';
+		    	status = '<span class="label label-success">Active</span>';
 			    }
 			    else {
-			    	status = '<span class="label label-danger">Deactivate</span>';
+			    	status = '<span class="label label-danger">Inactive</span>';
 			    }
 			  	
 			  	var pnp_path = val.notice_proceed_path;

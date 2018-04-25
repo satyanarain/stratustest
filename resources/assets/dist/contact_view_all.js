@@ -206,7 +206,7 @@
 		        var id = $(this).attr("id");
 		        // alert(id);
 		        
-		        var r = confirm("Are you sure to deactivate this user?");
+		        var r = confirm("Are you sure to Inactive this user?");
 				if (r == true) {
 				    jQuery.ajax({
 					url: baseUrl + "contact/"+project_id+"/delete/"+id,
