@@ -343,6 +343,11 @@ $('#update_profile_form').click(function(e) {
     var cpass 			= $('#cpass').val();
     // var role 			= $('#role').val();
     var position_title        = $('#position').val();
+      var user_image_path =    $("#user_image_path").val();
+    if(user_image_path!="")
+        $("#old_image_link").html('');
+    else
+        user_image_path = $("#old_image_path").val();
     // var user_role       = $('#user_role').val();
     // var project_id 		= $('#project_name').val();
     var status 			= $('#status').val();
@@ -418,6 +423,7 @@ $('#update_profile_form').click(function(e) {
             // "role" : role,
             // "user_role" : user_role,
             // "project_id" : project_id,
+             "user_image_path" : user_image_path,
             "status" : status,
         },
         headers: {
