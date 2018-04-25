@@ -848,5 +848,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js?v=1.0"></script>
 <!-- <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script> -->
 <script src="{{ url('/resources/assets/dist/api_url.js?v=1.0') }}"></script>
+<script src="{{ url('/resources/assets/js/dropzone_image.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/contact_update.js?v=1.0') }}"></script>
 @include('include/footer')
