@@ -130,7 +130,7 @@ class LaborComplianceController extends Controller {
 
                         $data = array("accountId" => $accountId, 
                             "emailSubject" => "Signature for the Statement of Compliance",
-                            "emailBlurb" => "signature request for the Statement of Compliance",
+                            "emailBlurb" => "This is a signature request for a Statement of Compliance",
                             "templateId" => $templateId, 
                             "templateRoles" => $data,
                             "status" => "sent");

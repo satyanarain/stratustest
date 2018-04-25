@@ -148,7 +148,7 @@
                     </span>
                 </div>
             </div>
-            <div class="form-group col-sm-6">
+<div class="form-group col-sm-6" style="margin-top: 18px;">
                 <label class="col-md-4 nopadleft" style="padding-top: 5px;">Liquidated Damages <span class="text-danger">*</span></label>
                 <div class="col-md-4">
                     <!-- <input type="text" class="form-control" id="liquidated_amount"> -->
