@@ -89,8 +89,8 @@
                                         <div class="form-group col-md-6">
                                             <label>Status</label>
                                             <select class="form-control" id="status">
-                                                <option value="active">Activate</option>
-                                                <option value="deactive">Deactivate</option>
+                                                <option value="active">Active</option>
+                                                <option value="deactive">Inactive</option>
                                             </select>
                                         </div>
                                         <input type="hidden" class="form-control" id="project_latitude" >

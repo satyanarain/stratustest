@@ -107,8 +107,8 @@
                                     <div class="col-md-6">
                                         <label>Status</label>
                                         <select class="form-control" id="status">
-                                            <option value="active">Activate</option>
-                                            <option value="deactive">Deactivate</option>
+                                            <option value="active">Active</option>
+                                            <option value="deactive">Inactive</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-sm-6">
