@@ -136,7 +136,12 @@
 			  	else {
 			  		var pnp_date = val.pnp_date;
 			  		var pnp_start_date = val.pnp_start_date;
-			  		var liquidated_amount = val.currency_symbol+' '+ ReplaceNumberWithCommas(val.pnp_liquidated_amount);
+                                        if(val.pnp_liquidated_amount)
+                                        {
+                                            var liquidated_amount = val.currency_symbol+' '+ ReplaceNumberWithCommas(val.pnp_liquidated_amount);
+                                        }else{
+                                            var liquidated_amount = '';
+                                        }
 			  		var pnp_duration = val.pnp_duration;
 			  	}
 
@@ -144,8 +149,8 @@
 				t.row.add( [
 		           count,
 		           val.contractor_name,
-                   pnp_date,
-                   pnp_start_date,
+                            pnp_date,
+                            pnp_start_date,
 		           pnp_duration,
 		           pnp_cal_day_value,
 		           liquidated_amount,
