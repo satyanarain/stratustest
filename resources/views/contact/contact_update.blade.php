@@ -24,7 +24,7 @@
                             </div>
                             <div class="panel-body">
                             <div id="updateuserinfo" style="display: none"></div>
-                                <form role="form" id="">
+                               
 
 <div class="panel-group m-bot20" id="accordion">
     <div class="panel panel-default">
@@ -109,6 +109,7 @@
                                             
                                         </div>
                                     </div>
+                                    
 
                     
                     <div class="col-md-6 hide_user role_admin_hide">
@@ -835,7 +836,7 @@
                                             <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                         </div>
                                     </div>
-                                </form>
+                              
 
                             </div>
                         </section>
