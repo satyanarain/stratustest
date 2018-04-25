@@ -41,7 +41,7 @@ $(document).ready(function() {
                 doc_path_value = '<a href="'+baseUrl+doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
             }
             $('#doc_file_path').html(doc_path_value);
-
+            
             var doc_path = data.data.owner_sign_doc_path;
             var doc_path_value;
             if(doc_path == null){
@@ -54,7 +54,16 @@ $(document).ready(function() {
             }
             $('#document_owner').html(doc_path_value);
             $('#review_owner_detail').text(data.data.pnp_notice_review_owner);
-
+            $('#notice_date').val(data.data.pnp_date);
+            $('#notice_start_date').val(data.data.pnp_start_date);
+            $('#liquidated_amount').val(data.data.pnp_liquidated_amount);
+            $('#duration_days').val(data.data.pnp_duration);
+            if(data.data.pnp_cal_day=="calendar_day")
+            {
+                $('#days_calendar').attr('checked', true);
+            }else{
+                $('#days_working').attr('checked', true);
+            }
             var doc_path = data.data.contractor_sign_doc_path;
             var doc_path_value;
             if(doc_path == null){
@@ -140,8 +149,11 @@ $('#update_notice_form').submit(function(e) {
     var project_id              = $('#upload_project_id').val();
     var token                   = localStorage.getItem('u_token');
 
-
-
+    var date = $("#notice_date").val();
+    var start_date = $("#notice_start_date").val();
+    var liquidated_amount = $("#liquidated_amount").val();
+    var cal_day = $("input[name='days_working']:checked").val();
+    var duration = $("#duration_days").val();
     var token = localStorage.getItem('u_token');
     jQuery.ajax({
         url: baseUrl + "notice-proceed/"+notice_id+"/update",
@@ -152,7 +164,12 @@ $('#update_notice_form').submit(function(e) {
             "notice_sign_contractor"   : notice_sign_contractor,
             "notice_review_contractor" : notice_review_contractor,
             "status"                   : status,
-            "project_id"               : project_id
+            "project_id"               : project_id,
+            "date"                      : date,
+            "start_date"            : start_date,
+            "duration"              : duration,
+            "cal_day"               : cal_day,
+            "liquidated_amount"     : liquidated_amount,
         },
         headers: {
             "x-access-token": token
@@ -174,7 +191,7 @@ $('#update_notice_form').submit(function(e) {
             setTimeout(function(){
                 $("#alert_message").hide();
             },5000)
-            window.location.reload();
+            //window.location.reload();
 
         })
         .fail(function(jqXHR, textStatus, errorThrown) {

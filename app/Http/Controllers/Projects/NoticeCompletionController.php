@@ -117,6 +117,7 @@ class NoticeCompletionController extends Controller {
         $envelope_id    = '';
         $docusign_status = 'pending';
       // Check User Permission Parameter 
+       //echo $improvement_type;die;
       $user_id = Auth::user()->id;
       $permission_key = 'notice_completion_add';
       $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($noc_project_id, $user_id, $permission_key);

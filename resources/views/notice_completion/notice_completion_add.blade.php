@@ -50,7 +50,7 @@
 </div>
 <div class="clearfix"></div>
                               <div class="col-sm-6 nopadleft">
-                                   <label class="upload_exist" >Upload recorded Notice of Completion</label>
+<!--                                   <label class="upload_exist" >Upload recorded Notice of Completion</label>-->
                                   <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone" class="upload_exist"  style="display: block;">
                                       <input type="hidden" name="document_path" value="/uploads/notice_completion/">
                                   </form>
@@ -392,7 +392,7 @@
     </label>
                               </div>
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6" style="margin-top: 33px;">
                                 <label>Date Filed on <span class="text-danger">*</span></label>
                                 <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
                                         <input type="text" readonly="" value="" size="16" class="form-control"  id="date_noc_filed">
@@ -402,7 +402,13 @@
                                     </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="project_type">Improvement Type <span class="text-danger">*</span></label><button class="label label-warning add-impvtypes" style="margin-bottom: 5px;">Add New Improvement Type</button>
+<!--                                <label for="project_type">Improvement Type <span class="text-danger">*</span></label>-->
+                                <div class="loading_data" style="text-align: center;">
+                                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
+                                 </div>
+                                 <span class="project_type"></span><br/>
+                                 <span class="sub-title">Select improvement type if you want to change</span>
+                                <button class="label label-warning add-impvtypes" style="margin-bottom: 5px;">Add New Improvement Type</button>
                                 <div id="project_type_selected" style=""></div>
                                 <select class="form-control project_type_dropdown" id="project_type_dropdown" placeholder="Select Improvement Type">
                                     <option>Select Improvement Type</option>

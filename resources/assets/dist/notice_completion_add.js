@@ -94,6 +94,65 @@ $(document).ready(function() {
     }else{
         $('.add-impvtypes').hide();
     }
+    
+    // Selected Improvement Type
+    jQuery.ajax({
+    //url: baseUrl +project_id+"/improvement-type",
+    url: baseUrl +project_id+"/improvement-type",
+        type: "GET",
+        headers: {
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+    })
+    .done(function(data, textStatus, jqXHR) {
+        console.log(data);
+        window.improvement_type_array = [];
+        window.latest_improvement_type_array = [];
+        // Foreach Loop
+//        $("#project_type_dropdown_new").append(
+//            '<option value="">Select Improvement Type</option>'
+//        )
+        jQuery.each(data.data, function( i, val ) {
+            if(val.pt_status == 'active'){
+                $(".project_type").append(
+                    '<span class="label label-inverse" style="display: inline-block; font-size: 14px; margin: 0px 15px 10px 0px; padding: 5px 15px;">'+val.pt_name+'</span>'
+                )
+
+//                $("#project_type_dropdown_new").append(
+//                    '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
+//                )
+//                $("#project_type_dropdown_old").append(
+//                    '<option value="'+val.pt_id+'">'+val.pt_name+'</option>'
+//                )
+                improvement_type_array.push(val.pt_id);
+                latest_improvement_type_array.push(val.pt_name);
+            }else {
+
+            }
+        });
+        console.log(window.latest_improvement_type_array);
+        $(".loading_data").remove();
+        $("#project_type_dropdown_new").show();
+        $("#project_type_dropdown_old").show();
+        $(".project_type").show();
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(response);
+        if(response == 403){
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            $("#s2id_project_type").show();
+            //window.location.href = baseUrl + "404";
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
 });
 
 
@@ -161,7 +220,13 @@ $(document).ready(function() {
         var noc_con_text_5      = $("#noc_con_text_5").val();
         var noc_con_text_6      = $("#noc_con_text_6").val();
         var upload_project_id   = $("#upload_project_id").val();
-        var improvement_type    = $("#project_type_dropdown").val();
+        var project_type_dropdown_new    = $("#project_type_dropdown").val();
+        if(project_type_dropdown_new!="Select Improvement Type"){
+            var improvement_type    = project_type_dropdown_new;
+        }else{
+            var improvement_type = latest_improvement_type_array.join(',')
+        }
+        
         //alert(improvement_type);return false;
         var date_noc_filed      = $("#date_noc_filed").val();
         // Validation Certificate
@@ -226,10 +291,10 @@ $(document).ready(function() {
                 html += '<li>Please select NOC filed date.</li>';
                 is_error = true;
             }
-            if(improvement_type == '' || improvement_type == 'Select Improvement Type'){
-                html += '<li>Please select Improvement Type.</li>';
-                is_error = true;
-            }
+//            if(improvement_type == '' || improvement_type == 'Select Improvement Type'){
+//                html += '<li>Please select Improvement Type.</li>';
+//                is_error = true;
+//            }
         }
         else {
             html += '<li>Please Choose NOC Type.</li>';
