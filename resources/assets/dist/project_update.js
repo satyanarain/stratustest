@@ -88,6 +88,9 @@
 		})
 		    .done(function(data, textStatus, jqXHR) {
 		    console.log(data);
+            if (data.data.p_terms == 'yes') {
+                $( "#project_terms" ).prop( "checked", true );
+            }
 		    var project_number = data.data.p_number;
 		    $('#project_number').val(project_number);
 		    var project_name = data.data.p_name;
