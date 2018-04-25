@@ -166,8 +166,8 @@
                             <div class="form-group col-md-6">
                                 <label for="project_status">Project Status</label>
                                 <select class="form-control" id="status">
-                                    <option value="active">Activate</option>
-                                    <option value="deactive">Deactivate</option>
+                                    <option value="active">Active</option>
+                                    <option value="deactive">Inactive</option>
                                 </select>
                             </div>
                             <div class="clearfix"></div>
