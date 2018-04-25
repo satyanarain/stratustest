@@ -88,8 +88,11 @@
 		})
 		    .done(function(data, textStatus, jqXHR) {
 		    console.log(data);
-            if (data.data.p_terms == 'yes') {
+            if (data.data.p_term = 'yes') {
                 $( "#project_terms" ).prop( "checked", true );
+
+                $('#project_lead_agency').val(data.data.p_lead_agency);
+                document.getElementById('lead_agency_class').style.display="block";
             }
 		    var project_number = data.data.p_number;
 		    $('#project_number').val(project_number);
