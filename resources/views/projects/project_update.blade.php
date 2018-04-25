@@ -166,8 +166,8 @@
                             <div class="form-group col-md-6">
                                 <label for="project_status">Project Status</label>
                                 <select class="form-control" id="status">
-                                    <option value="active">Activate</option>
-                                    <option value="deactive">Deactivate</option>
+                                    <option value="active">Active</option>
+                                    <option value="deactive">Inactive</option>
                                 </select>
                             </div>
                             <div class="clearfix"></div>
@@ -182,7 +182,7 @@
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <div class="form-group col-md-6 lead_agency_class" style="display: none;">
+                                    <div class="form-group col-md-6 lead_agency_class" id="lead_agency_class" style="display: none;">
                                         <label for="project_name">Lead Agency<span class="text-danger">*</span></label>
                                         <select class="form-control" id="project_lead_agency">
                                         </select>
