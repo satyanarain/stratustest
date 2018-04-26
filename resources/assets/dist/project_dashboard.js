@@ -68,7 +68,7 @@ $(document).ready(function() {
 		    cache: false
 		})
 		.done(function(data, textStatus, jqXHR) {
-		    // console.log(data);
+		     console.log(data);
 		    var project_id = data.data.p_id;
 		    $('#project_number').text(project_id);
 		    var project_number = data.data.p_number;
