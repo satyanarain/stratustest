@@ -354,12 +354,7 @@
                                     </div><!-- Col 6 Close -->
                                 </div>
 
-                                <div class="form-group col-md-12">
-                                    <button class="btn btn-success addon-btn m-b-10" id="add_more_certificate" style="float: right; width: 200px;">
-                                        <i class="fa fa-plus"></i>
-                                        Add Another Certificate
-                                    </button>
-                                </div>
+                         
 
                                 <div id="add_more_certificate_div" style="display: none;">
                                     <!-- <div class="col-sm-6">
@@ -373,7 +368,7 @@
                                     </div> -->
                                     <div class="clearfix"></div>
 <div class="custom_certificate_all">
-    <!-- <div class="custom_certificate_detail">
+ <div class="custom_certificate_detail">
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="name_of_report" style="padding-top: 15px;">Certificate Liability Name</label>
@@ -733,7 +728,7 @@ $("#my-awesome-dropzone3").click(function() {
 // });
 $('body').delegate( '.my-awesome-dropzone-multiple', 'click', function () {
   $("#upload_type").val("multiple_upload");
-  return;
+   return;
 });
 // $(".my-awesome-dropzone-multiple").click(function() {
 //     alert('Click');
