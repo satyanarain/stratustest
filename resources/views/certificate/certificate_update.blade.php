@@ -29,7 +29,7 @@
                             <div id="alert_message"></div>
 
                                    <form role="form" id="update_certificate_form">
-                                    
+
                                 <div class="form-group col-md-12">
                                     <label for="company_name"></label>
                                     <h4>Contractor:
@@ -252,14 +252,9 @@
                                     <hr/>
                                 </div>
         
-                                <div class="form-group col-md-12">
-                                    <button class="btn btn-success addon-btn m-b-10" id="add_umbrella_liability" style="float: right; width: 200px;">
-                                        <i class="fa fa-plus"></i>
-                                        Add Umbrella Liability
-                                    </button>
-                                </div>
+    
 
-                                <div id="add_umbrella_liability_div" style="display:none;">
+                                <div id="add_umbrella_liability_div" style="">
                                     <div class="col-sm-10">
                                         <h3 style="margin: 0px;">Umbrella Liability</h3>
                                     </div><!-- Col 12 Close -->
@@ -335,8 +330,8 @@
                                     </button>
                                 </div>
 
-                                <div id="add_more_certificate_div" style="display: none;">
-                                    <!-- <div class="col-sm-6">
+                                <div id="add_more_certificate_div" >
+                                  <div class="col-sm-6">
                                         <h3>Custom Certificate</h3>
                                     </div>
                                     <div class="col-sm-6">
@@ -344,10 +339,10 @@
                                         <i class="fa fa-plus"></i>
                                             Add Certificate
                                         </button>
-                                    </div> -->
+                                    </div>
                                     <div class="clearfix"></div>
 <div class="custom_certificate_all">
-    <!-- <div class="custom_certificate_detail">
+     <div class="custom_certificate_detail">
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="name_of_report" style="padding-top: 15px;">Certificate Liability Name</label>
@@ -392,7 +387,7 @@
                 </div>
             </section>
         </div>
-    </div><div class="clearfix"></div> --><!-- custom_certificate_detail close -->
+    </div><div class="clearfix"></div> <!-- custom_certificate_detail close -->
 </div><!-- custom_certificate_all close -->
 </div>
                                 <div class="form-group col-md-12">
