@@ -192,6 +192,24 @@
                                        </select> </td>
                                      </tr>
 
+                                     <tr>
+                                       <td>Submittal </td>
+                                       <td><input type="number" name="submittal_due_date"></td>
+                                       <td><select id="submittal_days_type" name="submittal_days_type">
+                                         <option value="1"> Calendar Days </option>
+                                          <option value="2"> Working Days </option>
+                                       </select> </td>
+                                     </tr>
+
+                                     <tr>
+                                       <td>Change Order </td>
+                                       <td><input type="number" name="change_order_due_date"></td>
+                                       <td><select id="rfi_days_type" name="change_order_days_type">
+                                         <option value="1"> Calendar Days </option>
+                                          <option value="2"> Working Days </option>
+                                       </select> </td>
+                                     </tr>
+
                                    </table>
                                  </div>
 
