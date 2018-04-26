@@ -111,6 +111,19 @@
             var project_wage_determination = data.data.p_wage_determination;
 		    $('#project_wage_determination').val(project_wage_determination);
 
+            var rfi_due_date = data.data.rfi_due_date;
+            $('#rfi_due_date').val(rfi_due_date);
+            var rfi_days_type = data.data.rfi_days_type;
+            $('#rfi_days_type').val(rfi_days_type);
+            var submittal_due_date = data.data.submittal_due_date;
+            $('#submittal_due_date').val(submittal_due_date);
+            var submittal_days_type = data.data.submittal_days_type;
+            $('#submittal_days_type').val(submittal_days_type);
+            var change_order_due_date = data.data.change_order_due_date;
+            $('#change_order_due_date').val(change_order_due_date);
+            var change_order_days_type = data.data.change_order_days_type;
+            $('#change_order_days_type').val(change_order_days_type);
+
 		    var status = data.data.p_status;
 		    if(status == "active"){
 		    	status = 'active';
@@ -190,6 +203,12 @@
         var project_wage_determination = $('#project_wage_determination').val();
         var project_status	 	= $('#status').val();
         var project_lead_agency         = $('#project_lead_agency').val();
+        var rfi_due_date                = $('#rfi_due_date').val();;
+        var rfi_days_type               = $('#rfi_days_type').val();
+        var submittal_days_type         = $('#submittal_days_type').val();
+        var submittal_due_date          = $('#submittal_due_date').val();
+        var change_order_due_date       = $('#change_order_due_date').val();
+        var change_order_days_type      = $('#change_order_days_type').val();
         // var project_terms       = $("input[name='project_terms']:checked"). val();
 
         var token = localStorage.getItem('u_token');
@@ -210,7 +229,13 @@
                 // "project_description"    : project_description,
                 "project_wage_determination" 	: project_wage_determination,
                 "project_status" 		: project_status,
-                "project_lead_agency" : project_lead_agency
+                "project_lead_agency" : project_lead_agency,
+                "rfi_due_date" : rfi_due_date,
+                "rfi_days_type" : rfi_days_type,
+                "submittal_days_type" : submittal_days_type,
+                "submittal_due_date" : submittal_due_date,
+                "change_order_due_date" : change_order_due_date,
+                "change_order_days_type" : change_order_days_type
             },
             headers: {
               "x-access-token": token

@@ -3,7 +3,9 @@ $(document).ready(function() {
 	var token = localStorage.getItem('u_token');
 	var url = $(location).attr('href').split( '/' );
 	project_id = url[ url.length - 2 ]; // projects
-	console.log(project_id);
+	var change_order_days_type =0;
+	var change_order_due_date = 0;
+ 	console.log(project_id);
 	localStorage.setItem("current_project_id", project_id);
 	var u_id = localStorage.getItem('u_id');
 	console.log(u_id);
@@ -68,7 +70,7 @@ $(document).ready(function() {
 		    cache: false
 		})
 		.done(function(data, textStatus, jqXHR) {
-		    // console.log(data);
+		     console.log(data);
 		    var project_id = data.data.p_id;
 		    $('#project_number').text(project_id);
 		    var project_number = data.data.p_number;
@@ -81,6 +83,9 @@ $(document).ready(function() {
 		    $('#project_location1').text(project_location);
 		    var project_description = data.data.p_description;
 		    $('#project_description').text(project_description);
+
+		      change_order_days_type = data.data.change_order_days_type;
+              change_order_due_date = data.data.change_order_due_date;
                     
                     if(data.data.f_name ==null)
                         $('.project_lead_agency_li').remove();
@@ -791,6 +796,7 @@ $(document).ready(function() {
 			    	// console.log(val);
 					var status = val.rir_review_status;
 					if(status == 'response_due'){
+						console.log("ri_date : "+val.ri_date);
 						if(val.rir_review_status == 'response_due' && val.rir_review_respond == null){
 							var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 							var future_date = new Date(val.ri_date);
@@ -1154,10 +1160,23 @@ $(document).ready(function() {
 			        else {
 			            console.log(val.pcd_approved_by_cm);
 			            console.log(val.pcd_approved_by_owner);
+			            console.log("change order !!");
+			            console.log(val);
 			            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
 			                var oneDay = 24*60*60*1000;
+			                change_order_days_type 
+			                console.log('change order :' + change_order_days_type);
+			                console.log('change order date :' + change_order_due_date);
+              
 			                var future_date = new Date(val.pcd_timestamp);
+			                console.log("future Date !!");
+			                console.log(future_date);
 			                var numberOfDaysToAdd = 10;
+								do {
+								future_date.setDate(future_date.getDate() + change_order_due_date)
+								} while(future_date.getDay() == 0 || future_date.getDay() == 6);
+                              console.log("updated future Date !!");
+								console.log(future_date);
 			                var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
 			                var now_date = new Date();
 			                var numberOfDaysToAdd = 0;
