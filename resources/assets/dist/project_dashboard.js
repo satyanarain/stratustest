@@ -1172,11 +1172,11 @@ $(document).ready(function() {
 			                console.log("future Date !!");
 			                console.log(future_date);
 			                var numberOfDaysToAdd = 10;
-								do {
-								future_date.setDate(future_date.getDate() + change_order_due_date)
-								} while(future_date.getDay() == 0 || future_date.getDay() == 6);
+
+							
                               console.log("updated future Date !!");
-								console.log(future_date);
+
+								console.log(add_business_days(10 , val.pcd_timestamp));
 			                var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
 			                var now_date = new Date();
 			                var numberOfDaysToAdd = 0;
@@ -1408,3 +1408,23 @@ $(document).ready(function() {
             console.log(jqXHR.responseJSON);
         });
 });
+
+
+function add_business_days(days , date) {
+  var now = new Date(date);
+  var dayOfTheWeek = now.getDay();
+  var calendarDays = days;
+  var deliveryDay = dayOfTheWeek + days;
+  if (deliveryDay >= 5) {
+    //deduct this-week days
+    days -= 5 - dayOfTheWeek;
+    //count this coming weekend
+    calendarDays += 2;
+    //how many whole weeks?
+    deliveryWeeks = Math.floor(days / 5);
+    //two days per weekend per week
+    calendarDays += deliveryWeeks * 2;
+  }
+  now.setTime(now.getTime() + calendarDays * 24 * 60 * 60 * 1000);
+  return now;
+}
