@@ -1185,13 +1185,14 @@ $(document).ready(function() {
 
 								console.log("updated : "+ futuredate);
 			                var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
+			                //console.log("updated : "+ futuredate);
 			                var now_date = new Date();
 			                var numberOfDaysToAdd = 0;
 			                var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd); 
 			                // console.log(future_date);
 			                // console.log(now_date);
-			                // console.log(futuredate);
-			                // console.log(nowdate);
+			                 console.log("updated last "+futuredate);
+			                 console.log("now "+nowdate);
 			                var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
 
 			                if(futuredate < nowdate){
