@@ -1172,12 +1172,14 @@ $(document).ready(function() {
 			                console.log("future Date !!");
 			                console.log(future_date);
 			                var numberOfDaysToAdd = 10;
-
+                            var futuredate = '';
 							if ( change_order_days_type == 1 ) {
-								   futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
+								console.log("cal 1");
+						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
 							}
 							else {
-                               futuredate = add_business_days(10 , val.pcd_timestamp);
+								console.log("cal 2");
+                                futuredate = add_business_days(10 , val.pcd_timestamp);
 							}
                               console.log("updated future Date !!");
 
