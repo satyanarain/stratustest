@@ -628,12 +628,60 @@ $(document).ready(function() {
 				    }
 				    else if(status == 'past_due'){
 				    	if(val.sub_review_type == 'yes'){
-			    			status = '<span class="label label-danger">Overdue - Expedite Review</span>';
+
+                           var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+							var future_date = new Date(val.sr_respond_date);
+							var futuredate = '';
+							if (  rfi_days_type == 1 ) {
+								//console.log("cal 1");
+						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+							}
+							else {
+								//console.log("cal 2");
+                                futuredate = add_business_days(change_order_due_date , val.sr_respond_date);
+                                var updated_f = new Date(futuredate);
+                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+							}
+						//	var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd);
+							var now_date = new Date();
+							var numberOfDaysToAdd = 0;
+							var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd);
+							var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
+
+							if(futuredate < nowdate){
+								// console.log('less');
+							status = '<span class="label label-danger">Overdue - Expedite Review</span>';
 			    			submittal_past_due++;
+							}
+			    			
 				    	}
 				    	else {
-			    			status = '<span class="label label-danger">Past due</span>';
+
+                             var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+							var future_date = new Date(val.sr_respond_date);
+							var futuredate = '';
+							if (  rfi_days_type == 1 ) {
+								//console.log("cal 1");
+						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+							}
+							else {
+								//console.log("cal 2");
+                                futuredate = add_business_days(sr_respond_date , val.sr_respond_date);
+                                var updated_f = new Date(futuredate);
+                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+							}
+						//	var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd);
+							var now_date = new Date();
+							var numberOfDaysToAdd = 0;
+							var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd);
+							var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
+
+							if(futuredate < nowdate){
+								// console.log('less');
+						   status = '<span class="label label-danger">Past due</span>';
 			    			submittal_past_due++;
+							}
+			    		
 				    	}
 				    }
 				    else {
