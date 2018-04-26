@@ -91,6 +91,7 @@ $(document).ready(function() {
         else if(check_box==false){
             project_terms = 'no';
         }
+
         
         var project_number              = $('#project_number').val();
         var project_name                = $('#project_name').val();
