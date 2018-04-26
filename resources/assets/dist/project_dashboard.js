@@ -1155,6 +1155,8 @@ $(document).ready(function() {
 			        else {
 			            console.log(val.pcd_approved_by_cm);
 			            console.log(val.pcd_approved_by_owner);
+			            console.log("change order !!");
+			            console.log(val);
 			            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
 			                var oneDay = 24*60*60*1000;
 			                var future_date = new Date(val.pcd_timestamp);
