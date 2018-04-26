@@ -88,11 +88,12 @@ $(document).ready(function() {
         if(check_box ==true){
             project_terms = "yes";
         }
+      
         else if(check_box==false){
             project_terms = 'no';
         }
 
-        
+
         var project_number              = $('#project_number').val();
         var project_name                = $('#project_name').val();
         var project_type                = $('#project_type').val();
