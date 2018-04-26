@@ -1180,6 +1180,7 @@ $(document).ready(function() {
 							else {
 								console.log("cal 2");
                                 futuredate = add_business_days(10 , val.pcd_timestamp);
+                               futuredate = futuredate.setDate(futuredate.getDate() + 0); 
 							}
                               console.log("updated future Date !!");
 
