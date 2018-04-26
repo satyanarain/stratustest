@@ -1173,7 +1173,7 @@ $(document).ready(function() {
 			                console.log(future_date);
 			                var numberOfDaysToAdd = 10;
                             var futuredate = '';
-							if ( change_order_days_type == 1 ) {
+							if ( change_order_days_type == 2 ) {
 								console.log("cal 1");
 						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
 							}
