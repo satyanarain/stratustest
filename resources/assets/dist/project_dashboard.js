@@ -1169,7 +1169,14 @@ $(document).ready(function() {
 			                console.log('change order date :' + change_order_due_date);
               
 			                var future_date = new Date(val.pcd_timestamp);
+			                console.log("future Date !!");
+			                console.log(future_date);
 			                var numberOfDaysToAdd = 10;
+								do {
+								future_date.setDate(future_date.getDate() + 1)
+								} while(future_date.getDay() == 0 || future_date.getDay() == 6);
+                              console.log("updated future Date !!");
+								console.log(future_date);
 			                var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
 			                var now_date = new Date();
 			                var numberOfDaysToAdd = 0;
