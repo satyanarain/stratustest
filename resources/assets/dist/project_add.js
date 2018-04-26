@@ -103,7 +103,7 @@ $(document).ready(function() {
         var project_description         = $('#project_description').val();
         var project_wage_determination  = $('#project_wage_determination').val();
         var project_lead_agency         = $('#project_lead_agency').val();
-        var rfi_due_date                = $('#rfi_due_date').val();
+        var rfi_due_date                = $('#rfi_due_date').val();;
         var rfi_days_type               = $('#rfi_days_type').val();
         var submittal_days_type         = $('#submittal_days_type').val();
         var submittal_due_date          = $('#submittal_due_date').val();
