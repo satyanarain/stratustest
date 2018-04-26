@@ -190,6 +190,54 @@
                             </div>
                             <div class="clearfix"></div>
 
+                             <div class="form-group col-md-6 lead_agency_class" style="display: none;">
+                                        <label for="project_name">Lead Agency<span class="text-danger">*</span></label>
+                                        <select class="form-control" id="project_lead_agency">
+                                        </select>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                   <div class="col-md-12">
+                                   <table class="table table-bordered">
+                                     <tr>
+                                       <td>
+                                         Type
+                                       </td>
+                                       <td>
+                                         Days for Past Due
+                                       </td>
+                                       <td>Calendar Days / Working Days</td>
+                                     </tr>
+
+                                     <tr>
+                                       <td>RFI </td>
+                                       <td><input type="number" id="rfi_due_date" name="rfi_due_date" placeholder="No of days ..." required></td>
+                                       <td><select id="rfi_days_type" name="rfi_days_type"  >
+                                         <option value="1"> Calendar Days </option>
+                                          <option value="2"> Working Days </option>
+                                       </select> </td>
+                                     </tr>
+
+                                     <tr>
+                                       <td>Submittal </td>
+                                       <td><input type="number" id="submittal_due_date" name="submittal_due_date" required placeholder="No of days ..."></td>
+                                       <td><select id="submittal_days_type" name="submittal_days_type">
+                                         <option value="1"> Calendar Days </option>
+                                          <option value="2"> Working Days </option>
+                                       </select> </td>
+                                     </tr>
+
+                                     <tr>
+                                       <td>Change Order </td>
+                                       <td><input type="number" id="change_order_due_date" name="change_order_due_date" required placeholder="No of days ..."></td>
+                                       <td><select id="change_order_days_type" name="change_order_days_type">
+                                         <option value="1"> Calendar Days </option>
+                                          <option value="2"> Working Days </option>
+                                       </select> </td>
+                                     </tr>
+
+                                   </table>
+                                 </div>
+
                        
 
                             <!-- <div class="form-group">
