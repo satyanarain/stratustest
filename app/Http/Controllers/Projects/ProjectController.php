@@ -425,6 +425,12 @@ class ProjectController extends Controller {
         $project_status       = $request['project_status'];
         $project_terms        = $request['project_terms'];
         $project_lead_agency  = $request['project_lead_agency'];
+        $rfi_due_date         = $request['rfi_due_date'];
+        $rfi_days_type        = $request['rfi_days_type'];
+        $submittal_days_type        = $request['submittal_days_type'];
+        $submittal_due_date        = $request['submittal_due_date'];
+        $change_order_due_date        = $request['change_order_due_date'];
+        $change_order_days_type        = $request['change_order_days_type'];
           
         $information = array(
             // "p_number"        => $project_number,
@@ -434,6 +440,12 @@ class ProjectController extends Controller {
             "p_status"        => $project_status,
             "p_wage_determination" => $project_wage_determination,
              "project_terms"   => $project_terms,
+              "rfi_due_date"          => $rfi_due_date,
+            "rfi_days_type"          => $rfi_days_type,
+            "submittal_days_type"          => $submittal_days_type,
+            "submittal_due_date"          => $submittal_due_date,
+            "change_order_due_date"          => $change_order_due_date,
+            "change_order_days_type"          => $change_order_days_type,
         );
         $rules = [
             // "p_number"        => 'required|unique:projects',
@@ -442,7 +454,14 @@ class ProjectController extends Controller {
             "p_type"          => 'required',
             "p_status"        => 'required',
             "p_wage_determination" => 'required',
-             "project_terms"   => 'required'
+             "project_terms"   => 'required',
+              "rfi_due_date"          => 'required',
+            "rfi_days_type"         => 'required',
+            "submittal_days_type"   => 'required',
+            "submittal_due_date"    => 'required',
+            "change_order_due_date" => 'required',
+            "change_order_days_type"=> 'required'
+
         ];
         $validator = Validator::make($information, $rules);
         if ($validator->fails()) 
@@ -466,7 +485,7 @@ class ProjectController extends Controller {
             ->where('p_id', '=', $project_id)
             // ->update(['p_number' => $project_number, 'p_name' => $project_name, 'p_location' => $project_location, 'p_long' => $project_long, 'p_lat' => $project_lat, 'p_type' => $project_type, 'p_description' => $project_description, 'p_status' => $project_status]);
             // ->update(['p_name' => $project_name, 'p_location' => $project_location, 'p_long' => $project_long, 'p_lat' => $project_lat, 'p_type' => $project_type, 'p_description' => $project_description, 'p_status' => $project_status]);
-            ->update(['p_name' => $project_name, 'p_location' => $project_location, 'p_long' => $project_long, 'p_lat' => $project_lat, 'p_term' => $project_terms, 'p_lead_agency' => $project_lead_agency, 'p_type' => $project_type, 'p_wage_determination' => $project_wage_determination, 'p_status' => $project_status]);
+            ->update(['p_name' => $project_name, 'p_location' => $project_location, 'p_long' => $project_long, 'p_lat' => $project_lat, 'p_term' => $project_terms, 'p_lead_agency' => $project_lead_agency, 'p_type' => $project_type, 'p_wage_determination' => $project_wage_determination, 'p_status' => $project_status,'rfi_due_date' => $rfi_due_date,'rfi_days_type' => $rfi_days_type,'submittal_days_type' => $submittal_days_type,'submittal_due_date' => $submittal_due_date,'change_order_due_date' => $change_order_due_date,'change_order_days_type' => $change_order_days_type]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
