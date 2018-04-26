@@ -1173,10 +1173,15 @@ $(document).ready(function() {
 			                console.log(future_date);
 			                var numberOfDaysToAdd = 10;
 
-							
+							if ( change_order_days_type == 1 ) {
+								   futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
+							}
+							else {
+                               futuredate = add_business_days(10 , val.pcd_timestamp);
+							}
                               console.log("updated future Date !!");
 
-								console.log(add_business_days(10 , val.pcd_timestamp));
+								console.log(futuredate);
 			                var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
 			                var now_date = new Date();
 			                var numberOfDaysToAdd = 0;
