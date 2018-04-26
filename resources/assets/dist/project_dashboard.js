@@ -791,7 +791,7 @@ $(document).ready(function() {
 			    	// console.log(val);
 					var status = val.rir_review_status;
 					if(status == 'response_due'){
-						console.log(val.ri_date);
+						console.log("ri_date : "+val.ri_date);
 						if(val.rir_review_status == 'response_due' && val.rir_review_respond == null){
 							var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 							var future_date = new Date(val.ri_date);
