@@ -3,7 +3,9 @@ $(document).ready(function() {
 	var token = localStorage.getItem('u_token');
 	var url = $(location).attr('href').split( '/' );
 	project_id = url[ url.length - 2 ]; // projects
-	console.log(project_id);
+	var change_order_days_type =0;
+	var change_order_due_date = 0;
+ 	console.log(project_id);
 	localStorage.setItem("current_project_id", project_id);
 	var u_id = localStorage.getItem('u_id');
 	console.log(u_id);
@@ -81,6 +83,9 @@ $(document).ready(function() {
 		    $('#project_location1').text(project_location);
 		    var project_description = data.data.p_description;
 		    $('#project_description').text(project_description);
+
+		      change_order_days_type = data.data.change_order_days_type;
+              change_order_due_date = data.data.change_order_due_date;
                     
                     if(data.data.f_name ==null)
                         $('.project_lead_agency_li').remove();
@@ -1159,6 +1164,10 @@ $(document).ready(function() {
 			            console.log(val);
 			            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
 			                var oneDay = 24*60*60*1000;
+			                change_order_days_type 
+			                console.log('change order :' + change_order_days_type);
+			                console.log('change order date :' + change_order_due_date);
+              
 			                var future_date = new Date(val.pcd_timestamp);
 			                var numberOfDaysToAdd = 10;
 			                var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
