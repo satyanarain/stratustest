@@ -1173,7 +1173,7 @@ $(document).ready(function() {
 			                console.log(future_date);
 			                var numberOfDaysToAdd = 10;
 								do {
-								future_date.setDate(future_date.getDate() + 1)
+								future_date.setDate(future_date.getDate() + change_order_due_date)
 								} while(future_date.getDay() == 0 || future_date.getDay() == 6);
                               console.log("updated future Date !!");
 								console.log(future_date);
