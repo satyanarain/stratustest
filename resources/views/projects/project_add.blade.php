@@ -172,6 +172,28 @@
                                     </div>
                                     <div class="clearfix"></div>
 
+                                   <table>
+                                     <tr>
+                                       <td>
+                                         Type
+                                       </td>
+                                       <td>
+                                         Days for Past Due
+                                       </td>
+                                       <td>Calendar Days / Working Days</td>
+                                     </tr>
+
+                                     <tr>
+                                       <td>RFI </td>
+                                       <td><input type="number" name="rfi_due_date"></td>
+                                       <td><select id="rfi_days_type" name="rfi_days_type">
+                                         <option value="1"> Calendar Days </option>
+                                          <option value="2"> Working Days </option>
+                                       </select> </td>
+                                     </tr>
+
+                                   </table>
+
                                     <div class="form-group col-md-12">
                                         
 <!--                                        <a data-href="{{ url('/dashboard') }}" class="btn btn-info  back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->

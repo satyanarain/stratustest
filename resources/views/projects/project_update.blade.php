@@ -163,16 +163,7 @@
                                 <textarea class="form-control" id="project_description" rows="10"></textarea>
                             </div>
 
-                            <div class="form-group col-md-6">
-                                <label for="project_status">Project Status</label>
-                                <select class="form-control" id="status">
-                                    <option value="active">Active</option>
-                                    <option value="deactive">Inactive</option>
-                                </select>
-                            </div>
-                            <div class="clearfix"></div>
-
-                             <div class="clearfix"></div>
+                                  <div class="clearfix"></div>
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label class="checkbox-custom check-success">
@@ -187,6 +178,19 @@
                                         <select class="form-control" id="project_lead_agency">
                                         </select>
                                     </div>
+
+                                    <div class="clearfix"></div>
+
+                            <div class="form-group col-md-6">
+                                <label for="project_status">Project Status</label>
+                                <select class="form-control" id="status">
+                                    <option value="active">Active</option>
+                                    <option value="deactive">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="clearfix"></div>
+
+                       
 
                             <!-- <div class="form-group">
                                 <div class="col-md-12">
