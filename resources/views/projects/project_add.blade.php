@@ -172,7 +172,7 @@
                                     </div>
                                     <div class="clearfix"></div>
 
-                                   <table>
+                                   <table class="table-bordered">
                                      <tr>
                                        <td>
                                          Type
