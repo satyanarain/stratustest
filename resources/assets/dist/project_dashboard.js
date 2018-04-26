@@ -1183,7 +1183,7 @@ $(document).ready(function() {
 							}
                               console.log("updated future Date !!");
 
-								console.log(futuredate);
+								console.log("updated : "+ futuredate);
 			                var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
 			                var now_date = new Date();
 			                var numberOfDaysToAdd = 0;
