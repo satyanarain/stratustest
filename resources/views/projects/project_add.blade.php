@@ -171,7 +171,7 @@
                                         </select>
                                     </div>
                                     <div class="clearfix"></div>
-
+                                   <div class="col-md-12">
                                    <table class="table table-bordered">
                                      <tr>
                                        <td>
@@ -193,6 +193,7 @@
                                      </tr>
 
                                    </table>
+                                 </div>
 
                                     <div class="form-group col-md-12">
                                         
