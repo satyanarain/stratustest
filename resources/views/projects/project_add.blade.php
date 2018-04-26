@@ -186,7 +186,7 @@
                                      <tr>
                                        <td>RFI </td>
                                        <td><input type="number" name="rfi_due_date" required></td>
-                                       <td><select id="rfi_days_type" name="rfi_days_type">
+                                       <td><select id="rfi_days_type" name="rfi_days_type" placeholder="No of days ..." >
                                          <option value="1"> Calendar Days </option>
                                           <option value="2"> Working Days </option>
                                        </select> </td>
@@ -194,7 +194,7 @@
 
                                      <tr>
                                        <td>Submittal </td>
-                                       <td><input type="number" name="submittal_due_date" required></td>
+                                       <td><input type="number" name="submittal_due_date" required placeholder="No of days ..."></td>
                                        <td><select id="submittal_days_type" name="submittal_days_type">
                                          <option value="1"> Calendar Days </option>
                                           <option value="2"> Working Days </option>
@@ -203,7 +203,7 @@
 
                                      <tr>
                                        <td>Change Order </td>
-                                       <td><input type="number" name="change_order_due_date" required></td>
+                                       <td><input type="number" name="change_order_due_date" required placeholder="No of days ..."></td>
                                        <td><select id="rfi_days_type" name="change_order_days_type">
                                          <option value="1"> Calendar Days </option>
                                           <option value="2"> Working Days </option>
