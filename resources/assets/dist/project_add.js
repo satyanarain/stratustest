@@ -236,6 +236,10 @@ $(document).ready(function() {
                 $("#project_wage_determination").removeAttr('value');
                 $('#project_terms').attr('checked', false);
                 $("#project_lead_agency").removeAttr('value');
+
+                $("#rfi_due_date").removeAttr('value');
+                $("#submittal_due_date").removeAttr('value');
+                $("#change_order_due_date").removeAttr('value');
                 //$("#project_location").removeAttr('value');
                 $("#project_description").removeAttr('value');
                 $(".select2-search-choice-close").trigger("click");

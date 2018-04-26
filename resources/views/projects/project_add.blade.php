@@ -172,6 +172,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                    <div class="col-md-12">
+                                    <h3>  Past Due Configuration </h3>
                                    <table class="table table-bordered">
                                      <tr>
                                        <td>
@@ -184,7 +185,7 @@
                                      </tr>
 
                                      <tr>
-                                       <td>RFI </td>
+                                       <td>RFI <span class="text-danger">*</span> </td>
                                        <td><input type="number" id="rfi_due_date" name="rfi_due_date" placeholder="No of days ..." required></td>
                                        <td><select id="rfi_days_type" name="rfi_days_type"  >
                                          <option value="1"> Calendar Days </option>
@@ -193,7 +194,7 @@
                                      </tr>
 
                                      <tr>
-                                       <td>Submittal </td>
+                                       <td>Submittal <span class="text-danger">*</span></td>
                                        <td><input type="number" id="submittal_due_date" name="submittal_due_date" required placeholder="No of days ..."></td>
                                        <td><select id="submittal_days_type" name="submittal_days_type">
                                          <option value="1"> Calendar Days </option>
@@ -202,7 +203,7 @@
                                      </tr>
 
                                      <tr>
-                                       <td>Change Order </td>
+                                       <td>Change Order <span class="text-danger">*</span></td>
                                        <td><input type="number" id="change_order_due_date" name="change_order_due_date" required placeholder="No of days ..."></td>
                                        <td><select id="change_order_days_type" name="change_order_days_type">
                                          <option value="1"> Calendar Days </option>
