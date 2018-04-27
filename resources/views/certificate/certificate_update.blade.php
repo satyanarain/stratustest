@@ -323,23 +323,12 @@
                                     </div><!-- Col 6 Close -->
                                 </div>
 
-                                <div class="form-group col-md-12">
-                                    <button class="btn btn-success addon-btn m-b-10" id="add_more_certificate" style="float: right; width: 200px;">
-                                        <i class="fa fa-plus"></i>
-                                        Add Another Certificate
-                                    </button>
-                                </div>
 
                                 <div id="add_more_certificate_div" >
                                   <div class="col-sm-6">
                                         <h3>Custom Certificate</h3>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <button class="btn btn-success addon-btn m-b-10" id="add_more_cert" style="float: right;">
-                                        <i class="fa fa-plus"></i>
-                                            Add Certificate
-                                        </button>
-                                    </div>
+                            
                                     <div class="clearfix"></div>
 <div class="custom_certificate_all">
      <div class="custom_certificate_detail">
