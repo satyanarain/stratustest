@@ -47,7 +47,7 @@
                                 document.getElementById('general_liability').style.display = 'block';
                             }
 
-                            var work_comp = new Date(data.data.data.data.work_comp_exp);
+                            var work_comp = new Date(data.data.work_comp_exp);
                         var work_comp = work_comp.setDate(work_comp.getDate() + numberOfDaysToAdd);
 
                             if(work_comp < nowdate){
