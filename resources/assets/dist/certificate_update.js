@@ -62,7 +62,7 @@
                             }
 
                             var umbrella_date = new Date(data.data.umbrella_liability_exp);
-                        var umbrella_date = general_date.setDate(umbrella_date.getDate() + numberOfDaysToAdd);
+                        var umbrella_date = umbrella_date.setDate(umbrella_date.getDate() + numberOfDaysToAdd);
 
                             if(umbrella_date < nowdate){
                                 document.getElementById('add_umbrella_liability_div').style.display = 'block';
