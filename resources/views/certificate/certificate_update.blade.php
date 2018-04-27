@@ -542,4 +542,5 @@
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/certificate_update.js') }}"></script>
+<script src="{{ url('/resources/assets/js/dropzone.js?v=1.0') }}"></script>
 @include('include/footer')
