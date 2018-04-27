@@ -47,6 +47,27 @@
                                 document.getElementById('general_liability').style.display = 'block';
                             }
 
+                            var work_comp = new Date(data.data.data.data.work_comp_exp);
+                        var work_comp = work_comp.setDate(work_comp.getDate() + numberOfDaysToAdd);
+
+                            if(work_comp < nowdate){
+                                document.getElementById('workers_comp').style.display = 'block';
+                            }
+
+                            var auto_comp = new Date(data.data.auto_liability_exp);
+                        var auto_comp = auto_comp.setDate(auto_comp.getDate() + numberOfDaysToAdd);
+
+                            if(auto_comp < nowdate){
+                                document.getElementById('auto_laibility').style.display = 'block';
+                            }
+
+                            var umbrella_date = new Date(data.data.umbrella_liability_exp);
+                        var umbrella_date = general_date.setDate(umbrella_date.getDate() + numberOfDaysToAdd);
+
+                            if(umbrella_date < nowdate){
+                                document.getElementById('add_umbrella_liability_div').style.display = 'block';
+                            }
+
             $('#general_liability_cur_symbol').val(data.data.liability_currency);
             $('#general_liability_amount').val(data.data.liability_limit);
             $('#general_liability_date').val(data.data.liability_exp);
