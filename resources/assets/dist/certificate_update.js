@@ -35,6 +35,26 @@
 		})
 		    .done(function(data, textStatus, jqXHR) {
 		    console.log(data);
+
+            $('#general_liability_cur_symbol').val(data.data.liability_currency);
+            $('#general_liability_amount').val(data.data.liability_limit);
+            $('#general_liability_date').val(data.data.liability_exp);
+            //$('#upload_doc_id_general').val(data.data.statu);
+
+            $('#works_compensation_cur_symbol').val(data.data.statu);
+            $('#works_compensation_currency').val(data.data.statu);
+            $('#works_compensation_date').val(data.data.statu);
+
+            $('#upload_doc_id_work').val(data.data.statu);
+            $('#auto_compensation_cur_symbol').val(data.data.statu);
+            $('#auto_compensation_currency').val(data.data.statu);
+            $('#auto_compensation_date').val(data.data.statu);
+            $('#upload_doc_id_auto').val(data.data.statu);
+            $('#umbrella_liability_cur_symbol').val(auto_compensation_cur_symbol);
+            $('#umbrella_liability_currency').val(auto_compensation_cur_symbol);
+            $('#umbrella_liability_date').val(auto_compensation_cur_symbol);
+            $('#upload_doc_id_umbrella').val(auto_compensation_cur_symbol);
+
 		    var status = data.data.status;
 		    if(status == "active"){
 		    	status = 'active';
