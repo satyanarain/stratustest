@@ -36,6 +36,17 @@
 		    .done(function(data, textStatus, jqXHR) {
 		    console.log(data);
 
+                        var now_date = new Date();
+                        var numberOfDaysToAdd = 0;
+                        var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd);
+
+                        var general_date = new Date(data.data.liability_exp);
+                        var general = general.setDate(general.getDate() + numberOfDaysToAdd);
+
+                            if(general_date < nowdate){
+                                document.getElementById('general_liability').style.display = 'block';
+                            }
+
             $('#general_liability_cur_symbol').val(data.data.liability_currency);
             $('#general_liability_amount').val(data.data.liability_limit);
             $('#general_liability_date').val(data.data.liability_exp);

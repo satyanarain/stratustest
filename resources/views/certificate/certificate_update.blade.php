@@ -42,7 +42,7 @@
                                     <input type="hidden" id="company_name" value="">
                                     <hr/>
                                 </div>
-
+                               <div id="general_liability" style="display: none">
                                 <div class="col-md-12">
                                     <h3>General Liability</h3>
                                 </div>
@@ -108,10 +108,11 @@
                                         </div>
                                     </section>
                                 </div><!-- Col 6 Close -->
+                                </div>
                                 <div class="col-sm-12">
                                     <hr/>
                                 </div>
-
+                         <div id="workers_comp" style="display: none">
                                 <div class="col-sm-12">
                                     <h3 style="margin-top:50px;">Workers Compensation Limit</h3>
                                 </div><!-- Col 12 Close -->
@@ -178,6 +179,7 @@
                                     </section>
                                     <div class="clearfix"></div>
                                 </div><!-- Col 6 Close -->
+                            </div>
                                 <div class="col-sm-12">
                                     <hr/>
                                 </div>
@@ -186,7 +188,7 @@
 
 
 
-
+  <div id="auto_laibility" style="display: none">
                                 <div class="col-sm-12">
                                         <h3 style="margin-top:50px;">Auto Liability</h3>
                                 </div><!-- Col 12 Close -->
@@ -256,10 +258,10 @@
                                 <div class="col-sm-12">
                                     <hr/>
                                 </div>
-        
+                       </div>
     
 
-                                <div id="add_umbrella_liability_div" style="">
+                                <div id="add_umbrella_liability_div" style="display: none;">
                                     <div class="col-sm-10">
                                         <h3 style="margin: 0px;">Umbrella Liability</h3>
                                     </div><!-- Col 12 Close -->
@@ -328,9 +330,8 @@
                                         </section>
                                     </div><!-- Col 6 Close -->
                                 </div>
-
-
-                                <div id="add_more_certificate_div" >
+                        
+                                <div id="add_more_certificate_div" style="display: none">
                                   <div class="col-sm-6">
                                         <h3>Custom Certificate</h3>
                                     </div>
