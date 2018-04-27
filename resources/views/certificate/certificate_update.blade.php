@@ -28,7 +28,7 @@
                             <div class="panel-body">
                             <div id="alert_message"></div>
 
-                                   <form role="form" id="update_certificate_form">
+                                  
 
                                 <div class="form-group col-md-12">
                                     <label for="company_name"></label>
@@ -529,8 +529,7 @@
                                     </div>
 
                                     </div>
-                                </form>
-
+                               
                             </div>
                         </section>
                     </div>
