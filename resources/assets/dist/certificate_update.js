@@ -41,7 +41,7 @@
                         var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd);
 
                         var general_date = new Date(data.data.liability_exp);
-                        var general = general.setDate(general.getDate() + numberOfDaysToAdd);
+                        var general_date = general_date.setDate(general_date.getDate() + numberOfDaysToAdd);
 
                             if(general_date < nowdate){
                                 document.getElementById('general_liability').style.display = 'block';
