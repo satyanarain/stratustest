@@ -102,6 +102,9 @@
                                             <input type="hidden" name="standard_upload" id="upload_doc_meta" value="certificate">
                                             <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $project_id; ?>">
                                             <input type="hidden" name="standard_doc_id" id="upload_doc_id_general" value="">
+
+
+                                             <input type="hidden" name="standard_doc_id_old" id="standard_doc_id_old" value="">
                                         </div>
                                     </section>
                                 </div><!-- Col 6 Close -->
@@ -170,6 +173,7 @@
                                                 <input type="hidden" class="certificate_work_compensation" name="document_path" value="/uploads/certificate/">
                                             </form>
                                             <input type="hidden" name="standard_doc_id" id="upload_doc_id_work" value="">
+                                              <input type="hidden" name="standard_doc_id" id="upload_doc_id_work_old" value="">
                                         </div>
                                     </section>
                                     <div class="clearfix"></div>
@@ -245,6 +249,7 @@
                                                 <input type="hidden" class="certificate_auto_liability" name="document_path" value="/uploads/certificate/">
                                             </form>
                                             <input type="hidden" name="standard_doc_id" id="upload_doc_id_auto" value="">
+                                            <input type="hidden" name="standard_doc_id" id="upload_doc_id_auto_old" value="">
                                         </div>
                                     </section>
                                 </div><!-- Col 6 Close -->
@@ -318,6 +323,7 @@
                                                     <input type="hidden" class="certificate_auto_umbrella" name="document_path" value="/uploads/certificate/">
                                                 </form>
                                                 <input type="hidden" name="standard_doc_id" id="upload_doc_id_umbrella" value="">
+                                                  <input type="hidden" name="standard_doc_id" id="upload_doc_id_umbrella_old" value="">
                                             </div>
                                         </section>
                                     </div><!-- Col 6 Close -->

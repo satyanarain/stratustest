@@ -39,6 +39,7 @@
             $('#general_liability_cur_symbol').val(data.data.liability_currency);
             $('#general_liability_amount').val(data.data.liability_limit);
             $('#general_liability_date').val(data.data.liability_exp);
+              $('#standard_doc_id_old').val(data.data.liability_cert_path);
               if ( data.data.liability_required_min = 'yes' ) {
                 $( "#req_minimum_general" ).prop( "checked", true );
             }
@@ -47,6 +48,7 @@
             $('#works_compensation_cur_symbol').val(data.data.work_comp_currency);
             $('#works_compensation_currency').val(data.data.work_comp_limit);
             $('#works_compensation_date').val(data.data.work_comp_exp);
+            $('#upload_doc_id_work_old').val(data.data.work_comp_cert_path);
 
             if ( data.data.works_comp_required_min = 'yes' ) {
                 $( "#req_minimum_work" ).prop( "checked", true );
@@ -57,6 +59,7 @@
             $('#auto_compensation_cur_symbol').val(data.data.auto_liability_currency);
             $('#auto_compensation_currency').val(data.data.auto_liability_limit);
             $('#auto_compensation_date').val(data.data.auto_liability_exp);
+             $('#auto_compensation_date').val(data.data.auto_liability_cert_path);
 
              if ( data.data.auto_liability_required_min = 'yes' ) {
                 $( "#auto_req_minimum" ).prop( "checked", true );
@@ -65,6 +68,7 @@
             $('#umbrella_liability_cur_symbol').val(data.data.umbrella_liability_currency);
             $('#umbrella_liability_currency').val(data.data.umbrella_liability_limit);
             $('#umbrella_liability_date').val(data.data.umbrella_liability_exp);
+            $('#upload_doc_id_umbrella_old').val(data.data.umbrella_liability_cert_path);
            // $('#upload_doc_id_umbrella').val(auto_compensation_cur_symbol);
 
 		    var status = data.data.status;
