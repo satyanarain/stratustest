@@ -235,12 +235,51 @@ class NoticeCompletionController extends Controller {
             else
             {
               $project_id = $noc_project_id;
+              $usrlists = DB::table('project_preliminary_notice')
+                    ->where('project_preliminary_notice.ppn_project_id', '=', $project_id)
+                    //->leftJoin('project_preliminary_notice', 'users.id', '=', 'project_preliminary_notice.preliminary_notice_from')
+                    ->leftJoin('projects', 'project_preliminary_notice.ppn_project_id', '=', 'projects.p_id')
+                    ->leftJoin('project_firm', 'project_firm.f_id', '=', 'project_preliminary_notice.preliminary_notice_from')
+                    ->leftJoin('users', 'users.id', '=', 'project_firm.f_user')
+                    ->select('projects.*','project_preliminary_notice.*','project_firm.*','users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role')
+                    ->where('users.status', '!=', 2)
+                    ->get();
+                    foreach($usrlists as $usrlist)
+                    {
+                        $project_id           = $project_id;
+                        $notification_title   = 'An NOC has been filed with the County Recorder\'s Office on '.date('M d, Y', strtotime($date_noc_filed)).' in Project: ' .$usrlist->p_name;
+                        $url                  = App::make('url')->to('/');
+                        $link                 = "/dashboard/".$project_id."/notice_completion";
+                        $date                 = date("M d, Y h:i a");
+                        $email_description    = 'An NOC has been filed with the County Recorder\'s Office on '.date('M d, Y', strtotime($date_noc_filed)).' in Project: <strong>'.$usrlist->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                      $user_detail = array(
+                        'id'              => $usrlist->id,
+                        'name'            => $usrlist->username,
+                        'email'           => $usrlist->email,
+                        'link'            => $link,
+                        'date'            => $date,
+                        'project_name'    => $usrlist->p_name,
+                        'title'           => $notification_title,
+                        'description'     => $email_description
+                      );
+                      $user_single = (object) $user_detail;
+                      Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                          $message->from('no-reply@sw.ai', 'StratusCM');
+                          $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                      });
+                    }
+                 // echo '<pre>';print_r($usrlist);die;
               // Start Check User Permission and send notification and email  
               // Get Project Users
               $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
-
+                //echo '<pre>';print_r($check_project_users);
               // Check User Project Permission  
               foreach ($check_project_users as $check_project_user) {
+                  
+                    
+                  
+                  
+                  
                 // Check User Permission Parameter 
                 $user_id              = $check_project_user->id;
                 $permission_key       = 'notice_completion_view_all';

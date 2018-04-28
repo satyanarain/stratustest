@@ -515,6 +515,10 @@ $(document).ready(function() {
         var token                   = localStorage.getItem('u_token');
         var project_type_dropdown_new = $('#project_type_dropdown_new').val();
         var project_type_dropdown_old = $('#project_type_dropdown_old').val();
+        if($('input:radio[name=contractor_bond_required]:checked').val()!="")
+            var contractor_bond_required = $('input:radio[name=contractor_bond_required]:checked').val();
+        else
+            var contractor_bond_required = "no";
         var html;
         var is_error = false;
         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
@@ -587,6 +591,7 @@ $(document).ready(function() {
                 "notice_path"           : upload_doc_id,
                 "project_id"            : project_id,
                 "signatory_arr"         : signatory_arr,
+                "contractor_bond_required": contractor_bond_required,
             },
             headers: {
               "x-access-token": token

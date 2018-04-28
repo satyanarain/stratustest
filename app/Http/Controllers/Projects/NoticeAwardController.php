@@ -62,6 +62,7 @@ class NoticeAwardController extends Controller {
         $user_id            = Auth::user()->id;
         $status             = 'active';
         $signatory_arr      = $request['signatory_arr'];
+        $contractor_bond_required = $request['contractor_bond_required'];
         $pna_envelope_id    = '';
         $pna_docusign_status = 'pending';
     // Check User Permission Parameter 
@@ -169,7 +170,10 @@ class NoticeAwardController extends Controller {
                     $email = env('DOCUSIGN_EMAIL');
                     $password = env('DOCUSIGN_PASSWORD');
                     $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
-                    $templateId = "0e301a1c-80c3-44b5-979b-7ed94a472290";
+                    if($contractor_bond_required=="yes")
+                        $templateId = "0e301a1c-80c3-44b5-979b-7ed94a472290";
+                    else
+                        $templateId = "0e301a1c-80c3-44b5-979b-7ed94a472290";
                     $url = env('DOCUSIGN_URL');
                     $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
                     $curl = curl_init($url);
