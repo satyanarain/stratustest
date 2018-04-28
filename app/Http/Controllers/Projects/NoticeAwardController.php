@@ -62,7 +62,7 @@ class NoticeAwardController extends Controller {
         $user_id            = Auth::user()->id;
         $status             = 'active';
         $signatory_arr      = $request['signatory_arr'];
-        echo $contractor_bond_required = $request['contractor_bond_required'];die;
+        $contractor_bond_required = $request['contractor_bond_required'];
         $pna_envelope_id    = '';
         $pna_docusign_status = 'pending';
     // Check User Permission Parameter 
