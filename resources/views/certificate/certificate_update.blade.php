@@ -104,7 +104,7 @@
                                             <input type="hidden" name="standard_doc_id" id="upload_doc_id_general" value="">
 
 
-                                             <input type="hidden" name="standard_doc_id_old" id="standard_doc_id_old" value="">
+                                             <input type="hidden" name="standard_doc_id_old" id="upload_doc_id_general_old" value="">
                                         </div>
                                     </section>
                                 </div><!-- Col 6 Close -->

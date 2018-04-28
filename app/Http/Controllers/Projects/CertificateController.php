@@ -266,6 +266,34 @@ class CertificateController extends Controller {
         // $auto_liability_cert_path     = $request['auto_liability_cert_path'];
         $project_id                   = $request['project_id'];
         $user_id                      = Auth::user()->id;
+          $liability_currency           = $request['liability_currency'];
+        $liability_limit              = $request['liability_limit'];
+        $liability_exp                = $request['liability_exp'];
+        $liability_required_min       = $request['liability_required_min'];
+        $liability_cert_path          = $request['liability_cert_path'];
+        $work_comp_currency           = $request['work_comp_currency'];
+        $work_comp_limit              = $request['work_comp_limit'];
+        $work_comp_exp                = $request['work_comp_exp'];
+        $works_comp_include_above     = $request['works_comp_include_above'];
+        $works_comp_required_min      = $request['works_comp_required_min'];
+        $works_comp_not_include       = $request['works_comp_not_include'];
+        $work_comp_cert_path          = $request['work_comp_cert_path'];
+        $auto_liability_currency      = $request['auto_liability_currency'];
+        $auto_liability_limit         = $request['auto_liability_limit'];
+        $auto_liability_exp           = $request['auto_liability_exp'];
+        $auto_include_above           = $request['auto_include_above'];
+        $auto_liability_required_min  = $request['auto_liability_required_min'];
+        $auto_liability_not_include   = $request['auto_liability_not_include'];
+        $auto_liability_cert_path     = $request['auto_liability_cert_path'];
+
+        $umbrella_currency            = $request['umbrella_currency'];
+        $umbrella_limit               = $request['umbrella_limit'];
+        $umbrella_exp                 = $request['umbrella_exp'];
+        $umbrella_include_above       = $request['umbrella_include_above'];
+        $umbrella_required_min        = $request['umbrella_required_min'];
+        $umbrella_not_include         = $request['umbrella_not_include'];
+        $umbrella_cert_path           = $request['umbrella_cert_path'];
+        $upload_doc_id_certificate    = $request['upload_doc_id_certificate'];
         $status                       = $request['status'];
     // Check User Permission Parameter 
     $user_id = Auth::user()->id;
@@ -282,21 +310,64 @@ class CertificateController extends Controller {
             // "liability_cert_path"   => $liability_cert_path,
             // "work_comp_limit"       => $work_comp_limit,
             // "auto_liability_limit"  => $auto_liability_limit,
-            "project_id"            => $project_id,
-            "user_id"               => $user_id,
-            "status"                => $status
+             "company_name"              => $company_name,
+            "liability_exp"             => $liability_exp,
+            "liability_required_min"    => $liability_required_min,
+            "liability_limit"           => $liability_limit,
+            "liability_cert_path"       => $liability_cert_path,
+            "work_comp_limit"           => $work_comp_limit,
+            "work_comp_exp"             => $work_comp_exp,
+            "work_comp_cert_path"       => $work_comp_cert_path,
+            "auto_liability_limit"      => $auto_liability_limit,
+            "auto_liability_exp"        => $auto_liability_exp,
+            "auto_liability_cert_path"  => $auto_liability_cert_path,
+            "umbrella_limit"            => $umbrella_limit,
+            "umbrella_exp"              => $umbrella_exp,
+            "umbrella_cert_path"        => $umbrella_cert_path,
+            "project_id"                => $project_id,
+            "user_id"                   => $user_id,
+            "status"                    => $status
         );
 
-        $rules = [
-            // 'liability_limit'       => 'numeric',
-            // 'liability_exp'         => 'required',
-            // 'liability_cert_path'   => 'required|numeric',
-            // 'work_comp_limit'       => 'numeric',
-            // 'auto_liability_limit'  => 'numeric',
-            'project_id'            => 'required|numeric',
-            'user_id'               => 'required|numeric',
-            'status'                => 'required'
-        ];
+           if(empty($umbrella_limit)){
+          $rules = [
+            'company_name'              => 'numeric',
+            'liability_exp'             => 'required',
+            // 'liability_required_min'    => 'required',
+            'liability_limit'           => 'required|numeric',
+            //'liability_cert_path'       => 'required|numeric',
+            'work_comp_limit'           => 'required|numeric',
+            'work_comp_exp'             => 'required',
+            //'work_comp_cert_path'       => 'required|numeric',
+            'auto_liability_limit'      => 'required|numeric',
+            'auto_liability_exp'        => 'required',
+            //'auto_liability_cert_path'  => 'required|numeric',
+            'project_id'                => 'required|numeric',
+            'user_id'                   => 'required|numeric',
+            'status'                    => 'required'
+          ];
+        }
+        else {
+          $rules = [
+            'company_name'              => 'numeric',
+            'liability_exp'             => 'required',
+            // 'liability_required_min'    => 'required',
+            'liability_limit'           => 'required|numeric',
+            //'liability_cert_path'       => 'required|numeric',
+            'work_comp_limit'           => 'required|numeric',
+            'work_comp_exp'             => 'required',
+            //'work_comp_cert_path'       => 'required|numeric',
+            'auto_liability_limit'      => 'required|numeric',
+            'auto_liability_exp'        => 'required',
+            //'auto_liability_cert_path'  => 'required|numeric',
+            'umbrella_limit'            => 'required|numeric',
+            'umbrella_exp'              => 'required',
+            'umbrella_cert_path'        => 'required|numeric',
+            'project_id'                => 'required|numeric',
+            'user_id'                   => 'required|numeric',
+            'status'                    => 'required'
+          ];
+        }
         $validator = Validator::make($information, $rules);
         if ($validator->fails()) 
         {
@@ -307,7 +378,7 @@ class CertificateController extends Controller {
             $query = DB::table('project_certificate')
             ->where('ci_id', '=', $ci_id)
             // ->update(['ci_liability_currency' => $liability_currency, 'ci_liability_limit' => $liability_limit, 'ci_liability_exp' => $liability_exp, 'ci_liability_required_min' => $liability_required_min, 'ci_liability_cert_path' => $liability_cert_path, 'ci_work_comp_currency' => $work_comp_currency, 'ci_work_comp_limit' => $work_comp_limit, 'ci_work_comp_exp' => $work_comp_exp, 'ci_works_comp_required_min' => $works_comp_required_min, 'ci_work_comp_cert_path' => $work_comp_cert_path, 'ci_auto_liability_currency' => $auto_liability_currency,  'ci_auto_liability_limit' => $auto_liability_limit, 'ci_auto_liability_exp' => $auto_liability_exp, 'ci_auto_liability_required_min' => $auto_liability_required_min, 'ci_auto_liability_cert_path' => $auto_liability_cert_path, 'ci_project_id' => $project_id, 'ci_user_id' => $user_id, 'ci_status' => $status]);
-            ->update(['ci_project_id' => $project_id, 'ci_user_id' => $user_id, 'ci_status' => $status]);
+            ->update(['ci_company_name' => $company_name, 'ci_liability_currency' => $liability_currency, 'ci_liability_limit' => $liability_limit, 'ci_liability_exp' => $liability_exp, 'ci_liability_required_min' => $liability_required_min, 'ci_liability_cert_path' => $liability_cert_path, 'ci_work_comp_currency' => $work_comp_currency, 'ci_work_comp_limit' => $work_comp_limit, 'ci_work_comp_exp' => $work_comp_exp, 'ci_works_comp_include_above' => $works_comp_include_above, 'ci_works_comp_required_min' => $works_comp_required_min, 'ci_works_comp_not_include' => $works_comp_not_include, 'ci_work_comp_cert_path' => $work_comp_cert_path, 'ci_auto_liability_currency' => $auto_liability_currency,  'ci_auto_liability_limit' => $auto_liability_limit,  'ci_auto_liability_exp' => $auto_liability_exp, 'ci_auto_include_above' => $auto_include_above, 'ci_auto_liability_required_min' => $auto_liability_required_min, 'ci_auto_liability_not_include' => $auto_liability_not_include, 'ci_auto_liability_cert_path' => $auto_liability_cert_path, 'ci_umbrella_liability_currency' => $umbrella_currency,  'ci_umbrella_liability_limit' => $umbrella_limit,  'ci_umbrella_liability_exp' => $umbrella_exp, 'ci_umbrella_liability_above' => $umbrella_include_above, 'ci_umbrella_liability_required_min' => $umbrella_required_min, 'ci_umbrella_liability_not_include' => $umbrella_not_include, 'ci_umbrella_liability_cert_path' => $umbrella_cert_path, 'ci_doc_id_certificate' => $upload_doc_id_certificate, 'ci_project_id' => $project_id, 'ci_user_id' => $user_id, 'ci_status' => $status]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
