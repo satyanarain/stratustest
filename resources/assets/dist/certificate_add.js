@@ -1,4 +1,4 @@
-$(document).ready(function() {
+ $(document).ready(function() {
     // Get login user profile data
     $(".select2").hide();
     $(".currency_symbol").hide();

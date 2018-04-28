@@ -3,8 +3,12 @@ $(document).ready(function() {
 	var token = localStorage.getItem('u_token');
 	var url = $(location).attr('href').split( '/' );
 	project_id = url[ url.length - 2 ]; // projects
-	var change_order_days_type =0;
+	var change_order_days_type =1;
 	var change_order_due_date = 0;
+		var rfi_days_type =1;
+	var rfi_due_date = 0;
+		var submittal_days_type =1;
+	var submittal_due_date = 0;
  	console.log(project_id);
 	localStorage.setItem("current_project_id", project_id);
 	var u_id = localStorage.getItem('u_id');
@@ -86,6 +90,10 @@ $(document).ready(function() {
 
 		      change_order_days_type = data.data.change_order_days_type;
               change_order_due_date = data.data.change_order_due_date;
+			  rfi_days_type =data.data.rfi_days_type;
+			  rfi_due_date = data.data.rfi_due_date;
+		      submittal_days_type =data.data.submittal_days_type;
+			  submittal_due_date = data.data.submittal_due_date;
                     
                     if(data.data.f_name ==null)
                         $('.project_lead_agency_li').remove();
@@ -620,12 +628,60 @@ $(document).ready(function() {
 				    }
 				    else if(status == 'past_due'){
 				    	if(val.sub_review_type == 'yes'){
-			    			status = '<span class="label label-danger">Overdue - Expedite Review</span>';
+
+                           var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+							var future_date = new Date(val.sr_respond_date);
+							var futuredate = '';
+							if (  rfi_days_type == 1 ) {
+								//console.log("cal 1");
+						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+							}
+							else {
+								//console.log("cal 2");
+                                futuredate = add_business_days(change_order_due_date , val.sr_respond_date);
+                                var updated_f = new Date(futuredate);
+                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+							}
+						//	var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd);
+							var now_date = new Date();
+							var numberOfDaysToAdd = 0;
+							var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd);
+							var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
+
+							if(futuredate < nowdate){
+								// console.log('less');
+							status = '<span class="label label-danger">Overdue - Expedite Review</span>';
 			    			submittal_past_due++;
+							}
+			    			
 				    	}
 				    	else {
-			    			status = '<span class="label label-danger">Past due</span>';
+
+                             var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+							var future_date = new Date(val.sr_respond_date);
+							var futuredate = '';
+							if (  rfi_days_type == 1 ) {
+								//console.log("cal 1");
+						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+							}
+							else {
+								//console.log("cal 2");
+                                futuredate = add_business_days(sr_respond_date , val.sr_respond_date);
+                                var updated_f = new Date(futuredate);
+                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+							}
+						//	var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd);
+							var now_date = new Date();
+							var numberOfDaysToAdd = 0;
+							var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd);
+							var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
+
+							if(futuredate < nowdate){
+								// console.log('less');
+						   status = '<span class="label label-danger">Past due</span>';
 			    			submittal_past_due++;
+							}
+			    		
 				    	}
 				    }
 				    else {
@@ -801,7 +857,19 @@ $(document).ready(function() {
 							var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 							var future_date = new Date(val.ri_date);
 							var numberOfDaysToAdd = 10;
-							var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd);
+
+							var futuredate = '';
+							if (  rfi_days_type == 1 ) {
+								//console.log("cal 1");
+						        futuredate = future_date.setDate(future_date.getDate() + rfi_due_date); 
+							}
+							else {
+								//console.log("cal 2");
+                                futuredate = add_business_days(rfi_due_date , val.pcd_timestamp);
+                                var updated_f = new Date(futuredate);
+                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+							}
+						//	var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd);
 							var now_date = new Date();
 							var numberOfDaysToAdd = 0;
 							var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd);
@@ -1172,19 +1240,29 @@ $(document).ready(function() {
 			                console.log("future Date !!");
 			                console.log(future_date);
 			                var numberOfDaysToAdd = 10;
-								do {
-								future_date.setDate(future_date.getDate() + change_order_due_date)
-								} while(future_date.getDay() == 0 || future_date.getDay() == 6);
-                              console.log("updated future Date !!");
-								console.log(future_date);
-			                var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
+                            var futuredate = '';
+							if ( change_order_days_type == 1 ) {
+								//console.log("cal 1");
+						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+							}
+							else {
+								//console.log("cal 2");
+                                futuredate = add_business_days(change_order_due_date , val.pcd_timestamp);
+                                var updated_f = new Date(futuredate);
+                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+							}
+                              //console.log("updated future Date !!");
+
+								//console.log("updated : "+ futuredate);
+			              //  var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
+			                //console.log("updated : "+ futuredate);
 			                var now_date = new Date();
 			                var numberOfDaysToAdd = 0;
 			                var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd); 
 			                // console.log(future_date);
 			                // console.log(now_date);
-			                // console.log(futuredate);
-			                // console.log(nowdate);
+			               //  console.log("updated last "+futuredate);
+			                 //console.log("now "+nowdate);
 			                var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
 
 			                if(futuredate < nowdate){
@@ -1408,3 +1486,23 @@ $(document).ready(function() {
             console.log(jqXHR.responseJSON);
         });
 });
+
+
+function add_business_days(days , date) {
+  var now = new Date(date);
+  var dayOfTheWeek = now.getDay();
+  var calendarDays = days;
+  var deliveryDay = dayOfTheWeek + days;
+  if (deliveryDay >= 5) {
+    //deduct this-week days
+    days -= 5 - dayOfTheWeek;
+    //count this coming weekend
+    calendarDays += 2;
+    //how many whole weeks?
+    deliveryWeeks = Math.floor(days / 5);
+    //two days per weekend per week
+    calendarDays += deliveryWeeks * 2;
+  }
+  now.setTime(now.getTime() + calendarDays * 24 * 60 * 60 * 1000);
+  return now;
+}

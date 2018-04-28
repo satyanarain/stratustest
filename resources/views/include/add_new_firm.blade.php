@@ -161,9 +161,16 @@ $(document).ready(function() {
             $("#firm_type").append('<option value="">Select Company Type</option>');
             jQuery.each(data.data, function( i, val ) {
                 if(val.ct_status == 'active'){
+                    if (val.ct_id == 12) {
+                   $("#firm_type").append(
+                        '<option value="'+val.ct_id+'" selected>'+val.ct_name+'</option>'
+                    )
+                  } else {
+
                     $("#firm_type").append(
                         '<option value="'+val.ct_id+'">'+val.ct_name+'</option>'
                     )
+                }
                 }else {
 
                 }

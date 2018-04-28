@@ -275,6 +275,7 @@ $(document).ready(function() {
         )
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status === 'active'){
+                
                 $(".agency_name").append(
                     '<option value="'+val.f_id+'">'+val.f_name+'</option>'
                 )
