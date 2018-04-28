@@ -182,7 +182,7 @@
     });
 
 
-    $('#update_certificate_form').submit(function(e) {
+    $('#update_certificate_form').click(function(e) {
       $('.loading-submit').show();
         e.preventDefault();
 
