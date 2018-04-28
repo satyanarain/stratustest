@@ -507,7 +507,6 @@
                     "umbrella_limit"                : umbrella_currency,
                     "umbrella_exp"                  : umbrella_date,
                     "umbrella_cert_path"            : umbrella_doc_path,
-                    "upload_doc_id_certificate"     : upload_doc_id_certificate,
             },
             headers: {
               "x-access-token": token
