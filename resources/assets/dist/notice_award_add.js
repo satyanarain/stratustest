@@ -519,7 +519,7 @@ $(document).ready(function() {
             var contractor_bond_required = $('input:radio[name=contractor_bond_required]:checked').val();
         else
             var contractor_bond_required = "no";
-        alert(contractor_bond_required);return false;
+        //alert(contractor_bond_required);return false;
         var html;
         var is_error = false;
         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
