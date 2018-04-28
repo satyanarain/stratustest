@@ -50,7 +50,7 @@ class DocusignController extends Controller {
         $accountId = $response["loginAccounts"][0]["accountId"];
         $baseUrl = $response["loginAccounts"][0]["baseUrl"];
         curl_close($curl);
-        
+        echo '<pre>';
         //UPDATE & DOWNLOAD NOTICE OF AWARD DOCUMENT FROM DOCUSIGN        
         $awards = DB::table('project_notice_award')
                 ->select('project_notice_award.*')
@@ -139,6 +139,7 @@ class DocusignController extends Controller {
                 ->where('pnp_docusign_status', '!=',"completed")
                 ->where('pnp_envelope_id', '!=',"")
                 ->get();
+        print_r($awards);
         foreach($awards as $award){
             $envelopeId = $award->pnp_envelope_id;
             $doc_id = $award->pnp_path;
@@ -149,7 +150,7 @@ class DocusignController extends Controller {
                     "X-DocuSign-Authentication: $header" )                                                                       
             );
             $json_response1 = curl_exec($curl1);
-            $status1 = curl_getinfo($curl1, CURLINFO_HTTP_CODE);
+            echo $status1 = curl_getinfo($curl1, CURLINFO_HTTP_CODE);
             if ($status1 == 200 ) {
                 $response1 = json_decode($json_response1, true);
                 //echo $response1["status"];die;
