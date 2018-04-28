@@ -406,7 +406,7 @@
                                     <div class="form-group col-md-12">
 <!--                                        <a data-href="{{ url('/dashboard/'.$project_id.'/certificate') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
                                         <a href="{{ url('/dashboard/'.$project_id.'/certificate') }}" class="btn btn-info sub-btn btn_back1">Back</a>
-                                        <button type="button" id="update_certificate_form" class="btn btn-info sub-btn">Save</button>
+                                        <button type="submit" id="update_certificate_form"  class="btn btn-info sub-btn">Save</button>
                                         <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                     </div>
 
