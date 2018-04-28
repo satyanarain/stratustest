@@ -150,7 +150,7 @@ class DocusignController extends Controller {
                     "X-DocuSign-Authentication: $header" )                                                                       
             );
             $json_response1 = curl_exec($curl1);
-            echo $status1 = curl_getinfo($curl1, CURLINFO_HTTP_CODE);
+            echo $status1 = curl_getinfo($curl1, CURLINFO_HTTP_CODE);echo '<pre>';
             if ($status1 == 200 ) {
                 $response1 = json_decode($json_response1, true);
                 //echo $response1["status"];die;
