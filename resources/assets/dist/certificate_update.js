@@ -421,12 +421,7 @@
             is_error = true;
         }
 
-        if(general_liability_included == 'no'){
-            if(general_liability_doc_path == ''){
-                html += '<li>General liability document is invalid.</li>';
-                is_error = true;
-            }
-        }
+    
         if(works_compensation_currency == ''){
             html += '<li>Workers compensation amount is invalid.</li>';
             is_error = true;
@@ -435,12 +430,7 @@
             html += '<li>Workers compensation expiration date is invalid.</li>';
             is_error = true;
         }
-        if(works_compensation_upload_above == 'no' && upload_work == 'no'){
-            if(works_compensation_doc_path == ''){
-                html += '<li>Workers compensation document is invalid.</li>';
-                is_error = true;
-            }
-        }
+  
         if(auto_compensation_currency == ''){
             html += '<li>Auto liability amount is invalid.</li>';
             is_error = true;
@@ -450,12 +440,7 @@
             is_error = true;
         }
         console.log(auto_compensation_upload_above);
-        if(auto_compensation_upload_above == 'no' && upload_auto == 'no'){
-            if(auto_compensation_doc_path == ''){
-                html += '<li>Auto liability document is invalid.</li>';
-                is_error = true;
-            }
-        }
+     
 
     var umbrella_cert_on = localStorage.getItem('umbrella_cert_on');
         if(umbrella_cert_on == 'yes'){
@@ -469,13 +454,7 @@
                 html += '<li> Umbrella certificate date field is invalid </li>';
                 is_error = true;
             }
-            if(umbrella_upload_above == 'no' && upload_umbrella == 'no'){
-                if(umbrella_doc_path == '')
-                {
-                    html += '<li> Umbrella document name field is invalid </li>';
-                    is_error = true;
-                }
-            } 
+         
         }
 
           html += '</ul></div>';
@@ -528,7 +507,6 @@
                     "umbrella_limit"                : umbrella_currency,
                     "umbrella_exp"                  : umbrella_date,
                     "umbrella_cert_path"            : umbrella_doc_path,
-                    "upload_doc_id_certificate"     : upload_doc_id_certificate,
             },
             headers: {
               "x-access-token": token
