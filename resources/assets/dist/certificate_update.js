@@ -498,10 +498,10 @@
             data: {
                     "status"            : status,
                     "project_id"        : project_id,
-                    "genreal_doc_check" : genreal_doc_check;
-                    "work_doc_check":work_doc_check;
-                    "auto_doc_check" :auto_doc_check;
-                    "umbrella_doc_check":umbrella_doc_check;
+                    "genreal_doc_check" : genreal_doc_check,
+                    "work_doc_check":work_doc_check,
+                    "auto_doc_check" :auto_doc_check,
+                    "umbrella_doc_check":umbrella_doc_check,
                     "liability_currency"            : general_liability_cur_symbol,
                     "liability_limit"               : general_liability_amount,
                     "liability_exp"                 : general_liability_date,
