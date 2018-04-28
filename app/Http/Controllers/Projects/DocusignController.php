@@ -155,8 +155,8 @@ class DocusignController extends Controller {
                 //echo $response1["status"];die;
                 
                 curl_close($curl1);
-                $ntp_docu_status = $response1["status"];
-                
+                echo $ntp_docu_status = $response1["status"];
+                echo $pna_id;die;
                     $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
                     curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
