@@ -155,8 +155,8 @@ class DocusignController extends Controller {
                 //echo $response1["status"];die;
                 
                 curl_close($curl1);
-                echo $ntp_docu_status = $response1["status"];
-                echo $pna_id;die;
+                echo $ntp_docu_status = $response1["status"].'<br>';
+                echo $pna_id;
                     $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
                     curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
@@ -167,7 +167,7 @@ class DocusignController extends Controller {
                     if ($status2 == 200 ) {
                         $response2 = json_decode($json_response2, true);
                         curl_close($curl2);
-                        //echo "<pre>";print_r($response2);die;
+                        echo "<pre>";print_r($response2);
                         foreach( $response2["envelopeDocuments"] as $document ) {
                                 $docUri = $document["uri"];
                                 $curl3 = curl_init($baseUrl . $docUri );
@@ -214,7 +214,7 @@ class DocusignController extends Controller {
                 
             }else{continue;}
         }
-        
+        die;
         //UPDATE & DOWNLOAD UNCONDITIONAL FINALS DOCUMENT FROM DOCUSIGN        
         $finals = DB::table('project_unconditional_finals')
                 ->select('project_unconditional_finals.*')
