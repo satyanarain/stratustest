@@ -386,14 +386,31 @@
     </div><div class="clearfix"></div> <!-- custom_certificate_detail close -->
 </div><!-- custom_certificate_all close -->
 </div>
-                                <div class="form-group col-md-12">
-                                    <input type="hidden" name="standard_doc_id" id="upload_doc_id_certificate" value="">
-<!--                                    <a data-href="{{ url('/dashboard/'.$project_id.'/certificate') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
-                                    <a href="{{ url('/dashboard/'.$project_id.'/certificate') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
-                                    <button type="submit" id="add_certificate_form" class="btn btn-info sub-btn first_button">Save</button>
-                                    <a href="{{ url('/dashboard/'.$project_id.'/bond') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
-                                    <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
-                                </div>
+                             <div class="row">
+                                   
+                                    <div class="col-md-6">
+                                        <label>Status</label>
+                                        <select class="form-control" id="status">
+                                            <option value="active">Active</option>
+                                            <option value="deactive">Inactive</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group col-md-12">
+                                        <!-- <input type="hidden" name="standard_upload" id="upload_doc_meta" value="swppp"> -->
+                                        <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $project_id; ?>">
+                                        <!-- <input type="hidden" name="standard_doc_id" id="upload_doc_id" value=""> -->
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+<!--                                        <a data-href="{{ url('/dashboard/'.$project_id.'/certificate') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
+                                        <a href="{{ url('/dashboard/'.$project_id.'/certificate') }}" class="btn btn-info sub-btn btn_back1">Back</a>
+                                        <button type="button" id="update_certificate_form" class="btn btn-info sub-btn">Save</button>
+                                        <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
+                                    </div>
+
+                                    </div>
                                 <div class="clearfix"></div>
 
 <div style="display: none;">
@@ -462,57 +479,7 @@
 
     </div>
                                     <div class="row">
-                                    <!-- <div class="form-group col-md-12">
-                                        <label>Date</label>
-                                        <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date="2016-09-01"  class="input-append date dpYears">
-                                                <input type="text" readonly="" value="" size="16" class="form-control"  id="date_of_report">
-                                                  <span class="input-group-btn add-on">
-                                                    <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
-                                                  </span>
-                                            </div>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label for="name_of_report">Document Name</label>
-                                        <input type="text" class="form-control" id="name_of_report">
-                                    </div>
-                                    <div class="clearfix"></div>
-                                    <div class="form-group col-md-12">
-                                        <label for="company_name">Company Name</label>
-                                        <div class="loading_data" style="text-align: center;">
-                                           <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
-                                        </div>
-                                        <select class="form-control" id="company_name">
-                                        </select>
-                                    </div>
-
-                                    <div class=" col-md-12">
-                                        <label for="standard_link" style="min-width: 200px;">Applicable</label>
-                                        <label class="radio-inline">
-                                          <input type="radio" name="applicable" id="applicable_yes" value="yes"> Yes
-                                        </label>
-                                        <label class="radio-inline">
-                                          <input type="radio" name="applicable" id="applicable_no" value="no"> No
-                                        </label>
-                                    </div>
-
-                                    <div class=" col-md-12 hidden">
-                                        <label for="standard_link" style="min-width: 200px;">Upload Document</label>
-                                        <label class="radio-inline">
-                                          <input type="radio" name="upload" id="upload_yes" value="yes"> Yes
-                                        </label>
-                                        <label class="radio-inline">
-                                          <input type="radio" name="upload" id="upload_no" value="no"> No
-                                        </label>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <label>Type</label>
-                                        <select class="form-control" id="type">
-                                            <option value="swppp">SWPPP</option>
-                                            <option value="wpcp">WPCP</option>
-                                        </select>
-                                    </div> -->
-
+                                   
                                     <div class="col-md-6">
                                         <label>Status</label>
                                         <select class="form-control" id="status">
