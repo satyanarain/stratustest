@@ -86,6 +86,14 @@
                 $( "#req_minimum_work" ).prop( "checked", true );
             }
 
+                if ( data.data.ci_works_comp_include_above = 'yes' ) {
+                $( "#upload_work_above" ).prop( "checked", true );
+            }
+
+                if ( data.data.ci_works_comp_not_include = 'yes' ) {
+                $( "#upload_work" ).prop( "checked", true );
+            }
+
 
           //  $('#upload_doc_id_work').val(data.data.statu);
             $('#auto_compensation_cur_symbol').val(data.data.auto_liability_currency);
@@ -95,6 +103,15 @@
 
              if ( data.data.auto_liability_required_min = 'yes' ) {
                 $( "#auto_req_minimum" ).prop( "checked", true );
+            }
+
+            
+                if ( data.data.ci_auto_include_above = 'yes' ) {
+                $( "#upload_auto_above" ).prop( "checked", true );
+            }
+
+                if ( data.data.ci_auto_liability_not_include = 'yes' ) {
+                $( "#upload_auto" ).prop( "checked", true );
             }
 
             $('#umbrella_liability_cur_symbol').val(data.data.umbrella_liability_currency);
