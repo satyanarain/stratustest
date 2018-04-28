@@ -204,7 +204,7 @@ class DocusignController extends Controller {
                                             $doc_id = DB::table('documents')->insertGetId($information);
                                             $query = DB::table('project_notice_proceed')
                                             ->where('pnp_id', '=', $pna_id)
-                                            ->update(['docusign_status' => $ntp_docu_status,'pnp_path'=>$doc_id]);
+                                            ->update(['pnp_docusign_status' => $ntp_docu_status,'pnp_path'=>$doc_id]);
                                         }
                                     }
                                     curl_close($curl3);
