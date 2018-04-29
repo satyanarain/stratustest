@@ -287,9 +287,9 @@
         var general_liability_amount            = $('#general_liability_amount').val();
         var general_liability_date              = $('#general_liability_date').val();
         var general_liability_req_min           = req_minimum_general;
-        var general_liability_doc_path          = $('#upload_doc_id_general').val();
+        var general_liability_doc_path          = document.getElementById('upload_doc_id_general').value; 
 
-         if(general_liability_doc_path=""){
+         if(general_liability_doc_path==""){
               general_liability_doc_path = $("#upload_doc_id_general_old").val();  
               genreal_doc_check = false;
 
@@ -316,7 +316,7 @@
         var auto_compensation_req_minimum       = auto_req_minimum;
         var auto_compensation_upload_above      = upload_auto_above;
         var auto_compensation_upload_auto       = upload_auto;
-        var auto_compensation_doc_path          = $('#upload_doc_id_auto').val();
+        var auto_compensation_doc_path          = document.getElementById('upload_doc_id_auto').value;
 
 
 
@@ -331,7 +331,7 @@
         var umbrella_req_minimum                = req_minimum_umbrella;
         var umbrella_upload_above               = upload_umbrella_above;
         var umbrella_upload_auto                = upload_umbrella;
-        var umbrella_doc_path                   = $('#upload_doc_id_umbrella').val();
+        var umbrella_doc_path                   =  document.getElementById('upload_doc_id_umbrella').value;
 
            if(umbrella_doc_path=""){
               umbrella_doc_path = $("#upload_doc_id_umbrella_old").val();  
