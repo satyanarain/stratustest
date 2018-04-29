@@ -305,7 +305,7 @@
         var works_compensation_doc_path         = $('#upload_doc_id_work').val();
 
            if(works_compensation_doc_path=""){
-              general_liability_doc_path = $("#upload_doc_id_work_old").val();  
+              works_compensation_doc_path = $("#upload_doc_id_work_old").val();  
               work_doc_check = false;
 
          }
@@ -321,7 +321,7 @@
 
 
            if(auto_compensation_doc_path=""){
-              general_liability_doc_path = $("#upload_doc_id_auto_old").val();  
+              auto_compensation_doc_path = $("#upload_doc_id_auto_old").val();  
               auto_doc_check = false;
 
          }
@@ -343,7 +343,70 @@
         var project_id              = $('#upload_project_id').val();
 	    var token                   = localStorage.getItem('u_token');
 
-            
+             $('#pdf_gen_general_date').text(' '+general_liability_date);
+            jQuery.ajax({
+            url: baseUrl + "currency/"+general_liability_cur_symbol,
+                type: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  "x-access-token": token
+                },
+                contentType: "application/json",
+                cache: false
+            })
+            .done(function(data, textStatus, jqXHR) {
+                if(general_liability_amount)
+                    $('#pdf_gen_general_limit').text(' '+data.data.cur_symbol+ReplaceNumberWithCommas(general_liability_amount));
+            })
+
+            $('#pdf_gen_auto_date').text(' '+auto_compensation_date);
+            jQuery.ajax({
+            url: baseUrl + "currency/"+works_compensation_cur_symbol,
+                type: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  "x-access-token": token
+                },
+                contentType: "application/json",
+                cache: false
+            })
+            .done(function(data, textStatus, jqXHR) {
+                if(auto_compensation_currency)
+                    $('#pdf_gen_auto_limit').text(' '+data.data.cur_symbol+ ReplaceNumberWithCommas(auto_compensation_currency));
+            })
+
+            $('#pdf_gen_work_comp_date').text(' '+works_compensation_date);
+            jQuery.ajax({
+            url: baseUrl + "currency/"+auto_compensation_cur_symbol,
+                type: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  "x-access-token": token
+                },
+                contentType: "application/json",
+                cache: false
+            })
+            .done(function(data, textStatus, jqXHR) {
+                if(works_compensation_currency)
+                    $('#pdf_gen_work_comp_limit').text(' '+data.data.cur_symbol+ ReplaceNumberWithCommas(works_compensation_currency));
+            })
+
+            $('#pdf_gen_umbrella_date').text(' '+umbrella_date);
+            jQuery.ajax({
+            url: baseUrl + "currency/"+umbrella_cur_symbol,
+                type: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  "x-access-token": token
+                },
+                contentType: "application/json",
+                cache: false
+            })
+            .done(function(data, textStatus, jqXHR) {
+               if(umbrella_currency) 
+                $('#pdf_gen_umbrella_limit').text(' '+data.data.cur_symbol+ ReplaceNumberWithCommas(umbrella_currency));
+            });
+
 
                 var html;
         var is_error = false;
