@@ -514,6 +514,33 @@
             <!--body wrapper end-->
 
 <!-- Placed js at the end of the document so the pages load faster -->
+<script type="text/javascript">
+    
+$("#my-awesome-dropzone").click(function() {
+  $("#upload_type").val("certificate_general_libility");
+});
+$("#my-awesome-dropzone1").click(function() {
+  $("#upload_type").val("certificate_work_compensation");
+});
+$("#my-awesome-dropzone2").click(function() {
+  $("#upload_type").val("certificate_auto_liability");
+});
+$("#my-awesome-dropzone3").click(function() {
+  $("#upload_type").val("certificate_auto_umbrella");
+});
+// $("#my-awesome-dropzone4").click(function() {
+//   $("#upload_type").val("multiple_upload");
+// });
+$('body').delegate( '.my-awesome-dropzone-multiple', 'click', function () {
+  $("#upload_type").val("multiple_upload");
+  return;
+});
+// $(".my-awesome-dropzone-multiple").click(function() {
+//     alert('Click');
+//   $("#upload_type").val("multiple_upload");
+// });
+</script>
+</script>
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/certificate_update.js') }}"></script>
