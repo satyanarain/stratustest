@@ -302,9 +302,9 @@
         var works_compensation_req_minimum      = req_minimum_work;
         var works_compensation_upload_above     = upload_work_above;
         var works_compensation_upload_work      = upload_work;
-        var works_compensation_doc_path         = $('#upload_doc_id_work').val();
+        var works_compensation_doc_path         =document.getElementById('upload_doc_id_work').value;
 
-           if(works_compensation_doc_path=""){
+           if(works_compensation_doc_path==""){
               works_compensation_doc_path = $("#upload_doc_id_work_old").val();  
               work_doc_check = false;
 
