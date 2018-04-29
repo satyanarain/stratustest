@@ -50,7 +50,7 @@ class DocusignController extends Controller {
         $accountId = $response["loginAccounts"][0]["accountId"];
         $baseUrl = $response["loginAccounts"][0]["baseUrl"];
         curl_close($curl);
-        echo '<pre>';
+        
         //UPDATE & DOWNLOAD NOTICE OF AWARD DOCUMENT FROM DOCUSIGN        
         $awards = DB::table('project_notice_award')
                 ->select('project_notice_award.*')
@@ -136,10 +136,9 @@ class DocusignController extends Controller {
         //UPDATE & DOWNLOAD NOTICE TO PROCEED DOCUMENT FROM DOCUSIGN        
         $awards = DB::table('project_notice_proceed')
                 ->select('project_notice_proceed.*')
-                ->where('pnp_docusign_status', '!=',"completed")
+                ->where('pnp_docusign_status', '=',"pending")
                 ->where('pnp_envelope_id', '!=',"")
                 ->get();
-        print_r($awards);
         foreach($awards as $award){
             $envelopeId = $award->pnp_envelope_id;
             $doc_id = $award->pnp_path;
@@ -150,14 +149,14 @@ class DocusignController extends Controller {
                     "X-DocuSign-Authentication: $header" )                                                                       
             );
             $json_response1 = curl_exec($curl1);
-            echo $status1 = curl_getinfo($curl1, CURLINFO_HTTP_CODE);echo '<pre>';
+            $status1 = curl_getinfo($curl1, CURLINFO_HTTP_CODE);
             if ($status1 == 200 ) {
                 $response1 = json_decode($json_response1, true);
                 //echo $response1["status"];die;
                 
                 curl_close($curl1);
-                echo $ntp_docu_status = $response1["status"].'<br>';
-                echo $pna_id;
+                if($response1["status"]=="completed")
+                {
                     $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
                     curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
@@ -168,7 +167,7 @@ class DocusignController extends Controller {
                     if ($status2 == 200 ) {
                         $response2 = json_decode($json_response2, true);
                         curl_close($curl2);
-                        echo "<pre>";print_r($response2);
+                        //echo "<pre>";print_r($response2);die;
                         foreach( $response2["envelopeDocuments"] as $document ) {
                                 $docUri = $document["uri"];
                                 $curl3 = curl_init($baseUrl . $docUri );
@@ -193,7 +192,7 @@ class DocusignController extends Controller {
                                             ->update(['doc_path' => $file_upload_path]);
                                             $query = DB::table('project_notice_proceed')
                                             ->where('pnp_id', '=', $pna_id)
-                                            ->update(['pnp_docusign_status' => $ntp_docu_status]);
+                                            ->update(['pnp_docusign_status' => "complete"]);
                                         }else{
                                             $information = array(
                                             "doc_status"     => "active",
@@ -205,17 +204,19 @@ class DocusignController extends Controller {
                                             $doc_id = DB::table('documents')->insertGetId($information);
                                             $query = DB::table('project_notice_proceed')
                                             ->where('pnp_id', '=', $pna_id)
-                                            ->update(['pnp_docusign_status' => $ntp_docu_status,'pnp_path'=>$doc_id]);
+                                            ->update(['docusign_status' => "complete",'pnp_path'=>$doc_id]);
                                         }
                                     }
                                     curl_close($curl3);
                                 }else{continue;}
                         }
                     }else{continue;}
-                
+                } else {
+                    continue;
+                }
             }else{continue;}
         }
-        die;
+        
         //UPDATE & DOWNLOAD UNCONDITIONAL FINALS DOCUMENT FROM DOCUSIGN        
         $finals = DB::table('project_unconditional_finals')
                 ->select('project_unconditional_finals.*')
