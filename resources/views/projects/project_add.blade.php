@@ -37,8 +37,10 @@
         height: 32px;
         outline: none;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      }*/
+      
 
+
+      
       /*#pac-input {
         background-color: #fff;
         font-family: Roboto;
@@ -482,7 +484,7 @@ $(document).ready(function() {
                             <div class="loading_data" style="text-align: center;display: none">
                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                             </div>
-                            <select class="form-control" id="firm_type">
+                            <select class="form-control" name="firm_type" id="firm_type">
                             </select>
                         </div>
                             <div class="form-group col-md-6" style="display:none;">
