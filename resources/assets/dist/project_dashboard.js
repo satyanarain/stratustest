@@ -1232,7 +1232,7 @@ $(document).ready(function() {
 			            console.log(val);
 			            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
 			                var oneDay = 24*60*60*1000;
-			                change_order_days_type 
+			                 
 			                console.log('change order :' + change_order_days_type);
 			                console.log('change order date :' + change_order_due_date);
               
@@ -1241,19 +1241,20 @@ $(document).ready(function() {
 			                console.log(future_date);
 			                var numberOfDaysToAdd = 10;
                             var futuredate = '';
+                            console.log();
 							if ( change_order_days_type == 1 ) {
-								//console.log("cal 1");
+								console.log("cal 1");
 						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
 							}
 							else {
-								//console.log("cal 2");
+								console.log("cal 2");
                                 futuredate = add_business_days(change_order_due_date , val.pcd_timestamp);
                                 var updated_f = new Date(futuredate);
                                futuredate = updated_f.setDate(updated_f.getDate() + 0); 
 							}
-                              //console.log("updated future Date !!");
+                              console.log("updated future Date !!");
 
-								//console.log("updated : "+ futuredate);
+								console.log("updated : "+ futuredate);
 			              //  var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
 			                //console.log("updated : "+ futuredate);
 			                var now_date = new Date();
