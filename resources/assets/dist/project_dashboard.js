@@ -1191,26 +1191,31 @@ $(document).ready(function() {
 			        var status_cm = '';
 			        var status_owner = '';
 			        if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00"){
+			        	console.log("upcoming1");
 			            var pcd_approved_by_cm = '<span class="label label-warning">PENDING</span>';
 			            var status_cm = '<span class="label label-warning">PENDING CM REVIEW</span><br/>';
 			            r_cor_upcoming++;
 			        }
 			        else {
+			        	console.log("complete 1 ");
 			            var pcd_approved_by_cm = val.pcd_approved_by_cm;
 			            r_cor_complete++;
 			        }
 
 			        if(val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
+			        	console.log("upcoming 2 ");
 			            var pcd_approved_by_owner = '<span class="label label-warning">PENDING</span>';
 			            var status_owner = '<span class="label label-warning">PENDING OWNER REVIEW</span><br/>';
 			            r_cor_upcoming++;
 			        }
 			        else {
+			        	console.log("complete 2 ");
 			            var pcd_approved_by_owner = val.pcd_approved_by_owner;
 			            r_cor_complete++;
 			        }
 
 			        if(val.pcd_rfi == '[]'){
+			        	console.log("request 1 ");
 			            var t = $('#request_change_order').DataTable();
 			            t.row.add([
 			               count, // val.pcd_parent_cor,
