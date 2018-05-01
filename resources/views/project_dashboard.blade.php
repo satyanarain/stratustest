@@ -67,17 +67,26 @@
                                     <i class="fa fa-user"></i>
                                 </div>
                                 <div class="value white">
-                                    <h4 id="contractor_name" >Contract: Malhan Arcade</h4>
-                                    <h4 id="contractor_name" >Change Orders: (17) </h4>
-                                    <h4 id="contractor_name" >Total Contract: </h4>
-                                    <h4 id="contractor_name" >Pending CO: (31) </h4>
+                                    <h4 id="" >Contract: Malhan Arcade</h4>
+                                    <h4 id="" >Change Orders: (17) </h4>
+                                    <h4 id="" >Total Contract: </h4>
+                                    <h4 id="" >Pending CO: (31) </h4>
                                    
                                 </div>
                               </section>
                             </div>
-                        <div class="col-md-4"><section class="blue"><div class="symbol" style="font-size: 30px; font-weight: bold;">$ </div><div class="value white"><h1 class="timer" data-from="0" data-to="103,424.00" data-speed="1000">103,424.00</h1><p>Contract Amount</p></div></section></div>
+                        <div class="col-md-4"><section class="blue"><div class="symbol" style="font-size: 30px; font-weight: bold;">$ </div><div class="value white">
+                           <h4 id="" >Billings To Date:</h4>
+                          <h4 id="" >Contract Bal Remaining: : </h4>
+                        </div></section></div>
 
-                        <div class="col-md-4"><section class="blue"><div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div><div class="value white"><h1 class="timer" data-from="0" data-to="1" data-speed="1000">1</h1><p>Contract Items</p></div></section></div></div>
+                        <div class="col-md-4"><section class="blue"><div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div><div class="value white">
+                           <h4 id="" >Contracts Days (Org):</h4>
+                          <h4 id="" >Contract Days Added: : </h4>
+                           <h4 id="" >Contract Days (Rev):</h4>
+                          <h4 id="" >Contract Days (Charged) : </h4>
+                           <h4 id="" >Days Remaining : </h4>
+                        </div></section></div></div>
                         </div>
                       </div>
                     </section>
