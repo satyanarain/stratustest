@@ -75,18 +75,34 @@
                                 </div>
                               </section>
                             </div>
-                        <div class="col-md-4"><section class="blue"><div class="symbol" style="font-size: 30px; font-weight: bold;">$ </div><div class=" white" style="height: 190px;">
-                           <h4 id="" >Billings To Date:</h4>
-                          <h4 id="" >Contract Bal Remaining: : </h4>
-                        </div></section></div>
-
-                        <div class="col-md-4"><section class="blue" style="height: 190px;"><div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div><div class=" white">
-                           <h4 id="" >Contracts Days (Org):</h4>
+                                <div class="col-md-4" id="" style="">
+                              <section class="blue" style="height: 190px;">
+                                <div class="symbol">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="value white">
+                                     <h4 id="" >Billings To Date:</h4>
+                                     <h4 id="" >Contract Bal Remaining: : </h4>
+                                   
+                                </div>
+                              </section>
+                            </div>
+                                <div class="col-md-4" id="" style="">
+                              <section class="blue" style="height: 190px;">
+                                <div class="symbol">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="value white">
+                                      <h4 id="" >Contracts Days (Org):</h4>
                           <h4 id="" >Contract Days Added: : </h4>
                            <h4 id="" >Contract Days (Rev):</h4>
                           <h4 id="" >Contract Days (Charged) : </h4>
                            <h4 id="" >Days Remaining : </h4>
-                        </div></section></div></div>
+                                   
+                                </div>
+                              </section>
+                            </div>
+                  </div>
                         </div>
                       </div>
                     </section>
