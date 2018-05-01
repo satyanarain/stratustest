@@ -54,6 +54,31 @@
                   </div>
 
                   <div class="col-md-12">
+                    <section class="">
+                      <div class="" style="margin-bottom: 30px;">
+                        <div class="row">
+
+
+                        <div class="state-overview">
+                            
+                            <div class="col-md-4" id="contractor_name_box" style="">
+                              <section class="blue">
+                                <div class="symbol">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="value white">
+                                    <h4 id="contractor_name">Malhan Arcade</h4>
+                                    <p>Contractor</p>
+                                </div>
+                              </section>
+                            </div>
+                        <div class="col-md-4"><section class="blue"><div class="symbol" style="font-size: 30px; font-weight: bold;">$ </div><div class="value white"><h1 class="timer" data-from="0" data-to="103,424.00" data-speed="1000">103,424.00</h1><p>Contract Amount</p></div></section></div><div class="col-md-4"><section class="blue"><div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div><div class="value white"><h1 class="timer" data-from="0" data-to="1" data-speed="1000">1</h1><p>Contract Items</p></div></section></div></div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+
+                  <div class="col-md-12">
                     <section class="panel">
                       <div class="panel-body">
                         <div class="col-md-9 nopadleft text-center">
