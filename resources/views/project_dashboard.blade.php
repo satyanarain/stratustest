@@ -67,8 +67,11 @@
                                     <i class="fa fa-user"></i>
                                 </div>
                                 <div class="value white">
-                                    <h4 id="contractor_name">Malhan Arcade</h4>
-                                    <p>Contractor</p>
+                                    <h4 id="contractor_name" style="color:green;">Contract: Malhan Arcade</h4>
+                                    <h4 id="contractor_name" style="color:green;">Change Orders: (17) </h4>
+                                    <h4 id="contractor_name" style="color:green;">Total Contract: </h4>
+                                    <h4 id="contractor_name" style="color:yellow;">Pending CO: (31) </h4>
+                                   
                                 </div>
                               </section>
                             </div>
