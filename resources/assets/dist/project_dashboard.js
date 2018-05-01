@@ -272,7 +272,7 @@ $(document).ready(function() {
 					        	var contract_amount = ReplaceNumberWithCommas(data.data[0].total_amount);
 					        }
 					        var contract_item = data.data[0].total_item;
-					        $('.state-overview').append('<div class="col-md-4"><section class="blue">'+
+					        $('#state-overview').append('<div class="col-md-4"><section class="blue">'+
 		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;">'+currency_icon+'</div>'+
 		                          '<div class="value white">'+
 		                              '<h1 class="timer" data-from="0" data-to="'+contract_amount+'" data-speed="1000">'+contract_amount+'</h1>'+
@@ -294,7 +294,7 @@ $(document).ready(function() {
 						    	console.log("403");
 					        	$('.loading_bar_project_contract_amount').remove();
 						    	$('#contractor_name_box').show();
-						    	$('.state-overview').append('<div class="col-md-4"><section class="green">'+
+						    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
 		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
 		                          '<div class="value white">'+
 		                              '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
@@ -313,7 +313,7 @@ $(document).ready(function() {
 						    	console.log("404");
 						    	$('.loading_bar_project_contract_amount').remove();
 						    	$('#contractor_name_box').show();
-						    	$('.state-overview').append('<div class="col-md-4"><section class="green">'+
+						    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
 		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
 		                          '<div class="value white">'+
 		                              '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
@@ -359,7 +359,7 @@ $(document).ready(function() {
 			    	console.log("403 project_currency");
 		        	$('.loading_bar_project_contract_amount').remove();
 		        	$('#contractor_name_box').show();
-			    	$('.state-overview').append('<div class="col-md-4"><section class="green">'+
+			    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
 	                  '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
 	                  '<div class="value white">'+
 	                      '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
@@ -378,7 +378,7 @@ $(document).ready(function() {
 			    	console.log("404 project_currency");
 			    	$('.loading_bar_project_contract_amount').remove();
 			    	$('#contractor_name_box').show();
-			    	$('.state-overview').append('<div class="col-md-4"><section class="green">'+
+			    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
 	                  '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
 	                  '<div class="value white">'+
 	                      '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+

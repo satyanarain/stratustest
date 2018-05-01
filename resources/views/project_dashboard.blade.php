@@ -32,7 +32,7 @@
                         <div class="row">
 
 
-                        <div class="state-overview">
+                        <div class="state-overview" id="state-overview">
                             <div class="loading_bar_project_contract_amount" id="loading_bar_project_sidebar" style="text-align: center;">
                                 <img src="{{ url('/resources/assets/img/loading-sidebar.svg') }}" alt=""/>
                             </div>
