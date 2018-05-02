@@ -334,7 +334,7 @@
         var umbrella_doc_path                   =  document.getElementById('upload_doc_id_umbrella').value;
 
            if(umbrella_doc_path=""){
-              umbrella_doc_path = $("#upload_doc_id_umbrella_old").val();  
+              umbrella_doc_path = document.getElementById('upload_doc_id_umbrella_old').value;  
               umbrella_doc_check = false;
 
          }

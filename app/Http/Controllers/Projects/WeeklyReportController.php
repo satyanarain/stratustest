@@ -52,15 +52,27 @@ class WeeklyReportController extends Controller {
       }
       else
       {
+
           foreach ($query as $project) {
           $current_date     = date('Y-m-d');
           echo $project_id       = $project->p_id;
+
+            $project_notice_proceed = DB::table('project_notice_proceed')
+            ->select()
+            ->where('pnp_project_id', '=', $project_id)
+            ->get();
+            $countDays = 6;
+            if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
+               $countDays =6;
+            } else {
+                 $countDays =5;
+            }
 
             $add_weekly_report = ProjectWeeklyReports::create(['pwr_project_id' => $project_id, 'pwr_week_ending' => $current_date, 'pwr_status' => 'active', 'pwr_status' => 'incomplete']);
             
             $add_weekly_report_id = $add_weekly_report->id;
             // print_r($add_weekly_report_id);
-            for ($i=0; $i < 7; $i++) {
+            for ($i=0; $i < $countDays; $i++) {
                 $date = date('l, jS \of F Y', strtotime($current_date . ' -'.$i.' day'));
                 $query = DB::table('project_weekly_reports_days')
                 ->insert(['pwrd_date' => $date, 'pwrd_project_id' => $project_id, 'pwrd_report_id' => $add_weekly_report_id]);
