@@ -43,6 +43,7 @@
                                     <hr/>
                                 </div>
                                <div id="general_liability" style="display: none">
+                                
                                 <div class="col-md-12">
                                     <h3>General Liability</h3>
                                 </div>
@@ -108,10 +109,11 @@
                                         </div>
                                     </section>
                                 </div><!-- Col 6 Close -->
-                                </div>
-                                <div class="col-sm-12">
+                                 <div class="col-sm-12">
                                     <hr/>
                                 </div>
+                                </div>
+                               
                          <div id="workers_comp" style="display: none">
                                 <div class="col-sm-12">
                                     <h3 style="margin-top:50px;">Workers Compensation Limit</h3>
@@ -179,10 +181,11 @@
                                     </section>
                                     <div class="clearfix"></div>
                                 </div><!-- Col 6 Close -->
-                            </div>
                                 <div class="col-sm-12">
                                     <hr/>
                                 </div>
+                            </div>
+                                
     
 
 
