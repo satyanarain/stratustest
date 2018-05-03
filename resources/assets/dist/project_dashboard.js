@@ -272,7 +272,7 @@ $(document).ready(function() {
 					        	var contract_amount = ReplaceNumberWithCommas(data.data[0].total_amount);
 					        }
 					        var contract_item = data.data[0].total_item;
-					        $('.state-overview').append('<div class="col-md-4"><section class="blue">'+
+					        $('#state-overview').append('<div class="col-md-4"><section class="blue">'+
 		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;">'+currency_icon+'</div>'+
 		                          '<div class="value white">'+
 		                              '<h1 class="timer" data-from="0" data-to="'+contract_amount+'" data-speed="1000">'+contract_amount+'</h1>'+
@@ -294,7 +294,7 @@ $(document).ready(function() {
 						    	console.log("403");
 					        	$('.loading_bar_project_contract_amount').remove();
 						    	$('#contractor_name_box').show();
-						    	$('.state-overview').append('<div class="col-md-4"><section class="green">'+
+						    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
 		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
 		                          '<div class="value white">'+
 		                              '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
@@ -313,7 +313,7 @@ $(document).ready(function() {
 						    	console.log("404");
 						    	$('.loading_bar_project_contract_amount').remove();
 						    	$('#contractor_name_box').show();
-						    	$('.state-overview').append('<div class="col-md-4"><section class="green">'+
+						    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
 		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
 		                          '<div class="value white">'+
 		                              '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
@@ -359,7 +359,7 @@ $(document).ready(function() {
 			    	console.log("403 project_currency");
 		        	$('.loading_bar_project_contract_amount').remove();
 		        	$('#contractor_name_box').show();
-			    	$('.state-overview').append('<div class="col-md-4"><section class="green">'+
+			    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
 	                  '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
 	                  '<div class="value white">'+
 	                      '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
@@ -378,7 +378,7 @@ $(document).ready(function() {
 			    	console.log("404 project_currency");
 			    	$('.loading_bar_project_contract_amount').remove();
 			    	$('#contractor_name_box').show();
-			    	$('.state-overview').append('<div class="col-md-4"><section class="green">'+
+			    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
 	                  '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
 	                  '<div class="value white">'+
 	                      '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
@@ -1191,26 +1191,31 @@ $(document).ready(function() {
 			        var status_cm = '';
 			        var status_owner = '';
 			        if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00"){
+			        	console.log("upcoming1");
 			            var pcd_approved_by_cm = '<span class="label label-warning">PENDING</span>';
 			            var status_cm = '<span class="label label-warning">PENDING CM REVIEW</span><br/>';
 			            r_cor_upcoming++;
 			        }
 			        else {
+			        	console.log("complete 1 ");
 			            var pcd_approved_by_cm = val.pcd_approved_by_cm;
 			            r_cor_complete++;
 			        }
 
 			        if(val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
+			        	console.log("upcoming 2 ");
 			            var pcd_approved_by_owner = '<span class="label label-warning">PENDING</span>';
 			            var status_owner = '<span class="label label-warning">PENDING OWNER REVIEW</span><br/>';
 			            r_cor_upcoming++;
 			        }
 			        else {
+			        	console.log("complete 2 ");
 			            var pcd_approved_by_owner = val.pcd_approved_by_owner;
 			            r_cor_complete++;
 			        }
 
 			        if(val.pcd_rfi == '[]'){
+			        	console.log("request 1 ");
 			            var t = $('#request_change_order').DataTable();
 			            t.row.add([
 			               count, // val.pcd_parent_cor,
@@ -1232,7 +1237,7 @@ $(document).ready(function() {
 			            console.log(val);
 			            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
 			                var oneDay = 24*60*60*1000;
-			                change_order_days_type 
+			                 
 			                console.log('change order :' + change_order_days_type);
 			                console.log('change order date :' + change_order_due_date);
               
@@ -1241,19 +1246,20 @@ $(document).ready(function() {
 			                console.log(future_date);
 			                var numberOfDaysToAdd = 10;
                             var futuredate = '';
+                            console.log();
 							if ( change_order_days_type == 1 ) {
-								//console.log("cal 1");
+								console.log("cal 1");
 						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
 							}
 							else {
-								//console.log("cal 2");
+								console.log("cal 2");
                                 futuredate = add_business_days(change_order_due_date , val.pcd_timestamp);
                                 var updated_f = new Date(futuredate);
                                futuredate = updated_f.setDate(updated_f.getDate() + 0); 
 							}
-                              //console.log("updated future Date !!");
+                              console.log("updated future Date !!");
 
-								//console.log("updated : "+ futuredate);
+								console.log("updated : "+ futuredate);
 			              //  var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
 			                //console.log("updated : "+ futuredate);
 			                var now_date = new Date();

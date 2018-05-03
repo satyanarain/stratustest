@@ -32,7 +32,7 @@
                         <div class="row">
 
 
-                        <div class="state-overview">
+                        <div class="state-overview" id="state-overview">
                             <div class="loading_bar_project_contract_amount" id="loading_bar_project_sidebar" style="text-align: center;">
                                 <img src="{{ url('/resources/assets/img/loading-sidebar.svg') }}" alt=""/>
                             </div>
@@ -48,6 +48,61 @@
                               </section>
                             </div>
                         </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+
+                  <div class="col-md-12">
+                    <section class="">
+                      <div class="" style="margin-bottom: 30px;">
+                        <div class="row">
+
+
+                        <div class="state-overview">
+                            
+                            <div class="col-md-4" id="" style="">
+                              <section class="blue" style="height: 190px;">
+                                <div class="symbol">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="value white">
+                                    <h4 id="" >Contract: Malhan Arcade</h4>
+                                    <h4 id="" >Change Orders: (17) </h4>
+                                    <h4 id="" >Total Contract: </h4>
+                                    <h4 id="" >Pending CO: (31) </h4>
+                                   
+                                </div>
+                              </section>
+                            </div>
+                                <div class="col-md-4" id="" style="">
+                              <section class="blue" style="height: 190px;">
+                                <div class="symbol">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="value white">
+                                     <h4 id="" >Billings To Date:</h4>
+                                     <h4 id="" >Contract Bal Remaining: : </h4>
+                                   
+                                </div>
+                              </section>
+                            </div>
+                                <div class="col-md-4" id="" style="">
+                              <section class="blue" style="height: 190px;">
+                                <div class="symbol">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="value white">
+                                      <h4 id="" >Contracts Days (Org):</h4>
+                          <h4 id="" >Contract Days Added: : </h4>
+                           <h4 id="" >Contract Days (Rev):</h4>
+                          <h4 id="" >Contract Days (Charged) : </h4>
+                           <h4 id="" >Days Remaining : </h4>
+                                   
+                                </div>
+                              </section>
+                            </div>
+                  </div>
                         </div>
                       </div>
                     </section>
