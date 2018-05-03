@@ -196,7 +196,7 @@
             $('#general_liability_amount').val(data.data.liability_limit);
             $('#general_liability_date').val(data.data.liability_exp);
               $('#upload_doc_id_general_old').val(data.data.liability_cert_path_id);
-              if ( data.data.liability_required_min = 'yes' ) {
+              if ( data.data.liability_required_min == 'yes' ) {
                 $( "#req_minimum_general" ).prop( "checked", true );
             }
             //$('#upload_doc_id_general').val(data.data.statu);
@@ -206,15 +206,15 @@
             $('#works_compensation_date').val(data.data.work_comp_exp);
             $('#upload_doc_id_work_old').val(data.data.work_comp_cert_path_id);
 
-            if ( data.data.works_comp_required_min = 'yes' ) {
+            if ( data.data.works_comp_required_min == 'yes' ) {
                 $( "#req_minimum_work" ).prop( "checked", true );
             }
 
-                if ( data.data.ci_works_comp_include_above = 'yes' ) {
+                if ( data.data.ci_works_comp_include_above == 'yes' ) {
                 $( "#upload_work_above" ).prop( "checked", true );
             }
 
-                if ( data.data.ci_works_comp_not_include = 'yes' ) {
+                if ( data.data.ci_works_comp_not_include == 'yes' ) {
                 $( "#upload_work" ).prop( "checked", true );
             }
 
