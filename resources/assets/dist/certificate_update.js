@@ -23,6 +23,130 @@
             $('.body-content .wrapper').show();
         }
 
+
+            // Get Selected Agency
+            jQuery.ajax({
+            url: baseUrl + "/"+project_id+"/default_contractor",
+                type: "GET",
+                headers: {
+                  "x-access-token": token
+                },
+                contentType: "application/json",
+                cache: false
+            })
+            .done(function(data, textStatus, jqXHR) {
+                // console.log(data.data);
+                window.agency_id = data.data[0].pna_contactor_name;
+                // console.log(agency_id);
+                $("#company_name").val(parseInt(agency_id));
+                $(".loading_data").hide();
+                // Select Company Detail for PDF
+                jQuery.ajax({
+                    url: baseUrl + "firm-name/"+agency_id,
+                        type: "GET",
+                        headers: {
+                          "Content-Type": "application/json",
+                          "x-access-token": token
+                        },
+                        contentType: "application/json",
+                        cache: false
+                    })
+                .done(function(data, textStatus, jqXHR) {
+                    $('#contractor_name').text(data.data.f_name);
+                    $('#pdf_gen_contractor_name').text(' '+data.data.f_name);
+                    $('#company_name').val(data.data.f_id);
+                })
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("HTTP Request Failed");
+                var response = jqXHR.responseJSON.code;
+                console.log(response);
+                if(response == 403){
+                    window.location.href = baseUrl + "403";
+                }
+                else if(response == 404){
+                   $(".loading_data").hide();
+                }
+                else {
+                    window.location.href = baseUrl + "500";
+                }
+            });
+
+            jQuery.ajax({
+                url: baseUrl + "projects/"+project_id,
+                type: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  "x-access-token": token
+                },
+                contentType: "application/json",
+                cache: false
+            })
+            .done(function(data, textStatus, jqXHR) {
+                var project_name = data.data.p_name;
+                $('#project_name_title').text("Project: " + project_name);
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("HTTP Request Failed");
+                var response = jqXHR.responseJSON.code;
+                if(response == 403){
+                    // window.location.href = baseUrl + "403";
+                    console.log("403");
+                }
+                else if(response == 404){
+                    console.log("404");
+                    // window.location.href = baseUrl + "404";
+                }
+                else {
+                    // console.log("500");
+                    window.location.href = baseUrl + "500";
+                }
+            })
+
+            jQuery.ajax({
+            url: baseUrl + "currency",
+                type: "GET",
+                headers: {
+                  "x-access-token": token
+                },
+                contentType: "application/json",
+                cache: false
+            })
+            .done(function(data, textStatus, jqXHR) {
+                // console.log(data.data);
+                // Foreach Loop
+        //        $(".currency_symbol").append(
+        //            '<option value="">Select Currency</option>'
+        //        )
+                jQuery.each(data.data, function( i, val ) {
+                    if(val.cur_status == 'active'){
+                        $(".currency_symbol").append(
+                            '<option value="'+val.cur_id+'">'+val.cur_symbol+'</option>'
+                        )
+                    }else {
+
+                    }
+                });
+                // $( "h2" ).appendTo( $( ".container" ) );
+
+
+                $(".currency_symbol").show();
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("HTTP Request Failed");
+                var response = jqXHR.responseJSON.code;
+                console.log(response);
+                if(response == 403){
+                    // window.location.href = baseUrl + "403";
+                }
+                else if(response == 404){
+                    // window.location.href = baseUrl + "404";
+                }
+                else {
+                    // window.location.href = baseUrl + "500";
+                }
+            });
+
 		jQuery.ajax({
 		url: baseUrl + "certificate/"+certificate_id,
 		    type: "GET",
