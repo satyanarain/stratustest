@@ -286,6 +286,8 @@ class CertificateController extends Controller {
         $auto_liability_not_include   = $request['auto_liability_not_include'];
         $auto_liability_cert_path     = $request['auto_liability_cert_path'];
 
+       // echo  $auto_include_above;
+
         $umbrella_currency            = $request['umbrella_currency'];
         $umbrella_limit               = $request['umbrella_limit'];
         $umbrella_exp                 = $request['umbrella_exp'];

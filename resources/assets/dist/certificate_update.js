@@ -196,7 +196,7 @@
             $('#general_liability_amount').val(data.data.liability_limit);
             $('#general_liability_date').val(data.data.liability_exp);
               $('#upload_doc_id_general_old').val(data.data.liability_cert_path_id);
-              if ( data.data.liability_required_min = 'yes' ) {
+              if ( data.data.liability_required_min == 'yes' ) {
                 $( "#req_minimum_general" ).prop( "checked", true );
             }
             //$('#upload_doc_id_general').val(data.data.statu);
@@ -206,15 +206,15 @@
             $('#works_compensation_date').val(data.data.work_comp_exp);
             $('#upload_doc_id_work_old').val(data.data.work_comp_cert_path_id);
 
-            if ( data.data.works_comp_required_min = 'yes' ) {
+            if ( data.data.works_comp_required_min == 'yes' ) {
                 $( "#req_minimum_work" ).prop( "checked", true );
             }
 
-                if ( data.data.ci_works_comp_include_above = 'yes' ) {
+                if ( data.data.ci_works_comp_include_above == 'yes' ) {
                 $( "#upload_work_above" ).prop( "checked", true );
             }
 
-                if ( data.data.ci_works_comp_not_include = 'yes' ) {
+                if ( data.data.ci_works_comp_not_include == 'yes' ) {
                 $( "#upload_work" ).prop( "checked", true );
             }
 
@@ -225,16 +225,16 @@
             $('#auto_compensation_date').val(data.data.auto_liability_exp);
              $('#upload_doc_id_auto_old').val(data.data.auto_liability_cert_path_id);
 
-             if ( data.data.auto_liability_required_min = 'yes' ) {
+             if ( data.data.auto_liability_required_min == 'yes' ) {
                 $( "#auto_req_minimum" ).prop( "checked", true );
             }
 
 
-                if ( data.data.ci_auto_include_above = 'yes' ) {
+                if ( data.data.ci_auto_include_above == 'yes' ) {
                 $( "#upload_auto_above" ).prop( "checked", true );
             }
 
-                if ( data.data.ci_auto_liability_not_include = 'yes' ) {
+                if ( data.data.ci_auto_liability_not_include == 'yes' ) {
                 $( "#upload_auto" ).prop( "checked", true );
             }
 
@@ -440,12 +440,12 @@
         var auto_compensation_req_minimum       = auto_req_minimum;
         var auto_compensation_upload_above      = upload_auto_above;
         var auto_compensation_upload_auto       = upload_auto;
-        var auto_compensation_doc_path          = document.getElementById('upload_doc_id_auto').value;
+        var auto_compensation_doc_path_value          = document.getElementById('upload_doc_id_auto').value;
 
 
 
-           if(auto_compensation_doc_path=""){
-              auto_compensation_doc_path = $("#upload_doc_id_auto_old").val();  
+           if(auto_compensation_doc_path_value ==""){
+              auto_compensation_doc_path_value = $("#upload_doc_id_auto_old").val();  
               auto_doc_check = false;
 
          }
@@ -625,7 +625,7 @@
                     "auto_liability_required_min"   : auto_compensation_req_minimum,
                     "auto_include_above"            : auto_compensation_upload_above,
                     "auto_liability_not_include"    : auto_compensation_upload_auto,
-                    "auto_liability_cert_path"      : auto_compensation_doc_path,
+                    "auto_liability_cert_path"      : auto_compensation_doc_path_value,
 
                     "umbrella_currency"             : umbrella_cur_symbol,
                     "umbrella_limit"                : umbrella_currency,
