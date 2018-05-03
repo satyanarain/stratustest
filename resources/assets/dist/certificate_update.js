@@ -331,10 +331,10 @@
         var umbrella_req_minimum                = req_minimum_umbrella;
         var umbrella_upload_above               = upload_umbrella_above;
         var umbrella_upload_auto                = upload_umbrella;
-        var umbrella_doc_path                   =  document.getElementById('upload_doc_id_umbrella').value;
+        var umbrella_doc_path_value                   =  document.getElementById('upload_doc_id_umbrella').value;
 
-           if(umbrella_doc_path==""){
-              umbrella_doc_path = document.getElementById('upload_doc_id_umbrella_old').value;  
+           if(umbrella_doc_path_value==""){
+              umbrella_doc_path_value = document.getElementById('upload_doc_id_umbrella_old').value;  
               umbrella_doc_check = false;
 
          }
@@ -506,7 +506,7 @@
                     "umbrella_currency"             : umbrella_cur_symbol,
                     "umbrella_limit"                : umbrella_currency,
                     "umbrella_exp"                  : umbrella_date,
-                    "umbrella_cert_path"            : umbrella_doc_path,
+                    "umbrella_cert_path"            : umbrella_doc_path_value,
             },
             headers: {
               "x-access-token": token
