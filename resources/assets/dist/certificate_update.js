@@ -440,12 +440,12 @@
         var auto_compensation_req_minimum       = auto_req_minimum;
         var auto_compensation_upload_above      = upload_auto_above;
         var auto_compensation_upload_auto       = upload_auto;
-        var auto_compensation_doc_path          = document.getElementById('upload_doc_id_auto').value;
+        var auto_compensation_doc_path_value          = document.getElementById('upload_doc_id_auto').value;
 
 
 
-           if(auto_compensation_doc_path=""){
-              auto_compensation_doc_path = $("#upload_doc_id_auto_old").val();  
+           if(auto_compensation_doc_path_value ==""){
+              auto_compensation_doc_path_value = $("#upload_doc_id_auto_old").val();  
               auto_doc_check = false;
 
          }
@@ -625,7 +625,7 @@
                     "auto_liability_required_min"   : auto_compensation_req_minimum,
                     "auto_include_above"            : auto_compensation_upload_above,
                     "auto_liability_not_include"    : auto_compensation_upload_auto,
-                    "auto_liability_cert_path"      : auto_compensation_doc_path,
+                    "auto_liability_cert_path"      : auto_compensation_doc_path_value,
 
                     "umbrella_currency"             : umbrella_cur_symbol,
                     "umbrella_limit"                : umbrella_currency,
