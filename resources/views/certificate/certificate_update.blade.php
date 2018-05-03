@@ -40,10 +40,10 @@
                                     </span>
                                     </h4>
                                     <input type="hidden" id="company_name" value="">
-                                   
+                                    <hr/>
                                 </div>
                                <div id="general_liability" style="display: none">
-                                 <hr/>
+                                
                                 <div class="col-md-12">
                                     <h3>General Liability</h3>
                                 </div>
