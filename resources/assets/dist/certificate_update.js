@@ -225,16 +225,16 @@
             $('#auto_compensation_date').val(data.data.auto_liability_exp);
              $('#upload_doc_id_auto_old').val(data.data.auto_liability_cert_path_id);
 
-             if ( data.data.auto_liability_required_min = 'yes' ) {
+             if ( data.data.auto_liability_required_min == 'yes' ) {
                 $( "#auto_req_minimum" ).prop( "checked", true );
             }
 
 
-                if ( data.data.ci_auto_include_above = 'yes' ) {
+                if ( data.data.ci_auto_include_above == 'yes' ) {
                 $( "#upload_auto_above" ).prop( "checked", true );
             }
 
-                if ( data.data.ci_auto_liability_not_include = 'yes' ) {
+                if ( data.data.ci_auto_liability_not_include == 'yes' ) {
                 $( "#upload_auto" ).prop( "checked", true );
             }
 
