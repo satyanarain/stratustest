@@ -521,7 +521,7 @@ class DocusignController extends Controller {
         //UPDATE & DOWNLOAD CHANGE ORDER DOCUMENT WITH REIMBURSEMENT FROM DOCUSIGN        
         $nocs = DB::table('project_change_order_request_detail')
                 ->select('project_change_order_request_detail.*')
-                ->where('docusign_status', '=',"pending")
+                ->where('docusign_status', '!=',"completed")
                 ->where('envelope_id', '!=',"")
                 ->get();
         foreach($nocs as $noc){
@@ -539,8 +539,8 @@ class DocusignController extends Controller {
                 $response1 = json_decode($json_response1, true);
                 //echo $response1["status"];die;
                 curl_close($curl1);
-                if($response1["status"]=="completed")
-                {
+                $change_docu_status = $response1["status"];
+                
                     $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
                     curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
@@ -576,7 +576,7 @@ class DocusignController extends Controller {
                                             ->update(['doc_path' => $file_upload_path]);
                                             $query = DB::table('project_change_order_request_detail')
                                             ->where('pcd_id', '=', $noc_id)
-                                            ->update(['docusign_status' => "complete"]);
+                                            ->update(['docusign_status' => $change_docu_status]);
                                         }else{
                                             $information = array(
                                             "doc_status"     => "active",
@@ -588,14 +588,14 @@ class DocusignController extends Controller {
                                             $doc_id = DB::table('documents')->insertGetId($information);
                                             $query = DB::table('project_change_order_request_detail')
                                             ->where('pcd_id', '=', $noc_id)
-                                            ->update(['docusign_status' => "complete",'pcd_file_path'=>$doc_id]);
+                                            ->update(['docusign_status' => $change_docu_status,'pcd_file_path'=>$doc_id]);
                                         }
                                     }
                                     curl_close($curl3);
                                 }else{continue;}
                         }
                     }else{continue;}
-                }else{continue;}
+                
             }else{continue;}
         }
     }

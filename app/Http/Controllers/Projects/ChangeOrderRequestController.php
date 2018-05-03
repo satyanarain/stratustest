@@ -205,6 +205,7 @@ use ProjectImprovement;
         $order_parent_cor         = $request['order_parent_cor'];
         $order_project_id         = $request['order_project_id'];
         $order_user_id            = Auth::user()->id;
+        $docusign_status          = 'pending';
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
       $permission_key = 'cor_add';
@@ -247,7 +248,7 @@ use ProjectImprovement;
         {
             
             $query = DB::table('project_change_order_request_detail')
-            ->insert(['pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
+            ->insert(['docusign_status'=>$docusign_status,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
