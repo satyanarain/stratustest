@@ -78,12 +78,19 @@ $(document).ready(function() {
         var request_bid_path_value;
         if(request_bid_path == null){
             request_bid_path_value = '';
+            request_bid_iframe_value = '';
         }
         else {
+            if(data.data.doc_path)
+            {
             //request_bid_path_value = '<a href="https://apps.groupdocs.com/document-viewer/embed/'+data.data.doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
             request_bid_path_value = '<a href="'+data.data.doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
             var request_bid_iframe_value = '<iframe src="'+data.data.doc_path+'" frameborder="0" width="100%" height="800"></iframe>';
             //var request_bid_iframe_value = '<iframe src="https://apps.groupdocs.com/document-viewer/Embed/'+data.data.file_path+'?quality=50&use_pdf=False&download=False&print=False&signature=5Xpc7qsFKjmJoHfRcXxUus8Tqn0" frameborder="0" width="100%" height="800"></iframe>';
+            }else{
+                request_bid_path_value = '';
+                request_bid_iframe_value = '';
+            }
         }
         $("#review_document").html(request_bid_iframe_value);
 

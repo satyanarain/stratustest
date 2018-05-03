@@ -52,15 +52,16 @@ class WeeklyReportController extends Controller {
       }
       else
       {
-
+          echo '<pre>';
           foreach ($query as $project) {
           $current_date     = date('Y-m-d');
-          echo $project_id       = $project->p_id;
+          $project_id       = $project->p_id;
 
             $project_notice_proceed = DB::table('project_notice_proceed')
             ->select()
             ->where('pnp_project_id', '=', $project_id)
             ->get();
+            print_r($project_notice_proceed);
             $countDays = 6;
             if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
                $countDays =6;
