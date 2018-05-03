@@ -136,7 +136,7 @@ class DocusignController extends Controller {
         //UPDATE & DOWNLOAD NOTICE TO PROCEED DOCUMENT FROM DOCUSIGN        
         $awards = DB::table('project_notice_proceed')
                 ->select('project_notice_proceed.*')
-                ->where('pnp_docusign_status', '=',"pending")
+                ->where('pnp_docusign_status', '!=',"completed")
                 ->where('pnp_envelope_id', '!=',"")
                 ->get();
         foreach($awards as $award){
@@ -155,8 +155,8 @@ class DocusignController extends Controller {
                 //echo $response1["status"];die;
                 
                 curl_close($curl1);
-                if($response1["status"]=="completed")
-                {
+                $ntp_docu_status = $response1["status"];
+                
                     $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
                     curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
@@ -192,7 +192,7 @@ class DocusignController extends Controller {
                                             ->update(['doc_path' => $file_upload_path]);
                                             $query = DB::table('project_notice_proceed')
                                             ->where('pnp_id', '=', $pna_id)
-                                            ->update(['pnp_docusign_status' => "complete"]);
+                                            ->update(['pnp_docusign_status' => $ntp_docu_status]);
                                         }else{
                                             $information = array(
                                             "doc_status"     => "active",
@@ -204,16 +204,14 @@ class DocusignController extends Controller {
                                             $doc_id = DB::table('documents')->insertGetId($information);
                                             $query = DB::table('project_notice_proceed')
                                             ->where('pnp_id', '=', $pna_id)
-                                            ->update(['docusign_status' => "complete",'pnp_path'=>$doc_id]);
+                                            ->update(['docusign_status' => $ntp_docu_status,'pnp_path'=>$doc_id]);
                                         }
                                     }
                                     curl_close($curl3);
                                 }else{continue;}
                         }
                     }else{continue;}
-                } else {
-                    continue;
-                }
+                
             }else{continue;}
         }
         
@@ -441,7 +439,7 @@ class DocusignController extends Controller {
         //UPDATE & DOWNLOAD NOTICE OF COMPLETION DOCUMENT FROM DOCUSIGN        
         $nocs = DB::table('project_notice_of_completion')
                 ->select('project_notice_of_completion.*')
-                ->where('docusign_status', '=',"pending")
+                ->where('docusign_status', '!=',"completed")
                 ->where('envelope_id', '!=',"")
                 ->get();
         foreach($nocs as $noc){
@@ -459,8 +457,8 @@ class DocusignController extends Controller {
                 $response1 = json_decode($json_response1, true);
                 //echo $response1["status"];die;
                 curl_close($curl1);
-                if($response1["status"]=="completed")
-                {
+                $noc_docu_status = $response1["status"];
+                
                     $curl2 = curl_init($baseUrl . "/envelopes/" . $envelopeId . "/documents" );
                     curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($curl2, CURLOPT_HTTPHEADER, array(                                                                          
@@ -496,7 +494,7 @@ class DocusignController extends Controller {
                                             ->update(['doc_path' => $file_upload_path]);
                                             $query = DB::table('project_notice_of_completion')
                                             ->where('noc_id', '=', $noc_id)
-                                            ->update(['docusign_status' => "complete"]);
+                                            ->update(['docusign_status' => $noc_docu_status]);
                                         }else{
                                             $information = array(
                                             "doc_status"     => "active",
@@ -508,15 +506,15 @@ class DocusignController extends Controller {
                                             $doc_id = DB::table('documents')->insertGetId($information);
                                             $query = DB::table('project_notice_of_completion')
                                             ->where('noc_id', '=', $noc_id)
-                                            ->update(['docusign_status' => "complete",'noc_file_path'=>$doc_id]);
+                                            ->update(['docusign_status' => $noc_docu_status,'noc_file_path'=>$doc_id]);
                                         }
                                     }
                                     curl_close($curl3);
                                 }else{continue;}
                         }
                     }else{continue;}
+                
                 }else{continue;}
-            }else{continue;}
         }
         
         
