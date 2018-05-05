@@ -588,11 +588,11 @@ class NoticeProceedController extends Controller {
         $user_id = Auth::user()->id;
         $permission_key = 'notice_proceed_view_all';
         $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
-        if(count($check_single_user_permission) < 1){
+     /*   if(count($check_single_user_permission) < 1){
           $result = array('code'=>403, "description"=>"Access Denies");
           return response()->json($result, 403);
         }
-        else {
+        else { */
           $query = DB::table('project_notice_proceed')
 ->leftJoin('project_firm as contractor_name', 'project_notice_proceed.pnp_contractor_name', '=', 'contractor_name.f_id')
 ->leftJoin('currency as liquidated_currency', 'project_notice_proceed.pnp_liquidated_currency', '=', 'liquidated_currency.cur_id')
@@ -616,7 +616,7 @@ class NoticeProceedController extends Controller {
             $result = array('data'=>$query,'code'=>200);
             return response()->json($result, 200);
           }
-        }
+        /*} */
       }
       catch(Exception $e)
       {
