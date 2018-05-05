@@ -687,6 +687,12 @@ function checkvalue( e ) {
       var max = parseInt($(e).attr('max'));
       var min = parseInt($(e).attr('min'));
 
-    console.log("max "+max);
-    console.log("min "+min);
+     if ($(e).val() > max)
+          {
+              $(e).val(max);
+          }
+          else if ($(e).val() < min)
+          {
+              $(e).val(min);
+          }  
 }
