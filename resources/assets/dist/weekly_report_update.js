@@ -67,6 +67,12 @@ $(document).ready(function() {
         console.log(data.data);
         console.log(data.data.pnp_date);
         console.log("pnp call"+data.data.pnp_cal_day);
+       if (data.data.pnp_cal_day == 'working_day') {
+        document.getElementById('days_text').innerHTML = "WORKING DAYS";
+       } else {
+          document.getElementById('days_text').innerHTML = "CALENDAR DAYS";
+
+       }
         // var date1 = data.data.pnp_date.replace(' 00:00:00', '');
         // console.log(date1);
         var f_name = data.data.contractor_name;
