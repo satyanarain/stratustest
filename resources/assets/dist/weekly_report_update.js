@@ -66,6 +66,7 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         console.log(data.data);
         console.log(data.data.pnp_date);
+        console.log("pnp call"+data.data.pnp_cal_day);
         // var date1 = data.data.pnp_date.replace(' 00:00:00', '');
         // console.log(date1);
         var f_name = data.data.contractor_name;
