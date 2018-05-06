@@ -698,4 +698,9 @@ function checkvalue( e ) {
 
  }
  console.log(sumvalue);
+
+ if (e.classList[1] == 'days_app_calender' ) {
+    var app_calender =  document.getElementById('calendar_days_app_calender').innerHTML;
+document.getElementById('calendar_previous_days_app_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
+ }
 }
