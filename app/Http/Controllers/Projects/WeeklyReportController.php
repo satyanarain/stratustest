@@ -461,6 +461,7 @@ class WeeklyReportController extends Controller {
               $project_ids = DB::table('project_notice_proceed')
               ->select('pnp_project_id')
               ->where('pnp_cal_day', '=', 'calendar_day')
+               ->where('pnp_project_id', '=', $project_id)
               ->orderBy('pnp_project_id','DESC')
                ->first();
               $projectID =  $project_ids->pnp_project_id;
@@ -468,6 +469,7 @@ class WeeklyReportController extends Controller {
                   $project_ids = DB::table('project_notice_proceed')
               ->select('pnp_project_id')
               ->where('pnp_cal_day', '=', 'working_day')
+              ->where('pnp_project_id', '=', $project_id)
               ->orderBy('pnp_project_id','DESC')
                ->first();
               $projectID =  $project_ids->pnp_project_id;
