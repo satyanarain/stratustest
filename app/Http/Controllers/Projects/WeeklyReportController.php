@@ -61,7 +61,7 @@ class WeeklyReportController extends Controller {
             ->select()
             ->where('pnp_project_id', '=', $project_id)
             ->get();
-            print_r($project_notice_proceed);
+          //  print_r($project_notice_proceed);
             $countDays = 6;
             if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
                $countDays =6;
@@ -359,10 +359,36 @@ class WeeklyReportController extends Controller {
       //   return response()->json($result, 403);
       // } 
       // else {
+
+        $project_notice_proceed = DB::table('project_notice_proceed')
+            ->select()
+            ->where('pnp_project_id', '=', $project_id)
+            ->get();
+          //  print_r($project_notice_proceed);
+            $projectID =0;
+
+            if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
+
+              $project_ids = DB::table('project_notice_proceed')
+              ->select('pnp_project_id')
+              ->where('pnp_cal_day', '=', 'calendar_day')
+              ->orderBy('pnp_project_id','DESC')
+               ->first();
+              $projectID =  $project_ids->pnp_project_id;
+            } else {
+                  $project_ids = DB::table('project_notice_proceed')
+              ->select('pnp_project_id')
+              ->where('pnp_cal_day', '=', 'working_day')
+              ->orderBy('pnp_project_id','DESC')
+               ->first();
+              $projectID =  $project_ids->pnp_project_id;
+            }
+
+           echo "project id".$projectID;
         $query = DB::table('project_weekly_reports')
 ->leftJoin('projects', 'project_weekly_reports.pwr_project_id', '=', 'projects.p_id')
         ->select('project_weekly_reports.*', 'projects.*')
-        ->where('pwr_id', '=', $report_id)
+        ->where('pwr_id', '=', $projectID)
         ->first();
         if(count($query) < 1)
         {
