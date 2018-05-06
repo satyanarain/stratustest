@@ -60,8 +60,9 @@ class WeeklyReportController extends Controller {
             $project_notice_proceed = DB::table('project_notice_proceed')
             ->select()
             ->where('pnp_project_id', '=', $project_id)
-            ->get();
-            print_r($project_notice_proceed);
+            ->orderBy('pnp_project_id','DESC')
+               ->first();
+          ///  print_r($project_notice_proceed);
             $countDays = 6;
             if (  $project_notice_proceed[0]->pnp_cal_day == 'calendar_day' ) {
                $countDays =6;
@@ -452,7 +453,7 @@ class WeeklyReportController extends Controller {
             ->select()
             ->where('pnp_project_id', '=', $project_id)
             ->get();
-          echo "<pre> Data :".print_r(  $project_notice_proceed , TRUE )."</pre>";
+        //  echo "<pre> Data :".print_r(  $project_notice_proceed , TRUE )."</pre>";
             $projectID =0;
 
             if (  $project_notice_proceed[0]->pnp_cal_day == 'calendar_day' ) {
