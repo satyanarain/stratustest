@@ -452,7 +452,7 @@ class WeeklyReportController extends Controller {
             ->select()
             ->where('pnp_project_id', '=', $project_id)
             ->get();
-           print_r($project_notice_proceed);
+          echo "<pre> Data :".print_r(  $project_notice_proceed , TRUE )."</pre>";
             $projectID =0;
 
             if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
