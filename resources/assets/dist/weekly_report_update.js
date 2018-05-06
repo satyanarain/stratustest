@@ -679,6 +679,7 @@ function checkvalue( e ) {
       var max = parseInt($(e).attr('max'));
       var min = parseInt($(e).attr('min'));
 
+       
      if ($(e).val() > max)
           {
               $(e).val(max);
@@ -686,5 +687,15 @@ function checkvalue( e ) {
           else if ($(e).val() < min)
           {
               $(e).val(min);
-          }  
+          } 
+
+ var dataList = document.querySelectorAll("."+e.classList[1]); 
+
+  var sumvalue = 0;
+ for (var i = 0; i < dataList.length; i++) {
+     
+     sumvalue = parseInt(sumvalue) + parseInt( dataList[i].value );
+
+ }
+ console.log(sumvalue);
 }
