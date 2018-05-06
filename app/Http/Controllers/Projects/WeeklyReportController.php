@@ -475,7 +475,7 @@ class WeeklyReportController extends Controller {
               $projectID =  $project_ids->pnp_project_id;
             }
 
-           echo "project id".$projectID;
+          // echo "project id".$projectID;
         $query = DB::table('project_weekly_reports_days')
         ->select()
         ->select(DB::raw('sum(pwrd_approved_calender_day) as pwrd_approved_calender_day, sum(pwrd_approved_non_calender_day) as pwrd_approved_non_calender_day, sum(pwrd_rain_day) as pwrd_rain_day'))
