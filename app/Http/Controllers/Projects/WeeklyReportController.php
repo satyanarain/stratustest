@@ -447,12 +447,12 @@ class WeeklyReportController extends Controller {
       // } 
       // else {
 
-      
+
         $project_notice_proceed = DB::table('project_notice_proceed')
             ->select()
             ->where('pnp_project_id', '=', $project_id)
             ->get();
-          //  print_r($project_notice_proceed);
+           print_r($project_notice_proceed);
             $projectID =0;
 
             if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
