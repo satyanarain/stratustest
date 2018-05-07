@@ -519,6 +519,7 @@
                               <th>Description</th>
                               <th>Approved by CM</th>
                               <th>Approved by OWNER</th>
+                              <th style="min-width: 200px;">Referenced RFI</th>
                               <th>$</th>
                               <th>Days</th>
                               <th>Status</th>
@@ -562,7 +563,7 @@
                               <th>Description</th>
                               <th>Approved by CM</th>
                               <th>Approved by OWNER</th>
-                              <th style="min-width: 200px;">Referenced RFI</th>
+<!--                              <th style="min-width: 200px;">Referenced RFI</th>-->
                               <th>$</th>
                               <th>Days</th>
                               <th>Status</th>

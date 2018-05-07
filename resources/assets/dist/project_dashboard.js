@@ -1213,8 +1213,58 @@ $(document).ready(function() {
 			            var pcd_approved_by_owner = val.pcd_approved_by_owner;
 			            r_cor_complete++;
 			        }
+                                if(parseInt(val.is_potential)==1)
+                                {
+                                    var oneDay = 24*60*60*1000;
+                                    var future_date = new Date(val.pcd_timestamp);
+                                    var numberOfDaysToAdd = 5;
+                                    var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
+                                    var now_date = new Date();
+                                    var numberOfDaysToAdd = 0;
+                                    var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd); 
+                                    // console.log(future_date);
+                                    // console.log(now_date);
+                                    // console.log(futuredate);
+                                    // console.log(nowdate);
+                                    var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
 
+                                    if(futuredate < nowdate){
+                                        // console.log('less');
+                                        var potential_status = '<span class="label label-danger">PAST DUE</span>';
+                                        var action_button = "";
+                                    }
+                                    else {
+                                        // console.log('greater');
+                                        seconds = Math.floor((futuredate - (nowdate))/1000);
+                                        minutes = Math.floor(seconds/60);
+                                        hours = Math.floor(minutes/60);
+                                        days = Math.floor(hours/24);
+
+                                        hours1 = hours-(days*24);
+                                        minutes1 = minutes-(days*24*60)-(hours1*60);
+                                        seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
+
+                                        var potential_status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
+                                        
+                                    }
+                                    var t = $('#potential_change_order').DataTable();
+
+                                    t.row.add([
+                                           counts, // val.pcd_parent_cor,
+                                           val.agency_name,
+                                           val.pco_date,
+                                           '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/update">'+val.pcd_description+'</a>',
+                                            pcd_approved_by_cm,
+                                            pcd_approved_by_owner,
+                                           val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
+                                           val.pcd_days,
+                                           status_cm + status_owner+potential_status,
+                                           
+                                        ]).draw( false );  
+                                    counts++;
+                                }else{
 			        if(val.pcd_rfi == '[]'){
+                                    var rfi_final = '';
 			        	console.log("request 1 ");
 			            var t = $('#request_change_order').DataTable();
 			            t.row.add([
@@ -1224,7 +1274,8 @@ $(document).ready(function() {
 			               '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/update">'+val.pcd_description+'</a>',
 			               pcd_approved_by_cm,
 			               pcd_approved_by_owner,
-			               val.pcd_price,
+                                       rfi_final,
+			               val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
 			               val.pcd_days,
 			               status_cm + status_owner,
 			            ]).draw( false );
@@ -1245,8 +1296,8 @@ $(document).ready(function() {
 			                console.log("future Date !!");
 			                console.log(future_date);
 			                var numberOfDaysToAdd = 10;
-                            var futuredate = '';
-                            console.log();
+                                        var futuredate = '';
+                                        console.log();
 							if ( change_order_days_type == 1 ) {
 								console.log("cal 1");
 						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
@@ -1311,12 +1362,13 @@ $(document).ready(function() {
 			            .done(function(data, textStatus, jqXHR) {
 			                // console.log(data.data);
 			                window.rfi_final = '';
+                                        rfi_final = '';
 			                jQuery.each(data.data, function( i, val ) {
 			                    rfi_final += "RFI "+val.ri_id+" : "+ val.ri_question_request+"<br/>"; 
 			                    // console.log(rfi_final);
 			                });
 
-			                var t = $('#potential_change_order').DataTable();
+			                var t = $('#request_change_order').DataTable();
 			                t.row.add([
 			                   counts, // val.pcd_parent_cor,
 			                   val.agency_name,
@@ -1325,7 +1377,7 @@ $(document).ready(function() {
 			                   pcd_approved_by_cm,
 			                   pcd_approved_by_owner,
 			                   rfi_final,
-			                   val.pcd_price,
+			                   val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
 			                   val.pcd_days,
 			                   potential_status,
 			                ]).draw( false );  
@@ -1338,6 +1390,7 @@ $(document).ready(function() {
 			                console.log(response);
 			            }) 
 			        }
+                                }
 			    });
 			    // $( "h2" ).appendTo( $( ".container" ) );
 			   
