@@ -66,6 +66,13 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         console.log(data.data);
         console.log(data.data.pnp_date);
+        console.log("pnp call"+data.data.pnp_cal_day);
+       if (data.data.pnp_cal_day == 'working_day') {
+        document.getElementById('days_text').innerHTML = "WORKING DAYS";
+       } else {
+          document.getElementById('days_text').innerHTML = "CALENDAR DAYS";
+
+       }
         // var date1 = data.data.pnp_date.replace(' 00:00:00', '');
         // console.log(date1);
         var f_name = data.data.contractor_name;
@@ -169,9 +176,9 @@ $(document).ready(function() {
                     '<td style="vertical-align: middle;">'+val.pwrd_date+'</td>'+
                     '<td><input type="hidden" class="form-control days_id" name="days_id[]" value="'+val.pwrd_id+'" id="">'+
                     '<input type="text" class="form-control days_weather" name="days_weather[]" value="'+val.pwrd_weather+'" id=""></td>'+
-                    '<td><input type="number" min="0" max="100" class="form-control days_app_calender" name="days_app_calender[]" value="'+val.pwrd_approved_calender_day+'" id=""></td>'+
-                    '<td><input type="number" min="0" max="100" class="form-control days_app_non_calender" name="days_app_non_calender[]" value="'+val.pwrd_approved_non_calender_day+'" id=""></td>'+
-                    '<td><input type="number" min="0" max="100" class="form-control days_rainy_day" name="days_rainy_day[]" value="'+val.pwrd_rain_day+'" id=""></td>'+
+                    '<td><input type="number" min="0" max="1" class="form-control days_app_calender" onchange="checkvalue(this)" name="days_app_calender[]" value="'+val.pwrd_approved_calender_day+'" id="" required="required" pattern="(1|0)"></td>'+
+                    '<td><input type="number" min="0" max="1" class="form-control days_app_non_calender" onchange="checkvalue(this)" name="days_app_non_calender[]" value="'+val.pwrd_approved_non_calender_day+'" id=""></td>'+
+                    '<td><input type="number" min="0" max="1" class="form-control days_rainy_day" onchange="checkvalue(this)" name="days_rainy_day[]" value="'+val.pwrd_rain_day+'" id=""></td>'+
                 '</tr>'
             );
             pwrd_approved_calender_day += parseInt(val.pwrd_approved_calender_day);
@@ -665,3 +672,50 @@ $('#create_weekly_report').click(function () {
         })
 
 });
+
+
+function checkvalue( e ) {
+        console.log(e);
+      var max = parseInt($(e).attr('max'));
+      var min = parseInt($(e).attr('min'));
+
+       
+     if ($(e).val() > max)
+          {
+              $(e).val(max);
+          }
+          else if ($(e).val() < min)
+          {
+              $(e).val(min);
+          } 
+
+ var dataList = document.querySelectorAll("."+e.classList[1]); 
+
+  var sumvalue = 0;
+ for (var i = 0; i < dataList.length; i++) {
+     
+     sumvalue = parseInt(sumvalue) + parseInt( dataList[i].value );
+
+ }
+ console.log(sumvalue);
+
+ if (e.classList[1] == 'days_app_calender' ) {
+    document.getElementById('calendar_days_app_calender').innerHTML=sumvalue;
+    var app_calender = document.getElementById('calendar_previous_days_app_calender').innerHTML;
+document.getElementById('calendar_total_days_app_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
+document.getElementById('calendar_day_charged_app_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
+ }
+
+  if (e.classList[1] == 'days_app_non_calender' ) {
+    document.getElementById('calendar_days_app_raily_day').innerHTML=sumvalue;
+    var app_calender = document.getElementById('calendar_previous_days_app_non_calender').innerHTML;
+document.getElementById('calendar_total_days_app_non_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
+document.getElementById('calendar_day_charged_app_non_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
+ }
+ if (e.classList[1] == 'days_rainy_day' ) {
+    document.getElementById('calendar_days_app_non_calender').innerHTML=sumvalue;
+    var app_calender = document.getElementById('calendar_previous_days_app_raily_day').innerHTML;
+document.getElementById('calendar_total_days_app_raily_day').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
+ }
+
+}

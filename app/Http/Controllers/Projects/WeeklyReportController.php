@@ -54,26 +54,38 @@ class WeeklyReportController extends Controller {
       {
           echo '<pre>';
           foreach ($query as $project) {
+
           $current_date     = date('Y-m-d');
           $project_id       = $project->p_id;
 
             $project_notice_proceed = DB::table('project_notice_proceed')
             ->select()
-            ->where('pnp_project_id', '=', $project_id)
-            ->get();
-            print_r($project_notice_proceed);
-            $countDays = 6;
-            if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
-               $countDays =6;
+            ->where('pnp_project_id', '=', $project_id )
+            ->orderBy('pnp_start_date','DESC')
+            ->first();
+
+         echo "project : ".$project_id,"</br>"; 
+
+            $countDays = 0;
+         // echo "<pre> pro Data :".print_r($project_notice_proceed , TRUE)."</pre>";
+         //  echo "<pre> pnp Data :".print_r($project_notice_proceed->pnp_cal_day , TRUE)."</pre>";
+if (isset( $project_notice_proceed->pnp_cal_day  )) {
+
+            if (  $project_notice_proceed->pnp_cal_day != 'calendar_day' ) {
+               $countDays = 0;
             } else {
-                 $countDays =5;
+                 $countDays = 2;
             }
+}
+             echo $countDays;
+           //  die();
 
             $add_weekly_report = ProjectWeeklyReports::create(['pwr_project_id' => $project_id, 'pwr_week_ending' => $current_date, 'pwr_status' => 'active', 'pwr_status' => 'incomplete']);
             
             $add_weekly_report_id = $add_weekly_report->id;
             // print_r($add_weekly_report_id);
-            for ($i=0; $i < $countDays; $i++) {
+
+            for ($i=$countDays; $i < 7; $i++) {
                 $date = date('l, jS \of F Y', strtotime($current_date . ' -'.$i.' day'));
                 $query = DB::table('project_weekly_reports_days')
                 ->insert(['pwrd_date' => $date, 'pwrd_project_id' => $project_id, 'pwrd_report_id' => $add_weekly_report_id]);
@@ -446,10 +458,39 @@ class WeeklyReportController extends Controller {
       //   return response()->json($result, 403);
       // } 
       // else {
+
+
+        $project_notice_proceed = DB::table('project_notice_proceed')
+            ->select()
+            ->where('pnp_project_id', '=', $project_id)
+            ->get();
+        //  echo "<pre> Data :".print_r(  $project_notice_proceed , TRUE )."</pre>";
+            $projectID =0;
+
+            if (  $project_notice_proceed[0]->pnp_cal_day == 'calendar_day' ) {
+
+              $project_ids = DB::table('project_notice_proceed')
+              ->select('pnp_project_id')
+              ->where('pnp_cal_day', '=', 'calendar_day')
+               ->where('pnp_project_id', '=', $project_id)
+              ->orderBy('pnp_project_id','DESC')
+               ->first();
+              $projectID =  $project_ids->pnp_project_id;
+            } else {
+                  $project_ids = DB::table('project_notice_proceed')
+              ->select('pnp_project_id')
+              ->where('pnp_cal_day', '=', 'working_day')
+              ->where('pnp_project_id', '=', $project_id)
+              ->orderBy('pnp_project_id','DESC')
+               ->first();
+              $projectID =  $project_ids->pnp_project_id;
+            }
+
+          // echo "project id".$projectID;
         $query = DB::table('project_weekly_reports_days')
         ->select()
         ->select(DB::raw('sum(pwrd_approved_calender_day) as pwrd_approved_calender_day, sum(pwrd_approved_non_calender_day) as pwrd_approved_non_calender_day, sum(pwrd_rain_day) as pwrd_rain_day'))
-        ->where('pwrd_project_id', '=', $project_id)
+        ->where('pwrd_project_id', '=', $projectID)
         ->get();
         if(count($query) < 1)
         {
@@ -494,11 +535,12 @@ class WeeklyReportController extends Controller {
           $days_weather          = $request['days_weather'];
           $days_app_calender     = $request['days_app_calender'];
           $days_app_non_calender = $request['days_app_non_calender'];
-          $days_rainy_day        = $request['days_rainy_day']; 
+          $days_rainy_day        = $request['days_rainy_day'];
+          $current_time = date("Y-m-d H:i:s"); 
 
           $query = DB::table('project_weekly_reports_days')
           ->where('pwrd_id', '=', $days_id)
-          ->update(['pwrd_weather' => $days_weather, 'pwrd_approved_calender_day' => $days_app_calender, 'pwrd_approved_non_calender_day' => $days_app_non_calender, 'pwrd_rain_day' => $days_rainy_day]);
+          ->update(['pwrd_weather' => $days_weather, 'pwrd_approved_calender_day' => $days_app_calender, 'pwrd_approved_non_calender_day' => $days_app_non_calender, 'pwrd_rain_day' => $days_rainy_day,'update_time' => $current_time ]);
           if(count($query) < 1)
           {
             $result = array('code'=>400, "description"=>"No records found");
