@@ -63,8 +63,8 @@ class WeeklyReportController extends Controller {
             ->orderBy('pnp_start_date','DESC')
                ->first();
           print_r($project_notice_proceed);
-            $countDays = 6;
-            if (  $project_notice_proceed[0]->pnp_cal_day == 'calendar_day' ) {
+            $countDays = 7;
+            if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
                $countDays =7;
             } else {
                  $countDays =5;
