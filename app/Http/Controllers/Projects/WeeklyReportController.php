@@ -480,7 +480,7 @@ for ($i=0; $i <count( $all_report ) ; $i++) {
 
       //       echo "<pre> Data :".print_r(  $all_report  , TRUE )."</pre>";
 
-        //       echo "<pre> Data ids :".print_r(  $projectIDs  , TRUE )."</pre>";
+           echo "<pre> Data ids :".print_r(  $projectIDs  , TRUE )."</pre>";
 
       //  die();
 
