@@ -65,7 +65,7 @@ class WeeklyReportController extends Controller {
           print_r($project_notice_proceed);
             $countDays = 7;
             echo "<pre> Data :".print_r($project_notice_proceed->pnp_cal_day , TRUE)."</pre>";
-            die();
+           // die();
             if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
                $countDays =7;
             } else {
