@@ -188,6 +188,10 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
           $time_extension         = $request['time_extension'];
           $remark_report          = $request['remark_report'];
           $type_name              = $request['type_name'];
+          $days_this_report_app_calender              = $request['days_this_report_app_calender'];
+          $days_this_report_app_non_calender              = $request['days_this_report_app_non_calender'];
+          $days_previous_report_app_calender              = $request['days_previous_report_app_calender'];
+          $days_previous_report_app_non_calender              = $request['days_previous_report_app_non_calender'];
 
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
@@ -219,7 +223,7 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
         {
             $query = DB::table('project_weekly_reports')
             ->where('pwr_id', '=', $report_id)
-            ->update(['pwr_time_extension' => $time_extension, 'pwr_remarks' => $remark_report, 'pwr_type_name' => $type_name, 'pwr_status' => 'active', 'pwr_report_status' => 'complete']);
+            ->update(['pwr_time_extension' => $time_extension, 'pwr_remarks' => $remark_report, 'pwr_type_name' => $type_name, 'pwr_status' => 'active', 'pwr_report_status' => 'complete','days_this_report_app_calender'=>$days_this_report_app_calender,'days_this_report_app_non_calender'=>$days_this_report_app_non_calender,'days_previous_report_app_calender'=>$days_previous_report_app_calender,'days_previous_report_app_non_calender'=>$days_previous_report_app_non_calender]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
