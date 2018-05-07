@@ -130,6 +130,18 @@ $(document).ready(function() {
         console.log('call week');
         console.log(data.data);
         console.log('end call week');
+        if (data.data.days_this_report_app_calender !=0) {
+            document.getElementById('days_this_report_app_calender').value = data.data.days_this_report_app_calender;
+        }
+         if (data.data.days_this_report_app_non_calender !=0) {
+            document.getElementById('days_this_report_app_non_calender').value = data.data.days_this_report_app_non_calender;
+        }
+         if (data.data.days_previous_report_app_calender !=0) {
+            document.getElementById('days_previous_report_app_calender').value = data.data.days_previous_report_app_calender;
+        }
+         if (data.data.days_previous_report_app_non_calender !=0) {
+            document.getElementById('days_previous_report_app_non_calender').value = data.data.days_previous_report_app_non_calender;
+        }
         $('#report_id').text(report_id);
         var week_ending = data.data.pwr_week_ending;
         $('#week_ending').text(week_ending);
