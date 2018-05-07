@@ -227,9 +227,9 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         $('#calendar_previous_days_app_calender').text(data.data[0].pwrd_approved_calender_day);
         console.log(data.data[0].pwrd_approved_calender_day);
-        $('#days_previous_report_app_calender').text(data.data[0].pwrd_approved_calender_day);
+        $('#days_previous_report_app_calender').val(data.data[0].pwrd_approved_calender_day);
         $('#calendar_previous_days_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
-        $('#days_previous_report_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
+        $('#days_previous_report_app_non_calender').val(data.data[0].pwrd_approved_non_calender_day);
         console.log(data.data[0].pwrd_approved_calender_day);
         $('#calendar_previous_days_app_raily_day').text(data.data[0].pwrd_rain_day);
         console.log(data.data[0].pwrd_approved_calender_day);
@@ -259,13 +259,13 @@ $(document).ready(function() {
         // });
         $('#calendar_days_app_calender').text(pwrd_approved_calender_day);
         // console.log(days_app_calender);
-        $('#days_this_report_app_calender').text(pwrd_approved_calender_day);
+        $('#days_this_report_app_calender').val(pwrd_approved_calender_day);
         var calendar_previous_days_app_calender = $('#calendar_previous_days_app_calender').text();
         var calendar_previous_days_app_calender1 = parseInt(calendar_previous_days_app_calender);
         $('#calendar_total_days_app_calender').text(parseInt(pwrd_approved_calender_day+calendar_previous_days_app_calender1));
         // Total Day Approved
-        var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').text());
-        var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').text());
+        var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').val());
+        var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').val());
         $('#total_day_approved_app_calender').text(parseInt(days_this_report_app_calender1+days_previous_report_app_calender1));
 
 
@@ -274,13 +274,13 @@ $(document).ready(function() {
         //     days_app_non_calender += parseInt($(this).val()); //<==== a catch  in here !! read below
         // });
         $('#calendar_days_app_non_calender').text(pwrd_approved_non_calender_day);
-        $('#days_this_report_app_non_calender').text(pwrd_approved_non_calender_day);
+        $('#days_this_report_app_non_calender').val(pwrd_approved_non_calender_day);
         var calendar_previous_days_app_non_calender = $('#calendar_previous_days_app_non_calender').text();
         var calendar_previous_days_app_non_calender1 = parseInt(calendar_previous_days_app_non_calender);
         $('#calendar_total_days_app_non_calender').text(parseInt(pwrd_approved_non_calender_day+calendar_previous_days_app_non_calender1));
         // Total Day Approved
-        var days_this_report_app_non_calender1 = parseInt($('#days_this_report_app_non_calender').text());
-        var days_previous_report_app_non_calender1 = parseInt($('#days_previous_report_app_non_calender').text());
+        var days_this_report_app_non_calender1 = parseInt($('#days_this_report_app_non_calender').val());
+        var days_previous_report_app_non_calender1 = parseInt($('#days_previous_report_app_non_calender').val());
         $('#total_day_approved_app_non_calender').text(parseInt(days_this_report_app_non_calender1+days_previous_report_app_non_calender1));
 
 
@@ -349,8 +349,8 @@ $('#calendar_week_days').on('input', function() {
     var calendar_previous_days_app_calender1 = parseInt(calendar_previous_days_app_calender);
     $('#calendar_total_days_app_calender').text(parseInt(pwrd_approved_calender_day+calendar_previous_days_app_calender1));
     // Total Day Approved
-    var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').text());
-    var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').text());
+    var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').val());
+    var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').val());
     $('#total_day_approved_app_calender').text(parseInt(days_this_report_app_calender1+days_previous_report_app_calender1));
 
 
@@ -359,13 +359,13 @@ $('#calendar_week_days').on('input', function() {
         days_app_non_calender += parseInt($(this).val()); //<==== a catch  in here !! read below
     });
     $('#calendar_days_app_non_calender').text(days_app_non_calender);
-    $('#days_this_report_app_non_calender').text(days_app_non_calender);
+    $('#days_this_report_app_non_calender').val(days_app_non_calender);
     var calendar_previous_days_app_non_calender = $('#calendar_previous_days_app_non_calender').text();
     var calendar_previous_days_app_non_calender1 = parseInt(calendar_previous_days_app_non_calender);
     $('#calendar_total_days_app_non_calender').text(parseInt(days_app_non_calender+calendar_previous_days_app_non_calender1));
     // Total Day Approved
-    var days_this_report_app_non_calender1 = parseInt($('#days_this_report_app_non_calender').text());
-    var days_previous_report_app_non_calender1 = parseInt($('#days_previous_report_app_non_calender').text());
+    var days_this_report_app_non_calender1 = parseInt($('#days_this_report_app_non_calender').val());
+    var days_previous_report_app_non_calender1 = parseInt($('#days_previous_report_app_non_calender').val());
     $('#total_day_approved_app_non_calender').text(parseInt(days_this_report_app_non_calender1+days_previous_report_app_non_calender1));
 
 

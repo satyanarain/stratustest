@@ -150,14 +150,14 @@
         </tr>
         <tr>
             <td colspan="2" style="vertical-align: middle;">6. Days this Report (i.e. change order days, etc.):</td>
-            <td id="days_this_report_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="days_this_report_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td  style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_this_report_app_calender" name="days_this_report_app_calender" class="form-control" required="required"></td>
+            <td style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_this_report_app_non_calender" name="days_this_report_app_non_calender" class="form-control" required="required"></td>
             <td></td>
         </tr>
         <tr>
             <td colspan="2" style="vertical-align: middle;">7. Days Previously Reported:</td>
-            <td id="days_previous_report_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="days_previous_report_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_previous_report_app_calender" name="days_previous_report_app_calender" class="form-control" required="required"></td>
+            <td id="" style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_previous_report_app_non_calender" name="days_previous_report_app_non_calender" class="form-control" required="required"></td>
             <td></td>
         </tr>
         <tr>
