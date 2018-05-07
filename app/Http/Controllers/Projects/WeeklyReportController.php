@@ -466,6 +466,13 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
             ->count();
         echo "<pre> Data :".print_r(  $weeklyData  , TRUE )."</pre>";
 
+            $all_report = DB::table('users')
+                     ->select(DB::raw('count(*) as user_count, pwrd_report_id'))
+                     ->groupBy('pwrd_report_id')
+                     ->get();
+
+             echo "<pre> Data :".print_r(  $all_report  , TRUE )."</pre>";
+
         die();
             $projectID =0;
 $projectIDs = array( );
