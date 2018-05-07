@@ -293,7 +293,11 @@ $(document).ready(function() {
         // });
         $('#calendar_days_app_calender').text(pwrd_approved_calender_day);
         // console.log(days_app_calender);
-        $('#days_this_report_app_calender').val(pwrd_approved_calender_day);
+         if (complete_status != true ) {
+
+             $('#days_this_report_app_calender').val(pwrd_approved_calender_day);
+         }
+       
         var calendar_previous_days_app_calender = $('#calendar_previous_days_app_calender').text();
         var calendar_previous_days_app_calender1 = parseInt(calendar_previous_days_app_calender);
         $('#calendar_total_days_app_calender').text(parseInt(pwrd_approved_calender_day+calendar_previous_days_app_calender1));
