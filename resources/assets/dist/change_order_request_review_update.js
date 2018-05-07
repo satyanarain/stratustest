@@ -218,7 +218,12 @@ function getFormattedPartTime(partTime){
         else {
            var approved_by_owner = null;
         }
-
+        if($('#approved_cm').is(":checked") && $('#approved_owner').is(":checked"))
+        {
+            var remove_potential = 1;
+        }else{
+            var remove_potential = 0;
+        }
         var item_id = $('#item_id').val();
         var project_id = $('#project_id').val();
         var cor_description = $('#change_order_desc').val();
@@ -241,7 +246,8 @@ function getFormattedPartTime(partTime){
                 "pcd_unit_number"       : pcd_unit_number,
                 "pcd_unit_price"        : pcd_unit_price,
                 "pcd_price"             : pcd_price,
-                "pco_number"            : $('#cor_number').text()
+                "pco_number"            : $('#cor_number').text(),
+                "remove_potential"      : remove_potential,
             },
             headers: {
               "x-access-token": token

@@ -90,7 +90,7 @@
             </div>
 
             <div class="form-group col-md-6" style="padding-top: 30px;">
-                <label for="company_name" style="padding-top: 15px;">Contractor Name</label>
+                <label for="company_name" style="padding-top: 15px;">Contractor Name <span class="text-danger">*</span></label>
                 <div class="loading_data" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>

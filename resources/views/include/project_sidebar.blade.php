@@ -140,9 +140,9 @@
                                     <li style="display: none;" class="survey_view_all">
                                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/preliminary_notice/add"><i>Add Preliminary Notice</i></a>
                                     </li>
-                                    <li style="display: none;" class="survey_review_view_all">
+<!--                                    <li style="display: none;" class="survey_review_view_all">
                                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/lien_release_log"><i>Lien Releases</i></a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                             </li>
                             
@@ -152,8 +152,16 @@
                             <li style="display: none;" class="payment_quantity_verification_view_all">
                                 <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/payment_quantity_verification_monthly"><i>Payment Quantity Verifications</i></a>
                             </li>
-                            <li style="display: none;" class="payment_application_view_all">
-                                <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/payment_application_monthly"><i>Payment Applications</i></a>
+                            <li style="display: none;" class="menu-list-sub survey_list">
+                                <a href=""><i>Payment Applications</i></a>
+                                <ul class="child-list">
+                                    <li style="display: none;" class="payment_application_view_all">
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/payment_application_monthly"><i>Payment Application Log</i></a>
+                                    </li>
+                                    <li style="display: none;" class="survey_review_view_all">
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/lien_release_log"><i>Lien Releases</i></a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="menu-list-sub cor_list" style="display: none;">
                                 <a href="">  <i>Change Orders</i></a>

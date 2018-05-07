@@ -372,6 +372,12 @@ use ProjectImprovement;
         $pcd_price                = $request['pcd_price'];
         $change_order_day         = $request['change_order_day'];
         $pco_number               = $request['pco_number'];
+        if($request['remove_potential']==1)
+        {
+            $query = DB::table('project_change_order_request_detail')
+            ->where('pcd_id', '=', $pcd_id)
+             ->update(['is_potential' => 0]);
+        }
         $information = array(
             "approved_by_cm"      => $approved_by_cm,
             "approved_by_owner"   => $approved_by_owner,
