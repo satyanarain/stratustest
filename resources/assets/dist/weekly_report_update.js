@@ -7,6 +7,8 @@ $(document).ready(function() {
     console.log(project_id);
     console.log(report_id);
 
+    var complete_status = false;
+
     var role = localStorage.getItem('u_role');
     var token = localStorage.getItem('u_token');
 
@@ -142,6 +144,10 @@ $(document).ready(function() {
          if (data.data.days_previous_report_app_non_calender !=0) {
             document.getElementById('days_previous_report_app_non_calender').value = data.data.days_previous_report_app_non_calender;
         }
+
+        if ( data.data.pwr_report_status == 'complete') {
+            complete_status = true;
+        }
         $('#report_id').text(report_id);
         var week_ending = data.data.pwr_week_ending;
         $('#week_ending').text(week_ending);
@@ -239,11 +245,16 @@ $(document).ready(function() {
         cache: false
     })
     .done(function(data, textStatus, jqXHR) {
-        $('#calendar_previous_days_app_calender').text(data.data[0].pwrd_approved_calender_day);
+
+        if (complete_status != true ) {
+
+            $('#calendar_previous_days_app_calender').text(data.data[0].pwrd_approved_calender_day);
         console.log(data.data[0].pwrd_approved_calender_day);
         $('#days_previous_report_app_calender').val(data.data[0].pwrd_approved_calender_day);
         $('#calendar_previous_days_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
         $('#days_previous_report_app_non_calender').val(data.data[0].pwrd_approved_non_calender_day);
+        }
+        
         console.log(data.data[0].pwrd_approved_calender_day);
         $('#calendar_previous_days_app_raily_day').text(data.data[0].pwrd_rain_day);
         console.log(data.data[0].pwrd_approved_calender_day);
