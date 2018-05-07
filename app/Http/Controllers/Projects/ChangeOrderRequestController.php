@@ -372,6 +372,8 @@ use ProjectImprovement;
         $pcd_price                = $request['pcd_price'];
         $change_order_day         = $request['change_order_day'];
         $pco_number               = $request['pco_number'];
+        $denied_by_owner        = $request['denied_by_owner'];
+        $denied_by_cm           = $request['denied_by_cm'];
         if($request['remove_potential']==1)
         {
             $query = DB::table('project_change_order_request_detail')
@@ -399,7 +401,7 @@ use ProjectImprovement;
         {
             $query = DB::table('project_change_order_request_detail')
             ->where('pcd_id', '=', $pcd_id)
-             ->update(['pcd_unit_number' => $pcd_unit_number,'pcd_unit_price' => $pcd_unit_price,'pcd_price' => $pcd_price,'pcd_description' => $cor_description,'pcd_days' => $change_order_day,'pcd_approved_by_cm' => $approved_by_cm, 'pcd_approved_by_owner' => $approved_by_owner, 'pcd_user_id' => $user_id]);
+             ->update(['owner_rejection_comment'=>$request['owner_rejection_comment'],'cm_rejection_comment'=>$request['cm_rejection_comment'],'pcd_denied_by_cm'=>$denied_by_cm,'pcd_denied_by_owner'=>$denied_by_owner,'pcd_unit_number' => $pcd_unit_number,'pcd_unit_price' => $pcd_unit_price,'pcd_price' => $pcd_price,'pcd_description' => $cor_description,'pcd_days' => $change_order_day,'pcd_approved_by_cm' => $approved_by_cm, 'pcd_approved_by_owner' => $approved_by_owner, 'pcd_user_id' => $user_id]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");

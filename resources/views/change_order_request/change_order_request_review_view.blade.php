@@ -128,7 +128,7 @@
         <div class="form-group">
             <div class="col-lg-12">
                 <!-- <label class="checkbox-custom check-success"> -->
-                    <input type="checkbox" value=" " id="approved_cm">
+                    <input type="radio" value=" " id="approved_cm">
                     <label>Approved by CM</label>
                 <!-- </label> -->
             </div>
@@ -137,7 +137,7 @@
         <div class="form-group">
             <div class="col-lg-12">
                 <!-- <label class="checkbox-custom check-success"> -->
-                    <input type="checkbox" value=" " id="approved_owner">
+                    <input type="radio" value=" " id="approved_owner">
                     <label>Approved by Owner</label>
                 <!-- </label> -->
             </div>

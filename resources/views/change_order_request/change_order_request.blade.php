@@ -27,7 +27,7 @@
                                                    <img src="{{ url('/resources/assets/img/loading.svg') }}" alt=""/>
                                                 </div>
                                 <div class="col-sm-12 no-pad">
-                                  <section class="panel">
+                                    <section class="panel" style="overflow: auto">
                                       <header class="panel-heading head-border m-b-10 nopadtop nopadleft">
                                           <h4 class="no-mar">Change Order Request</h4>
                                       </header>
@@ -42,6 +42,10 @@
                                               <th>Referenced RFI</th>
                                               <th>Approved by CM</th>
                                               <th>Approved by OWNER</th>
+                                              <th>Denied by CM</th>
+                                              <th>CM Rejection Comment</th>
+                                              <th>Denied by OWNER</th>
+                                              <th>Owner Rejection Comment</th>
                                               <th class="project_currency"></th>
                                               <th>Days</th>
                                               <th>Status</th>

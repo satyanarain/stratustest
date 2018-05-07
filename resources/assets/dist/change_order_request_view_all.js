@@ -117,25 +117,43 @@ $(document).ready(function() {
             // Check Update Permission
             var status_cm = '';
             var status_owner = '';
-            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00"){
+            if((val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00") && (val.pcd_denied_by_cm == null || val.pcd_denied_by_cm == "0000-00-00")){
                 var pcd_approved_by_cm = '<span class="label label-warning">PENDING</span>';
+                var pcd_denied_by_cm = '<span class="label label-warning">PENDING</span>';
                 var status_cm = '<span class="label label-warning">PENDING CM REVIEW</span><br/>';
             }
-            else {
+            else if(val.pcd_approved_by_cm!="0000-00-00") {
                 var pcd_approved_by_cm = val.pcd_approved_by_cm;
+                var pcd_denied_by_cm = '';
             }
-
-            if(val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
+            else if(val.pcd_denied_by_cm!="0000-00-00") {
+                var pcd_denied_by_cm = val.pcd_denied_by_cm;
+                var pcd_approved_by_cm = '';
+            }else{
+                var pcd_denied_by_cm = '';
+                var pcd_approved_by_cm = '';
+            }
+            if((val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00") && (val.pcd_denied_by_owner == null || val.pcd_denied_by_owner == "0000-00-00")){
                 var pcd_approved_by_owner = '<span class="label label-warning">PENDING</span>';
+                var pcd_denied_by_owner = '<span class="label label-warning">PENDING</span>';
                 var status_owner = '<span class="label label-warning">PENDING OWNER REVIEW</span><br/>';
             }
-            else {
+            else if(val.pcd_approved_by_owner!="0000-00-00") {
                 var pcd_approved_by_owner = val.pcd_approved_by_owner;
+                var pcd_denied_by_owner = '';
+            }else if(val.pcd_denied_by_owner!="0000-00-00"){
+                var pcd_denied_by_owner = val.pcd_denied_by_owner;
+                var pcd_approved_by_owner = '';
+            }else{
+                var pcd_denied_by_owner = '';
+                var pcd_approved_by_owner = '';
             }
             var check_permission = jQuery.inArray("cor_order_review_update", check_user_access );
-            console.log(check_permission);
-            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00")
-            {var editable_now = true;}else{var editable_now = false;}
+            console.log(check_permission+'tttt');
+//            if(((val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00") && (val.pcd_denied_by_cm == null || val.pcd_denied_by_cm == "0000-00-00")) || ((val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00") && (val.pcd_denied_by_owner == null || val.pcd_denied_by_owner == "0000-00-00")))
+//            {var editable_now = true;}else{var editable_now = false;}
+            if(((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") || (val.pcd_denied_by_cm != null && val.pcd_denied_by_cm != "0000-00-00")) && ((val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00") || (val.pcd_denied_by_owner != null && val.pcd_denied_by_owner != "0000-00-00")))
+            {var editable_now = false;}else{var editable_now = true;}
             if(check_permission < 1){
                 var update_permission = '';
             }
@@ -153,25 +171,42 @@ $(document).ready(function() {
                 status = '<span class="label label-danger">Inactive</span>';
             }
 
-            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00"){
+            if((val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00") && (val.pcd_denied_by_cm == null || val.pcd_denied_by_cm == "0000-00-00")){
                 var pcd_approved_by_cm = '<span class="label label-warning">PENDING</span>';
-            }
-            else {
+            }else if(val.pcd_approved_by_cm!="0000-00-00"){
                 var pcd_approved_by_cm = val.pcd_approved_by_cm;
+                var pcd_denied_by_cm = '';
+            }else if(val.pcd_denied_by_cm!="0000-00-00"){
+                var pcd_denied_by_cm = val.pcd_denied_by_cm;
+                var pcd_approved_by_cm = '';
+            }else{
+                var pcd_approved_by_cm = '';
+                var pcd_denied_by_cm = '';
             }
 
-            if(val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
+            if((val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00") && (val.pcd_denied_by_owner == null || val.pcd_denied_by_owner == "0000-00-00")){
                 var pcd_approved_by_owner = '<span class="label label-warning">PENDING</span>';
-            }
-            else {
+            }else if(val.pcd_approved_by_owner!="0000-00-00"){
                 var pcd_approved_by_owner = val.pcd_approved_by_owner;
-            }
-            if(val.pcd_price){var disp_price=val.pcd_price;}else{var disp_price=val.pcd_unit_number*val.pcd_unit_price;}
-            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
-                var approved_status = '';
+                var pcd_denied_by_owner = '';
+            }else if(val.pcd_denied_by_owner!="0000-00-00"){
+                var pcd_denied_by_owner = val.pcd_denied_by_owner;
+                var pcd_approved_by_owner = '';
             }else{
-                var approved_status = '<span class="label label-success">APPROVED</span>';
+                var pcd_approved_by_owner = '';
+                var pcd_denied_by_owner = '';
             }
+            
+            if(val.pcd_price){var disp_price=val.pcd_price;}else{var disp_price=val.pcd_unit_number*val.pcd_unit_price;}
+            if((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") && (val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00")){
+                var approved_status = '<span class="label label-success">APPROVED</span>';
+            }else if((val.pcd_denied_by_cm != null && val.pcd_denied_by_cm != "0000-00-00") && (val.pcd_denied_by_owner != null && val.pcd_denied_by_owner != "0000-00-00")){
+                var approved_status = '<span class="label label-danger">DENIED</span>';
+            }else{
+                var approved_status = '';
+            }
+            var cm_rejection_comment = val.cm_rejection_comment;
+            var owner_rejection_comment= val.owner_rejection_comment;
             if(parseInt(val.is_potential)==1)
             {
                 var oneDay = 24*60*60*1000;
@@ -222,24 +257,28 @@ $(document).ready(function() {
             }else{
                 if(val.pcd_rfi == '[]'){
                     rfi_final = '';
-                var t = $('#request_change_order').DataTable();
-                
-                t.row.add([
-                   count, // val.pcd_parent_cor,
-                   val.agency_name,
-                   val.pco_date,
-                   val.pcd_description,
-                   rfi_final,
-                   pcd_approved_by_cm,
-                   pcd_approved_by_owner,
-                   val.currency_symbol +' '+  ReplaceNumberWithCommas(disp_price),
-                   val.pcd_days,
-                   status_cm + status_owner+approved_status,
-                   //status,
-                   update_permission
-                ]).draw( false );  
-                count++;
-            }
+                    var t = $('#request_change_order').DataTable();
+
+                    t.row.add([
+                       count, // val.pcd_parent_cor,
+                       val.agency_name,
+                       val.pco_date,
+                       val.pcd_description,
+                       rfi_final,
+                       pcd_approved_by_cm,
+                       pcd_approved_by_owner,
+                       pcd_denied_by_cm,
+                       cm_rejection_comment,
+                       pcd_denied_by_owner,
+                       owner_rejection_comment,
+                       val.currency_symbol +' '+  ReplaceNumberWithCommas(disp_price),
+                       val.pcd_days,
+                       status_cm + status_owner+approved_status,
+                       //status,
+                       update_permission
+                    ]).draw( false );  
+                    count++;
+                }
                 else {
                 // console.log(val.pcd_rfi);
 
@@ -259,9 +298,11 @@ $(document).ready(function() {
                 if(futuredate < nowdate){
                     // console.log('less');
                     var potential_status = '<span class="label label-danger">PAST DUE</span>';
-                    var action_button = "";
-                }
-                else {
+                    var action_button = update_permission;
+                }else if(((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") || (val.pcd_denied_by_cm != null && val.pcd_denied_by_cm != "0000-00-00")) && ((val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00") || (val.pcd_denied_by_owner != null && val.pcd_denied_by_owner != "0000-00-00"))){
+                    var potential_status = '';
+                    var action_button = update_permission;
+                }else {
                     // console.log('greater');
                     seconds = Math.floor((futuredate - (nowdate))/1000);
                     minutes = Math.floor(seconds/60);
@@ -303,9 +344,13 @@ $(document).ready(function() {
                        rfi_final,
                        pcd_approved_by_cm,
                        pcd_approved_by_owner,
+                        pcd_denied_by_cm,
+                        cm_rejection_comment,
+                        pcd_denied_by_owner,
+                        owner_rejection_comment,
                        val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
                        val.pcd_days,
-                       status_cm + status_owner+potential_status,
+                       status_cm + status_owner+approved_status+potential_status,
                        action_button
                     ]).draw( false );  
                     count++;

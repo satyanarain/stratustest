@@ -40,6 +40,8 @@ $(document).ready(function() {
 
         $('#cor_number').text(data.data.pco_number)
         $('#cor_generated_by').text(data.data.agency_name)
+        $('#owner_rejection_comment').val(data.data.owner_rejection_comment);
+        $('#cm_rejection_comment').val(data.data.cm_rejection_comment);
         $('#cor_date_sent').text(data.data.pco_date)
         $('#cor_description').html('<input class="form-control" type="text" name="change_order_desc" id="change_order_desc" value="'+data.data.pcd_description+'">');
         if(data.data.pcd_approved_by_cm == null || data.data.pcd_approved_by_cm == "0000-00-00"){
@@ -97,22 +99,34 @@ $(document).ready(function() {
         $('#cor_file').html(request_bid_path_value)
         $('#cor_status').html(status)
 
-        if(data.data.pcd_approved_by_owner == null || data.data.pcd_approved_by_owner == "0000-00-00"){
-            $("#approved_owner").attr('enabled');
-        }
-        else {
+        if(data.data.pcd_approved_by_owner != null || data.data.pcd_approved_by_owner != "0000-00-00"){
+            //$("#approved_owner").attr('enabled');
             $("#approved_owner").attr("checked", "checked");
-            // $("#approved_owner").attr('disabled', true);
         }
-
-        if(data.data.pcd_approved_by_cm == null || data.data.pcd_approved_by_cm == "0000-00-00"){
-            $("#approved_cm").is(":checkbox");
+//        else {
+//            $("#approved_owner").attr("checked", "checked");
+//            // $("#approved_owner").attr('disabled', true);
+//        }
+        if(data.data.pcd_denied_by_owner != null || data.data.pcd_denied_by_owner != "0000-00-00"){
+            //$("#approved_owner").attr('enabled');
+            $("#denied_owner").attr("checked", "checked");
+             $('.additonal_cost_div1').show();
         }
-        else {
+        
+        if(data.data.pcd_approved_by_cm != null || data.data.pcd_approved_by_cm != "0000-00-00"){
+            //$("#approved_cm").is(":radio");
             $("#approved_cm").attr("checked", "checked");
-            // $("#approved_cm").attr('disabled', true);
         }
-
+//        else {
+//            $("#approved_cm").attr("checked", "checked");
+//            // $("#approved_cm").attr('disabled', true);
+//        }
+        if(data.data.pcd_denied_by_cm != null || data.data.pcd_denied_by_cm != "0000-00-00"){
+            //$("#approved_cm").is(":radio");
+            $("#denied_cm").attr("checked", "checked");
+             $('.additonal_cost_div').show();
+        }
+        
         if(data.data.pcd_rfi == '[]'){
             $('.rfi_available').hide();
         }
@@ -205,20 +219,32 @@ function getFormattedPartTime(partTime){
             var date = new Date();
             var approved_by_cm = date.getFullYear() + "-" + getFormattedPartTime(date.getMonth()+1) + "-" + getFormattedPartTime(date.getDate());
             // alert(approved_by_cm);
-        }
-        else {
+            var denied_by_cm = null;
+        }else if($('#denied_cm').is(":checked")) {
+            var date = new Date();
+            var denied_by_cm = date.getFullYear() + "-" + getFormattedPartTime(date.getMonth()+1) + "-" + getFormattedPartTime(date.getDate());
+            // alert(approved_by_cm);
+            var approved_by_cm = null;
+        }else {
            var approved_by_cm = null;
+           var denied_by_cm = null;
         }
 
         if($('#approved_owner').is(":checked")) {
             var date = new Date();
             var approved_by_owner = date.getFullYear() + "-" + getFormattedPartTime(date.getMonth()+1) + "-" + getFormattedPartTime(date.getDate());
             // alert(approved_by_owner);
-        }
-        else {
+            var denied_by_owner = null;
+        }else if($('#denied_owner').is(":checked")) {
+            var date = new Date();
+            var denied_by_owner = date.getFullYear() + "-" + getFormattedPartTime(date.getMonth()+1) + "-" + getFormattedPartTime(date.getDate());
+            // alert(approved_by_owner);
+            var approved_by_owner = null;
+        }else {
            var approved_by_owner = null;
+           var denied_by_owner = null;
         }
-        if($('#approved_cm').is(":checked") && $('#approved_owner').is(":checked"))
+        if(($('#approved_cm').is(":checked") || $('#denied_cm').is(":checked")) && ($('#approved_owner').is(":checked") || $('#denied_owner').is(":checked")))
         {
             var remove_potential = 1;
         }else{
@@ -229,6 +255,8 @@ function getFormattedPartTime(partTime){
         var cor_description = $('#change_order_desc').val();
         //alert(cor_description);return false;
         var change_order_day = $('#change_order_day').val();
+        var cm_rejection_comment = $("#cm_rejection_comment").val();
+        var owner_rejection_comment = $("#owner_rejection_comment").val();
         //alert(cor_day);return false;
         console.log(item_id);
         console.log(approved_by_cm);
@@ -248,6 +276,11 @@ function getFormattedPartTime(partTime){
                 "pcd_price"             : pcd_price,
                 "pco_number"            : $('#cor_number').text(),
                 "remove_potential"      : remove_potential,
+                "denied_by_cm"          : denied_by_cm,
+                "denied_by_owner"       : denied_by_owner,
+                "owner_rejection_comment":owner_rejection_comment,
+                "cm_rejection_comment"  : cm_rejection_comment,
+                
             },
             headers: {
               "x-access-token": token

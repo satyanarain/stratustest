@@ -132,8 +132,17 @@
         <div class="form-group">
             <div class="col-lg-12">
                 <!-- <label class="checkbox-custom check-success"> -->
-                    <input type="checkbox" value=" " id="approved_cm">
-                    <label>Approved by CM</label>
+                <input type="radio" name="cm_approval" value="yes" id="approved_cm">
+                <label for="approved_cm">Approved by CM</label>
+                <input type="radio" name="cm_approval" value="no" id="denied_cm">
+                <label for="denied_cm">Denied by CM</label>
+                <div class="additonal_cost_div" style="display: none;">
+                    <label>Reason</label>
+                    <div class="input-group m-b-10">
+                        <span class="input-group-addon project_currency"></span>
+                        <input class="form-control" type="text" id="cm_rejection_comment">
+                    </div>
+                </div>
                 <!-- </label> -->
             </div>
         </div>
@@ -141,8 +150,17 @@
         <div class="form-group">
             <div class="col-lg-12">
                 <!-- <label class="checkbox-custom check-success"> -->
-                    <input type="checkbox" value=" " id="approved_owner">
-                    <label>Approved by Owner</label>
+                <input type="radio" name="owner_approval" value="yes" id="approved_owner">
+                <label for="approved_owner">Approved by Owner</label>
+                    <input type="radio" name="owner_approval" value="no" id="denied_owner">
+                    <label for="denied_owner">Denied by Owner</label>
+                    <div class="additonal_cost_div1" style="display: none;">
+                    <label>Reason</label>
+                    <div class="input-group m-b-10">
+                        <span class="input-group-addon project_currency"></span>
+                        <input class="form-control" type="text" id="owner_rejection_comment">
+                    </div>
+                </div>
                 <!-- </label> -->
             </div>
         </div>
@@ -184,3 +202,21 @@
 <script src="{{ url('/resources/assets/dist/change_order_request_review_update.js?v=1.0') }}"></script>
 
 @include('include/footer')
+<script type="text/javascript">
+$("input[name='cm_approval']").click(function(){
+    if($('input:radio[name=cm_approval]:checked').val() == "no"){
+        $('.additonal_cost_div').show();
+    }else {
+        $('.additonal_cost_div').hide();
+        $("#cm_rejection_comment").val('');
+    }
+});
+$("input[name='owner_approval']").click(function(){
+    if($('input:radio[name=owner_approval]:checked').val() == "no"){
+        $('.additonal_cost_div1').show();
+    }else {
+        $('.additonal_cost_div1').hide();
+        $("#owner_rejection_comment").val('');
+    }
+});
+</script>

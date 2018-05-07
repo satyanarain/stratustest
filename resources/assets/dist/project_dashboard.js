@@ -1188,31 +1188,60 @@ $(document).ready(function() {
 			    var count = 1;
 			    var counts = 1;
 			    jQuery.each( data.data, function( i, val ) {
+                                if(((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") || (val.pcd_denied_by_cm != null && val.pcd_denied_by_cm != "0000-00-00")) && ((val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00") || (val.pcd_denied_by_owner != null && val.pcd_denied_by_owner != "0000-00-00"))){
+                                    var descr = '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/view">'+val.pcd_description+'</a>';
+                                }else{
+                                    var descr = '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/update">'+val.pcd_description+'</a>';
+                                }
 			        var status_cm = '';
 			        var status_owner = '';
-			        if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00"){
+			        if((val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00") && (val.pcd_denied_by_cm == null || val.pcd_denied_by_cm == "0000-00-00")){
 			        	console.log("upcoming1");
 			            var pcd_approved_by_cm = '<span class="label label-warning">PENDING</span>';
-			            var status_cm = '<span class="label label-warning">PENDING CM REVIEW</span><br/>';
+			            var pcd_denied_by_cm = '<span class="label label-warning">PENDING</span>';
+                                    var status_cm = '<span class="label label-warning">PENDING CM REVIEW</span><br/>';
 			            r_cor_upcoming++;
-			        }
+			        }else if(val.pcd_approved_by_cm!="0000-00-00") {
+                                    var pcd_approved_by_cm = val.pcd_approved_by_cm;
+                                    var pcd_denied_by_cm = '';
+                                    r_cor_complete++;
+                                }
+                                else if(val.pcd_denied_by_cm!="0000-00-00") {
+                                    var pcd_denied_by_cm = val.pcd_denied_by_cm;
+                                    var pcd_approved_by_cm = '';
+                                    r_cor_complete++;
+                                }
 			        else {
-			        	console.log("complete 1 ");
-			            var pcd_approved_by_cm = val.pcd_approved_by_cm;
-			            r_cor_complete++;
+                                    var pcd_denied_by_cm = '';
+                                    var pcd_approved_by_cm = '';
 			        }
-
-			        if(val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
+                                if((val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00") && (val.pcd_denied_by_owner == null || val.pcd_denied_by_owner == "0000-00-00")){
 			        	console.log("upcoming 2 ");
 			            var pcd_approved_by_owner = '<span class="label label-warning">PENDING</span>';
-			            var status_owner = '<span class="label label-warning">PENDING OWNER REVIEW</span><br/>';
+			            var pcd_denied_by_owner = '<span class="label label-warning">PENDING</span>';
+                                    var status_owner = '<span class="label label-warning">PENDING OWNER REVIEW</span><br/>';
 			            r_cor_upcoming++;
+			        }else if(val.pcd_approved_by_owner!="0000-00-00") {
+                                    var pcd_approved_by_owner = val.pcd_approved_by_owner;
+                                    var pcd_denied_by_owner = '';
+                                    r_cor_complete++;
+                                }else if(val.pcd_denied_by_owner!="0000-00-00"){
+                                    var pcd_denied_by_owner = val.pcd_denied_by_owner;
+                                    var pcd_approved_by_owner = '';
+                                    r_cor_complete++;
+                                }else {
+                                    var pcd_denied_by_owner = '';
+                                    var pcd_approved_by_owner = '';
 			        }
-			        else {
-			        	console.log("complete 2 ");
-			            var pcd_approved_by_owner = val.pcd_approved_by_owner;
-			            r_cor_complete++;
-			        }
+                                if((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") && (val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00")){
+                                    var approved_status = '<span class="label label-success">APPROVED</span>';
+                                }else if((val.pcd_denied_by_cm != null && val.pcd_denied_by_cm != "0000-00-00") && (val.pcd_denied_by_owner != null && val.pcd_denied_by_owner != "0000-00-00")){
+                                    var approved_status = '<span class="label label-danger">DENIED</span>';
+                                }else{
+                                    var approved_status = '';
+                                }
+                                var cm_rejection_comment = val.cm_rejection_comment;
+                                var owner_rejection_comment= val.owner_rejection_comment;
                                 if(parseInt(val.is_potential)==1)
                                 {
                                     var oneDay = 24*60*60*1000;
@@ -1253,7 +1282,7 @@ $(document).ready(function() {
                                            counts, // val.pcd_parent_cor,
                                            val.agency_name,
                                            val.pco_date,
-                                           '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/update">'+val.pcd_description+'</a>',
+                                           descr,
                                             pcd_approved_by_cm,
                                             pcd_approved_by_owner,
                                            val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
@@ -1271,13 +1300,17 @@ $(document).ready(function() {
 			               count, // val.pcd_parent_cor,
 			               val.agency_name,
 			               val.pco_date,
-			               '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/update">'+val.pcd_description+'</a>',
+			               descr,
 			               pcd_approved_by_cm,
 			               pcd_approved_by_owner,
+                                       pcd_denied_by_cm,
+                                        cm_rejection_comment,
+                                        pcd_denied_by_owner,
+                                        owner_rejection_comment,
                                        rfi_final,
 			               val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
 			               val.pcd_days,
-			               status_cm + status_owner,
+			               status_cm + status_owner+approved_status,
 			            ]).draw( false );
 			            count++;  
 			        }
@@ -1369,19 +1402,24 @@ $(document).ready(function() {
 			                });
 
 			                var t = $('#request_change_order').DataTable();
-			                t.row.add([
-			                   counts, // val.pcd_parent_cor,
+                                        
+                                        t.row.add([
+			                   count, // val.pcd_parent_cor,
 			                   val.agency_name,
 			                   val.pco_date,
-			                   '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/update">'+val.pcd_description+'</a>',
+			                   descr,
 			                   pcd_approved_by_cm,
 			                   pcd_approved_by_owner,
+                                           pcd_denied_by_cm,
+                                            cm_rejection_comment,
+                                            pcd_denied_by_owner,
+                                            owner_rejection_comment,
 			                   rfi_final,
 			                   val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
 			                   val.pcd_days,
-			                   potential_status,
+			                   status_cm + status_owner + potential_status,
 			                ]).draw( false );  
-			                counts++;
+			                count++;
 
 			            })
 			            .fail(function(jqXHR, textStatus, errorThrown) {
