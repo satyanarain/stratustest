@@ -250,16 +250,16 @@ $(document).ready(function() {
 
         if (complete_status != true ) {
 
-            $('#calendar_previous_days_app_calender').text(data.data[0].pwrd_approved_calender_day);
+          
         console.log(data.data[0].pwrd_approved_calender_day);
         $('#days_previous_report_app_calender').val(data.data[0].pwrd_approved_calender_day);
-        $('#calendar_previous_days_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
+       
         $('#days_previous_report_app_non_calender').val(data.data[0].pwrd_approved_non_calender_day);
         }
+          $('#calendar_previous_days_app_calender').text(data.data[0].pwrd_approved_calender_day);
+           $('#calendar_previous_days_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
         
-        console.log(data.data[0].pwrd_approved_calender_day);
         $('#calendar_previous_days_app_raily_day').text(data.data[0].pwrd_rain_day);
-        console.log(data.data[0].pwrd_approved_calender_day);
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
