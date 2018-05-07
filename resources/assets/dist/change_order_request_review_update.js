@@ -107,7 +107,7 @@ $(document).ready(function() {
 //            $("#approved_owner").attr("checked", "checked");
 //            // $("#approved_owner").attr('disabled', true);
 //        }
-        if(data.data.pcd_denied_by_owner != null || data.data.pcd_denied_by_owner != "0000-00-00"){
+        if(data.data.pcd_denied_by_owner != NULL || data.data.pcd_denied_by_owner != "0000-00-00"){
             //$("#approved_owner").attr('enabled');
             $("#denied_owner").attr("checked", "checked");
              $('.additonal_cost_div1').show();
