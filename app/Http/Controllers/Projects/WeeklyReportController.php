@@ -64,7 +64,7 @@ class WeeklyReportController extends Controller {
             ->orderBy('pnp_start_date','DESC')
             ->first();
 
-       //   print_r($project_notice_proceed);
+         print_r( $project_id );
 
             $countDays = 0;
           
@@ -75,9 +75,9 @@ class WeeklyReportController extends Controller {
             } else {
                  $countDays =2;
             }
-            
+
              echo $countDays;
-            // die();
+         //   die();
 
             $add_weekly_report = ProjectWeeklyReports::create(['pwr_project_id' => $project_id, 'pwr_week_ending' => $current_date, 'pwr_status' => 'active', 'pwr_status' => 'incomplete']);
             
