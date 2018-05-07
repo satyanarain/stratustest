@@ -193,6 +193,8 @@ $(document).ready(function() {
         window.pwrd_rain_day = 0;
         jQuery.each( data.data, function( i, val ) {
             // console.log(val);
+             var sign_date = new Date(val.update_time);
+            document.getElementById('sign_date').innerHTML = sign_date;
             $('#calendar_week_days').append(
                 '<tr>'+
                     '<td style="vertical-align: middle;">'+val.pwrd_date+'</td>'+
@@ -312,7 +314,11 @@ $(document).ready(function() {
         //     days_app_non_calender += parseInt($(this).val()); //<==== a catch  in here !! read below
         // });
         $('#calendar_days_app_non_calender').text(pwrd_approved_non_calender_day);
-        $('#days_this_report_app_non_calender').val(pwrd_approved_non_calender_day);
+          if (complete_status != true ) {
+
+             $('#days_this_report_app_non_calender').val(pwrd_approved_non_calender_day);
+         }
+        
         var calendar_previous_days_app_non_calender = $('#calendar_previous_days_app_non_calender').text();
         var calendar_previous_days_app_non_calender1 = parseInt(calendar_previous_days_app_non_calender);
         $('#calendar_total_days_app_non_calender').text(parseInt(pwrd_approved_non_calender_day+calendar_previous_days_app_non_calender1));
@@ -338,7 +344,7 @@ $(document).ready(function() {
         var total_day_approved_app_non_calender1 = parseInt($('#total_day_approved_app_non_calender').text());
         if(total_day_approved_app_non_calender1+notice_to_proceed_duration_day1+total_day_approved_app_calender1)
             $('#revised_total_calender').text(total_day_approved_app_non_calender1+notice_to_proceed_duration_day1+total_day_approved_app_calender1);
-        // console.log(total_day_approved_app_non_calender1+notice_to_proceed_duration_day1+total_day_approved_app_calender1);
+    ///console.log(total_day_approved_app_non_calender1+notice_to_proceed_duration_day1+total_day_approved_app_calender1);
 
         // Calendar day charged
         $('#calendar_day_charged_app_calender').text(parseInt($('#calendar_total_days_app_calender').text()));

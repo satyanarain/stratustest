@@ -137,7 +137,7 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="2" style="vertical-align: middle;">4. Computed Completion Date: (Line 2 + Line 3):</td>
+            <td colspan="2" style="vertical-align: middle;">4. Computed Completion Date:</td>
             <td id="computed_completion_date" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
             <td></td>
             <td></td>
@@ -167,7 +167,7 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="2" style="vertical-align: middle;">9. Revised Total Calendar Days for Contract (Line 4 + Line 8):</td>
+            <td colspan="2" style="vertical-align: middle;">9. Revised Total Calendar Days for Contract :</td>
             <td id="revised_total_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td></td>
             <td></td>
@@ -179,7 +179,7 @@
             <td></td>
         </tr>
         <tr>
-            <td colspan="2" style="vertical-align: middle;">11. Revised Calendar Days Remaining in Contract (Line 9 - Line 10):</td>
+            <td colspan="2" style="vertical-align: middle;">11. Revised Calendar Days Remaining in Contract :</td>
             <td id="revised_calendar_day_remaining" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td></td>
             <td></td>
@@ -191,7 +191,7 @@
             <td id="day_due_to_rain" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
         </tr>
         <tr>
-            <td colspan="2" style="vertical-align: middle;">13. Revised Computed Completion Date (Line 4 + Line 8 + Line 12):</td>
+            <td colspan="2" style="vertical-align: middle;">13. Revised Computed Completion Date:</td>
             <td id="revised_completion_date" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
             <td></td>
             <td></td>
@@ -232,7 +232,7 @@
         <p style="text-align: left; margin: 50px 0px 10px 0px;"><strong>Signature:</strong></p>
     </div>
     <div class="col-sm-3">
-        <p style="text-align: left; margin: 50px 0px 10px 0px;"><strong>Date:</strong> 25 January 2016</p>
+        <p style="text-align: left; margin: 50px 0px 10px 0px;"><strong>Date:</strong> <span id="sign_date" ></span></p>
     </div>
 
     <div class="form-group col-md-12">
