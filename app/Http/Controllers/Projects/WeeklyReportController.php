@@ -54,6 +54,7 @@ class WeeklyReportController extends Controller {
       {
           echo '<pre>';
           foreach ($query as $project) {
+            
           $current_date     = date('Y-m-d');
           $project_id       = $project->p_id;
 
@@ -67,15 +68,12 @@ class WeeklyReportController extends Controller {
 
             $countDays = 0;
           
-           echo "<pre> Data :".print_r($project_notice_proceed->pnp_cal_day , TRUE)."</pre>";
-
-
-           
+           //echo "<pre> Data :".print_r($project_notice_proceed->pnp_cal_day , TRUE)."</pre>";
 
             if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
-               $countDays =2;
+               $countDays =0;
             } else {
-                 $countDays =0;
+                 $countDays =2;
             }
              echo $countDays;
             // die();
@@ -84,6 +82,7 @@ class WeeklyReportController extends Controller {
             
             $add_weekly_report_id = $add_weekly_report->id;
             // print_r($add_weekly_report_id);
+
             for ($i=$countDays; $i < 7; $i++) {
                 $date = date('l, jS \of F Y', strtotime($current_date . ' -'.$i.' day'));
                 $query = DB::table('project_weekly_reports_days')
