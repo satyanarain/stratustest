@@ -147,6 +147,8 @@ $(document).ready(function() {
 
         if ( data.data.pwr_report_status == 'complete') {
             complete_status = true;
+            document.getElementById('days_previous_report_app_calender').readOnly=true
+            document.getElementById('days_previous_report_app_non_calender').readOnly=true
         }
         $('#report_id').text(report_id);
         var week_ending = data.data.pwr_week_ending;
