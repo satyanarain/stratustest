@@ -111,6 +111,20 @@ $(document).ready(function() {
     })
     .done(function(data, textStatus, jqXHR) {
         console.log(data.data);
+
+          if (data.data.days_this_report_app_calender !=0) {
+            document.getElementById('days_this_report_app_calender').innerHTML = data.data.days_this_report_app_calender;
+        }
+         if (data.data.days_this_report_app_non_calender !=0) {
+            document.getElementById('days_this_report_app_non_calender').innerHTML = data.data.days_this_report_app_non_calender;
+        }
+         if (data.data.days_previous_report_app_calender !=0) {
+            document.getElementById('days_previous_report_app_calender').innerHTML = data.data.days_previous_report_app_calender;
+        }
+         if (data.data.days_previous_report_app_non_calender !=0) {
+            document.getElementById('days_previous_report_app_non_calender').innerHTML = data.data.days_previous_report_app_non_calender;
+        }
+
         $('#report_id').text(report_id);
         var week_ending = data.data.pwr_week_ending;
         $('#week_ending').text(week_ending);
@@ -173,11 +187,11 @@ $(document).ready(function() {
         });
         console.log(days_app_calender);
         $('#calendar_days_app_calender').text(parseInt(days_app_calender));
-        $('#days_this_report_app_calender').text(parseInt(days_app_calender));
+       // $('#days_this_report_app_calender').text(parseInt(days_app_calender));
 
         console.log(days_app_non_calender);
         $('#calendar_days_app_non_calender').text(parseInt(days_app_non_calender));
-        $('#days_this_report_app_non_calender').text(parseInt(days_app_non_calender));
+     //   $('#days_this_report_app_non_calender').text(parseInt(days_app_non_calender));
 
         console.log(days_rainy_day);
         $('#calendar_days_app_raily_day').text(parseInt(days_rainy_day));
@@ -222,6 +236,8 @@ $(document).ready(function() {
          if ( data.data[0].pwrd_rain_day == null) {
              $('#calendar_previous_days_app_raily_day').text("0");
         }
+
+
         $('#days_previous_report_app_calender').text(data.data[0].pwrd_approved_calender_day);
       //  $('#calendar_previous_days_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
         $('#days_previous_report_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
