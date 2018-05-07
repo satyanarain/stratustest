@@ -75,6 +75,22 @@
                                                                     <td id="cor_approved_owner"></td>
                                                                 </tr>
                                                                 <tr>
+                                                                    <th>Denied by CM</th>
+                                                                    <td id="cor_denied_cm"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>CM Rejection Comment</th>
+                                                                    <td id="cor_denied_cm_comment"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Denied by Owner</th>
+                                                                    <td id="cor_denied_owner"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Owner Rejection Comment</th>
+                                                                    <td id="cor_denied_owner_comment"></td>
+                                                                </tr>
+                                                                <tr>
                                                                     <th>Total Requested Costs</th>
                                                                     <td id="total_requested_cost"></td>
                                                                 </tr>
@@ -102,12 +118,16 @@
                                                                     <th>Status</th>
                                                                     <td id="cor_status"></td>
                                                                 </tr>
+                                                                <tr class="rfi_available">
+                                                                    <th>RFI Detail:</th>
+                                                                    <td id="cor_rfi_detail"></td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
 
 
-                                                    <div class="tab-parent rfi_available" style="overflow-x:scroll;">
+<!--                                                    <div class="tab-parent rfi_available" style="overflow-x:scroll;">
                                                         <table class="table table-striped custom-grid">
                                                             <tbody>
                                                                 <tr>
@@ -116,7 +136,7 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                    </div>
+                                                    </div>-->
                                                 </section>
                                             </div>
 
@@ -128,8 +148,11 @@
         <div class="form-group">
             <div class="col-lg-12">
                 <!-- <label class="checkbox-custom check-success"> -->
-                    <input type="radio" value=" " id="approved_cm">
-                    <label>Approved by CM</label>
+                    <input type="radio" name="cm_approval" value="yes" id="approved_cm">
+                <label for="approved_cm">Approved by CM</label>
+                <input type="radio" name="cm_approval" value="no" id="denied_cm">
+                <label for="denied_cm">Denied by CM</label>
+                
                 <!-- </label> -->
             </div>
         </div>
@@ -137,8 +160,11 @@
         <div class="form-group">
             <div class="col-lg-12">
                 <!-- <label class="checkbox-custom check-success"> -->
-                    <input type="radio" value=" " id="approved_owner">
-                    <label>Approved by Owner</label>
+                <input type="radio" name="owner_approval" value="yes" id="approved_owner">
+                <label for="approved_owner">Approved by Owner</label>
+                    <input type="radio" name="owner_approval" value="no" id="denied_owner">
+                    <label for="denied_owner">Denied by Owner</label>
+                   
                 <!-- </label> -->
             </div>
         </div>
