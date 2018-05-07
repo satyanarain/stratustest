@@ -704,22 +704,18 @@ function checkvalue( e ) {
     var app_calender = document.getElementById('calendar_previous_days_app_calender').innerHTML;
 document.getElementById('calendar_total_days_app_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
 document.getElementById('calendar_day_charged_app_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
-document.getElementById('calendar_day_charged_app_non_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
  }
 
   if (e.classList[1] == 'days_app_non_calender' ) {
     document.getElementById('calendar_days_app_raily_day').innerHTML=sumvalue;
     var app_calender = document.getElementById('calendar_previous_days_app_non_calender').innerHTML;
 document.getElementById('calendar_total_days_app_non_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
-document.getElementById('calendar_day_charged_app_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
 document.getElementById('calendar_day_charged_app_non_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
  }
  if (e.classList[1] == 'days_rainy_day' ) {
     document.getElementById('calendar_days_app_non_calender').innerHTML=sumvalue;
     var app_calender = document.getElementById('calendar_previous_days_app_raily_day').innerHTML;
 document.getElementById('calendar_total_days_app_raily_day').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
-document.getElementById('calendar_day_charged_app_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
-document.getElementById('calendar_day_charged_app_non_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
  }
 
 }
