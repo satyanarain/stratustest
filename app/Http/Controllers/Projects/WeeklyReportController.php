@@ -60,15 +60,15 @@ class WeeklyReportController extends Controller {
 
             $project_notice_proceed = DB::table('project_notice_proceed')
             ->select()
-            ->where('pnp_project_id', '=', $project_id)
+            ->where('pnp_project_id', '=', '3')
             ->orderBy('pnp_start_date','DESC')
             ->first();
 
          echo "project : ".$project_id,"</br>"; 
 
             $countDays = 0;
-          
-           //echo "<pre> Data :".print_r($project_notice_proceed->pnp_cal_day , TRUE)."</pre>";
+          echo "<pre> pro Data :".print_r($project_notice_proceed , TRUE)."</pre>";
+           echo "<pre> pnp Data :".print_r($project_notice_proceed->pnp_cal_day , TRUE)."</pre>";
 
             if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
                $countDays =0;
@@ -77,7 +77,7 @@ class WeeklyReportController extends Controller {
             }
 
              echo $countDays;
-         //   die();
+             die();
 
             $add_weekly_report = ProjectWeeklyReports::create(['pwr_project_id' => $project_id, 'pwr_week_ending' => $current_date, 'pwr_status' => 'active', 'pwr_status' => 'incomplete']);
             
