@@ -331,7 +331,7 @@ $(document).ready(function() {
         }else{
             $('#revised_completion_date').text('');
         }
-    }, 3000);
+    }, 5000);
 
 
 });
