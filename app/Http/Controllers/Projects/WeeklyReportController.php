@@ -60,12 +60,12 @@ class WeeklyReportController extends Controller {
             $project_notice_proceed = DB::table('project_notice_proceed')
             ->select()
             ->where('pnp_project_id', '=', $project_id)
-            ->orderBy('pnp_project_id','DESC')
+            ->orderBy('pnp_start_date','DESC')
                ->first();
-          ///  print_r($project_notice_proceed);
+          print_r($project_notice_proceed);
             $countDays = 6;
             if (  $project_notice_proceed[0]->pnp_cal_day == 'calendar_day' ) {
-               $countDays =6;
+               $countDays =7;
             } else {
                  $countDays =5;
             }
