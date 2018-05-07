@@ -480,11 +480,14 @@ for ($i=0; $i <count( $all_report ) ; $i++) {
 
       //       echo "<pre> Data :".print_r(  $all_report  , TRUE )."</pre>";
 
-           echo "<pre> Data ids :".print_r(  $projectIDs  , TRUE )."</pre>";
+        
 
       //  die();
-
-
+$values = implode(',', array_map(function($value)
+{
+    return trim($value, ',');
+}, $projectIDs));
+   echo "<pre> Data ids :".print_r(  $values  , TRUE )."</pre>";
           // echo "project id".$projectID;
         $query = DB::table('project_weekly_reports_days')
         ->select()
@@ -501,6 +504,7 @@ for ($i=0; $i <count( $all_report ) ; $i++) {
           $result = array('data'=>$query,'code'=>200);
           return response()->json($result, 200);
         }
+        
       // }
     }
     catch(Exception $e)
