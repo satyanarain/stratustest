@@ -54,7 +54,7 @@ class WeeklyReportController extends Controller {
       {
           echo '<pre>';
           foreach ($query as $project) {
-            
+
           $current_date     = date('Y-m-d');
           $project_id       = $project->p_id;
 
@@ -75,6 +75,7 @@ class WeeklyReportController extends Controller {
             } else {
                  $countDays =2;
             }
+            
              echo $countDays;
             // die();
 
