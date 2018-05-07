@@ -188,6 +188,10 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
           $time_extension         = $request['time_extension'];
           $remark_report          = $request['remark_report'];
           $type_name              = $request['type_name'];
+          $days_this_report_app_calender              = $request['days_this_report_app_calender'];
+          $days_this_report_app_non_calender              = $request['days_this_report_app_non_calender'];
+          $days_previous_report_app_calender              = $request['days_previous_report_app_calender'];
+          $days_previous_report_app_non_calender              = $request['days_previous_report_app_non_calender'];
 
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
@@ -219,7 +223,7 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
         {
             $query = DB::table('project_weekly_reports')
             ->where('pwr_id', '=', $report_id)
-            ->update(['pwr_time_extension' => $time_extension, 'pwr_remarks' => $remark_report, 'pwr_type_name' => $type_name, 'pwr_status' => 'active', 'pwr_report_status' => 'complete']);
+            ->update(['pwr_time_extension' => $time_extension, 'pwr_remarks' => $remark_report, 'pwr_type_name' => $type_name, 'pwr_status' => 'active', 'pwr_report_status' => 'complete','days_this_report_app_calender'=>$days_this_report_app_calender,'days_this_report_app_non_calender'=>$days_this_report_app_non_calender,'days_previous_report_app_calender'=>$days_previous_report_app_calender,'days_previous_report_app_non_calender'=>$days_previous_report_app_non_calender]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
@@ -459,41 +463,37 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
       // } 
       // else {
 
-
-        $project_notice_proceed = DB::table('project_notice_proceed')
+$projectIDs = array( );
+        $weeklyData = DB::table('project_weekly_reports_days')
             ->select()
-            ->where('pnp_project_id', '=', $project_id)
-            ->get();
-        //  echo "<pre> Data :".print_r(  $project_notice_proceed , TRUE )."</pre>";
-            $projectID =0;
+            ->where('pwrd_report_id', '=', $request['report_id'])
+            ->count();
+       // echo "<pre> Data :".print_r(  $weeklyData  , TRUE )."</pre>";
 
-for ($i=0; $i <count($project_notice_proceed) ; $i++) { 
- 
-            if (  $project_notice_proceed[$i]->pnp_cal_day == 'calendar_day' ) {
+            $all_report = DB::table('project_weekly_reports_days')
+                     ->select(DB::raw('count(*) as days_count, pwrd_report_id'))
+                        ->where('pwrd_project_id', '=', $project_id)
+                     ->groupBy('pwrd_report_id')
+                     ->get();
 
-              $project_ids = DB::table('project_notice_proceed')
-              ->select('pnp_project_id')
-              ->where('pnp_cal_day', '=', 'calendar_day')
-               ->where('pnp_project_id', '=', $project_id)
-              ->orderBy('pnp_project_id','DESC')
-               ->first();
-              $projectID =  $project_ids->pnp_project_id;
-            } else {
-                  $project_ids = DB::table('project_notice_proceed')
-              ->select('pnp_project_id')
-              ->where('pnp_cal_day', '=', 'working_day')
-              ->where('pnp_project_id', '=', $project_id)
-              ->orderBy('pnp_project_id','DESC')
-               ->first();
-              $projectID =  $project_ids->pnp_project_id;
-            }
+for ($i=0; $i <count( $all_report ) ; $i++) { 
+   if ( $all_report[$i]->days_count == $weeklyData ) {
+     $projectIDs[] = $all_report[$i]->pwrd_report_id;
+   }
 }
 
+      //       echo "<pre> Data :".print_r(  $all_report  , TRUE )."</pre>";
+
+        
+
+      //  die();
+
+   //echo "<pre> Data ids :".print_r(  $values  , TRUE )."</pre>";
           // echo "project id".$projectID;
         $query = DB::table('project_weekly_reports_days')
         ->select()
         ->select(DB::raw('sum(pwrd_approved_calender_day) as pwrd_approved_calender_day, sum(pwrd_approved_non_calender_day) as pwrd_approved_non_calender_day, sum(pwrd_rain_day) as pwrd_rain_day'))
-        ->where('pwrd_project_id', '=', $projectID)
+        ->whereIn('pwrd_project_id', $projectIDs)
         ->get();
         if(count($query) < 1)
         {
@@ -505,6 +505,7 @@ for ($i=0; $i <count($project_notice_proceed) ; $i++) {
           $result = array('data'=>$query,'code'=>200);
           return response()->json($result, 200);
         }
+
       // }
     }
     catch(Exception $e)

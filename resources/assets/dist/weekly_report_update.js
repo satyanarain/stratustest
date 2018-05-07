@@ -7,6 +7,8 @@ $(document).ready(function() {
     console.log(project_id);
     console.log(report_id);
 
+    var complete_status = false;
+
     var role = localStorage.getItem('u_role');
     var token = localStorage.getItem('u_token');
 
@@ -127,7 +129,27 @@ $(document).ready(function() {
         cache: false
     })
     .done(function(data, textStatus, jqXHR) {
+        console.log('call week');
         console.log(data.data);
+        console.log('end call week');
+        if (data.data.days_this_report_app_calender !=0) {
+            document.getElementById('days_this_report_app_calender').value = data.data.days_this_report_app_calender;
+        }
+         if (data.data.days_this_report_app_non_calender !=0) {
+            document.getElementById('days_this_report_app_non_calender').value = data.data.days_this_report_app_non_calender;
+        }
+         if (data.data.days_previous_report_app_calender !=0) {
+            document.getElementById('days_previous_report_app_calender').value = data.data.days_previous_report_app_calender;
+        }
+         if (data.data.days_previous_report_app_non_calender !=0) {
+            document.getElementById('days_previous_report_app_non_calender').value = data.data.days_previous_report_app_non_calender;
+        }
+
+        if ( data.data.pwr_report_status == 'complete') {
+            complete_status = true;
+            document.getElementById('days_previous_report_app_calender').readOnly=true
+            document.getElementById('days_previous_report_app_non_calender').readOnly=true
+        }
         $('#report_id').text(report_id);
         var week_ending = data.data.pwr_week_ending;
         $('#week_ending').text(week_ending);
@@ -225,14 +247,26 @@ $(document).ready(function() {
         cache: false
     })
     .done(function(data, textStatus, jqXHR) {
-        $('#calendar_previous_days_app_calender').text(data.data[0].pwrd_approved_calender_day);
+
+        if (complete_status != true ) {
+
+          
         console.log(data.data[0].pwrd_approved_calender_day);
-        $('#days_previous_report_app_calender').text(data.data[0].pwrd_approved_calender_day);
-        $('#calendar_previous_days_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
-        $('#days_previous_report_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
-        console.log(data.data[0].pwrd_approved_calender_day);
-        $('#calendar_previous_days_app_raily_day').text(data.data[0].pwrd_rain_day);
-        console.log(data.data[0].pwrd_approved_calender_day);
+        $('#days_previous_report_app_calender').val(data.data[0].pwrd_approved_calender_day);
+       
+        $('#days_previous_report_app_non_calender').val(data.data[0].pwrd_approved_non_calender_day);
+        }
+
+        if ( data.data[0].pwrd_approved_calender_day == null) {
+             $('#calendar_previous_days_app_calender').text("0");
+        }
+         if ( data.data[0].pwrd_approved_non_calender_day == null) {
+             $('#calendar_previous_days_app_non_calender').text("0");
+        }
+         if ( data.data[0].pwrd_rain_day == null) {
+             $('#calendar_previous_days_app_raily_day').text("0");
+        }
+         
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
@@ -259,13 +293,17 @@ $(document).ready(function() {
         // });
         $('#calendar_days_app_calender').text(pwrd_approved_calender_day);
         // console.log(days_app_calender);
-        $('#days_this_report_app_calender').text(pwrd_approved_calender_day);
+         if (complete_status != true ) {
+
+             $('#days_this_report_app_calender').val(pwrd_approved_calender_day);
+         }
+       
         var calendar_previous_days_app_calender = $('#calendar_previous_days_app_calender').text();
         var calendar_previous_days_app_calender1 = parseInt(calendar_previous_days_app_calender);
         $('#calendar_total_days_app_calender').text(parseInt(pwrd_approved_calender_day+calendar_previous_days_app_calender1));
         // Total Day Approved
-        var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').text());
-        var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').text());
+        var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').val());
+        var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').val());
         $('#total_day_approved_app_calender').text(parseInt(days_this_report_app_calender1+days_previous_report_app_calender1));
 
 
@@ -274,13 +312,13 @@ $(document).ready(function() {
         //     days_app_non_calender += parseInt($(this).val()); //<==== a catch  in here !! read below
         // });
         $('#calendar_days_app_non_calender').text(pwrd_approved_non_calender_day);
-        $('#days_this_report_app_non_calender').text(pwrd_approved_non_calender_day);
+        $('#days_this_report_app_non_calender').val(pwrd_approved_non_calender_day);
         var calendar_previous_days_app_non_calender = $('#calendar_previous_days_app_non_calender').text();
         var calendar_previous_days_app_non_calender1 = parseInt(calendar_previous_days_app_non_calender);
         $('#calendar_total_days_app_non_calender').text(parseInt(pwrd_approved_non_calender_day+calendar_previous_days_app_non_calender1));
         // Total Day Approved
-        var days_this_report_app_non_calender1 = parseInt($('#days_this_report_app_non_calender').text());
-        var days_previous_report_app_non_calender1 = parseInt($('#days_previous_report_app_non_calender').text());
+        var days_this_report_app_non_calender1 = parseInt($('#days_this_report_app_non_calender').val());
+        var days_previous_report_app_non_calender1 = parseInt($('#days_previous_report_app_non_calender').val());
         $('#total_day_approved_app_non_calender').text(parseInt(days_this_report_app_non_calender1+days_previous_report_app_non_calender1));
 
 
@@ -331,7 +369,7 @@ $(document).ready(function() {
         }else{
             $('#revised_completion_date').text('');
         }
-    }, 3000);
+    }, 5000);
 
 
 });
@@ -349,8 +387,8 @@ $('#calendar_week_days').on('input', function() {
     var calendar_previous_days_app_calender1 = parseInt(calendar_previous_days_app_calender);
     $('#calendar_total_days_app_calender').text(parseInt(pwrd_approved_calender_day+calendar_previous_days_app_calender1));
     // Total Day Approved
-    var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').text());
-    var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').text());
+    var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').val());
+    var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').val());
     $('#total_day_approved_app_calender').text(parseInt(days_this_report_app_calender1+days_previous_report_app_calender1));
 
 
@@ -359,13 +397,13 @@ $('#calendar_week_days').on('input', function() {
         days_app_non_calender += parseInt($(this).val()); //<==== a catch  in here !! read below
     });
     $('#calendar_days_app_non_calender').text(days_app_non_calender);
-    $('#days_this_report_app_non_calender').text(days_app_non_calender);
+    $('#days_this_report_app_non_calender').val(days_app_non_calender);
     var calendar_previous_days_app_non_calender = $('#calendar_previous_days_app_non_calender').text();
     var calendar_previous_days_app_non_calender1 = parseInt(calendar_previous_days_app_non_calender);
     $('#calendar_total_days_app_non_calender').text(parseInt(days_app_non_calender+calendar_previous_days_app_non_calender1));
     // Total Day Approved
-    var days_this_report_app_non_calender1 = parseInt($('#days_this_report_app_non_calender').text());
-    var days_previous_report_app_non_calender1 = parseInt($('#days_previous_report_app_non_calender').text());
+    var days_this_report_app_non_calender1 = parseInt($('#days_this_report_app_non_calender').val());
+    var days_previous_report_app_non_calender1 = parseInt($('#days_previous_report_app_non_calender').val());
     $('#total_day_approved_app_non_calender').text(parseInt(days_this_report_app_non_calender1+days_previous_report_app_non_calender1));
 
 
@@ -555,6 +593,10 @@ $('#update_weekly_report').click(function(e) {
         data: {
             "project_id"           : project_id,
             "time_extension"       : time_extension,
+            "days_this_report_app_calender"       : $('#days_this_report_app_calender').val(),
+            "days_this_report_app_non_calender"       : $('#days_this_report_app_non_calender').val(),
+            "days_previous_report_app_calender"       : $('#days_previous_report_app_calender').val(),
+            "days_previous_report_app_non_calender"       : $('#days_previous_report_app_non_calender').val(),
             "remark_report"        : remark_report,
             "type_name"            : type_name
         },
