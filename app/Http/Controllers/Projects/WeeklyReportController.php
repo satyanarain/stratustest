@@ -461,9 +461,9 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
 
 
         $weeklyData = DB::table('project_weekly_reports_days')
-            ->select('count(*) As totaldays')
+            ->select()
             ->where('pwrd_report_id', '=', $request['report_id'])
-            ->get();
+            ->count();
         echo "<pre> Data :".print_r(  $weeklyData  , TRUE )."</pre>";
 
         die();
