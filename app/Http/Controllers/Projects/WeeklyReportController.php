@@ -71,7 +71,7 @@ class WeeklyReportController extends Controller {
          //  echo "<pre> pnp Data :".print_r($project_notice_proceed->pnp_cal_day , TRUE)."</pre>";
 if (isset( $project_notice_proceed->pnp_cal_day  )) {
 
-            if (  $project_notice_proceed->pnp_cal_day != 'calendar_day' ) {
+            if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
                $countDays = 0;
             } else {
                  $countDays = 2;
@@ -467,7 +467,9 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
         //  echo "<pre> Data :".print_r(  $project_notice_proceed , TRUE )."</pre>";
             $projectID =0;
 
-            if (  $project_notice_proceed[0]->pnp_cal_day == 'calendar_day' ) {
+for ($i=0; $i <count($project_notice_proceed) ; $i++) { 
+ 
+            if (  $project_notice_proceed[$i]->pnp_cal_day == 'calendar_day' ) {
 
               $project_ids = DB::table('project_notice_proceed')
               ->select('pnp_project_id')
@@ -485,6 +487,7 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
                ->first();
               $projectID =  $project_ids->pnp_project_id;
             }
+}
 
           // echo "project id".$projectID;
         $query = DB::table('project_weekly_reports_days')

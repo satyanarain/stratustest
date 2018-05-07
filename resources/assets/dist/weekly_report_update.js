@@ -218,6 +218,9 @@ $(document).ready(function() {
           "Content-Type": "application/json",
           "x-access-token": token
         },
+          data: {
+                    "report_id"               : report_id,
+                },
         contentType: "application/json",
         cache: false
     })
