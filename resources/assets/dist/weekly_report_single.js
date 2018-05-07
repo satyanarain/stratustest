@@ -175,6 +175,9 @@ $(document).ready(function() {
              days_app_non_calender += parseInt(val.pwrd_approved_non_calender_day);
              days_rainy_day += parseInt(val.pwrd_rain_day); 
 
+              var sign_date = new Date(val.update_time);
+            document.getElementById('sign_date').innerHTML = formatDate(sign_date);
+
             $('#calendar_week_days').append(
                 '<tr>'+
                     '<td style="vertical-align: middle;">'+val.pwrd_date+'</td>'+
@@ -340,3 +343,19 @@ $(document).ready(function() {
     
 
 });
+
+
+function formatDate(date) {
+  var monthNames = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ];
+
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  return day + ' ' + monthNames[monthIndex] + ' ' + year;
+}
