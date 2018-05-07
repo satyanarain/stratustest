@@ -64,7 +64,7 @@ class WeeklyReportController extends Controller {
             ->orderBy('pnp_start_date','DESC')
             ->first();
 
-         print_r( $project_id );
+         echo "project : ".$project_id,"</br>"; 
 
             $countDays = 0;
           
