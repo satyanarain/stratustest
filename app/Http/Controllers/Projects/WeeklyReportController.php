@@ -468,7 +468,7 @@ $projectIDs = array( );
 
             $all_report = DB::table('project_weekly_reports_days')
                      ->select(DB::raw('count(*) as days_count, pwrd_report_id'))
-                        ->where('pwrd_project_id', '=', $projectID)
+                        ->where('pwrd_project_id', '=', $project_id)
                      ->groupBy('pwrd_report_id')
                      ->get();
 
