@@ -460,13 +460,15 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
       // else {
 
 
-        $project_notice_proceed = DB::table('project_notice_proceed')
-            ->select()
-            ->where('pnp_project_id', '=', $project_id)
+        $weeklyData = DB::table('project_weekly_reports_days')
+            ->select('count(pwrd_id) As totaldays')
+            ->where('pwrd_report_id', '=', $request['report_id'])
             ->get();
-        //  echo "<pre> Data :".print_r(  $project_notice_proceed , TRUE )."</pre>";
-            $projectID =0;
+        echo "<pre> Data :".print_r(  $weeklyData  , TRUE )."</pre>";
 
+        die();
+            $projectID =0;
+$projectIDs = array( );
 for ($i=0; $i <count($project_notice_proceed) ; $i++) { 
  
             if (  $project_notice_proceed[$i]->pnp_cal_day == 'calendar_day' ) {
