@@ -466,9 +466,9 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
             ->count();
         echo "<pre> Data :".print_r(  $weeklyData  , TRUE )."</pre>";
 
-            $all_report = DB::table('users')
+            $all_report = DB::table('project_weekly_reports_days')
                      ->select(DB::raw('count(*) as user_count, pwrd_report_id'))
-                     ->groupBy('project_weekly_reports_days')
+                     ->groupBy('pwrd_report_id')
                      ->get();
 
              echo "<pre> Data :".print_r(  $all_report  , TRUE )."</pre>";
