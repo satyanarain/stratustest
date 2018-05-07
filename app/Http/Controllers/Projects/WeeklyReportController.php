@@ -61,18 +61,18 @@ class WeeklyReportController extends Controller {
             ->select()
             ->where('pnp_project_id', '=', $project_id)
             ->orderBy('pnp_start_date','DESC')
-               ->first();
+            ->first();
           print_r($project_notice_proceed);
-            $countDays = 7;
+            $countDays = 0;
            echo "<pre> Data :".print_r($project_notice_proceed->pnp_cal_day , TRUE)."</pre>";
 
 
            
 
             if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
-               $countDays =7;
+               $countDays =2;
             } else {
-                 $countDays =5;
+                 $countDays =0;
             }
              echo $countDays;
             // die();
@@ -81,7 +81,7 @@ class WeeklyReportController extends Controller {
             
             $add_weekly_report_id = $add_weekly_report->id;
             // print_r($add_weekly_report_id);
-            for ($i=0; $i < $countDays; $i++) {
+            for ($i=$countDays; $i < 7; $i++) {
                 $date = date('l, jS \of F Y', strtotime($current_date . ' -'.$i.' day'));
                 $query = DB::table('project_weekly_reports_days')
                 ->insert(['pwrd_date' => $date, 'pwrd_project_id' => $project_id, 'pwrd_report_id' => $add_weekly_report_id]);
