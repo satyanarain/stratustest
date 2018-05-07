@@ -259,7 +259,8 @@ $(document).ready(function() {
                 "additional_day"            : additional_day,
                 "additional_day_add"        : additional_day_add,
                 "file_path"                 : file_path,
-                "project_id"                : project_id
+                "project_id"                : project_id,
+                "agency_id"                 : agency_id,
             },
             headers: {
               "x-access-token": token

@@ -93,7 +93,7 @@
                                     <i class="fa fa-user"></i>
                                 </div>
                                 <div class="value white">
-                                      <h4 id="" >Contracts Days (Org):</h4>
+                                      <h4 id="" >Contract Days (Org):</h4>
                           <h4 id="" >Contract Days Added: : </h4>
                            <h4 id="" >Contract Days (Rev):</h4>
                           <h4 id="" >Contract Days (Charged) : </h4>

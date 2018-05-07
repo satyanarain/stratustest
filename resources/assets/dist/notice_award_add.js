@@ -373,6 +373,26 @@ $(document).ready(function() {
 
     $('#cmd').click(function (e) {
         e.preventDefault();
+        html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
+        if($('#company_name').val()=="")
+        {
+            html += '<li>Contractor name is required.</li>';
+            is_error = true;
+        }
+        html += '</ul></div>';
+        if(is_error == true){
+            $("#alert_message").html(html);
+            $("#alert_message").show();
+            $('.loading-submit').hide();
+            $('html, body').animate({
+                scrollTop: $(".page-head").offset().top
+            }, 'fast')
+            setTimeout(function(){
+                $("#alert_message").hide();
+                return false;
+            },5000)
+            return;
+        }
         $('.loading-submit').show();
         var doc_meta = $("#upload_doc_meta").val();
         var doc_project_id = $("#upload_project_id").val();
@@ -538,6 +558,7 @@ $(document).ready(function() {
                 is_error = true;
             }
         });
+        
         var item = {};
         item['signatory_name'] 		= signatory_name;
         item['signatory_email']         = signatory_email;
@@ -564,6 +585,11 @@ $(document).ready(function() {
             var improvement_type = improvement_type_array.join(',')
         }
         //alert(improvement_type_array);return false;
+        if($('#company_name').val()=="")
+        {
+            html += '<li>Contractor name is required.</li>';
+            is_error = true;
+        }
         html += '</ul></div>';
         console.log(improvement_type);
         if(is_error == true){

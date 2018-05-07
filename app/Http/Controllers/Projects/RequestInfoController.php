@@ -25,6 +25,7 @@ use Gate;
 use App\User; //your model
 use App\Document; //your model
 use App\ProjectRequestInfo; //your model
+use App\ProjectChangeOrderRequest; //your model
 use App\Repositories\Custom\Resource\Post as Resource_Post; 
 use App\Repositories\Util\AclPolicy;
 
@@ -56,7 +57,7 @@ class RequestInfoController extends Controller {
         $question_request           = $request['question_request'];
         $question_proposed          = $request['question_proposed'];
         $additional_cost            = $request['additional_cost'];
-        // $additional_cost_currency   = $request['additional_cost_currency'];
+        //$additional_cost_currency   = $request['additional_cost_currency'];
         $additional_cost_amount     = $request['additional_cost_amount'];
         $additional_day             = $request['additional_day'];
         $additional_day_add         = $request['additional_day_add'];
@@ -101,8 +102,31 @@ class RequestInfoController extends Controller {
         }
         else
         {
-            $request_info = ProjectRequestInfo::create(['ri_number' => $request_number, 'ri_date' => $request_date, 'ri_question_request' => $question_request, 'ri_question_proposed' => $question_proposed, 'ri_additional_cost' =>$additional_cost, 'ri_additional_cost_amount' => $additional_cost_amount, 'ri_additional_day' => $additional_day, 'ri_additional_day_add' => $additional_day_add, 'ri_file_path' => $file_path, 'ri_user_id' => $user_id, 'ri_project_id' => $project_id, 'ri_request_status' => $request_status]);
-
+            if($additional_cost=="yes" || $additional_day=="yes")
+            {
+                $order_number = $request_number;
+                $order_date = $request_date;
+                $order_contractor_name = $request['agency_id'];
+                $order_status = '';
+                $order_project_id = $project_id;
+                $order_user_id    = Auth::user()->id;
+                $status           = 'active';
+                $request_info = ProjectChangeOrderRequest::create(['pco_number' => $order_number, 'pco_date' => $order_date, 'pco_contractor_name' => $order_contractor_name, 'pco_order_status' => $order_status, 'pco_project_id' => $order_project_id, 'pco_user_id' => $order_user_id, 'pco_status' => $status]);
+                $order_parent_cor = $request_info->id;
+                $order_description = $question_request;
+                $order_price = $additional_cost_amount;    
+                $order_days = $additional_day_add;
+                $order_file_path = $file_path;
+                $is_potential = 1;
+                $pcd_rfi = '[]';
+                //$order_parent_cor
+                //$order_project_id
+                //$order_user_id
+                $query = DB::table('project_change_order_request_detail')
+                ->insert(['pcd_rfi'=>$pcd_rfi,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'is_potential' => $is_potential, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
+            }else{  
+                $request_info = ProjectRequestInfo::create(['ri_number' => $request_number, 'ri_date' => $request_date, 'ri_question_request' => $question_request, 'ri_question_proposed' => $question_proposed, 'ri_additional_cost' =>$additional_cost, 'ri_additional_cost_amount' => $additional_cost_amount, 'ri_additional_day' => $additional_day, 'ri_additional_day_add' => $additional_day_add, 'ri_file_path' => $file_path, 'ri_user_id' => $user_id, 'ri_project_id' => $project_id, 'ri_request_status' => $request_status]);
+            }
             $request_info_id = $request_info->id;
             // $query = DB::table('project_request_info')
             // ->insert(['ri_number' => $request_number, 'ri_date' => $request_date, 'ri_question_request' => $question_request, 'ri_question_proposed' => $question_proposed, 'ri_additional_cost' =>$additional_cost, 'ri_additional_cost_currency' => $additional_cost_currency, 'ri_additional_cost_amount' => $additional_cost_amount, 'ri_additional_day' => $additional_day, 'ri_additional_day_add' => $additional_day_add, 'ri_file_path' => $file_path, 'ri_user_id' => $user_id, 'ri_project_id' => $project_id, 'ri_request_status' => $request_status]);

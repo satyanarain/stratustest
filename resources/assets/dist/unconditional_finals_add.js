@@ -320,7 +320,7 @@ $('.company_name,#agency_name').change(function(){
     function fetchAgencyName(role,check_user_access)
     {
         jQuery.ajax({
-        url: baseUrl+project_id+"/company_name_user_agency",
+        url: baseUrl+project_id+"/company_name_user",
         type: "GET",
         headers: {
           "x-access-token": token
@@ -332,7 +332,7 @@ $('.company_name,#agency_name').change(function(){
         // console.log(data);
         // Foreach Loop 
         $("#agency_name").append(
-            '<option value="">Select Agency</option>'
+            '<option value="">Select Company</option>'
         )
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status == 'active'){
@@ -347,7 +347,7 @@ $('.company_name,#agency_name').change(function(){
         console.log(add_company_on_fly_permission+'company_fly');
         if(add_company_on_fly_permission>0 || role=="owner"){
         $("#agency_name").append(
-            '<option style="font-weight:bold;">Add New Agency</option>'
+            '<option style="font-weight:bold;">Add New Company</option>'
         )}
         // $( "h2" ).appendTo( $( ".container" ) );
        
