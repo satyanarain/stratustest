@@ -213,11 +213,19 @@ $(document).ready(function() {
     })
     .done(function(data, textStatus, jqXHR) {
         // console.log(data);
-        $('#calendar_previous_days_app_calender').text(data.data[0].pwrd_approved_calender_day);
+          if ( data.data[0].pwrd_approved_calender_day == null) {
+             $('#calendar_previous_days_app_calender').text("0");
+        }
+         if ( data.data[0].pwrd_approved_non_calender_day == null) {
+             $('#calendar_previous_days_app_non_calender').text("0");
+        }
+         if ( data.data[0].pwrd_rain_day == null) {
+             $('#calendar_previous_days_app_raily_day').text("0");
+        }
         $('#days_previous_report_app_calender').text(data.data[0].pwrd_approved_calender_day);
-        $('#calendar_previous_days_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
+      //  $('#calendar_previous_days_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
         $('#days_previous_report_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
-        $('#calendar_previous_days_app_raily_day').text(data.data[0].pwrd_rain_day);
+        //$('#calendar_previous_days_app_raily_day').text(data.data[0].pwrd_rain_day);
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
