@@ -492,7 +492,7 @@ $values = implode(',', array_map(function($value)
         $query = DB::table('project_weekly_reports_days')
         ->select()
         ->select(DB::raw('sum(pwrd_approved_calender_day) as pwrd_approved_calender_day, sum(pwrd_approved_non_calender_day) as pwrd_approved_non_calender_day, sum(pwrd_rain_day) as pwrd_rain_day'))
-        ->whereIn('pwrd_project_id', '=', $projectIDs)
+        ->whereIn('pwrd_project_id', explode(',' $values))
         ->get();
         if(count($query) < 1)
         {
@@ -504,7 +504,7 @@ $values = implode(',', array_map(function($value)
           $result = array('data'=>$query,'code'=>200);
           return response()->json($result, 200);
         }
-        
+
       // }
     }
     catch(Exception $e)
