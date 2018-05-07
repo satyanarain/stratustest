@@ -127,7 +127,9 @@ $(document).ready(function() {
         cache: false
     })
     .done(function(data, textStatus, jqXHR) {
+        console.log('call week');
         console.log(data.data);
+        console.log('end call week');
         $('#report_id').text(report_id);
         var week_ending = data.data.pwr_week_ending;
         $('#week_ending').text(week_ending);
