@@ -194,7 +194,7 @@ $(document).ready(function() {
         jQuery.each( data.data, function( i, val ) {
             // console.log(val);
              var sign_date = new Date(val.update_time);
-            document.getElementById('sign_date').innerHTML = sign_date;
+            document.getElementById('sign_date').innerHTML = formatDate(sign_date);
             $('#calendar_week_days').append(
                 '<tr>'+
                     '<td style="vertical-align: middle;">'+val.pwrd_date+'</td>'+
@@ -769,4 +769,19 @@ document.getElementById('calendar_day_charged_app_non_calender').innerHTML = par
 document.getElementById('calendar_total_days_app_raily_day').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
  }
 
+}
+
+function formatDate(date) {
+  var monthNames = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ];
+
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  return day + ' ' + monthNames[monthIndex] + ' ' + year;
 }
