@@ -483,11 +483,8 @@ for ($i=0; $i <count( $all_report ) ; $i++) {
         
 
       //  die();
-$values = implode(',', array_map(function($value)
-{
-    return trim($value, ',');
-}, $projectIDs));
-   echo "<pre> Data ids :".print_r(  $values  , TRUE )."</pre>";
+
+   //echo "<pre> Data ids :".print_r(  $values  , TRUE )."</pre>";
           // echo "project id".$projectID;
         $query = DB::table('project_weekly_reports_days')
         ->select()
