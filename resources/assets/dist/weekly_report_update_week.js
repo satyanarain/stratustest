@@ -743,7 +743,7 @@ $('#create_weekly_report').click(function () {
 
 
 function checkvalue( e ) {
-        console.log(e);
+        
       var max = parseInt($(e).attr('max'));
       var min = parseInt($(e).attr('min'));
 
@@ -765,7 +765,7 @@ function checkvalue( e ) {
      sumvalue = parseInt(sumvalue) + parseInt( dataList[i].value );
 
  }
- console.log(sumvalue);
+
 
  if (e.classList[1] == 'days_app_calender' ) {
     document.getElementById('calendar_days_app_calender').innerHTML=sumvalue;

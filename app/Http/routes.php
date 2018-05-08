@@ -755,6 +755,10 @@ Route::get('dashboard/{project_id}/weekly_statement', function () {
 Route::get('dashboard/{project_id}/weekly_statement/{weekly_statement_id}', function () {
     return view('/weekly_statement/weekly_statement_single');
 });
+
+Route::get('dashboard/{project_id}/weekly_statement_week/{weekly_statement_id}', function () {
+    return view('/weekly_statement/weekly_statement_single_week');
+});
 Route::get('dashboard/{project_id}/weekly_statement/{weekly_statement_id}/update', function () {
     return view('/weekly_statement/weekly_statement_update');
 });
