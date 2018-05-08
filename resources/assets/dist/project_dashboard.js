@@ -1225,8 +1225,8 @@ $(document).ready(function() {
 			    console.log(data.data);
 
 			    var r_cor_complete = 0;
-				var r_cor_past_due = 0;
-				var r_cor_upcoming = 0;
+                            var r_cor_past_due = 0;
+                            var r_cor_upcoming = 0;
 
 			    $("#request_change_order thead").show();
 			    $(".loading_cor_detail").remove();
@@ -1234,6 +1234,38 @@ $(document).ready(function() {
 			    var count = 1;
 			    var counts = 1;
 			    jQuery.each( data.data, function( i, val ) {
+                                if((val.pcd_approved_by_cm != "0000-00-00" || 
+                                    val.pcd_denied_by_cm != "0000-00-00") && 
+                                    (val.pcd_approved_by_owner != "0000-00-00" || 
+                                    val.pcd_denied_by_owner != "0000-00-00")){
+                                        r_cor_complete++;
+                                }else{
+                                    var oneDay = 24*60*60*1000;
+                                    var future_date = new Date(val.pcd_timestamp);
+                                    var numberOfDaysToAdd = 10;
+                                    var futuredate = '';
+//                                    if( change_order_days_type == 1 ) {
+//                                        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+//                                    }
+//                                    else{
+//                                        futuredate = add_business_days(change_order_due_date , val.pcd_timestamp);
+//                                        var updated_f = new Date(futuredate);
+//                                        futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+//                                    }
+                                    var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
+                                    var now_date = new Date();
+                                    //var numberOfDaysToAdd = 0;
+                                    var nowdate = now_date.setDate(now_date.getDate()); 
+                                    //alert(nowdate);
+                                    //var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
+                                    if(futuredate < nowdate){
+                                        r_cor_past_due++;
+                                    }else{
+                                        r_cor_upcoming++;
+                                    }
+                                }
+                                
+                                
                                 if(((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") || (val.pcd_denied_by_cm != null && val.pcd_denied_by_cm != "0000-00-00")) && ((val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00") || (val.pcd_denied_by_owner != null && val.pcd_denied_by_owner != "0000-00-00"))){
                                     var descr = '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/view">'+val.pcd_description+'</a>';
                                 }else{
@@ -1246,16 +1278,16 @@ $(document).ready(function() {
 			            var pcd_approved_by_cm = '<span class="label label-warning">PENDING</span>';
 			            var pcd_denied_by_cm = '<span class="label label-warning">PENDING</span>';
                                     var status_cm = '<span class="label label-warning">PENDING CM REVIEW</span><br/>';
-			            r_cor_upcoming++;
+			            
 			        }else if(val.pcd_approved_by_cm!="0000-00-00") {
                                     var pcd_approved_by_cm = val.pcd_approved_by_cm;
                                     var pcd_denied_by_cm = '';
-                                    r_cor_complete++;
+                                    
                                 }
                                 else if(val.pcd_denied_by_cm!="0000-00-00") {
                                     var pcd_denied_by_cm = val.pcd_denied_by_cm;
                                     var pcd_approved_by_cm = '';
-                                    r_cor_complete++;
+                                    
                                 }
 			        else {
                                     var pcd_denied_by_cm = '';
@@ -1266,15 +1298,15 @@ $(document).ready(function() {
 			            var pcd_approved_by_owner = '<span class="label label-warning">PENDING</span>';
 			            var pcd_denied_by_owner = '<span class="label label-warning">PENDING</span>';
                                     var status_owner = '<span class="label label-warning">PENDING OWNER REVIEW</span><br/>';
-			            r_cor_upcoming++;
+			            
 			        }else if(val.pcd_approved_by_owner!="0000-00-00") {
                                     var pcd_approved_by_owner = val.pcd_approved_by_owner;
                                     var pcd_denied_by_owner = '';
-                                    r_cor_complete++;
+                                    
                                 }else if(val.pcd_denied_by_owner!="0000-00-00"){
                                     var pcd_denied_by_owner = val.pcd_denied_by_owner;
                                     var pcd_approved_by_owner = '';
-                                    r_cor_complete++;
+                                    
                                 }else {
                                     var pcd_denied_by_owner = '';
                                     var pcd_approved_by_owner = '';
@@ -1365,7 +1397,15 @@ $(document).ready(function() {
 			            console.log(val.pcd_approved_by_owner);
 			            console.log("change order !!");
 			            console.log(val);
-			            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
+			            if((val.pcd_approved_by_cm == false || 
+                                        val.pcd_approved_by_cm == "0000-00-00") && 
+                                        (val.pcd_approved_by_owner == false || 
+                                        val.pcd_approved_by_owner == "0000-00-00") &&
+                                        (val.pcd_denied_by_owner == false || 
+                                        val.pcd_denied_by_owner == "0000-00-00") &&
+                                        (val.pcd_denied_by_cm == false || 
+                                        val.pcd_denied_by_cm == "0000-00-00")
+                                        ){
 			                var oneDay = 24*60*60*1000;
 			                 
 			                console.log('change order :' + change_order_days_type);
@@ -1377,19 +1417,19 @@ $(document).ready(function() {
 			                var numberOfDaysToAdd = 10;
                                         var futuredate = '';
                                         console.log();
-							if ( change_order_days_type == 1 ) {
-								console.log("cal 1");
-						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
-							}
-							else {
-								console.log("cal 2");
-                                futuredate = add_business_days(change_order_due_date , val.pcd_timestamp);
-                                var updated_f = new Date(futuredate);
-                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
-							}
-                              console.log("updated future Date !!");
+                                        if( change_order_days_type == 1 ) {
+                                            console.log("cal 1");
+                                            futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+                                        }
+                                        else{
+                                            console.log("cal 2");
+                                            futuredate = add_business_days(change_order_due_date , val.pcd_timestamp);
+                                            var updated_f = new Date(futuredate);
+                                            futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+                                        }
+                                        console.log("updated future Date !!");
 
-								console.log("updated : "+ futuredate);
+                                        console.log("updated : "+ futuredate);
 			              //  var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
 			                //console.log("updated : "+ futuredate);
 			                var now_date = new Date();
@@ -1400,11 +1440,11 @@ $(document).ready(function() {
 			               //  console.log("updated last "+futuredate);
 			                 //console.log("now "+nowdate);
 			                var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
-
+//alert(futuredate);
 			                if(futuredate < nowdate){
 			                    // console.log('less');
 			                    var potential_status = '<span class="label label-danger">PAST DUE</span>';
-			                    r_cor_past_due++;
+			                    //alert(val.pcd_id);
 			                }
 			                else {
 			                    // console.log('greater');
@@ -1418,12 +1458,12 @@ $(document).ready(function() {
 			                    seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
 
 			                    var potential_status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
-			                    r_cor_upcoming++;
+			                    
 			                }
 			            }
 			            else {
 			                    var potential_status = '<span class="label label-success">APPROVED</span>';
-			                    r_cor_complete++;
+			                    
 			            }
 
 			            
