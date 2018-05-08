@@ -101,7 +101,7 @@
         <tr>
             <td colspan="5" style="text-align:center;background: #c5c5c5;padding: 12px;font-size: 16px;">Computation for Completion Date</td>
         </tr>
-        <tr>
+         <tr>
             <td colspan="2" style="vertical-align: middle;">1. First Working Day:</td>
             <td id="notice_to_proceed_start_date" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
             <td></td>
@@ -229,5 +229,5 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
-<script src="{{ url('/resources/assets/dist/weekly_report_single.js') }}"></script>
+<script src="{{ url('/resources/assets/dist/weekly_report_single_week.js') }}"></script>
 @include('include/footer')
