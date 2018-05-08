@@ -134,43 +134,39 @@
         <tr>
             <td colspan="5" style="text-align:center;background: #c5c5c5;padding: 12px;font-size: 16px;">Computation for Completion Date</td>
         </tr>
+
         <tr>
-            <td colspan="2" style="vertical-align: middle;">1. Notice to Proceed Date:</td>
-            <td id="notice_to_proceed_date" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="vertical-align: middle;">2. First Working Day:</td>
+            <td colspan="2" style="vertical-align: middle;">1. First Working Day:</td>
             <td id="notice_to_proceed_start_date" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
             <td></td>
             <td></td>
         </tr>
-        <tr>
-            <td colspan="2" style="vertical-align: middle;">3. Total Calendar Days Specified in Contract:</td>
-            <td id="notice_to_proceed_duration_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="vertical-align: middle;">4. Computed Completion Date:</td>
+       <tr>
+            <td colspan="2" style="vertical-align: middle;">2. Original Contract Completion Date:</td>
             <td id="computed_completion_date" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
             <td></td>
             <td></td>
         </tr>
         <tr>
+            <td colspan="2" style="vertical-align: middle;">3. Total Working Days Specified in Contract:</td>
+            <td id="notice_to_proceed_duration_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td></td>
+            <td></td>
+        </tr>
+ 
+        <tr style="display: none">
             <td colspan="2" style="vertical-align: middle;">5. <strong>Add:</strong> Time Extension / Change Orders <sup>4</sup> <span style="float: right;">Co No.:</span></td>
             <td><input type="text" class="form-control" id="time_extension"></td>
             <td></td>
             <td></td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td colspan="2" style="vertical-align: middle;">6. Days this Report (i.e. change order days, etc.):</td>
             <td  style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_this_report_app_calender" name="days_this_report_app_calender" class="form-control" required="required"></td>
             <td style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_this_report_app_non_calender" name="days_this_report_app_non_calender" class="form-control" required="required"></td>
             <td></td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td colspan="2" style="vertical-align: middle;">7. Days Previously Reported:</td>
             <td style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_previous_report_app_calender" name="days_previous_report_app_calender" class="form-control" required="required"></td>
             <td id="" style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_previous_report_app_non_calender" name="days_previous_report_app_non_calender" class="form-control" required="required"></td>
