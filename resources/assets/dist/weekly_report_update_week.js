@@ -618,7 +618,7 @@ $('#update_weekly_report').click(function(e) {
             "time_extension"       : time_extension,
             "days_this_report_app_calender"       : 0,
             "days_this_report_app_non_calender"       : 0,
-            "days_previous_report_app_calender"       : 0
+            "days_previous_report_app_calender"       : 0,
             "days_previous_report_app_non_calender"       : 0,
             "remark_report"        : remark_report,
             "type_name"            : type_name
