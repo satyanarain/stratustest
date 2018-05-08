@@ -340,8 +340,9 @@ $(document).ready(function() {
         $('#calendar_day_charged_app_non_calender').text(parseInt($('#calendar_total_days_app_non_calender').text()));
         
         // Revised Calendar Days Remaining in Contract 
-        var revised_total_calender1 = parseInt($('#revised_total_calender').text());
+         var revised_total_calender1 = parseInt($('#revised_contract_working_days').text());
         var calendar_day_charged_app_calender1 = parseInt($('#calendar_day_charged_app_calender').text());
+
         $('#revised_calendar_day_remaining').text(revised_total_calender1-calendar_day_charged_app_calender1);
         
         // Days due to Rain Days | Weather
