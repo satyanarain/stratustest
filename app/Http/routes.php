@@ -743,6 +743,7 @@ Route::get('weekly-report/{pwr_id}', 'Projects\WeeklyReportController@get_weekly
 Route::get('weekly-report-days/{report_id}', 'Projects\WeeklyReportController@get_weekly_report_single_days');
 Route::get('weekly-report-days-count/{project_id}', 'Projects\WeeklyReportController@get_weekly_report_single_days_count');
 Route::post('weekly-report-days-update/{days_id}', 'Projects\WeeklyReportController@update_day_quantity_complete');
+Route::post('weekly-report-days-update_week/{days_id}', 'Projects\WeeklyReportController@update_day_quantity_complete_week');
 Route::post('weekly-report-update/{report_id}/update', 'Projects\WeeklyReportController@update_weekly_report');
 Route::get('{project_id}/get-weekly-report', 'Projects\WeeklyReportController@get_all_weekly_report');
 }); 
