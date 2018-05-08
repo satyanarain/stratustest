@@ -522,6 +522,10 @@ $('.create_notice').click(function () {
                         $('input[name^=signatory_name]').each(function(){
                             signatory_name.push($(this).val());
                         });
+                        if(cal_day=="calendar_day")
+                            var days_type = "calendar";
+                        else
+                            var days_type = "working";
                         var signatory_email = [];
                         $('input[name^=signatory_email]').each(function(){
                             if($(this).val() != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())){
@@ -554,6 +558,7 @@ $('.create_notice').click(function () {
                                             "pdf_gen_working_days"      :   $('#pdf_gen_working_days').html(),
                                             "pdf_gen_working_days_1"    :   $('#pdf_gen_working_days_1').html(),
                                             "pdf_gen_amount"            :   $('#pdf_gen_amount').html(),
+                                            "days_type"                 :   days_type,
                                         });
                         }
                         console.log(cal_day);

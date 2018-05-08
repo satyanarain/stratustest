@@ -62,7 +62,53 @@ $(document).ready(function() {
  //        }
  //    });
 
-
+    jQuery.ajax({
+		url: baseUrl+project_id+"/get_dashboard_info",
+		    type: "GET",
+		    headers: {
+		      "Content-Type": "application/json",
+		      "x-access-token": token
+		    },
+		    contentType: "application/json",
+		    cache: false
+		})
+        .done(function(data, textStatus, jqXHR) {
+		    $('#contract_amount').text('$ '+ReplaceNumberWithCommas(data.data.contract_amount));
+                    $('#total_change_order_count').text('('+data.data.total_change_order_count+')');
+                    $('#total_change_order_amount').text('$ '+ReplaceNumberWithCommas(data.data.total_change_order_amount));
+                    $('#total_contract_amount').text('$ '+ReplaceNumberWithCommas(data.data.total_contract_amount));
+                    $('#pending_change_order_count').text('('+data.data.pending_change_order_count+')');
+                    $('#pending_change_order_amount').text('$ '+ReplaceNumberWithCommas(data.data.pending_change_order_amount));
+		    
+                    $('#original_contract_date').text(data.data.original_contract_date);
+                    $('#contract_days_added').text(data.data.contract_days_added);
+                    $('#revised_contract_date').text(data.data.revised_contract_date);
+                    $('#contract_days_charged').text(data.data.contract_days_charged);
+                    $('#remaining_days').text(data.data.remaining_days);
+                    
+                    $('.loading_project_detail').remove();
+		})
+        .fail(function(jqXHR, textStatus, errorThrown) {
+		    console.log("HTTP Request Failed");
+		    var response = jqXHR.responseJSON.code;
+		    if(response == 403){
+		    	// window.location.href = baseUrl + "403";
+		    	console.log("403");
+		    	$('.loading_project_detail').remove();
+		    }
+		    else if(response == 404){
+		    	console.log("404");
+		    	$('.loading_project_detail').remove();
+		    	// window.location.href = baseUrl + "404";
+		    }
+		    else {
+		    	console.log("500");
+		    	$('.loading_project_detail').remove();
+		    	// window.location.href = baseUrl + "500";
+		    }
+		});
+                
+                
     	jQuery.ajax({
 		url: baseUrl + "projects/"+project_id,
 		    type: "GET",
@@ -73,7 +119,7 @@ $(document).ready(function() {
 		    contentType: "application/json",
 		    cache: false
 		})
-		.done(function(data, textStatus, jqXHR) {
+        .done(function(data, textStatus, jqXHR) {
 		     console.log(data);
 		    var project_id = data.data.p_id;
 		    $('#project_number').text(project_id);
@@ -110,7 +156,7 @@ $(document).ready(function() {
 		    $('#project_status').html(status);
 		    $('.loading_project_detail').remove();
 		})
-		.fail(function(jqXHR, textStatus, errorThrown) {
+        .fail(function(jqXHR, textStatus, errorThrown) {
 		    console.log("HTTP Request Failed");
 		    var response = jqXHR.responseJSON.code;
 		    if(response == 403){
@@ -179,225 +225,225 @@ $(document).ready(function() {
 	    setTimeout(function()
         {
 		    // Select Contractor Name
-		    jQuery.ajax({
-	        url: baseUrl + "/"+project_id+"/default_contractor",
-	            type: "GET",
-	            headers: {
-	              "Content-Type": "application/json",
-	              "x-access-token": token
-	            },
-	            contentType: "application/json",
-	            cache: false
-	        })
-	        .done(function(data, textStatus, jqXHR) {
-	        	$('#contractor_name').text(data.data[0].agency_name);
-	        	$('.loading_project_contractor_name').remove();
-	        })
-	        .fail(function(jqXHR, textStatus, errorThrown) {
-			    console.log("HTTP Request Failed");
-			    var response = jqXHR.responseJSON.code;
-			    if(response == 403){
-			    	// window.location.href = baseUrl + "403";
-			    	console.log("403");
-			    	$(".loading_project_contractor_name").remove();
-			    }
-			    else if(response == 404){
-			    	console.log("404");
-	        		$('#contractor_name').text('-');
-			    	$(".loading_project_contractor_name").remove();
-			    	// window.location.href = baseUrl + "404";
-			    }
-			    else {
-			    	console.log("500");
-			    	$(".loading_project_contractor_name").remove();
-			    	// window.location.href = baseUrl + "500";
-			    }
-			})
+//		    jQuery.ajax({
+//	        url: baseUrl + "/"+project_id+"/default_contractor",
+//	            type: "GET",
+//	            headers: {
+//	              "Content-Type": "application/json",
+//	              "x-access-token": token
+//	            },
+//	            contentType: "application/json",
+//	            cache: false
+//	        })
+//	        .done(function(data, textStatus, jqXHR) {
+//	        	$('#contractor_name').text(data.data[0].agency_name);
+//	        	$('.loading_project_contractor_name').remove();
+//	        })
+//	        .fail(function(jqXHR, textStatus, errorThrown) {
+//			    console.log("HTTP Request Failed");
+//			    var response = jqXHR.responseJSON.code;
+//			    if(response == 403){
+//			    	// window.location.href = baseUrl + "403";
+//			    	console.log("403");
+//			    	$(".loading_project_contractor_name").remove();
+//			    }
+//			    else if(response == 404){
+//			    	console.log("404");
+//	        		$('#contractor_name').text('-');
+//			    	$(".loading_project_contractor_name").remove();
+//			    	// window.location.href = baseUrl + "404";
+//			    }
+//			    else {
+//			    	console.log("500");
+//			    	$(".loading_project_contractor_name").remove();
+//			    	// window.location.href = baseUrl + "500";
+//			    }
+//			})
 	    },2000)
 
         setTimeout(function()
         {
 	        // Get Project Currency
-			jQuery.ajax({
-			url: baseUrl+project_id+"/project_setting_get/project_currency",
-			    type: "GET",
-			    headers: {
-			      "x-access-token": token
-			    },
-			    contentType: "application/json",
-			    cache: false
-			})
-			.done(function(data, textStatus, jqXHR) {
-				// console.log(data.data.pset_meta_value);
-			    // $('.loading_bar_project_contract_amount').remove();
-			    var project_currency_id = data.data.pset_meta_value;
-			    jQuery.ajax({
-				url: baseUrl + "currency/"+project_currency_id,
-				    type: "GET",
-				    headers: {
-				      "Content-Type": "application/json",
-				      "x-access-token": token
-				    },
-				    contentType: "application/json",
-				    cache: false
-				})
-				.done(function(data, textStatus, jqXHR) {
-				    // console.log(data.data.cur_symbol);
-				    // $('.loading_bar_project_contract_amount').remove();
-				    // $('.project_currency').text(data.data.cur_symbol+' ');
-				    var currency_icon = data.data.cur_symbol+' ';
-				    // alert(currency_icon);
-				    // setTimeout(function(){
-		                // Bid Total Amount
-					    jQuery.ajax({
-					    url: baseUrl+"/"+project_id+"/bid-items-total",
-					        type: "GET",
-					        headers: {
-					          "Content-Type": "application/json",
-					          "x-access-token": token
-					        },
-					        contentType: "application/json",
-					        cache: false
-					    })
-					    .done(function(data, textStatus, jqXHR) {
-					    	// console.log(data);
-					        // $(".project_amount").text(data.data[0].total_amount);
-					        $('.loading_bar_project_contract_amount').remove();
-					        $('#contractor_name_box').show();
-					        // var contract_amount = data.data[0].total_amount;
-					        if(data.data[0].total_amount == null){
-					        	var contract_amount = 0;
-					        }
-					        else {
-					        	var contract_amount = ReplaceNumberWithCommas(data.data[0].total_amount);
-					        }
-					        var contract_item = data.data[0].total_item;
-					        $('#state-overview').append('<div class="col-md-4"><section class="blue">'+
-		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;">'+currency_icon+'</div>'+
-		                          '<div class="value white">'+
-		                              '<h1 class="timer" data-from="0" data-to="'+contract_amount+'" data-speed="1000">'+contract_amount+'</h1>'+
-		                              '<p>Contract Amount</p>'+
-		                          '</div>'+
-		                      '</section></div>'+
-		                      '<div class="col-md-4"><section class="blue">'+
-		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div>'+
-		                          '<div class="value white">'+
-		                              '<h1 class="timer" data-from="0" data-to="'+contract_item+'" data-speed="1000">'+contract_item+'</h1>'+
-		                              '<p>Contract Items</p>'+
-		                          '</div>'+
-		                      '</section></div>');
-					    })
-					    .fail(function(jqXHR, textStatus, errorThrown) {
-					        console.log("HTTP Request Failed");
-					        var response = jqXHR.responseJSON.code;
-					        if(response == 403){
-						    	console.log("403");
-					        	$('.loading_bar_project_contract_amount').remove();
-						    	$('#contractor_name_box').show();
-						    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
-		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
-		                          '<div class="value white">'+
-		                              '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
-		                              '<p>Contract Amount</p>'+
-		                          '</div>'+
-		                      	'</section></div>'+
-		                      '<div class="col-md-4"><section class="panel green">'+
-		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div>'+
-		                          '<div class="value white">'+
-		                              '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
-		                              '<p>Contract Item</p>'+
-		                          '</div>'+
-		                      '</section></div>');
-						    }
-						    else if(response == 404){
-						    	console.log("404");
-						    	$('.loading_bar_project_contract_amount').remove();
-						    	$('#contractor_name_box').show();
-						    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
-		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
-		                          '<div class="value white">'+
-		                              '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
-		                              '<p>Contract Amount</p>'+
-		                          '</div>'+
-		                      	'</section></div>'+
-		                      '<div class="col-md-4"><section class="panel green">'+
-		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div>'+
-		                          '<div class="value white">'+
-		                              '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
-		                              '<p>Contract Item</p>'+
-		                          '</div>'+
-		                      '</section></div>');
-						    }
-						    else {
-						    	console.log("500");
-						    }
-					    })
-					    $('.loading_bar_project_contract_amount').remove();
-					    $('#contractor_name_box').show();
-		            // },100)
-				})
-				.fail(function(jqXHR, textStatus, errorThrown) {
-			        console.log("HTTP Request Failed 1");
-			        var response = jqXHR.responseJSON.code;
-			        console.log(response);
-			        if(response == 403){
-				    	console.log("403 project_currency1");
-				    }
-				    else if(response == 404){
-				    	console.log("404 project_currency1");
-				    }
-				    else {
-				    	console.log("500 project_currency1");
-				    }
-			    })
-			})
-			.fail(function(jqXHR, textStatus, errorThrown) {
-		        console.log("HTTP Request Failed 1");
-		        var response = jqXHR.responseJSON.code;
-		        console.log(response);
-		        if(response == 403){
-			    	console.log("403 project_currency");
-		        	$('.loading_bar_project_contract_amount').remove();
-		        	$('#contractor_name_box').show();
-			    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
-	                  '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
-	                  '<div class="value white">'+
-	                      '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
-	                      '<p>Contract Amount</p>'+
-	                  '</div>'+
-	              	'</section></div>'+
-		           		'<div class="col-md-4"><section class="panel green">'+
-		                  '<div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div>'+
-		                  '<div class="value white">'+
-		                      '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
-		                      '<p>Contract Item</p>'+
-		                  '</div>'+
-		              '</section></div>');
-			    }
-			    else if(response == 404){
-			    	console.log("404 project_currency");
-			    	$('.loading_bar_project_contract_amount').remove();
-			    	$('#contractor_name_box').show();
-			    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
-	                  '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
-	                  '<div class="value white">'+
-	                      '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
-	                      '<p>Contract Amount</p>'+
-	                  '</div>'+
-	              	'</section></div>'+
-		           		'<div class="col-md-4"><section class="panel green">'+
-	                  '<div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div>'+
-	                  '<div class="value white">'+
-	                      '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
-	                      '<p>Contract Item</p>'+
-	                  '</div>'+
-	              '</section></div>');
-			    }
-			    else {
-			    	console.log("500 project_currency");
-			    	$('#contractor_name_box').show();
-			    }
-		    })
+//			jQuery.ajax({
+//			url: baseUrl+project_id+"/project_setting_get/project_currency",
+//			    type: "GET",
+//			    headers: {
+//			      "x-access-token": token
+//			    },
+//			    contentType: "application/json",
+//			    cache: false
+//			})
+//			.done(function(data, textStatus, jqXHR) {
+//				// console.log(data.data.pset_meta_value);
+//			    // $('.loading_bar_project_contract_amount').remove();
+//			    var project_currency_id = data.data.pset_meta_value;
+//			    jQuery.ajax({
+//				url: baseUrl + "currency/"+project_currency_id,
+//				    type: "GET",
+//				    headers: {
+//				      "Content-Type": "application/json",
+//				      "x-access-token": token
+//				    },
+//				    contentType: "application/json",
+//				    cache: false
+//				})
+//				.done(function(data, textStatus, jqXHR) {
+//				    // console.log(data.data.cur_symbol);
+//				    // $('.loading_bar_project_contract_amount').remove();
+//				    // $('.project_currency').text(data.data.cur_symbol+' ');
+//				    var currency_icon = data.data.cur_symbol+' ';
+//				    // alert(currency_icon);
+//				    // setTimeout(function(){
+//		                // Bid Total Amount
+//					    jQuery.ajax({
+//					    url: baseUrl+"/"+project_id+"/bid-items-total",
+//					        type: "GET",
+//					        headers: {
+//					          "Content-Type": "application/json",
+//					          "x-access-token": token
+//					        },
+//					        contentType: "application/json",
+//					        cache: false
+//					    })
+//					    .done(function(data, textStatus, jqXHR) {
+//					    	// console.log(data);
+//					        // $(".project_amount").text(data.data[0].total_amount);
+//					        $('.loading_bar_project_contract_amount').remove();
+//					        $('#contractor_name_box').show();
+//					        // var contract_amount = data.data[0].total_amount;
+//					        if(data.data[0].total_amount == null){
+//					        	var contract_amount = 0;
+//					        }
+//					        else {
+//					        	var contract_amount = ReplaceNumberWithCommas(data.data[0].total_amount);
+//					        }
+//					        var contract_item = data.data[0].total_item;
+//					        $('#state-overview').append('<div class="col-md-4"><section class="blue">'+
+//		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;">'+currency_icon+'</div>'+
+//		                          '<div class="value white">'+
+//		                              '<h1 class="timer" data-from="0" data-to="'+contract_amount+'" data-speed="1000">'+contract_amount+'</h1>'+
+//		                              '<p>Contract Amount</p>'+
+//		                          '</div>'+
+//		                      '</section></div>'+
+//		                      '<div class="col-md-4"><section class="blue">'+
+//		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div>'+
+//		                          '<div class="value white">'+
+//		                              '<h1 class="timer" data-from="0" data-to="'+contract_item+'" data-speed="1000">'+contract_item+'</h1>'+
+//		                              '<p>Contract Items</p>'+
+//		                          '</div>'+
+//		                      '</section></div>');
+//					    })
+//					    .fail(function(jqXHR, textStatus, errorThrown) {
+//					        console.log("HTTP Request Failed");
+//					        var response = jqXHR.responseJSON.code;
+//					        if(response == 403){
+//						    	console.log("403");
+//					        	$('.loading_bar_project_contract_amount').remove();
+//						    	$('#contractor_name_box').show();
+//						    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
+//		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
+//		                          '<div class="value white">'+
+//		                              '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
+//		                              '<p>Contract Amount</p>'+
+//		                          '</div>'+
+//		                      	'</section></div>'+
+//		                      '<div class="col-md-4"><section class="panel green">'+
+//		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div>'+
+//		                          '<div class="value white">'+
+//		                              '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
+//		                              '<p>Contract Item</p>'+
+//		                          '</div>'+
+//		                      '</section></div>');
+//						    }
+//						    else if(response == 404){
+//						    	console.log("404");
+//						    	$('.loading_bar_project_contract_amount').remove();
+//						    	$('#contractor_name_box').show();
+//						    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
+//		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
+//		                          '<div class="value white">'+
+//		                              '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
+//		                              '<p>Contract Amount</p>'+
+//		                          '</div>'+
+//		                      	'</section></div>'+
+//		                      '<div class="col-md-4"><section class="panel green">'+
+//		                          '<div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div>'+
+//		                          '<div class="value white">'+
+//		                              '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
+//		                              '<p>Contract Item</p>'+
+//		                          '</div>'+
+//		                      '</section></div>');
+//						    }
+//						    else {
+//						    	console.log("500");
+//						    }
+//					    })
+//					    $('.loading_bar_project_contract_amount').remove();
+//					    $('#contractor_name_box').show();
+//		            // },100)
+//				})
+//				.fail(function(jqXHR, textStatus, errorThrown) {
+//			        console.log("HTTP Request Failed 1");
+//			        var response = jqXHR.responseJSON.code;
+//			        console.log(response);
+//			        if(response == 403){
+//				    	console.log("403 project_currency1");
+//				    }
+//				    else if(response == 404){
+//				    	console.log("404 project_currency1");
+//				    }
+//				    else {
+//				    	console.log("500 project_currency1");
+//				    }
+//			    })
+//			})
+//			.fail(function(jqXHR, textStatus, errorThrown) {
+//		        console.log("HTTP Request Failed 1");
+//		        var response = jqXHR.responseJSON.code;
+//		        console.log(response);
+//		        if(response == 403){
+//			    	console.log("403 project_currency");
+//		        	$('.loading_bar_project_contract_amount').remove();
+//		        	$('#contractor_name_box').show();
+//			    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
+//	                  '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
+//	                  '<div class="value white">'+
+//	                      '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
+//	                      '<p>Contract Amount</p>'+
+//	                  '</div>'+
+//	              	'</section></div>'+
+//		           		'<div class="col-md-4"><section class="panel green">'+
+//		                  '<div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div>'+
+//		                  '<div class="value white">'+
+//		                      '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
+//		                      '<p>Contract Item</p>'+
+//		                  '</div>'+
+//		              '</section></div>');
+//			    }
+//			    else if(response == 404){
+//			    	console.log("404 project_currency");
+//			    	$('.loading_bar_project_contract_amount').remove();
+//			    	$('#contractor_name_box').show();
+//			    	$('#state-overview').append('<div class="col-md-4"><section class="green">'+
+//	                  '<div class="symbol" style="font-size: 30px; font-weight: bold;"> - </div>'+
+//	                  '<div class="value white">'+
+//	                      '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
+//	                      '<p>Contract Amount</p>'+
+//	                  '</div>'+
+//	              	'</section></div>'+
+//		           		'<div class="col-md-4"><section class="panel green">'+
+//	                  '<div class="symbol" style="font-size: 30px; font-weight: bold;"><i class="fa fa-cube"></i></div>'+
+//	                  '<div class="value white">'+
+//	                      '<h1 class="timer" data-from="0" data-to="0" data-speed="1000">0</h1>'+
+//	                      '<p>Contract Item</p>'+
+//	                  '</div>'+
+//	              '</section></div>');
+//			    }
+//			    else {
+//			    	console.log("500 project_currency");
+//			    	$('#contractor_name_box').show();
+//			    }
+//		    })
 		},2000)
 
 
@@ -1179,8 +1225,8 @@ $(document).ready(function() {
 			    console.log(data.data);
 
 			    var r_cor_complete = 0;
-				var r_cor_past_due = 0;
-				var r_cor_upcoming = 0;
+                            var r_cor_past_due = 0;
+                            var r_cor_upcoming = 0;
 
 			    $("#request_change_order thead").show();
 			    $(".loading_cor_detail").remove();
@@ -1188,6 +1234,38 @@ $(document).ready(function() {
 			    var count = 1;
 			    var counts = 1;
 			    jQuery.each( data.data, function( i, val ) {
+                                if((val.pcd_approved_by_cm != "0000-00-00" || 
+                                    val.pcd_denied_by_cm != "0000-00-00") && 
+                                    (val.pcd_approved_by_owner != "0000-00-00" || 
+                                    val.pcd_denied_by_owner != "0000-00-00")){
+                                        r_cor_complete++;
+                                }else{
+                                    var oneDay = 24*60*60*1000;
+                                    var future_date = new Date(val.pcd_timestamp);
+                                    var numberOfDaysToAdd = 10;
+                                    var futuredate = '';
+//                                    if( change_order_days_type == 1 ) {
+//                                        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+//                                    }
+//                                    else{
+//                                        futuredate = add_business_days(change_order_due_date , val.pcd_timestamp);
+//                                        var updated_f = new Date(futuredate);
+//                                        futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+//                                    }
+                                    var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
+                                    var now_date = new Date();
+                                    //var numberOfDaysToAdd = 0;
+                                    var nowdate = now_date.setDate(now_date.getDate()); 
+                                    //alert(nowdate);
+                                    //var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
+                                    if(futuredate < nowdate){
+                                        r_cor_past_due++;
+                                    }else{
+                                        r_cor_upcoming++;
+                                    }
+                                }
+                                
+                                
                                 if(((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") || (val.pcd_denied_by_cm != null && val.pcd_denied_by_cm != "0000-00-00")) && ((val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00") || (val.pcd_denied_by_owner != null && val.pcd_denied_by_owner != "0000-00-00"))){
                                     var descr = '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/view">'+val.pcd_description+'</a>';
                                 }else{
@@ -1200,16 +1278,16 @@ $(document).ready(function() {
 			            var pcd_approved_by_cm = '<span class="label label-warning">PENDING</span>';
 			            var pcd_denied_by_cm = '<span class="label label-warning">PENDING</span>';
                                     var status_cm = '<span class="label label-warning">PENDING CM REVIEW</span><br/>';
-			            r_cor_upcoming++;
+			            
 			        }else if(val.pcd_approved_by_cm!="0000-00-00") {
                                     var pcd_approved_by_cm = val.pcd_approved_by_cm;
                                     var pcd_denied_by_cm = '';
-                                    r_cor_complete++;
+                                    
                                 }
                                 else if(val.pcd_denied_by_cm!="0000-00-00") {
                                     var pcd_denied_by_cm = val.pcd_denied_by_cm;
                                     var pcd_approved_by_cm = '';
-                                    r_cor_complete++;
+                                    
                                 }
 			        else {
                                     var pcd_denied_by_cm = '';
@@ -1220,15 +1298,15 @@ $(document).ready(function() {
 			            var pcd_approved_by_owner = '<span class="label label-warning">PENDING</span>';
 			            var pcd_denied_by_owner = '<span class="label label-warning">PENDING</span>';
                                     var status_owner = '<span class="label label-warning">PENDING OWNER REVIEW</span><br/>';
-			            r_cor_upcoming++;
+			            
 			        }else if(val.pcd_approved_by_owner!="0000-00-00") {
                                     var pcd_approved_by_owner = val.pcd_approved_by_owner;
                                     var pcd_denied_by_owner = '';
-                                    r_cor_complete++;
+                                    
                                 }else if(val.pcd_denied_by_owner!="0000-00-00"){
                                     var pcd_denied_by_owner = val.pcd_denied_by_owner;
                                     var pcd_approved_by_owner = '';
-                                    r_cor_complete++;
+                                    
                                 }else {
                                     var pcd_denied_by_owner = '';
                                     var pcd_approved_by_owner = '';
@@ -1319,7 +1397,15 @@ $(document).ready(function() {
 			            console.log(val.pcd_approved_by_owner);
 			            console.log("change order !!");
 			            console.log(val);
-			            if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
+			            if((val.pcd_approved_by_cm == false || 
+                                        val.pcd_approved_by_cm == "0000-00-00") && 
+                                        (val.pcd_approved_by_owner == false || 
+                                        val.pcd_approved_by_owner == "0000-00-00") &&
+                                        (val.pcd_denied_by_owner == false || 
+                                        val.pcd_denied_by_owner == "0000-00-00") &&
+                                        (val.pcd_denied_by_cm == false || 
+                                        val.pcd_denied_by_cm == "0000-00-00")
+                                        ){
 			                var oneDay = 24*60*60*1000;
 			                 
 			                console.log('change order :' + change_order_days_type);
@@ -1331,19 +1417,19 @@ $(document).ready(function() {
 			                var numberOfDaysToAdd = 10;
                                         var futuredate = '';
                                         console.log();
-							if ( change_order_days_type == 1 ) {
-								console.log("cal 1");
-						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
-							}
-							else {
-								console.log("cal 2");
-                                futuredate = add_business_days(change_order_due_date , val.pcd_timestamp);
-                                var updated_f = new Date(futuredate);
-                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
-							}
-                              console.log("updated future Date !!");
+                                        if( change_order_days_type == 1 ) {
+                                            console.log("cal 1");
+                                            futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+                                        }
+                                        else{
+                                            console.log("cal 2");
+                                            futuredate = add_business_days(change_order_due_date , val.pcd_timestamp);
+                                            var updated_f = new Date(futuredate);
+                                            futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+                                        }
+                                        console.log("updated future Date !!");
 
-								console.log("updated : "+ futuredate);
+                                        console.log("updated : "+ futuredate);
 			              //  var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
 			                //console.log("updated : "+ futuredate);
 			                var now_date = new Date();
@@ -1354,11 +1440,11 @@ $(document).ready(function() {
 			               //  console.log("updated last "+futuredate);
 			                 //console.log("now "+nowdate);
 			                var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
-
+//alert(futuredate);
 			                if(futuredate < nowdate){
 			                    // console.log('less');
 			                    var potential_status = '<span class="label label-danger">PAST DUE</span>';
-			                    r_cor_past_due++;
+			                    //alert(val.pcd_id);
 			                }
 			                else {
 			                    // console.log('greater');
@@ -1372,12 +1458,12 @@ $(document).ready(function() {
 			                    seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
 
 			                    var potential_status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
-			                    r_cor_upcoming++;
+			                    
 			                }
 			            }
 			            else {
 			                    var potential_status = '<span class="label label-success">APPROVED</span>';
-			                    r_cor_complete++;
+			                    
 			            }
 
 			            

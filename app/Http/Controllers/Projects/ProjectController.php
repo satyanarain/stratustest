@@ -504,4 +504,82 @@ class ProjectController extends Controller {
       return response()->json(['error' => 'Something is wrong'], 500);
     }
   }
+  
+  
+  /*
+  --------------------------------------------------------------------------
+   Get Project Dashboard Top Info
+  --------------------------------------------------------------------------
+  */
+ public function get_dashboard_info(Request $request, $project_id) {
+    $info = array(); 
+    $query = DB::table('project_bid_items')
+        ->select(DB::raw('SUM(pbi_item_total_price) as total_amount'))
+        ->where('pbi_project_id', '=', $project_id)
+        ->where('pbi_status', '=', 'active')
+        ->get();
+    $info['contract_amount'] = $query[0]->total_amount;
+    
+    $query1 = DB::table('project_change_order_request_detail')
+	->select('project_change_order_request_detail.*')
+	->where('pcd_project_id', '=', $project_id)
+	//->whereDate('pcd_approved_by_cm', '>', '1900-01-01')
+        //->whereDate('pcd_approved_by_owner', '>', '1900-01-01')
+	->get();
+    $total = 0;
+    $count = 0;
+    $total1 = 0;
+    $count1 = 0;
+    foreach($query1 as $row){
+        if(($row->pcd_approved_by_cm!=null && $row->pcd_approved_by_cm!="0000-00-00") && ($row->pcd_approved_by_owner!=null && $row->pcd_approved_by_owner!="0000-00-00"))
+        {
+            $count++;
+            if($row->pcd_unit_number)
+                $total += $row->pcd_unit_number * $row->pcd_unit_price;
+            else
+                $total += $row->pcd_price;
+        }else{
+            $count1++;
+            if($row->pcd_unit_number)
+                $total1 += $row->pcd_unit_number * $row->pcd_unit_price;
+            else
+                $total1 += $row->pcd_price;
+        }
+    }
+    $info['total_change_order_count'] = $count;
+    $info['total_change_order_amount'] = $total.'.00';
+    $info['pending_change_order_count'] = $count1;
+    $info['pending_change_order_amount'] = $total1.'.00';
+    $info['total_contract_amount'] = $info['contract_amount']+$info['total_change_order_amount'].'.00'; 
+    
+    $query2 = DB::table('project_notice_proceed')
+	->select('project_notice_proceed.pnp_duration')
+	->where('pnp_project_id', '=', $project_id)
+	->orderBy('pnp_id', 'asc')
+    	->first();
+    $info['original_contract_date'] = $query2->pnp_duration;
+    
+    $query3 = DB::table('project_weekly_reports')
+	->select('project_weekly_reports.*')
+	->where('pwr_project_id', '=', $project_id)
+	->orderBy('pwr_id', 'desc')
+    	->first();
+    $info['contract_days_added'] = $query3->days_this_report_app_calender+$query3->days_previous_report_app_calender;
+    
+    $info['revised_contract_date'] = $query2->pnp_duration+$query3->days_this_report_app_calender+$query3->days_previous_report_app_calender;
+    
+    
+    $query4 = DB::table('project_weekly_reports_days')
+        ->select(DB::raw('SUM(pwrd_approved_calender_day) as contract_days_charged'))
+        ->where('pwrd_project_id', '=', $project_id)
+        ->get();
+    $info['contract_days_charged'] = $query4[0]->contract_days_charged;
+    
+    $info['remaining_days'] = $info['revised_contract_date']-$info['contract_days_charged'];
+    
+    //echo '<pre>';print_r($query3);
+    //print_r($info);
+    $result = array('data'=>$info,'code'=>200);
+    return response()->json($result, 200);
+ }
 }

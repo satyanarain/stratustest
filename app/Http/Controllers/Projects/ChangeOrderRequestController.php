@@ -206,6 +206,10 @@ use ProjectImprovement;
         $order_project_id         = $request['order_project_id'];
         $order_user_id            = Auth::user()->id;
         $docusign_status          = 'pending';
+        $pcd_approved_by_cm         = "0000-00-00";
+        $pcd_approved_by_owner         = "0000-00-00";
+        $pcd_denied_by_cm         = "0000-00-00";
+        $pcd_denied_by_owner         = "0000-00-00";
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
       $permission_key = 'cor_add';
@@ -248,7 +252,7 @@ use ProjectImprovement;
         {
             
             $query = DB::table('project_change_order_request_detail')
-            ->insert(['docusign_status'=>$docusign_status,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
+            ->insert(['pcd_denied_by_owner'=>$pcd_denied_by_owner,'pcd_denied_by_cm'=>$pcd_denied_by_cm,'pcd_approved_by_owner'=>$pcd_approved_by_owner,'pcd_approved_by_cm'=>$pcd_approved_by_cm,'docusign_status'=>$docusign_status,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");

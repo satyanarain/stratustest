@@ -296,7 +296,80 @@ class NotificationController extends Controller {
         ->whereRaw('date(project_certificate.ci_liability_exp) = ?',[date("Y-m-d",strtotime("+1 month"))])
         ->orWhereRaw('date(project_certificate.ci_work_comp_exp) = ?',[date("Y-m-d",strtotime("+1 month"))])
         ->orWhereRaw('date(project_certificate.ci_auto_liability_exp) = ?',[date("Y-m-d",strtotime("+1 month"))])
-        ->orwhereRaw('date(project_certificate.ci_liability_exp) < ?',[date("Y-m-d")])
+        //->orwhereRaw('date(project_certificate.ci_liability_exp) < ?',[date("Y-m-d")])
+        //->orWhereRaw('date(project_certificate.ci_work_comp_exp) < ?',[date("Y-m-d")])
+        //->orWhereRaw('date(project_certificate.ci_auto_liability_exp) < ?',[date("Y-m-d")])
+        ->get();
+        //dd(DB::getQueryLog());
+        //echo '<pre>';print_r($records);die;
+        //echo 'hi';
+        foreach ($records as $check_project_user) {
+        $user_id              = $check_project_user->p_user_id;
+        $permission_key       = 'certificate_view_all';
+        $notification_key     = 'certificates_of_insurance';
+        $project_id           = $check_project_user->p_id;
+        $notification_title   = 'Notification for Certificate of Insurance expiration in Project: ' .$check_project_user->p_name;
+        $url                  = App::make('url')->to('/');
+        $link                 = "/dashboard/".$project_id."/certificate/".$check_project_user->ci_id;
+        $date                 = date("M d, Y h:i a");
+        $email_description    = 'This is a notification for Certificate of Insurance expiration. Please upload a non-expired Certificate of Insurance as soon as possible to avoid any liability. <br><br> <a href="'.$url.$link.'"> Click Here to see </a>';
+        $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+        //echo '<pre>';print_r($check_single_user_permission);die;
+        if(count($check_single_user_permission) < 1){
+          continue;
+        }
+        else {
+          //echo '<pre>';print_r($records);die;
+            //echo '<pre>';print_r($check_single_user_permission);die;
+            $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);
+            //echo '<pre>';print_r($check_project_user_notification);die;
+            if(count($check_project_user_notification) < 1){
+              continue;
+            }else{
+                $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
+                //echo '<pre>';print_r($check_project_user);die;
+                $user_detail = array(
+                  'id'              => $check_project_user->p_user_id,
+                  'name'            => $check_project_user->user_name,
+                  'email'           => $check_project_user->user_email,
+                  'link'            => $link,
+                  'date'            => $date,
+                  'project_name'    => $check_project_user->p_name,
+                  'title'           => $notification_title,
+                  'description'     => $email_description
+                );
+                $user_single = (object) $user_detail;
+                Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                    $message->from('no-reply@sw.ai', 'StratusCM');
+                    $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                });
+            }
+        }
+      } // End Foreach
+      
+      
+      
+      
+      
+      
+      /*----------------------------Pre--Expired Certs of Insurance-------------------------------------------------*/
+      
+      $records = DB::table('project_certificate')
+        ->leftJoin('project_firm', 'project_certificate.ci_company_name', '=', 'project_firm.f_id')
+        ->leftJoin('projects', 'project_certificate.ci_project_id', '=', 'projects.p_id')
+        ->leftJoin('users', 'project_certificate.ci_user_id', '=', 'users.id')
+        ->select('project_firm.f_name as agency_name', 
+          'project_certificate.ci_id', 
+          'project_certificate.ci_liability_limit as liability_limit', 
+          'project_certificate.ci_liability_exp as liability_exp', 
+          'project_certificate.ci_liability_required_min as liability_required_min', 
+          'project_certificate.ci_work_comp_exp as work_comp_exp', 
+          'project_certificate.ci_works_comp_required_min as works_comp_required_min', 
+          'projects.*', 
+          'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role', 
+          'project_certificate.ci_status as status', 
+          'project_certificate.ci_timestamp as timestamp')
+        ->whereRaw('date(project_certificate.ci_liability_exp) < ?',[date("Y-m-d")])
         ->orWhereRaw('date(project_certificate.ci_work_comp_exp) < ?',[date("Y-m-d")])
         ->orWhereRaw('date(project_certificate.ci_auto_liability_exp) < ?',[date("Y-m-d")])
         ->get();
@@ -310,7 +383,7 @@ class NotificationController extends Controller {
         $project_id           = $check_project_user->p_id;
         $notification_title   = 'Notification for Certificate of Insurance expiration in Project: ' .$check_project_user->p_name;
         $url                  = App::make('url')->to('/');
-        $link                 = "/dashboard/".$project_id."/certificate/".$check_project_user->ci_id;
+        $link                 = "/dashboard/".$project_id."/certificate/".$check_project_user->ci_id."/update";
         $date                 = date("M d, Y h:i a");
         $email_description    = 'This is a notification for Certificate of Insurance expiration. Please upload a non-expired Certificate of Insurance as soon as possible to avoid any liability. <br><br> <a href="'.$url.$link.'"> Click Here to see </a>';
         $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);

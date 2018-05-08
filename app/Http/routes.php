@@ -677,8 +677,9 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('{project_id}/bid-items-total', 'Projects\ContractitemController@get_total_amount_project');
     Route::post('{project_id}/bid-items-qty', 'Projects\ContractitemController@add_bid_items_qty');
     Route::get('{project_id}/get-bid-items-qty', 'Projects\ContractitemController@get_bid_items_qty');
+    Route::get('{project_id}/get_dashboard_info', 'Projects\ProjectController@get_dashboard_info');
 }); 
-
+Route::get('{project_id}/get_dashboard_info', 'Projects\ProjectController@get_dashboard_info');
 /**** BID VIEW ****/
 Route::get('dashboard/{project_id}/contract_item', function () {
     return view('/contract_item/contract_item_view_all');
