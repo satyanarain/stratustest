@@ -54,7 +54,7 @@ $(document).ready(function() {
         }
     });
 
-    
+
        jQuery.ajax({
         url: baseUrl + "change_order_request_weekly/"+project_id,
         type: "GET",
@@ -268,12 +268,7 @@ $(document).ready(function() {
           if ( data.data[0].pwrd_approved_calender_day == null) {
              $('#calendar_previous_days_app_calender').text("0");
         }
-         if ( data.data[0].pwrd_approved_non_calender_day == null) {
-             $('#calendar_previous_days_app_non_calender').text("0");
-        }
-         if ( data.data[0].pwrd_rain_day == null) {
-             $('#calendar_previous_days_app_raily_day').text("0");
-        }
+
 
              if ( data.data[0].pwrd_approved_calender_day == null) {
              //$('#days_previous_report_app_calender').text("0");
