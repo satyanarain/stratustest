@@ -386,7 +386,7 @@ $(document).ready(function() {
           var notice_to_proceed_duration_day_new = parseInt($('#notice_to_proceed_duration_day').text());
           $('#revised_contract_working_days').text(notice_to_proceed_duration_day_new+calendar_total_days_app_raily_day_new);
         // Revised Calendar Days Remaining in Contract
-        var revised_total_calender1 = parseInt($('#revised_total_calender').text());
+        var revised_total_calender1 = parseInt($('#revised_contract_working_days').text());
         var calendar_day_charged_app_calender1 = parseInt($('#calendar_day_charged_app_calender').text());
 
         $('#revised_calendar_day_remaining').text(revised_total_calender1-calendar_day_charged_app_calender1);
@@ -463,7 +463,7 @@ $('#calendar_week_days').on('input', function() {
     $('#calendar_day_charged_app_non_calender').text(parseInt(0));
 
     // Revised Calendar Days Remaining in Contract
-    var revised_total_calender1 = parseInt($('#revised_total_calender').text());
+    var revised_total_calender1 = parseInt($('#revised_contract_working_days').text());
     var calendar_day_charged_app_calender1 = parseInt($('#calendar_day_charged_app_calender').text());
     $('#revised_calendar_day_remaining').text(revised_total_calender1-calendar_day_charged_app_calender1);
 
