@@ -126,6 +126,9 @@ class NoticeProceedController extends Controller {
                                                         "tabLabel" => "pdf_gen_working_days_1",
                                                         "value" => $row['pdf_gen_working_days_1']),
                                                         array (
+                                                        "tabLabel" => "days_type",
+                                                        "value" => $row['days_type']),
+                                                        array (
                                                         "tabLabel" => "pdf_gen_amount",
                                                         "value" => $row['pdf_gen_amount']));
 
