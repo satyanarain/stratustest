@@ -381,7 +381,9 @@ $(document).ready(function() {
         // Calendar day charged
         $('#calendar_day_charged_app_calender').text(parseInt($('#calendar_total_days_app_calender').text()));
         $('#calendar_day_charged_app_non_calender').text(parseInt($('#calendar_total_days_app_non_calender').text()));
-
+        var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
+          var notice_to_proceed_duration_day_new = parseInt($('#notice_to_proceed_duration_day').text());
+          $('#revised_contract_working_days').text(notice_to_proceed_duration_day_new+day_due_to_rain1);
         // Revised Calendar Days Remaining in Contract
         var revised_total_calender1 = parseInt($('#revised_total_calender').text());
         var calendar_day_charged_app_calender1 = parseInt($('#calendar_day_charged_app_calender').text());
@@ -396,7 +398,7 @@ $(document).ready(function() {
         var date_final = $('#computed_completion_date').text();
         var total_day_approved_app_calender1 = parseInt($('#total_day_approved_app_calender').text());
         var total_day_approved_app_non_calender1 = parseInt($('#total_day_approved_app_non_calender').text());
-        var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
+
         var total_days_plus = (total_day_approved_app_calender1+total_day_approved_app_non_calender1+day_due_to_rain1);
         var result = new Date(date_final);
         if(result.getFullYear())
@@ -494,7 +496,7 @@ $('#update_weekly_report').click(function(e) {
   $('.loading-submit').show();
     e.preventDefault();
     var project_id          = $('#project_id').val();
-    var time_extension          = $('#time_extension').val();
+    var time_extension          = 0;
     var remark_report           = $('#remark_report').val();
     var type_name               = $('#type_name').val();
     var token                   = localStorage.getItem('u_token');
