@@ -99,19 +99,18 @@
         <tr>
             <td colspan="2" style="text-align: right; vertical-align: middle;">Calendar Days on this Report:</td>
             <td id="calendar_days_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="calendar_days_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+          
             <td id="calendar_days_app_raily_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
         </tr>
         <tr>
             <td colspan="2" style="text-align: right; vertical-align: middle;">Calendar Days Previously Reported:</td>
             <td id="calendar_previous_days_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="calendar_previous_days_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            
             <td id="calendar_previous_days_app_raily_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
         </tr>
         <tr>
             <td colspan="2" style="text-align: right; vertical-align: middle;">Total Calendar Days to Date:</td>
             <td id="calendar_total_days_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="calendar_total_days_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td id="calendar_total_days_app_raily_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
         </tr>
         <tr>
