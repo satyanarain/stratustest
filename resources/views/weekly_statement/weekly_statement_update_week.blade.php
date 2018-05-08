@@ -153,6 +153,20 @@
             <td></td>
             <td></td>
         </tr>
+
+            <tr>
+            <td colspan="2" style="vertical-align: middle;">4.  Delay Days to Date: </td> 
+            <td id="day_due_to_rain" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td></td>
+            <td ></td>
+        </tr>
+
+        <tr>
+            <td colspan="2" style="vertical-align: middle;">5.  Revised Contract Working Days: </td> 
+            <td id="revised_contract_working_days" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td></td>
+            <td ></td>
+        </tr>
  
         <tr style="display: none">
             <td colspan="2" style="vertical-align: middle;">5. <strong>Add:</strong> Time Extension / Change Orders <sup>4</sup> <span style="float: right;">Co No.:</span></td>
@@ -196,12 +210,7 @@
             <td></td>
             <td></td>
         </tr>
-        <tr>
-            <td colspan="2" style="vertical-align: middle;">12. <strong>Add:</strong> Days due to Rain Days | Weather:</td>
-            <td></td>
-            <td></td>
-            <td id="day_due_to_rain" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-        </tr>
+    
         <tr>
             <td colspan="2" style="vertical-align: middle;">13. Revised Computed Completion Date:</td>
             <td id="revised_completion_date" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
