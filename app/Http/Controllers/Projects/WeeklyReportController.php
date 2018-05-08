@@ -334,10 +334,10 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
         $query = DB::table('project_weekly_reports')
 ->leftJoin('projects', 'project_weekly_reports.pwr_project_id', '=', 'projects.p_id')
 ->leftJoin('project_weekly_reports_days', 'project_weekly_reports.pwr_id', '=', 'project_weekly_reports_days.pwrd_report_id')
-        ->select('project_weekly_reports.*', 'projects.*')
+        ->select(DB::raw('count(*) as days_count,project_weekly_reports.*, projects.*'))
         ->where('pwr_project_id', '=', $project_id)
         ->orderBy('project_weekly_reports.pwr_id','ASC')
-            ->groupBy('pwr_id')
+          ->groupBy('pwr_id')
         ->get();
         if(count($query) < 1)
         {
@@ -379,8 +379,7 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
       // else {
         $query = DB::table('project_weekly_reports')
 ->leftJoin('projects', 'project_weekly_reports.pwr_project_id', '=', 'projects.p_id')
-        ->select(DB::raw('count(*) as days_count, project_weekly_reports.*', 'projects.*')
-
+        ->select('project_weekly_reports.*', 'projects.*')
         ->where('pwr_id', '=', $report_id)
         ->first();
         if(count($query) < 1)
