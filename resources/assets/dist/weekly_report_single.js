@@ -111,6 +111,20 @@ $(document).ready(function() {
     })
     .done(function(data, textStatus, jqXHR) {
         console.log(data.data);
+
+          if (data.data.days_this_report_app_calender !=0) {
+            document.getElementById('days_this_report_app_calender').innerHTML = data.data.days_this_report_app_calender;
+        }
+         if (data.data.days_this_report_app_non_calender !=0) {
+            document.getElementById('days_this_report_app_non_calender').innerHTML = data.data.days_this_report_app_non_calender;
+        }
+         if (data.data.days_previous_report_app_calender !=0) {
+            document.getElementById('days_previous_report_app_calender').innerHTML = data.data.days_previous_report_app_calender;
+        }
+         if (data.data.days_previous_report_app_non_calender !=0) {
+            document.getElementById('days_previous_report_app_non_calender').innerHTML = data.data.days_previous_report_app_non_calender;
+        }
+
         $('#report_id').text(report_id);
         var week_ending = data.data.pwr_week_ending;
         $('#week_ending').text(week_ending);
@@ -161,6 +175,9 @@ $(document).ready(function() {
              days_app_non_calender += parseInt(val.pwrd_approved_non_calender_day);
              days_rainy_day += parseInt(val.pwrd_rain_day); 
 
+              var sign_date = new Date(val.update_time);
+            document.getElementById('sign_date').innerHTML = formatDate(sign_date);
+
             $('#calendar_week_days').append(
                 '<tr>'+
                     '<td style="vertical-align: middle;">'+val.pwrd_date+'</td>'+
@@ -173,11 +190,11 @@ $(document).ready(function() {
         });
         console.log(days_app_calender);
         $('#calendar_days_app_calender').text(parseInt(days_app_calender));
-        $('#days_this_report_app_calender').text(parseInt(days_app_calender));
+       // $('#days_this_report_app_calender').text(parseInt(days_app_calender));
 
         console.log(days_app_non_calender);
         $('#calendar_days_app_non_calender').text(parseInt(days_app_non_calender));
-        $('#days_this_report_app_non_calender').text(parseInt(days_app_non_calender));
+     //   $('#days_this_report_app_non_calender').text(parseInt(days_app_non_calender));
 
         console.log(days_rainy_day);
         $('#calendar_days_app_raily_day').text(parseInt(days_rainy_day));
@@ -213,11 +230,24 @@ $(document).ready(function() {
     })
     .done(function(data, textStatus, jqXHR) {
         // console.log(data);
-        $('#calendar_previous_days_app_calender').text(data.data[0].pwrd_approved_calender_day);
-        $('#days_previous_report_app_calender').text(data.data[0].pwrd_approved_calender_day);
-        $('#calendar_previous_days_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
-        $('#days_previous_report_app_non_calender').text(data.data[0].pwrd_approved_non_calender_day);
-        $('#calendar_previous_days_app_raily_day').text(data.data[0].pwrd_rain_day);
+          if ( data.data[0].pwrd_approved_calender_day == null) {
+             $('#calendar_previous_days_app_calender').text("0");
+        }
+         if ( data.data[0].pwrd_approved_non_calender_day == null) {
+             $('#calendar_previous_days_app_non_calender').text("0");
+        }
+         if ( data.data[0].pwrd_rain_day == null) {
+             $('#calendar_previous_days_app_raily_day').text("0");
+        }
+
+             if ( data.data[0].pwrd_approved_calender_day == null) {
+             //$('#days_previous_report_app_calender').text("0");
+        }
+
+             if ( data.data[0].pwrd_approved_non_calender_day == null) {
+           //  $('#days_previous_report_app_non_calender').text("0");
+        }
+        //$('#calendar_previous_days_app_raily_day').text(data.data[0].pwrd_rain_day);
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
@@ -313,3 +343,19 @@ $(document).ready(function() {
     
 
 });
+
+
+function formatDate(date) {
+  var monthNames = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ];
+
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
+
+  return day + ' ' + monthNames[monthIndex] + ' ' + year;
+}
