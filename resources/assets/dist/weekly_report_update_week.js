@@ -201,7 +201,6 @@ $(document).ready(function() {
                     '<td><input type="hidden" class="form-control days_id" name="days_id[]" value="'+val.pwrd_id+'" id="">'+
                     '<input type="text" class="form-control days_weather" name="days_weather[]" value="'+val.pwrd_weather+'" id=""></td>'+
                     '<td><input type="number" min="0" max="1" class="form-control days_app_calender" onchange="checkvalue(this)" name="days_app_calender[]" value="'+val.pwrd_approved_calender_day+'" id="" required="required" pattern="(1|0)"></td>'+
-                    '<td><input type="number" min="0" max="1" class="form-control days_app_non_calender" onchange="checkvalue(this)" name="days_app_non_calender[]" value="'+val.pwrd_approved_non_calender_day+'" id=""></td>'+
                     '<td><input type="number" min="0" max="1" class="form-control days_rainy_day" onchange="checkvalue(this)" name="days_rainy_day[]" value="'+val.pwrd_rain_day+'" id=""></td>'+
                 '</tr>'
             );
@@ -399,11 +398,6 @@ $('#calendar_week_days').on('input', function() {
 
 
     var days_app_non_calender = 0;
-    $(this).find('.days_app_non_calender').each(function(){
-        days_app_non_calender += parseInt($(this).val()); //<==== a catch  in here !! read below
-    });
-    $('#calendar_days_app_non_calender').text(days_app_non_calender);
-    $('#days_this_report_app_non_calender').val(days_app_non_calender);
     var calendar_previous_days_app_non_calender = $('#calendar_previous_days_app_non_calender').text();
     var calendar_previous_days_app_non_calender1 = parseInt(calendar_previous_days_app_non_calender);
     $('#calendar_total_days_app_non_calender').text(parseInt(days_app_non_calender+calendar_previous_days_app_non_calender1));
@@ -535,10 +529,6 @@ $('#update_weekly_report').click(function(e) {
             days_app_calender.push($(this).val());
         });
 
-        var days_app_non_calender = [];
-        $('input[name^=days_app_non_calender]').each(function(){
-            days_app_non_calender.push($(this).val());
-        });
 
         var days_rainy_day = [];
         $('input[name^=days_rainy_day]').each(function(){
@@ -549,7 +539,6 @@ $('#update_weekly_report').click(function(e) {
         item['days_id']                 = days_id;
         item['days_weather']            = days_weather;
         item['days_app_calender']       = days_app_calender;
-        item['days_app_non_calender']   = days_app_non_calender;
         item['days_rainy_day']          = days_rainy_day;
         var item_lenght = $(days_id).length;
         item_final = [];
@@ -558,7 +547,6 @@ $('#update_weekly_report').click(function(e) {
                 "days_id"               :  item['days_id'][i],
                 "days_weather"          :  item['days_weather'][i],
                 "days_app_calender"     :  item['days_app_calender'][i],
-                "days_app_non_calender" :  item['days_app_non_calender'][i],
                 "days_rainy_day"        :  item['days_rainy_day'][i],
             });
         }
@@ -570,7 +558,6 @@ $('#update_weekly_report').click(function(e) {
             var days_id                 = val.days_id;
             var days_weather            = val.days_weather;
             var days_app_calender       = val.days_app_calender;
-            var days_app_non_calender   = val.days_app_non_calender;
             var days_rainy_day          = val.days_rainy_day;
             jQuery.ajax({
                 url: baseUrl+"weekly-report-days-update/"+days_id,
@@ -579,7 +566,6 @@ $('#update_weekly_report').click(function(e) {
                     "days_id"               : days_id,
                     "days_weather"          : days_weather,
                     "days_app_calender"     : days_app_calender,
-                    "days_app_non_calender" : days_app_non_calender,
                     "days_rainy_day"        : days_rainy_day
                 },
                 headers: {
@@ -755,13 +741,6 @@ function checkvalue( e ) {
     var app_calender = document.getElementById('calendar_previous_days_app_calender').innerHTML;
 document.getElementById('calendar_total_days_app_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
 document.getElementById('calendar_day_charged_app_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
- }
-
-  if (e.classList[1] == 'days_app_non_calender' ) {
-    document.getElementById('calendar_days_app_raily_day').innerHTML=sumvalue;
-    var app_calender = document.getElementById('calendar_previous_days_app_non_calender').innerHTML;
-document.getElementById('calendar_total_days_app_non_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
-document.getElementById('calendar_day_charged_app_non_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
  }
  if (e.classList[1] == 'days_rainy_day' ) {
     document.getElementById('calendar_days_app_non_calender').innerHTML=sumvalue;

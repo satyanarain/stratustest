@@ -82,7 +82,6 @@
             <th style="text-align:center;background: #c5c5c5;vertical-align: middle;">Day / Date</th>
             <th style="text-align:center;background: #c5c5c5;vertical-align: middle;">Weather <br/>Conditions</th>
             <th style="text-align:center;background: #c5c5c5;vertical-align: middle;">Approved Calendar<br/>Days Charged</th>
-            <th style="text-align:center;background: #c5c5c5;vertical-align: middle;">Approved Non-<br/>Calendar Days <sup>2</sup></th>
             <th  style="text-align:center;background: #c5c5c5;vertical-align: middle;">Rain Days | <br/>Weather <sup>3</sup></th>
         </tr>
         </thead>
