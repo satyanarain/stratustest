@@ -585,12 +585,13 @@ public function update_day_quantity_complete_week(Request $request, $days_id)
           $days_id               = $request['days_id'];
           $days_weather          = $request['days_weather'];
           $days_app_calender     = $request['days_app_calender'];
+          $days_app_non_calender = 0;
           $days_rainy_day        = $request['days_rainy_day'];
           $current_time = date("Y-m-d H:i:s"); 
 
           $query = DB::table('project_weekly_reports_days')
           ->where('pwrd_id', '=', $days_id)
-          ->update(['pwrd_weather' => $days_weather, 'pwrd_approved_calender_day' => $days_app_calender, 'pwrd_rain_day' => $days_rainy_day,'update_time' => $current_time ]);
+          ->update(['pwrd_weather' => $days_weather, 'pwrd_approved_calender_day' => $days_app_calender, 'pwrd_approved_non_calender_day' => $days_app_non_calender, 'pwrd_rain_day' => $days_rainy_day,'update_time' => $current_time ]);
           if(count($query) < 1)
           {
             $result = array('code'=>400, "description"=>"No records found");
