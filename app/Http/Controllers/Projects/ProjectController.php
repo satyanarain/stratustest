@@ -568,8 +568,17 @@ class ProjectController extends Controller {
     
     $info['revised_contract_date'] = $query2->pnp_duration+$query3->days_this_report_app_calender+$query3->days_previous_report_app_calender;
     
-    echo '<pre>';print_r($query3);
-    print_r($info);
+    
+    $query4 = DB::table('project_weekly_reports_days')
+        ->select(DB::raw('SUM(pwrd_approved_calender_day) as contract_days_charged'))
+        ->where('pwrd_project_id', '=', $project_id)
+        ->get();
+    $info['contract_days_charged'] = $query4[0]->contract_days_charged;
+    
+    $info['remaining_days'] = $info['revised_contract_date']-$info['contract_days_charged'];
+    
+    //echo '<pre>';print_r($query3);
+    //print_r($info);
     $result = array('data'=>$info,'code'=>200);
     return response()->json($result, 200);
  }

@@ -81,6 +81,10 @@ $(document).ready(function() {
                     $('#pending_change_order_amount').text('$ '+ReplaceNumberWithCommas(data.data.pending_change_order_amount));
 		    
                     $('#original_contract_date').text(data.data.original_contract_date);
+                    $('#contract_days_added').text(data.data.contract_days_added);
+                    $('#revised_contract_date').text(data.data.revised_contract_date);
+                    $('#contract_days_charged').text(data.data.contract_days_charged);
+                    $('#remaining_days').text(data.data.remaining_days);
                     
                     $('.loading_project_detail').remove();
 		})
