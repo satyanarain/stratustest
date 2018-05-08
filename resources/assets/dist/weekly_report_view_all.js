@@ -90,7 +90,12 @@
 					var update_permission = '';
 				}
 				else {
-					var update_permission = '<a href="'+baseUrl+'dashboard/'+val.pwr_project_id+'/weekly_statement/'+val.pwr_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
+					if (val.days_count == 7 ) {
+						var update_permission = '<a href="'+baseUrl+'dashboard/'+val.pwr_project_id+'/weekly_statement/'+val.pwr_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
+					} else {
+						var update_permission = '<a href="'+baseUrl+'dashboard/'+val.pwr_project_id+'/weekly_statement_week/'+val.pwr_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
+					}
+					
 				}
 
 				var status = val.pwr_report_status;
