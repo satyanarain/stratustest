@@ -54,6 +54,38 @@ $(document).ready(function() {
             window.location.href = baseUrl + "500";
         }
     })
+
+
+       jQuery.ajax({
+        url: baseUrl + "change_order_request_weekly/"+project_id,
+        type: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+    })
+    .done(function(data, textStatus, jqXHR) {
+        console.log('change order data !');
+       console.log(data);
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        if(response == 403){
+            // window.location.href = baseUrl + "403";
+            console.log("403");
+        }
+        else if(response == 404){
+            console.log("404");
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            // console.log("500");
+            window.location.href = baseUrl + "500";
+        }
+    })
     
     // Notice to Proceed
     jQuery.ajax({
