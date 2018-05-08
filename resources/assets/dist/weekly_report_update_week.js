@@ -72,6 +72,7 @@ $(document).ready(function() {
     .done(function(data, textStatus, jqXHR) {
         console.log('change order data !');
        console.log(data);
+       document.getElementById('calendar_previous_days_app_raily_day').innerHTML = data.data.pcd_days
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
