@@ -776,6 +776,10 @@ function checkvalue( e ) {
     var app_calender = document.getElementById('calendar_previous_days_app_calender').innerHTML;
 document.getElementById('calendar_total_days_app_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
 document.getElementById('calendar_day_charged_app_calender').innerHTML = parseInt(app_calender)+parseInt(sumvalue);
+     var revised_total_calender1 = parseInt($('#revised_contract_working_days').text());
+        var calendar_day_charged_app_calender1 = parseInt($('#calendar_day_charged_app_calender').text());
+
+        $('#revised_calendar_day_remaining').text(revised_total_calender1-calendar_day_charged_app_calender1);
  }
  if (e.classList[1] == 'days_rainy_day' ) {
     document.getElementById('calendar_days_app_raily_day').innerHTML=sumvalue;
