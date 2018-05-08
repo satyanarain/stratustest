@@ -565,9 +565,7 @@ for ($i=0; $i <count( $all_report ) ; $i++) {
     }
   }
 
-}
-
-public function update_day_quantity_complete_week(Request $request, $days_id)
+   public function update_day_quantity_complete_week(Request $request, $days_id)
   {
     try
     {
@@ -611,3 +609,4 @@ public function update_day_quantity_complete_week(Request $request, $days_id)
   }
 
 }
+
