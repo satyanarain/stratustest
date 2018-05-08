@@ -26,7 +26,7 @@
             <div class="wrapper">
                 <div class="row">
 
-                  <div class="col-md-12">
+<!--                  <div class="col-md-12">
                     <section class="">
                       <div class="" style="margin-bottom: 30px;">
                         <div class="row">
@@ -51,7 +51,7 @@
                         </div>
                       </div>
                     </section>
-                  </div>
+                  </div>-->
 
                   <div class="col-md-12">
                     <section class="">
@@ -63,41 +63,32 @@
                             
                             <div class="col-md-4" id="" style="">
                               <section class="blue" style="height: 190px;">
-                                <div class="symbol">
-                                    <i class="fa fa-user"></i>
-                                </div>
                                 <div class="value white">
-                                    <h4 id="" >Contract: Malhan Arcade</h4>
-                                    <h4 id="" >Change Orders: (17) </h4>
-                                    <h4 id="" >Total Contract: </h4>
-                                    <h4 id="" >Pending CO: (31) </h4>
+                                    <h4>Contract:<span style="float: right" id="contract_amount"></span></h4>
+                                    <h4>Change Orders:<span id="total_change_order_count"></span>  <span style="float: right" id="total_change_order_amount"></span></h4>
+                                    <h4>Total Contract: <span style="float: right;border-top:1px solid black " id="total_contract_amount"></span></h4><br>
+                                    <h4>Pending CO: <span id="pending_change_order_count"></span> <span style="float: right" id="pending_change_order_amount"></span></h4>
                                    
                                 </div>
                               </section>
                             </div>
                                 <div class="col-md-4" id="" style="">
                               <section class="blue" style="height: 190px;">
-                                <div class="symbol">
-                                    <i class="fa fa-user"></i>
-                                </div>
                                 <div class="value white">
-                                     <h4 id="" >Billings To Date:</h4>
-                                     <h4 id="" >Contract Bal Remaining: : </h4>
+                                     <h4>Billings To Date:<span style="float: right" id="billings_to_date">$12,456.00</span></h4>
+                                     <h4>Contract Bal Remaining:<span style="float: right" id="contract_bal_remaining">$12,456.00</span></h4>
                                    
                                 </div>
                               </section>
                             </div>
                                 <div class="col-md-4" id="" style="">
                               <section class="blue" style="height: 190px;">
-                                <div class="symbol">
-                                    <i class="fa fa-user"></i>
-                                </div>
                                 <div class="value white">
-                                      <h4 id="" >Contract Days (Org):</h4>
-                          <h4 id="" >Contract Days Added: : </h4>
-                           <h4 id="" >Contract Days (Rev):</h4>
-                          <h4 id="" >Contract Days (Charged) : </h4>
-                           <h4 id="" >Days Remaining : </h4>
+                                    <h4>Contract Days (Org):<span style="float: right" id="original_contract_date"></span></h4>
+                                    <h4>Contract Days Added:<span style="float: right" id="contract_days_added"></span></h4>
+                                    <h4>Contract Days (Rev):<span style="float: right;border-top:1px solid black" id="revised_contract_date"></span></h4>
+                                    <h4>Contract Days (Charged):<span style="float: right" id="contract_days_charged"></span></h4>
+                                    <h4>Days Remaining:<span style="float: right;border-top:1px solid black" id="remaining_days"></span></h4>
                                    
                                 </div>
                               </section>

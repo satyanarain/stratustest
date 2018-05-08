@@ -1574,10 +1574,11 @@ ul.drpdown-scroll{max-height: 300px; overflow-y: scroll;padding-left:0;}
 }
 
 .state-overview .value {
-    width: 68%;
-    margin-top: 30px;
-    border-left: 1px solid;
-    padding-left: 10%;
+    width: 100%;
+/*    margin-top: 30px;
+    border-left: 1px solid;*/
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .state-overview .value.gray {
