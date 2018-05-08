@@ -534,7 +534,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
         ->select('project_change_order_request_detail.*')
         ->where('pcd_approved_by_cm', '!=', '0000-00-00')
         ->where('pcd_approved_by_owner', '!=', '0000-00-00')
-        ->where('pcd_project_id', '!=', $project_id)
+        ->where('pcd_project_id', '=', $request['project_id'])
          ->orderBy('pcd_timestamp','DESC')
         ->first();
         if(count($query) < 1)

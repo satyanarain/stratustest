@@ -63,6 +63,9 @@ $(document).ready(function() {
           "Content-Type": "application/json",
           "x-access-token": token
         },
+         data: {
+            "project_id"           : project_id,
+        },
         contentType: "application/json",
         cache: false
     })
