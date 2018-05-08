@@ -382,8 +382,9 @@ $(document).ready(function() {
         $('#calendar_day_charged_app_calender').text(parseInt($('#calendar_total_days_app_calender').text()));
         $('#calendar_day_charged_app_non_calender').text(parseInt($('#calendar_total_days_app_non_calender').text()));
         var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
+         var calendar_total_days_app_raily_day_new = parseInt($('#calendar_total_days_app_raily_day').text());
           var notice_to_proceed_duration_day_new = parseInt($('#notice_to_proceed_duration_day').text());
-          $('#revised_contract_working_days').text(notice_to_proceed_duration_day_new+day_due_to_rain1);
+          $('#revised_contract_working_days').text(notice_to_proceed_duration_day_new+calendar_total_days_app_raily_day_new);
         // Revised Calendar Days Remaining in Contract
         var revised_total_calender1 = parseInt($('#revised_total_calender').text());
         var calendar_day_charged_app_calender1 = parseInt($('#calendar_day_charged_app_calender').text());
