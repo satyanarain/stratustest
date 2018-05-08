@@ -89,7 +89,7 @@ $(document).ready(function() {
             // console.log("500");
             window.location.href = baseUrl + "500";
         }
-    })
+    });
     
     // Notice to Proceed
     jQuery.ajax({
@@ -108,7 +108,7 @@ $(document).ready(function() {
        if (data.data.pnp_cal_day == 'working_day') {
         document.getElementById('days_text').innerHTML = "WORKING DAYS";
        } else {
-          document.getElementById('days_text').innerHTML = "CALENDAR DAYS";
+         document.getElementById('days_text').innerHTML = "WORKING DAYS";
 
        }
         // var date1 = data.data.pnp_date.replace(' 00:00:00', '');
