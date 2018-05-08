@@ -186,32 +186,32 @@
             <td id="" style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_previous_report_app_non_calender" name="days_previous_report_app_non_calender" class="form-control" required="required"></td>
             <td></td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td colspan="2" style="vertical-align: middle;">8. Total days approved by Change Order(s):</td>
             <td id="total_day_approved_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td id="total_day_approved_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td></td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td colspan="2" style="vertical-align: middle;">9. Revised Total Calendar Days for Contract :</td>
             <td id="revised_total_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td></td>
             <td></td>
         </tr>
         <tr>
-            <td colspan="2" style="vertical-align: middle;">10. <strong>Less:</strong> Calendar days Charged to Date:</td>
+            <td colspan="2" style="vertical-align: middle;">6.Total Working Days to Date:</td>
             <td id="calendar_day_charged_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td id="calendar_day_charged_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td></td>
         </tr>
         <tr>
-            <td colspan="2" style="vertical-align: middle;">11. Revised Calendar Days Remaining in Contract :</td>
+            <td colspan="2" style="vertical-align: middle;">7. Remaining Working Days:</td>
             <td id="revised_calendar_day_remaining" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td></td>
             <td></td>
         </tr>
     
-        <tr>
+        <tr style="display: none">
             <td colspan="2" style="vertical-align: middle;">13. Revised Computed Completion Date:</td>
             <td id="revised_completion_date" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
             <td></td>
