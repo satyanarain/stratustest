@@ -757,6 +757,10 @@ Route::get('dashboard/{project_id}/weekly_statement/{weekly_statement_id}/update
     return view('/weekly_statement/weekly_statement_update');
 });
 
+Route::get('dashboard/{project_id}/weekly_statement_week/{weekly_statement_id}/update', function () {
+    return view('/weekly_statement/weekly_statement_update_week');
+});
+
 /*  --------------------------------------------------------------------------
     Picture / Video API'S
     -------------------------------------------------------------------------- */
