@@ -515,6 +515,47 @@ use ProjectImprovement;
   }
 
 
+public function get_change_order_request_weeklyreport(Request $request, $project_id)
+  {
+    try
+    {
+      // $user = array(
+      //   'userid'    => Auth::user()->id,
+      //   'role'      => Auth::user()->role
+      // );
+      // $user = (object) $user;
+      // $post = new Resource_Post(); // You create a new resource Post instance
+      // if (Gate::forUser($user)->denies('allow_admin', [$post,false])) { 
+      //   $result = array('code'=>403, "description"=>"Access denies");
+      //   return response()->json($result, 403);
+      // } 
+      // else {
+        $query = DB::table('project_change_order_request')
+        ->select('project_change_order_request.*')
+        ->where('pcd_approved_by_cm', '!=', '0000-00-00')
+        ->where('pcd_approved_by_owner', '!=', '0000-00-00')
+        ->where('pcd_project_id', '!=', $project_id)
+         ->orderBy('pcd_timestamp','DESC')
+        ->first();
+        if(count($query) < 1)
+        {
+          $result = array('code'=>404, "description"=>"No Records Found");
+          return response()->json($result, 404);
+        }
+        else
+        {
+          $result = array('data'=>$query,'code'=>200);
+          return response()->json($result, 200);
+        }
+      // }
+    }
+    catch(Exception $e)
+    {
+      return response()->json(['error' => 'Something is wrong'], 500);
+    }
+  }
+
+
   /*
   --------------------------------------------------------------------------
    Get single Change Order Request Item by passing pcd_id

@@ -954,6 +954,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('change_order_request/{pco_id}/update', 'Projects\ChangeOrderRequestController@update_change_order_request');
     Route::post('change_order_request_item/{pcd_id}/update', 'Projects\ChangeOrderRequestController@update_change_order_request_item');
     Route::get('change_order_request/{pco_id}', 'Projects\ChangeOrderRequestController@get_change_order_request_single');
+     Route::get('change_order_request_weekly/{project_id}', 'Projects\ChangeOrderRequestController@get_change_order_request_weeklyreport');
     Route::get('change_order_request_item/{pcd_id}', 'Projects\ChangeOrderRequestController@get_change_order_request_item_single');
     Route::get('{cor_id}/change_order_request_item', 'Projects\ChangeOrderRequestController@get_all_change_order_request_item');
     Route::get('{project_id}/change_order_request', 'Projects\ChangeOrderRequestController@get_all_change_order_request');
