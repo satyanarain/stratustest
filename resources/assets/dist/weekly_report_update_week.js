@@ -591,7 +591,7 @@ $('#update_weekly_report').click(function(e) {
             var days_app_calender       = val.days_app_calender;
             var days_rainy_day          = val.days_rainy_day;
             jQuery.ajax({
-                url: baseUrl+"weekly-report-days-update/"+days_id,
+                url: baseUrl+"weekly-report-days-update_week/"+days_id,
                 type: "POST",
                 data: {
                     "days_id"               : days_id,
