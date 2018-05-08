@@ -52,7 +52,43 @@ $(document).ready(function() {
             // console.log("500");
             window.location.href = baseUrl + "500";
         }
+    });
+
+    
+       jQuery.ajax({
+        url: baseUrl + "change_order_request_weekly/"+project_id,
+        type: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": token
+        },
+         data: {
+            "project_id"           : project_id,
+        },
+        contentType: "application/json",
+        cache: false
     })
+    .done(function(data, textStatus, jqXHR) {
+        console.log('change order data !');
+       console.log(data);
+       document.getElementById('calendar_previous_days_app_raily_day').innerHTML = data.data.pcd_days
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        if(response == 403){
+            // window.location.href = baseUrl + "403";
+            console.log("403");
+        }
+        else if(response == 404){
+            console.log("404");
+            // window.location.href = baseUrl + "404";
+        }
+        else {
+            // console.log("500");
+            window.location.href = baseUrl + "500";
+        }
+    });
     
     // Notice to Proceed
     jQuery.ajax({
@@ -183,7 +219,6 @@ $(document).ready(function() {
                     '<td style="vertical-align: middle;">'+val.pwrd_date+'</td>'+
                     '<td style="text-align:center; vertical-align: middle;" class="days_weather">'+val.pwrd_weather+'</td>'+
                     '<td style="text-align:center; vertical-align: middle;" class="days_app_calender">'+val.pwrd_approved_calender_day+'</td>'+
-                    '<td style="text-align:center; vertical-align: middle;" class="days_app_non_calender">'+val.pwrd_approved_non_calender_day+'</td>'+
                     '<td style="text-align:center; vertical-align: middle;" class="days_rainy_day">'+val.pwrd_rain_day+'</td>'+
                 '</tr>'
             );

@@ -47,7 +47,7 @@
             <th style="text-align:center;background: #c5c5c5;vertical-align: middle;">Day / Date</th>
             <th style="text-align:center;background: #c5c5c5;vertical-align: middle;">Weather | <br/>Conditions<sup>1</sup></th>
             <th style="text-align:center;background: #c5c5c5;vertical-align: middle;">Approved Calendar<br/>Days Charged</th>
-            <th style="text-align:center;background: #c5c5c5;vertical-align: middle;">Approved Non-<br/>Calendar Days <sup>2</sup></th>
+
             <th  style="text-align:center;background: #c5c5c5;vertical-align: middle;">Rain Days | <br/>Weather <sup>3</sup></th>
         </tr>
         </thead>
@@ -63,100 +63,122 @@
         </tbody>
         <tbody>
         <tr>
-            <td colspan="2" style="text-align: right; vertical-align: middle;">Calendar Days on this Report:</td>
+            <td colspan="2" style="text-align: right; vertical-align: middle;">Working Days on this Report:</td>
             <td id="calendar_days_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="calendar_days_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="calendar_days_app_raily_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+          
+            <td id="" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: right; vertical-align: middle;">Calendar Days Previously Reported:</td>
+            <td colspan="2" style="text-align: right; vertical-align: middle;">Working Days Previously Reported::</td>
             <td id="calendar_previous_days_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="calendar_previous_days_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="calendar_previous_days_app_raily_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            
+            <td id="" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: right; vertical-align: middle;">Total Calendar Days to Date:</td>
+            <td colspan="2" style="text-align: right; vertical-align: middle;">Total Working Days to Date:</td>
             <td id="calendar_total_days_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="calendar_total_days_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="calendar_total_days_app_raily_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td id="" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
         </tr>
+
+         <tr>
+            <td colspan="2" style="text-align: right; vertical-align: middle;">Total Rain Delay Days to Date:</td>
+            <td id="calendar_days_app_raily_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+          
+            <td id="" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: right; vertical-align: middle;">Total Change Order Request Days to Date:</td>
+            <td id="calendar_previous_days_app_raily_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            
+            <td id="" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
+        </tr>
+          <tr>
+            <td colspan="2" style="text-align: right; vertical-align: middle;">Total Rainy Days to Date:</td>
+            <td id="calendar_total_days_app_raily_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td id="" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
+        </tr>
+        <tr>
         <tr>
             <td colspan="5" style="text-align:center;background: #c5c5c5;padding: 12px;font-size: 16px;">Computation for Completion Date</td>
         </tr>
         <tr>
-            <td colspan="2" style="vertical-align: middle;">1. Notice to Proceed Date:</td>
-            <td id="notice_to_proceed_date" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="vertical-align: middle;">2. First Working Day:</td>
+            <td colspan="2" style="vertical-align: middle;">1. First Working Day:</td>
             <td id="notice_to_proceed_start_date" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
             <td></td>
             <td></td>
         </tr>
-        <tr>
-            <td colspan="2" style="vertical-align: middle;">3. Total Calendar Days Specified in Contract:</td>
-            <td id="notice_to_proceed_duration_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="vertical-align: middle;">4. Computed Completion Date: (Line 2 + Line 3):</td>
+       <tr>
+            <td colspan="2" style="vertical-align: middle;">2. Original Contract Completion Date:</td>
             <td id="computed_completion_date" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
             <td></td>
             <td></td>
         </tr>
         <tr>
+            <td colspan="2" style="vertical-align: middle;">3. Total Working Days Specified in Contract:</td>
+            <td id="notice_to_proceed_duration_day" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td></td>
+            <td></td>
+        </tr>
+
+            <tr>
+            <td colspan="2" style="vertical-align: middle;">4.  Delay Days to Date: </td> 
+            <td id="day_due_to_rain" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td></td>
+            <td ></td>
+        </tr>
+
+        <tr>
+            <td colspan="2" style="vertical-align: middle;">5.  Revised Contract Working Days: </td> 
+            <td id="revised_contract_working_days" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td></td>
+            <td ></td>
+        </tr>
+ 
+        <tr style="display: none">
             <td colspan="2" style="vertical-align: middle;">5. <strong>Add:</strong> Time Extension / Change Orders <sup>4</sup> <span style="float: right;">Co No.:</span></td>
-            <td id="time_extension" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
+            <td><input type="text" class="form-control" id="time_extension"></td>
             <td></td>
             <td></td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td colspan="2" style="vertical-align: middle;">6. Days this Report (i.e. change order days, etc.):</td>
-            <td id="days_this_report_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="days_this_report_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td  style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_this_report_app_calender" name="days_this_report_app_calender" class="form-control" required="required"></td>
+            <td style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_this_report_app_non_calender" name="days_this_report_app_non_calender" class="form-control"></td>
             <td></td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td colspan="2" style="vertical-align: middle;">7. Days Previously Reported:</td>
-            <td id="days_previous_report_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="days_previous_report_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_previous_report_app_calender" name="days_previous_report_app_calender" class="form-control" required="required"></td>
+            <td id="" style="text-align: center; font-weight: 600; vertical-align: middle;"><input type="number" min="0" max="1" id="days_previous_report_app_non_calender" name="days_previous_report_app_non_calender" class="form-control" required="required"></td>
             <td></td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td colspan="2" style="vertical-align: middle;">8. Total days approved by Change Order(s):</td>
             <td id="total_day_approved_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td id="total_day_approved_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td></td>
         </tr>
-        <tr>
-            <td colspan="2" style="vertical-align: middle;">9. Revised Total Calendar Days for Contract (Line 4 + Line 8):</td>
+        <tr style="display: none">
+            <td colspan="2" style="vertical-align: middle;">9. Revised Total Calendar Days for Contract :</td>
             <td id="revised_total_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td></td>
             <td></td>
         </tr>
         <tr>
-            <td colspan="2" style="vertical-align: middle;">10. <strong>Less:</strong> Calendar days Charged to Date:</td>
+            <td colspan="2" style="vertical-align: middle;">6.Total Working Days to Date:</td>
             <td id="calendar_day_charged_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="calendar_day_charged_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td style="display: none;" id="calendar_day_charged_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td></td>
         </tr>
         <tr>
-            <td colspan="2" style="vertical-align: middle;">11. Revised Calendar Days Remaining in Contract (Line 9 - Line 10):</td>
+            <td colspan="2" style="vertical-align: middle;">7. Remaining Working Days:</td>
             <td id="revised_calendar_day_remaining" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td></td>
             <td></td>
         </tr>
-        <tr>
-            <td colspan="2" style="vertical-align: middle;">12. <strong>Add:</strong> Days due to Rain Days | Weather:</td>
-            <td></td>
-            <td></td>
-            <td id="day_due_to_rain" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-        </tr>
-        <tr>
-            <td colspan="2" style="vertical-align: middle;">13. Revised Computed Completion Date (Line 4 + Line 8 + Line 12):</td>
+    
+        <tr style="display: none">
+            <td colspan="2" style="vertical-align: middle;">13. Revised Computed Completion Date:</td>
             <td id="revised_completion_date" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
             <td></td>
             <td></td>
@@ -207,5 +229,5 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
-<script src="{{ url('/resources/assets/dist/weekly_report_single_week.js') }}"></script>
+<script src="{{ url('/resources/assets/dist/weekly_report_single.js') }}"></script>
 @include('include/footer')
