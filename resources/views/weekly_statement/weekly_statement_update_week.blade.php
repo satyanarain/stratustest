@@ -201,7 +201,7 @@
         <tr>
             <td colspan="2" style="vertical-align: middle;">6.Total Working Days to Date:</td>
             <td id="calendar_day_charged_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
-            <td id="calendar_day_charged_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
+            <td style="display: none;" id="calendar_day_charged_app_non_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             <td></td>
         </tr>
         <tr>

@@ -380,7 +380,7 @@ $(document).ready(function() {
 
         // Calendar day charged
         $('#calendar_day_charged_app_calender').text(parseInt($('#calendar_total_days_app_calender').text()));
-        $('#calendar_day_charged_app_non_calender').text(parseInt($('#calendar_total_days_app_non_calender').text()));
+        $('#calendar_day_charged_app_non_calender').text(parseInt(0));
         var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
          var calendar_total_days_app_raily_day_new = parseInt($('#calendar_total_days_app_raily_day').text());
           var notice_to_proceed_duration_day_new = parseInt($('#notice_to_proceed_duration_day').text());
@@ -460,7 +460,7 @@ $('#calendar_week_days').on('input', function() {
 
     // Calendar day charged
     $('#calendar_day_charged_app_calender').text(parseInt($('#calendar_total_days_app_calender').text()));
-    $('#calendar_day_charged_app_non_calender').text(parseInt($('#calendar_total_days_app_non_calender').text()));
+    $('#calendar_day_charged_app_non_calender').text(parseInt(0));
 
     // Revised Calendar Days Remaining in Contract
     var revised_total_calender1 = parseInt($('#revised_total_calender').text());
