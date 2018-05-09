@@ -255,7 +255,7 @@ $(document).ready(function() {
                 if(count == count_data){
                     if(val.pt_status == 'active'){
                         $("#pdf_gen_project_type").append(
-                            val.pt_name+'. '
+                            val.pt_name+' '
                         )
                     }            
                 }
