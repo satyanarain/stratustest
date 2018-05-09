@@ -98,6 +98,9 @@ $(document).ready(function() {
         headers: {
           "x-access-token": token
         },
+         data: {
+            "type"           : "working_day",
+        },
         contentType: "application/json",
         cache: false
     })
@@ -227,11 +230,10 @@ $(document).ready(function() {
         window.pwrd_approved_calender_day = 0;
         window.pwrd_approved_non_calender_day = 0;
         window.pwrd_rain_day = 0;
+        var countrow = 0;
         jQuery.each( data.data, function( i, val ) {
             // console.log(val);
              var sign_date = new Date(val.update_time);
-
-             console.log(new Date(val.pwrd_date));
 
             document.getElementById('sign_date').innerHTML = formatDate(sign_date);
             $('#calendar_week_days').append(
@@ -246,6 +248,9 @@ $(document).ready(function() {
             pwrd_approved_calender_day += parseInt(val.pwrd_approved_calender_day);
             pwrd_approved_non_calender_day += parseInt(val.pwrd_approved_non_calender_day);
             pwrd_rain_day += parseInt(val.pwrd_rain_day);
+
+            countrow = parseInt(countrow)+1;
+            console.log(countrow);
         });
             console.log(pwrd_approved_calender_day);
             console.log(pwrd_approved_non_calender_day);

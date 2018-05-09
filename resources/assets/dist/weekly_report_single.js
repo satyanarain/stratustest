@@ -61,6 +61,9 @@ $(document).ready(function() {
         headers: {
           "x-access-token": token
         },
+        data: {
+            "type"           : "calendar_day",
+        },
         contentType: "application/json",
         cache: false
     })

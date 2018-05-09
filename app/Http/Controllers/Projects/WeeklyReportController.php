@@ -85,7 +85,7 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
             $add_weekly_report_id = $add_weekly_report->id;
             // print_r($add_weekly_report_id);
 
-            for ($i=$countDays; $i < 7; $i++) {
+            for ($i=0; $i < 7; $i++) {
                 $date = date('l, jS \of F Y', strtotime($current_date . ' -'.$i.' day'));
                 $query = DB::table('project_weekly_reports_days')
                 ->insert(['pwrd_date' => $date, 'pwrd_project_id' => $project_id, 'pwrd_report_id' => $add_weekly_report_id]);
