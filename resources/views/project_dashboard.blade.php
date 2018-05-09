@@ -172,7 +172,7 @@
 
                                 <li class="hide_cor_permission" style="display: none;">
                                     <div class="project-col">
-                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request_log">Change Orders</a>
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request">Change Orders</a>
                                     </div>
                                     <div class="progress-col">
                                         <div class="progress progress-sm">
