@@ -252,7 +252,7 @@ use ProjectImprovement;
         {
             
             $query = DB::table('project_change_order_request_detail')
-            ->insert(['pcd_denied_by_owner'=>$pcd_denied_by_owner,'pcd_denied_by_cm'=>$pcd_denied_by_cm,'pcd_approved_by_owner'=>$pcd_approved_by_owner,'pcd_approved_by_cm'=>$pcd_approved_by_cm,'docusign_status'=>$docusign_status,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
+            ->insert(['pcd_status'=>"pending",'pcd_denied_by_owner'=>$pcd_denied_by_owner,'pcd_denied_by_cm'=>$pcd_denied_by_cm,'pcd_approved_by_owner'=>$pcd_approved_by_owner,'pcd_approved_by_cm'=>$pcd_approved_by_cm,'docusign_status'=>$docusign_status,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
@@ -405,7 +405,7 @@ use ProjectImprovement;
         {
             $query = DB::table('project_change_order_request_detail')
             ->where('pcd_id', '=', $pcd_id)
-             ->update(['owner_rejection_comment'=>$request['owner_rejection_comment'],'cm_rejection_comment'=>$request['cm_rejection_comment'],'pcd_denied_by_cm'=>$denied_by_cm,'pcd_denied_by_owner'=>$denied_by_owner,'pcd_unit_number' => $pcd_unit_number,'pcd_unit_price' => $pcd_unit_price,'pcd_price' => $pcd_price,'pcd_description' => $cor_description,'pcd_days' => $change_order_day,'pcd_approved_by_cm' => $approved_by_cm, 'pcd_approved_by_owner' => $approved_by_owner, 'pcd_user_id' => $user_id]);
+             ->update(['pcd_status'=>$request['pcd_status'],'owner_rejection_comment'=>$request['owner_rejection_comment'],'cm_rejection_comment'=>$request['cm_rejection_comment'],'pcd_denied_by_cm'=>$denied_by_cm,'pcd_denied_by_owner'=>$denied_by_owner,'pcd_unit_number' => $pcd_unit_number,'pcd_unit_price' => $pcd_unit_price,'pcd_price' => $pcd_price,'pcd_description' => $cor_description,'pcd_days' => $change_order_day,'pcd_approved_by_cm' => $approved_by_cm, 'pcd_approved_by_owner' => $approved_by_owner, 'pcd_user_id' => $user_id]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
@@ -1060,4 +1060,70 @@ public function get_change_order_request_weeklyreport(Request $request, $project
       return response()->json(['error' => 'Something is wrong'], 500);
     }
   }
+  
+  
+  /*
+  --------------------------------------------------------------------------
+   Get All Unreviewed change orders and expire if X day value cross
+  --------------------------------------------------------------------------
+  */
+  public function update_change_order_review_status(Request $request)
+  {
+    try
+    {
+        $projects = DB::table('projects')
+        ->select()
+        ->where('p_status', '=', 'active')
+        ->get();
+        foreach($projects as $project)
+        {
+            //$days = config('app.request_review_status_change');
+            $query = DB::table('project_change_order_request_detail')
+            ->select()
+            ->where('pcd_project_id', '=', $project->p_id)
+            ->where('pcd_status', '=', 'pending')
+            ->get();
+            $days = $project->change_order_due_date;
+            $user =  (array) $query;
+            if(count($query) < 1)
+            {
+              $result = array('code'=>404,"description"=>"No Records Found");
+              //return response()->json($result, 404);
+            }
+            else
+            {
+              foreach ($query as $key => $review) {
+                $reg_time = $review->pcd_timestamp;
+                $reg_date = strtotime($reg_time);
+                $date = date_create($reg_time);
+                date_add($date, date_interval_create_from_date_string(($days-1).'days'));
+                if($project->change_order_days_type==1){
+                    $plus_time = date_format($date, 'Y-m-d H:i:s');
+                }else{
+                    $plus_time = date ( 'Y-m-d H:i:s' , strtotime ( $reg_time.'+'.($days-1).' weekdays' ) );
+                }
+                $plus_date = strtotime($plus_time);
+                $current_date = time();
+                  if($current_date >= $plus_date){
+                    $review = DB::table('project_change_order_request_detail')
+                    ->where('pcd_id', '=', $review->pcd_id)
+                    ->update(['pcd_status' => 'past_due']);
+                    $result = array('description'=>'Update Status successfully','code'=>200);
+                    //return response()->json($result, 200);
+                  }
+                  else {
+                    $result = array('code'=>404, "description"=>"No Records Found");
+                    //return response()->json($result, 404);
+                  }
+                }
+            }
+        } 
+    }
+        catch(Exception $e)
+        {
+          return response()->json(['error' => 'Something is wrong'], 500);
+        }
+  }
+  
+  
 }

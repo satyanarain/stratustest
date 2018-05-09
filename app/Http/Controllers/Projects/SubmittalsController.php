@@ -920,53 +920,72 @@ class SubmittalsController extends Controller {
   {
       try
       {
-        $days = config('app.review_status_change');
-        $query = DB::table('project_submittal_review')
+        //echo '<pre>';
+        $projects = DB::table('projects')
         ->select()
-        ->where('sr_review_type', '=', 'make_corrections_noted')
-        ->orwhere('sr_review_type', '=', 'revise_resubmit')
-        ->orwhere('sr_review_type', '=', 'rejected')
-        ->orwhere('sr_review_type', '=', 'pending')
+        ->where('p_status', '=', 'active')
         ->get();
-        $user =  (array) $query;
-        if(count($query) < 1)
+         //print_r($projects);die;
+        foreach($projects as $project)
         {
-          $result = array('code'=>404,"description"=>"No Records Found");
-          return response()->json($result, 404);
-        }
-        else
-        {
-          foreach ($query as $key => $review) {
-            $reg_time = $review->sr_timestamp;
-            $reg_date = strtotime($reg_time);
-            $date = date_create($reg_time);
-            date_add($date, date_interval_create_from_date_string($days.'days'));
-            $plus_time = date_format($date, 'Y-m-d H:i:s');
-            $plus_date = strtotime($plus_time);
-            $current_date = time();
-              if($current_date >= $plus_date){
-                $review = DB::table('project_submittal_review')
-                ->where('sr_id', '=', $review->sr_id)
-                ->update(['sr_review_type' => 'past_due']);
-                if(count($review) < 1)
-                {
-                  $result = array('code'=>404, "description"=>"No Records Found");
-                  return response()->json($result, 404);
+            $query = DB::table('project_submittal_review')
+            ->select()
+            ->where('sr_project_id', '=', $project->p_id)
+//            ->where(function($query){
+//                    $query->where('sr_review_type', '=', 'make_corrections_noted')
+//                    ->orwhere('sr_review_type', '=', 'revise_resubmit')
+//                    ->orwhere('sr_review_type', '=', 'rejected')
+//                    ->orwhere('sr_review_type', '=', 'pending');
+//                })
+            ->where('sr_review_type', '=', 'pending')
+            ->get();
+            //print_r($query);die;
+            //$days = config('app.review_status_change');
+            $days = $project->submittal_due_date;
+            $user =  (array) $query;
+            if(count($query) < 1)
+            {
+              $result = array('code'=>404,"description"=>"No Records Found");
+              //return response()->json($result, 404);
+            }
+            else
+            {
+              foreach ($query as $key => $review) {
+                $reg_time = $review->sr_timestamp;
+                $reg_date = strtotime($reg_time);
+                $date = date_create($reg_time);
+                date_add($date, date_interval_create_from_date_string(($days-1).'days'));
+                if($project->submittal_days_type==1){
+                    $plus_time = date_format($date, 'Y-m-d H:i:s');
+                }else{
+                    $plus_time = date ( 'Y-m-d H:i:s' , strtotime ( $reg_time.'+'.($days-1).' weekdays' ) );
                 }
-                else {
+                $plus_date = strtotime($plus_time);
+                $current_date = time();
+                  if($current_date >= $plus_date){
+                    $review = DB::table('project_submittal_review')
+                    ->where('sr_id', '=', $review->sr_id)
+                    ->update(['sr_review_type' => 'past_due']);
+                    if(count($review) < 1)
+                    {
+                      $result = array('code'=>404, "description"=>"No Records Found");
+                      //return response()->json($result, 404);
+                    }
+                    else {
+
+                    }
+                    // echo $current_date .' - '. $plus_date;
+                    // echo '<br/>';
+                  }
+                  else {
+                    // echo 'no';
+                  }
 
                 }
-                // echo $current_date .' - '. $plus_date;
-                // echo '<br/>';
-              }
-              else {
-                // echo 'no';
-              }
-
             }
         }
-          $result = array('description'=>'Update Status successfully','code'=>200);
-          return response()->json($result, 200);
+        $result = array('description'=>'Update Status successfully','code'=>200);
+        return response()->json($result, 200);
         }
         catch(Exception $e)
         {

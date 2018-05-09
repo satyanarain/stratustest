@@ -339,6 +339,7 @@ $(document).ready(function() {
             $('.complete_box').hide();
             $('.expedited_review_checkbox').hide();
             $('.request_expedited_review').hide();
+            $('#request_expedited_review').val('');
 
             $('html, body').animate({
                 scrollTop: $(".page-head").offset().top
