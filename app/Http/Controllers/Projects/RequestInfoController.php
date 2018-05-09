@@ -962,7 +962,7 @@ class RequestInfoController extends Controller {
             if(count($query) < 1)
             {
               $result = array('code'=>404,"description"=>"No Records Found");
-              return response()->json($result, 404);
+              //return response()->json($result, 404);
             }
             else
             {

@@ -1088,7 +1088,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
             if(count($query) < 1)
             {
               $result = array('code'=>404,"description"=>"No Records Found");
-              return response()->json($result, 404);
+              //return response()->json($result, 404);
             }
             else
             {
