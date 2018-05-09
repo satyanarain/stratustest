@@ -230,6 +230,9 @@ $(document).ready(function() {
         jQuery.each( data.data, function( i, val ) {
             // console.log(val);
              var sign_date = new Date(val.update_time);
+
+             console.log(new Date(val.pwrd_date));
+
             document.getElementById('sign_date').innerHTML = formatDate(sign_date);
             $('#calendar_week_days').append(
                 '<tr>'+
