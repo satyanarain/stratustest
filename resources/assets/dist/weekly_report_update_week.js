@@ -230,6 +230,7 @@ $(document).ready(function() {
         window.pwrd_approved_calender_day = 0;
         window.pwrd_approved_non_calender_day = 0;
         window.pwrd_rain_day = 0;
+        var countrow = 0;
         jQuery.each( data.data, function( i, val ) {
             // console.log(val);
              var sign_date = new Date(val.update_time);
@@ -247,6 +248,9 @@ $(document).ready(function() {
             pwrd_approved_calender_day += parseInt(val.pwrd_approved_calender_day);
             pwrd_approved_non_calender_day += parseInt(val.pwrd_approved_non_calender_day);
             pwrd_rain_day += parseInt(val.pwrd_rain_day);
+
+            countrow = parseInt(countrow)+1;
+            console.log(countrow);
         });
             console.log(pwrd_approved_calender_day);
             console.log(pwrd_approved_non_calender_day);
