@@ -62,7 +62,7 @@ $(document).ready(function() {
           "x-access-token": token
         },
         data: {
-            "type"           : "working_day",
+            "type"           : "calendar_day",
         },
         contentType: "application/json",
         cache: false
