@@ -824,7 +824,6 @@ $(document).ready(function() {
 		    	$("#submittal_data_log thead").show();
 		    	$(".loading_submittal_detail").remove();
 		    	// console.log(submittal_complete);
-		    	// console.log(submittal_past_due);
 		    	// console.log(submittal_upcoming);
 		    	var bar_height = submittal_complete + submittal_past_due + submittal_upcoming;
 		    	var bar_height1 = 100 / bar_height;
@@ -1234,36 +1233,42 @@ $(document).ready(function() {
 			    var count = 1;
 			    var counts = 1;
 			    jQuery.each( data.data, function( i, val ) {
-                                if((val.pcd_approved_by_cm != "0000-00-00" || 
-                                    val.pcd_denied_by_cm != "0000-00-00") && 
-                                    (val.pcd_approved_by_owner != "0000-00-00" || 
-                                    val.pcd_denied_by_owner != "0000-00-00")){
-                                        r_cor_complete++;
-                                }else{
-                                    var oneDay = 24*60*60*1000;
-                                    var future_date = new Date(val.pcd_timestamp);
-                                    var numberOfDaysToAdd = 10;
-                                    var futuredate = '';
-//                                    if( change_order_days_type == 1 ) {
-//                                        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+                                if(val.pcd_status=="complete")
+                                    r_cor_complete++;
+                                else if(val.pcd_status=="past_due")
+                                    r_cor_past_due++;
+                                else if(val.pcd_status=="pending")
+                                    r_cor_upcoming++;
+//                                if((val.pcd_approved_by_cm != "0000-00-00" || 
+//                                    val.pcd_denied_by_cm != "0000-00-00") && 
+//                                    (val.pcd_approved_by_owner != "0000-00-00" || 
+//                                    val.pcd_denied_by_owner != "0000-00-00")){
+//                                        r_cor_complete++;
+//                                }else{
+//                                    var oneDay = 24*60*60*1000;
+//                                    var future_date = new Date(val.pcd_timestamp);
+//                                    var numberOfDaysToAdd = 10;
+//                                    var futuredate = '';
+////                                    if( change_order_days_type == 1 ) {
+////                                        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+////                                    }
+////                                    else{
+////                                        futuredate = add_business_days(change_order_due_date , val.pcd_timestamp);
+////                                        var updated_f = new Date(futuredate);
+////                                        futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+////                                    }
+//                                    var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
+//                                    var now_date = new Date();
+//                                    //var numberOfDaysToAdd = 0;
+//                                    var nowdate = now_date.setDate(now_date.getDate()); 
+//                                    //alert(nowdate);
+//                                    //var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
+//                                    if(futuredate < nowdate){
+//                                        r_cor_past_due++;
+//                                    }else{
+//                                        r_cor_upcoming++;
 //                                    }
-//                                    else{
-//                                        futuredate = add_business_days(change_order_due_date , val.pcd_timestamp);
-//                                        var updated_f = new Date(futuredate);
-//                                        futuredate = updated_f.setDate(updated_f.getDate() + 0); 
-//                                    }
-                                    var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
-                                    var now_date = new Date();
-                                    //var numberOfDaysToAdd = 0;
-                                    var nowdate = now_date.setDate(now_date.getDate()); 
-                                    //alert(nowdate);
-                                    //var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
-                                    if(futuredate < nowdate){
-                                        r_cor_past_due++;
-                                    }else{
-                                        r_cor_upcoming++;
-                                    }
-                                }
+//                                }
                                 
                                 
                                 if(((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") || (val.pcd_denied_by_cm != null && val.pcd_denied_by_cm != "0000-00-00")) && ((val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00") || (val.pcd_denied_by_owner != null && val.pcd_denied_by_owner != "0000-00-00"))){

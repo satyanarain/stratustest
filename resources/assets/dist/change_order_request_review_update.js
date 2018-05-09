@@ -246,8 +246,10 @@ function getFormattedPartTime(partTime){
         }
         if(($('#approved_cm').is(":checked") || $('#denied_cm').is(":checked")) && ($('#approved_owner').is(":checked") || $('#denied_owner').is(":checked")))
         {
+            var pcd_status = 'complete';
             var remove_potential = 1;
         }else{
+            var pcd_status = 'pending';
             var remove_potential = 0;
         }
         var item_id = $('#item_id').val();
@@ -280,6 +282,7 @@ function getFormattedPartTime(partTime){
                 "denied_by_owner"       : denied_by_owner,
                 "owner_rejection_comment":owner_rejection_comment,
                 "cm_rejection_comment"  : cm_rejection_comment,
+                "pcd_status"            : pcd_status,
                 
             },
             headers: {

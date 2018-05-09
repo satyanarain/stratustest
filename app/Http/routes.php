@@ -956,6 +956,9 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('{project_id}/change_order_request_new_number', 'Projects\ChangeOrderRequestController@get_new_change_order_number');
     Route::get('{item_id}/get_item_rfi', 'Projects\ChangeOrderRequestController@get_item_rfi');
 });
+
+Route::get('update_change_order_review_status', 'Projects\ChangeOrderRequestController@update_change_order_review_status');
+
 /**** CHANGE ORDER REQUEST VIEW ****/
 Route::get('dashboard/{project_id}/change_order_request_log', function () {
     return view('change_order_request/change_order_request_summary');

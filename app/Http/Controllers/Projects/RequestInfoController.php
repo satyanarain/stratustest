@@ -138,9 +138,11 @@ class RequestInfoController extends Controller {
               }
               else
               {
-                $query = DB::table('project_request_info_review')
-                ->insert(['rir_review_parent' => $request_info_id, 'rir_review_status' => 'response_due', 'rir_project_id' => $project_id, 'rir_status' => $request_status]);
-                
+                if($additional_cost=="yes" || $additional_day=="yes")
+                {}else{  
+                    $query = DB::table('project_request_info_review')
+                        ->insert(['rir_review_parent' => $request_info_id, 'rir_review_status' => 'response_due', 'rir_project_id' => $project_id, 'rir_status' => $request_status]);
+                }
                     if(count($query) < 1)
                     {
                       $result = array('code'=>404, "description"=>"No records found");
@@ -936,50 +938,62 @@ class RequestInfoController extends Controller {
 
   /*
   --------------------------------------------------------------------------
-   Get All Unverified User and expire if X day value cross
+   Get All Unverified RFI's and expire if X day value cross
   --------------------------------------------------------------------------
   */
   public function check_request_review_response(Request $request)
   {
-      try
-      {
-        $days = config('app.request_review_status_change');
-        $query = DB::table('project_request_info_review')
+    try
+    {
+        $projects = DB::table('projects')
         ->select()
-        ->where('rir_review_status', '=', 'response_due')
+        ->where('p_status', '=', 'active')
         ->get();
-        $user =  (array) $query;
-        if(count($query) < 1)
+        foreach($projects as $project)
         {
-          $result = array('code'=>404,"description"=>"No Records Found");
-          return response()->json($result, 404);
-        }
-        else
-        {
-          foreach ($query as $key => $review) {
-            $reg_time = $review->rir_timestamp;
-            $reg_date = strtotime($reg_time);
-            $date = date_create($reg_time);
-            date_add($date, date_interval_create_from_date_string($days.'days'));
-            $plus_time = date_format($date, 'Y-m-d H:i:s');
-            $plus_date = strtotime($plus_time);
-            $current_date = time();
-              if($current_date >= $plus_date){
-                $review = DB::table('project_request_info_review')
-                ->where('rir_id', '=', $review->rir_id)
-                ->where('rir_review_respond', '=', null)
-                ->update(['rir_review_status' => 'past_due']);
-                $result = array('description'=>'Update Status successfully','code'=>200);
-                return response()->json($result, 200);
-              }
-              else {
-                $result = array('code'=>404, "description"=>"No Records Found");
-                return response()->json($result, 404);
-              }
+            //$days = config('app.request_review_status_change');
+            $query = DB::table('project_request_info_review')
+            ->select()
+            ->where('rir_project_id', '=', $project->p_id)
+            ->where('rir_review_status', '=', 'response_due')
+            ->get();
+            $days = $project->submittal_due_date;
+            $user =  (array) $query;
+            if(count($query) < 1)
+            {
+              $result = array('code'=>404,"description"=>"No Records Found");
+              return response()->json($result, 404);
             }
-        }
-          
-        }
+            else
+            {
+              foreach ($query as $key => $review) {
+                $reg_time = $review->rir_timestamp;
+                $reg_date = strtotime($reg_time);
+                $date = date_create($reg_time);
+                date_add($date, date_interval_create_from_date_string(($days-1).'days'));
+                if($project->submittal_days_type==1){
+                    $plus_time = date_format($date, 'Y-m-d H:i:s');
+                }else{
+                    $plus_time = date ( 'Y-m-d H:i:s' , strtotime ( $reg_time.'+'.($days-1).' weekdays' ) );
+                }
+                $plus_date = strtotime($plus_time);
+                $current_date = time();
+                  if($current_date >= $plus_date){
+                    $review = DB::table('project_request_info_review')
+                    ->where('rir_id', '=', $review->rir_id)
+                    ->where('rir_review_respond', '=', null)
+                    ->update(['rir_review_status' => 'past_due']);
+                    $result = array('description'=>'Update Status successfully','code'=>200);
+                    //return response()->json($result, 200);
+                  }
+                  else {
+                    $result = array('code'=>404, "description"=>"No Records Found");
+                    //return response()->json($result, 404);
+                  }
+                }
+            }
+        } 
+    }
         catch(Exception $e)
         {
           return response()->json(['error' => 'Something is wrong'], 500);
