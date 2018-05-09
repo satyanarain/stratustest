@@ -90,14 +90,25 @@
 					var update_permission = '';
 				}
 				else {
-					var update_permission = '<a href="'+baseUrl+'dashboard/'+val.pwr_project_id+'/weekly_statement/'+val.pwr_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
+					if (val.days_count == 7 ) {
+						var update_permission = '<a href="'+baseUrl+'dashboard/'+val.pwr_project_id+'/weekly_statement/'+val.pwr_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
+					} else {
+						var update_permission = '<a href="'+baseUrl+'dashboard/'+val.pwr_project_id+'/weekly_statement_week/'+val.pwr_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
+					}
+					
 				}
 
 				var status = val.pwr_report_status;
 				if(status == 'complete'){
 		    	status = '<span class="label label-success">COMPLETE</span>';
-		    	var action = '<a href="'+baseUrl+'dashboard/'+val.pwr_project_id+'/weekly_statement/'+val.pwr_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>'+
+		    		if (val.days_count == 7 ) {
+							var action = '<a href="'+baseUrl+'dashboard/'+val.pwr_project_id+'/weekly_statement/'+val.pwr_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>'+
 		    	update_permission;
+					} else {
+							var action = '<a href="'+baseUrl+'dashboard/'+val.pwr_project_id+'/weekly_statement_week/'+val.pwr_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>'+
+		    	update_permission;
+						}
+		    
 			    }
 			    else {
 			    	status = '<span class="label label-danger">INCOMPLETE</span>';

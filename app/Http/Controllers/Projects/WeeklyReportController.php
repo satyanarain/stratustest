@@ -333,9 +333,11 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
       else {
         $query = DB::table('project_weekly_reports')
 ->leftJoin('projects', 'project_weekly_reports.pwr_project_id', '=', 'projects.p_id')
-        ->select('project_weekly_reports.*', 'projects.*')
+->leftJoin('project_weekly_reports_days', 'project_weekly_reports.pwr_id', '=', 'project_weekly_reports_days.pwrd_report_id')
+        ->select(DB::raw('count(*) as days_count,project_weekly_reports.*, projects.*'))
         ->where('pwr_project_id', '=', $project_id)
         ->orderBy('project_weekly_reports.pwr_id','ASC')
+          ->groupBy('pwr_id')
         ->get();
         if(count($query) < 1)
         {
@@ -563,4 +565,48 @@ for ($i=0; $i <count( $all_report ) ; $i++) {
     }
   }
 
+   public function update_day_quantity_complete_week(Request $request, $days_id)
+  {
+    try
+    {
+      // $user = array(
+      //   'userid'    => Auth::user()->id,
+      //   'role'      => Auth::user()->role
+      // );
+      // $user = (object) $user;
+      // $post = new Resource_Post(); // You create a new resource Post instance
+      // if (Gate::forUser($user)->denies('allow_admin', [$post,false])) { 
+      //   $result = array('code'=>403, "description"=>"Access denies");
+      //   return response()->json($result, 403);
+      // } 
+      // else {
+          $days_id               = $request['days_id'];
+          $days_weather          = $request['days_weather'];
+          $days_app_calender     = $request['days_app_calender'];
+          $days_app_non_calender = 0;
+          $days_rainy_day        = $request['days_rainy_day'];
+          $current_time = date("Y-m-d H:i:s"); 
+
+          $query = DB::table('project_weekly_reports_days')
+          ->where('pwrd_id', '=', $days_id)
+          ->update(['pwrd_weather' => $days_weather, 'pwrd_approved_calender_day' => $days_app_calender, 'pwrd_approved_non_calender_day' => $days_app_non_calender, 'pwrd_rain_day' => $days_rainy_day,'update_time' => $current_time ]);
+          if(count($query) < 1)
+          {
+            $result = array('code'=>400, "description"=>"No records found");
+            return response()->json($result, 400);
+          }
+          else
+          {
+            $result = array('data'=>'update day quantity','code'=>200);
+            return response()->json($result, 200);
+          }
+      // }
+    }
+    catch(Exception $e)
+    {
+      return response()->json(['error' => 'Something is wrong'], 500);
+    }
+  }
+
 }
+

@@ -743,6 +743,7 @@ Route::get('weekly-report/{pwr_id}', 'Projects\WeeklyReportController@get_weekly
 Route::get('weekly-report-days/{report_id}', 'Projects\WeeklyReportController@get_weekly_report_single_days');
 Route::get('weekly-report-days-count/{project_id}', 'Projects\WeeklyReportController@get_weekly_report_single_days_count');
 Route::post('weekly-report-days-update/{days_id}', 'Projects\WeeklyReportController@update_day_quantity_complete');
+Route::post('weekly-report-days-update_week/{days_id}', 'Projects\WeeklyReportController@update_day_quantity_complete_week');
 Route::post('weekly-report-update/{report_id}/update', 'Projects\WeeklyReportController@update_weekly_report');
 Route::get('{project_id}/get-weekly-report', 'Projects\WeeklyReportController@get_all_weekly_report');
 }); 
@@ -754,8 +755,16 @@ Route::get('dashboard/{project_id}/weekly_statement', function () {
 Route::get('dashboard/{project_id}/weekly_statement/{weekly_statement_id}', function () {
     return view('/weekly_statement/weekly_statement_single');
 });
+
+Route::get('dashboard/{project_id}/weekly_statement_week/{weekly_statement_id}', function () {
+    return view('/weekly_statement/weekly_statement_single_week');
+});
 Route::get('dashboard/{project_id}/weekly_statement/{weekly_statement_id}/update', function () {
     return view('/weekly_statement/weekly_statement_update');
+});
+
+Route::get('dashboard/{project_id}/weekly_statement_week/{weekly_statement_id}/update', function () {
+    return view('/weekly_statement/weekly_statement_update_week');
 });
 
 /*  --------------------------------------------------------------------------
@@ -950,6 +959,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('change_order_request/{pco_id}/update', 'Projects\ChangeOrderRequestController@update_change_order_request');
     Route::post('change_order_request_item/{pcd_id}/update', 'Projects\ChangeOrderRequestController@update_change_order_request_item');
     Route::get('change_order_request/{pco_id}', 'Projects\ChangeOrderRequestController@get_change_order_request_single');
+     Route::get('change_order_request_weekly/{project_id}', 'Projects\ChangeOrderRequestController@get_change_order_request_weeklyreport');
     Route::get('change_order_request_item/{pcd_id}', 'Projects\ChangeOrderRequestController@get_change_order_request_item_single');
     Route::get('{cor_id}/change_order_request_item', 'Projects\ChangeOrderRequestController@get_all_change_order_request_item');
     Route::get('{project_id}/change_order_request', 'Projects\ChangeOrderRequestController@get_all_change_order_request');
