@@ -65,7 +65,7 @@
                               <section class="blue" style="height: 190px;">
                                 <div class="value white">
                                     <h4>Contract:<span style="float: right" id="contract_amount"></span></h4>
-                                    <h4>Change Orders:<span id="total_change_order_count"></span>  <span style="float: right" id="total_change_order_amount"></span></h4>
+                                    <h4>Change Orders: <span id="total_change_order_count"></span>  <span style="float: right" id="total_change_order_amount"></span></h4>
                                     <h4>Total Contract: <span style="float: right;border-top:1px solid black " id="total_contract_amount"></span></h4><br>
                                     <h4 style="color: yellow">Pending CO: <span id="pending_change_order_count"></span> <span style="float: right" id="pending_change_order_amount"></span></h4>
                                    
