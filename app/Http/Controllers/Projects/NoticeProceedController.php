@@ -129,6 +129,9 @@ class NoticeProceedController extends Controller {
                                                         "tabLabel" => "days_type",
                                                         "value" => $row['days_type']),
                                                         array (
+                                                        "tabLabel" => "days_type1",
+                                                        "value" => $row['days_type']),
+                                                        array (
                                                         "tabLabel" => "pdf_gen_amount",
                                                         "value" => $row['pdf_gen_amount']));
 
@@ -144,7 +147,7 @@ class NoticeProceedController extends Controller {
                     $email = env('DOCUSIGN_EMAIL');
                     $password = env('DOCUSIGN_PASSWORD');
                     $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
-                    $templateId = "dc63edb8-d736-4882-92c5-b880c163dcb1";
+                    $templateId = "ff6a51f5-eae4-44e5-8cfe-66714e2db6a2";
                     $url = env('DOCUSIGN_URL');
                     $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
                     $curl = curl_init($url);

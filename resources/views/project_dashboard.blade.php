@@ -172,18 +172,18 @@
 
                                 <li class="hide_cor_permission" style="display: none;">
                                     <div class="project-col">
-                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request_log">Change Orders</a>
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request">Change Orders</a>
                                     </div>
                                     <div class="progress-col">
                                         <div class="progress progress-sm">
                                           <div class="progress-bar progress-bar-danger r_cor_past_due_width">
-                                              <span class="proj-amt"><a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request_log" class="r_cor_past_due"></a></span>
+                                              <span class="proj-amt"><a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request" class="r_cor_past_due"></a></span>
                                           </div>
                                           <div class="progress-bar progress-bar-warning r_cor_upcoming_width">
-                                              <span class="proj-amt"><a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request_log" class="r_cor_upcoming"></a></span>
+                                              <span class="proj-amt"><a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request" class="r_cor_upcoming"></a></span>
                                           </div>
                                           <div class="progress-bar progress-bar-success r_cor_complete_width">
-                                              <span class="proj-amt"><a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request_log" class="r_cor_complete"></a></span>
+                                              <span class="proj-amt"><a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request" class="r_cor_complete"></a></span>
                                           </div>
                                         </div>
                                     </div>
