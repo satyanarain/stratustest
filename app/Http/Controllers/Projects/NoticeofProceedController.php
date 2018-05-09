@@ -777,7 +777,8 @@ $url = $response["url"];
           'path.doc_path as notice_proceed_path',  
           'project_notice_of_proceed.*', 'projects.*', 
           'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
-          ->where('pnp_project_id', '=', $project_id)
+             ->where('pnp_project_id', '=', $project_id)
+          ->where('pnp_cal_day', '=', $type)
           ->where('pnp_cal_day', '=', $type)
           ->first();
           if(count($query) < 1)
