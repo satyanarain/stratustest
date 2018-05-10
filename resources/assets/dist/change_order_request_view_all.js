@@ -253,7 +253,7 @@ $(document).ready(function() {
                        status_cm + status_owner+potential_status,
                        action_button
                     ]).draw( false );  
-                count++;
+                counts++;
             }else{
                 if(val.pcd_rfi == '[]'){
                     rfi_final = '';
