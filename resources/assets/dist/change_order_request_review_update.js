@@ -101,7 +101,7 @@ $(document).ready(function() {
             request_bid_iframe_value = '';
         }
         else {
-            if(data.data.doc_path!="")
+            if(data.data.doc_path)
             {
             //request_bid_path_value = '<a href="https://apps.groupdocs.com/document-viewer/embed/'+data.data.doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
             request_bid_path_value = '<a href="'+data.data.doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';

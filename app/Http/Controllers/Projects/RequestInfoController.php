@@ -104,7 +104,12 @@ class RequestInfoController extends Controller {
         {
             if($additional_cost=="yes" || $additional_day=="yes")
             {
-                $order_number = $request_number;
+                $query = DB::table('project_change_order_request')
+                ->select()
+                ->where('pco_project_id', '=', $project_id)
+                ->orderBy('pco_number', 'desc')
+                ->first();
+                $order_number = $query->pco_number;
                 $order_date = $request_date;
                 $order_contractor_name = $request['agency_id'];
                 $order_status = '';
