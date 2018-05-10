@@ -379,9 +379,13 @@ use ProjectImprovement;
         $denied_by_owner        = $request['denied_by_owner'];
         $denied_by_cm           = $request['denied_by_cm'];
         if($approved_by_cm || $approved_by_owner || $denied_by_cm || $denied_by_owner)
+        {
             $job_type   =   'reviewed';
-        else
+            $link       = "/dashboard/".$project_id."/change_order_request_review/".$pcd_id."/view";
+        }else{
             $job_type   =   'updated';
+            $link       = "/dashboard/".$project_id."/change_order_request_review/".$pcd_id."/update";
+        }
         if($request['remove_potential']==1)
         {
             $query = DB::table('project_change_order_request_detail')
@@ -432,7 +436,7 @@ use ProjectImprovement;
                 $project_id           = $project_id;
                 $notification_title   = 'Change order # '.$pco_number.' has been '.$job_type.' in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
-                $link                 = "/dashboard/".$project_id."/change_order_request_review/".$pcd_id."/update";
+                
                 $date                 = date("M d, Y h:i a");
                 $email_description    = 'Change order # '.$pco_number.' has been '.$job_type.' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
