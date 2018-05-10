@@ -334,7 +334,10 @@ $(document).ready(function() {
                         rfi_final += "RFI "+val1.ri_id+" : "+ val1.ri_question_request+"<br/>"; 
                         // console.log(rfi_final);
                     });
-
+                    if(val.pcd_price)
+                        var price = val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price);
+                    else
+                        var price = '';
                     var t = $('#request_change_order').DataTable();
                     t.row.add([
                        count, // val.pcd_parent_cor,
@@ -348,7 +351,7 @@ $(document).ready(function() {
                         cm_rejection_comment,
                         pcd_denied_by_owner,
                         owner_rejection_comment,
-                       val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
+                       price,
                        val.pcd_days,
                        status_cm + status_owner+approved_status+potential_status,
                        action_button
