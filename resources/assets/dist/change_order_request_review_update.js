@@ -87,8 +87,14 @@ $(document).ready(function() {
         }else{
             $("#total_requested_cost").html('<input type="radio" class="total_requested_cost" name="total_requested_cost" id="total_requested_cost_price" value="price">Enter Price&nbsp;\n\
             <input checked type="radio" class="total_requested_cost" id="total_requested_cost_unit" name="total_requested_cost" value="unit">Enter Unit');
-            $("#cor_unit_number").html('<input class="form-control" type="text" name="pcd_unit_number" id="pcd_unit_number" value="'+data.data.pcd_unit_number+'">');
-            $("#cor_unit_price").html('<input class="form-control" type="text" name="pcd_unit_price" id="pcd_unit_price" value="'+data.data.pcd_unit_price+'">');
+            if(data.data.pcd_unit_number)
+                $("#cor_unit_number").html('<input class="form-control" type="text" name="pcd_unit_number" id="pcd_unit_number" value="'+data.data.pcd_unit_number+'">');
+            else
+                $("#cor_unit_number").html('<input class="form-control" type="text" name="pcd_unit_number" id="pcd_unit_number">');
+            if(data.data.pcd_unit_price)
+                $("#cor_unit_price").html('<input class="form-control" type="text" name="pcd_unit_price" id="pcd_unit_price" value="'+data.data.pcd_unit_price+'">');
+            else
+                $("#cor_unit_price").html('<input class="form-control" type="text" name="pcd_unit_price" id="pcd_unit_price">');
             $('#cor_amount').text(data.data.pcd_price)
         }
         //$('#cor_unit_number').text(data.data.pcd_unit_number)
@@ -160,7 +166,9 @@ $(document).ready(function() {
             }else{
                 var cor_amount = $('#cor_amount').text()
                 $("#cor_amount").html('<input class="form-control" type="text" name="cor_amount" id="pcd_price" value="'+cor_amount+'">');
-                $('#cor_unit_number').text($('#pcd_unit_number').val())
+                if($('#pcd_unit_number').val())
+                    $('#cor_unit_number').text($('#pcd_unit_number').val())
+                if($('#pcd_unit_price').val())
                 $('#cor_unit_price').text($('#pcd_unit_price').val()) 
             }
         })
