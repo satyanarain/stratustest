@@ -110,6 +110,7 @@ $(document).ready(function() {
         else {
             $("#approved_owner").attr("checked", "checked");
             $("#approved_owner").attr('disabled', true);
+            $("#denied_owner").attr('disabled', true);
         }
         
         if(data.data.pcd_denied_by_owner == null || data.data.pcd_denied_by_owner == "0000-00-00"){
@@ -118,6 +119,7 @@ $(document).ready(function() {
         }else{
             $("#denied_owner").attr("checked", "checked");
             $("#denied_owner").attr('disabled', true);
+            $("#approved_owner").attr('disabled', true);
         }
         
 
@@ -127,6 +129,7 @@ $(document).ready(function() {
         else {
             $("#approved_cm").attr("checked", "checked");
             $("#approved_cm").attr('disabled', true);
+            $("#denied_cm").attr('disabled', true);
         }
         
         if(data.data.pcd_denied_by_cm == null || data.data.pcd_denied_by_cm == "0000-00-00"){
@@ -135,6 +138,7 @@ $(document).ready(function() {
         }else{
             $("#denied_cm").attr("checked", "checked");
             $("#denied_cm").attr('disabled', true);
+            $("#approved_cm").attr('disabled', true);
         }
         
         if(data.data.pcd_rfi == '[]'){
