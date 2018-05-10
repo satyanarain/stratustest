@@ -75,6 +75,22 @@
                                                                     <td id="cor_approved_owner"></td>
                                                                 </tr>
                                                                 <tr>
+                                                                    <th>Denied by CM</th>
+                                                                    <td id="cor_denied_cm"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>CM Rejection Comment</th>
+                                                                    <td id="cm_rejection_comment"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Denied by Owner</th>
+                                                                    <td id="cor_denied_owner"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Owner Rejection Comment</th>
+                                                                    <td id="owner_rejection_comment"></td>
+                                                                </tr>
+                                                                <tr>
                                                                     <th>Total Requested Costs</th>
                                                                     <td id="total_requested_cost"></td>
                                                                 </tr>

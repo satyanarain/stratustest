@@ -45,19 +45,36 @@ $(document).ready(function() {
         $('#cm_rejection_comment').val(data.data.cm_rejection_comment);
         $('#cor_date_sent').text(data.data.pco_date)
         $('#cor_description').html('<input class="form-control" type="text" name="change_order_desc" id="change_order_desc" value="'+data.data.pcd_description+'">');
-        if(data.data.pcd_approved_by_cm == null || data.data.pcd_approved_by_cm == "0000-00-00"){
+        if(data.data.pcd_denied_by_cm == "0000-00-00" && data.data.pcd_approved_by_cm == "0000-00-00"){
             $('#cor_approved_cm').html('<span class="label label-warning">PENDING</span>')
         }
-        else {
+        else if(data.data.pcd_approved_by_cm != "0000-00-00"){
             $('#cor_approved_cm').text(data.data.pcd_approved_by_cm)
         }
 
-        if(data.data.pcd_approved_by_owner == null || data.data.pcd_approved_by_owner == "0000-00-00"){
+        if(data.data.pcd_denied_by_owner == "0000-00-00" && data.data.pcd_approved_by_owner == "0000-00-00"){
             $('#cor_approved_owner').html('<span class="label label-warning">PENDING</span>')
         }
-        else {
+        else if(data.data.pcd_approved_by_owner != "0000-00-00"){
             $('#cor_approved_owner').text(data.data.pcd_approved_by_owner)
         }
+        
+        if(data.data.pcd_approved_by_cm == "0000-00-00" && data.data.pcd_denied_by_cm == "0000-00-00"){
+            $('#cor_denied_cm').html('<span class="label label-warning">PENDING</span>')
+        }
+        else if(data.data.pcd_denied_by_cm != "0000-00-00"){
+            $('#cor_denied_cm').text(data.data.pcd_denied_by_cm)
+        }
+
+        if(data.data.pcd_approved_by_owner == "0000-00-00" && data.data.pcd_denied_by_owner == "0000-00-00"){
+            $('#cor_denied_owner').html('<span class="label label-warning">PENDING</span>')
+        }
+        else if(data.data.pcd_denied_by_owner != "0000-00-00"){
+            $('#cor_denied_owner').text(data.data.pcd_denied_by_owner)
+        }
+        
+        $('#cm_rejection_comment').text(data.data.cm_rejection_comment)
+        $('#owner_rejection_comment').text(data.data.owner_rejection_comment)
         var cor_amount = data.data.pcd_price;
         //
         if(data.data.pcd_price)
@@ -100,7 +117,7 @@ $(document).ready(function() {
         $('#cor_file').html(request_bid_path_value)
         $('#cor_status').html(status)
 
-        if(data.data.pcd_approved_by_owner != NULL || data.data.pcd_approved_by_owner != "0000-00-00"){
+        if(data.data.pcd_approved_by_owner != "0000-00-00"){
             //$("#approved_owner").attr('enabled');
             $("#approved_owner").attr("checked", "checked");
         }
@@ -108,13 +125,13 @@ $(document).ready(function() {
 //            $("#approved_owner").attr("checked", "checked");
 //            // $("#approved_owner").attr('disabled', true);
 //        }
-        if(data.data.pcd_denied_by_owner != NULL || data.data.pcd_denied_by_owner != "0000-00-00"){
+        if(data.data.pcd_denied_by_owner != "0000-00-00"){
             //$("#approved_owner").attr('enabled');
             $("#denied_owner").attr("checked", "checked");
              $('.additonal_cost_div1').show();
         }
         
-        if(data.data.pcd_approved_by_cm != NULL || data.data.pcd_approved_by_cm != "0000-00-00"){
+        if(data.data.pcd_approved_by_cm != "0000-00-00"){
             //$("#approved_cm").is(":radio");
             $("#approved_cm").attr("checked", "checked");
         }
@@ -122,7 +139,7 @@ $(document).ready(function() {
 //            $("#approved_cm").attr("checked", "checked");
 //            // $("#approved_cm").attr('disabled', true);
 //        }
-        if(data.data.pcd_denied_by_cm != NULL || data.data.pcd_denied_by_cm != "0000-00-00"){
+        if(data.data.pcd_denied_by_cm != "0000-00-00"){
             //$("#approved_cm").is(":radio");
             $("#denied_cm").attr("checked", "checked");
              $('.additonal_cost_div').show();
