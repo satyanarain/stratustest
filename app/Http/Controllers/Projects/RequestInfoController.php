@@ -123,7 +123,7 @@ class RequestInfoController extends Controller {
                 //$order_project_id
                 //$order_user_id
                 $query = DB::table('project_change_order_request_detail')
-                ->insert(['pcd_approved_by_cm'=>'0000-00-00','pcd_approved_by_owner'=>'0000-00-00','pcd_denied_by_cm'=>'0000-00-00','pcd_denied_by_owner'=>'0000-00-00','pcd_rfi'=>$pcd_rfi,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'is_potential' => $is_potential, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
+                ->insert(['pcd_approved_by_cm'=>'0000-00-00','pcd_approved_by_owner'=>'0000-00-00','pcd_denied_by_cm'=>'0000-00-00','pcd_denied_by_owner'=>'0000-00-00','pcd_status'=>'pending','pcd_rfi'=>$pcd_rfi,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'is_potential' => $is_potential, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
             }else{  
                 $request_info = ProjectRequestInfo::create(['ri_number' => $request_number, 'ri_date' => $request_date, 'ri_question_request' => $question_request, 'ri_question_proposed' => $question_proposed, 'ri_additional_cost' =>$additional_cost, 'ri_additional_cost_amount' => $additional_cost_amount, 'ri_additional_day' => $additional_day, 'ri_additional_day_add' => $additional_day_add, 'ri_file_path' => $file_path, 'ri_user_id' => $user_id, 'ri_project_id' => $project_id, 'ri_request_status' => $request_status]);
             }
