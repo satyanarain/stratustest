@@ -68,6 +68,7 @@ $(document).ready(function() {
         var specific_project_name = 'Change Order Request (COR) for Project: ' + window.project_name;
         console.log(specific_project_name);
         $('#view_users_table').DataTable({
+            order: [],
             dom: 'Bfrtip',
             buttons: [
                 // {
