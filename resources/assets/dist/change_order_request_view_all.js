@@ -67,8 +67,10 @@ $(document).ready(function() {
         $('#project_name_title').text("Project: " + window.project_name);
         var specific_project_name = 'Change Order Request (COR) for Project: ' + window.project_name;
         console.log(specific_project_name);
-        $('#view_users_table').DataTable({
-            order: [],
+        $('#request_change_order').DataTable().destroy();
+        $('#request_change_order').DataTable({
+            order: [['1', 'asc']],
+            //ordering:false,
             dom: 'Bfrtip',
             buttons: [
                 // {
@@ -255,6 +257,11 @@ $(document).ready(function() {
                        status_cm + status_owner+potential_status,
                        action_button
                     ]).draw( false );  
+                                                t.on( 'order.dt search.dt', function () {
+                                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                                    cell.innerHTML = i+1;
+                                } );
+                            } ).draw();
                 counts++;
             }else{
                 if(val.pcd_rfi == '[]'){
@@ -279,7 +286,12 @@ $(document).ready(function() {
                        status_cm + status_owner+approved_status,
                        //status,
                        update_permission
-                    ]).draw( false );  
+                    ]).draw( false );
+                                                t.on( 'order.dt search.dt', function () {
+                                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                                    cell.innerHTML = i+1;
+                                } );
+                            } ).draw();
                     count++;
                 }
                 else {
@@ -360,6 +372,11 @@ $(document).ready(function() {
                        status_cm + status_owner+approved_status+potential_status,
                        action_button
                     ]).draw( false );  
+                                                t.on( 'order.dt search.dt', function () {
+                                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                                    cell.innerHTML = i+1;
+                                } );
+                            } ).draw();
                     count++;
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
