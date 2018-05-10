@@ -295,7 +295,7 @@ $(document).ready(function() {
                 // console.log(nowdate);
                 var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
 
-                if(futuredate < nowdate){
+                if(futuredate < nowdate && val.pcd_status!="complete"){
                     // console.log('less');
                     var potential_status = '<span class="label label-danger">PAST DUE</span>';
                     var action_button = update_permission;
