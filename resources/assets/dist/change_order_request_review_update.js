@@ -2,6 +2,7 @@ $(document).ready(function() {
     // Get login user profile data
     $('#upload_doc_id').removeAttr('value');
     var url = $(location).attr('href').split( '/' );
+    project_id = url[ url.length - 4]; // projects
     item_id = url[ url.length - 2]; // projects
     console.log(item_id);
 
@@ -83,7 +84,7 @@ $(document).ready(function() {
             request_bid_iframe_value = '';
         }
         else {
-            if(data.data.doc_path)
+            if(data.data.doc_path!="")
             {
             //request_bid_path_value = '<a href="https://apps.groupdocs.com/document-viewer/embed/'+data.data.doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
             request_bid_path_value = '<a href="'+data.data.doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
@@ -184,7 +185,53 @@ $(document).ready(function() {
             window.location.href = baseUrl + "500";
         }
     });
-
+    
+    // Get Selected Agency
+    jQuery.ajax({
+    url: baseUrl + "/"+project_id+"/default_contractor",
+        type: "GET",
+        headers: {
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+    })
+    .done(function(data, textStatus, jqXHR) {
+        window.agency_id = data.data[0].pna_contactor_name;
+        $("#company_name").val(parseInt(agency_id));
+        // Select Company Detail for PDF
+        jQuery.ajax({
+        url: baseUrl + "firm-name/"+agency_id,
+            type: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "x-access-token": token
+            },
+            contentType: "application/json",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+            $('.loading_data').hide();
+            var f_name = data.data.f_name;
+            $('#contractor_name').text(f_name);
+        })
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(response);
+        if(response == 403){
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            // alert('faizan');
+            // window.location.href = baseUrl + "404";
+            $(".loading_data").hide();
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
     
 });
 

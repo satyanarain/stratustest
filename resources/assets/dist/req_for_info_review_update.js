@@ -146,8 +146,8 @@
 		  	 	var	file_path_value = '-';
 		  	}
 		  	else {
-		  		var file_path_value = '<a href="https://apps.groupdocs.com/document-viewer/embed/'+data.data.file_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
-		  		var file_iframe_value = '<iframe src="http://apps.groupdocs.com/document-annotation2/embed/'+data.data.file_path+'" frameborder="0" width="100%" height="800"></iframe>';
+		  		var file_path_value = '<a href="'+data.data.file_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+		  		var file_iframe_value = '<iframe src="'+data.data.file_path+'" frameborder="0" width="100%" height="800"></iframe>';
 		  		// var file_path_value = '<iframe src="https://apps.groupdocs.com/document-viewer/Embed/'+data.data.file_path+'?quality=50&use_pdf=False&download=False&print=False&signature=5Xpc7qsFKjmJoHfRcXxUus8Tqn0" frameborder="0" width="100%" height="800"></iframe>';
 		  	}
 
