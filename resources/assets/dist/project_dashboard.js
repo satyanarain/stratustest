@@ -892,7 +892,7 @@ $(document).ready(function() {
 			    var rfi_complete = 0;
 				var rfi_past_due = 0;
 				var rfi_upcoming = 0;
-
+                                var counter = 1;
 				jQuery.each( data.data, function( i, val ) {
 			    	// console.log(val);
 					var status = val.rir_review_status;
@@ -978,7 +978,8 @@ $(document).ready(function() {
 				  }
 
 				  $("#rfi_data_log tbody").append(
-				  	'<tr><td>'+val.ri_id+'</td>'+
+				  	//'<tr><td>'+val.ri_id+'</td>'+
+                                        '<tr><td>'+counter+'</td>'+
 				  	'<td><a href="'+baseUrl+'dashboard/'+val.ri_project_id+'/req_for_info/'+val.ri_id+'">'+val.ri_question_request+'</a></td>'+
 				  	'<td>'+val.rfi_user_company+'</td>'+
 				  	'<td>'+val.review_user_company+'</td>'+
@@ -987,6 +988,7 @@ $(document).ready(function() {
 				  	'<td>'+status+'</td>'+
 	                '</tr>'
 				  );
+                          counter++;
 				});
 			    $("#rfi_data_log thead").show();
 			    $(".loading_rfi_detail").remove();
