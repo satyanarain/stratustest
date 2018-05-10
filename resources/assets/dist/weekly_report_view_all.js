@@ -86,11 +86,11 @@
 				// Check Update Permission
 				var check_permission = jQuery.inArray("weekly_report_update", check_user_access );
 				console.log(check_permission);
-				if(check_permission < 1){
+				if(check_permission <1){
 					var update_permission = '';
 				}
 				else {
-					if (val.days_count == 7 ) {
+					if (val.report_type != 'working_day' ) {
 						var update_permission = '<a href="'+baseUrl+'dashboard/'+val.pwr_project_id+'/weekly_statement/'+val.pwr_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
 					} else {
 						var update_permission = '<a href="'+baseUrl+'dashboard/'+val.pwr_project_id+'/weekly_statement_week/'+val.pwr_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
@@ -101,7 +101,7 @@
 				var status = val.pwr_report_status;
 				if(status == 'complete'){
 		    	status = '<span class="label label-success">COMPLETE</span>';
-		    		if (val.days_count == 7 ) {
+		    			if (val.report_type != 'working_day' ) {
 							var action = '<a href="'+baseUrl+'dashboard/'+val.pwr_project_id+'/weekly_statement/'+val.pwr_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>'+
 		    	update_permission;
 					} else {
