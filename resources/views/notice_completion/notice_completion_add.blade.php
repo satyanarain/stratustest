@@ -392,15 +392,7 @@
     </label>
                               </div>
                             </div>
-                            <div class="form-group col-md-6" style="margin-top: 33px;">
-                                <label>Date Filed on <span class="text-danger">*</span></label>
-                                <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
-                                        <input type="text" readonly="" value="" size="16" class="form-control"  id="date_noc_filed">
-                                          <span class="input-group-btn add-on">
-                                            <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
-                                          </span>
-                                    </div>
-                            </div>
+                            
                             <div class="form-group col-md-6">
 <!--                                <label for="project_type">Improvement Type <span class="text-danger">*</span></label>-->
                                 <div class="loading_data" style="text-align: center;">
@@ -415,6 +407,25 @@
                                 </select>
                             </div>
                             <div class="clearfix"></div>
+                            <div class="form-group col-md-6" style="margin-top: 33px;">
+                                <label>Date Project Complete/Substantially Complete<span class="text-danger">*</span></label>
+                                <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
+                                        <input type="text" readonly="" value="" size="16" class="form-control"  id="project_completion_date">
+                                          <span class="input-group-btn add-on">
+                                            <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                                          </span>
+                                    </div>
+                            </div>
+                            
+                            <div class="form-group col-md-6" style="margin-top: 33px;">
+                                <label>Date Filed on <span class="text-danger">*</span></label>
+                                <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
+                                        <input type="text" readonly="" value="" size="16" class="form-control"  id="date_noc_filed">
+                                          <span class="input-group-btn add-on">
+                                            <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                                          </span>
+                                    </div>
+                            </div>
             <input type="hidden" name="signatory_counter" id="signatory_counter" value="2">
             <div class="form-group col-md-12"><span class="label label-inverse"><b>Please fill out the fields below for Docusign integration.</b></span></div>
             <div class="clearfix"></div>  
@@ -432,7 +443,7 @@
                             <a class="btn btn-success add_signatory" counter="1">+</a>&nbsp;
                     </div>
                 </div>
-                <div class="sign2">
+<!--                <div class="sign2">
                     <div class="form-group col-md-6">
                         <label for="">Contractor: Contact Name</label>
                         <input class="form-control" name="signatory_name[]" type="text" id="">
@@ -444,7 +455,7 @@
                     <div class="form-group col-md-2" style="padding-top: 25px; display: none;">
                             <a class="btn btn-success add_signatory" counter="1">+</a>&nbsp;
                     </div>
-                </div>
+                </div>-->
             </div>
             <div class="clearfix"></div>  
                             <div class="form-group col-md-12 nopadleft">

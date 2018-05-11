@@ -105,7 +105,9 @@ $(document).ready(function() {
             }
             $('#status').val(status);
             if(data.data.date_noc_filed!='' && data.data.date_noc_filed!='0000-00-00')
-            $('#date_noc_filed').val(data.data.date_noc_filed);
+                $('#date_noc_filed').val(data.data.date_noc_filed);
+            if(data.data.project_completion_date!='' && data.data.project_completion_date!='0000-00-00')
+                $('#project_completion_date').val(data.data.project_completion_date);
             //alert(data.data.improvement_type);
             $("select#project_type_dropdown").val(data.data.improvement_type);
             
@@ -143,6 +145,7 @@ $('#update_notice_completion_form').click(function(e) {
     var token = localStorage.getItem('u_token');
     var improvement_type    = $("#project_type_dropdown").val();
     var date_noc_filed      = $("#date_noc_filed").val();
+    var project_completion_date = $("#project_completion_date").val();
     jQuery.ajax({
         url: baseUrl + "notice-completion/"+noc_id+"/update",
         type: "POST",
@@ -150,6 +153,7 @@ $('#update_notice_completion_form').click(function(e) {
             "status"            : status,
             "project_id"        : project_id,
             "date_noc_filed" : date_noc_filed,
+            "project_completion_date" : project_completion_date,
             "improvement_type" : improvement_type
         },
         headers: {

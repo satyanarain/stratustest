@@ -110,6 +110,10 @@ class NoticeCompletionController extends Controller {
         $noc_project_id         = $request['noc_project_id'];
         $noc_file_path          = $request['noc_file_path'];
         $date_noc_filed         = $request['date_noc_filed'];
+        $project_completion_date = $request['project_completion_date'];
+        $project_completion_date1 = date('d', strtotime($request['project_completion_date']));
+        $project_completion_day = date('F', strtotime($request['project_completion_date']));
+        $project_completion_year = date('y', strtotime($request['project_completion_date']));
         $improvement_type       = $request['improvement_type'];
         $noc_user_id            = Auth::user()->id;
         $noc_status             = 'active';
@@ -118,6 +122,10 @@ class NoticeCompletionController extends Controller {
         $docusign_status = 'pending';
       // Check User Permission Parameter 
        //echo $improvement_type;die;
+        if(Auth::user()->role=="owner")
+            $owner_id = Auth::user()->id;
+        else
+            $owner_id = Auth::user()->user_parent;
       $user_id = Auth::user()->id;
       $permission_key = 'notice_completion_add';
       $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($noc_project_id, $user_id, $permission_key);
@@ -129,6 +137,24 @@ class NoticeCompletionController extends Controller {
           
         if(count($signatory_arr))
             {
+                $owner = DB::table('company_type')
+                ->leftJoin('project_firm', 'project_firm.f_type', '=', 'company_type.ct_id')
+                ->select('project_firm.*')
+                ->where('company_type.ct_user_id', '=', $owner_id)
+                ->where('company_type.ct_name', '=', 'Owner')
+                ->first();
+                $contractor = DB::table('project_notice_award')
+                    ->leftJoin('project_firm', 'project_notice_award.pna_contactor_name', '=', 'project_firm.f_id')
+                    ->select('project_firm.f_name as agency_name')
+                    ->where('project_notice_award.pna_project_id', '=', $noc_project_id)
+                    ->groupBy('project_notice_award.pna_id')
+                    ->orderBy('project_notice_award.pna_id','ASC')
+                    ->first();
+                $project = DB::table('projects')
+                    ->select('projects.*')
+                    ->where('p_id', '=', $noc_project_id)
+                    ->first();
+                //print_r($query);die;
                 $data = array();
                 foreach($signatory_arr as $i=>$row){
                     if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
@@ -136,6 +162,47 @@ class NoticeCompletionController extends Controller {
                         $data[$i]["email"] = $row['signatory_email'];
                         $data[$i]["name"] = $row['signatory_name'];
                         $data[$i]["roleName"] = $row['signatory_role'];
+                        $data[$i]["tabs"]["textTabs"] =
+                                                array(  array(
+                                                        "tabLabel" => "project_completion_date",
+                                                        "value" => $project_completion_date1),
+                                                        array (
+                                                        "tabLabel" => "project_completion_day",
+                                                        "value" => $project_completion_day),
+                                                        array (
+                                                        "tabLabel" => "project_completion_year",
+                                                        "value" => $project_completion_year),
+                                                        array(
+                                                        "tabLabel" => "owner_name",
+                                                        "value" => $owner->f_name),
+                                                        array (
+                                                        "tabLabel" => "owner_name1",
+                                                        "value" => $owner->f_name),
+                                                        array (
+                                                        "tabLabel" => "owner_address",
+                                                        "value" => $owner->f_address),
+                                                        array (
+                                                        "tabLabel" => "contractor1",
+                                                        "value" => $contractor->agency_name),
+                                                        array (
+                                                        "tabLabel" => "contractor2",
+                                                        "value" => $contractor->agency_name),
+                                                        array (
+                                                        "tabLabel" => "contractor3",
+                                                        "value" => $contractor->agency_name),
+                                                        array (
+                                                        "tabLabel" => "contractor4",
+                                                        "value" => $contractor->agency_name),
+                                                        array (
+                                                        "tabLabel" => "improvement_types",
+                                                        "value" => $improvement_type),
+                                                        array (
+                                                        "tabLabel" => "project_name",
+                                                        "value" => $project->p_name),
+                                                        array (
+                                                        "tabLabel" => "project_address",
+                                                        "value" => $project->p_location),
+                                                        );
                     }else{
                         $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
                                             "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
@@ -225,7 +292,7 @@ class NoticeCompletionController extends Controller {
         else
         {
              $query = DB::table('project_notice_of_completion')
-            ->insert(['docusign_status'=>$docusign_status,'envelope_id'=>$envelope_id,'date_noc_filed'=>$date_noc_filed,'improvement_type'=>$improvement_type,'noc_rec_text' => $noc_rec_text, 'noc_rec_name' => $noc_rec_name, 'noc_rec_street' => $noc_rec_street, 'noc_rec_adress' => $noc_rec_adress, 'noc_notice_text_1' => $noc_notice_text_1, 'noc_notice_text_2' => $noc_notice_text_2, 'noc_notice_text_3' => $noc_notice_text_3, 'noc_notice_text_4' => $noc_notice_text_4, 'noc_notice_text_5' => $noc_notice_text_5, 'noc_notice_text_6' => $noc_notice_text_6, 'noc_notice_text_7' => $noc_notice_text_7, 'noc_notice_text_8' => $noc_notice_text_8, 'noc_notice_text_9' => $noc_notice_text_9, 'noc_notice_text_10' => $noc_notice_text_10, 'noc_notice_text_11' => $noc_notice_text_11, 'noc_notice_text_12' => $noc_notice_text_12, 'noc_notice_text_13' => $noc_notice_text_13, 'noc_notice_text_14' => $noc_notice_text_14, 'noc_notice_text_15' => $noc_notice_text_15, 'noc_notice_text_16' => $noc_notice_text_16, 'noc_notice_text_17' => $noc_notice_text_17, 'noc_notice_text_18' => $noc_notice_text_18, 'noc_notice_text_19' => $noc_notice_text_19, 'noc_notice_text_20' => $noc_notice_text_20, 'noc_notice_text_21' => $noc_notice_text_21, 'noc_notice_text_22' => $noc_notice_text_22, 'noc_ver_text_1' => $noc_ver_text_1, 'noc_ver_text_2' => $noc_ver_text_2, 'noc_ver_text_3' => $noc_ver_text_3, 'noc_ver_text_4' => $noc_ver_text_4, 'noc_ver_text_5' => $noc_ver_text_5, 'noc_ver_text_6' => $noc_ver_text_6, 'noc_ver_text_7' => $noc_ver_text_7, 'noc_ser_text_1' => $noc_ser_text_1, 'noc_ser_text_2' => $noc_ser_text_2, 'noc_ser_text_3' => $noc_ser_text_3, 'noc_ser_text_4' => $noc_ser_text_4, 'noc_ser_text_5' => $noc_ser_text_5, 'noc_ser_text_6' => $noc_ser_text_6, 'noc_ser_text_7' => $noc_ser_text_7, 'noc_ser_text_8' => $noc_ser_text_8, 'noc_ser_text_9' => $noc_ser_text_9, 'noc_ser_text_10' => $noc_ser_text_10, 'noc_ser_text_11' => $noc_ser_text_11, 'noc_ser_text_12' => $noc_ser_text_12, 'noc_ser_text_13' => $noc_ser_text_13, 'noc_ser_text_14' => $noc_ser_text_14, 'noc_ser_text_15' => $noc_ser_text_15, 'noc_ser_text_16' => $noc_ser_text_16, 'noc_ser_text_17' => $noc_ser_text_17, 'noc_con_text_1' => $noc_con_text_1, 'noc_con_text_2' => $noc_con_text_2, 'noc_con_text_3' => $noc_con_text_3, 'noc_con_text_4' => $noc_con_text_4, 'noc_con_text_5' => $noc_con_text_5, 'noc_con_text_6' => $noc_con_text_6, 'noc_all_potential_claimants' => $noc_all_potential_claimants, 'noc_project_id' => $noc_project_id, 'noc_file_path' => $noc_file_path, 'noc_user_id' => $noc_user_id, 'noc_status' => $noc_status]);
+            ->insert(['docusign_status'=>$docusign_status,'envelope_id'=>$envelope_id,'project_completion_date'=>$project_completion_date,'date_noc_filed'=>$date_noc_filed,'improvement_type'=>$improvement_type,'noc_rec_text' => $noc_rec_text, 'noc_rec_name' => $noc_rec_name, 'noc_rec_street' => $noc_rec_street, 'noc_rec_adress' => $noc_rec_adress, 'noc_notice_text_1' => $noc_notice_text_1, 'noc_notice_text_2' => $noc_notice_text_2, 'noc_notice_text_3' => $noc_notice_text_3, 'noc_notice_text_4' => $noc_notice_text_4, 'noc_notice_text_5' => $noc_notice_text_5, 'noc_notice_text_6' => $noc_notice_text_6, 'noc_notice_text_7' => $noc_notice_text_7, 'noc_notice_text_8' => $noc_notice_text_8, 'noc_notice_text_9' => $noc_notice_text_9, 'noc_notice_text_10' => $noc_notice_text_10, 'noc_notice_text_11' => $noc_notice_text_11, 'noc_notice_text_12' => $noc_notice_text_12, 'noc_notice_text_13' => $noc_notice_text_13, 'noc_notice_text_14' => $noc_notice_text_14, 'noc_notice_text_15' => $noc_notice_text_15, 'noc_notice_text_16' => $noc_notice_text_16, 'noc_notice_text_17' => $noc_notice_text_17, 'noc_notice_text_18' => $noc_notice_text_18, 'noc_notice_text_19' => $noc_notice_text_19, 'noc_notice_text_20' => $noc_notice_text_20, 'noc_notice_text_21' => $noc_notice_text_21, 'noc_notice_text_22' => $noc_notice_text_22, 'noc_ver_text_1' => $noc_ver_text_1, 'noc_ver_text_2' => $noc_ver_text_2, 'noc_ver_text_3' => $noc_ver_text_3, 'noc_ver_text_4' => $noc_ver_text_4, 'noc_ver_text_5' => $noc_ver_text_5, 'noc_ver_text_6' => $noc_ver_text_6, 'noc_ver_text_7' => $noc_ver_text_7, 'noc_ser_text_1' => $noc_ser_text_1, 'noc_ser_text_2' => $noc_ser_text_2, 'noc_ser_text_3' => $noc_ser_text_3, 'noc_ser_text_4' => $noc_ser_text_4, 'noc_ser_text_5' => $noc_ser_text_5, 'noc_ser_text_6' => $noc_ser_text_6, 'noc_ser_text_7' => $noc_ser_text_7, 'noc_ser_text_8' => $noc_ser_text_8, 'noc_ser_text_9' => $noc_ser_text_9, 'noc_ser_text_10' => $noc_ser_text_10, 'noc_ser_text_11' => $noc_ser_text_11, 'noc_ser_text_12' => $noc_ser_text_12, 'noc_ser_text_13' => $noc_ser_text_13, 'noc_ser_text_14' => $noc_ser_text_14, 'noc_ser_text_15' => $noc_ser_text_15, 'noc_ser_text_16' => $noc_ser_text_16, 'noc_ser_text_17' => $noc_ser_text_17, 'noc_con_text_1' => $noc_con_text_1, 'noc_con_text_2' => $noc_con_text_2, 'noc_con_text_3' => $noc_con_text_3, 'noc_con_text_4' => $noc_con_text_4, 'noc_con_text_5' => $noc_con_text_5, 'noc_con_text_6' => $noc_con_text_6, 'noc_all_potential_claimants' => $noc_all_potential_claimants, 'noc_project_id' => $noc_project_id, 'noc_file_path' => $noc_file_path, 'noc_user_id' => $noc_user_id, 'noc_status' => $noc_status]);
 
             if(count($query) < 1)
             {
@@ -361,6 +428,7 @@ class NoticeCompletionController extends Controller {
         $user_id      = Auth::user()->id;
         $status       = $request['status'];
         $date_noc_filed  = $request['date_noc_filed'];
+        $project_completion_date  = $request['project_completion_date'];
         $improvement_type = $request['improvement_type'];
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
@@ -389,7 +457,7 @@ class NoticeCompletionController extends Controller {
         else {
           $query = DB::table('project_notice_of_completion')
           ->where('noc_id', '=', $noc_id)
-          ->update(['date_noc_filed'=>$date_noc_filed,'improvement_type'=>$improvement_type,'noc_project_id' => $project_id, 'noc_user_id' => $user_id, 'noc_status' => $status]);
+          ->update(['project_completion_date'=>$project_completion_date,'date_noc_filed'=>$date_noc_filed,'improvement_type'=>$improvement_type,'noc_project_id' => $project_id, 'noc_user_id' => $user_id, 'noc_status' => $status]);
           if(count($query) < 1)
           {
             $result = array('code'=>400, "description"=>"No records found");

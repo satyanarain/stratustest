@@ -911,7 +911,7 @@ class UserController extends Controller {
                 $query_contact = DB::table('project_type_improvement')
                 ->insert(['pt_name' => $single_improvement_type, 'pt_user_id' => $lastInsert_id, 'pt_status' => 'active']);
               }
-              $default_company_type = array("Engineering", "Surveying", "Materials Testing", "Architect", "Supplier", "General Contractor", "Inspection", "Subcontractor", "Construction Management", "Public Agency", "Geotechnical", "SWPPP");
+              $default_company_type = array("Engineering", "Surveying", "Materials Testing", "Architect", "Supplier", "General Contractor", "Inspection", "Subcontractor", "Construction Management", "Public Agency", "Geotechnical", "SWPPP","Owner");
 
               foreach ($default_company_type as $single_company_type) {
                   // echo $single_improvement_type;

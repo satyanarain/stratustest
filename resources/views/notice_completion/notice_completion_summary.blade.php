@@ -36,6 +36,7 @@
                                               <th>No #</th>
                                               <th>Improvement Type</th>
                                               <th>Date Filed on</th>
+                                              <th>Date Project Complete/Substantially Complete</th>
                                               <th>Notice of Completion</th>
                                               <!-- <th>Document</th> -->
                                               <th>Status</th>

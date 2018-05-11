@@ -119,11 +119,18 @@
                                 var date_noc_filed = val.date_noc_filed;
                             else
                                 var date_noc_filed = '';
+                            
+                            if(val.project_completion_date!='' && val.project_completion_date!='0000-00-00')    
+                                var project_completion_date = val.project_completion_date;
+                            else
+                                var project_completion_date = '';
+                            
 			  var t = $('#view_users_table').DataTable();
 				t.row.add( [
 		           count, // val.noc_id,
                            val.improvement_type,
                            date_noc_filed,
+                           project_completion_date,
 		           noc_path_value,
                    status,
 		           update_permission
