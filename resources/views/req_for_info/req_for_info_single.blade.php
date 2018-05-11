@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="col-sm-12">
-                        <h2>Submittal Review</h2>
+                        <h2>RFI Review</h2>
                     </div>
 
         
@@ -78,7 +78,7 @@
                                         <td width="25%" id="review_responded_date"></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="2">Additional Info?</th>
+                                        <th colspan="2">Additional Information Provided?</th>
                                         <td colspan="2" id="review_additional_info"></td>
                                     </tr>
                                     <tr>

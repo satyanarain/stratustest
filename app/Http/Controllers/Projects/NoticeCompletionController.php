@@ -148,7 +148,7 @@ class NoticeCompletionController extends Controller {
                     $email = env('DOCUSIGN_EMAIL');
                     $password = env('DOCUSIGN_PASSWORD');
                     $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
-                    $templateId = "e7fd71fb-0122-436d-9928-e9a4f5404ffb";
+                    $templateId = "71e1cee8-ceb9-4d26-96a9-c27a27d14b77";
                     $url = env('DOCUSIGN_URL');
                     $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
                     $curl = curl_init($url);
