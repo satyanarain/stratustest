@@ -234,6 +234,8 @@ $(document).ready(function() {
         jQuery.each( data.data, function( i, val ) {
             // console.log(val);
              var sign_date = new Date(val.update_time);
+                sign_date.setHours(sign_date.getHours() + 5);
+                sign_date.setMinutes(sign_date.getMinutes() + 30);
 
             document.getElementById('sign_date').innerHTML = formatDate(sign_date);
 
