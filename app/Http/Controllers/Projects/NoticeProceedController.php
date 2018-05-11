@@ -111,7 +111,7 @@ class NoticeProceedController extends Controller {
                                                         "tabLabel" => "pdf_gen_project_type",
                                                         "value" => $row['pdf_gen_project_type']),
                                                         array (
-                                                        "tabLabel" => "pdf_gen_contractor_name1",
+                                                        "tabLabel" => "pdf_gen_contractor_name_1",
                                                         "value" => $row['pdf_gen_contractor_name_1']),
                                                         array (
                                                         "tabLabel" => "pdf_gen_start_date",
