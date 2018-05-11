@@ -337,8 +337,8 @@ function getFormattedPartTime(partTime){
         var cor_description = $('#change_order_desc').val();
         //alert(cor_description);return false;
         var change_order_day = $('#change_order_day').val();
-        var cm_rejection_comment = $("#cm_rejection_comment").val();
-        var owner_rejection_comment = $("#owner_rejection_comment").val();
+        var cm_rejection_comment = $("#cm_rejection_comment1").val();
+        var owner_rejection_comment = $("#owner_rejection_comment1").val();
         //alert(cor_day);return false;
         console.log(item_id);
         console.log(approved_by_cm);

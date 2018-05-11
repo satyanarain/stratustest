@@ -156,7 +156,7 @@
                     <label>Reason</label>
                     <div class="input-group m-b-10">
                         <span class="input-group-addon project_currency"></span>
-                        <input class="form-control" type="text" id="cm_rejection_comment">
+                        <input class="form-control" type="text" id="cm_rejection_comment1">
                     </div>
                 </div>
                 <!-- </label> -->
@@ -174,7 +174,7 @@
                     <label>Reason</label>
                     <div class="input-group m-b-10">
                         <span class="input-group-addon project_currency"></span>
-                        <input class="form-control" type="text" id="owner_rejection_comment">
+                        <input class="form-control" type="text" id="owner_rejection_comment1">
                     </div>
                 </div>
                 <!-- </label> -->
