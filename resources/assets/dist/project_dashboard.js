@@ -1364,7 +1364,7 @@ $(document).ready(function() {
                                     var t = $('#potential_change_order').DataTable();
 
                                     t.row.add([
-                                           counts, // val.pcd_parent_cor,
+                                           //counts, // val.pcd_parent_cor,
                                            val.pco_number,
                                            val.agency_name,
                                            val.pco_date,
@@ -1383,7 +1383,7 @@ $(document).ready(function() {
 			        	console.log("request 1 ");
 			            var t = $('#request_change_order').DataTable();
 			            t.row.add([
-			               count, // val.pcd_parent_cor,
+			               //count, // val.pcd_parent_cor,
                                        val.pco_number,
 			               val.agency_name,
 			               val.pco_date,
@@ -1499,7 +1499,7 @@ $(document).ready(function() {
 			                var t = $('#request_change_order').DataTable();
                                         
                                         t.row.add([
-			                   count, // val.pcd_parent_cor,
+			                   //count, // val.pcd_parent_cor,
                                            val.pco_number,
 			                   val.agency_name,
 			                   val.pco_date,

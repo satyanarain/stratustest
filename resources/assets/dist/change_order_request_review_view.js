@@ -74,15 +74,16 @@ $(document).ready(function() {
         //
         if(data.data.pcd_price)
         {
-            $("#total_requested_cost").html('Enter Price');
-            $("#cor_amount").html(cor_amount);
+            $("#total_requested_cost").html('Lump Sum Cost');
+            $("#cor_amount").html();
             $('#cor_unit_number').text(data.data.pcd_unit_number)
             $('#cor_unit_price').text(data.data.pcd_unit_price)
         }else{
-            $("#total_requested_cost").html('Enter Unit');
+            $("#total_requested_cost").html('Per Unit Cost');
             $("#cor_unit_number").html(data.data.pcd_unit_number);
             $("#cor_unit_price").html(data.data.pcd_unit_price);
-            $('#cor_amount').text(data.data.pcd_price)
+            var cor_amount = parseInt(data.data.pcd_unit_number)*parseInt(data.data.pcd_unit_price);
+            $('#cor_amount').text(cor_amount)
         }
         //$('#cor_unit_number').text(data.data.pcd_unit_number)
         //$('#cor_unit_price').text(data.data.pcd_unit_price)

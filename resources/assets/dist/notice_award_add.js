@@ -372,6 +372,7 @@ $(document).ready(function() {
     });
 
     $('#cmd').click(function (e) {
+        var is_error = false;
         e.preventDefault();
         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
         if($('#company_name').val()=="")

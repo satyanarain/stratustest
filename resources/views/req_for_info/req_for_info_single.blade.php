@@ -78,15 +78,15 @@
                                         <td width="25%" id="review_responded_date"></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="2">Additional Information Provided?</th>
+                                        <th colspan="2">Additional Information Provided</th>
                                         <td colspan="2" id="review_additional_info"></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="2">additional costs?</th>
+                                        <th colspan="2">Additional costs</th>
                                         <td colspan="2" id="review_additional_cost"></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="2">additional days?</th>
+                                        <th colspan="2">Additional days</th>
                                         <td colspan="2" id="review_additional_days"></td>
                                     </tr>
                                     <tr>

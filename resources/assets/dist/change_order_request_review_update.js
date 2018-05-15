@@ -159,9 +159,9 @@ $(document).ready(function() {
             $("#denied_cm").attr('disabled', true);
         }
         
-        if(data.data.pcd_rfi == '[]'){
-            $('.rfi_available').hide();
-        }
+//        if(data.data.pcd_rfi == '[]'){
+//            $('.rfi_available').hide();
+//        }
         $('.total_requested_cost').click(function(){
             var sel_val = $(this).val();
             if(sel_val == "unit")
@@ -180,25 +180,53 @@ $(document).ready(function() {
                 $('#cor_unit_price').text($('#pcd_unit_price').val()) 
             }
         })
+        var pcd_id = data.data.pcd_id;
+
         jQuery.ajax({
-            url: baseUrl+data.data.pcd_id+"/get_item_rfi",
-                type: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  "x-access-token": token
-                },
-                contentType: "application/json",
-                cache: false
-            })
-            .done(function(data, textStatus, jqXHR) {
-                window.rfi_final = '';
-                jQuery.each(data.data, function( i, val ) {
-                    rfi_final += "RFI "+val.ri_id+" : "+ val.ri_question_request+"<br/>";
-                });
-                $('#cor_rfi_detail').html(rfi_final)
-            })
-
-
+        url: baseUrl +project_id+"/request-information",
+            type: "GET",
+            headers: {
+              "x-access-token": token
+            },
+            contentType: "application/json",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+            //console.log(data.data);
+            jQuery.each(data.data, function( i, val ) {
+                if(val.ri_request_status == 'active'){
+                    $('#cor_rfi_detail').append(
+                            '<input type="checkbox" class="rfi_'+val.ri_id+'" value="'+val.ri_id+'" name="rfi_detail[]">'+
+                            '<label>RFI # '+val.ri_id+' : '+val.ri_question_request+'</label><br/>'
+                    )
+                }
+            });
+            if(parseInt(pcd_id))
+            {
+                jQuery.ajax({
+                url: baseUrl+pcd_id+"/get_item_rfi",
+                    type: "GET",
+                    headers: {
+                      "Content-Type": "application/json",
+                      "x-access-token": token
+                    },
+                    contentType: "application/json",
+                    cache: false
+                })
+                .done(function(data, textStatus, jqXHR) {
+                    window.rfi_final = '';
+                    jQuery.each(data.data, function( i, val ) {
+                        $(".rfi_"+val.ri_id).attr("checked", "checked");
+                    });
+                })
+            }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log("HTTP Request Failed");
+            var response = jqXHR.responseJSON.code;
+            console.log(response);
+        });
+        
         $("#request_change_order").show();
         $(".loading_data").hide();
     })
@@ -343,7 +371,18 @@ function getFormattedPartTime(partTime){
         console.log(item_id);
         console.log(approved_by_cm);
         console.log(approved_by_owner);
-
+        
+    
+        var rfi_details = [];
+        var rfi_detail = [];
+        $('input[name^=rfi_detail]').each(function(){
+            if($(this).context.checked == true) {
+                rfi_detail.push($(this).val());
+            }
+        });
+        rfi_details.push({
+            "rfi_detail_item"     :  JSON.stringify(rfi_detail)
+        });
         jQuery.ajax({
             url: baseUrl + "change_order_request_item/"+item_id+"/update",
             type: "POST",
@@ -363,7 +402,7 @@ function getFormattedPartTime(partTime){
                 "owner_rejection_comment":owner_rejection_comment,
                 "cm_rejection_comment"  : cm_rejection_comment,
                 "pcd_status"            : pcd_status,
-                
+                "order_rfi"             : rfi_details[0]['rfi_detail_item'],
             },
             headers: {
               "x-access-token": token

@@ -120,7 +120,9 @@
                                                                 </tr>
                                                                 <tr class="rfi_available">
                                                                     <th>RFI Detail:</th>
-                                                                    <td id="cor_rfi_detail"></td>
+                                                                    <td id="cor_rfi_detail">
+                                                                        
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>

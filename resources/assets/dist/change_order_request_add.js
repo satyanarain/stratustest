@@ -416,6 +416,16 @@ $(document).ready(function() {
             html += '<li> Item description field is invalid </li>';
         }
         
+        if($('input[name^=cm_email]').val() == '')
+        {
+            html += '<li> Construction Manager Email is invalid </li>';
+            is_error = true;
+        }
+        if($('input[name^=owner_email]').val() == '')
+        {
+            html += '<li> Owner Email is invalid </li>';
+            is_error = true;
+        }
         
         // var is_error_price = false;
         // $('input[name^=item_price]').each(function(){
@@ -652,7 +662,9 @@ $(document).ready(function() {
                             "order_rfi"             : val.order_rfi_details,
                             "order_parent_cor"      : data.change_order_id,
                             "order_project_id"      : val.order_project_id,
-                            //"signatory_arr"         : signatory_arr,
+                            //"signatory_arr"       : signatory_arr,
+                            "cm_email"              : $('input[name^=cm_email]').val(),
+                            "owner_email"           : $('input[name^=owner_email]').val(),
                         },
                         headers: {
                           "x-access-token": token

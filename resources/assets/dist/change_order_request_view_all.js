@@ -247,7 +247,7 @@ $(document).ready(function() {
                 var t = $('#potential_change_order').DataTable();
                 
                 t.row.add([
-                       counts, // val.pcd_parent_cor,
+                       //counts, // val.pcd_parent_cor,
                        val.pco_number,
                        val.agency_name,
                        val.pco_date,
@@ -269,7 +269,7 @@ $(document).ready(function() {
                     var t = $('#request_change_order').DataTable();
 
                     t.row.add([
-                       count, // val.pcd_parent_cor,
+                       //count, // val.pcd_parent_cor,
                        val.pco_number,
                        val.agency_name,
                        val.pco_date,
@@ -355,7 +355,7 @@ $(document).ready(function() {
                         var price = '';
                     var t = $('#request_change_order').DataTable();
                     t.row.add([
-                       count, // val.pcd_parent_cor,
+                       //count, // val.pcd_parent_cor,
                        val.pco_number,
                        val.agency_name,
                        val.pco_date,
@@ -372,11 +372,11 @@ $(document).ready(function() {
                        status_cm + status_owner+approved_status+potential_status,
                        action_button
                     ]).draw( false );  
-                                                t.on( 'order.dt search.dt', function () {
-                                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-                                    cell.innerHTML = i+1;
-                                } );
-                            } ).draw();
+//                                                t.on( 'order.dt search.dt', function () {
+//                                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+//                                    cell.innerHTML = i+1;
+//                                } );
+//                            } ).draw();
                     count++;
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {

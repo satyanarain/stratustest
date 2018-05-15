@@ -91,7 +91,7 @@
                                                                     <td id="cor_denied_owner_comment"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th>Total Requested Costs</th>
+                                                                    <th>Total Requested Costs Type</th>
                                                                     <td id="total_requested_cost"></td>
                                                                 </tr>
                                                                 <tr>
