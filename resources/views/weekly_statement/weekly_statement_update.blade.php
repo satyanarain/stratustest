@@ -232,7 +232,7 @@
         <p style="text-align: left; margin: 50px 0px 10px 0px;"><strong>Signature:</strong></p>
     </div>-->
     <div class="col-sm-3">
-        <p style="text-align: left; margin: 50px 0px 10px 0px;"><strong>Date:</strong> <span id="sign_date" ></span></p>
+        <p style="text-align: right; margin: 50px 0px 10px 0px;"><strong>Date:</strong> <span id="sign_date" ></span></p>
     </div>
 
     <div class="form-group col-md-12">
