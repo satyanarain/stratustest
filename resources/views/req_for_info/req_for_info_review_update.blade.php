@@ -90,7 +90,7 @@
                     <div class="col-sm-12">
                         <hr/>
                     </div>
-
+        <div class="cm_review_section" style="display: none;">
                     <div class="col-sm-12">
                         <h2>RFI Review</h2>
                     </div>
@@ -142,7 +142,7 @@
                             <option value="additional_information_requested">Additional Information Requested</option>
                         </select>
                     </div>
-
+        </div>
                     <div class="clearfix"></div>
                     <div class="form-group col-md-12">
                         <label>Document</label>

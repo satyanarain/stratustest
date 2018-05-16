@@ -63,13 +63,13 @@
                         <hr/>
                     </div>
 
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 cm_review_section" style="display: none;">
                         <h2>RFI Review</h2>
                     </div>
 
         
                     <div class="col-sm-12">
-                        <table class="table table-striped">
+                        <table class="table table-striped cm_review_section" style="display: none;">
                                 <tbody>
                                     <tr>
                                         <th width="25%">Review Status:</th>

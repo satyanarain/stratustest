@@ -196,6 +196,21 @@
 
 		    $("#update_submittal_review_form").show();
 		    $(".loading_data").hide();
+                    jQuery.ajax({
+                    url: baseUrl +"/check-reviewer-permission/"+project_id+'/'+req_for_info_id+'/rfi'+'/cm',
+                        type: "GET",
+                        headers: {
+                          "x-access-token": token
+                        },
+                        contentType: "application/json",
+                        cache: false
+                    })
+                    .done(function(data, textStatus, jqXHR) {
+                        $(".cm_review_section").show();
+                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+                        $(".cm_review_section").hide();
+                    });
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
 		    console.log("HTTP Request Failed");
