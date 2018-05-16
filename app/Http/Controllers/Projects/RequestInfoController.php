@@ -684,12 +684,40 @@ class RequestInfoController extends Controller {
             ->update(['rir_review_respond' => $review_respond, 'rir_additional_info' => $additional_info, 'rir_additional_cost' => $additional_cost, 'rir_additional_cost_amount' => $additional_cost_amount, 'rir_additional_day' => $additional_day, 'rir_additional_day_add' => $additional_day_add, 'rir_project_id' => $project_id, 'rir_user_id' => $user_id, 'rir_review_status' => $status]);
             if(count($query) < 1)
             {
-              $result = array('code'=>404, "description"=>"No records found");
-              return response()->json($result, 404);
+                $result = array('code'=>404, "description"=>"No records found");
+                return response()->json($result, 404);
             }
             else
             {
-
+                if($status=="additional_information_requested")
+                {
+                    $project = DB::table('project_request_info')
+                    ->select('projects.*','project_request_info.*','users.*')
+                    ->leftJoin('projects', 'project_request_info.ri_project_id', '=', 'projects.p_id')
+                    ->leftJoin('users', 'project_request_info.ri_user_id', '=', 'users.id')
+                    ->where('ri_id', '=', $rir_id)
+                    ->first();
+                    $project_id           = $project_id;
+                    $notification_title   = 'Additional information is requested by the reviewer to review the RFI in Project: ' .$project->p_name;
+                    $url                  = App::make('url')->to('/');
+                    $link                 = "/dashboard/".$project_id."/req_for_info_review/".$project->ri_id."/update";
+                    $date                 = date("M d, Y h:i a");
+                    $email_description    = 'Additional information is requested by the reviewer to review the RFI in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $user_detail = array(
+                        'name'            => $project->username,
+                        'email'           => $project->email,
+                        'link'            => $link,
+                        'date'            => $date,
+                        'project_name'    => $project->p_name,
+                        'title'           => $notification_title,
+                        'description'     => $email_description
+                    );
+                    $user_single = (object) $user_detail;
+                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                        $message->from('no-reply@sw.ai', 'StratusCM');
+                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                    });
+                }
               // Start Check User Permission and send notification and email  
               // Get Project Users
               $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
