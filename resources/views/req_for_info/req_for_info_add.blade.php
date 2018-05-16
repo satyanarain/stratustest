@@ -135,7 +135,19 @@
                 </div><!-- upload_doc_panel_payment close -->
             </div><!-- contract_exist close -->
         </div>
-
+<div class="form-group col-md-12 nopadleft"><span class="label label-inverse"><b>Please fill out the reviewer details.</b></span></div>
+<div class="clearfix"></div>  
+<div class="form-group col-md-12 nopadleft">
+    <div>
+        <div>
+            <div class="form-group col-md-6">
+                <label for="">Reviewer Email <span class="text-danger">*</span></label>
+                <input class="form-control cm_email" name="cm_email" type="email">
+            </div>
+            
+        </div>
+    </div>
+</div>
         <div class="form-group col-md-12">
 <!--            <a data-href="{{ url('/dashboard/'.$project_id.'/req_for_info') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
             <a href="{{ url('/dashboard/'.$project_id.'/req_for_info_log') }}" class="btn btn-info sub-btn btn_back" onclick="return checkFormFilled('btn_back')">Back</a>

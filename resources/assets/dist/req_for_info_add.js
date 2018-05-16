@@ -230,7 +230,11 @@ $(document).ready(function() {
                 is_error = true;
             }
         }
-
+        if($('input[name^=cm_email]').val() == '')
+        {
+            html += '<li> Reviewer Email is invalid </li>';
+            is_error = true;
+        }
         html += '</ul></div>';
         if(is_error == true){
             $('html, body').animate({
@@ -261,6 +265,7 @@ $(document).ready(function() {
                 "file_path"                 : file_path,
                 "project_id"                : project_id,
                 "agency_id"                 : agency_id,
+                "cm_email"              : $('input[name^=cm_email]').val(),
             },
             headers: {
               "x-access-token": token
@@ -276,6 +281,7 @@ $(document).ready(function() {
             html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New request for information added successfully!</div></div>';
             $("#alert_message").html(html);
             $("#alert_message").fadeOut(3000);
+            $('input[name="cm_email"]').removeAttr('value');
             $('#question_request').removeAttr('value');
             $('#question_proposed').removeAttr('value');
             $('#additional_cost_amount').removeAttr('value');
