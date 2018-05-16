@@ -208,8 +208,41 @@ $(document).ready(function() {
             }else{
                 var approved_status = '';
             }
-            var cm_rejection_comment = val.cm_rejection_comment;
-            var owner_rejection_comment= val.owner_rejection_comment;
+//            var cm_rejection_comment = val.cm_rejection_comment;
+//            var owner_rejection_comment = val.owner_rejection_comment;
+//            
+//            jQuery.ajax({
+//                url: baseUrl +"/check-reviewer-permission/"+val.pcd_project_id+'/'+val.pcd_id+'/change_order'+'/cm',
+//                type: "GET",
+//                headers: {
+//                  "x-access-token": token
+//                },
+//                contentType: "application/json",
+//                cache: false
+//            })
+//            .done(function(data, textStatus, jqXHR) {
+//                
+//            })
+//            .fail(function(jqXHR, textStatus, errorThrown) {
+//                var cm_rejection_comment = '';
+//            });
+        
+//            jQuery.ajax({
+//            url: baseUrl +"/check-reviewer-permission/"+val.pcd_project_id+'/'+val.pcd_id+'/change_order'+'/owner',
+//                type: "GET",
+//                headers: {
+//                  "x-access-token": token
+//                },
+//                contentType: "application/json",
+//                cache: false
+//            })
+//            .done(function(data, textStatus, jqXHR) {
+//                
+//            })
+//            .fail(function(jqXHR, textStatus, errorThrown) {
+//                var owner_rejection_comment = '';
+//            });
+        
             if(parseInt(val.is_potential)==1)
             {
                 var oneDay = 24*60*60*1000;
@@ -278,9 +311,9 @@ $(document).ready(function() {
                        pcd_approved_by_cm,
                        pcd_approved_by_owner,
                        pcd_denied_by_cm,
-                       cm_rejection_comment,
+                       //cm_rejection_comment,
                        pcd_denied_by_owner,
-                       owner_rejection_comment,
+                       //owner_rejection_comment,
                        val.currency_symbol +' '+  ReplaceNumberWithCommas(disp_price),
                        val.pcd_days,
                        status_cm + status_owner+approved_status,
@@ -364,9 +397,9 @@ $(document).ready(function() {
                        pcd_approved_by_cm,
                        pcd_approved_by_owner,
                         pcd_denied_by_cm,
-                        cm_rejection_comment,
+                        //cm_rejection_comment,
                         pcd_denied_by_owner,
-                        owner_rejection_comment,
+                        //owner_rejection_comment,
                        price,
                        val.pcd_days,
                        status_cm + status_owner+approved_status+potential_status,

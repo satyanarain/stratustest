@@ -41,8 +41,8 @@ $(document).ready(function() {
 
         $('#cor_number').text(data.data.pco_number)
         $('#cor_generated_by').text(data.data.agency_name)
-        $('#owner_rejection_comment').val(data.data.owner_rejection_comment);
-        $('#cm_rejection_comment').val(data.data.cm_rejection_comment);
+        $('#owner_rejection_comment,#owner_rejection_comment1').val(data.data.owner_rejection_comment);
+        $('#cm_rejection_comment,#cm_rejection_comment1').val(data.data.cm_rejection_comment);
         $('#cor_date_sent').text(data.data.pco_date)
         $('#cor_description').html('<input class="form-control" type="text" name="change_order_desc" id="change_order_desc" value="'+data.data.pcd_description+'">');
         if(data.data.pcd_denied_by_cm == "0000-00-00" && data.data.pcd_approved_by_cm == "0000-00-00"){
@@ -229,6 +229,39 @@ $(document).ready(function() {
         
         $("#request_change_order").show();
         $(".loading_data").hide();
+        
+        jQuery.ajax({
+        url: baseUrl +"/check-reviewer-permission/"+project_id+'/'+item_id+'/change_order'+'/cm',
+            type: "GET",
+            headers: {
+              "x-access-token": token
+            },
+            contentType: "application/json",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+            $(".cm_review_section").show();
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            $(".cm_review_section").hide();
+        });
+        
+        jQuery.ajax({
+        url: baseUrl +"/check-reviewer-permission/"+project_id+'/'+item_id+'/change_order'+'/owner',
+            type: "GET",
+            headers: {
+              "x-access-token": token
+            },
+            contentType: "application/json",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+            $(".owner_review_section").show();
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            $(".owner_review_section").hide();
+        });
+        
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");

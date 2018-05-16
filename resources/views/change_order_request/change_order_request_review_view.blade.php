@@ -78,7 +78,7 @@
                                                                     <th>Denied by CM</th>
                                                                     <td id="cor_denied_cm"></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="cm_review_section" style="display:none;">
                                                                     <th>CM Rejection Comment</th>
                                                                     <td id="cor_denied_cm_comment"></td>
                                                                 </tr>
@@ -86,7 +86,7 @@
                                                                     <th>Denied by Owner</th>
                                                                     <td id="cor_denied_owner"></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="owner_review_section" style="display:none;">
                                                                     <th>Owner Rejection Comment</th>
                                                                     <td id="cor_denied_owner_comment"></td>
                                                                 </tr>
@@ -141,12 +141,13 @@
                                             </div>
 
                                                         <div class="col-sm-12">
-                                                            <h2>COR Review</h2>
+                                                            
                                                         </div>
 
                                                         <div class="col-md-12 hide_loading">
-        <div class="form-group">
+        <div class="form-group cm_review_section" style="display: none;">
             <div class="col-lg-12">
+                <h2>COR Review by CM</h2>
                 <!-- <label class="checkbox-custom check-success"> -->
                     <input type="radio" name="cm_approval" value="yes" id="approved_cm">
                 <label for="approved_cm">Approved by CM</label>
@@ -157,8 +158,9 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group owner_review_section" style="display: none;">
             <div class="col-lg-12">
+                <h2>COR Review by Owner</h2>
                 <!-- <label class="checkbox-custom check-success"> -->
                 <input type="radio" name="owner_approval" value="yes" id="approved_owner">
                 <label for="approved_owner">Approved by Owner</label>

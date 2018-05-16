@@ -100,11 +100,11 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('users/{userid}', 'Users\UserController@get_profile');
     Route::get('users_profile/{userid}', 'Users\UserController@get_profile');
     Route::post('users/{userid}/update', 'Users\UserController@update_user');
-      Route::post('users/{userid}/updateprofile', 'Users\UserController@update_user_profile');
+    Route::post('users/{userid}/updateprofile', 'Users\UserController@update_user_profile');
     Route::get('users/{userid}/suspend', 'Users\UserController@user_suspend');
     Route::post('users/add', 'Users\UserController@add_user');
     Route::get('users', 'Users\UserController@get_users');
-    
+    Route::get('check-reviewer-permission/{project_id}/{item_id}/{type}/{designation}', 'Projects\ChangeOrderRequestController@check_reviewer_permission');
 });
 
 /*  --------------------------------------------------------------------------

@@ -253,15 +253,64 @@ use ProjectImprovement;
             
             $query = DB::table('project_change_order_request_detail')
             ->insert(['pcd_status'=>"pending",'pcd_denied_by_owner'=>$pcd_denied_by_owner,'pcd_denied_by_cm'=>$pcd_denied_by_cm,'pcd_approved_by_owner'=>$pcd_approved_by_owner,'pcd_approved_by_cm'=>$pcd_approved_by_cm,'docusign_status'=>$docusign_status,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
+            $pcd_id = DB::getPdo()->lastInsertId();
             if(count($query) < 1)
             {
-              $result = array('code'=>400, "description"=>"No records found");
-              return response()->json($result, 400);
+                $result = array('code'=>400, "description"=>"No records found");
+                return response()->json($result, 400);
             }
             else
             {
-              $result = array('pcd_id'=>DB::getPdo()->lastInsertId(),'description'=>"Add change order request successfully",'code'=>200);
-              return response()->json($result, 200);
+                $project = DB::table('projects')
+                ->select('projects.*')
+                ->where('p_id', '=', $order_project_id)
+                ->first();
+                $project_id           = $order_project_id;
+                $notification_title   = 'New change order request item has been added for your review in Project: ' .$project->p_name;
+                $url                  = App::make('url')->to('/');
+                $link                 = "/dashboard/".$order_project_id."/change_order_request_review/".$pcd_id."/update";
+                $date                 = date("M d, Y h:i a");
+                $email_description    = 'A new change order request item has been added for your review in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                if($request['cm_email'])
+                {
+                    $query = DB::table('project_reviewer')
+                    ->insert(['email'=>$request['cm_email'],'project_id'=>$order_project_id,'type'=>"change_order",'doc_id'=>$pcd_id,'designation'=>"cm"]);
+                    $user_detail = array(
+                        'name'            => 'Construction Manager',
+                        'email'           => $request['cm_email'],
+                        'link'            => $link,
+                        'date'            => $date,
+                        'project_name'    => $project->p_name,
+                        'title'           => $notification_title,
+                        'description'     => $email_description
+                    );
+                    $user_single = (object) $user_detail;
+                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                        $message->from('no-reply@sw.ai', 'StratusCM');
+                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                    });
+                }
+                if($request['owner_email'])
+                {
+                    $query = DB::table('project_reviewer')
+                    ->insert(['email'=>$request['owner_email'],'project_id'=>$order_project_id,'type'=>"change_order",'doc_id'=>$pcd_id,'designation'=>"owner"]);
+                    $user_detail = array(
+                        'name'            => "Owner",
+                        'email'           => $request['owner_email'],
+                        'link'            => $link,
+                        'date'            => $date,
+                        'project_name'    => $project->p_name,
+                        'title'           => $notification_title,
+                        'description'     => $email_description
+                    );
+                    $user_single = (object) $user_detail;
+                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                        $message->from('no-reply@sw.ai', 'StratusCM');
+                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                    });
+                }
+                $result = array('pcd_id'=>DB::getPdo()->lastInsertId(),'description'=>"Add change order request successfully",'code'=>200);
+                return response()->json($result, 200);
             }
         }
       }
@@ -840,15 +889,15 @@ public function get_change_order_request_weeklyreport(Request $request, $project
         $user_id = Auth::user()->id;
         //echo '<pre>';//print_r($request['pcd_id']);die;
         $contract_amount = $this->get_contract_amount($signatory_arr[0]['project_id']);
-        $improvementType = $this->getType($signatory_arr[0]['project_id']);
+        $improvementType = array();
+        if($signatory_arr[0]['project_id'])
+            $improvementType = $this->getType($signatory_arr[0]['project_id']);
         $improvementTypes = '';
         foreach($improvementType as $row)
             $improvementTypes.=$row->pt_name;
         $netchange = $this->netChange($request['pcd_id'],$signatory_arr[0]['project_id']);
         $change_order_items = $this->contractSumIncreased($request['pcd_id'],$signatory_arr[0]['project_id']);
         //print_r($improvementTypes);die;
-        
-        
         if(count($signatory_arr))
           {
               $projectDetail = DB::table('projects')
@@ -1135,5 +1184,29 @@ public function get_change_order_request_weeklyreport(Request $request, $project
         }
   }
   
-  
+    public function check_reviewer_permission(Request $request,$project_id,$item_id,$type,$designation)
+    {
+        //DB::enableQueryLog();
+        
+        $email = Auth::user()->email;
+        $query = DB::table('project_reviewer')
+                ->select()
+                ->where('email', '=', $email)
+                ->where('project_id', '=', $project_id)
+                ->where('type', '=', $type)
+                ->where('doc_id', '=', $item_id)
+                ->where('designation', '=', $designation)
+                 ->first();
+        //dd(DB::getQueryLog());
+        if(count($query) < 1)
+        {
+          $result = array('code'=>400, "description"=>"No records found");
+          return response()->json($result, 400);
+        }
+        else
+        {
+          $result = array('description'=>"true",'code'=>200);
+          return response()->json($result, 200);
+        }
+    }    
 }

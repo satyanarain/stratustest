@@ -189,6 +189,38 @@ $(document).ready(function() {
 
         $("#request_change_order").show();
         $(".loading_data").hide();
+        
+        jQuery.ajax({
+        url: baseUrl +"/check-reviewer-permission/"+project_id+'/'+item_id+'/change_order'+'/cm',
+            type: "GET",
+            headers: {
+              "x-access-token": token
+            },
+            contentType: "application/json",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+            $(".cm_review_section").show();
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            $(".cm_review_section").hide();
+        });
+        
+        jQuery.ajax({
+        url: baseUrl +"/check-reviewer-permission/"+project_id+'/'+item_id+'/change_order'+'/owner',
+            type: "GET",
+            headers: {
+              "x-access-token": token
+            },
+            contentType: "application/json",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+            $(".owner_review_section").show();
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            $(".owner_review_section").hide();
+        });
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
