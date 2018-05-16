@@ -32,7 +32,7 @@
 <!--                                          <h4 class="no-mar">Change Order Request</h4>-->
                                       </header>
                                       <!-- <div class="tab-parent" style="overflow-x:scroll;"> -->
-                                      <table class="table convert-data-table custom-grid data-table m-t-10 dataTable no-footer" id="request_change_order" style="width: 1500px;">
+                                      <table class="table convert-data-table custom-grid data-table m-t-10 dataTable no-footer" id="request_change_order" style="width: 100%;">
                                           <thead>
                                           <tr>
 <!--                                              <th>Sl.No.</th>-->
@@ -66,7 +66,7 @@
                                           <h4 class="no-mar">Potential Change Orders</h4>
                                       </header>
                                       <!-- <div class="tab-parent" style="overflow-x:scroll;"> -->
-                                      <table class="table convert-data-table custom-grid data-table m-t-10 dataTable no-footer" id="potential_change_order" style="width: 1500px;">
+                                      <table class="table convert-data-table custom-grid data-table m-t-10 dataTable no-footer" id="potential_change_order" style="width: 100%;">
                                           <thead>
                                           <tr>
 <!--                                              <th>Sl.No.</th>-->
