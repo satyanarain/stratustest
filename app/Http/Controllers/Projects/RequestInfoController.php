@@ -109,7 +109,10 @@ class RequestInfoController extends Controller {
                 ->where('pco_project_id', '=', $project_id)
                 ->orderBy('pco_number', 'desc')
                 ->first();
-                $order_number = $query->pco_number+1;
+                if($query)
+                    $order_number = $query->pco_number+1;
+                else
+                    $order_number = 1;
                 $order_date = $request_date;
                 $order_contractor_name = $request['agency_id'];
                 $order_status = '';

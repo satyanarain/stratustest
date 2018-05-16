@@ -12,7 +12,7 @@
         <h3 class="m-b-less project_name" id="project_name_title"></h3><br/>
         <h3 class="m-b-less">Unconditional Finals</h3>
         <div class="state-information hide_add_permission" style="display: none;">
-            <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/unconditional_finals/add" class="btn btn-success"><i class="fa fa-plus"></i> Add Unconditional Finals </a>
+            <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/unconditional_finals/add" class="btn btn-success"><i class="fa fa-plus"></i> Add Unconditional Final</a>
         </div>
     </div>
     <!-- page head end-->
