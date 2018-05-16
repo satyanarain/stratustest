@@ -97,7 +97,7 @@ class UnconditionalFinalsController extends Controller {
                                                         "value" => $row['owner']),
                                                         array (
                                                         "tabLabel" => "disputed_claim_amount",
-                                                        "value" => $row['disputed_claim_amount']));
+                                                        "value" => number_format($row['disputed_claim_amount'])));
 
                     }else{
                         $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
