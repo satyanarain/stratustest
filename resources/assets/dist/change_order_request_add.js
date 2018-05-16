@@ -688,6 +688,8 @@ $(document).ready(function() {
                         $('input[name="item_request_time[]"]').removeAttr('value');
                         $('input[name="upload_doc_id[]"]').removeAttr('value');
                         $('input[type="checkbox"]').attr('checked', false);
+                        $('input[name="cm_email"]').removeAttr('value');
+                        $('input[name="owner_email"]').removeAttr('value');
                         $(".remove_file_drop").trigger("click");
                         $(".first_button").hide();
                         $(".another_button").show();

@@ -227,9 +227,9 @@
         var additional_cost_amount      = $('#additional_cost_amount').val();
         var additional_day              = $("input[name='additonal_day_type']:checked").val();
         var additional_day_add          = $('#additional_day_add').val();
-        var status          			= $('#status').val();
+        var status          		= $('#status').val();
         var project_id                  = $('#upload_project_id').val();
-	    var token                   	= localStorage.getItem('u_token');
+	var token                   	= localStorage.getItem('u_token');
 
      
 	    // alert(rfi_number);
@@ -238,15 +238,15 @@
             url: baseUrl + "request-review/"+req_for_info_id+"/update",
             type: "POST",
             data: {
-         	    "rfi_number"             	: rfi_number,
-         	    "review_parent"             : req_for_info_id,
-         	    "review_respond"            : respond_date,
-                "additional_info"          	: question_request,
+         	    "rfi_number"            : rfi_number,
+         	    "review_parent"         : req_for_info_id,
+         	    "review_respond"        : respond_date,
+                "additional_info"           : question_request,
                 "additional_cost"           : additional_cost,
                 "additional_cost_amount"    : additional_cost_amount,
                 "additional_day"            : additional_day,
                 "additional_day_add"        : additional_day_add,
-                "status"        			: status,
+                "status"                    : status,
                 "project_id"                : project_id
             },
             headers: {
