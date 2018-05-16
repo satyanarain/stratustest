@@ -140,6 +140,10 @@
 		    cache: false
 		})
 		    .done(function(data, textStatus, jqXHR) {
+                    if(data.data.rir_review_status=="response_provided" || data.data.rir_review_status=="additional_information_requested")
+                    {
+                        window.location.href = baseUrl + "dashboard/"+project_id+"/req_for_info/"+req_for_info_id;
+                    }
 		    console.log(data);
 		    var file_path = data.data.file_path;
 		    if(file_path == null){
