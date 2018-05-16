@@ -68,7 +68,7 @@
                             <label for="firm_description">Agency Description <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="firm_description">
                         </div>
-                        <div class="form-group col-md-6">
+                            <div class="form-group col-md-6" style="display:none;">
                             <label for="firm_type">Agency Type <span class="text-danger">*</span></label>
                             <div class="loading_data" style="text-align: center;display: none">
                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
