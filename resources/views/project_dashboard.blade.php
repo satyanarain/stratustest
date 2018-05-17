@@ -75,8 +75,8 @@
                                 <div class="col-md-4" id="" style="">
                               <section class="blue" style="height: 190px;">
                                 <div class="value white">
-                                     <h4>Billings To Date:<span style="float: right" id="billings_to_date">$12,456.00</span></h4>
-                                     <h4>Contract Bal Remaining:<span style="float: right" id="contract_bal_remaining">$12,456.00</span></h4>
+                                     <h4>Billings To Date:<span style="float: right" id="billings_to_date"></span></h4>
+                                     <h4>Contract Bal Remaining:<span style="float: right" id="contract_bal_remaining"></span></h4>
                                    
                                 </div>
                               </section>
