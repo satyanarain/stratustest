@@ -663,8 +663,8 @@ $(document).ready(function() {
                             "order_parent_cor"      : data.change_order_id,
                             "order_project_id"      : val.order_project_id,
                             //"signatory_arr"       : signatory_arr,
-                            "cm_email"              : $('input[name^=cm_email]').val(),
-                            "owner_email"           : $('input[name^=owner_email]').val(),
+                            "cm_email"              : $('input[name^=cm_email]').val().trim(),
+                            "owner_email"           : $('input[name^=owner_email]').val().trim(),
                         },
                         headers: {
                           "x-access-token": token
@@ -718,9 +718,8 @@ $(document).ready(function() {
                     });
                     var signatory_email = [];
                     $('input[name^=signatory_email]').each(function(){
-                        if($(this).val() != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())){
-                            var email = $(this).val();
-                            email.trim();
+                        var email = $(this).val().trim();
+                        if(email != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
                             signatory_email.push(email);
                         }else if($(this).val() != ""){
                             html += '<li>Signatory email is invalid.</li>';

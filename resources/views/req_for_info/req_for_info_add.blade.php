@@ -141,6 +141,10 @@
     <div>
         <div>
             <div class="form-group col-md-6">
+                <label for="">Reviewer Name <span class="text-danger">*</span></label>
+                <input class="form-control cm_name" name="cm_name" type="text">
+            </div>
+            <div class="form-group col-md-6">
                 <label for="">Reviewer Email <span class="text-danger">*</span></label>
                 <input class="form-control cm_email" name="cm_email" type="email">
             </div>

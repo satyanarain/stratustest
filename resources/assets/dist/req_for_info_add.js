@@ -235,6 +235,11 @@ $(document).ready(function() {
             html += '<li> Reviewer Email is invalid </li>';
             is_error = true;
         }
+        if($('input[name^=cm_name]').val() == '')
+        {
+            html += '<li> Reviewer Name is invalid </li>';
+            is_error = true;
+        }
         html += '</ul></div>';
         if(is_error == true){
             $('html, body').animate({
@@ -265,7 +270,8 @@ $(document).ready(function() {
                 "file_path"                 : file_path,
                 "project_id"                : project_id,
                 "agency_id"                 : agency_id,
-                "cm_email"              : $('input[name^=cm_email]').val(),
+                "cm_name"                  : $('input[name^=cm_name]').val().trim(),
+                "cm_email"                  : $('input[name^=cm_email]').val().trim(),
             },
             headers: {
               "x-access-token": token

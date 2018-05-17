@@ -148,7 +148,7 @@ class RequestInfoController extends Controller {
                     $query = DB::table('project_reviewer')
                     ->insert(['email'=>$request['cm_email'],'project_id'=>$project_id,'type'=>"rfi",'doc_id'=>$rir_id,'designation'=>"cm"]);
                     $user_detail = array(
-                        'name'            => 'Reviewer',
+                        'name'            => $request['cm_name'],
                         'email'           => $request['cm_email'],
                         'link'            => $link,
                         'date'            => $date,
