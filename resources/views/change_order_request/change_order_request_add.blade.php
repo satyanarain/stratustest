@@ -144,6 +144,7 @@
 <input type="hidden" name="signatory_counter" id="signatory_counter" value="2">
 <input type="hidden" name="jurisdiction" id="jurisdiction">
 <input type="hidden" name="project_name" id="project_name">
+<div class="clearfix"></div> 
 <div class="form-group col-md-12 nopadleft"><span class="label label-inverse"><b>Please fill out the reviewer details.</b></span></div>
 <div class="clearfix"></div>  
 <div class="form-group col-md-12 nopadleft">

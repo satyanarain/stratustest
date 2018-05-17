@@ -1060,7 +1060,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                   curl_close($curl);
 
                   $data = array("accountId" => $accountId, 
-                      "emailSubject" => "Signature for a Change Order",
+                      "emailSubject" => "Signature request for a Change Order",
                       "emailBlurb" => "This is a signature request for a Change Order",
                       "templateId" => $templateId, 
                       "templateRoles" => $data,

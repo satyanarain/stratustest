@@ -129,7 +129,7 @@ class LaborComplianceController extends Controller {
                         curl_close($curl);
 
                         $data = array("accountId" => $accountId, 
-                            "emailSubject" => "Signature for the Statement of Compliance",
+                            "emailSubject" => "Signature request for the Statement of Compliance",
                             "emailBlurb" => "This is a signature request for a Statement of Compliance",
                             "templateId" => $templateId, 
                             "templateRoles" => $data,
@@ -207,7 +207,7 @@ class LaborComplianceController extends Controller {
                         curl_close($curl);
 
                         $data = array("accountId" => $accountId, 
-                            "emailSubject" => "Signature for a Statement of Non-Performance",
+                            "emailSubject" => "Signature request for a Statement of Non-Performance",
                             "emailBlurb" => "This is a signature request for a Statement of Non-Performance",
                             "templateId" => $templateId, 
                             "templateRoles" => $data,
