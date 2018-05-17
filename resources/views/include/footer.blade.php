@@ -382,7 +382,7 @@ function checkFormFilled(classname)
                 //alert($(this).name);
                 //alert('Type: ' + input.attr('type') + 'Name: ' + input.attr('name') + 'Value: ' + input.val());
                 //alert($(this).val());
-                alert($(this).attr('id'));
+                //alert($(this).attr('id'));
                 //alert($(this).attr('name'));
                 //return false;
             }
