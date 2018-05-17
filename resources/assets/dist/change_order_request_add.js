@@ -122,7 +122,7 @@ $(document).ready(function() {
                         // '<option value="'+val.f_id+'">'+val.f_name+'</option>'
                         // '<label class="checkbox-custom check-success">'+
                             '<input type="checkbox" value="'+val.ri_id+'"  name="rfi_detail[]">'+
-                            '<label for="">RFI # '+val.ri_id+' : '+val.ri_question_request+'</label><br/>'
+                            '<label for="">RFI # '+val.ri_number+' : '+val.ri_question_request+'</label><br/>'
                         // '</label>'
                     )
                 }

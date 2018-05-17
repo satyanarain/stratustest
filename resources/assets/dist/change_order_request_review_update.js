@@ -199,7 +199,7 @@ $(document).ready(function() {
                 if(val.ri_request_status == 'active'){
                     $('#cor_rfi_detail').append(
                             '<input type="checkbox" class="rfi_'+val.ri_id+'" value="'+val.ri_id+'" name="rfi_detail[]">'+
-                            '<label>RFI # '+val.ri_id+' : '+val.ri_question_request+'</label><br/>'
+                            '<label>RFI # '+val.ri_number+' : '+val.ri_question_request+'</label><br/>'
                     )
                 }
             });
