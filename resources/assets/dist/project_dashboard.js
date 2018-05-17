@@ -942,7 +942,7 @@ $(document).ready(function() {
 							}
 							else {
 								//console.log("cal 2");
-                                futuredate = add_business_days(rfi_due_date , val.rir_timestamp);
+                                futuredate = add_business_days(rfi_due_date , val.ri_date);
                                 var updated_f = new Date(futuredate);
                                futuredate = updated_f.setDate(updated_f.getDate() + 0); 
 							}
