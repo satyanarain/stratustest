@@ -138,15 +138,15 @@ class RequestInfoController extends Controller {
                     ->where('p_id', '=', $project_id)
                     ->first();
                 $project_id           = $project_id;
-                $notification_title   = 'Request for information # '.$request_number .' received for your review in Project: ' .$project->p_name;
+                $notification_title   = 'New change order request item has been added for your review in Project: ' .$project->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/change_order_request_review/".$rir_id."/update";
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'Request for information # '.$request_number .' received for your review in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'New change order request item has been added for your review in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                 if($request['cm_email'])
                 {
                     $query = DB::table('project_reviewer')
-                    ->insert(['email'=>$request['cm_email'],'project_id'=>$project_id,'type'=>"rfi",'doc_id'=>$rir_id,'designation'=>"cm"]);
+                    ->insert(['email'=>$request['cm_email'],'project_id'=>$project_id,'type'=>"change_order",'doc_id'=>$rir_id,'designation'=>"cm"]);
                     $user_detail = array(
                         'name'            => $request['cm_name'],
                         'email'           => $request['cm_email'],

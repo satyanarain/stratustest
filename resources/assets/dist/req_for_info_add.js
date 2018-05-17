@@ -230,12 +230,12 @@ $(document).ready(function() {
                 is_error = true;
             }
         }
-        if($('input[name^=cm_email]').val() == '')
+        if(($('input[name^=cm_email]').val() == '') && (($('input:radio[name=additonal_cost_type]:checked').val() == "yes") || ($('input:radio[name=additonal_day_type]:checked').val() == "yes")))
         {
             html += '<li> Reviewer Email is invalid </li>';
             is_error = true;
         }
-        if($('input[name^=cm_name]').val() == '')
+        if(($('input[name^=cm_name]').val() == '') && (($('input:radio[name=additonal_cost_type]:checked').val() == "yes") || ($('input:radio[name=additonal_day_type]:checked').val() == "yes")))
         {
             html += '<li> Reviewer Name is invalid </li>';
             is_error = true;
