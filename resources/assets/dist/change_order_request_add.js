@@ -415,10 +415,19 @@ $(document).ready(function() {
         if(is_error_description == true){
             html += '<li> Item description field is invalid </li>';
         }
-        
+        if($('input[name^=cm_name]').val() == '')
+        {
+            html += '<li> Construction Manager Name is invalid </li>';
+            is_error = true;
+        }
         if($('input[name^=cm_email]').val() == '')
         {
             html += '<li> Construction Manager Email is invalid </li>';
+            is_error = true;
+        }
+        if($('input[name^=owner_name]').val() == '')
+        {
+            html += '<li> Owner Name is invalid </li>';
             is_error = true;
         }
         if($('input[name^=owner_email]').val() == '')
@@ -426,7 +435,6 @@ $(document).ready(function() {
             html += '<li> Owner Email is invalid </li>';
             is_error = true;
         }
-        
         // var is_error_price = false;
         // $('input[name^=item_price]').each(function(){
         //     if($(this).val() == '')
@@ -663,7 +671,9 @@ $(document).ready(function() {
                             "order_parent_cor"      : data.change_order_id,
                             "order_project_id"      : val.order_project_id,
                             //"signatory_arr"       : signatory_arr,
+                            "cm_name"              : $('input[name^=cm_name]').val().trim(),
                             "cm_email"              : $('input[name^=cm_email]').val().trim(),
+                            "owner_name"           : $('input[name^=owner_name]').val().trim(),
                             "owner_email"           : $('input[name^=owner_email]').val().trim(),
                         },
                         headers: {
@@ -688,7 +698,9 @@ $(document).ready(function() {
                         $('input[name="item_request_time[]"]').removeAttr('value');
                         $('input[name="upload_doc_id[]"]').removeAttr('value');
                         $('input[type="checkbox"]').attr('checked', false);
+                        $('input[name="cm_name"]').removeAttr('value');
                         $('input[name="cm_email"]').removeAttr('value');
+                        $('input[name="owner_name"]').removeAttr('value');
                         $('input[name="owner_email"]').removeAttr('value');
                         $(".remove_file_drop").trigger("click");
                         $(".first_button").hide();

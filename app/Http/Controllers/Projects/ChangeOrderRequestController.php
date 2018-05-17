@@ -276,7 +276,7 @@ use ProjectImprovement;
                     $query = DB::table('project_reviewer')
                     ->insert(['email'=>$request['cm_email'],'project_id'=>$order_project_id,'type'=>"change_order",'doc_id'=>$pcd_id,'designation'=>"cm"]);
                     $user_detail = array(
-                        'name'            => 'Construction Manager',
+                        'name'            => $request['cm_name'],
                         'email'           => $request['cm_email'],
                         'link'            => $link,
                         'date'            => $date,
@@ -295,7 +295,7 @@ use ProjectImprovement;
                     $query = DB::table('project_reviewer')
                     ->insert(['email'=>$request['owner_email'],'project_id'=>$order_project_id,'type'=>"change_order",'doc_id'=>$pcd_id,'designation'=>"owner"]);
                     $user_detail = array(
-                        'name'            => "Owner",
+                        'name'            => $request['owner_name'],
                         'email'           => $request['owner_email'],
                         'link'            => $link,
                         'date'            => $date,

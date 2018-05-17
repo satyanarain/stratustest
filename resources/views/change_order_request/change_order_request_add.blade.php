@@ -145,22 +145,9 @@
 <input type="hidden" name="jurisdiction" id="jurisdiction">
 <input type="hidden" name="project_name" id="project_name">
 <div class="clearfix"></div> 
-<div class="form-group col-md-12 nopadleft"><span class="label label-inverse"><b>Please fill out the reviewer details.</b></span></div>
+
 <div class="clearfix"></div>  
-<div class="form-group col-md-12 nopadleft">
-    <div>
-        <div>
-            <div class="form-group col-md-6">
-                <label for="">Construction Manager Email <span class="text-danger">*</span></label>
-                <input class="form-control cm_email" name="cm_email" type="email">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="">Owner Email <span class="text-danger">*</span></label>
-                <input class="form-control owner_email" name="owner_email" type="email">
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="clearfix"></div>  
 <div class="form-group col-md-12 nopadleft"><span class="label label-inverse"><b>Please fill out the fields below for Docusign integration.</b></span></div>
 <div class="clearfix"></div>  
@@ -191,8 +178,30 @@
                 </div>
                 
             </div>
-                            </div>
-            <div class="clearfix"></div>  
+</div>
+<div class="clearfix"></div>
+<div class="form-group col-md-12 nopadleft">
+    <div>
+        <div>
+            <div class="form-group col-md-6">
+                <label for="">Construction Manager: Contact Name <span class="text-danger">*</span></label>
+                <input class="form-control cm_name" name="cm_name" type="text">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Construction Manager: Contact Email <span class="text-danger">*</span></label>
+                <input class="form-control cm_email" name="cm_email" type="email">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Owner: Contact Name <span class="text-danger">*</span></label>
+                <input class="form-control owner_name" name="owner_name" type="text">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Owner: Contact Email <span class="text-danger">*</span></label>
+                <input class="form-control owner_email" name="owner_email" type="email">
+            </div>
+        </div>
+    </div>
+</div>
                                 <div class="form-group col-md-12 nopadleft">
 
                                     <input type="hidden" name="standard_upload" id="upload_doc_meta" value="cor">
