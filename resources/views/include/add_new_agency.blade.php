@@ -161,7 +161,7 @@ $(document).ready(function() {
             $("#firm_type").append('<option value="">Select Agency Type</option>');
             jQuery.each(data.data, function( i, val ) {
                 if(val.ct_status == 'active'){
-                    if (val.ct_id == 12) {
+                    if (val.ct_name == "Public Agency") {
                    $("#firm_type").append(
                         '<option value="'+val.ct_id+'" selected>'+val.ct_name+'</option>'
                     )
