@@ -181,7 +181,7 @@ $(document).ready(function() {
             .done(function(data, textStatus, jqXHR) {
                 window.rfi_final = '';
                 jQuery.each(data.data, function( i, val ) {
-                    rfi_final += "RFI "+val.ri_id+" : "+ val.ri_question_request+"<br/>";
+                    rfi_final += "RFI "+val.ri_number+" : "+ val.ri_question_request+"<br/>";
                 });
                 $('#cor_rfi_detail').html(rfi_final)
             })
