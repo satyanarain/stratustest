@@ -160,13 +160,13 @@
 			  var t = $('#view_users_table').DataTable();
                           var maintenance_bond_amount = '';
                           if(val.maintenance_bond_amount>0)
-                              maintenance_bond_amount = val.maintenance_bond_currency+' '+ ReplaceNumberWithCommas(val.maintenance_bond_amount);
+                              maintenance_bond_amount = '$ '+ ReplaceNumberWithCommas(val.maintenance_bond_amount);
                           var payment_bond_amount = '';
                           if(val.payment_bond_amount>0)
-                              payment_bond_amount = val.payment_bond_currency+' '+ ReplaceNumberWithCommas(val.payment_bond_amount);
+                              payment_bond_amount = '$ '+ ReplaceNumberWithCommas(val.payment_bond_amount);
                           var performance_bond_amount = '';
                           if(val.performance_bond_amount>0)
-                              performance_bond_amount = val.performance_bond_currency+' '+ ReplaceNumberWithCommas(val.performance_bond_amount)
+                              performance_bond_amount = '$ '+ ReplaceNumberWithCommas(val.performance_bond_amount)
 				t.row.add( [
 		           count,
 		           val.agency_name,
