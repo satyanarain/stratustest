@@ -73,7 +73,7 @@
                             <div class="loading_data" style="text-align: center;display: none">
                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                             </div>
-                            <select class="form-control" id="firm_type">
+                            <select class="form-control" id="firm_type" name="firm_type">
                             </select>
                         </div>
                         <div class="form-group col-md-6">
