@@ -82,8 +82,10 @@ $(document).ready(function() {
             $("#total_requested_cost").html('<input type="radio" class="total_requested_cost" name="total_requested_cost" id="total_requested_cost_price" checked value="price">Enter Price&nbsp;\n\
             <input type="radio" class="total_requested_cost" id="total_requested_cost_unit" name="total_requested_cost" value="unit">Enter Unit');
             $("#cor_amount").html('<input class="form-control" type="text" name="cor_amount" id="pcd_price" value="'+cor_amount+'">');
-            $('#cor_unit_number').text(data.data.pcd_unit_number)
-            $('#cor_unit_price').text(data.data.pcd_unit_price)
+            if(data.data.pcd_unit_number)
+                $('#cor_unit_number').text(data.data.pcd_unit_number)
+            if(data.data.pcd_unit_price)
+                $('#cor_unit_price').text(data.data.pcd_unit_price)
         }else{
             $("#total_requested_cost").html('<input type="radio" class="total_requested_cost" name="total_requested_cost" id="total_requested_cost_price" value="price">Enter Price&nbsp;\n\
             <input checked type="radio" class="total_requested_cost" id="total_requested_cost_unit" name="total_requested_cost" value="unit">Enter Unit');
