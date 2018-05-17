@@ -105,7 +105,7 @@ class NoticeAwardController extends Controller {
                                                         "value" => $row['noa_bid_amount']),
                                                         array (
                                                         "tabLabel" => "noa_date",
-                                                        "value" => date('m-d-Y')));
+                                                        "value" => date('Y-m-d')));
 //                        $data[$i]['email'] = $row['signatory_email'];
 //                        $data[$i]['name'] = $row['signatory_name'];
 //                        $data[$i]['recipientId'] = $i+1;
