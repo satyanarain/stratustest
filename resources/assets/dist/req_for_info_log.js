@@ -114,18 +114,7 @@
 							var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 							var future_date = new Date(val.ri_date);
 							var numberOfDaysToAdd = 10;
-                                                        var futuredate = '';
-							if (  rfi_days_type == 1 ) {
-								//console.log("cal 1");
-						        futuredate = future_date.setDate(future_date.getDate() + rfi_due_date); 
-							}
-							else {
-								//console.log("cal 2");
-                                futuredate = add_business_days(rfi_due_date , val.ri_date);
-                                var updated_f = new Date(futuredate);
-                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
-							}
-                                                        //var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
+							var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
 							var now_date = new Date();
 							var numberOfDaysToAdd = 0;
 							var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd); 
