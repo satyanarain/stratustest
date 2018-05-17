@@ -1008,13 +1008,16 @@ $(document).ready(function() {
 					  var year = date.getFullYear();
 					  var respond_date = year + '-' + month + '-' + day;
 				  }
-
+                                  if(val.review_user_company)
+                                      var review_user_company = val.review_user_company;
+                                  else
+                                      var review_user_company = '';
 				  $("#rfi_data_log tbody").append(
 				  	//'<tr><td>'+val.ri_id+'</td>'+
                                         '<tr><td>'+counter+'</td>'+
 				  	'<td><a href="'+baseUrl+'dashboard/'+val.ri_project_id+'/req_for_info/'+val.ri_id+'">'+val.ri_question_request+'</a></td>'+
 				  	'<td>'+val.rfi_user_company+'</td>'+
-				  	'<td>'+val.review_user_company+'</td>'+
+				  	'<td>'+review_user_company+'</td>'+
 				  	'<td>'+submitted_date+'</td>'+
 				  	'<td>'+respond_date+'</td>'+
 				  	'<td>'+status+'</td>'+
