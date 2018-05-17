@@ -121,7 +121,7 @@ class DocusignController extends Controller {
                                             $doc_id = DB::table('documents')->insertGetId($information);
                                             $query = DB::table('project_notice_award')
                                             ->where('pna_id', '=', $pna_id)
-                                            ->update(['docusign_status' => "complete",'pna_notice_path'=>$doc_id]);
+                                            ->update(['pna_docusign_status' => "complete",'pna_notice_path'=>$doc_id]);
                                         }
                                         
                                     }

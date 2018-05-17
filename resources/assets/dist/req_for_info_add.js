@@ -287,6 +287,7 @@ $(document).ready(function() {
             html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New request for information added successfully!</div></div>';
             $("#alert_message").html(html);
             $("#alert_message").fadeOut(3000);
+            $('input[name="cm_name"]').removeAttr('value');
             $('input[name="cm_email"]').removeAttr('value');
             $('#question_request').removeAttr('value');
             $('#question_proposed').removeAttr('value');

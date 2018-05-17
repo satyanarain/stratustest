@@ -135,9 +135,9 @@
                 </div><!-- upload_doc_panel_payment close -->
             </div><!-- contract_exist close -->
         </div>
-<div class="form-group col-md-12 nopadleft"><span class="label label-inverse"><b>Please fill out the reviewer details.</b></span></div>
+<div class="form-group col-md-12 nopadleft reviewer_container"><span class="label label-inverse"><b>Please fill out the reviewer details.</b></span></div>
 <div class="clearfix"></div>  
-<div class="form-group col-md-12 nopadleft">
+<div class="form-group col-md-12 nopadleft reviewer_container">
     <div>
         <div>
             <div class="form-group col-md-6">
@@ -181,8 +181,14 @@ $("input[name='additonal_cost_type']").click(function(){
     if($('input:radio[name=additonal_cost_type]:checked').val() == "yes"){
         console.log('yes');
         $('.additonal_cost_div').show();
+        $(".reviewer_container").show();
     }
     else {
+        if($('input:radio[name=additonal_day_type]:checked').val() == "no"){
+            $(".reviewer_container").hide();
+            $(".cm_name").val('');
+            $(".cm_email").val('');
+        }
         console.log('no');
         $('.additonal_cost_div').hide();
     }
@@ -192,8 +198,14 @@ $("input[name='additonal_day_type']").click(function(){
     if($('input:radio[name=additonal_day_type]:checked').val() == "yes"){
         console.log('yes');
         $('.additonal_day_div').show();
+        $(".reviewer_container").show();
     }
     else {
+        if($('input:radio[name=additonal_cost_type]:checked').val() == "no"){
+            $(".reviewer_container").hide();
+            $(".cm_name").val('');
+            $(".cm_email").val('');
+        }
         console.log('no');
         $('.additonal_day_div').hide();
     }
