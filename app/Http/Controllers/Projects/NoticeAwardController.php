@@ -171,7 +171,7 @@ class NoticeAwardController extends Controller {
                     $password = env('DOCUSIGN_PASSWORD');
                     $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
                     if($contractor_bond_required=="yes")
-                        $templateId = "e4b0386e-add9-47dc-bb1b-f3b11956fef0";
+                        $templateId = "6c355966-6343-4e10-b0fd-e0f7cefe38a0";
                     else
                         $templateId = "21dc8f0a-da61-489c-9bf6-4827ac1d0673";
                     $url = env('DOCUSIGN_URL');
