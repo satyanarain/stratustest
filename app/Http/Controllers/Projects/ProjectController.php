@@ -518,8 +518,10 @@ class ProjectController extends Controller {
         ->where('pbi_project_id', '=', $project_id)
         ->where('pbi_status', '=', 'active')
         ->get();
-    $info['contract_amount'] = $query[0]->total_amount;
-    
+    if($query)
+        $info['contract_amount'] = $query[0]->total_amount;
+    else
+        $info['contract_amount'] = 0;
     $query1 = DB::table('project_change_order_request_detail')
 	->select('project_change_order_request_detail.*')
 	->where('pcd_project_id', '=', $project_id)
@@ -557,26 +559,39 @@ class ProjectController extends Controller {
 	->where('pnp_project_id', '=', $project_id)
 	->orderBy('pnp_id', 'asc')
     	->first();
-    $info['original_contract_date'] = $query2->pnp_duration;
-    
+    if($query2)
+        $info['original_contract_date'] = $query2->pnp_duration;
+    else
+        $info['original_contract_date'] = '';
     $query3 = DB::table('project_weekly_reports')
 	->select('project_weekly_reports.*')
 	->where('pwr_project_id', '=', $project_id)
 	->orderBy('pwr_id', 'desc')
     	->first();
-    $info['contract_days_added'] = $query3->days_this_report_app_calender+$query3->days_previous_report_app_calender;
-    
-    $info['revised_contract_date'] = $query2->pnp_duration+$query3->days_this_report_app_calender+$query3->days_previous_report_app_calender;
-    
-    
+    if($query3)
+        $info['contract_days_added'] = $query3->days_this_report_app_calender+$query3->days_previous_report_app_calender;
+    else
+        $info['contract_days_added'] = 0;
+    if($query2 && $query3)
+        $info['revised_contract_date'] = $query2->pnp_duration+$query3->days_this_report_app_calender+$query3->days_previous_report_app_calender;
+    elseif($query2)
+        $info['revised_contract_date'] = $query2->pnp_duration;
+    elseif($query3)
+        $info['revised_contract_date'] = $query3->days_this_report_app_calender+$query3->days_previous_report_app_calender;
+    else
+        $info['revised_contract_date'] = '';
     $query4 = DB::table('project_weekly_reports_days')
         ->select(DB::raw('SUM(pwrd_approved_calender_day) as contract_days_charged'))
         ->where('pwrd_project_id', '=', $project_id)
         ->get();
-    $info['contract_days_charged'] = $query4[0]->contract_days_charged;
-    
-    $info['remaining_days'] = $info['revised_contract_date']-$info['contract_days_charged'];
-    
+    if($query4)
+        $info['contract_days_charged'] = $query4[0]->contract_days_charged;
+    else
+        $info['contract_days_charged'] = '';
+    if($info['revised_contract_date']>$info['contract_days_charged'])
+        $info['remaining_days'] = $info['revised_contract_date']-$info['contract_days_charged'];
+    else
+        $info['remaining_days'] = '';
     //echo '<pre>';print_r($query3);
     //print_r($info);
     $result = array('data'=>$info,'code'=>200);

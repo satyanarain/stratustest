@@ -73,18 +73,50 @@ $(document).ready(function() {
 		    cache: false
 		})
         .done(function(data, textStatus, jqXHR) {
-		    $('#contract_amount').text('$ '+ReplaceNumberWithCommas(data.data.contract_amount));
-                    $('#total_change_order_count').text('('+data.data.total_change_order_count+')');
-                    $('#total_change_order_amount').text('$ '+ReplaceNumberWithCommas(data.data.total_change_order_amount));
-                    $('#total_contract_amount').text('$ '+ReplaceNumberWithCommas(data.data.total_contract_amount));
-                    $('#pending_change_order_count').text('('+data.data.pending_change_order_count+')');
-                    $('#pending_change_order_amount').text('$ '+ReplaceNumberWithCommas(data.data.pending_change_order_amount));
-		    
-                    $('#original_contract_date').text(data.data.original_contract_date);
-                    $('#contract_days_added').text(data.data.contract_days_added);
-                    $('#revised_contract_date').text(data.data.revised_contract_date);
-                    $('#contract_days_charged').text(data.data.contract_days_charged);
-                    $('#remaining_days').text(data.data.remaining_days);
+		    if(data.data.contract_amount)
+                        $('#contract_amount').text('$ '+ReplaceNumberWithCommas(data.data.contract_amount));
+                    else
+                        $('#contract_amount').text('$ 0.00');
+                    if(data.data.total_change_order_count)
+                        $('#total_change_order_count').text('('+data.data.total_change_order_count+')');
+                    else
+                        $('#total_change_order_count').text('(0)');
+                    if(data.data.total_change_order_amount)
+                        $('#total_change_order_amount').text('$ '+ReplaceNumberWithCommas(data.data.total_change_order_amount));
+                    else
+                        $('#total_change_order_amount').text('$ 0.00');
+                    if(data.data.total_contract_amount)
+                        $('#total_contract_amount').text('$ '+ReplaceNumberWithCommas(data.data.total_contract_amount));
+                    else
+                        $('#total_contract_amount').text('$ 0.00');
+                    if(data.data.pending_change_order_count)
+                        $('#pending_change_order_count').text('('+data.data.pending_change_order_count+')');
+                    else
+                        $('#pending_change_order_count').text('(0)');
+                    if(data.data.pending_change_order_amount)
+                        $('#pending_change_order_amount').text('$ '+ReplaceNumberWithCommas(data.data.pending_change_order_amount));
+                    else
+                        $('#pending_change_order_amount').text('$ 0.00');
+		    if(data.data.original_contract_date)
+                        $('#original_contract_date').text(data.data.original_contract_date);
+                    else
+                        $('#original_contract_date').text(0);
+                    if(data.data.contract_days_added)
+                        $('#contract_days_added').text(data.data.contract_days_added);
+                    else
+                        $('#contract_days_added').text(0);
+                    if(data.data.revised_contract_date)
+                        $('#revised_contract_date').text(data.data.revised_contract_date);
+                    else
+                        $('#revised_contract_date').text(0);
+                    if(data.data.contract_days_charged)
+                        $('#contract_days_charged').text(data.data.contract_days_charged);
+                    else
+                        $('#contract_days_charged').text(0);
+                    if(data.data.remaining_days)
+                        $('#remaining_days').text(data.data.remaining_days);
+                    else
+                        $('#remaining_days').text(0);
                     
                     $('.loading_project_detail').remove();
 		})

@@ -151,16 +151,7 @@ class RequestInfoController extends Controller {
                     $query = DB::table('project_request_info_review')
                         ->insert(['rir_review_parent' => $request_info_id, 'rir_review_status' => 'response_due', 'rir_project_id' => $project_id, 'rir_status' => $request_status]);
                     $rir_id = DB::getPdo()->lastInsertId();
-                    
-                }
-                    if(count($query) < 1)
-                    {
-                      $result = array('code'=>404, "description"=>"No records found");
-                      return response()->json($result, 404);
-                    }
-                    else
-                    {
-                        $project = DB::table('projects')
+                    $project = DB::table('projects')
                         ->select('projects.*')
                         ->where('p_id', '=', $project_id)
                         ->first();
@@ -189,6 +180,15 @@ class RequestInfoController extends Controller {
                                 $message->to($user_single->email, $user_single->name)->subject($user_single->title);
                             });
                         }
+                    }
+                    if(count($query) < 1)
+                    {
+                      $result = array('code'=>404, "description"=>"No records found");
+                      return response()->json($result, 404);
+                    }
+                    else
+                    {
+                        
                     // Start Check User Permission and send notification and email  
                     // Get Project Users
                     $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
