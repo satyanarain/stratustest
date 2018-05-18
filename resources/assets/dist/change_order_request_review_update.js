@@ -97,7 +97,7 @@ $(document).ready(function() {
                 $("#cor_unit_price").html('<input class="form-control" type="text" name="pcd_unit_price" id="pcd_unit_price" value="'+data.data.pcd_unit_price+'">');
             else
                 $("#cor_unit_price").html('<input class="form-control" type="text" name="pcd_unit_price" id="pcd_unit_price">');
-            $('#cor_amount').text(data.data.pcd_price)
+            $('#cor_amount').text(parseInt(data.data.pcd_unit_number)*parseInt(data.data.pcd_unit_price))
         }
         //$('#cor_unit_number').text(data.data.pcd_unit_number)
         //$('#cor_unit_price').text(data.data.pcd_unit_price)

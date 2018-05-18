@@ -1397,7 +1397,10 @@ $(document).ready(function() {
                                         
                                     }
                                     var t = $('#potential_change_order').DataTable();
-
+                                    if(val.pcd_price)
+                                        var pcd_price = ReplaceNumberWithCommas(val.pcd_price);
+                                    else
+                                        var pcd_price = ReplaceNumberWithCommas(val.pcd_unit_number*val.pcd_unit_price);
                                     t.row.add([
                                            //counts, // val.pcd_parent_cor,
                                            val.pco_number,
@@ -1406,13 +1409,17 @@ $(document).ready(function() {
                                            descr,
                                             pcd_approved_by_cm,
                                             pcd_approved_by_owner,
-                                           val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
+                                           val.currency_symbol +' '+  pcd_price,
                                            val.pcd_days,
                                            status_cm + status_owner+potential_status,
                                            
                                         ]).draw( false );  
                                     counts++;
                                 }else{
+                                    if(val.pcd_price)
+                                        var pcd_price = ReplaceNumberWithCommas(val.pcd_price);
+                                    else
+                                        var pcd_price = ReplaceNumberWithCommas(val.pcd_unit_number*val.pcd_unit_price);
 			        if(val.pcd_rfi == '[]'){
                                     var rfi_final = '';
 			        	console.log("request 1 ");
@@ -1430,7 +1437,7 @@ $(document).ready(function() {
                                         pcd_denied_by_owner,
                                         owner_rejection_comment,
                                        rfi_final,
-			               val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
+			               val.currency_symbol +' '+  pcd_price,
 			               val.pcd_days,
 			               status_cm + status_owner+approved_status,
 			            ]).draw( false );
@@ -1527,12 +1534,15 @@ $(document).ready(function() {
 			                window.rfi_final = '';
                                         rfi_final = '';
 			                jQuery.each(data.data, function( i, val ) {
-			                    rfi_final += "RFI "+val.ri_id+" : "+ val.ri_question_request+"<br/>"; 
+			                    rfi_final += "RFI "+val.ri_number+" : "+ val.ri_question_request+"<br/>"; 
 			                    // console.log(rfi_final);
 			                });
 
 			                var t = $('#request_change_order').DataTable();
-                                        
+                                        if(val.pcd_price)
+                                            var pcd_price = ReplaceNumberWithCommas(val.pcd_price);
+                                        else
+                                            var pcd_price = ReplaceNumberWithCommas(val.pcd_unit_number*val.pcd_unit_price);
                                         t.row.add([
 			                   //count, // val.pcd_parent_cor,
                                            val.pco_number,
@@ -1546,7 +1556,7 @@ $(document).ready(function() {
                                             pcd_denied_by_owner,
                                             owner_rejection_comment,
 			                   rfi_final,
-			                   val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
+			                   val.currency_symbol +' '+  pcd_price,
 			                   val.pcd_days,
 			                   status_cm + status_owner + potential_status,
 			                ]).draw( false );  
