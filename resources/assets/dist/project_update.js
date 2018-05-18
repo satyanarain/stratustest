@@ -284,6 +284,15 @@
                 if(responseText.data.p_status != null){
                     html += '<li>The project location field is required.</li>';
                 }
+                if(responseText.data.rfi_due_date != null){
+                    html += '<li>RFI notification & past due configuration number is invalid.</li>';
+                }
+                if(responseText.data.submittal_due_date != null){
+                    html += '<li>Submittal notification & past due configuration number is invalid.</li>';
+                }
+                if(responseText.data.change_order_due_date != null){
+                    html += '<li>Change Order notification & past due configuration number is invalid.</li>';
+                }
                 html += '</ul></div>';
                 $("#alert_message").html(html);
                 setTimeout(function(){

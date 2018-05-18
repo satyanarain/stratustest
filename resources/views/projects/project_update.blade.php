@@ -184,7 +184,7 @@
                       
                                     <div class="clearfix"></div>
                                    <div class="col-md-12">
-                                     <h3>  Past Due Configuration </h3>
+                                     <h3>Notification & Past Due Configuration</h3>
                                    <table class="table table-bordered">
                                      <tr>
                                        <td>
