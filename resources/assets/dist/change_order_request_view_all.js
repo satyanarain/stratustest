@@ -110,8 +110,12 @@ $(document).ready(function() {
                 }
             ],
             "columnDefs": [
-                { "width": "60%", "targets": 2 },
-                { "width": "60%", "targets": 2 }
+                { "width": "10%", "targets": 2 },
+                { "width": "10%", "targets": 5 },
+                { "width": "10%", "targets": 6 },
+                { "width": "10%", "targets": 7 },
+                { "width": "10%", "targets": 8 },
+                { "width": "10%", "targets": 9 }
               ]
         });
         
