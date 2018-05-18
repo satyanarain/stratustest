@@ -384,7 +384,7 @@ $(document).ready(function() {
                     if(val.pcd_price)
                         var price = val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price);
                     else
-                        var price = '';
+                        var price = val.currency_symbol +' '+  ReplaceNumberWithCommas(disp_price);
                     var t = $('#request_change_order').DataTable();
                     t.row.add([
                        //count, // val.pcd_parent_cor,
