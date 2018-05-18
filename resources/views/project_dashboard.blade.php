@@ -501,7 +501,7 @@
                         <div id="collapseThree" class="panel-collapse collapse" aria-expanded="false">
                             <div class="pro-dash-table">
                           <div class="panel-body project-table table-responsive">
-                            <table class="table table-striped" id="request_change_order">
+                              <table class="table table-striped" id="request_change_order" style="width: 1500px;">
                           <thead>
                           <tr>
 <!--                              <th>Sl.No.</th>-->
