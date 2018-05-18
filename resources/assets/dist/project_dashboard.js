@@ -1433,9 +1433,9 @@ $(document).ready(function() {
 			               pcd_approved_by_cm,
 			               pcd_approved_by_owner,
                                        pcd_denied_by_cm,
-                                        cm_rejection_comment,
+                                        //cm_rejection_comment,
                                         pcd_denied_by_owner,
-                                        owner_rejection_comment,
+                                        //owner_rejection_comment,
                                        rfi_final,
 			               val.currency_symbol +' '+  pcd_price,
 			               val.pcd_days,
@@ -1533,6 +1533,19 @@ $(document).ready(function() {
 			                // console.log(data.data);
 			                window.rfi_final = '';
                                         rfi_final = '';
+                                        $('#request_change_order').DataTable().destroy();
+        $('#request_change_order').DataTable({
+            order: [['0', 'asc']],
+            ordering:false,
+            "columnDefs": [
+                { "width": "10%", "targets": 2 },
+                { "width": "10%", "targets": 4 },
+                { "width": "10%", "targets": 5 },
+                { "width": "10%", "targets": 6 },
+                { "width": "10%", "targets": 7 },
+                { "width": "10%", "targets": 9 }
+              ]
+        });
 			                jQuery.each(data.data, function( i, val ) {
 			                    rfi_final += "RFI "+val.ri_number+" : "+ val.ri_question_request+"<br/>"; 
 			                    // console.log(rfi_final);
@@ -1552,9 +1565,9 @@ $(document).ready(function() {
 			                   pcd_approved_by_cm,
 			                   pcd_approved_by_owner,
                                            pcd_denied_by_cm,
-                                            cm_rejection_comment,
+                                            //cm_rejection_comment,
                                             pcd_denied_by_owner,
-                                            owner_rejection_comment,
+                                            //owner_rejection_comment,
 			                   rfi_final,
 			                   val.currency_symbol +' '+  pcd_price,
 			                   val.pcd_days,

@@ -512,9 +512,9 @@
                               <th>Approved by CM</th>
                               <th>Approved by OWNER</th>
                               <th>Denied by CM</th>
-                                <th>CM Rejection Comment</th>
+<!--                                <th>CM Rejection Comment</th>-->
                                 <th>Denied by OWNER</th>
-                                <th>Owner Rejection Comment</th>
+<!--                                <th>Owner Rejection Comment</th>-->
                               <th style="min-width: 200px;">Referenced RFI</th>
                               <th>$</th>
                               <th>Days</th>
