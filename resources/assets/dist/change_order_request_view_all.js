@@ -379,7 +379,7 @@ $(document).ready(function() {
                     // console.log(data.data);
                     window.rfi_final = '';
                     jQuery.each(data.data, function( i, val1 ) {
-                        rfi_final += "RFI "+val1.ri_id+" : "+ val1.ri_question_request+"<br/>"; 
+                        rfi_final += "RFI "+val1.ri_number+" : "+ val1.ri_question_request+"<br/>"; 
                         // console.log(rfi_final);
                     });
                     if(val.pcd_price)
