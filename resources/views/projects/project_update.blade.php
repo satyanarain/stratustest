@@ -341,17 +341,17 @@
                             <label for="firm_description">Agency Description <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="firm_description">
                         </div>
-                        <div class="form-group col-md-6">
+                            <div class="form-group col-md-6" style="display:none">
                             <label for="firm_type">Agency Type <span class="text-danger">*</span></label>
                             <div class="loading_data" style="text-align: center;display: none">
                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                             </div>
-                            <select class="form-control" id="firm_type">
+                            <select class="form-control" id="firm_type" name="firm_type">
                             </select>
                         </div>
                             <div class="form-group col-md-6" style="display:none;">
                             <label for="company_type">Company/Agency <span class="text-danger">*</span></label>
-                            <select class="form-control" id="company_type">
+                            <select class="form-control" id="company_type" name="company_type">
                                 <option value="">Select</option>
                                 <option value="f">Company</option>
                                 <option value="a" selected="selected">Agency</option>
