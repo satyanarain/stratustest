@@ -292,7 +292,7 @@ $(document).ready(function() {
                        val.agency_name,
                        val.pco_date,
                        val.pcd_description,
-                       val.currency_symbol +' '+  ReplaceNumberWithCommas(disp_price),
+                       val.currency_symbol +''+  ReplaceNumberWithCommas(disp_price),
                        val.pcd_days,
                        status_cm + status_owner+potential_status,
                        action_button
@@ -321,7 +321,7 @@ $(document).ready(function() {
                        //cm_rejection_comment,
                        pcd_denied_by_owner,
                        //owner_rejection_comment,
-                       val.currency_symbol +' '+  ReplaceNumberWithCommas(disp_price),
+                       val.currency_symbol +''+  ReplaceNumberWithCommas(disp_price),
                        val.pcd_days,
                        status_cm + status_owner+approved_status,
                        //status,
@@ -390,9 +390,9 @@ $(document).ready(function() {
                         // console.log(rfi_final);
                     });
                     if(val.pcd_price)
-                        var price = val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price);
+                        var price = val.currency_symbol +''+  ReplaceNumberWithCommas(val.pcd_price);
                     else
-                        var price = val.currency_symbol +' '+  ReplaceNumberWithCommas(disp_price);
+                        var price = val.currency_symbol +''+  ReplaceNumberWithCommas(disp_price);
                     var t = $('#request_change_order').DataTable();
                     t.row.add([
                        //count, // val.pcd_parent_cor,
