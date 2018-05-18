@@ -207,7 +207,7 @@ $(document).ready(function() {
                        pcd_approved_by_cm,
                        pcd_approved_by_owner,
                        rfi_final,
-                       val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
+                       val.currency_symbol +' '+  ReplaceNumberWithCommas(disp_price),
                        val.pcd_days,
                        potential_status,
                     ]).draw( false );  

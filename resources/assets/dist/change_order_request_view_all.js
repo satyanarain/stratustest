@@ -116,7 +116,6 @@ $(document).ready(function() {
         var count = 1;
         var counts = 1;
         jQuery.each( data.data, function( i, val ) {
-
             // Check Update Permission
             var status_cm = '';
             var status_owner = '';
@@ -285,7 +284,7 @@ $(document).ready(function() {
                        val.agency_name,
                        val.pco_date,
                        val.pcd_description,
-                       val.currency_symbol +' '+  ReplaceNumberWithCommas(val.pcd_price),
+                       val.currency_symbol +' '+  ReplaceNumberWithCommas(disp_price),
                        val.pcd_days,
                        status_cm + status_owner+potential_status,
                        action_button
@@ -397,7 +396,7 @@ $(document).ready(function() {
                        pcd_approved_by_cm,
                        pcd_approved_by_owner,
                         pcd_denied_by_cm,
-                        //cm_rejection_comment,
+                        //cm_rejection_comment,disp_price
                         pcd_denied_by_owner,
                         //owner_rejection_comment,
                        price,
