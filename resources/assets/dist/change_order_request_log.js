@@ -127,7 +127,8 @@ $(document).ready(function() {
                 var t = $('#request_change_order').DataTable();
                 
                 t.row.add([
-                   count, // val.pcd_parent_cor,
+                   //count, 
+                   val.pcd_parent_cor,
                    val.agency_name,
                    val.pco_date,
                    val.pcd_description,
@@ -200,7 +201,8 @@ $(document).ready(function() {
 
                     var t = $('#potential_change_order').DataTable();
                     t.row.add([
-                       counts, // val.pcd_parent_cor,
+                       //counts,
+                       val.pcd_parent_cor,
                        val.agency_name,
                        val.pco_date,
                        val.pcd_description,

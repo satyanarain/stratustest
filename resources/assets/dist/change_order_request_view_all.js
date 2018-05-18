@@ -69,7 +69,7 @@ $(document).ready(function() {
         console.log(specific_project_name);
         $('#request_change_order').DataTable().destroy();
         $('#request_change_order').DataTable({
-            order: [['1', 'asc']],
+            order: [['0', 'asc']],
             //ordering:false,
             dom: 'Bfrtip',
             buttons: [
@@ -404,11 +404,11 @@ $(document).ready(function() {
                        status_cm + status_owner+approved_status+potential_status,
                        action_button
                     ]).draw( false );  
-//                                                t.on( 'order.dt search.dt', function () {
-//                                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-//                                    cell.innerHTML = i+1;
-//                                } );
-//                            } ).draw();
+                                                t.on( 'order.dt search.dt', function () {
+                                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                                    cell.innerHTML = i+1;
+                                } );
+                            } ).draw();
                     count++;
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
