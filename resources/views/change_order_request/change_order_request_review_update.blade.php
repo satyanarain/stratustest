@@ -78,7 +78,7 @@
                                                                     <th>Denied by CM</th>
                                                                     <td id="cor_denied_cm"></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="cm_review_section">
                                                                     <th>CM Rejection Comment</th>
                                                                     <td id="cm_rejection_comment"></td>
                                                                 </tr>
@@ -86,7 +86,7 @@
                                                                     <th>Denied by Owner</th>
                                                                     <td id="cor_denied_owner"></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="owner_review_section">
                                                                     <th>Owner Rejection Comment</th>
                                                                     <td id="owner_rejection_comment"></td>
                                                                 </tr>

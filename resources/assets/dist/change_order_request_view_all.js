@@ -108,7 +108,11 @@ $(document).ready(function() {
                     },
                     message: specific_project_name,
                 }
-            ]
+            ],
+            "columnDefs": [
+                { "width": "60%", "targets": 2 },
+                { "width": "60%", "targets": 2 }
+              ]
         });
         
         $("#request_change_order").hide();
