@@ -309,7 +309,7 @@ use ProjectImprovement;
                         $message->to($user_single->email, $user_single->name)->subject($user_single->title);
                     });
                 }
-                $result = array('pcd_id'=>DB::getPdo()->lastInsertId(),'description'=>"Add change order request successfully",'code'=>200);
+                $result = array('pcd_id'=>$pcd_id,'description'=>"Add change order request successfully",'code'=>200);
                 return response()->json($result, 200);
             }
         }
@@ -910,6 +910,10 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                     ->where('con_project_id', '=', $signatory_arr[0]['project_id'])
                     ->orderBy('project_contract.con_id','ASC')
                     ->first();
+              if($contracts)
+                $con_contract_date = date('m-d-Y',strtotime($contracts->con_contract_date));
+              else
+                $con_contract_date = '';
               $contractor = DB::table('project_notice_award')
                     ->leftJoin('project_firm', 'project_notice_award.pna_contactor_name', '=', 'project_firm.f_id')
                     ->select('project_notice_award.pna_contactor_name','project_firm.*')
@@ -1013,7 +1017,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                                                       "value" => $improvementTypes),
                                                     array (
                                                       "tabLabel" => "agreement_date",
-                                                      "value" => date('m-d-Y',strtotime($contracts->con_contract_date))),
+                                                      "value" => $con_contract_date),
                                                     array (
                                                       "tabLabel" => "contractor_name",
                                                       "value" => $contractor->f_name),

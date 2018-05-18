@@ -168,10 +168,10 @@ $(document).ready(function() {
 
         var doc_cpr = data.data.cpr_doc;
         var doc_cpr_value;
-        if(doc_cpr == null){
+        if(doc_cpr == null && data.data.compliance==null){
             doc_cpr_value = ' --- ';
         }
-        else {
+        else if(data.data.cpr_doc){
             doc_cpr_value = '<a href="'+baseUrl+data.data.cpr_doc+'" target="_blank" ><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40" /></a>';
         }
         $('#doc_cpr').html(doc_cpr_value);
@@ -185,10 +185,10 @@ $(document).ready(function() {
 
         var doc_compliance = data.data.compliance;
         var doc_compliance_value;
-        if(doc_compliance == null){
+        if(doc_compliance == null && data.data.cpr_doc==null){
             doc_compliance_value = ' --- ';
         }
-        else {
+        else if(data.data.compliance){
             doc_compliance_value = '<a href="'+baseUrl+data.data.compliance+'" target="_blank" ><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40" /></a>';
         }
         $('#doc_compliance').html(doc_compliance_value);

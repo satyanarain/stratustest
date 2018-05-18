@@ -518,7 +518,7 @@ class DocusignController extends Controller {
         }
         
         
-        //UPDATE & DOWNLOAD CHANGE ORDER DOCUMENT WITH REIMBURSEMENT FROM DOCUSIGN        
+        //UPDATE & DOWNLOAD CHANGE ORDER DOCUMENT WITH/WITHOUT REIMBURSEMENT FROM DOCUSIGN        
         $nocs = DB::table('project_change_order_request_detail')
                 ->select('project_change_order_request_detail.*')
                 ->where('docusign_status', '!=',"completed")
@@ -537,7 +537,7 @@ class DocusignController extends Controller {
             $status1 = curl_getinfo($curl1, CURLINFO_HTTP_CODE);
             if ($status1 == 200 ) {
                 $response1 = json_decode($json_response1, true);
-                //echo $response1["status"];die;
+                echo $response1["status"];die;
                 curl_close($curl1);
                 $change_docu_status = $response1["status"];
                 
@@ -551,7 +551,7 @@ class DocusignController extends Controller {
                     if ($status2 == 200 ) {
                         $response2 = json_decode($json_response2, true);
                         curl_close($curl2);
-                        //echo "<pre>";print_r($response2);die;
+                        echo "<pre>";print_r($response2);die;
                         foreach( $response2["envelopeDocuments"] as $document ) {
                                 $docUri = $document["uri"];
                                 $curl3 = curl_init($baseUrl . $docUri );
