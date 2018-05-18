@@ -166,8 +166,9 @@
 
 	    	if(data.data.ri_additional_cost == null){
 	    		var ri_additional_cost = ' - ';
-	    	}
-	    	else {
+	    	}else if(data.data.ri_additional_cost=="no"){
+                    var ri_additional_cost = '<span class="label label-default">No</span>';
+                }else {
 	    		var ri_additional_cost = '<span class="label label-default">Yes</span>';
 	    	}
 	    	if(data.data.ri_additional_cost_amount == null){
@@ -179,9 +180,11 @@
 	    	if(data.data.ri_additional_day == null){
 	    		var ri_additional_day = ' - ';
 	    	}
-	    	else {
-	    		var ri_additional_day = '<span class="label label-default">Yes</span>';
-	    	}
+	    	else if(data.data.ri_additional_day=="no"){
+	    		var ri_additional_day = '<span class="label label-default">No</span>';
+	    	}else{
+                    var ri_additional_day = '<span class="label label-default">Yes</span>';
+                }
 	    	if(data.data.ri_additional_day_add == null){
 	    		var ri_additional_day_add = ' - ';
 	    	}
