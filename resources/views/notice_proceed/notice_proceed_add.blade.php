@@ -224,7 +224,7 @@
     <div id="pdf_content" style="width:100%;">
         <h1 style="color:green; text-align:center;">Notice to Proceed</h1>
         <p style="width:50%; float: left;"><strong>To:</strong> <span id="pdf_gen_contractor_name"></span><br/><span id="pdf_gen_contractor_address"></span></p>
-        <p style="width:50%; float: left;"><strong>Date:</strong><span id="pdf_gen_ntp_date"> <?php echo date("Y-m-d"); ?></span></p>
+        <p style="width:50%; float: left;"><strong>Date:</strong><span id="pdf_gen_ntp_date"> <?php //echo date("Y-m-d"); ?></span></p>
         <div style="clear: both;"></div>
         <hr/>
         <div style="clear: both;"></div>

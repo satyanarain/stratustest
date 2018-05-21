@@ -388,7 +388,11 @@ $('.create_notice').click(function () {
             // return false;
         }
         $('#pdf_gen_working_days').text(duration_days);
-        $('.pdf_gen_working_days_type').text($("input[name='days_working']:checked").val());
+        if($("input[name='days_working']:checked").val()=="working_day")
+            $('.pdf_gen_working_days_type').text("working");
+        else
+            $('.pdf_gen_working_days_type').text("calendar");
+        $('#pdf_gen_ntp_date').text($("#notice_date").val());
     
         var notice_date = $("#notice_start_date").val();
         var invite_date = $.datepicker.formatDate('yy-mm-dd', new Date(notice_date));
