@@ -162,9 +162,8 @@ class RequestInfoController extends Controller {
                         $message->to($user_single->email, $user_single->name)->subject($user_single->title);
                     });
                 }
-            }else{  
-                $request_info = ProjectRequestInfo::create(['ri_number' => $request_number, 'ri_date' => $request_date, 'ri_question_request' => $question_request, 'ri_question_proposed' => $question_proposed, 'ri_additional_cost' =>$additional_cost, 'ri_additional_cost_amount' => $additional_cost_amount, 'ri_additional_day' => $additional_day, 'ri_additional_day_add' => $additional_day_add, 'ri_file_path' => $file_path, 'ri_user_id' => $user_id, 'ri_project_id' => $project_id, 'ri_request_status' => $request_status]);
-            }
+            }  
+            $request_info = ProjectRequestInfo::create(['ri_number' => $request_number, 'ri_date' => $request_date, 'ri_question_request' => $question_request, 'ri_question_proposed' => $question_proposed, 'ri_additional_cost' =>$additional_cost, 'ri_additional_cost_amount' => $additional_cost_amount, 'ri_additional_day' => $additional_day, 'ri_additional_day_add' => $additional_day_add, 'ri_file_path' => $file_path, 'ri_user_id' => $user_id, 'ri_project_id' => $project_id, 'ri_request_status' => $request_status]);
             $request_info_id = $request_info->id;
             // $query = DB::table('project_request_info')
             // ->insert(['ri_number' => $request_number, 'ri_date' => $request_date, 'ri_question_request' => $question_request, 'ri_question_proposed' => $question_proposed, 'ri_additional_cost' =>$additional_cost, 'ri_additional_cost_currency' => $additional_cost_currency, 'ri_additional_cost_amount' => $additional_cost_amount, 'ri_additional_day' => $additional_day, 'ri_additional_day_add' => $additional_day_add, 'ri_file_path' => $file_path, 'ri_user_id' => $user_id, 'ri_project_id' => $project_id, 'ri_request_status' => $request_status]);
@@ -176,74 +175,71 @@ class RequestInfoController extends Controller {
               }
               else
               {
-                if($additional_cost=="yes" || $additional_day=="yes")
-                {}else{  
-                    $query = DB::table('project_request_info_review')
+                
+                $query = DB::table('project_request_info_review')
                         ->insert(['rir_review_parent' => $request_info_id, 'rir_review_status' => 'response_due', 'rir_project_id' => $project_id, 'rir_status' => $request_status]);
-                    
+                if(count($query) < 1)
+                {
+                  $result = array('code'=>404, "description"=>"No records found");
+                  return response()->json($result, 404);
+                }
+                else
+                {
+
+                // Start Check User Permission and send notification and email  
+                // Get Project Users
+                $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
+
+                // Check User Project Permission  
+                foreach ($check_project_users as $check_project_user) {
+                  // Check User Permission Parameter 
+                  $user_id              = $check_project_user->id;
+                  $permission_key       = 'rfi_view_all';
+                  // Notification Parameter
+                  $project_id           = $project_id;
+                  //$notification_title   = 'Add new request information # '.$request_number .' in Project: ' .$check_project_user->p_name;
+                  $notification_title   = 'Request for information # '.$request_number .' received in Project: ' .$check_project_user->p_name;
+                  $url                  = App::make('url')->to('/');
+                  $link                 = "/dashboard/".$project_id."/req_for_info/".$request_info->id;
+                  $date                 = date("M d, Y h:i a");
+                  $email_description    = 'A new request for information # '.$request_number.' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+
+                  $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+                  if(count($check_single_user_permission) < 1){
+                    continue;
+                  }
+                  else {
+                    // Send Notification to users
+                    $notification_key     = 'rfi';
+                    $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);
+                    if(count($check_project_user_notification) < 1){
+                      continue;
+                    }else{
+                        $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
+
+                        $user_detail = array(
+                          'id'              => $check_project_user->id,
+                          'name'            => $check_project_user->username,
+                          'email'           => $check_project_user->email,
+                          'link'            => $link,
+                          'date'            => $date,
+                          'project_name'    => $check_project_user->p_name,
+                          'title'           => $notification_title,
+                          'description'     => $email_description
+                        );
+                        $user_single = (object) $user_detail;
+                        Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                            $message->from('no-reply@sw.ai', 'StratusCM');
+                            $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                        });
                     }
-                    if(count($query) < 1)
-                    {
-                      $result = array('code'=>404, "description"=>"No records found");
-                      return response()->json($result, 404);
-                    }
-                    else
-                    {
-                        
-                    // Start Check User Permission and send notification and email  
-                    // Get Project Users
-                    $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
+                  }
+                } // End Foreach
+                // End Check User Permission and send notification and email 
 
-                    // Check User Project Permission  
-                    foreach ($check_project_users as $check_project_user) {
-                      // Check User Permission Parameter 
-                      $user_id              = $check_project_user->id;
-                      $permission_key       = 'rfi_view_all';
-                      // Notification Parameter
-                      $project_id           = $project_id;
-                      //$notification_title   = 'Add new request information # '.$request_number .' in Project: ' .$check_project_user->p_name;
-                      $notification_title   = 'Request for information # '.$request_number .' received in Project: ' .$check_project_user->p_name;
-                      $url                  = App::make('url')->to('/');
-                      $link                 = "/dashboard/".$project_id."/req_for_info/".$request_info->id;
-                      $date                 = date("M d, Y h:i a");
-                      $email_description    = 'A new request for information # '.$request_number.' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
-
-                      $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
-                      if(count($check_single_user_permission) < 1){
-                        continue;
-                      }
-                      else {
-                        // Send Notification to users
-                        $notification_key     = 'rfi';
-                        $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);
-                        if(count($check_project_user_notification) < 1){
-                          continue;
-                        }else{
-                            $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
-
-                            $user_detail = array(
-                              'id'              => $check_project_user->id,
-                              'name'            => $check_project_user->username,
-                              'email'           => $check_project_user->email,
-                              'link'            => $link,
-                              'date'            => $date,
-                              'project_name'    => $check_project_user->p_name,
-                              'title'           => $notification_title,
-                              'description'     => $email_description
-                            );
-                            $user_single = (object) $user_detail;
-                            Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-                                $message->from('no-reply@sw.ai', 'StratusCM');
-                                $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-                            });
-                        }
-                      }
-                    } // End Foreach
-                    // End Check User Permission and send notification and email 
-
-                      $result = array('description'=>"RFI uploaded successfully",'code'=>200);
-                      return response()->json($result, 200);
-                    }
+                  $result = array('description'=>"RFI uploaded successfully",'code'=>200);
+                  return response()->json($result, 200);
+                }
               }
 
         }
