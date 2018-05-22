@@ -541,6 +541,10 @@ $(document).ready(function() {
         else
             var contractor_bond_required = "no";
         //alert(contractor_bond_required);return false;
+        if(contractor_bond_required=="yes")
+        {
+            $('.extra_doc_name').html('Performance Bond, Payment Bond and ');
+        }
         var html;
         var is_error = false;
         html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
