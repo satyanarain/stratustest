@@ -274,7 +274,7 @@ use ProjectImprovement;
                 if($request['cm_email'])
                 {
                     $query = DB::table('project_reviewer')
-                    ->insert(['email'=>$request['cm_email'],'project_id'=>$order_project_id,'type'=>"change_order",'doc_id'=>$pcd_id,'designation'=>"cm"]);
+                    ->insert(['name'=>$request['cm_name'],'email'=>$request['cm_email'],'project_id'=>$order_project_id,'type'=>"change_order",'doc_id'=>$pcd_id,'designation'=>"cm"]);
                     $user_detail = array(
                         'name'            => $request['cm_name'],
                         'email'           => $request['cm_email'],
@@ -293,7 +293,7 @@ use ProjectImprovement;
                 if($request['owner_email'])
                 {
                     $query = DB::table('project_reviewer')
-                    ->insert(['email'=>$request['owner_email'],'project_id'=>$order_project_id,'type'=>"change_order",'doc_id'=>$pcd_id,'designation'=>"owner"]);
+                    ->insert(['name'=>$request['owner_name'],'email'=>$request['owner_email'],'project_id'=>$order_project_id,'type'=>"change_order",'doc_id'=>$pcd_id,'designation'=>"owner"]);
                     $user_detail = array(
                         'name'            => $request['owner_name'],
                         'email'           => $request['owner_email'],
