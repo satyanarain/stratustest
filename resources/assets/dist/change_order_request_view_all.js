@@ -268,7 +268,8 @@ $(document).ready(function() {
                 if(futuredate < nowdate){
                     // console.log('less');
                     var potential_status = '<span class="label label-danger">PAST DUE</span>';
-                    var action_button = "";
+                    //var action_button = "";
+                    var action_button = update_permission ;
                 }
                 else {
                     // console.log('greater');
