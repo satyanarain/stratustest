@@ -230,14 +230,35 @@ $(document).ready(function() {
                 is_error = true;
             }
         }
+        if($('input[name^=rfi_cm_name]').val() == '')
+        {
+            html += '<li> RFI Reviewer Name is invalid </li>';
+            is_error = true;
+        }
+        if($('input[name^=rfi_cm_email]').val() == '')
+        {
+            html += '<li> RFI Reviewer Email is invalid </li>';
+            is_error = true;
+        }
+        
         if(($('input[name^=cm_email]').val() == '') && (($('input:radio[name=additonal_cost_type]:checked').val() == "yes") || ($('input:radio[name=additonal_day_type]:checked').val() == "yes")))
         {
-            html += '<li> Reviewer Email is invalid </li>';
+            html += '<li> Change Order CM Email is invalid </li>';
             is_error = true;
         }
         if(($('input[name^=cm_name]').val() == '') && (($('input:radio[name=additonal_cost_type]:checked').val() == "yes") || ($('input:radio[name=additonal_day_type]:checked').val() == "yes")))
         {
-            html += '<li> Reviewer Name is invalid </li>';
+            html += '<li>Change Order CM Name is invalid </li>';
+            is_error = true;
+        }
+        if(($('input[name^=owner_email]').val() == '') && (($('input:radio[name=additonal_cost_type]:checked').val() == "yes") || ($('input:radio[name=additonal_day_type]:checked').val() == "yes")))
+        {
+            html += '<li>Change Order Owner Email is invalid </li>';
+            is_error = true;
+        }
+        if(($('input[name^=owner_name]').val() == '') && (($('input:radio[name=additonal_cost_type]:checked').val() == "yes") || ($('input:radio[name=additonal_day_type]:checked').val() == "yes")))
+        {
+            html += '<li> Change Order Owner Name is invalid </li>';
             is_error = true;
         }
         html += '</ul></div>';
@@ -270,8 +291,12 @@ $(document).ready(function() {
                 "file_path"                 : file_path,
                 "project_id"                : project_id,
                 "agency_id"                 : agency_id,
+                "rfi_cm_name"                  : $('input[name^=rfi_cm_name]').val().trim(),
+                "rfi_cm_email"                  : $('input[name^=rfi_cm_email]').val().trim(),
                 "cm_name"                  : $('input[name^=cm_name]').val().trim(),
                 "cm_email"                  : $('input[name^=cm_email]').val().trim(),
+                "owner_name"                  : $('input[name^=owner_name]').val().trim(),
+                "owner_email"                  : $('input[name^=owner_email]').val().trim(),
             },
             headers: {
               "x-access-token": token
@@ -287,8 +312,12 @@ $(document).ready(function() {
             html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New request for information added successfully!</div></div>';
             $("#alert_message").html(html);
             $("#alert_message").fadeOut(3000);
+            $('input[name="rfi_cm_name"]').removeAttr('value');
+            $('input[name="rfi_cm_email"]').removeAttr('value');
             $('input[name="cm_name"]').removeAttr('value');
             $('input[name="cm_email"]').removeAttr('value');
+            $('input[name="owner_name"]').removeAttr('value');
+            $('input[name="owner_email"]').removeAttr('value');
             $('#question_request').removeAttr('value');
             $('#question_proposed').removeAttr('value');
             $('#additional_cost_amount').removeAttr('value');

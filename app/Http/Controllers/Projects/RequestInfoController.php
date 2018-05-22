@@ -162,12 +162,31 @@ class RequestInfoController extends Controller {
                         $message->to($user_single->email, $user_single->name)->subject($user_single->title);
                     });
                 }
+                if($request['owner_email'])
+                {
+                    $query = DB::table('project_reviewer')
+                    ->insert(['email'=>$request['owner_email'],'project_id'=>$project_id,'type'=>"change_order",'doc_id'=>$rir_id,'designation'=>"owner"]);
+                    $user_detail = array(
+                        'name'            => $request['owner_name'],
+                        'email'           => $request['owner_email'],
+                        'link'            => $link,
+                        'date'            => $date,
+                        'project_name'    => $project->p_name,
+                        'title'           => $notification_title,
+                        'description'     => $email_description
+                    );
+                    $user_single = (object) $user_detail;
+                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                        $message->from('no-reply@sw.ai', 'StratusCM');
+                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                    });
+                }
             }  
             $request_info = ProjectRequestInfo::create(['ri_number' => $request_number, 'ri_date' => $request_date, 'ri_question_request' => $question_request, 'ri_question_proposed' => $question_proposed, 'ri_additional_cost' =>$additional_cost, 'ri_additional_cost_amount' => $additional_cost_amount, 'ri_additional_day' => $additional_day, 'ri_additional_day_add' => $additional_day_add, 'ri_file_path' => $file_path, 'ri_user_id' => $user_id, 'ri_project_id' => $project_id, 'ri_request_status' => $request_status]);
             $request_info_id = $request_info->id;
             // $query = DB::table('project_request_info')
             // ->insert(['ri_number' => $request_number, 'ri_date' => $request_date, 'ri_question_request' => $question_request, 'ri_question_proposed' => $question_proposed, 'ri_additional_cost' =>$additional_cost, 'ri_additional_cost_currency' => $additional_cost_currency, 'ri_additional_cost_amount' => $additional_cost_amount, 'ri_additional_day' => $additional_day, 'ri_additional_day_add' => $additional_day_add, 'ri_file_path' => $file_path, 'ri_user_id' => $user_id, 'ri_project_id' => $project_id, 'ri_request_status' => $request_status]);
-
+            
               if(count($request_info) < 1)
               {
                 $result = array('code'=>404, "description"=>"No records found");
@@ -175,7 +194,35 @@ class RequestInfoController extends Controller {
               }
               else
               {
-                
+                $project = DB::table('projects')
+                    ->select('projects.*')
+                    ->where('p_id', '=', $project_id)
+                    ->first();
+                $project_id           = $project_id;
+                $notification_title   = 'New RFI has been added for your review in Project: ' .$project->p_name;
+                $url                  = App::make('url')->to('/');
+                $link                 = "/dashboard/".$project_id."/req_for_info_review/".$request_info_id."/update";
+                $date                 = date("M d, Y h:i a");
+                $email_description    = 'New RFI has been added for your review in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                if($request['rfi_cm_email'])
+                {
+                    $query = DB::table('project_reviewer')
+                    ->insert(['email'=>$request['rfi_cm_email'],'project_id'=>$project_id,'type'=>"rfi",'doc_id'=>$request_info_id,'designation'=>"cm"]);
+                    $user_detail = array(
+                        'name'            => $request['rfi_cm_name'],
+                        'email'           => $request['rfi_cm_email'],
+                        'link'            => $link,
+                        'date'            => $date,
+                        'project_name'    => $project->p_name,
+                        'title'           => $notification_title,
+                        'description'     => $email_description
+                    );
+                    $user_single = (object) $user_detail;
+                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                        $message->from('no-reply@sw.ai', 'StratusCM');
+                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                    });
+                }
                 $query = DB::table('project_request_info_review')
                         ->insert(['rir_review_parent' => $request_info_id, 'rir_review_status' => 'response_due', 'rir_project_id' => $project_id, 'rir_status' => $request_status]);
                 if(count($query) < 1)

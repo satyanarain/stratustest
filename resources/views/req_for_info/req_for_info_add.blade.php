@@ -135,20 +135,44 @@
                 </div><!-- upload_doc_panel_payment close -->
             </div><!-- contract_exist close -->
         </div>
-<div class="form-group col-md-12 nopadleft reviewer_container"><span class="label label-inverse"><b>Please fill out the reviewer details.</b></span></div>
+<div class="form-group col-md-12 nopadleft reviewer_container"><span class="label label-inverse"><b>Please fill out the RFI reviewer details.</b></span></div>
 <div class="clearfix"></div>  
 <div class="form-group col-md-12 nopadleft reviewer_container">
     <div>
         <div>
             <div class="form-group col-md-6">
                 <label for="">Reviewer: Contact Name <span class="text-danger">*</span></label>
-                <input class="form-control cm_name" name="cm_name" type="text">
+                <input class="form-control rfi_cm_name" name="rfi_cm_name" type="text">
             </div>
             <div class="form-group col-md-6">
                 <label for="">Reviewer: Contact Email <span class="text-danger">*</span></label>
-                <input class="form-control cm_email" name="cm_email" type="email">
+                <input class="form-control rfi_cm_email" name="rfi_cm_email" type="email">
             </div>
             
+        </div>
+    </div>
+</div>
+<div class="form-group col-md-12 nopadleft change_order_reviewer_container" style="display: none;"><span class="label label-inverse"><b>Please fill out the change order reviewer details.</b></span></div>
+<div class="clearfix"></div>  
+<div class="form-group col-md-12 nopadleft change_order_reviewer_container" style="display: none;">
+    <div>
+        <div>
+            <div class="form-group col-md-6">
+                <label for="">Construction Manager: Contact Name <span class="text-danger">*</span></label>
+                <input class="form-control cm_name" name="cm_name" type="text">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Construction Manager: Contact Email <span class="text-danger">*</span></label>
+                <input class="form-control cm_email" name="cm_email" type="email">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Owner: Contact Name <span class="text-danger">*</span></label>
+                <input class="form-control owner_name" name="owner_name" type="text">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Owner: Contact Email <span class="text-danger">*</span></label>
+                <input class="form-control owner_email" name="owner_email" type="email">
+            </div>
         </div>
     </div>
 </div>
@@ -179,34 +203,39 @@
 <script type="text/javascript">
 $("input[name='additonal_cost_type']").click(function(){
     if($('input:radio[name=additonal_cost_type]:checked').val() == "yes"){
-        console.log('yes');
+        //console.log('yes');
         $('.additonal_cost_div').show();
-        $(".reviewer_container").show();
+        $(".change_order_reviewer_container").show();
+        //$(".reviewer_container").show();
     }
     else {
-        if($('input:radio[name=additonal_day_type]:checked').val() == "no"){
-            $(".reviewer_container").hide();
+        if($('input:radio[name=additonal_day_type]:checked').val() == "no" && $('input:radio[name=additonal_cost_type]:checked').val() == "no"){
+            $(".change_order_reviewer_container").hide();
             $(".cm_name").val('');
             $(".cm_email").val('');
+            $(".owner_name").val('');
+            $(".owner_email").val('');
         }
-        console.log('no');
+        //console.log('no');
         $('.additonal_cost_div').hide();
     }
 });
 
 $("input[name='additonal_day_type']").click(function(){
     if($('input:radio[name=additonal_day_type]:checked').val() == "yes"){
-        console.log('yes');
+        //console.log('yes');
         $('.additonal_day_div').show();
-        $(".reviewer_container").show();
+        $(".change_order_reviewer_container").show();
     }
     else {
-        if($('input:radio[name=additonal_cost_type]:checked').val() == "no"){
-            $(".reviewer_container").hide();
+        if($('input:radio[name=additonal_day_type]:checked').val() == "no" && $('input:radio[name=additonal_cost_type]:checked').val() == "no"){
+            $(".change_order_reviewer_container").hide();
             $(".cm_name").val('');
             $(".cm_email").val('');
+            $(".owner_name").val('');
+            $(".owner_email").val('');
         }
-        console.log('no');
+        //console.log('no');
         $('.additonal_day_div').hide();
     }
 });
