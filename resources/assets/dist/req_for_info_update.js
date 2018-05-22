@@ -71,7 +71,13 @@
 		    	status = "deactive";
 		    }
 		    $('#status').val(status);
-		    $('#rfi_number').text(data.data.ri_number);
+                    $("#rir_review_status").val(data.data.rir_review_status);
+                    if(data.data.rir_review_status=="additional_information_requested")
+                    {
+                        $(".additional_information_container").show();
+                    }
+                    $('#rfi_number').text(data.data.ri_number);
+		    $('.additional_information').val(data.data.additional_information);
 
 		    $("#update_request_form").show();
 		    $(".loading_data").hide();
@@ -95,14 +101,14 @@
     });
 
 
-    $('#update_request_form').submit(function(e) {
+    $('#update_request_form').click(function(e) {
       $('.loading-submit').show();
         e.preventDefault();
         var status               	= $('#status').val();
         var project_id              = $('#upload_project_id').val();
-	    var token                   = localStorage.getItem('u_token');
-
-
+        var token                   = localStorage.getItem('u_token');
+        var additional_information  = $(".additional_information").val();
+        var file_path                   = $('#upload_doc_id').val();
 
         var token = localStorage.getItem('u_token');
         jQuery.ajax({
@@ -110,7 +116,9 @@
             type: "POST",
             data: {
          	    "request_status"        : status,
-                "project_id"        	: project_id
+                    "project_id"            : project_id,
+                    "additional_document"   : file_path,
+                    "additional_information": additional_information
             },
             headers: {
               "x-access-token": token

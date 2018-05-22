@@ -374,6 +374,10 @@ class RequestInfoController extends Controller {
             ->where('ri_id', '=', $ri_id)
             // ->update(['ri_number' => $request_number, 'ri_date' => $request_date, 'ri_question_request' => $question_request, 'ri_question_proposed' => $question_proposed, 'ri_additional_cost' =>$additional_cost, 'ri_additional_cost_currency' => $additional_cost_currency, 'ri_additional_cost_amount' => $additional_cost_amount, 'ri_additional_day' => $additional_day, 'ri_additional_day_add' => $additional_day_add, 'ri_file_path' => $file_path, 'ri_user_id' => $user_id, 'ri_project_id' => $project_id, 'ri_request_status' => $request_status]);
             ->update(['ri_user_id' => $user_id, 'ri_project_id' => $project_id, 'ri_request_status' => $request_status]);
+            
+            $query = DB::table('project_request_info_review')
+            ->where('rir_review_parent', '=', $ri_id)
+            ->update(['additional_document'=>$request['additional_document'],'additional_information'=>$request['additional_information']]);
             if(count($query) < 1)
             {
               $result = array('code'=>404, "description"=>"No records found");
@@ -381,7 +385,44 @@ class RequestInfoController extends Controller {
             }
             else
             {
-
+                
+                if($request['additional_information'] || $request['additional_document'])
+                {
+                    $project = DB::table('project_request_info')
+                    ->select('projects.*','project_request_info.*','users.*')
+                    ->leftJoin('projects', 'project_request_info.ri_project_id', '=', 'projects.p_id')
+                    ->leftJoin('users', 'project_request_info.ri_user_id', '=', 'users.id')
+                    ->where('ri_id', '=', $ri_id)
+                    ->first();
+                    
+                    $reviewer = DB::table('project_reviewer')
+                    ->select('project_reviewer.*')
+                    ->where('doc_id', '=', $ri_id)
+                    ->where('designation', '=',"cm")
+                    ->where('type', '=', "rfi")
+                    ->where('project_id', '=', $project->p_id)
+                    ->first();
+                    $project_id           = $project_id;
+                    $notification_title   = 'Additional RFI information is submitted in Project: ' .$project->p_name;
+                    $url                  = App::make('url')->to('/');
+                    $link                 = "/dashboard/".$project_id."/req_for_info/".$project->ri_id;
+                    $date                 = date("M d, Y h:i a");
+                    $email_description    = 'Additional RFI information is submitted in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $user_detail = array(
+                        'name'            => $reviewer->name,
+                        'email'           => $reviewer->email,
+                        'link'            => $link,
+                        'date'            => $date,
+                        'project_name'    => $project->p_name,
+                        'title'           => $notification_title,
+                        'description'     => $email_description
+                    );
+                    $user_single = (object) $user_detail;
+                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                        $message->from('no-reply@sw.ai', 'StratusCM');
+                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                    });
+                }
               // Start Check User Permission and send notification and email  
               // Get Project Users
               $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
@@ -467,12 +508,15 @@ class RequestInfoController extends Controller {
         $query = DB::table('project_request_info')
 ->leftJoin('currency', 'project_request_info.ri_additional_cost_currency', '=', 'currency.cur_id')
 ->leftJoin('documents as file_path', 'project_request_info.ri_file_path', '=', 'file_path.doc_id')
+
 ->leftJoin('projects', 'project_request_info.ri_project_id', '=', 'projects.p_id')
 ->leftJoin('users', 'project_request_info.ri_user_id', '=', 'users.id')
 ->leftJoin('project_request_info_review', 'project_request_info.ri_id', '=', 'project_request_info_review.rir_review_parent')
-->leftJoin('users as review_user', 'project_request_info_review.rir_user_id', '=', 'review_user.id')
+->leftJoin('documents as additional_document', 'project_request_info_review.additional_document', '=', 'additional_document.doc_id')
+                ->leftJoin('users as review_user', 'project_request_info_review.rir_user_id', '=', 'review_user.id')
         ->select('currency.cur_symbol as currency_symbol',
-          'file_path.doc_path as file_path',  
+          'file_path.doc_path as file_path',
+          'additional_document.doc_path as additional_document_file',
           'project_request_info.*', 'project_request_info_review.*', 'projects.*', 
           'users.username as rfi_user_name', 'users.email as rfi_user_email', 'users.first_name as rfi_user_firstname', 'users.last_name as rfi_user_lastname', 'users.company_name as rfi_user_company', 'users.phone_number as rfi_user_phonenumber', 'users.status as rfi_user_status', 'users.role as rfi_user_role', 
           'review_user.username as review_user_name', 'review_user.email as review_user_email', 'review_user.first_name as review_user_firstname', 'review_user.last_name as review_user_lastname', 'review_user.company_name as review_user_company', 'review_user.phone_number as review_user_phonenumber', 'review_user.status as review_user_status', 'review_user.role as review_user_role')

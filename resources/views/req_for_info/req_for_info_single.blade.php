@@ -47,7 +47,7 @@
                                         <td colspan="2" id="rfi_additional_days"></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="2">Additional Document</th>
+                                        <th colspan="2">RFI Document</th>
                                         <td colspan="2" id="rfi_documents"></td>
                                     </tr>
                                     <tr>
@@ -78,8 +78,16 @@
                                         <td width="25%" id="review_responded_date"></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="2">Additional Information Provided</th>
+                                        <th colspan="2">Additional Information Request</th>
                                         <td colspan="2" id="review_additional_info"></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">Additional Information Provided</th>
+                                        <td colspan="2" id="review_additional_information"></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">Additional Document</th>
+                                        <td colspan="2" id="review_additional_document"></td>
                                     </tr>
                                     <tr>
                                         <th colspan="2">Additional costs</th>
