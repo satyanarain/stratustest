@@ -222,7 +222,26 @@
                                           <option value="2"> Working Days </option>
                                        </select> </td>
                                      </tr>
-
+                                     <tr>
+                                       <td>Pay Quantity Verification <span class="text-danger">*</span></td>
+                                       <td><select id="pqv_notification_date" name="pqv_notification_date">
+                                               <?php 
+                                               for($i=1;$i<32;$i++)
+                                                echo '<option value="'.$i.'">'.$i.'</option>';
+                                               ?>
+                                           </select></td>
+                                       <td> </td>
+                                     </tr>
+                                     <tr>
+                                       <td>Pay Applications <span class="text-danger">*</span></td>
+                                       <td><select id="pay_app_notification_date" name="pay_app_notification_date">
+                                               <?php 
+                                               for($i=1;$i<32;$i++)
+                                                echo '<option value="'.$i.'">'.$i.'</option>';
+                                               ?>
+                                           </select></td>
+                                       <td></td>
+                                     </tr>
                                    </table>
                                  </div>
 

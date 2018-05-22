@@ -936,7 +936,7 @@ $(document).ready(function() {
 							var numberOfDaysToAdd = 10;
 
 							var futuredate = '';
-							if (  rfi_days_type == 1 ) {
+							if (rfi_days_type == 1) {
 								//console.log("cal 1");
 						        futuredate = future_date.setDate(future_date.getDate() + rfi_due_date); 
 							}
@@ -1004,7 +1004,7 @@ $(document).ready(function() {
 				  else {
 					  var date = new Date(val.rir_review_respond.replace(' ', 'T'));
 					  var day = date.getDate();
-					  var month = date.getMonth();
+					  var month = date.getMonth()+1;
 					  var year = date.getFullYear();
 					  var respond_date = year + '-' + month + '-' + day;
 				  }

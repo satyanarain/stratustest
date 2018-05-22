@@ -165,7 +165,7 @@ class RequestInfoController extends Controller {
                 if($request['owner_email'])
                 {
                     $query = DB::table('project_reviewer')
-                    ->insert(['email'=>$request['owner_email'],'project_id'=>$project_id,'type'=>"change_order",'doc_id'=>$rir_id,'designation'=>"owner"]);
+                    ->insert(['name'=>$request['owner_name'],'email'=>$request['owner_email'],'project_id'=>$project_id,'type'=>"change_order",'doc_id'=>$rir_id,'designation'=>"owner"]);
                     $user_detail = array(
                         'name'            => $request['owner_name'],
                         'email'           => $request['owner_email'],
@@ -207,7 +207,7 @@ class RequestInfoController extends Controller {
                 if($request['rfi_cm_email'])
                 {
                     $query = DB::table('project_reviewer')
-                    ->insert(['email'=>$request['rfi_cm_email'],'project_id'=>$project_id,'type'=>"rfi",'doc_id'=>$request_info_id,'designation'=>"cm"]);
+                    ->insert(['name'=>$request['rfi_cm_name'],'email'=>$request['rfi_cm_email'],'project_id'=>$project_id,'type'=>"rfi",'doc_id'=>$request_info_id,'designation'=>"cm"]);
                     $user_detail = array(
                         'name'            => $request['rfi_cm_name'],
                         'email'           => $request['rfi_cm_email'],

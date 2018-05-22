@@ -109,6 +109,8 @@ $(document).ready(function() {
         var submittal_due_date          = $('#submittal_due_date').val();
         var change_order_due_date       = $('#change_order_due_date').val();
         var change_order_days_type      = $('#change_order_days_type').val();
+        var pqv_notification_date       = $('#pqv_notification_date').val();
+        var pay_app_notification_date   = $('#pay_app_notification_date').val();
         
         console.log(project_terms);
 
@@ -213,7 +215,9 @@ $(document).ready(function() {
                 "submittal_days_type" : submittal_days_type,
                 "submittal_due_date" : submittal_due_date,
                 "change_order_due_date" : change_order_due_date,
-                "change_order_days_type" : change_order_days_type
+                "change_order_days_type" : change_order_days_type,
+                "pqv_notification_date" : pqv_notification_date,
+                "pay_app_notification_date" : pay_app_notification_date,
                 // "project_description" : project_description
             },
             headers: {
@@ -240,6 +244,8 @@ $(document).ready(function() {
                 $("#rfi_due_date").removeAttr('value');
                 $("#submittal_due_date").removeAttr('value');
                 $("#change_order_due_date").removeAttr('value');
+                $("#pqv_notification_date").removeAttr('value');
+                $("#pay_app_notification_date").removeAttr('value');
                 //$("#project_location").removeAttr('value');
                 $("#project_description").removeAttr('value');
                 $(".select2-search-choice-close").trigger("click");
