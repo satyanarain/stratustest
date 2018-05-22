@@ -1107,10 +1107,12 @@ class RequestInfoController extends Controller {
         {
             //$days = config('app.request_review_status_change');
             $query = DB::table('project_request_info_review')
-            ->select()
-            ->where('rir_project_id', '=', $project->p_id)
-            ->where('rir_review_status', '=', 'response_due')
-            ->get();
+                    ->leftJoin('project_request_info', 'project_request_info.ri_id', '=', 'project_request_info_review.rir_review_parent')
+                    ->leftJoin('users', 'project_request_info.ri_user_id', '=', 'users.id')
+                    ->select('project_request_info_review.*','users.*')
+                    ->where('rir_project_id', '=', $project->p_id)
+                    ->where('rir_review_status', '=', 'response_due')
+                    ->get();
             $days = $project->submittal_due_date;
             $user =  (array) $query;
             if(count($query) < 1)
@@ -1133,10 +1135,32 @@ class RequestInfoController extends Controller {
                 $plus_date = strtotime($plus_time);
                 $current_date = time();
                   if($current_date >= $plus_date){
-                    $review = DB::table('project_request_info_review')
+                    $review1 = DB::table('project_request_info_review')
                     ->where('rir_id', '=', $review->rir_id)
                     ->where('rir_review_respond', '=', null)
                     ->update(['rir_review_status' => 'past_due']);
+                    $project_id           = $project->p_id;
+                    $notification_title   = 'Request for information has been overdue in Project: ' .$project->p_name;
+                    $url                  = App::make('url')->to('/');
+                    $link                 = "/dashboard/".$project->p_id."/req_for_info_review";
+                    $date                 = date("M d, Y h:i a");
+                    $email_description    = 'Request for information has been overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $user_detail = array(
+                        'id'              => $review->id,
+                        'name'            => $review->username,
+                        'email'           => $review->email,
+                        'link'            => $link,
+                        'date'            => $date,
+                        'project_name'    => $project->p_name,
+                        'title'           => $notification_title,
+                        'description'     => $email_description
+                    );
+                    $user_single = (object) $user_detail;
+                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                        $message->from('no-reply@sw.ai', 'StratusCM');
+                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                    });
+                    
                     $result = array('description'=>'Update Status successfully','code'=>200);
                     //return response()->json($result, 200);
                   }

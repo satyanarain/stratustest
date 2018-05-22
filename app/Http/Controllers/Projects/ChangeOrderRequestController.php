@@ -1142,10 +1142,11 @@ public function get_change_order_request_weeklyreport(Request $request, $project
         {
             //$days = config('app.request_review_status_change');
             $query = DB::table('project_change_order_request_detail')
-            ->select()
-            ->where('pcd_project_id', '=', $project->p_id)
-            ->where('pcd_status', '=', 'pending')
-            ->get();
+                    ->leftJoin('users', 'project_change_order_request_detail.pcd_user_id', '=', 'users.id')
+                    ->select('project_change_order_request_detail.*','users.*')
+                    ->where('pcd_project_id', '=', $project->p_id)
+                    ->where('pcd_status', '=', 'pending')
+                    ->get();
             $days = $project->change_order_due_date;
             $user =  (array) $query;
             if(count($query) < 1)
@@ -1155,7 +1156,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
             }
             else
             {
-              foreach ($query as $key => $review) {
+              foreach ($query as $key => $review) {//print_r($review);die;
                 $reg_time = $review->pcd_timestamp;
                 $reg_date = strtotime($reg_time);
                 $date = date_create($reg_time);
@@ -1168,9 +1169,31 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                 $plus_date = strtotime($plus_time);
                 $current_date = time();
                   if($current_date >= $plus_date){
-                    $review = DB::table('project_change_order_request_detail')
+                    $review1 = DB::table('project_change_order_request_detail')
                     ->where('pcd_id', '=', $review->pcd_id)
                     ->update(['pcd_status' => 'past_due']);
+                    
+                    $project_id           = $project->p_id;
+                    $notification_title   = 'Change order request has been overdue in Project: ' .$project->p_name;
+                    $url                  = App::make('url')->to('/');
+                    $link                 = "/dashboard/".$project->p_id."/change_order_request";
+                    $date                 = date("M d, Y h:i a");
+                    $email_description    = 'Change order request has been overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $user_detail = array(
+                        'id'              => $review->id,
+                        'name'            => $review->username,
+                        'email'           => $review->email,
+                        'link'            => $link,
+                        'date'            => $date,
+                        'project_name'    => $project->p_name,
+                        'title'           => $notification_title,
+                        'description'     => $email_description
+                    );
+                    $user_single = (object) $user_detail;
+                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                        $message->from('no-reply@sw.ai', 'StratusCM');
+                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                    });
                     $result = array('description'=>'Update Status successfully','code'=>200);
                     //return response()->json($result, 200);
                   }

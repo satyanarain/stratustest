@@ -929,16 +929,18 @@ class SubmittalsController extends Controller {
         foreach($projects as $project)
         {
             $query = DB::table('project_submittal_review')
-            ->select()
-            ->where('sr_project_id', '=', $project->p_id)
+                    ->leftJoin('project_submittals', 'project_submittals.sub_id', '=', 'project_submittal_review.sr_submittal_id')
+                    ->leftJoin('users', 'project_submittals.sub_user_id', '=', 'users.id')
+                    ->select('project_submittal_review.*','users.*')
+                    ->where('sr_project_id', '=', $project->p_id)
 //            ->where(function($query){
 //                    $query->where('sr_review_type', '=', 'make_corrections_noted')
 //                    ->orwhere('sr_review_type', '=', 'revise_resubmit')
 //                    ->orwhere('sr_review_type', '=', 'rejected')
 //                    ->orwhere('sr_review_type', '=', 'pending');
 //                })
-            ->where('sr_review_type', '=', 'pending')
-            ->get();
+                    ->where('sr_review_type', '=', 'pending')
+                    ->get();
             //print_r($query);die;
             //$days = config('app.review_status_change');
             $days = $project->submittal_due_date;
@@ -963,9 +965,30 @@ class SubmittalsController extends Controller {
                 $plus_date = strtotime($plus_time);
                 $current_date = time();
                   if($current_date >= $plus_date){
-                    $review = DB::table('project_submittal_review')
+                    $review1 = DB::table('project_submittal_review')
                     ->where('sr_id', '=', $review->sr_id)
                     ->update(['sr_review_type' => 'past_due']);
+                    $project_id           = $project->p_id;
+                    $notification_title   = 'Submittal has been overdue in Project: ' .$project->p_name;
+                    $url                  = App::make('url')->to('/');
+                    $link                 = "/dashboard/".$project->p_id."/submittal_review";
+                    $date                 = date("M d, Y h:i a");
+                    $email_description    = 'Submittal has been overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $user_detail = array(
+                        'id'              => $review->id,
+                        'name'            => $review->username,
+                        'email'           => $review->email,
+                        'link'            => $link,
+                        'date'            => $date,
+                        'project_name'    => $project->p_name,
+                        'title'           => $notification_title,
+                        'description'     => $email_description
+                    );
+                    $user_single = (object) $user_detail;
+                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                        $message->from('no-reply@sw.ai', 'StratusCM');
+                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                    });
                     if(count($review) < 1)
                     {
                       $result = array('code'=>404, "description"=>"No Records Found");
