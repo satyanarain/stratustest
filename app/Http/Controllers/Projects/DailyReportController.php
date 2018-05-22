@@ -420,12 +420,14 @@ class DailyReportController extends Controller {
             $query = DB::table('project_daily_report_logs')
             ->where('pdrl_id', '=', $report_id)
             ->update(['pdr_weather' => $report_weather, 'pdr_custom_field' => $report_custum_field, 'pdr_perform_work_day' => $report_perform_work_day, 'pdr_material_delivery' =>$report_material_delivery, 'pdr_milestone_completed' =>$report_milestone_completed, 'pdr_milestone_detail' =>$report_milestone_detail, 'pdr_occur_detail' =>$report_occur_detail, 'pdr_general_notes' =>$report_general_notes, 'pdr_picture_video' =>$report_picture_video, 'pdr_sub_contractor_work' =>$report_subcontractor_work_day,'pdr_status' => $status, 'pdr_project_id' => $project_id, 'pdr_user_id' => $user_id]);
-            foreach($subcontractor_arr as $row)
+            if($request['subcontractor_arr'] && count($subcontractor_arr))
             {
-                $query = DB::table('project_daily_report_subcontractor_comments')
-                ->insert(['report_id' => $report_id,'company_name' => $row['subcontractor_name'],'comment' => $row['subcontractor_comments']]);
+                foreach($subcontractor_arr as $row)
+                {
+                    $query = DB::table('project_daily_report_subcontractor_comments')
+                    ->insert(['report_id' => $report_id,'company_name' => $row['subcontractor_name'],'comment' => $row['subcontractor_comments']]);
+                }
             }
-            
             
             if(count($query) < 1)
             {

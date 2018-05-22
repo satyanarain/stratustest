@@ -65,8 +65,8 @@
                               <section class="blue" style="height: 190px;">
                                 <div class="value white">
                                     <h4>Contract:<span style="float: right" id="contract_amount"></span></h4>
-                                    <h4>Change Orders: <span id="total_change_order_count"></span>  <span style="float: right" id="total_change_order_amount"></span></h4>
-                                    <h4>Total Contract: <span style="float: right;border-top:1px solid black " id="total_contract_amount"></span></h4><br>
+                                    <h4>Change Orders: <span id="total_change_order_count"></span>  <span style="float: right" id="total_change_order_amount"></span></h4><br>
+                                    
                                     <h4 style="color: yellow">Pending CO: <span id="pending_change_order_count"></span> <span style="float: right" id="pending_change_order_amount"></span></h4>
                                    
                                 </div>
@@ -75,9 +75,11 @@
                                 <div class="col-md-4" id="" style="">
                               <section class="blue" style="height: 190px;">
                                 <div class="value white">
-                                     <h4>Billings To Date:<span style="float: right" id="billings_to_date"></span></h4>
-                                     <h4>Contract Bal Remaining:<span style="float: right" id="contract_bal_remaining"></span></h4>
-                                   
+                                    <h4>Total Contract: <span style="float: right;" id="total_contract_amount"></span></h4>
+                                    <h4>Billings to Date: <span style="float: right;" id="billings_to_date"></span></h4>
+                                    <h4>Prior Billings: <span style="float: right;" id="prior_billings"></span></h4>
+                                    <h4>Total Billing: <span style="float: right;" id="total_billings"></span></h4>
+                                    <h4>Contract Balance Remaining: <span style="float: right;" id="contract_bal_remaining"></span></h4>
                                 </div>
                               </section>
                             </div>
