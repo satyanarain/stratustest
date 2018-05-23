@@ -1134,7 +1134,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
   {
     try
     {
-        echo '<pre>';
+        //echo '<pre>';
         $projects = DB::table('projects')
         ->select()
         ->where('p_status', '=', 'active')
@@ -1153,7 +1153,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                         ->orwhere('pcd_status', '=', 'past_due');
                     })
                     ->get();
-            print_r($query);die;
+            //print_r($query);die;
             $days = $project->change_order_due_date;
             $user =  (array) $query;
             if(count($query) < 1)
