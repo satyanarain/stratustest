@@ -1134,7 +1134,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
   {
     try
     {
-        //echo '<pre>';
+        echo '<pre>';
         $projects = DB::table('projects')
         ->select()
         ->where('p_status', '=', 'active')
