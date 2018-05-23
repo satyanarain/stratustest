@@ -309,7 +309,7 @@ $(document).ready(function() {
         // Total Day Approved
         var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').val());
         var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').val());
-        $('#total_day_approved_app_calender').text(parseInt(days_this_report_app_calender1+days_previous_report_app_calender1));
+        $('#total_day_approved_app_calender').text(parseInt(days_this_report_app_calender1)+parseInt(days_previous_report_app_calender1));
 
 
         // var days_app_non_calender = 0;
@@ -345,7 +345,7 @@ $(document).ready(function() {
         var notice_to_proceed_duration_day1 = parseInt($('#notice_to_proceed_duration_day').text());
         var total_day_approved_app_calender1 = parseInt($('#total_day_approved_app_calender').text());
         var total_day_approved_app_non_calender1 = parseInt($('#total_day_approved_app_non_calender').text());
-        if(total_day_approved_app_non_calender1+notice_to_proceed_duration_day1+total_day_approved_app_calender1)
+        if(total_day_approved_app_non_calender1+notice_to_proceed_duration_day1+parseInt(total_day_approved_app_calender1))
             $('#revised_total_calender').text(total_day_approved_app_non_calender1+notice_to_proceed_duration_day1+total_day_approved_app_calender1);
     ///console.log(total_day_approved_app_non_calender1+notice_to_proceed_duration_day1+total_day_approved_app_calender1);
 
@@ -368,7 +368,7 @@ $(document).ready(function() {
         var total_day_approved_app_calender1 = parseInt($('#total_day_approved_app_calender').text());
         var total_day_approved_app_non_calender1 = parseInt($('#total_day_approved_app_non_calender').text());
         var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
-        var total_days_plus = (total_day_approved_app_calender1+total_day_approved_app_non_calender1+day_due_to_rain1);
+        var total_days_plus = (parseInt(total_day_approved_app_calender1)+total_day_approved_app_non_calender1+day_due_to_rain1);
         var result = new Date(date_final);
         if(result.getFullYear())
         {
