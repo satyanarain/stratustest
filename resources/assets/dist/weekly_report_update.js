@@ -218,8 +218,10 @@ $(document).ready(function() {
             console.log(pwrd_approved_non_calender_day);
             console.log(pwrd_rain_day);
         $('#calendar_days_app_calender').text(pwrd_approved_calender_day);
-        $('#calendar_days_app_non_calender').text(pwrd_approved_non_calender_day);
-        $('#calendar_days_app_raily_day').text(pwrd_rain_day);
+        if(parseInt(pwrd_approved_non_calender_day))
+            $('#calendar_days_app_non_calender').text(pwrd_approved_non_calender_day);
+        if(parseInt(pwrd_rain_day))
+            $('#calendar_days_app_raily_day').text(pwrd_rain_day);
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
@@ -325,7 +327,8 @@ $(document).ready(function() {
         // $(this).find('.days_app_non_calender').each(function(){
         //     days_app_non_calender += parseInt($(this).val()); //<==== a catch  in here !! read below
         // });
-        $('#calendar_days_app_non_calender').text(pwrd_approved_non_calender_day);
+        if(parseInt(pwrd_approved_non_calender_day))
+            $('#calendar_days_app_non_calender').text(pwrd_approved_non_calender_day);
           if (complete_status != true ) {
 
              $('#days_this_report_app_non_calender').val(pwrd_approved_non_calender_day);
@@ -355,7 +358,8 @@ $(document).ready(function() {
         // $(this).find('.days_rainy_day').each(function(){
         //     days_rainy_day += parseInt($(this).val()); //<==== a catch  in here !! read below
         // });
-        $('#calendar_days_app_raily_day').text(pwrd_rain_day);
+        if(parseInt(pwrd_rain_day))
+            $('#calendar_days_app_raily_day').text(pwrd_rain_day);
         var calendar_previous_days_app_raily_day = $('#calendar_previous_days_app_raily_day').text();
         var calendar_previous_days_app_raily_day1 = parseInt(calendar_previous_days_app_raily_day);
         $('#calendar_total_days_app_raily_day').text(parseInt(pwrd_rain_day+calendar_previous_days_app_raily_day1));
@@ -389,6 +393,7 @@ $(document).ready(function() {
 
         // Days due to Rain Days | Weather
         var calendar_total_days_app_raily_day1 = parseInt($('#calendar_total_days_app_raily_day').text());
+        if(parseInt(calendar_total_days_app_raily_day1))
         $('#day_due_to_rain').text(calendar_total_days_app_raily_day1);
 
         // Revised Computed Completion Date (Line 4 + Line 8 + Line 12)
@@ -435,7 +440,8 @@ $('#calendar_week_days').on('input', function() {
     $(this).find('.days_app_non_calender').each(function(){
         days_app_non_calender += parseInt($(this).val()); //<==== a catch  in here !! read below
     });
-    $('#calendar_days_app_non_calender').text(days_app_non_calender);
+    if(parseInt(days_app_non_calender))
+        $('#calendar_days_app_non_calender').text(days_app_non_calender);
     $('#days_this_report_app_non_calender').val(days_app_non_calender);
     var calendar_previous_days_app_non_calender = $('#calendar_previous_days_app_non_calender').text();
     var calendar_previous_days_app_non_calender1 = parseInt(calendar_previous_days_app_non_calender);
@@ -450,7 +456,8 @@ $('#calendar_week_days').on('input', function() {
     $(this).find('.days_rainy_day').each(function(){
         days_rainy_day += parseInt($(this).val()); //<==== a catch  in here !! read below
     });
-    $('#calendar_days_app_raily_day').text(days_rainy_day);
+    if(parseInt(days_rainy_day))
+        $('#calendar_days_app_raily_day').text(days_rainy_day);
     var calendar_previous_days_app_raily_day = $('#calendar_previous_days_app_raily_day').text();
     var calendar_previous_days_app_raily_day1 = parseInt(calendar_previous_days_app_raily_day);
     $('#calendar_total_days_app_raily_day').text(parseInt(days_rainy_day+calendar_previous_days_app_raily_day1));
@@ -472,21 +479,32 @@ $('#calendar_week_days').on('input', function() {
     $('#revised_calendar_day_remaining').text(revised_total_calender1-calendar_day_charged_app_calender1-calendar_day_charged_app_non_calender1);
 
     // Days due to Rain Days | Weather
-    var calendar_total_days_app_raily_day1 = parseInt($('#calendar_total_days_app_raily_day').text());
-    $('#day_due_to_rain').text(calendar_total_days_app_raily_day1);
+    if(parseInt($('#calendar_total_days_app_raily_day').text()))
+        var calendar_total_days_app_raily_day1 = parseInt($('#calendar_total_days_app_raily_day').text());
+    else
+        var calendar_total_days_app_raily_day1 = 0;
+    if(parseInt(calendar_total_days_app_raily_day1))
+        $('#day_due_to_rain').text(calendar_total_days_app_raily_day1);
 
     // Revised Computed Completion Date (Line 4 + Line 8 + Line 12)
     var date_final = $('#computed_completion_date').text();
     var total_day_approved_app_calender1 = parseInt($('#total_day_approved_app_calender').text());
-    var total_day_approved_app_non_calender1 = parseInt($('#total_day_approved_app_non_calender').text());
-    var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
+    if(parseInt($('#total_day_approved_app_non_calender').text()))
+        var total_day_approved_app_non_calender1 = parseInt($('#total_day_approved_app_non_calender').text());
+    else
+        var total_day_approved_app_non_calender1 = 0;
+    if(parseInt($('#day_due_to_rain').text()))
+        var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
+    else
+        var day_due_to_rain1 = 0;
     var total_days_plus = (total_day_approved_app_calender1+total_day_approved_app_non_calender1+day_due_to_rain1);
     var result = new Date(date_final);
     if(result.getFullYear())
     {
         result.setDate(result.getDate() + total_days_plus);
         var revised_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
-        $('#revised_completion_date').text(revised_completion_date);
+        if(revised_completion_date!="NaN-NaN-NaN")
+            $('#revised_completion_date').text(revised_completion_date);
     }else{
         $('#revised_completion_date').text('');
     }
@@ -764,11 +782,11 @@ function checkvalue( e ) {
       var min = parseInt($(e).attr('min'));
 
        
-     if ($(e).val() > max)
+     if ($(e).val() >= max)
           {
               $(e).val(max);
           }
-          else if ($(e).val() < min)
+          else if ($(e).val() <= min)
           {
               $(e).val(min);
           }else{
