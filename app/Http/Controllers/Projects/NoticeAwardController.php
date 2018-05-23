@@ -85,27 +85,29 @@ class NoticeAwardController extends Controller {
                         $data[$i]["name"] = $row['signatory_name'];
                         $data[$i]["roleName"] = "contractor";
                         $data[$i]["tabs"]["textTabs"] =
-                                                array(array(
-                                                        "tabLabel" => "noa_company_name",
-                                                        "value" => $row['noa_company_name']),
-                                                        array (
-                                                        "tabLabel" => "noa_company_address",
-                                                        "value" => $row['noa_company_address']),
-                                                        array (
-                                                        "tabLabel" => "noa_project_name",
-                                                        "value" => $row['noa_project_name']),
-                                                        array (
-                                                        "tabLabel" => "noa_improvement_type",
-                                                        "value" => $row['noa_improvement_type']),
+                                                array(
+//                                                    array(
+//                                                        "tabLabel" => "noa_company_name",
+//                                                        "value" => $row['noa_company_name']),
+//                                                        array (
+//                                                        "tabLabel" => "noa_company_address",
+//                                                        "value" => $row['noa_company_address']),
+//                                                        array (
+//                                                        "tabLabel" => "noa_project_name",
+//                                                        "value" => $row['noa_project_name']),
+//                                                        array (
+//                                                        "tabLabel" => "noa_improvement_type",
+//                                                        "value" => $row['noa_improvement_type']),
                                                         array (
                                                         "tabLabel" => "noa_bid_advertisement_date",
                                                         "value" => $row['noa_bid_advertisement_date'].'.'),
-                                                        array (
-                                                        "tabLabel" => "noa_bid_amount",
-                                                        "value" => '$'.$row['noa_bid_amount']),
-                                                        array (
-                                                        "tabLabel" => "noa_date",
-                                                        "value" => date('Y-m-d')));
+//                                                        array (
+//                                                        "tabLabel" => "noa_bid_amount",
+//                                                        "value" => '$'.$row['noa_bid_amount']),
+//                                                        array (
+//                                                        "tabLabel" => "noa_date",
+//                                                        "value" => date('Y-m-d'))
+                                                        );
 //                        $data[$i]['email'] = $row['signatory_email'];
 //                        $data[$i]['name'] = $row['signatory_name'];
 //                        $data[$i]['recipientId'] = $i+1;
