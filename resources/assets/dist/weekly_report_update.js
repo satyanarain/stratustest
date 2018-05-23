@@ -309,7 +309,8 @@ $(document).ready(function() {
         // Total Day Approved
         var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').val());
         var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').val());
-        //$('#total_day_approved_app_calender').text(parseInt(days_this_report_app_calender1)+parseInt(days_previous_report_app_calender1));
+        if(parseInt(days_this_report_app_calender1)+parseInt(days_previous_report_app_calender1)!="NaN")
+            $('#total_day_approved_app_calender').text(parseInt(days_this_report_app_calender1)+parseInt(days_previous_report_app_calender1));
 
 
         // var days_app_non_calender = 0;
