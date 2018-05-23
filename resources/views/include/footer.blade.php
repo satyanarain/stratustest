@@ -59,7 +59,7 @@
      <div class="modal-dialog modal-md">
          <div class="modal-content text-center">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            @if(Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/daily_construction_report/{daily_construction_report_id}/update")
+            @if(Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/daily_construction_report/{daily_construction_report_id}/serial/{serial_id}/update")
              @include('include/add_new_contract_item')
             @endif
          </div>
