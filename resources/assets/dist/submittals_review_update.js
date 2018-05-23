@@ -188,6 +188,9 @@
                 }
                 html += '</ul></div>';
                 $("#alert_message").html(html);
-                $("#alert_message").hide();
+                setTimeout(function()
+                {
+                    $("#alert_message").hide();
+                },6000)
         })
     });

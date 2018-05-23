@@ -1112,6 +1112,7 @@ class RequestInfoController extends Controller {
                     ->select('project_request_info_review.*','users.*')
                     ->where('rir_project_id', '=', $project->p_id)
                     ->where('rir_review_status', '=', 'response_due')
+                    ->orwhere('rir_review_status', '=', 'past_due')
                     ->get();
             $days = $project->submittal_due_date;
             $user =  (array) $query;

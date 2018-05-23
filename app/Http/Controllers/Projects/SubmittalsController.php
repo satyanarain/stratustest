@@ -940,6 +940,7 @@ class SubmittalsController extends Controller {
 //                    ->orwhere('sr_review_type', '=', 'pending');
 //                })
                     ->where('sr_review_type', '=', 'pending')
+                    ->orwhere('sr_review_type', '=', 'past_due')
                     ->get();
             //print_r($query);die;
             //$days = config('app.review_status_change');
