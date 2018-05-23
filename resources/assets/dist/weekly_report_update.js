@@ -374,7 +374,8 @@ $(document).ready(function() {
         {
             result.setDate(result.getDate() + total_days_plus);
             var revised_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
-            //$('#revised_completion_date').text(revised_completion_date);
+            if(revised_completion_date)
+                $('#revised_completion_date').text(revised_completion_date);
         }else{
             $('#revised_completion_date').text('');
         }
