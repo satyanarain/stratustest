@@ -99,10 +99,10 @@ class NoticeAwardController extends Controller {
                                                         "value" => $row['noa_improvement_type']),
                                                         array (
                                                         "tabLabel" => "noa_bid_advertisement_date",
-                                                        "value" => $row['noa_bid_advertisement_date']),
+                                                        "value" => $row['noa_bid_advertisement_date'].'.'),
                                                         array (
                                                         "tabLabel" => "noa_bid_amount",
-                                                        "value" => $row['noa_bid_amount']),
+                                                        "value" => '$'.$row['noa_bid_amount']),
                                                         array (
                                                         "tabLabel" => "noa_date",
                                                         "value" => date('Y-m-d')));
@@ -171,7 +171,7 @@ class NoticeAwardController extends Controller {
                     $password = env('DOCUSIGN_PASSWORD');
                     $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
                     if($contractor_bond_required=="yes")
-                        $templateId = "6c355966-6343-4e10-b0fd-e0f7cefe38a0";
+                        $templateId = "9d7e5608-9014-4a7d-894b-8010746a2910";
                     else
                         $templateId = "b24269f6-5211-482b-8b4b-79635d6cba19";
                     $url = env('DOCUSIGN_URL');
