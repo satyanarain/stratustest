@@ -1146,8 +1146,12 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                     ->leftJoin('users', 'project_change_order_request_detail.pcd_user_id', '=', 'users.id')
                     ->select('project_change_order_request_detail.*','users.*')
                     ->where('pcd_project_id', '=', $project->p_id)
-                    ->where('pcd_status', '=', 'pending')
-                    ->orwhere('pcd_status', '=', 'past_due')
+                    //->where('pcd_status', '=', 'pending')
+                    //->orwhere('pcd_status', '=', 'past_due')
+                    ->where(function($query){
+                        $query->where('pcd_status', '=', 'pending')
+                        ->orwhere('pcd_status', '=', 'past_due');
+                    })
                     ->get();
             print_r($query);die;
             $days = $project->change_order_due_date;
