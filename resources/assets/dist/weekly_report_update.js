@@ -209,8 +209,10 @@ $(document).ready(function() {
                 '</tr>'
             );
             pwrd_approved_calender_day += parseInt(val.pwrd_approved_calender_day);
-            pwrd_approved_non_calender_day += parseInt(val.pwrd_approved_non_calender_day);
-            pwrd_rain_day += parseInt(val.pwrd_rain_day);
+            if(parseInt(val.pwrd_approved_non_calender_day))
+                pwrd_approved_non_calender_day += parseInt(val.pwrd_approved_non_calender_day);
+            if(parseInt(val.pwrd_rain_day))
+                pwrd_rain_day += parseInt(val.pwrd_rain_day);
         });
             console.log(pwrd_approved_calender_day);
             console.log(pwrd_approved_non_calender_day);
@@ -258,8 +260,8 @@ $(document).ready(function() {
           
         console.log(data.data[0].pwrd_approved_calender_day);
         $('#days_previous_report_app_calender').val(data.data[0].pwrd_approved_calender_day);
-       
-        $('#days_previous_report_app_non_calender').val(data.data[0].pwrd_approved_non_calender_day);
+        if(data.data[0].pwrd_approved_non_calender_day)
+            $('#days_previous_report_app_non_calender').val(data.data[0].pwrd_approved_non_calender_day);
         }
 
         if ( data.data[0].pwrd_approved_calender_day == null) {
@@ -328,9 +330,14 @@ $(document).ready(function() {
 
              $('#days_this_report_app_non_calender').val(pwrd_approved_non_calender_day);
          }
-        
-        var calendar_previous_days_app_non_calender = $('#calendar_previous_days_app_non_calender').text();
-        var calendar_previous_days_app_non_calender1 = parseInt(calendar_previous_days_app_non_calender);
+        if(parseInt($('#calendar_previous_days_app_non_calender').text()))
+            var calendar_previous_days_app_non_calender = $('#calendar_previous_days_app_non_calender').text();
+        else
+            var calendar_previous_days_app_non_calender = 0;
+        if(parseInt(calendar_previous_days_app_non_calender))
+            var calendar_previous_days_app_non_calender1 = parseInt(calendar_previous_days_app_non_calender);
+        else
+            var calendar_previous_days_app_non_calender1 = 0;
         $('#calendar_total_days_app_non_calender').text(parseInt(pwrd_approved_non_calender_day+calendar_previous_days_app_non_calender1));
         // Total Day Approved
         if(parseInt($('#days_this_report_app_non_calender').val()))
@@ -764,6 +771,8 @@ function checkvalue( e ) {
           else if ($(e).val() < min)
           {
               $(e).val(min);
+          }else{
+               $(e).val(0);
           } 
 
  var dataList = document.querySelectorAll("."+e.classList[1]); 
