@@ -370,7 +370,7 @@ $(document).ready(function() {
         var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
         var total_days_plus = (parseInt(total_day_approved_app_calender1)+total_day_approved_app_non_calender1+day_due_to_rain1);
         var result = new Date(date_final);
-        if(result.getFullYear())
+        if(result.getDate())
         {
             result.setDate(result.getDate() + total_days_plus);
             var revised_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
@@ -413,7 +413,7 @@ $('#calendar_week_days').on('input', function() {
     // Total Day Approved
     var days_this_report_app_non_calender1 = parseInt($('#days_this_report_app_non_calender').val());
     var days_previous_report_app_non_calender1 = parseInt($('#days_previous_report_app_non_calender').val());
-    $('#total_day_approved_app_non_calender').text(parseInt(days_this_report_app_non_calender1+days_previous_report_app_non_calender1));
+    $('#total_day_approved_app_non_calender').text(parseInt(days_this_report_app_non_calender1)+parseInt(days_previous_report_app_non_calender1));
 
 
     var days_rainy_day = 0;
@@ -429,7 +429,7 @@ $('#calendar_week_days').on('input', function() {
     var notice_to_proceed_duration_day1 = parseInt($('#notice_to_proceed_duration_day').text());
     var total_day_approved_app_calender1 = parseInt($('#total_day_approved_app_calender').text());
     var total_day_approved_app_non_calender1 = parseInt($('#total_day_approved_app_non_calender').text());
-    $('#revised_total_calender').text(parseInt(total_day_approved_app_non_calender1+notice_to_proceed_duration_day1+total_day_approved_app_calender1));
+    $('#revised_total_calender').text(parseInt(total_day_approved_app_non_calender1)+parseInt(notice_to_proceed_duration_day1)+parseInt(total_day_approved_app_calender1));
 
     // Calendar day charged
     $('#calendar_day_charged_app_calender').text(parseInt($('#calendar_total_days_app_calender').text()));
