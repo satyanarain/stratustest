@@ -307,8 +307,14 @@ $(document).ready(function() {
         var calendar_previous_days_app_calender1 = parseInt(calendar_previous_days_app_calender);
         $('#calendar_total_days_app_calender').text(parseInt(pwrd_approved_calender_day+calendar_previous_days_app_calender1));
         // Total Day Approved
-        var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').val());
-        var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').val());
+        if(parseInt($('#days_this_report_app_calender').val()))
+            var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').val());
+        else
+            var days_this_report_app_calender1 = 0;
+        if(parseInt($('#days_previous_report_app_calender').val()))
+            var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').val());
+        else
+            var days_previous_report_app_calender1 = 0;
         if(parseInt(days_this_report_app_calender1)+parseInt(days_previous_report_app_calender1)!="NaN")
             $('#total_day_approved_app_calender').text(parseInt(days_this_report_app_calender1)+parseInt(days_previous_report_app_calender1));
 
