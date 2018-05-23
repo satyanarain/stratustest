@@ -203,6 +203,7 @@ $(document).ready(function() {
                             }
                         });
                     });
+                $('#add-contractitems').modal('hide');
             })
         .fail(function(jqXHR, textStatus, errorThrown) {
                 console.log("HTTP Request Failed");
