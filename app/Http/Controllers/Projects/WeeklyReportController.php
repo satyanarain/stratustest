@@ -63,22 +63,22 @@ class WeeklyReportController extends Controller {
             ->where('pnp_project_id', '=', $project_id )
             ->orderBy('pnp_start_date','DESC')
             ->first();
-
-         echo "project : ".$project_id,"</br>"; 
+            if($project_notice_proceed)
+            {
+            echo "project : ".$project_id,"</br>"; 
 
             $countDays = 0;
-         // echo "<pre> pro Data :".print_r($project_notice_proceed , TRUE)."</pre>";
-           //echo "<pre> pnp Data :".print_r($project_notice_proceed->pnp_cal_day , TRUE)."</pre>";
-if (isset( $project_notice_proceed->pnp_cal_day  )) {
-
+            // echo "<pre> pro Data :".print_r($project_notice_proceed , TRUE)."</pre>";
+            //echo "<pre> pnp Data :".print_r($project_notice_proceed->pnp_cal_day , TRUE)."</pre>";
+            if (isset( $project_notice_proceed->pnp_cal_day  )) {
             if (  $project_notice_proceed->pnp_cal_day == 'calendar_day' ) {
                $countDays = 0;
             } else {
                  $countDays = 2;
             }
-}
+        }
              echo $countDays;
-           //  die();
+            //  die();
 
             $add_weekly_report = ProjectWeeklyReports::create(['pwr_project_id' => $project_id, 'pwr_week_ending' => $current_date, 'pwr_status' => 'active', 'pwr_status' => 'incomplete', 'report_type' => $project_notice_proceed->pnp_cal_day]);
             
@@ -94,7 +94,7 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
             if(count($add_weekly_report) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
-              return response()->json($result, 400);
+              //return response()->json($result, 400);
             }
             else 
             {
@@ -154,7 +154,7 @@ if (isset( $project_notice_proceed->pnp_cal_day  )) {
             // End Payment Quantity Verification Automation Process
               echo 'Add Weekly report for project: '.$project->p_name.'<br/>';
             }
-          
+            }
         }
       }
     }
