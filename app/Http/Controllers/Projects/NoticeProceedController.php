@@ -150,7 +150,7 @@ class NoticeProceedController extends Controller {
                     $email = env('DOCUSIGN_EMAIL');
                     $password = env('DOCUSIGN_PASSWORD');
                     $integratorKey = env('DOCUSIGN_INTEGRATOR_KEY');
-                    $templateId = "8e0a66b8-ee10-4c1f-a70b-999994a0e6b9";
+                    $templateId = "aa0902f2-2455-42a7-a599-662af92b64b0";
                     $url = env('DOCUSIGN_URL');
                     $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
                     $curl = curl_init($url);
