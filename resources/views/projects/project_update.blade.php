@@ -122,7 +122,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6" style="padding-top:38px;">
                                 <label>&nbsp;</label>
                                 <button type="submit" id="add_more" class="btn btn-info sub-btn">Add New Improvement Type</button>
                             </div>
@@ -145,7 +145,7 @@
                                 <input type="text" class="form-control" id="project_location" style="display: none;">
                             </div>
                             <div class="clearfix"></div>
-                            <div class="form-group col-md-12" style="overflow: hidden;padding-top: 80px">
+                            <div class="form-group col-md-12" style="overflow: hidden;">
                                 <!-- <input id="pac-input" class="controls" type="text" placeholder="Enter a location"> -->
                                 <div class="map-wrapper"><div id="map"></div></div>
                             </div>

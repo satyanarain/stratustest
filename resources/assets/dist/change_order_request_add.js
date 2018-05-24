@@ -420,21 +420,37 @@ $(document).ready(function() {
             html += '<li> Construction Manager Name is invalid </li>';
             is_error = true;
         }
+        
         if($('input[name^=cm_email]').val() == '')
         {
             html += '<li> Construction Manager Email is invalid </li>';
             is_error = true;
+        }else{
+            var email = $('input[name^=cm_email]').val().trim();
+            if(email != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+                //signatory_email.push(email);
+            }else{
+                html += '<li>Construction Manager Email is invalid.</li>';
+                is_error = true;
+            }
         }
         if($('input[name^=owner_name]').val() == '')
         {
             html += '<li> Owner Name is invalid </li>';
             is_error = true;
         }
-        if($('input[name^=owner_email]').val() == '')
-        {
-            html += '<li> Owner Email is invalid </li>';
+        var owner_email = $('input[name^=owner_email]').val().trim();
+        if(owner_email != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(owner_email)){
+                
+        }else{
+            html += '<li>Owner Email is invalid.</li>';
             is_error = true;
         }
+//        if($('input[name^=owner_email]').val() == '')
+//        {
+//            html += '<li> Owner Email is invalid </li>';
+//            is_error = true;
+//        }
         // var is_error_price = false;
         // $('input[name^=item_price]').each(function(){
         //     if($(this).val() == '')
