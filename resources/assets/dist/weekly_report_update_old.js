@@ -387,18 +387,11 @@ $(document).ready(function() {
             $('#calendar_day_charged_app_non_calender').text(parseInt($('#calendar_total_days_app_non_calender').text()));
 
         // Revised Calendar Days Remaining in Contract
-        if(parseInt($('#revised_total_calender').text()))
-            var revised_total_calender1 = parseInt($('#revised_total_calender').text());
-        else
-            var revised_total_calender1 = 0;
+        var revised_total_calender1 = parseInt($('#revised_total_calender').text());
         if(parseInt($('#calendar_day_charged_app_calender').text()))
             var calendar_day_charged_app_calender1 = parseInt($('#calendar_day_charged_app_calender').text());
-        else
-            var calendar_day_charged_app_calender1 = 0;
         if(parseInt($('#calendar_day_charged_app_non_calender').text()))
             var calendar_day_charged_app_non_calender1 = parseInt($('#calendar_day_charged_app_non_calender').text());
-        else
-            var calendar_day_charged_app_non_calender1 = 0;
         $('#revised_calendar_day_remaining').text(revised_total_calender1-calendar_day_charged_app_calender1-calendar_day_charged_app_non_calender1);
 
         // Days due to Rain Days | Weather
@@ -433,19 +426,19 @@ $(document).ready(function() {
 
 
 $('#calendar_week_days').on('input', function() {
-//alert(pwrd_approved_calender_day);
+
     // var days_app_calender = 0;
     // $(this).find('.days_app_calender').each(function(){
     //     days_app_calender += parseInt($(this).val()); //<==== a catch  in here !! read below
     // });
     // $('#calendar_days_app_calender').text(days_app_calender);
     // $('#days_this_report_app_calender').text(days_app_calender);
-    var calendar_previous_days_app_calender = parseInt($('#calendar_previous_days_app_calender').text());
+    var calendar_previous_days_app_calender = $('#calendar_previous_days_app_calender').text();
     if(parseInt(calendar_previous_days_app_calender))
         var calendar_previous_days_app_calender1 = parseInt(calendar_previous_days_app_calender);
     else
         var calendar_previous_days_app_calender1 = 0;
-    $('#calendar_total_days_app_calender').text(parseInt(pwrd_approved_calender_day)+parseInt(calendar_previous_days_app_calender1));
+    $('#calendar_total_days_app_calender').text(parseInt(pwrd_approved_calender_day+calendar_previous_days_app_calender1));
     // Total Day Approved
     if(parseInt($('#days_this_report_app_calender').val()))
         var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').val());
@@ -509,18 +502,9 @@ $('#calendar_week_days').on('input', function() {
     $('#calendar_day_charged_app_non_calender').text(parseInt($('#calendar_total_days_app_non_calender').text()));
 
     // Revised Calendar Days Remaining in Contract
-    if(parseInt($('#revised_total_calender').text()))
-        var revised_total_calender1 = parseInt($('#revised_total_calender').text());
-    else
-        var revised_total_calender1 =0;
-    if(parseInt($('#calendar_day_charged_app_calender').text()))
-        var calendar_day_charged_app_calender1 = parseInt($('#calendar_day_charged_app_calender').text());
-    else
-        var calendar_day_charged_app_calender1 = 0;
-    if(parseInt($('#calendar_day_charged_app_non_calender').text()))
-        var calendar_day_charged_app_non_calender1 = parseInt($('#calendar_day_charged_app_non_calender').text());
-    else
-        var calendar_day_charged_app_non_calender1 =0;
+    var revised_total_calender1 = parseInt($('#revised_total_calender').text());
+    var calendar_day_charged_app_calender1 = parseInt($('#calendar_day_charged_app_calender').text());
+    var calendar_day_charged_app_non_calender1 = parseInt($('#calendar_day_charged_app_non_calender').text());
     $('#revised_calendar_day_remaining').text(revised_total_calender1-calendar_day_charged_app_calender1-calendar_day_charged_app_non_calender1);
 
     // Days due to Rain Days | Weather

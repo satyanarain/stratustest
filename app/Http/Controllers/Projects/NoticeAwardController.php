@@ -175,7 +175,7 @@ class NoticeAwardController extends Controller {
                     if($contractor_bond_required=="yes")
                         $templateId = "9d7e5608-9014-4a7d-894b-8010746a2910";
                     else
-                        $templateId = "b24269f6-5211-482b-8b4b-79635d6cba19";
+                        $templateId = "fe6491e4-04fa-40b7-8c0f-ec618f1a5a20";
                     $url = env('DOCUSIGN_URL');
                     $header = "<DocuSignCredentials><Username>" . $email . "</Username><Password>" . $password . "</Password><IntegratorKey>" . $integratorKey . "</IntegratorKey></DocuSignCredentials>";
                     $curl = curl_init($url);
