@@ -112,7 +112,7 @@ class NoticeProceedController extends Controller {
                                                         "value" => $row['pdf_gen_project_type']),
                                                         array (
                                                         "tabLabel" => "pdf_gen_contractor_name_1",
-                                                        "value" => $row['pdf_gen_contractor_name_1']),
+                                                        "value" => $row['pdf_gen_contractor_name_1'].','),
                                                         array (
                                                         "tabLabel" => "pdf_gen_contractor_name1",
                                                         "value" => $row['pdf_gen_contractor_name_1']),
@@ -136,7 +136,7 @@ class NoticeProceedController extends Controller {
                                                         "value" => $row['days_type']),
                                                         array (
                                                         "tabLabel" => "pdf_gen_amount",
-                                                        "value" => $row['pdf_gen_amount']));
+                                                        "value" => '$'.$row['pdf_gen_amount']));
 
                     }else{
                         $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
