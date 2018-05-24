@@ -843,6 +843,7 @@ function checkvalue( e ) {
 
  var dataList = document.querySelectorAll("."+e.classList[1]); 
 console.log(e.classList[1]);
+alert(dataList);
   var sumvalue = 0;
  for (var i = 0; i < dataList.length; i++) {
      

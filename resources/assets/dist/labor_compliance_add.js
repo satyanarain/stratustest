@@ -269,8 +269,9 @@ $('#add_labor_compliance').click(function(e) {
             });
             var performance_signatory_email = [];
             $('input[name^=performance_signatory_email]').each(function(){
-                if($(this).val() != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($(this).val())){
-                    performance_signatory_email.push($(this).val());
+                var email = $(this).val().trim();
+                if(email != "" && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+                    performance_signatory_email.push(email);
                 }else if($(this).val() != ""){
                     html += '<li>Non Performance Signatory email is invalid.</li>';
                     is_error = true;
