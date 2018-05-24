@@ -125,6 +125,7 @@ $(document).ready(function() {
             })
         .done(function(data, textStatus, jqXHR) {
             console.log(data.data.f_name);
+            $("#company_name").val(data.data.f_id);
             $('#contractor_name').text(data.data.f_name);
         })
     })

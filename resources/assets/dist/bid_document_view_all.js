@@ -109,8 +109,9 @@
                                     var bid_advertisement_date = ''
 			  	}
 			  	else {
-                                    var bid_advertisement_date = $.datepicker.formatDate('yy-mm-dd', new Date(val.bd_bid_advertisement_date.replace(' ', 'T')));
-			  	}			  	
+                                    //var bid_advertisement_date = $.datepicker.formatDate('yy-mm-dd', new Date(val.bd_bid_advertisement_date.replace(' ', 'T')));
+                                    var bid_advertisement_date = val.bd_bid_advertisement_date;
+                                }			  	
 
 			  	if(val.bd_invite_date == null || val.bd_invite_date=='0000-00-00'){
                                     var invite_date = ''

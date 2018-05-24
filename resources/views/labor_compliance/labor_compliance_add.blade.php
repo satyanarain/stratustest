@@ -322,18 +322,18 @@
                                     </div><!-- Close Panel -->
 
                                     <div class="col-sm-12 nopadleft" id="compliance_div_show" style="display: none;">
-                                        <div class="col-md-12 check_statement_compliance_type" style="margin-bottom:50px;">
-                                            <label for="standard_link">Would you like to upload your own form or fill out and submit via docusign?</label><br/>
-                                            <label class="radio-inline">
-                                              <input type="radio" name="check_statement_compliance_type" id="signed_statement_compliance" value="exist"> Upload your own form</label><br/>
-                                            <label class="radio-inline">
-                                              <input type="radio" name="check_statement_compliance_type" id="unsigned_statement_compliance" value="new"> Submit via docusign</label>
-                                        </div>
-                                        <div class="signed_statement_compliance" style="display: none;">
-                                            <div class="form-group col-sm-6 nopadleft clearfix">
+                                        <div class="col-md-12 check_statement_nonperformance_type" style="margin-bottom:50px;">
                                             <label class="nopadleft control-label">
                                                 <strong>Statement of Non Performance </strong>
                                             </label><br/>
+                                            <label for="standard_link">Would you like to upload your own form or fill out and submit via docusign?</label><br/>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="check_statement_nonperformance_type" id="signed_statement_compliance" value="exist"> Upload your own form</label><br/>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="check_statement_nonperformance_type" id="unsigned_statement_compliance" value="new"> Submit via docusign</label>
+                                        </div>
+                                        <div class="signed_statement_nonperformance" style="display: none;">
+                                            <div class="form-group col-sm-6 nopadleft clearfix">
                                             <label class="nopadleft control-label mt-6">Week Ending <span class="text-danger">*</span></label>
                                             <div class="nopadleft">
                                                 <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
@@ -359,7 +359,7 @@
                                             </section>
                                         </div>
                                         </div>
-                                        <div class="unsigned_statement_compliance" style="display: none;">
+                                        <div class="unsigned_statement_nonperformance" style="display: none;">
                                             <div class="form-group col-md-12 "><span class="label label-inverse"><b>Please fill out the fields below for Docusign integration.</b></span></div>
 <div class="clearfix"></div>  
                                             <div class="form-group col-md-6">
@@ -480,5 +480,16 @@ $("input[name='check_statement_compliance_type']").click(function(){
         $('.signed_statement_compliance').hide();
     }
 });
+$("input[name='check_statement_nonperformance_type']").click(function(){
+    if($('input:radio[name=check_statement_nonperformance_type]:checked').val() == "exist"){
+        $('.signed_statement_nonperformance').show();
+        $('.unsigned_statement_nonperformance').hide();
+    }
+    else {
+        $('.unsigned_statement_nonperformance').show();
+        $('.signed_statement_nonperformance').hide();
+    }
+});
+
 </script>
 @include('include/footer')
