@@ -213,6 +213,14 @@
                                        </select> </td>
                                      </tr>
                                      <tr>
+                                       <td>
+                                         Type
+                                       </td>
+                                       <td colspan="2">
+                                         Choose the day of the month you want to be notified
+                                       </td>
+                                     </tr>
+                                     <tr>
                                        <td>Pay Quantity Verification <span class="text-danger">*</span></td>
                                        <td><select id="pqv_notification_date" name="pqv_notification_date">
                                                <?php 
