@@ -86,7 +86,7 @@
                                             <td><span id="doc_cpr"></span><span id="doc_compliance"></span></td>
                                         </tr>
                                         <tr>
-                                            <td>Statement of Non Performance</td>
+                                            <td>Statement of Non-Performance</td>
                                             <td id="date_compliance"></td>
                                             <td id="doc_non_performance"></td>
                                         </tr>

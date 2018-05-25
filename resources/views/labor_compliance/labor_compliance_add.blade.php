@@ -120,7 +120,7 @@
             <div class="col-sm-6">
                 <label class="checkbox-custom check-success">
                     <input type="checkbox" value=" " id="non_performance_compliance_option_show">
-                    <label for="non_performance_compliance_option_show">Statement of Non Performance </label>
+                    <label for="non_performance_compliance_option_show">Statement of Non-Performance </label>
                 </label>
             </div>
         </div>
@@ -324,7 +324,7 @@
                                     <div class="col-sm-12 nopadleft" id="compliance_div_show" style="display: none;">
                                         <div class="col-md-12 check_statement_nonperformance_type" style="margin-bottom:50px;">
                                             <label class="nopadleft control-label">
-                                                <strong>Statement of Non Performance </strong>
+                                                <strong>Statement of Non-Performance </strong>
                                             </label><br/>
                                             <label for="standard_link">Would you like to upload your own form or fill out and submit via docusign?</label><br/>
                                             <label class="radio-inline">
@@ -346,7 +346,7 @@
                                         </div>
                                             <div class="form-group col-sm-6 clearfix">
                                             <label class="nopadleft control-label">
-                                                <strong>Upload Statement of Non Performance <span class="text-danger">*</span></strong>
+                                                <strong>Upload Statement of Non-Performance <span class="text-danger">*</span></strong>
                                             </label><br/>
                                             <section class="panel upload_doc_panel" id="upload_div">
                                                 <div class="panel-body" style="padding: 0px;">

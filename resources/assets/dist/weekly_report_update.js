@@ -434,7 +434,7 @@ $(document).ready(function() {
 
 $('#calendar_week_days').on('input', function() {
 //alert(pwrd_approved_calender_day);
-    // var days_app_calender = 0;
+     var days_app_calender = 0;
      $(this).find('.days_app_calender').each(function(){
          days_app_calender += parseInt($(this).val()); //<==== a catch  in here !! read below
      });
@@ -529,7 +529,7 @@ $('#calendar_week_days').on('input', function() {
     else
         var calendar_total_days_app_raily_day1 = 0;
     if(parseInt(calendar_total_days_app_raily_day1))
-        $('#day_due_to_rain').text(calendar_total_days_app_raily_day1);
+        $('#day_due_to_rain').html(calendar_total_days_app_raily_day1);
 
     // Revised Computed Completion Date (Line 4 + Line 8 + Line 12)
     var date_final = $('#computed_completion_date').text();
