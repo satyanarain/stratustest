@@ -69,7 +69,7 @@
                                         <!-- <div class="loading_data" style="text-align: center;">
                                            <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                                         </div> -->
-                                        <select class="form-control col-md-6" id="company_name">
+                                        <select class="form-control col-md-6" id="company_name" name="company_name">
                                             <option value="">Select Contractor Name</option>
                                         </select>
                                     </div>

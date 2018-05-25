@@ -900,6 +900,18 @@ function checkvalue1( e ){
     var total_day_approved_app_calender = parseInt(days_this_report_app_calender+days_previous_report_app_calender);
     
     $("#total_day_approved_app_calender").text(total_day_approved_app_calender);
+    
+    if(parseInt($('#days_this_report_app_non_calender').val()))
+        var days_this_report_app_non_calender = parseInt($('#days_this_report_app_non_calender').val());
+    else
+        var days_this_report_app_non_calender = 0;
+    if(parseInt($('#days_previous_report_app_non_calender').val()))
+            var days_previous_report_app_non_calender = parseInt($('#days_previous_report_app_non_calender').val());
+        else
+            var days_previous_report_app_non_calender = 0;
+        
+    $('#total_day_approved_app_non_calender').html(days_this_report_app_non_calender+days_previous_report_app_non_calender);
+    
     var total_day_approved_app_non_calender = parseInt($('#total_day_approved_app_non_calender').html());
     var notice_to_proceed_duration_day = parseInt($('#notice_to_proceed_duration_day').html());
     var revised_total_calender = parseInt(total_day_approved_app_calender)+parseInt(total_day_approved_app_non_calender)+parseInt(notice_to_proceed_duration_day);
@@ -924,4 +936,6 @@ function checkvalue1( e ){
         }else{
             $('#revised_completion_date').text('');
         }
+        
+    
 }
