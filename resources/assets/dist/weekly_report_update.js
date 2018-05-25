@@ -889,9 +889,15 @@ function formatDate(date) {
 }
 
 function checkvalue1( e ){
-    var days_this_report_app_calender = parseInt($('#days_this_report_app_calender').val());
-    var days_previous_report_app_calender = parseInt($('#days_previous_report_app_calender').val());
-    var total_day_approved_app_calender = days_this_report_app_calender+days_previous_report_app_calender;
+    if(parseInt($('#days_this_report_app_calender').val()))
+        var days_this_report_app_calender = parseInt($('#days_this_report_app_calender').val());
+    else
+        var days_this_report_app_calender = 0;
+    if(parseInt($('#days_previous_report_app_calender').val()))
+        var days_previous_report_app_calender = parseInt($('#days_previous_report_app_calender').val());
+    else
+        var days_previous_report_app_calender = 0;
+    var total_day_approved_app_calender = parseInt(days_this_report_app_calender+days_previous_report_app_calender);
     
     $("#total_day_approved_app_calender").text(total_day_approved_app_calender);
     var total_day_approved_app_non_calender = parseInt($('#total_day_approved_app_non_calender').html());

@@ -95,7 +95,10 @@ class LaborComplianceController extends Controller {
                         $data[$i]["tabs"]["textTabs"] =
                                                 array(array(
                                                         "tabLabel" => "company_name",
-                                                        "value" => $row['company_name']));
+                                                        "value" => $row['company_name']),
+                                                        array(
+                                                        "tabLabel" => "signatory_name",
+                                                        "value" => $row['performance_signatory_name']));
 
                     }else{
                         $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
@@ -173,7 +176,10 @@ class LaborComplianceController extends Controller {
                                                         "value" => $row['company_name']),
                                                     array(
                                                         "tabLabel" => "project_name",
-                                                        "value" => $row['project_name']));
+                                                        "value" => $row['project_name']),
+                                                    array(
+                                                        "tabLabel" => "signatory_name",
+                                                        "value" => $row['performance_signatory_name']));
 
                     }else{
                         $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,

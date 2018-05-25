@@ -311,11 +311,11 @@
                                             <div class="form-group col-md-12 "><span class="label label-inverse"><b>Please fill out the fields below for Docusign integration.</b></span></div>
                                             <div class="clearfix"></div>  
                                             <div class="form-group col-md-6">
-                                                <label for="">Contractor: Contact Name</label>
+                                                <label for="">Contact Name</label>
                                                 <input class="form-control" name="signatory_name[]" type="text" id="">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                 <label for="">Contractor: Contact Email</label>
+                                                 <label for="">Contact Email</label>
                                                  <input class="form-control" name="signatory_email[]" type="text" id="">
                                             </div>
                                         </div>
@@ -363,11 +363,11 @@
                                             <div class="form-group col-md-12 "><span class="label label-inverse"><b>Please fill out the fields below for Docusign integration.</b></span></div>
 <div class="clearfix"></div>  
                                             <div class="form-group col-md-6">
-                                                <label for="">Owner: Contact Name</label>
+                                                <label for="">Contact Name</label>
                                                 <input class="form-control" name="performance_signatory_name[]" type="text" id="">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                 <label for="">Owner: Contact Email</label>
+                                                 <label for="">Contact Email</label>
                                                  <input class="form-control" name="performance_signatory_email[]" type="text" id="">
                                             </div>
                                         </div>
