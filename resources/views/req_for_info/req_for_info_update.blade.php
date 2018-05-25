@@ -52,7 +52,7 @@
                                         <div class="col-sm-6 additional_information_container" style="display: none;">
                                         <div class="notice_exist">
                                             <div class="form-group col-md-12">
-                                                <label for="name_of_report" style="padding-top: 15px;">Upload Request for Information</label>
+                                                <label for="name_of_report" style="padding-top: 15px;">Upload Information</label>
                                                 <section class="panel upload_doc_panel_performance" id="upload_performance">
                                                     <div class="panel-body" style="padding: 0px;">
                                                         <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">

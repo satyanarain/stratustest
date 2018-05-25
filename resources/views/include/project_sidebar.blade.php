@@ -68,11 +68,26 @@
                             </li>
                         </ul>
                     </li>
-
-
                     <li class="menu-list menu_step nav-hover" style="display:none;"">
                         <a href=""><i class="fa fa-battery-half"></i><span>DURING CONSTRUCTION</span></a>
                         <ul class="child-list">
+                            <li class="menu-list-sub survey_list" style="display: none;">
+                                <a href="">  <i>Preliminary Notices</i></a>
+                                <ul class="child-list">
+                                    <li style="display: none;" class="preliminary_view_all">
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/preliminary_notice_log"><i>Preliminary Notice Log</i></a>
+                                    </li>
+                                    <li style="display: none;" class="survey_view_all">
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/preliminary_notice/add"><i>Add Preliminary Notice</i></a>
+                                    </li>
+<!--                                    <li style="display: none;" class="survey_review_view_all">
+                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/lien_release_log"><i>Lien Releases</i></a>
+                                    </li>-->
+                                </ul>
+                            </li>
+                            <li style="display: none;" class="service_alert_view_all">
+                                <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/service_alert"><i>Underground Service Alerts</i></a>
+                            </li>
                             <li class="menu-list-sub rfi_list" style="display: none;">
                                 <a href="">  <i>RFIs</i></a>
                                 <ul class="child-list">
@@ -119,33 +134,21 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li style="display: none;" class="test_result_view_all">
+                                <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/test_result"><i>Test Results</i></a>
+                            </li>
                             <li style="display: none;" class="daily_construction_report_view_all">
                                 <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/daily_construction_report"><i>Daily Construction Reports</i></a>
+                            </li>
+                            <li style="display: none;" class="meeting_minutes_view_all">
+                                <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/minutes_meeting"><i>Meeting Minutes</i></a>
+                            </li>
+                            <li style="display: none;" class="meeting_minutes_view_all">
+                                <a href="{{ url('/') }}/"><i>Schedules</i></a>
                             </li>
                             <li style="display: none;" class="weekly_report_view_all">
                                 <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/weekly_statement"><i>Weekly Statement of Contract Days</i></a>
                             </li>
-                            <li style="display: none;" class="service_alert_view_all">
-                                <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/service_alert"><i>Underground Service Alerts</i></a>
-                            </li>
-                            <li style="display: none;" class="test_result_view_all">
-                                <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/test_result"><i>Test Results</i></a>
-                            </li>
-                            <li class="menu-list-sub survey_list" style="display: none;">
-                                <a href="">  <i>Preliminary Notices</i></a>
-                                <ul class="child-list">
-                                    <li style="display: none;" class="preliminary_view_all">
-                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/preliminary_notice_log"><i>Preliminary Notice Log</i></a>
-                                    </li>
-                                    <li style="display: none;" class="survey_view_all">
-                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/preliminary_notice/add"><i>Add Preliminary Notice</i></a>
-                                    </li>
-<!--                                    <li style="display: none;" class="survey_review_view_all">
-                                        <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/lien_release_log"><i>Lien Releases</i></a>
-                                    </li>-->
-                                </ul>
-                            </li>
-                            
                             <li style="display: none;" class="project_picture_video_view_all">
                                 <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/picture_video"><i>Pictures / Videos</i></a>
                             </li>
@@ -153,7 +156,7 @@
                                 <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/payment_quantity_verification_monthly"><i>Payment Quantity Verifications</i></a>
                             </li>
                             <li style="display: none;" class="menu-list-sub survey_list">
-                                <a href=""><i>Payment Applications</i></a>
+                                <a href=""><i>Pay Applications</i></a>
                                 <ul class="child-list">
                                     <li style="display: none;" class="payment_application_view_all">
                                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/payment_application_monthly"><i>Payment Application Log</i></a>
@@ -176,9 +179,6 @@
                                         <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/change_order_request_review"><i>Change Order Request Review</i></a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li style="display: none;" class="meeting_minutes_view_all">
-                                <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/minutes_meeting"><i>Meeting Minutes</i></a>
                             </li>
                             <li style="display: none;" class="labor_compliance_view_all">
                                 <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/labor_compliance"><i>Labor Compliance</i></a>
