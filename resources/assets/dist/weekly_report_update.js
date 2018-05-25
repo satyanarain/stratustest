@@ -439,7 +439,7 @@ $('#calendar_week_days').on('input', function() {
          days_app_calender += parseInt($(this).val()); //<==== a catch  in here !! read below
      });
      $('#calendar_days_app_calender').text(days_app_calender);
-    // $('#days_this_report_app_calender').text(days_app_calender);
+     $('#days_this_report_app_calender').text(days_app_calender);
     var calendar_previous_days_app_calender = parseInt($('#calendar_previous_days_app_calender').text());
     if(parseInt(calendar_previous_days_app_calender))
         var calendar_previous_days_app_calender1 = parseInt(calendar_previous_days_app_calender);
@@ -886,4 +886,36 @@ function formatDate(date) {
   var year = date.getFullYear();
 
   return day + ' ' + monthNames[monthIndex] + ' ' + year;
+}
+
+function checkvalue1( e ){
+    var days_this_report_app_calender = parseInt($('#days_this_report_app_calender').val());
+    var days_previous_report_app_calender = parseInt($('#days_previous_report_app_calender').val());
+    var total_day_approved_app_calender = days_this_report_app_calender+days_previous_report_app_calender;
+    
+    $("#total_day_approved_app_calender").text(total_day_approved_app_calender);
+    var total_day_approved_app_non_calender = parseInt($('#total_day_approved_app_non_calender').html());
+    var notice_to_proceed_duration_day = parseInt($('#notice_to_proceed_duration_day').html());
+    var revised_total_calender = parseInt(total_day_approved_app_calender)+parseInt(total_day_approved_app_non_calender)+parseInt(notice_to_proceed_duration_day);
+    $("#revised_total_calender").text(revised_total_calender);
+    
+    var calendar_day_charged_app_calender = parseInt($('#calendar_day_charged_app_calender').html());
+    var calendar_day_charged_app_non_calender = parseInt($('#calendar_day_charged_app_non_calender').html());
+    var revised_calendar_day_remaining = revised_total_calender-calendar_day_charged_app_calender-calendar_day_charged_app_non_calender
+    $("#revised_calendar_day_remaining").text(revised_calendar_day_remaining);
+    
+    var date_final = $('#computed_completion_date').text();
+    var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
+    var total_days_plus = (parseInt(total_day_approved_app_calender)+total_day_approved_app_non_calender+day_due_to_rain1);
+    var result = new Date(date_final);
+        if(result.getDate())
+        {
+            result.setDate(result.getDate() + total_days_plus);
+            var revised_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
+            //alert(revised_completion_date);
+            if(revised_completion_date!="NaN-NaN-NaN")
+                $('#revised_completion_date').text(revised_completion_date);
+        }else{
+            $('#revised_completion_date').text('');
+        }
 }
