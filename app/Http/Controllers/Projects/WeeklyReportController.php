@@ -65,7 +65,7 @@ class WeeklyReportController extends Controller {
             //->orderBy('pnp_start_date','DESC')
             ->orderBy('pnp_id','ASC')
             ->first();
-            echo '<pre>';print_r($project_notice_proceed);die;
+            echo '<pre>';print_r($project_notice_proceed);
             if($project_notice_proceed)
             {
             echo "project : ".$project_id,"</br>"; 
