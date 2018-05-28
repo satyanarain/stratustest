@@ -44,7 +44,6 @@ class WeeklyReportController extends Controller {
       ->select()
       ->where('p_status', '=', 'active')
       ->where('p_status', '!=', 'completed')
-              ->where('p_id', '=', '6')
       ->get();
       if(count($query) < 1)
       {
