@@ -134,7 +134,7 @@ $(document).ready(function() {
         {
             //var invite_date1 = $.datepicker.formatDate('mm/dd/yy', new Date(notice_to_proceed_start_date));
             //alert(result);//return false;
-            var invite_date = add_business_days(result,parseInt(notice_to_proceed_duration_day));
+            var invite_date = addWorkDays(result,parseInt(notice_to_proceed_duration_day-1));
             //alert(invite_date);//return false;
             var invite_date = new Date(invite_date);
             var computed_completion_date = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+(invite_date.getDate());
@@ -860,4 +860,16 @@ function add_business_days(now,days) {
   }
   now.setTime((now.getTime() + calendarDays * 24 * 60 * 60 * 1000)-(24 * 60 * 60 * 1000));
   return now;
+}
+
+function addWorkDays(date, daysToAdd) {
+    var cnt = 0;
+    var tmpDate = moment(date);
+    while (cnt < daysToAdd) {
+        tmpDate = tmpDate.add('days', 1);
+        if (tmpDate.weekday() != moment().day("Sunday").weekday() && tmpDate.weekday() != moment().day("Saturday").weekday()) {
+            cnt = cnt + 1;
+        }
+    }
+    return tmpDate;
 }

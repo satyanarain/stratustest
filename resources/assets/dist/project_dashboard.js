@@ -716,7 +716,7 @@ $(document).ready(function() {
 							}
 							else {
 								//console.log("cal 2");
-                                futuredate = add_business_days(change_order_due_date , val.sr_respond_date);
+                                futuredate = addWorkDays(change_order_due_date , (val.sr_respond_date-1));
                                 var updated_f = new Date(futuredate);
                                futuredate = updated_f.setDate(updated_f.getDate() + 0); 
 							}
@@ -744,7 +744,7 @@ $(document).ready(function() {
 							}
 							else {
 								//console.log("cal 2");
-                                futuredate = add_business_days(sr_respond_date , val.sr_respond_date);
+                                futuredate = addWorkDays(sr_respond_date , (val.sr_respond_date-1));
                                 var updated_f = new Date(futuredate);
                                futuredate = updated_f.setDate(updated_f.getDate() + 0); 
 							}
@@ -942,7 +942,7 @@ $(document).ready(function() {
 							}
 							else {
 								//console.log("cal 2");
-                                futuredate = add_business_days(rfi_due_date , val.ri_date);
+                                futuredate = addWorkDays(rfi_due_date , (val.ri_date-1));
                                 var updated_f = new Date(futuredate);
                                futuredate = updated_f.setDate(updated_f.getDate() + 0); 
 							}
@@ -1474,7 +1474,7 @@ $(document).ready(function() {
                                         }
                                         else{
                                             console.log("cal 2");
-                                            futuredate = add_business_days(change_order_due_date , val.pcd_timestamp);
+                                            futuredate = addWorkDays(change_order_due_date , (future_date));
                                             var updated_f = new Date(futuredate);
                                             futuredate = updated_f.setDate(updated_f.getDate() + 0); 
                                         }
@@ -1756,4 +1756,16 @@ function add_business_days(days , date) {
   }
   now.setTime(now.getTime() + calendarDays * 24 * 60 * 60 * 1000);
   return now;
+}
+
+function addWorkDays(date, daysToAdd) {
+    var cnt = 0;
+    var tmpDate = moment(date);
+    while (cnt < daysToAdd) {
+        tmpDate = tmpDate.add('days', 1);
+        if (tmpDate.weekday() != moment().day("Sunday").weekday() && tmpDate.weekday() != moment().day("Saturday").weekday()) {
+            cnt = cnt + 1;
+        }
+    }
+    return tmpDate;
 }

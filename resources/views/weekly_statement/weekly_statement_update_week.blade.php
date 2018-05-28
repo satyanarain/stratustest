@@ -284,5 +284,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.0.16/jspdf.plugin.autotable.js"></script> -->
 <script src="{{ url('/resources/assets/js/FileSaver.js') }}"></script>
+<script src="{{ url('/resources/assets/js/moment.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/weekly_report_update_week.js') }}"></script>
 @include('include/footer')
