@@ -132,8 +132,16 @@ $(document).ready(function() {
         var result = new Date(notice_to_proceed_start_date);
         if(result.getFullYear())
         {
-            result.setDate(result.getDate() + notice_to_proceed_duration_day);
-            var computed_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
+            //var invite_date1 = $.datepicker.formatDate('mm/dd/yy', new Date(notice_date));
+            //alert(invite_date1);return false;
+            var invite_date = add_business_days(result.getDate(),parseInt(notice_to_proceed_duration_day));
+            //alert(today);return false;
+            var invite_date = new Date(invite_date);
+            var computed_completion_date = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+(invite_date.getDate());
+            
+            
+            //result.setDate(result.getDate() + notice_to_proceed_duration_day);
+            //var computed_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
             $('#computed_completion_date').text(computed_completion_date);
         }else{
             $('#computed_completion_date').text('');
@@ -831,4 +839,23 @@ function formatDate(date) {
   var year = date.getFullYear();
 
   return day + ' ' + monthNames[monthIndex] + ' ' + year;
+}
+
+function add_business_days(now,days) {
+  var now = new Date(now);
+  var dayOfTheWeek = now.getDay();
+  var calendarDays = days;
+  var deliveryDay = dayOfTheWeek + days;
+  if (deliveryDay >= 6) {
+    //deduct this-week days
+    days -= 6 - dayOfTheWeek;
+    //count this coming weekend
+    calendarDays += 2;
+    //how many whole weeks?
+    deliveryWeeks = Math.floor(days / 5);
+    //two days per weekend per week
+    calendarDays += deliveryWeeks * 2;
+  }
+  now.setTime((now.getTime() + calendarDays * 24 * 60 * 60 * 1000)-(24 * 60 * 60 * 1000));
+  return now;
 }
