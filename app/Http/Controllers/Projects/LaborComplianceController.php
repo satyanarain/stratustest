@@ -98,7 +98,7 @@ class LaborComplianceController extends Controller {
                                                         "value" => $row['company_name']),
                                                         array(
                                                         "tabLabel" => "signatory_name",
-                                                        "value" => $row['signatory_email']));
+                                                        "value" => $row['signatory_name']));
 
                     }else{
                         $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
