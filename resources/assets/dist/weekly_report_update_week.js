@@ -141,7 +141,7 @@ $(document).ready(function() {
             
             
             //result.setDate(result.getDate() + notice_to_proceed_duration_day);
-            //var computed_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
+            var computed_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(computed_completion_date));
             $('#computed_completion_date').text(computed_completion_date);
         }else{
             $('#computed_completion_date').text('');
