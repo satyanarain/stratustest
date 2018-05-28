@@ -144,7 +144,7 @@
                                 <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/minutes_meeting"><i>Meeting Minutes</i></a>
                             </li>
                             <li style="display: none;" class="meeting_minutes_view_all">
-                                <a href="{{ url('/') }}/dashboard/"><i>Schedules</i></a>
+                                <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/project"><i>Schedules</i></a>
                             </li>
                             <li style="display: none;" class="weekly_report_view_all">
                                 <a href="{{ url('/') }}/dashboard/<?php echo $project_id; ?>/weekly_statement"><i>Weekly Statement of Contract Days</i></a>
