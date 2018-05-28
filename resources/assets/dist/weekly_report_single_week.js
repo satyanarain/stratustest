@@ -116,8 +116,10 @@ $(document).ready(function() {
         var notice_to_proceed_duration_day = data.data.pnp_duration;
         $('#notice_to_proceed_duration_day').text(notice_to_proceed_duration_day);
         var result = new Date(notice_to_proceed_start_date);
-        result.setDate(result.getDate() + notice_to_proceed_duration_day);
-        var computed_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
+        
+        var computed_completion_date = addWorkDays(result,parseInt(notice_to_proceed_duration_day-1));
+        //result.setDate(result.getDate() + notice_to_proceed_duration_day);
+        //var computed_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
         $('#computed_completion_date').text(computed_completion_date);
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
@@ -415,4 +417,16 @@ function formatDate(date) {
   var year = date.getFullYear();
 
   return day + ' ' + monthNames[monthIndex] + ' ' + year;
+}
+
+function addWorkDays(date, daysToAdd) {
+    var cnt = 0;
+    var tmpDate = moment(date);
+    while (cnt < daysToAdd) {
+        tmpDate = tmpDate.add('days', 1);
+        if (tmpDate.weekday() != moment().day("Sunday").weekday() && tmpDate.weekday() != moment().day("Saturday").weekday()) {
+            cnt = cnt + 1;
+        }
+    }
+    return tmpDate;
 }

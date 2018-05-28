@@ -230,4 +230,5 @@
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/weekly_report_single_week.js') }}"></script>
+<script src="{{ url('/resources/assets/js/moment.min.js') }}"></script>
 @include('include/footer')
