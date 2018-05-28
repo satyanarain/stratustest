@@ -460,7 +460,7 @@ $('#calendar_week_days').on('input', function() {
      $('#days_this_report_app_calender').text(days_app_calender);
     var calendar_previous_days_app_calender = $('#calendar_previous_days_app_calender').text();
     var calendar_previous_days_app_calender1 = parseInt(calendar_previous_days_app_calender);
-    $('#calendar_total_days_app_calender').text(parseInt(pwrd_approved_calender_day+calendar_previous_days_app_calender1));
+    $('#calendar_total_days_app_calender').text(parseInt(days_app_calender)+parseInt(calendar_previous_days_app_calender1));
     // Total Day Approved
     var days_this_report_app_calender1 = parseInt($('#days_this_report_app_calender').val());
     var days_previous_report_app_calender1 = parseInt($('#days_previous_report_app_calender').val());
