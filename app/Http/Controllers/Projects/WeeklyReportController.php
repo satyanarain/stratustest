@@ -62,7 +62,8 @@ class WeeklyReportController extends Controller {
             $project_notice_proceed = DB::table('project_notice_proceed')
             ->select()
             ->where('pnp_project_id', '=', $project_id )
-            ->orderBy('pnp_start_date','DESC')
+            //->orderBy('pnp_start_date','DESC')
+            ->orderBy('pnp_id','ASC')
             ->first();
             echo '<pre>';print_r($project_notice_proceed);
             if($project_notice_proceed)
