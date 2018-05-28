@@ -138,7 +138,7 @@ $(document).ready(function() {
             //alert(today);return false;
             var invite_date = new Date(invite_date);
             var computed_completion_date = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+(invite_date.getDate());
-            
+            alert(computed_completion_date);
             
             //result.setDate(result.getDate() + notice_to_proceed_duration_day);
             var computed_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(computed_completion_date));
