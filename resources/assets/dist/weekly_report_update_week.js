@@ -133,12 +133,12 @@ $(document).ready(function() {
         if(result.getFullYear())
         {
             //var invite_date1 = $.datepicker.formatDate('mm/dd/yy', new Date(notice_to_proceed_start_date));
-            alert(result);//return false;
+            //alert(result);//return false;
             var invite_date = add_business_days(result,parseInt(notice_to_proceed_duration_day));
-            alert(invite_date);//return false;
+            //alert(invite_date);//return false;
             var invite_date = new Date(invite_date);
             var computed_completion_date = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+(invite_date.getDate());
-            alert(computed_completion_date);
+            //alert(computed_completion_date);
             
             //result.setDate(result.getDate() + notice_to_proceed_duration_day);
             var computed_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(computed_completion_date));
