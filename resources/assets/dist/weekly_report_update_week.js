@@ -577,7 +577,7 @@ $('#update_weekly_report').click(function(e) {
             $("#alert_message").hide()
             return false;
         },3000)
-    }
+    }else{
 
         var days_id = [];
         $('input[name^=days_id]').each(function(){
@@ -644,7 +644,7 @@ $('#update_weekly_report').click(function(e) {
             })
         });
 
-    jQuery.ajax({
+        jQuery.ajax({
         url: baseUrl + "weekly-report-update/"+report_id+"/update",
         type: "POST",
         data: {
@@ -712,6 +712,7 @@ $('#update_weekly_report').click(function(e) {
             //     $("#alert_message").hide()
             // },5000)
         })
+    }
 });
 
 $('#create_weekly_report').click(function () {
