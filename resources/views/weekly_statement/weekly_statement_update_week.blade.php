@@ -240,7 +240,7 @@
         <p><em>4. List the numbered change order that is providing the time extension(s) (i.e. if change order number 1, type in "1.0").</em></p>
     </div>
         <div class="col-sm-12">
-        <p>The Contractor will be allowed <strong>fifteen (15) working days</strong> in which to protest in writing the correctness of the statement; otherwise the statement shall be deemed to have been accepted by the Contractor as correct:</p>
+        <p>The Contractor will be allowed <strong>fifteen (15) calendar days</strong> in which to protest in writing the correctness of the statement; otherwise the statement shall be deemed to have been accepted by the Contractor as correct:</p>
     </div>
     <div class="col-sm-1">
         <p style="text-align: center; margin: 50px 0px 10px 0px;"><strong>By</strong></p>

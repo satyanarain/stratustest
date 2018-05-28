@@ -210,9 +210,9 @@
         <p style="text-align: left; margin: 50px 0px 10px 0px; font-weight: 600;
     text-decoration: underline;" id="type_name"></p>
     </div>
-    <div class="col-sm-4">
+<!--    <div class="col-sm-4">
         <p style="text-align: left; margin: 50px 0px 10px 0px;"><strong>Signature:</strong></p>
-    </div>
+    </div>-->
     <div class="col-sm-3">
         <p style="text-align: left; margin: 50px 0px 10px 0px;"><strong>Date:</strong> <span id="sign_date" ></span></p>
     </div>

@@ -413,7 +413,7 @@ $('.create_notice').click(function () {
             var dateMsg = invite_date.getFullYear()+'-'+(invite_date.getMonth()+1)+'-'+(invite_date.getDate()-1);
         }
         
-        alert(dateMsg);return false;
+        //alert(dateMsg);return false;
         
         $('#pdf_gen_working_days_1').text(dateMsg);
         
