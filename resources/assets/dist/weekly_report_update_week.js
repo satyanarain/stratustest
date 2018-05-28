@@ -452,7 +452,7 @@ $(document).ready(function() {
 
 $('#calendar_week_days').on('input', function() {
 
-    // var days_app_calender = 0;
+     var days_app_calender = 0;
      $(this).find('.days_app_calender').each(function(){
          days_app_calender += parseInt($(this).val()); //<==== a catch  in here !! read below
      });
