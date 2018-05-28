@@ -133,7 +133,7 @@ $(document).ready(function() {
         if(result.getFullYear())
         {
             //var invite_date1 = $.datepicker.formatDate('mm/dd/yy', new Date(notice_to_proceed_start_date));
-            //alert(invite_date1);//return false;
+            alert(result);//return false;
             var invite_date = add_business_days(result,parseInt(notice_to_proceed_duration_day));
             alert(invite_date);//return false;
             var invite_date = new Date(invite_date);
