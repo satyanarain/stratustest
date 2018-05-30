@@ -117,14 +117,15 @@
 		    }
 
 		    // console.log(data.data.sub_type);
-		    if(data.data.sub_type == "new"){
-		    	console.log('new');
-		    	$('#submittal_number').text(data.data.sub_number);
-		    }
-		    else {
-		    	console.log('exist');
-		    	$('#submittal_number').text(data.data.sub_exist_parent+' R '+ data.data.sub_rev_number);
-		    }
+                    $('#submittal_number').text(data.data.submittal_number);
+//		    if(data.data.sub_type == "new"){
+//		    	console.log('new');
+//		    	$('#submittal_number').text(data.data.sub_number);
+//		    }
+//		    else {
+//		    	console.log('exist');
+//		    	$('#submittal_number').text(data.data.sub_exist_parent+' R '+ data.data.sub_rev_number);
+//		    }
 		   	
 		    var document_link = data.data.submittal_path;
 		    if(document_link == null){

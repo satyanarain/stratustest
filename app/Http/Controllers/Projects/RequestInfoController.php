@@ -199,11 +199,11 @@ class RequestInfoController extends Controller {
                     ->where('p_id', '=', $project_id)
                     ->first();
                 $project_id           = $project_id;
-                $notification_title   = 'New RFI has been added for your review in Project: ' .$project->p_name;
+                $notification_title   = 'New RFI # '.$request_number.' has been added for your review in Project: ' .$project->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/req_for_info_review/".$request_info_id."/update";
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'New RFI has been added for your review in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'New RFI # '.$request_number.' has been added for your review in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                 if($request['rfi_cm_email'])
                 {
                     $query = DB::table('project_reviewer')
@@ -331,6 +331,7 @@ class RequestInfoController extends Controller {
         $project_id                 = $request['project_id'];
         $user_id                    = Auth::user()->id;
         $request_status             = $request['request_status'];
+        $rfi_number                 = $request['rfi_number'];
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
       $permission_key = 'rfi_update';
@@ -403,11 +404,11 @@ class RequestInfoController extends Controller {
                     ->where('project_id', '=', $project->p_id)
                     ->first();
                     $project_id           = $project_id;
-                    $notification_title   = 'Additional RFI information is submitted in Project: ' .$project->p_name;
+                    $notification_title   = 'Additional RFI information is submitted in RFI # '.$rfi_number.' in Project: ' .$project->p_name;
                     $url                  = App::make('url')->to('/');
                     $link                 = "/dashboard/".$project_id."/req_for_info/".$project->ri_id;
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'Additional RFI information is submitted in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'Additional RFI information is submitted in RFI # '.$rfi_number.' in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                     $user_detail = array(
                         'name'            => $reviewer->name,
                         'email'           => $reviewer->email,
@@ -434,11 +435,11 @@ class RequestInfoController extends Controller {
                 $permission_key       = 'rfi_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'Request for information updated in Project: ' .$check_project_user->p_name;
+                $notification_title   = 'Request for information # '.$rfi_number.' updated in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/req_for_info/".$ri_id;
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'A request for information has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'A request for information # '.$rfi_number.' has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){
@@ -816,11 +817,11 @@ class RequestInfoController extends Controller {
                     ->where('ri_id', '=', $rir_id)
                     ->first();
                     $project_id           = $project_id;
-                    $notification_title   = 'Additional information is requested by the reviewer to review the RFI in Project: ' .$project->p_name;
+                    $notification_title   = 'Additional information is requested by the reviewer to review the RFI # '.$rfi_number.' in Project: ' .$project->p_name;
                     $url                  = App::make('url')->to('/');
                     $link                 = "/dashboard/".$project_id."/req_for_info/".$project->ri_id."/update";
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'Additional information is requested by the reviewer to review the RFI in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'Additional information is requested by the reviewer to review the RFI # '.$rfi_number.' in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                     $user_detail = array(
                         'name'            => $project->username,
                         'email'           => $project->email,
@@ -1143,11 +1144,11 @@ class RequestInfoController extends Controller {
                     ->where('rir_review_respond', '=', null)
                     ->update(['rir_review_status' => 'past_due']);
                     $project_id           = $project->p_id;
-                    $notification_title   = 'Request for information has been overdue in Project: ' .$project->p_name;
+                    $notification_title   = 'Request for information # '.$review->ri_number.' has been overdue in Project: ' .$project->p_name;
                     $url                  = App::make('url')->to('/');
                     $link                 = "/dashboard/".$project->p_id."/req_for_info_review";
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'Request for information has been overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'Request for information # '.$review->ri_number.' has been overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                     $user_detail = array(
                         'id'              => $review->id,
                         'name'            => $review->username,

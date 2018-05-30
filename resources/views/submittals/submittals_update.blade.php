@@ -86,7 +86,7 @@
                                             <option value="deactive">Inactive</option>
                                         </select>
                                     </div>
-
+                                    <input type="hidden" name="submittal_number" id="submittal_number">
 
                                     <div class="form-group col-md-12">
                                         <!-- <input type="hidden" name="standard_upload" id="upload_doc_meta" value="swppp"> -->

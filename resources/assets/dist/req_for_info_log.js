@@ -200,7 +200,8 @@
 
 				  var t = $('#view_users_table').DataTable();
 					t.row.add( [
-			           count, // val.ri_id,
+			           //count, // val.ri_id,
+                                   val.ri_number,
 			           val.rfi_user_company,
 			           '<div class="wrap-div">'+val.ri_question_request+'</div>',
 			           val.review_user_company,

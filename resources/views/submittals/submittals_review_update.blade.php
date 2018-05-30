@@ -49,7 +49,8 @@
                                             <option value="rejected">Rejected</option>
                                         </select>
                                     </div>
-
+                                <input type="hidden" name="submittal_number" id="submittal_number">
+                                
                                    <div class="clearfix"></div>
                                     <div class="form-group col-md-12">
                                         <label>Document</label>

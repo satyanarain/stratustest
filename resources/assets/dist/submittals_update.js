@@ -71,6 +71,7 @@
 		    	status = "deactive";
 		    }
 		    $('#status').val(status);
+                    $('#submittal_number').val(data.data.submittal_number);
 		    $("#update_submittal_review_form").show();
 		    $(".loading_data").hide();
 		})
@@ -98,8 +99,8 @@
          $('.loading-submit').show();
         var status               	= $('#status').val();
         var project_id              = $('#upload_project_id').val();
-	    var token                   = localStorage.getItem('u_token');
-
+        var token                   = localStorage.getItem('u_token');
+        var submittal_number        = $('#submittal_number').val();
         console.log(status);
         console.log(project_id);
         // return;
@@ -109,8 +110,9 @@
             url: baseUrl + "submittal/"+submittal_id+"/update",
             type: "POST",
             data: {
-         	    "status"            : status,
-                "project_id"        : project_id
+         	"status"            : status,
+                "project_id"        : project_id,
+                "submittal_number"  : submittal_number,
             },
             headers: {
               "x-access-token": token

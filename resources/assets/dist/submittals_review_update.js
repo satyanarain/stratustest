@@ -88,6 +88,7 @@
 		    }
 		    $('#status').val(status);
                     $('#submittal_version_number').val(data.data.sub_number);
+                    $('#submittal_number').val(data.data.submittal_number);
 		    $('#review_detail').val(data.data.sr_review);
 
 		    var document_link = data.data.submittal_path;
@@ -128,12 +129,12 @@
         e.preventDefault();
         $('.loading-submit').show();
         var status               	= $('#status').val();
-        var review_detail           = $('#review_detail').val();
+        var review_detail               = $('#review_detail').val();
         var respond_date           	= $('#respond_date').val();
-        var project_id              = $('#upload_project_id').val();
-        var submittal_version_number = $('#submittal_version_number').val();
-	    var token                   = localStorage.getItem('u_token');
-
+        var project_id                  = $('#upload_project_id').val();
+        var submittal_version_number    = $('#submittal_version_number').val();
+	var token                       = localStorage.getItem('u_token');
+        var submittal_number            = $('#submittal_number').val();
      
 
         var token = localStorage.getItem('u_token');
@@ -147,6 +148,7 @@
                 "respond_date"  		: respond_date,
                 "project_id"        		: project_id,
                 "submittal_version_number"      : submittal_version_number,
+                "submittal_number"              : submittal_number,
             },
             headers: {
               "x-access-token": token

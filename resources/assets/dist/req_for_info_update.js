@@ -104,12 +104,12 @@
     $('#update_request_form').click(function(e) {
       $('.loading-submit').show();
         e.preventDefault();
-        var status               	= $('#status').val();
+        var status                  = $('#status').val();
         var project_id              = $('#upload_project_id').val();
         var token                   = localStorage.getItem('u_token');
         var additional_information  = $(".additional_information").val();
-        var file_path                   = $('#upload_doc_id').val();
-
+        var file_path               = $('#upload_doc_id').val();
+        var rfi_number              = parseInt($("#rfi_number").html());
         var token = localStorage.getItem('u_token');
         jQuery.ajax({
             url: baseUrl + "request-information/"+req_info_id+"/update",
@@ -118,7 +118,8 @@
          	    "request_status"        : status,
                     "project_id"            : project_id,
                     "additional_document"   : file_path,
-                    "additional_information": additional_information
+                    "additional_information": additional_information,
+                    "rfi_number"            : rfi_number,
             },
             headers: {
               "x-access-token": token

@@ -149,7 +149,8 @@
 
 			  var t = $('#view_users_table').DataTable();
 				t.row.add( [
-		           count, // .ri_id,
+		           //count, // .ri_id,
+                           val.ri_number,
 		           val.ri_question_request,
 		           val.company_name,
 		           date_submitted,

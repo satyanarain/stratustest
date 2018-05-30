@@ -1014,7 +1014,8 @@ $(document).ready(function() {
                                       var review_user_company = '';
 				  $("#rfi_data_log tbody").append(
 				  	//'<tr><td>'+val.ri_id+'</td>'+
-                                        '<tr><td>'+counter+'</td>'+
+                                        //'<tr><td>'+counter+'</td>'+
+                                        '<tr><td>'+val.ri_number+'</td>'+
 				  	'<td><a href="'+baseUrl+'dashboard/'+val.ri_project_id+'/req_for_info/'+val.ri_id+'">'+val.ri_question_request+'</a></td>'+
 				  	'<td>'+val.rfi_user_company+'</td>'+
 				  	'<td>'+review_user_company+'</td>'+

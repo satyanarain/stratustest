@@ -113,8 +113,11 @@ class SubmittalsController extends Controller {
         }
         else
         {
-
-          $submittal = ProjectSubmittals::create(['sub_type' => $submittal_type, 'sub_exist_parent' => $submittal_exist_parent, 'sub_number' => $submittal_number, 'sub_rev_number' => $submittal_rev_number, 'sub_date' => $submittal_date, 'sub_description' => $submittal_description, 'sub_specification' => $submittal_specification, 'sub_additional_comments' => $submittal_additional_comments, 'sub_additional_path' => $submittal_additional_path, 'sub_review_type' => $submittal_review_type, 'sub_request_expedited_review' => $submittal_request_expedited_review, 'sub_project_id' => $project_id, 'sub_user_id' => $user_id, 'sub_status' => $status]);
+          if($submittal_type=="exist")
+              $submittal_number1 = $submittal_exist_parent.' R '.$submittal_rev_number;
+          else
+              $submittal_number1 = $submittal_number;
+          $submittal = ProjectSubmittals::create(['sub_type' => $submittal_type, 'sub_exist_parent' => $submittal_exist_parent, 'sub_number' => $submittal_number, 'sub_rev_number' => $submittal_rev_number, 'sub_date' => $submittal_date, 'sub_description' => $submittal_description, 'sub_specification' => $submittal_specification, 'sub_additional_comments' => $submittal_additional_comments, 'sub_additional_path' => $submittal_additional_path, 'sub_review_type' => $submittal_review_type, 'sub_request_expedited_review' => $submittal_request_expedited_review, 'sub_project_id' => $project_id, 'sub_user_id' => $user_id, 'sub_status' => $status,'submittal_number'=>$submittal_number1]);
 
             $submittal_id = $submittal->id;
             // print_r($submittal_id);
@@ -164,11 +167,11 @@ class SubmittalsController extends Controller {
                     $permission_key       = 'submittal_view_all';
                     // Notification Parameter
                     $project_id           = $project_id;
-                    $notification_title   = 'New submittal # '.$submittal_number .' added in Project: ' .$check_project_user->p_name;
+                    $notification_title   = 'New submittal # '.$submittal_number1 .' added in Project: ' .$check_project_user->p_name;
                     $url                  = App::make('url')->to('/');
                     $link                 = "/dashboard/".$project_id."/submittals/".$submittal->id;
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'A new submittal # '.$submittal_number .' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'A new submittal # '.$submittal_number1 .' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                     $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                     if(count($check_single_user_permission) < 1){
@@ -310,11 +313,11 @@ class SubmittalsController extends Controller {
                 $permission_key       = 'submittal_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'Submittal # '.$sub_id .' updated in Project: ' .$check_project_user->p_name;
+                $notification_title   = 'Submittal # '.$request['submittal_number'] .' updated in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/submittals/".$sub_id;
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'Submittal # '.$sub_id .' has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'Submittal # '.$request['submittal_number'] .' has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){
@@ -648,11 +651,11 @@ class SubmittalsController extends Controller {
                 $permission_key       = 'submittal_view_all';
                 // Notification Parameter
                 $project_id           = $project_id;
-                $notification_title   = 'Submittal # '.$request['submittal_version_number'] .' has been reviewed in Project: ' .$check_project_user->p_name;
+                $notification_title   = 'Submittal # '.$request['submittal_number'] .' has been reviewed in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/submittals/".$sr_id;
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'Submittal # '.$request['submittal_version_number'] .' has been reviewed in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'Submittal # '.$request['submittal_number'] .' has been reviewed in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){
@@ -972,11 +975,11 @@ class SubmittalsController extends Controller {
                     ->where('sr_id', '=', $review->sr_id)
                     ->update(['sr_review_type' => 'past_due']);
                     $project_id           = $project->p_id;
-                    $notification_title   = 'Submittal has been overdue in Project: ' .$project->p_name;
+                    $notification_title   = 'Submittal # '.$review->submittal_number.' has been overdue in Project: ' .$project->p_name;
                     $url                  = App::make('url')->to('/');
                     $link                 = "/dashboard/".$project->p_id."/submittal_review";
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'Submittal has been overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'Submittal # '.$review->submittal_number.' has been overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                     $user_detail = array(
                         'id'              => $review->id,
                         'name'            => $review->username,
