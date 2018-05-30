@@ -76,7 +76,7 @@
 
                                     <div class="form-group col-md-12">
 <!--                                        <a data-href="{{ url('/dashboard/'.$project_id.'/req_for_info') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
-                                        <a href="{{ url('/dashboard/'.$project_id.'/req_for_info') }}" class="btn btn-info sub-btn btn_back1">Back</a>
+                                        <a href="{{ url('/dashboard/'.$project_id.'/req_for_info_log') }}" class="btn btn-info sub-btn btn_back1">Back</a>
                                         <button type="submit" class="btn btn-info sub-btn" id="update_request_form">Save</button>
                                         <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                     </div>

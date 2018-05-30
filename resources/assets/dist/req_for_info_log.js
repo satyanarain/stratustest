@@ -107,59 +107,65 @@
                                                 var update_permission = '<a href="'+baseUrl+'dashboard/'+val.rir_project_id+'/req_for_info/'+val.ri_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
                                         }
 					var status = val.rir_review_status;
-					if(status == 'response_due'){
-			    	// status = '<span class="label label-warning">RESPONSE DUE</span>';
+				if(status == 'response_due'){
+                                    // status = '<span class="label label-warning">RESPONSE DUE</span>';
 
-						if(val.rir_review_status == 'response_due' && val.rir_review_respond == null){
-							var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-							var future_date = new Date(val.ri_date);
-							var numberOfDaysToAdd = 10;
-							var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
-							var now_date = new Date();
-							var numberOfDaysToAdd = 0;
-							var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd); 
-							var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
-							// console.log(future_date);
-							// console.log(now_date);
-							// console.log(diffDays);
+                                    if(val.rir_review_status == 'response_due' && val.rir_review_respond == null){
+                                            var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+                                            var future_date = new Date(val.ri_date);
+                                            var numberOfDaysToAdd = val.rfi_due_date+1;
+                                            if(val.rfi_days_type==2)
+                                                var futuredate = addWorkDays(future_date,numberOfDaysToAdd);
+                                            else
+                                                var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
+                                            //var futuredate = $.datepicker.formatDate('yy-mm-dd', new Date(futuredate));
+                                            //alert(futuredate);
+                                            var now_date = new Date();
+                                            //var numberOfDaysToAdd = 0;
+                                            var nowdate = now_date.setDate(now_date.getDate()); 
+                                            var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
+                                            // console.log(future_date);
+                                            // console.log(now_date);
+                                            // console.log(diffDays);
 
-							if(futuredate < nowdate){
-								console.log('less');
-								var status = '<span class="label label-danger">PAST DUE</span>';
-							}
-							else {
-								console.log('greater');
-								seconds = Math.floor((futuredate - (nowdate))/1000);
-							    minutes = Math.floor(seconds/60);
-							    hours = Math.floor(minutes/60);
-							    days = Math.floor(hours/24);
-							    
-							    hours1 = hours-(days*24);
-							    minutes1 = minutes-(days*24*60)-(hours1*60);
-							    seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
+                                            if(futuredate < nowdate){
+                                                    console.log('less');
+                                                    var status = '<span class="label label-danger">PAST DUE</span>';
+                                            }
+                                            else {
+                                                console.log('greater');
+                                                seconds = Math.floor((futuredate - (nowdate))/1000);
+                                                minutes = Math.floor(seconds/60);
+                                                hours = Math.floor(minutes/60);
+                                                days = Math.floor(hours/24);
 
-							 // 	console.log(someDate_now);
-								// console.log(date_future);
-							 // 	console.log(date_now);
-						    	var status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
-							}
-						}
-						else {
-								var status = ' - '
-						}
-				    }
-				    else if(status == 'past_due'){
-			    	status = '<span class="label label-danger">PAST DUE</span>';
-				    }
-				    else if(status == 'response_provided'){
-			    	status = '<span class="label label-success">RESPONSE PROVIDED</span>';
-				    }
-				    else if(status == 'additional_information_requested'){
-			    	status = '<span class="label label-success">ADDTIONAL INFORMATION REQUESTED</span>';
-				    }
-				    else {
-				    	status = '<span class="label label-info">REVIEWED</span>';
-				    }
+                                                hours1 = hours-(days*24);
+                                                minutes1 = minutes-(days*24*60)-(hours1*60);
+                                                seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
+
+                                                // 	console.log(someDate_now);
+                                                // console.log(date_future);
+                                                // 	console.log(date_now);
+                                                //var status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
+                                                var status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
+                                            }
+                                    }
+                                    else {
+                                                    var status = ' - '
+                                    }
+                                }
+                                else if(status == 'past_due'){
+                                    status = '<span class="label label-danger">PAST DUE</span>';
+                                }
+                                else if(status == 'response_provided'){
+                                    status = '<span class="label label-success">RESPONSE PROVIDED</span>';
+                                }
+                                else if(status == 'additional_information_requested'){
+                                    status = '<span class="label label-success">ADDTIONAL INFORMATION REQUESTED</span>';
+                                }
+                                else {
+                                    status = '<span class="label label-info">REVIEWED</span>';
+                                }
 				var req_info_path = val.file_path;
 			  	var req_info_path_value;
 			  	if(req_info_path == null){
@@ -256,3 +262,15 @@
 
   
     });
+    
+function addWorkDays(date, daysToAdd) {
+    var cnt = 0;
+    var tmpDate = moment(date);
+    while (cnt < daysToAdd) {
+        tmpDate = tmpDate.add('days', 1);
+        if (tmpDate.weekday() != moment().day("Sunday").weekday() && tmpDate.weekday() != moment().day("Saturday").weekday()) {
+            cnt = cnt + 1;
+        }
+    }
+    return tmpDate;
+}    

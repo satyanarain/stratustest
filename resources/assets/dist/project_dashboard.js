@@ -5,9 +5,7 @@ $(document).ready(function() {
 	project_id = url[ url.length - 2 ]; // projects
 	var change_order_days_type =1;
 	var change_order_due_date = 0;
-		var rfi_days_type =1;
-	var rfi_due_date = 0;
-		var submittal_days_type =1;
+	var submittal_days_type =1;
 	var submittal_due_date = 0;
  	console.log(project_id);
 	localStorage.setItem("current_project_id", project_id);
@@ -710,7 +708,7 @@ $(document).ready(function() {
                            var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 							var future_date = new Date(val.sr_respond_date);
 							var futuredate = '';
-							if (  rfi_days_type == 1 ) {
+							if (  submittal_days_type == 1 ) {
 								//console.log("cal 1");
 						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
 							}
@@ -738,7 +736,7 @@ $(document).ready(function() {
                              var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
 							var future_date = new Date(val.sr_respond_date);
 							var futuredate = '';
-							if (  rfi_days_type == 1 ) {
+							if (  submittal_days_type == 1 ) {
 								//console.log("cal 1");
 						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
 							}
@@ -931,45 +929,45 @@ $(document).ready(function() {
 					if(status == 'response_due'){
 						console.log("ri_date : "+val.ri_date);
 						if(val.rir_review_status == 'response_due' && val.rir_review_respond == null){
-							var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-							var future_date = new Date(val.ri_date);
-							var numberOfDaysToAdd = 10;
+                                                    var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+                                                    var future_date = new Date(val.ri_date);
+                                                    var numberOfDaysToAdd = val.rfi_due_date+1;
 
-							var futuredate = '';
-							if (rfi_days_type == 1) {
-								//console.log("cal 1");
-						        futuredate = future_date.setDate(future_date.getDate() + rfi_due_date); 
-							}
-							else {
-								//console.log("cal 2");
-                                futuredate = addWorkDays(rfi_due_date , (val.ri_date-1));
-                                var updated_f = new Date(futuredate);
-                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
-							}
-						//	var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd);
-							var now_date = new Date();
-							var numberOfDaysToAdd = 0;
-							var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd);
-							var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
+                                                    var futuredate = '';
+                                                    if (rfi_days_type == 1) {
+                                                        //console.log("cal 1");
+                                                        futuredate = future_date.setDate(future_date.getDate() + rfi_due_date); 
+                                                    }else {
+                                                            //console.log("cal 2");
+                                                        futuredate = addWorkDays(future_date , numberOfDaysToAdd);
+                                                        var updated_f = new Date(futuredate);
+                                                        futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+                                                    }
+                                                    //var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd);
+                                                    var now_date = new Date();
+                                                    var numberOfDaysToAdd = 0;
+                                                    var nowdate = now_date.setDate(now_date.getDate());
+                                                    var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
 
-							if(futuredate < nowdate){
-								// console.log('less');
-								var status = '<span class="label label-danger">PAST DUE</span>';
-								rfi_past_due++;
-							}
-							else {
-								rfi_upcoming++;
-								// console.log('greater');
-								seconds = Math.floor((futuredate - (nowdate))/1000);
-							    minutes = Math.floor(seconds/60);
-							    hours = Math.floor(minutes/60);
-							    days = Math.floor(hours/24);
+                                                    if(futuredate < nowdate){
+                                                            // console.log('less');
+                                                            var status = '<span class="label label-danger">PAST DUE</span>';
+                                                            rfi_past_due++;
+                                                    }
+                                                    else {
+                                                            rfi_upcoming++;
+                                                            // console.log('greater');
+                                                            seconds = Math.floor((futuredate - (nowdate))/1000);
+                                                        minutes = Math.floor(seconds/60);
+                                                        hours = Math.floor(minutes/60);
+                                                        days = Math.floor(hours/24);
 
-							    hours1 = hours-(days*24);
-							    minutes1 = minutes-(days*24*60)-(hours1*60);
-							    seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
-						    	var status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
-							}
+                                                        hours1 = hours-(days*24);
+                                                        minutes1 = minutes-(days*24*60)-(hours1*60);
+                                                        seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
+                                                        //var status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
+                                                        var status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
+                                                    }
 						}
 						else {
 								var status = ' - '

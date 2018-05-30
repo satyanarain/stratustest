@@ -623,5 +623,6 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js') }}"></script>
+<script src="{{ url('/resources/assets/js/moment.min.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/project_dashboard.js') }}"></script>
 @include('include/footer')

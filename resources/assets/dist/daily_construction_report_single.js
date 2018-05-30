@@ -255,7 +255,7 @@
 					'<tr><td>'+val.pbi_item_description+'</td>'+
 					'<td>'+val.pdu_resourse_detail+'</td>'+
 					'<td>'+val.pdu_time+'</td>'+
-	                '<td>'+val.pdu_time+'</td></tr>'
+	                '<td>'+val.pdu_time_type+'</td></tr>'
 				);
 			});
 
