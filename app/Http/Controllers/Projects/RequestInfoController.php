@@ -1119,7 +1119,7 @@ class RequestInfoController extends Controller {
                         ->orwhere('rir_review_status', '=', 'past_due');
                     })
                     ->get();
-            $days = $project->submittal_due_date;
+            $days = $project->rfi_due_date;
             $user =  (array) $query;
             if(count($query) < 1)
             {
@@ -1133,7 +1133,7 @@ class RequestInfoController extends Controller {
                 $reg_date = strtotime($reg_time);
                 $date = date_create($reg_time);
                 date_add($date, date_interval_create_from_date_string(($days-1).'days'));
-                if($project->submittal_days_type==1){
+                if($project->rfi_days_type==1){
                     $plus_time = date_format($date, 'Y-m-d H:i:s');
                 }else{
                     $plus_time = date ( 'Y-m-d H:i:s' , strtotime ( $reg_time.'+'.($days-1).' weekdays' ) );
