@@ -249,6 +249,26 @@ $('.add_unconditional_finals').click(function(e)
             $("#alert_message").hide()
         },5000)
     })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log("HTTP Request Failed");
+                    var responseText, html;
+                    responseText = JSON.parse(jqXHR.responseText);
+                        $('html, body').animate({
+                            scrollTop: $(".page-head").offset().top
+                        }, 'fast')
+                    $("#alert_message").show();
+                    $('.loading-submit').hide();
+                    html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error"><ul>';
+                    if(responseText.data.docusign != null){
+                        html += '<li>'+responseText.data.description+'</li>';
+                    }
+                    html += '</ul></div>';
+                    $("#alert_message").html(html);
+                    setTimeout(function(){
+                        $("#alert_message").hide()
+                    },5000)
+                    console.log(responseText);
+                })
     e.preventDefault();
 
 })

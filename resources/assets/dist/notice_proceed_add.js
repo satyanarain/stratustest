@@ -761,6 +761,9 @@ $('.create_notice').click(function () {
             if(responseText.data.project_id != null){
                 html += '<li>The project id field is required.</li>';
             }
+            if(responseText.data.docusign != null){
+                html += '<li>'+responseText.data.description+'</li>';
+            }
             html += '</ul></div>';
             $("#alert_message").html(html);
             setTimeout(function(){

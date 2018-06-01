@@ -395,6 +395,9 @@ $('#add_labor_compliance').click(function(e) {
             if(responseText.data != null){
                 html += '<li>'+responseText.data+'</li>';
             }
+            if(responseText.data.docusign != null){
+                html += '<li>'+responseText.data.description+'</li>';
+            }
             html += '</ul></div>';
             $("#alert_message").html(html);
             setTimeout(function()
