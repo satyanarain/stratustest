@@ -962,7 +962,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                   if($row['jurisdiction']!="")
                     $templateId = "dda2bd94-6399-4e6c-ad26-ac2a381737ff";
                   else
-                    $templateId = "089d01b3-3b40-4966-8cbd-db73956dc6c1";
+                    $templateId = "2df9b680-c37e-46db-9c2e-7bf14a055aa0";
                   $data[$i]["tabs"]["numberTabs"]=array(array (
                                                       "tabLabel" => "original_contract_sum",
                                                       "value" => number_format($contract_amount[0]->total_amount, 2, '.', ',')),
