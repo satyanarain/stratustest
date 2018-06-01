@@ -703,33 +703,7 @@ $(document).ready(function() {
                         
                         pcd_id.push(data.pcd_id);
                         //alert(data.pcd_id);
-                        $("#alert_message").show();
-                        $('.loading-submit').hide();
-                        html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New change order request added successfully!</div></div>';
-                        $("#alert_message").html(html);
-                        $('input[name="item_description[]"]').removeAttr('value');
-                        $('input[name="item_price[]"]').removeAttr('value');
-                        $('input[name="item_unit_quantity[]"]').removeAttr('value');
-                        $('input[name="item_unit_price[]"]').removeAttr('value');
-                        $('input[name="item_request_time[]"]').removeAttr('value');
-                        $('input[name="upload_doc_id[]"]').removeAttr('value');
-                        $('input[type="checkbox"]').attr('checked', false);
-                        $('input[name="cm_name"]').removeAttr('value');
-                        $('input[name="cm_email"]').removeAttr('value');
-                        $('input[name="owner_name"]').removeAttr('value');
-                        $('input[name="owner_email"]').removeAttr('value');
-                        $(".remove_file_drop").trigger("click");
-                        $(".first_button").hide();
-                        $(".another_button").show();
-                        $('.add_extra_panel').remove();
-
-                        $('html, body').animate({
-                            scrollTop: $(".page-head").offset().top
-                        }, 'fast')
-                        setTimeout(function(){
-                            $("#alert_message").hide()
-                        },5000)
-                        get_new_cor_data();
+                        
                     })
                     .fail(function(jqXHR, textStatus, errorThrown) {
                         console.log("HTTP Request Failed");
@@ -792,9 +766,48 @@ $(document).ready(function() {
                         cache: false
                     })
                     .done(function(data, textStatus, jqXHR) {
+                        $("#alert_message").show();
+                        $('.loading-submit').hide();
+                        html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New change order request added successfully!</div></div>';
+                        $("#alert_message").html(html);
+                        $('input[name="item_description[]"]').removeAttr('value');
+                        $('input[name="item_price[]"]').removeAttr('value');
+                        $('input[name="item_unit_quantity[]"]').removeAttr('value');
+                        $('input[name="item_unit_price[]"]').removeAttr('value');
+                        $('input[name="item_request_time[]"]').removeAttr('value');
+                        $('input[name="upload_doc_id[]"]').removeAttr('value');
+                        $('input[type="checkbox"]').attr('checked', false);
+                        $('input[name="cm_name"]').removeAttr('value');
+                        $('input[name="cm_email"]').removeAttr('value');
+                        $('input[name="owner_name"]').removeAttr('value');
+                        $('input[name="owner_email"]').removeAttr('value');
+                        $(".remove_file_drop").trigger("click");
+                        $(".first_button").hide();
+                        $(".another_button").show();
+                        $('.add_extra_panel').remove();
+
+                        $('html, body').animate({
+                            scrollTop: $(".page-head").offset().top
+                        }, 'fast')
+                        setTimeout(function(){
+                            $("#alert_message").hide()
+                        },5000)
+                        get_new_cor_data();
                         $('input[name^=signatory_name],input[name^=signatory_email],select[name^=signatory_role]').each(function(){$(this).val('');});
                     })
-                
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+                        //alert("sdfsd");
+                        responseText = JSON.parse(jqXHR.responseText);
+                        console.log(responseText.data.description);
+                        console.log(responseText.data);
+                        $("#alert_message").show();
+                        $('.loading-submit').hide();
+                        html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-error">'+responseText.data.description+'</div></div>';
+                        $("#alert_message").html(html);
+                        setTimeout(function(){
+                            $("#alert_message").hide()
+                        },5000)
+                    })
                 
             })
             .fail(function(jqXHR, textStatus, errorThrown) {

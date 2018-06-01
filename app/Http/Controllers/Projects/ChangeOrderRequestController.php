@@ -1028,6 +1028,18 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                      
                                       
                   }else{
+                    foreach($request['pcd_id'] as $pcd_id){
+                        $cor = DB::table('project_change_order_request_detail')
+                        ->select('pcd_parent_cor')
+                        ->where('pcd_id', '=', $pcd_id)
+                        ->first();
+                        DB::table('project_change_order_request')
+                        ->where('pco_id', '=', $cor->pcd_parent_cor)
+                        ->delete();
+                        DB::table('project_change_order_request_detail')
+                        ->where('pcd_id', '=', $pcd_id)
+                        ->delete();
+                    }
                       $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
                                           "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
                       return response()->json($result, 400);
@@ -1055,8 +1067,21 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                   $json_response = curl_exec($curl);
                   $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
                   if ( $statuscode != 200 ) {
-                          $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $statuscode,'docusign'=>1));
-                          return response()->json($result, 400);
+                        foreach($request['pcd_id'] as $pcd_id){
+                            $cor = DB::table('project_change_order_request_detail')
+                            ->select('pcd_parent_cor')
+                            ->where('pcd_id', '=', $pcd_id)
+                            ->first();
+                            DB::table('project_change_order_request')
+                            ->where('pco_id', '=', $cor->pcd_parent_cor)
+                            ->delete();
+                            DB::table('project_change_order_request_detail')
+                            ->where('pcd_id', '=', $pcd_id)
+                            ->delete();
+                        }
+                          $result = array('code'=>400,"data"=>array("description"=>"Error calling DocuSign, status is: " . $statuscode,'docusign'=>1,
+                                              "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                        return response()->json($result, 400);
                   }
                   $response = json_decode($json_response, true);
                   $accountId = $response["loginAccounts"][0]["accountId"];
@@ -1084,10 +1109,26 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                   $json_response = curl_exec($curl); // Do it!
                   $statuscode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
                   if ( $statuscode != 201 ) {
-                          $response = json_decode($json_response, true);
-                          $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1,
-                                          "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
-                          return response()->json($result, 400);
+                            $response = json_decode($json_response, true);
+                            foreach($request['pcd_id'] as $pcd_id){
+                                $cor = DB::table('project_change_order_request_detail')
+                                ->select('pcd_parent_cor')
+                                ->where('pcd_id', '=', $pcd_id)
+                                ->first();
+                                DB::table('project_change_order_request')
+                                ->where('pco_id', '=', $cor->pcd_parent_cor)
+                                ->delete();
+                                DB::table('project_change_order_request_detail')
+                                ->where('pcd_id', '=', $pcd_id)
+                                ->delete();
+                            }
+                            $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1,
+                                                  "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                            return response()->json($result, 400);
+                          
+//                          $result = array('code'=>400,"data"=>array("description"=>$response['message'],'docusign'=>1,
+//                                          "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+//                          return response()->json($result, 400);
                   }
                   $response = json_decode($json_response, true);
                   //print_r($data);
