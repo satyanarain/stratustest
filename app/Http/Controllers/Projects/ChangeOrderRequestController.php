@@ -992,6 +992,40 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                 // echo '<pre>';print_r($test);die;
                   if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
                   {
+                      if($row['signatory_role']=="contractor"){
+                            $data[$i]["email"] = $row['signatory_email'];
+                            $data[$i]["name"] = $row['signatory_name'];
+                            $data[$i]["roleName"] = "signer1";
+                            $data[$i]["tabs"]["textTabs"] =
+                                                    array(
+                                                        array(
+                                                            "tabLabel" => "jurisdiction",
+                                                            "value" => $row['jurisdiction']),
+                                                          array (
+                                                            "tabLabel" => "change_order_number",
+                                                            "value" => $row['change_order_number']),
+                                                          array (
+                                                            "tabLabel" => "project_name",
+                                                            "value" => $row['project_name']),
+                                                          array (
+                                                            "tabLabel" => "change_order_date",
+                                                            "value" => date('m-d-Y')),
+                                                          array (
+                                                            "tabLabel" => "project_name",
+                                                            "value" => $row['project_name']),
+                                                          array (
+                                                            "tabLabel" => "improvement_types",
+                                                            "value" => $improvementTypes),
+                                                          array (
+                                                            "tabLabel" => "agreement_date",
+                                                            "value" => $con_contract_date),
+                                                          array (
+                                                            "tabLabel" => "contractor_name",
+                                                            "value" => $contractor->f_name),
+                                                          array (
+                                                            "tabLabel" => "contractor_address",
+                                                            "value" => $contractor->f_address));
+                      }
                       $data[$i]["email"] = $row['signatory_email'];
                       $data[$i]["name"] = $row['signatory_name'];
                       $data[$i]["roleName"] = $row['signatory_role'];
