@@ -957,6 +957,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                 $j++;
             }
             //print_r($test);
+            $tot_count = count($signatory_arr);
               $i=0;
               foreach($signatory_arr as $i=>$row){
                   if($row['jurisdiction']!="")
@@ -992,40 +993,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                 // echo '<pre>';print_r($test);die;
                   if(filter_var($row['signatory_email'], FILTER_VALIDATE_EMAIL))
                   {
-                      if($row['signatory_role']=="contractor"){
-                            $data[$i]["email"] = $row['signatory_email'];
-                            $data[$i]["name"] = $row['signatory_name'];
-                            $data[$i]["roleName"] = "signer1";
-                            $data[$i]["tabs"]["textTabs"] =
-                                                    array(
-                                                        array(
-                                                            "tabLabel" => "jurisdiction",
-                                                            "value" => $row['jurisdiction']),
-                                                          array (
-                                                            "tabLabel" => "change_order_number",
-                                                            "value" => $row['change_order_number']),
-                                                          array (
-                                                            "tabLabel" => "project_name",
-                                                            "value" => $row['project_name']),
-                                                          array (
-                                                            "tabLabel" => "change_order_date",
-                                                            "value" => date('m-d-Y')),
-                                                          array (
-                                                            "tabLabel" => "project_name",
-                                                            "value" => $row['project_name']),
-                                                          array (
-                                                            "tabLabel" => "improvement_types",
-                                                            "value" => $improvementTypes),
-                                                          array (
-                                                            "tabLabel" => "agreement_date",
-                                                            "value" => $con_contract_date),
-                                                          array (
-                                                            "tabLabel" => "contractor_name",
-                                                            "value" => $contractor->f_name),
-                                                          array (
-                                                            "tabLabel" => "contractor_address",
-                                                            "value" => $contractor->f_address));
-                      }
+                      
                       $data[$i]["email"] = $row['signatory_email'];
                       $data[$i]["name"] = $row['signatory_name'];
                       $data[$i]["roleName"] = $row['signatory_role'];
@@ -1059,7 +1027,41 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                                                       "tabLabel" => "contractor_address",
                                                       "value" => $contractor->f_address));
                     
-                     
+                      if($row['signatory_role']=="contractor"){
+                            $data[$tot_count]["email"] = $row['signatory_email'];
+                            $data[$tot_count]["name"] = $row['signatory_name'];
+                            $data[$tot_count]["roleName"] = "signer1";
+                            $data[$tot_count]["tabs"]["textTabs"] =
+                                                    array(
+                                                        array(
+                                                            "tabLabel" => "jurisdiction",
+                                                            "value" => $row['jurisdiction']),
+                                                          array (
+                                                            "tabLabel" => "change_order_number",
+                                                            "value" => $row['change_order_number']),
+                                                          array (
+                                                            "tabLabel" => "project_name",
+                                                            "value" => $row['project_name']),
+                                                          array (
+                                                            "tabLabel" => "change_order_date",
+                                                            "value" => date('m-d-Y')),
+                                                          array (
+                                                            "tabLabel" => "project_name",
+                                                            "value" => $row['project_name']),
+                                                          array (
+                                                            "tabLabel" => "improvement_types",
+                                                            "value" => $improvementTypes),
+                                                          array (
+                                                            "tabLabel" => "agreement_date",
+                                                            "value" => $con_contract_date),
+                                                          array (
+                                                            "tabLabel" => "contractor_name",
+                                                            "value" => $contractor->f_name),
+                                                          array (
+                                                            "tabLabel" => "contractor_address",
+                                                            "value" => $contractor->f_address));
+                      }
+                      
                                       
                   }else{
                     foreach($request['pcd_id'] as $pcd_id){
