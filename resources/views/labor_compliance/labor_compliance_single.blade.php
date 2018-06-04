@@ -81,7 +81,7 @@
                                             <td id="doc_cac2"></td>
                                         </tr>
                                         <tr>
-                                            <td>CPR - Weekly Certified Payroll Reports</td>
+                                            <td>CPR - Weekly Certified Payroll Reports/Statement of Compliance</td>
                                             <td id="date_cpr"></td>
                                             <td><span id="doc_cpr"></span><span id="doc_compliance"></span></td>
                                         </tr>

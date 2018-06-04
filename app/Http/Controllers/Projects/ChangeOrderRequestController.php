@@ -962,7 +962,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                   if($row['jurisdiction']!="")
                     $templateId = "dda2bd94-6399-4e6c-ad26-ac2a381737ff";
                   else
-                    $templateId = "089d01b3-3b40-4966-8cbd-db73956dc6c1";
+                    $templateId = "b572c993-1d13-4997-aab3-114bb59d358b";
                   $data[$i]["tabs"]["numberTabs"]=array(array (
                                                       "tabLabel" => "original_contract_sum",
                                                       "value" => number_format($contract_amount[0]->total_amount, 2, '.', ',')),
@@ -1222,11 +1222,11 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                     ->update(['pcd_status' => 'past_due']);
                     
                     $project_id           = $project->p_id;
-                    $notification_title   = 'Change order request has been overdue in Project: ' .$project->p_name;
+                    $notification_title   = 'Change order request is overdue in Project: ' .$project->p_name;
                     $url                  = App::make('url')->to('/');
                     $link                 = "/dashboard/".$project->p_id."/change_order_request";
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'Change order request has been overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'Change order request is overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                     $user_detail = array(
                         'id'              => $review->id,
                         'name'            => $review->username,

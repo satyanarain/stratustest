@@ -697,8 +697,10 @@ Route::get('dashboard/{project_id}/contract_item_qty', function () {
 /*  --------------------------------------------------------------------------
     PROJECT DAILY REPORT API'S
     -------------------------------------------------------------------------- */
-    Route::get('daily-cron-report-generate', 'Projects\DailyReportController@daily_cron_report_generate');
-    Route::get('docusign-download-document', 'Projects\DocusignController@download_documents');
+Route::get('daily-cron-report-generate', 'Projects\DailyReportController@daily_cron_report_generate');
+Route::get('docusign-download-document', 'Projects\DocusignController@download_documents');
+Route::get('download_noa', 'Projects\DocusignController@download_noa');
+
 Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('daily-report/add', 'Projects\DailyReportController@add_daily_report');
     Route::post('daily-report/{pdr_id}/update', 'Projects\DailyReportController@update_daily_report');

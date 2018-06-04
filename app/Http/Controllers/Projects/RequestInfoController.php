@@ -1146,11 +1146,11 @@ class RequestInfoController extends Controller {
                     ->where('rir_review_respond', '=', null)
                     ->update(['rir_review_status' => 'past_due']);
                     $project_id           = $project->p_id;
-                    $notification_title   = 'Request for information # '.$review->ri_number.' has been overdue in Project: ' .$project->p_name;
+                    $notification_title   = 'Request for information # '.$review->ri_number.' is overdue in Project: ' .$project->p_name;
                     $url                  = App::make('url')->to('/');
                     $link                 = "/dashboard/".$project->p_id."/req_for_info_review";
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'Request for information # '.$review->ri_number.' has been overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'Request for information # '.$review->ri_number.' is overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                     $user_detail = array(
                         'id'              => $review->id,
                         'name'            => $review->username,

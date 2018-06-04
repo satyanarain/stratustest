@@ -975,11 +975,11 @@ class SubmittalsController extends Controller {
                     ->where('sr_id', '=', $review->sr_id)
                     ->update(['sr_review_type' => 'past_due']);
                     $project_id           = $project->p_id;
-                    $notification_title   = 'Submittal # '.$review->submittal_number.' has been overdue in Project: ' .$project->p_name;
+                    $notification_title   = 'Submittal # '.$review->submittal_number.' is overdue in Project: ' .$project->p_name;
                     $url                  = App::make('url')->to('/');
                     $link                 = "/dashboard/".$project->p_id."/submittal_review";
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'Submittal # '.$review->submittal_number.' has been overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'Submittal # '.$review->submittal_number.' is overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                     $user_detail = array(
                         'id'              => $review->id,
                         'name'            => $review->username,

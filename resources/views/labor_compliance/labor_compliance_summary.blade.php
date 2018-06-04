@@ -44,7 +44,7 @@
                                         <th>142 – <br/>Request for Dispatch of Apprentice</th>
                                         <th>Fringe Benefit Statement</th>
                                         <th>CAC-2 <br/>(not required if Union)</th>
-                                        <th>Weekly Certified Payroll Reports<br/>(by weekending)</th>
+                                        <th>Weekly Certified Payroll Reports<br/>/Statement of Compliance</th>
                                         <th>Statement of Non-Performance</th>
                                         <th>Uploaded to <br/>DIR’s website</th>
                                         <th>Status</th>

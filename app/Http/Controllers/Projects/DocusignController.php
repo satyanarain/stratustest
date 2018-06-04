@@ -599,4 +599,146 @@ class DocusignController extends Controller {
             }else{continue;}
         }
     }
+    
+    public function download_noa(Request $request) {
+        $k =  '<?xml version="1.0" encoding="utf-8"?>
+<DocuSignEnvelopeInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.docusign.net/API/3.0">
+ <EnvelopeStatus>
+ <RecipientStatuses>
+ <RecipientStatus>
+ <Type>Signer</Type>
+ <Email>user.email@address.com</Email>
+ <UserName>User Name</UserName>
+ <RoutingOrder>1</RoutingOrder>
+ <Sent>2010-06-26T09:19:18.883</Sent>
+ <Delivered>2010-06-26T09:19:40.723</Delivered>
+ <DeclineReason xsi:nil="true" />
+ <Status>Delivered</Status>
+ <RecipientIPAddress>::1</RecipientIPAddress>
+ <CustomFields />
+ <TabStatuses>
+ <TabStatus>
+ <TabType>Custom</TabType>
+ <Status>Active</Status>
+ <XPosition>364</XPosition>
+ <YPosition>52</YPosition>
+ <TabLabel>Radio</TabLabel>
+ <TabName>Two</TabName>
+ <TabValue />
+ <DocumentID>1</DocumentID>
+ <PageNumber>2</PageNumber>
+ <OriginalValue />
+ <ValidationPattern />
+ <RoleName>TestRole</RoleName>
+ </TabStatus>
+ </TabStatuses>
+ <AccountStatus>Active</AccountStatus>
+ <RecipientId>fb89d2ee-2876-4290-b530-ff1833d5d0d2</RecipientId>
+ </RecipientStatus>
+ </RecipientStatuses>
+ <TimeGenerated>2010-06-26T09:19:45.771206-07:00</TimeGenerated>
+ <EnvelopeID>0aa561b8-b4d9-47e0-a615-2367971f876b</EnvelopeID>
+ <Subject>CreateEnvelopeFromTemplates Test</Subject>
+ <UserName>User Name</UserName>
+ <Email> user.email@address.com </Email>
+ <Status>Delivered</Status>
+ <Created>2010-06-26T09:16:21.27</Created>
+16
+221 Main Street, Suite 1000, San Francisco, CA 94105 Ι Tel. 866.219.4318 Ι www.docusign.com Ι © DocuSign, Inc.
+DocuSign Connect Guide
+ <Sent>2010-06-26T09:19:19.01</Sent>
+ <Delivered>2010-06-26T09:19:40.747</Delivered>
+ <ACStatus>Original</ACStatus>
+ <ACStatusDate>2010-06-26T09:16:21.27</ACStatusDate>
+ <ACHolder>ACHolder Name</ACHolder>
+ <ACHolderEmail> ACHolder.email@address.com </ACHolderEmail>
+ <ACHolderLocation>ACHolder Location</ACHolderLocation>
+ <SigningLocation>Online</SigningLocation>
+ <SenderIPAddress>::1 </SenderIPAddress>
+ <EnvelopePDFHash />
+ <CustomFields>
+ <CustomField>
+ <Name>Envelope Field 1</Name>
+ <Show>False</Show>
+ <Required>False</Required>
+ <Value />
+ </CustomField>
+ <CustomField>
+ <Name>Envelope Field 2</Name>
+ <Show>False</Show>
+ <Required>False</Required>
+ <Value />
+ </CustomField>
+ </CustomFields>
+ <AutoNavigation>true</AutoNavigation>
+ <EnvelopeIdStamping>true</EnvelopeIdStamping>
+ <AuthoritativeCopy>false</AuthoritativeCopy>
+ <DocumentStatuses>
+ <DocumentStatus>
+ <ID>1</ID>
+ <Name>Document_Name</Name>
+ <TemplateName>radio parents</TemplateName>
+ <Sequence>1</Sequence>
+ </DocumentStatus>
+ </DocumentStatuses>
+ </EnvelopeStatus>
+ <DocumentPDFs>
+ <DocumentPDF>
+ <Name>DocumentPDF_Name</Name>
+ <PDFBytes>PDFBytes_Information</PDFBytes>
+ </DocumentPDF>
+ </DocumentPDFs>
+</DocuSignEnvelopeInformation>';
+        $postedXml = file_get_contents('php://input');
+        $xml = simplexml_load_string($k);
+        echo '<pre>';print_r($xml);
+        echo $contents = $xml->DocumentPDFs->DocumentPDF->PDFBytes;
+        echo $envelope_id = $xml->EnvelopeStatus->EnvelopeID;die;
+        $file_upload_path = "/uploads/noa.txt";
+        file_put_contents(base_path().$file_upload_path, $xml);
+        
+        
+        $awards = DB::table('project_notice_award')
+                ->select('project_notice_award.*')
+                ->where('pna_docusign_status', '=',"pending")
+                ->where('pna_envelope_id', '!=',"")
+                ->first();
+        
+            $envelopeId = $award->pna_envelope_id;
+            $doc_id = $award->pna_notice_path;
+            $pna_id = $award->pna_id;
+        
+        if($doc_id>0){
+            $query = DB::table('documents')
+            ->where('doc_id', '=', $doc_id)
+            ->update(['doc_path' => $file_upload_path]);
+            $query = DB::table('project_notice_award')
+            ->where('pna_id', '=', $pna_id)
+            ->update(['pna_docusign_status' => "complete"]);
+        }else{
+            $information = array(
+            "doc_status"     => "active",
+            "doc_project_id" => $award->pna_project_id,
+            "doc_user_id"    => 0,
+            "doc_name"       => $file_upload_path,
+            "doc_path"       => $file_upload_path,
+            );
+            $doc_id = DB::table('documents')->insertGetId($information);
+            $query = DB::table('project_notice_award')
+            ->where('pna_id', '=', $pna_id)
+            ->update(['pna_docusign_status' => "complete",'pna_notice_path'=>$doc_id]);
+        }
+        $postedXml = file_get_contents('php://input');
+        $xml = simplexml_load_string($postedXml);
+        $filename = "finaname.pdf";
+        $path = 'your directory path'. $filename;
+        // convert byte to base64
+        $contents = $xml->DocumentPDFs->DocumentPDF->PDFBytes;
+        $base_64 = base64_decode($contents);	
+        $file_upload_path = "/uploads/notice_award/".$envelopeId . "-" . $document["name"];
+        file_put_contents(base_path().$file_upload_path, $data);
+        //echo file_put_contents($path, $base_64);
+        chmod("$path", 0777);
+    }
 }
