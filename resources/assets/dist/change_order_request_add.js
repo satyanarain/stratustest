@@ -728,16 +728,17 @@ $(document).ready(function() {
                             is_error = true;
                         }
                     });
-                    console.log(signatory_email);
+                    //console.log(signatory_email);
                     var signatory_role = [];
                     $('select[name^=signatory_role]').each(function(){
                         signatory_role.push($(this).val());
                     });
                     var item = {};
-                    item['signatory_name'] 		= signatory_name;
+                    item['signatory_name']          = signatory_name;
                     item['signatory_email']         = signatory_email;
                     item['signatory_role']          = signatory_role;
                     //item['pcd_id']                  = pcd_id;
+                    $signer1 = signatory_email.length;
                     signatory_arr = [];
                     for (i = 0; i < signatory_email.length; i++) {
                         signatory_arr.push({
@@ -750,6 +751,19 @@ $(document).ready(function() {
                                         //"pcd_id"                    : item['pcd_id'][i],
                                         "project_id"                : project_id,
                                     });
+                        if(item['signatory_role'][i]==="contractor"){
+                            signatory_arr.push({
+                                        "signatory_name"            :   item['signatory_name'][i],
+                                        "signatory_email"           :   item['signatory_email'][i],
+                                        "signatory_role"            :   "signer1",
+                                        "jurisdiction"              :   $('#jurisdiction').val(),
+                                        "change_order_number"       :   $('#cor_new_number').val(),
+                                        "project_name"              : $('#project_name').val(),
+                                        //"pcd_id"                    : item['pcd_id'][i],
+                                        "project_id"                : project_id,
+                                    });
+                                    console.log(signatory_arr);
+                        }
                     }
                     //console.log(signatory_arr);
                     jQuery.ajax({
