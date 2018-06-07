@@ -958,11 +958,22 @@ public function get_change_order_request_weeklyreport(Request $request, $project
             }
             //print_r($test);
               $i=0;
+              //$key = array_search('construction_manager', array_column($signatory_arr, 'signatory_role'));
+              $key = array_keys(array_combine(array_keys($signatory_arr), array_column($signatory_arr, 'signatory_role')),'construction_manager');
+              //print_r($key);
               foreach($signatory_arr as $i=>$row){
-                  if($row['jurisdiction']!="")
-                    $templateId = "dda2bd94-6399-4e6c-ad26-ac2a381737ff";
-                  else
-                    $templateId = "089d01b3-3b40-4966-8cbd-db73956dc6c1";
+                  if($row['jurisdiction']!=""){
+                      if($key)
+                        $templateId = "dda2bd94-6399-4e6c-ad26-ac2a381737ff";
+                      else
+                        $templateId = "66ca5c1a-2e42-4660-ae96-9a1a90b98644";  
+                  }else{
+                      if($key)
+                        $templateId = "b572c993-1d13-4997-aab3-114bb59d358b";
+                      else
+                        $templateId = "089d01b3-3b40-4966-8cbd-db73956dc6c1";  
+                  }
+                  //echo $templateId;
                   $data[$i]["tabs"]["numberTabs"]=array(array (
                                                       "tabLabel" => "original_contract_sum",
                                                       "value" => number_format($contract_amount[0]->total_amount, 2, '.', ',')),

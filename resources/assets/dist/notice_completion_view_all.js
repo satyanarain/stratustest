@@ -129,7 +129,7 @@
 				t.row.add( [
 		           count, // val.noc_id,
                            val.improvement_type,
-                           date_noc_filed,
+                           //date_noc_filed,
                            project_completion_date,
 		           noc_path_value,
                    status,

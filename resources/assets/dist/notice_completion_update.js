@@ -144,7 +144,7 @@ $('#update_notice_completion_form').click(function(e) {
     var token                   = localStorage.getItem('u_token');
     var token = localStorage.getItem('u_token');
     var improvement_type    = $("#project_type_dropdown").val();
-    var date_noc_filed      = $("#date_noc_filed").val();
+    //var date_noc_filed      = $("#date_noc_filed").val();
     var project_completion_date = $("#project_completion_date").val();
     jQuery.ajax({
         url: baseUrl + "notice-completion/"+noc_id+"/update",
@@ -152,7 +152,7 @@ $('#update_notice_completion_form').click(function(e) {
         data: {
             "status"            : status,
             "project_id"        : project_id,
-            "date_noc_filed" : date_noc_filed,
+            //"date_noc_filed" : date_noc_filed,
             "project_completion_date" : project_completion_date,
             "improvement_type" : improvement_type
         },

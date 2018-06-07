@@ -109,7 +109,7 @@ class NoticeCompletionController extends Controller {
         $noc_all_potential_claimants = $request['noc_potential'];
         $noc_project_id         = $request['noc_project_id'];
         $noc_file_path          = $request['noc_file_path'];
-        $date_noc_filed         = $request['date_noc_filed'];
+        //$date_noc_filed         = $request['date_noc_filed'];
         $project_completion_date = $request['project_completion_date'];
         $project_completion_date1 = date('d', strtotime($request['project_completion_date']));
         $project_completion_day = date('F', strtotime($request['project_completion_date']));
@@ -202,6 +202,9 @@ class NoticeCompletionController extends Controller {
                                                         array (
                                                         "tabLabel" => "project_address",
                                                         "value" => $project->p_location),
+                                                        array (
+                                                        "tabLabel" => "signatory_name",
+                                                        "value" => $row['signatory_name']),
                                                         );
                     }else{
                         $result = array('code'=>400,"data"=>array("description"=>"Signatory email is not valid.",'docusign'=>1,
@@ -292,7 +295,7 @@ class NoticeCompletionController extends Controller {
         else
         {
              $query = DB::table('project_notice_of_completion')
-            ->insert(['docusign_status'=>$docusign_status,'envelope_id'=>$envelope_id,'project_completion_date'=>$project_completion_date,'date_noc_filed'=>$date_noc_filed,'improvement_type'=>$improvement_type,'noc_rec_text' => $noc_rec_text, 'noc_rec_name' => $noc_rec_name, 'noc_rec_street' => $noc_rec_street, 'noc_rec_adress' => $noc_rec_adress, 'noc_notice_text_1' => $noc_notice_text_1, 'noc_notice_text_2' => $noc_notice_text_2, 'noc_notice_text_3' => $noc_notice_text_3, 'noc_notice_text_4' => $noc_notice_text_4, 'noc_notice_text_5' => $noc_notice_text_5, 'noc_notice_text_6' => $noc_notice_text_6, 'noc_notice_text_7' => $noc_notice_text_7, 'noc_notice_text_8' => $noc_notice_text_8, 'noc_notice_text_9' => $noc_notice_text_9, 'noc_notice_text_10' => $noc_notice_text_10, 'noc_notice_text_11' => $noc_notice_text_11, 'noc_notice_text_12' => $noc_notice_text_12, 'noc_notice_text_13' => $noc_notice_text_13, 'noc_notice_text_14' => $noc_notice_text_14, 'noc_notice_text_15' => $noc_notice_text_15, 'noc_notice_text_16' => $noc_notice_text_16, 'noc_notice_text_17' => $noc_notice_text_17, 'noc_notice_text_18' => $noc_notice_text_18, 'noc_notice_text_19' => $noc_notice_text_19, 'noc_notice_text_20' => $noc_notice_text_20, 'noc_notice_text_21' => $noc_notice_text_21, 'noc_notice_text_22' => $noc_notice_text_22, 'noc_ver_text_1' => $noc_ver_text_1, 'noc_ver_text_2' => $noc_ver_text_2, 'noc_ver_text_3' => $noc_ver_text_3, 'noc_ver_text_4' => $noc_ver_text_4, 'noc_ver_text_5' => $noc_ver_text_5, 'noc_ver_text_6' => $noc_ver_text_6, 'noc_ver_text_7' => $noc_ver_text_7, 'noc_ser_text_1' => $noc_ser_text_1, 'noc_ser_text_2' => $noc_ser_text_2, 'noc_ser_text_3' => $noc_ser_text_3, 'noc_ser_text_4' => $noc_ser_text_4, 'noc_ser_text_5' => $noc_ser_text_5, 'noc_ser_text_6' => $noc_ser_text_6, 'noc_ser_text_7' => $noc_ser_text_7, 'noc_ser_text_8' => $noc_ser_text_8, 'noc_ser_text_9' => $noc_ser_text_9, 'noc_ser_text_10' => $noc_ser_text_10, 'noc_ser_text_11' => $noc_ser_text_11, 'noc_ser_text_12' => $noc_ser_text_12, 'noc_ser_text_13' => $noc_ser_text_13, 'noc_ser_text_14' => $noc_ser_text_14, 'noc_ser_text_15' => $noc_ser_text_15, 'noc_ser_text_16' => $noc_ser_text_16, 'noc_ser_text_17' => $noc_ser_text_17, 'noc_con_text_1' => $noc_con_text_1, 'noc_con_text_2' => $noc_con_text_2, 'noc_con_text_3' => $noc_con_text_3, 'noc_con_text_4' => $noc_con_text_4, 'noc_con_text_5' => $noc_con_text_5, 'noc_con_text_6' => $noc_con_text_6, 'noc_all_potential_claimants' => $noc_all_potential_claimants, 'noc_project_id' => $noc_project_id, 'noc_file_path' => $noc_file_path, 'noc_user_id' => $noc_user_id, 'noc_status' => $noc_status]);
+            ->insert(['docusign_status'=>$docusign_status,'envelope_id'=>$envelope_id,'project_completion_date'=>$project_completion_date,'improvement_type'=>$improvement_type,'noc_rec_text' => $noc_rec_text, 'noc_rec_name' => $noc_rec_name, 'noc_rec_street' => $noc_rec_street, 'noc_rec_adress' => $noc_rec_adress, 'noc_notice_text_1' => $noc_notice_text_1, 'noc_notice_text_2' => $noc_notice_text_2, 'noc_notice_text_3' => $noc_notice_text_3, 'noc_notice_text_4' => $noc_notice_text_4, 'noc_notice_text_5' => $noc_notice_text_5, 'noc_notice_text_6' => $noc_notice_text_6, 'noc_notice_text_7' => $noc_notice_text_7, 'noc_notice_text_8' => $noc_notice_text_8, 'noc_notice_text_9' => $noc_notice_text_9, 'noc_notice_text_10' => $noc_notice_text_10, 'noc_notice_text_11' => $noc_notice_text_11, 'noc_notice_text_12' => $noc_notice_text_12, 'noc_notice_text_13' => $noc_notice_text_13, 'noc_notice_text_14' => $noc_notice_text_14, 'noc_notice_text_15' => $noc_notice_text_15, 'noc_notice_text_16' => $noc_notice_text_16, 'noc_notice_text_17' => $noc_notice_text_17, 'noc_notice_text_18' => $noc_notice_text_18, 'noc_notice_text_19' => $noc_notice_text_19, 'noc_notice_text_20' => $noc_notice_text_20, 'noc_notice_text_21' => $noc_notice_text_21, 'noc_notice_text_22' => $noc_notice_text_22, 'noc_ver_text_1' => $noc_ver_text_1, 'noc_ver_text_2' => $noc_ver_text_2, 'noc_ver_text_3' => $noc_ver_text_3, 'noc_ver_text_4' => $noc_ver_text_4, 'noc_ver_text_5' => $noc_ver_text_5, 'noc_ver_text_6' => $noc_ver_text_6, 'noc_ver_text_7' => $noc_ver_text_7, 'noc_ser_text_1' => $noc_ser_text_1, 'noc_ser_text_2' => $noc_ser_text_2, 'noc_ser_text_3' => $noc_ser_text_3, 'noc_ser_text_4' => $noc_ser_text_4, 'noc_ser_text_5' => $noc_ser_text_5, 'noc_ser_text_6' => $noc_ser_text_6, 'noc_ser_text_7' => $noc_ser_text_7, 'noc_ser_text_8' => $noc_ser_text_8, 'noc_ser_text_9' => $noc_ser_text_9, 'noc_ser_text_10' => $noc_ser_text_10, 'noc_ser_text_11' => $noc_ser_text_11, 'noc_ser_text_12' => $noc_ser_text_12, 'noc_ser_text_13' => $noc_ser_text_13, 'noc_ser_text_14' => $noc_ser_text_14, 'noc_ser_text_15' => $noc_ser_text_15, 'noc_ser_text_16' => $noc_ser_text_16, 'noc_ser_text_17' => $noc_ser_text_17, 'noc_con_text_1' => $noc_con_text_1, 'noc_con_text_2' => $noc_con_text_2, 'noc_con_text_3' => $noc_con_text_3, 'noc_con_text_4' => $noc_con_text_4, 'noc_con_text_5' => $noc_con_text_5, 'noc_con_text_6' => $noc_con_text_6, 'noc_all_potential_claimants' => $noc_all_potential_claimants, 'noc_project_id' => $noc_project_id, 'noc_file_path' => $noc_file_path, 'noc_user_id' => $noc_user_id, 'noc_status' => $noc_status]);
 
             if(count($query) < 1)
             {
@@ -314,11 +317,11 @@ class NoticeCompletionController extends Controller {
                     foreach($usrlists as $usrlist)
                     {
                         $project_id           = $project_id;
-                        $notification_title   = 'An NOC has been filed with the County Recorder\'s Office on '.date('M d, Y', strtotime($date_noc_filed)).' in Project: ' .$usrlist->p_name;
+                        $notification_title   = 'An NOC has been filed with the County Recorder\'s Office on '.date('M d, Y').' in Project: ' .$usrlist->p_name;
                         $url                  = App::make('url')->to('/');
                         $link                 = "/dashboard/".$project_id."/notice_completion";
                         $date                 = date("M d, Y h:i a");
-                        $email_description    = 'An NOC has been filed with the County Recorder\'s Office on '.date('M d, Y', strtotime($date_noc_filed)).' in Project: <strong>'.$usrlist->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $email_description    = 'An NOC has been filed with the County Recorder\'s Office on '.date('M d, Y').' in Project: <strong>'.$usrlist->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                       $user_detail = array(
                         'id'              => $usrlist->id,
                         'name'            => $usrlist->username,
@@ -427,7 +430,7 @@ class NoticeCompletionController extends Controller {
         $project_id   = $request['project_id'];
         $user_id      = Auth::user()->id;
         $status       = $request['status'];
-        $date_noc_filed  = $request['date_noc_filed'];
+        //$date_noc_filed  = $request['date_noc_filed'];
         $project_completion_date  = $request['project_completion_date'];
         $improvement_type = $request['improvement_type'];
       // Check User Permission Parameter 
@@ -457,7 +460,7 @@ class NoticeCompletionController extends Controller {
         else {
           $query = DB::table('project_notice_of_completion')
           ->where('noc_id', '=', $noc_id)
-          ->update(['project_completion_date'=>$project_completion_date,'date_noc_filed'=>$date_noc_filed,'improvement_type'=>$improvement_type,'noc_project_id' => $project_id, 'noc_user_id' => $user_id, 'noc_status' => $status]);
+          ->update(['project_completion_date'=>$project_completion_date,'improvement_type'=>$improvement_type,'noc_project_id' => $project_id, 'noc_user_id' => $user_id, 'noc_status' => $status]);
           if(count($query) < 1)
           {
             $result = array('code'=>400, "description"=>"No records found");

@@ -153,19 +153,19 @@
         <div>
             <div class="form-group col-md-6">
                 <label for="">Construction Manager: Contact Name <span class="text-danger">*</span></label>
-                <input class="form-control cm_name" name="cm_name" type="text">
+                <input class="form-control cm_name" name="cm_name" type="text" value="kunal">
             </div>
             <div class="form-group col-md-6">
                 <label for="">Construction Manager: Contact Email <span class="text-danger">*</span></label>
-                <input class="form-control cm_email" name="cm_email" type="email">
+                <input class="form-control cm_email" name="cm_email" type="email" value="kunal_kumar@opiant.in">
             </div>
             <div class="form-group col-md-6">
                 <label for="">Owner: Contact Name <span class="text-danger">*</span></label>
-                <input class="form-control owner_name" name="owner_name" type="text">
+                <input class="form-control owner_name" name="owner_name" type="text" value="kunal">
             </div>
             <div class="form-group col-md-6">
                 <label for="">Owner: Contact Email <span class="text-danger">*</span></label>
-                <input class="form-control owner_email" name="owner_email" type="email">
+                <input class="form-control owner_email" name="owner_email" type="email" value="kunal_kumar@opiant.in">
             </div>
         </div>
     </div>

@@ -228,7 +228,7 @@ $(document).ready(function() {
         }
         
         //alert(improvement_type);return false;
-        var date_noc_filed      = $("#date_noc_filed").val();
+        //var date_noc_filed      = $("#date_noc_filed").val();
         var project_completion_date = $("#project_completion_date").val();
         // Validation Certificate
         var html = '';
@@ -289,10 +289,10 @@ $(document).ready(function() {
 //                html += '<li>Document is invalid.</li>';
 //                is_error = true;
 //            }
-            if(date_noc_filed == ''){
-                html += '<li>Please select NOC filed date.</li>';
-                is_error = true;
-            }
+//            if(date_noc_filed == ''){
+//                html += '<li>Please select NOC filed date.</li>';
+//                is_error = true;
+//            }
             if(project_completion_date == ''){
                 html += '<li>Please select Project Completion date.</li>';
                 is_error = true;
@@ -726,7 +726,7 @@ $(document).ready(function() {
                         "noc_potential" : noc_potential,
                         "noc_project_id" : upload_project_id,
                         "noc_file_path" : upload_doc_id,
-                        "date_noc_filed" : date_noc_filed,
+                        //"date_noc_filed" : date_noc_filed,
                         "project_completion_date" : project_completion_date,
                         "improvement_type" : improvement_type,
                         "signatory_arr"    : signatory_arr,
@@ -805,7 +805,7 @@ $(document).ready(function() {
                     $("#noc_con_text_4").removeAttr('value');
                     $("#noc_con_text_5").removeAttr('value');
                     $("#noc_con_text_6").removeAttr('value');
-                    $("#date_noc_filed").removeAttr('value');
+                    //$("#date_noc_filed").removeAttr('value');
                     $("#project_completion_date").removeAttr('value');
                     $("select#project_type_dropdown")[0].selectedIndex = 0;
                     $(".first_button").text('Save Another');

@@ -43,7 +43,7 @@
                                                   </span>
                                             </div>
                                     </div>
-                                    <div class="form-group col-md-4">
+<!--                                    <div class="form-group col-md-4">
                                         <label>Date Filed on <span class="text-danger">*</span></label>
                                         <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
                                                 <input type="text" readonly="" value="" size="16" class="form-control"  id="date_noc_filed">
@@ -51,7 +51,7 @@
                                                     <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
                                                   </span>
                                             </div>
-                                    </div>    
+                                    </div>    -->
                                     <div class="form-group col-md-4">
                                         <label for="project_type">Improvement Type <span class="text-danger">*</span></label>
                                         <div id="project_type_selected" style=""></div>

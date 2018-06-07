@@ -417,7 +417,7 @@
                                     </div>
                             </div>
                             
-                            <div class="form-group col-md-6" style="margin-top: 33px;">
+<!--                            <div class="form-group col-md-6" style="margin-top: 33px;">
                                 <label>Date Filed on <span class="text-danger">*</span></label>
                                 <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
                                         <input type="text" readonly="" value="" size="16" class="form-control"  id="date_noc_filed">
@@ -425,7 +425,7 @@
                                             <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
                                           </span>
                                     </div>
-                            </div>
+                            </div>-->
             <input type="hidden" name="signatory_counter" id="signatory_counter" value="2">
             <div class="form-group col-md-12"><span class="label label-inverse"><b>Please fill out the fields below for Docusign integration.</b></span></div>
             <div class="clearfix"></div>  
