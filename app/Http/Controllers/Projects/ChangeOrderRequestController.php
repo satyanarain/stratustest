@@ -910,6 +910,11 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                     ->where('con_project_id', '=', $signatory_arr[0]['project_id'])
                     ->orderBy('project_contract.con_id','ASC')
                     ->first();
+              if(!$contracts){
+                    $result = array('code'=>400,"data"=>array("description"=>"Please add project contract first.",'docusign'=>1,
+                                        "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                    return response()->json($result, 400);
+                }
               if($contracts)
                 $con_contract_date = date('m-d-Y',strtotime($contracts->con_contract_date));
               else
@@ -920,6 +925,11 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                     ->where('project_notice_award.pna_project_id', '=', $signatory_arr[0]['project_id'])
                     ->orderBy('project_notice_award.pna_id','ASC')
                     ->first();
+              if(!$contractor){
+                    $result = array('code'=>400,"data"=>array("description"=>"Please add Notice to Award first.",'docusign'=>1,
+                                        "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                    return response()->json($result, 400);
+                }
               //$projectDetail = $project[]
                 //print_r($contracts);die;
             $test = array();

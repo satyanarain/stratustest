@@ -137,12 +137,18 @@ class NoticeCompletionController extends Controller {
           
         if(count($signatory_arr))
             {
-                $owner = DB::table('company_type')
-                ->leftJoin('project_firm', 'project_firm.f_type', '=', 'company_type.ct_id')
+                $owner = DB::table('project_firm')
+                ->leftJoin('company_type', 'project_firm.f_type', '=', 'company_type.ct_id')
                 ->select('project_firm.*')
                 ->where('company_type.ct_user_id', '=', $owner_id)
                 ->where('company_type.ct_name', '=', 'Owner')
                 ->first();
+                if(!$owner){
+                    $result = array('code'=>400,"data"=>array("description"=>"Please add owner first.",'docusign'=>1,
+                                        "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                    return response()->json($result, 400);
+                }
+                //echo '<pre>';print_r($owner);die;
                 $contractor = DB::table('project_notice_award')
                     ->leftJoin('project_firm', 'project_notice_award.pna_contactor_name', '=', 'project_firm.f_id')
                     ->select('project_firm.f_name as agency_name')
@@ -150,6 +156,12 @@ class NoticeCompletionController extends Controller {
                     ->groupBy('project_notice_award.pna_id')
                     ->orderBy('project_notice_award.pna_id','ASC')
                     ->first();
+                if(!$contractor){
+                    $result = array('code'=>400,"data"=>array("description"=>"Please add notice of award first.",'docusign'=>1,
+                                        "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
+                    return response()->json($result, 400);
+                }
+               
                 $project = DB::table('projects')
                     ->select('projects.*')
                     ->where('p_id', '=', $noc_project_id)
