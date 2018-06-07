@@ -911,6 +911,18 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                     ->orderBy('project_contract.con_id','ASC')
                     ->first();
               if(!$contracts){
+                  foreach($request['pcd_id'] as $pcd_id){
+                        $cor = DB::table('project_change_order_request_detail')
+                        ->select('pcd_parent_cor')
+                        ->where('pcd_id', '=', $pcd_id)
+                        ->first();
+                        DB::table('project_change_order_request')
+                        ->where('pco_id', '=', $cor->pcd_parent_cor)
+                        ->delete();
+                        DB::table('project_change_order_request_detail')
+                        ->where('pcd_id', '=', $pcd_id)
+                        ->delete();
+                    }
                     $result = array('code'=>400,"data"=>array("description"=>"Please add project contract first.",'docusign'=>1,
                                         "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
                     return response()->json($result, 400);
@@ -926,6 +938,18 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                     ->orderBy('project_notice_award.pna_id','ASC')
                     ->first();
               if(!$contractor){
+                  foreach($request['pcd_id'] as $pcd_id){
+                        $cor = DB::table('project_change_order_request_detail')
+                        ->select('pcd_parent_cor')
+                        ->where('pcd_id', '=', $pcd_id)
+                        ->first();
+                        DB::table('project_change_order_request')
+                        ->where('pco_id', '=', $cor->pcd_parent_cor)
+                        ->delete();
+                        DB::table('project_change_order_request_detail')
+                        ->where('pcd_id', '=', $pcd_id)
+                        ->delete();
+                    }
                     $result = array('code'=>400,"data"=>array("description"=>"Please add Notice to Award first.",'docusign'=>1,
                                         "notice_status"=>null,"contactor_name"=>null,"contact_amount"=>null,"award_date"=>null,"notice_path"=>null,"project_id"=>null));
                     return response()->json($result, 400);
