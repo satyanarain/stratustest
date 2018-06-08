@@ -1112,7 +1112,7 @@ class RequestInfoController extends Controller {
             $query = DB::table('project_request_info_review')
                     ->leftJoin('project_request_info', 'project_request_info.ri_id', '=', 'project_request_info_review.rir_review_parent')
                     ->leftJoin('users', 'project_request_info.ri_user_id', '=', 'users.id')
-                    ->select('project_request_info_review.*','users.*')
+                    ->select('project_request_info_review.*','users.*','project_request_info.*')
                     ->where('rir_project_id', '=', $project->p_id)
                     ->where(function($query){
                         $query->where('rir_review_status', '=', 'response_due')
