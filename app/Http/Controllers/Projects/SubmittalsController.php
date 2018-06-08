@@ -71,8 +71,8 @@ class SubmittalsController extends Controller {
         $project_id                         = $request['project_id'];
         $user_id                            = Auth::user()->id;
         $status                             = 'active';
-      // Check User Permission Parameter 
-      $user_id = Auth::user()->id;
+        // Check User Permission Parameter 
+        $user_id = Auth::user()->id;
       $permission_key = 'submittal_add';
       $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
       if(count($check_single_user_permission) < 1){
@@ -138,11 +138,11 @@ class SubmittalsController extends Controller {
               // ->insert(['sr_submittal_id' => $submittal_id, 'sr_review_type' => $sub_submittal_type, '  sr_project_id' => $project_id, 'sr_user_id' => $user_id, 'sr_status' => $status]);
               if($submittal_type == 'new'){
                 $query = DB::table('project_submittal_review')
-                ->insert(['sr_type' => $submittal_type, 'sr_submittal_id' => $submittal_id, 'sr_exist_parent' => $submittal_number, 'sr_review_type' => 'pending', 'sr_project_id' => $project_id, 'sr_status' => $status]);
+                ->insert(['sr_user_id' => $user_id,'sr_type' => $submittal_type, 'sr_submittal_id' => $submittal_id, 'sr_exist_parent' => $submittal_number, 'sr_review_type' => 'pending', 'sr_project_id' => $project_id, 'sr_status' => $status]);
               }
               else {
                 $query = DB::table('project_submittal_review')
-                ->insert(['sr_type' => $submittal_type, 'sr_submittal_id' => $submittal_id, 'sr_exist_parent' => $submittal_exist_parent, 'sr_review_type' => 'pending', 'sr_project_id' => $project_id, 'sr_status' => $status]);
+                ->insert(['sr_user_id' => $user_id,'sr_type' => $submittal_type, 'sr_submittal_id' => $submittal_id, 'sr_exist_parent' => $submittal_exist_parent, 'sr_review_type' => 'pending', 'sr_project_id' => $project_id, 'sr_status' => $status]);
               }
               if(count($query) < 1)
               {
@@ -949,6 +949,7 @@ class SubmittalsController extends Controller {
                     ->get();
             //print_r($query);die;
             //$days = config('app.review_status_change');
+            //echo '<pre>';print_r($query);die;
             $days = $project->submittal_due_date;
             $user =  (array) $query;
             if(count($query) < 1)
@@ -974,27 +975,35 @@ class SubmittalsController extends Controller {
                     $review1 = DB::table('project_submittal_review')
                     ->where('sr_id', '=', $review->sr_id)
                     ->update(['sr_review_type' => 'past_due']);
-                    $project_id           = $project->p_id;
-                    $notification_title   = 'Submittal # '.$review->submittal_number.' is overdue in Project: ' .$project->p_name;
-                    $url                  = App::make('url')->to('/');
-                    $link                 = "/dashboard/".$project->p_id."/submittal_review";
-                    $date                 = date("M d, Y h:i a");
-                    $email_description    = 'Submittal # '.$review->submittal_number.' is overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
-                    $user_detail = array(
-                        'id'              => $review->id,
-                        'name'            => $review->username,
-                        'email'           => $review->email,
-                        'link'            => $link,
-                        'date'            => $date,
-                        'project_name'    => $project->p_name,
-                        'title'           => $notification_title,
-                        'description'     => $email_description
-                    );
-                    $user_single = (object) $user_detail;
-                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-                        $message->from('no-reply@sw.ai', 'StratusCM');
-                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-                    });
+                    
+                    $notification_key     = 'past_due';
+                    $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project->p_id,$review->sr_user_id,$notification_key);
+                    if(count($check_project_user_notification) < 1){
+                        continue;
+                    }else{
+                        $project_id           = $project->p_id;
+                        $notification_title   = 'Submittal # '.$review->submittal_number.' is overdue in Project: ' .$project->p_name;
+                        $url                  = App::make('url')->to('/');
+                        $link                 = "/dashboard/".$project->p_id."/submittal_review";
+                        $date                 = date("M d, Y h:i a");
+                        $email_description    = 'Submittal # '.$review->submittal_number.' is overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $user_detail = array(
+                            'id'              => $review->id,
+                            'name'            => $review->username,
+                            'email'           => $review->email,
+                            'link'            => $link,
+                            'date'            => $date,
+                            'project_name'    => $project->p_name,
+                            'title'           => $notification_title,
+                            'description'     => $email_description
+                        );
+                        $user_single = (object) $user_detail;
+                        Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                            $message->from('no-reply@sw.ai', 'StratusCM');
+                            $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                        });
+                    }
+                    
                     if(count($review) < 1)
                     {
                       $result = array('code'=>404, "description"=>"No Records Found");

@@ -65,8 +65,8 @@ class RequestInfoController extends Controller {
         $project_id                 = $request['project_id'];
         $user_id                    = Auth::user()->id;
         $request_status             = 'active';
-      // Check User Permission Parameter 
-      $user_id = Auth::user()->id;
+        // Check User Permission Parameter 
+        $user_id = Auth::user()->id;
       $permission_key = 'rfi_add';
       $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
       if(count($check_single_user_permission) < 1){
@@ -224,7 +224,7 @@ class RequestInfoController extends Controller {
                     });
                 }
                 $query = DB::table('project_request_info_review')
-                        ->insert(['rir_review_parent' => $request_info_id, 'rir_review_status' => 'response_due', 'rir_project_id' => $project_id, 'rir_status' => $request_status]);
+                        ->insert(['rir_user_id' => $user_id,'rir_review_parent' => $request_info_id, 'rir_review_status' => 'response_due', 'rir_project_id' => $project_id, 'rir_status' => $request_status]);
                 if(count($query) < 1)
                 {
                   $result = array('code'=>404, "description"=>"No records found");
@@ -1119,6 +1119,7 @@ class RequestInfoController extends Controller {
                         ->orwhere('rir_review_status', '=', 'past_due');
                     })
                     ->get();
+            //echo '<pre>';print_r($query);die;
             $days = $project->rfi_due_date;
             $user =  (array) $query;
             if(count($query) < 1)
@@ -1145,27 +1146,34 @@ class RequestInfoController extends Controller {
                     ->where('rir_id', '=', $review->rir_id)
                     ->where('rir_review_respond', '=', null)
                     ->update(['rir_review_status' => 'past_due']);
-                    $project_id           = $project->p_id;
-                    $notification_title   = 'Request for information # '.$review->ri_number.' is overdue in Project: ' .$project->p_name;
-                    $url                  = App::make('url')->to('/');
-                    $link                 = "/dashboard/".$project->p_id."/req_for_info_review";
-                    $date                 = date("M d, Y h:i a");
-                    $email_description    = 'Request for information # '.$review->ri_number.' is overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
-                    $user_detail = array(
-                        'id'              => $review->id,
-                        'name'            => $review->username,
-                        'email'           => $review->email,
-                        'link'            => $link,
-                        'date'            => $date,
-                        'project_name'    => $project->p_name,
-                        'title'           => $notification_title,
-                        'description'     => $email_description
-                    );
-                    $user_single = (object) $user_detail;
-                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-                        $message->from('no-reply@sw.ai', 'StratusCM');
-                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-                    });
+                    $notification_key     = 'past_due';
+                    $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project->p_id,$review->rir_user_id,$notification_key);
+                    if(count($check_project_user_notification) < 1){
+                       continue;
+                    }else{
+                        $project_id           = $project->p_id;
+                        $notification_title   = 'Request for information # '.$review->ri_number.' is overdue in Project: ' .$project->p_name;
+                        $url                  = App::make('url')->to('/');
+                        $link                 = "/dashboard/".$project->p_id."/req_for_info_review";
+                        $date                 = date("M d, Y h:i a");
+                        $email_description    = 'Request for information # '.$review->ri_number.' is overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $user_detail = array(
+                            'id'              => $review->id,
+                            'name'            => $review->username,
+                            'email'           => $review->email,
+                            'link'            => $link,
+                            'date'            => $date,
+                            'project_name'    => $project->p_name,
+                            'title'           => $notification_title,
+                            'description'     => $email_description
+                        );
+                        $user_single = (object) $user_detail;
+                        Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                            $message->from('no-reply@sw.ai', 'StratusCM');
+                            $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                        });
+                    }
+                    
                     
                     $result = array('description'=>'Update Status successfully','code'=>200);
                     //return response()->json($result, 200);

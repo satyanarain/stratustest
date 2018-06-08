@@ -811,7 +811,12 @@
                         <label for="notice_of_completion">Notice of Completion</label><br>
                         <input type="checkbox" name="notification_key[]" id="notice_of_completion" value="notice_of_completion">
                     </div>
-                    
+                    <div class="clearfix"></div>
+                    <h3 style="border-bottom:1px solid red">Miscellaneous</h3>
+                    <div class="form-group col-md-3">
+                        <label for="past_due">Past Due</label><br>
+                        <input type="checkbox" name="notification_key[]" id="past_due" value="past_due">
+                    </div>
                     
                     
                     <?php //}?>
