@@ -1147,7 +1147,7 @@ class RequestInfoController extends Controller {
                     ->where('rir_review_respond', '=', null)
                     ->update(['rir_review_status' => 'past_due']);
                     $notification_key     = 'past_due';
-                    echo $review->rir_user_id.',';
+                    //echo $review->rir_user_id.',';
                     $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project->p_id,$review->rir_user_id,$notification_key);
                     if(count($check_project_user_notification) < 1){
                        continue;
