@@ -982,7 +982,7 @@ class SubmittalsController extends Controller {
                         continue;
                     }else{
                         $project_id           = $project->p_id;
-                        $notification_title   = 'Submittal # '.$review->submittal_number.' is overdue in Project: ' .$project->p_name;
+                        echo $notification_title   = 'Submittal # '.$review->submittal_number.' is overdue in Project: ' .$project->p_name;
                         $url                  = App::make('url')->to('/');
                         $link                 = "/dashboard/".$project->p_id."/submittal_review";
                         $date                 = date("M d, Y h:i a");
