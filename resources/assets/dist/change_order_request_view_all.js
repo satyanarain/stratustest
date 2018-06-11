@@ -20,6 +20,73 @@ $(document).ready(function() {
         $('.body-content .wrapper').show();
     }
 
+    jQuery.ajax({
+        url: baseUrl + "projects/"+project_id,
+            type: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "x-access-token": token
+            },
+            contentType: "application/json",
+            cache: false
+        })
+        .done(function(data, textStatus, jqXHR) {
+//            var project_id = data.data.p_id;
+//            $('#project_number').text(project_id);
+//            var project_number = data.data.p_number;
+//            $('#project_code').text(project_number);
+//            var project_name = data.data.p_name;
+//            $('#project_name').text(project_name);
+//            $('#project_name_1').text(project_name);
+//            var project_location = data.data.p_location;
+//            $('#project_location').text(project_location);
+//            $('#project_location1').text(project_location);
+//            var project_description = data.data.p_description;
+//            $('#project_description').text(project_description);
+
+            change_order_days_type = data.data.change_order_days_type;
+            change_order_due_date = data.data.change_order_due_date;
+            rfi_days_type =data.data.rfi_days_type;
+            rfi_due_date = data.data.rfi_due_date;
+            submittal_days_type =data.data.submittal_days_type;
+            submittal_due_date = data.data.submittal_due_date;
+
+//            if(data.data.f_name ==null)
+//                $('.project_lead_agency_li').remove();
+//            else
+//                $('#project_lead_agency').text(data.data.f_name);
+//
+//            var status = data.data.p_status;
+//            if(status == "active"){
+//                status = '<span class="label label-success">Active</span>';
+//            }
+//            else {
+//                status = '<span class="label label-danger">Inactive</span>';
+//            }
+//            $('#project_status').html(status);
+            $('.loading_project_detail').remove();
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) 
+        {
+            console.log("HTTP Request Failed");
+            var response = jqXHR.responseJSON.code;
+            if(response == 403){
+                // window.location.href = baseUrl + "403";
+                console.log("403");
+                $('.loading_project_detail').remove();
+            }
+            else if(response == 404){
+                console.log("404");
+                $('.loading_project_detail').remove();
+                // window.location.href = baseUrl + "404";
+            }
+            else {
+                console.log("500");
+                $('.loading_project_detail').remove();
+                // window.location.href = baseUrl + "500";
+            }
+        })
+                
     // Get Project Currency
     jQuery.ajax({
     url: baseUrl+project_id+"/project_setting_get/project_currency",
@@ -143,6 +210,7 @@ $(document).ready(function() {
                 var pcd_denied_by_cm = '';
                 var pcd_approved_by_cm = '';
             }
+            
             if((val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00") && (val.pcd_denied_by_owner == null || val.pcd_denied_by_owner == "0000-00-00")){
                 var pcd_approved_by_owner = '<span class="label label-warning">PENDING</span>';
                 var pcd_denied_by_owner = '<span class="label label-warning">PENDING</span>';
@@ -282,7 +350,7 @@ $(document).ready(function() {
                     minutes1 = minutes-(days*24*60)-(hours1*60);
                     seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
 
-                    var potential_status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
+                    var potential_status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
                     var action_button = update_permission ;
                 }
                 var t = $('#potential_change_order').DataTable();
@@ -305,6 +373,44 @@ $(document).ready(function() {
                             } ).draw();
                 counts++;
             }else{
+                
+                var oneDay = 24*60*60*1000;
+                var future_date = new Date(val.pcd_timestamp);
+                var futuredate = '';
+                if( change_order_days_type == 1 ) {
+                    futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+                }
+                else{
+                    futuredate = addWorkDays(change_order_due_date , (future_date));
+                    var updated_f = new Date(futuredate);
+                    futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+                }
+                                        
+                var now_date = new Date();
+                var nowdate = now_date.setDate(now_date.getDate()); 
+                var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));                         
+                if(val.pcd_status=="past_due"){
+                    var potential_status = '<span class="label label-danger">PAST DUE</span>';
+                    var action_button = update_permission;
+                }else if(((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") || (val.pcd_denied_by_cm != null && val.pcd_denied_by_cm != "0000-00-00")) && ((val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00") || (val.pcd_denied_by_owner != null && val.pcd_denied_by_owner != "0000-00-00"))){
+                    var potential_status = '';
+                    var action_button = update_permission;
+                }else {
+                    // console.log('greater');
+                    seconds = Math.floor((futuredate - (nowdate))/1000);
+                    minutes = Math.floor(seconds/60);
+                    hours = Math.floor(minutes/60);
+                    days = Math.floor(hours/24);
+                    
+                    hours1 = hours-(days*24);
+                    minutes1 = minutes-(days*24*60)-(hours1*60);
+                    seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
+
+                    var potential_status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
+                    var action_button = update_permission ;
+                }
+                
+                
                 if(val.pcd_rfi == '[]'){
                     rfi_final = '';
                     var t = $('#request_change_order').DataTable();
@@ -324,7 +430,7 @@ $(document).ready(function() {
                        //owner_rejection_comment,
                        val.currency_symbol +''+  ReplaceNumberWithCommas(disp_price),
                        val.pcd_days,
-                       status_cm + status_owner+approved_status,
+                       status_cm + status_owner+approved_status+potential_status,
                        //status,
                        update_permission
                     ]).draw( false );
@@ -338,40 +444,7 @@ $(document).ready(function() {
                 else {
                 // console.log(val.pcd_rfi);
 
-                var oneDay = 24*60*60*1000;
-                var future_date = new Date(val.pcd_timestamp);
-                var numberOfDaysToAdd = 5;
-                var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
-                var now_date = new Date();
-                var numberOfDaysToAdd = 0;
-                var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd); 
-                // console.log(future_date);
-                // console.log(now_date);
-                // console.log(futuredate);
-                // console.log(nowdate);
-                var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
-
-                if(futuredate < nowdate && val.pcd_status!="complete"){
-                    // console.log('less');
-                    var potential_status = '<span class="label label-danger">PAST DUE</span>';
-                    var action_button = update_permission;
-                }else if(((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") || (val.pcd_denied_by_cm != null && val.pcd_denied_by_cm != "0000-00-00")) && ((val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00") || (val.pcd_denied_by_owner != null && val.pcd_denied_by_owner != "0000-00-00"))){
-                    var potential_status = '';
-                    var action_button = update_permission;
-                }else {
-                    // console.log('greater');
-                    seconds = Math.floor((futuredate - (nowdate))/1000);
-                    minutes = Math.floor(seconds/60);
-                    hours = Math.floor(minutes/60);
-                    days = Math.floor(hours/24);
-                    
-                    hours1 = hours-(days*24);
-                    minutes1 = minutes-(days*24*60)-(hours1*60);
-                    seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
-
-                    var potential_status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
-                    var action_button = update_permission ;
-                }
+                
 
                 jQuery.ajax({
                 url: baseUrl+val.pcd_id+"/get_item_rfi",
@@ -467,3 +540,16 @@ $(document).ready(function() {
     
        
 });
+
+
+function addWorkDays(date, daysToAdd) {
+    var cnt = 0;
+    var tmpDate = moment(date);
+    while (cnt < daysToAdd) {
+        tmpDate = tmpDate.add('days', 1);
+        if (tmpDate.weekday() != moment().day("Sunday").weekday() && tmpDate.weekday() != moment().day("Saturday").weekday()) {
+            cnt = cnt + 1;
+        }
+    }
+    return tmpDate;
+}

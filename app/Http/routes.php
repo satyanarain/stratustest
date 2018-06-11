@@ -883,6 +883,28 @@ Route::get('dashboard/{project_id}/built_drawing/{acceptance_letter_id}', functi
 });
 
 /*  --------------------------------------------------------------------------
+    SCHEDULE API'S
+    -------------------------------------------------------------------------- */
+Route::group(['middleware' => ['jwt-auth']], function () {
+    Route::post('schedule/add', 'Projects\ScheduleController@add_schedule');
+    Route::post('schedule/{pbd_id}/update', 'Projects\ScheduleController@update_schedule');
+    Route::get('schedule/{pbd_id}', 'Projects\ScheduleController@get_schedule');
+    Route::get('{project_id}/schedule', 'Projects\ScheduleController@get_schedule_project');
+});
+/**** BUILT DRAWING VIEW ****/
+Route::get('dashboard/{project_id}/schedule', function () {
+    return view('schedule/schedule_summary');
+});
+Route::get('dashboard/{project_id}/schedule/add', function () {
+    return view('schedule/schedule_add');
+});
+Route::get('dashboard/{project_id}/schedule/{acceptance_letter_id}/update', function () {
+    return view('schedule/schedule_update');
+});
+Route::get('dashboard/{project_id}/schedule/{acceptance_letter_id}', function () {
+    return view('schedule/schedule_single');
+});
+/*  --------------------------------------------------------------------------
     BUILT DRAWING API'S
     -------------------------------------------------------------------------- */
 Route::group(['middleware' => ['jwt-auth']], function () {

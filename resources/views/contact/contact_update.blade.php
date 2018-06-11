@@ -586,6 +586,21 @@
                                 <input type="checkbox" class="non_read_only" name="permission_key[]" id="meeting_minutes_add" value="meeting_minutes_add">
                                 <label>Add</label>
                         </div>
+                         <div class="clearfix"></div>
+
+                         <h4>Schedules</h4>
+                        <div class="col-sm-3 nopadleft">
+                                <input type="checkbox" class="read_only" name="permission_key[]" id="schedule_view_all" value="schedule_view_all">
+                                <label>Read only</label>
+                        </div>
+                        <div class="col-sm-3 nopadleft">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="schedule_update" value="schedule_update">
+                                <label>Edit</label>
+                        </div>
+                        <div class="col-sm-3 nopadleft">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="schedule_add" value="schedule_add">
+                                <label>Add</label>
+                        </div>
                         <div class="clearfix"></div>
 
                         <h4>Labor Compliance</h4>
@@ -797,6 +812,7 @@
                         <label for="meeting_minutes">Meeting Minutes</label><br>
                         <input type="checkbox" name="notification_key[]" id="meeting_minutes" value="meeting_minutes">
                     </div>
+                    
                     <div class="clearfix"></div>
                     <h3 style="border-bottom:1px solid red">Post Construction</h3>
                     <div class="form-group col-md-3">

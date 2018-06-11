@@ -7,6 +7,8 @@ $(document).ready(function() {
 	var change_order_due_date = 0;
 	var submittal_days_type =1;
 	var submittal_due_date = 0;
+        var rfi_due_date = 0;
+        var rfi_days_type = 1;
  	console.log(project_id);
 	localStorage.setItem("current_project_id", project_id);
 	var u_id = localStorage.getItem('u_id');
@@ -164,12 +166,12 @@ $(document).ready(function() {
 		    var project_description = data.data.p_description;
 		    $('#project_description').text(project_description);
 
-		      change_order_days_type = data.data.change_order_days_type;
-              change_order_due_date = data.data.change_order_due_date;
-			  rfi_days_type =data.data.rfi_days_type;
-			  rfi_due_date = data.data.rfi_due_date;
-		      submittal_days_type =data.data.submittal_days_type;
-			  submittal_due_date = data.data.submittal_due_date;
+                    change_order_days_type = data.data.change_order_days_type;
+                    change_order_due_date = data.data.change_order_due_date;
+                    rfi_days_type =data.data.rfi_days_type;
+                    rfi_due_date = data.data.rfi_due_date;
+                    submittal_days_type =data.data.submittal_days_type;
+                    submittal_due_date = data.data.submittal_due_date;
                     
                     if(data.data.f_name ==null)
                         $('.project_lead_agency_li').remove();
@@ -705,47 +707,46 @@ $(document).ready(function() {
 				    else if(status == 'past_due'){
 				    	if(val.sub_review_type == 'yes'){
 
-                           var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-							var future_date = new Date(val.sr_respond_date);
-							var futuredate = '';
-							if (  submittal_days_type == 1 ) {
-								//console.log("cal 1");
-						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
-							}
-							else {
-								//console.log("cal 2");
-                                futuredate = addWorkDays(change_order_due_date , (val.sr_respond_date-1));
-                                var updated_f = new Date(futuredate);
-                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
-							}
-						//	var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd);
-							var now_date = new Date();
-							var numberOfDaysToAdd = 0;
-							var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd);
-							var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
+                                            var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+                                            var future_date = new Date(val.sr_respond_date);
+                                            var futuredate = '';
+                                            if (  submittal_days_type == 1 ) {
+                                                futuredate = future_date.setDate(future_date.getDate() + submittal_due_date); 
+                                            }
+                                            else {
+                                                    //console.log("cal 2");
+                                                futuredate = addWorkDays(submittal_due_date , (val.sr_respond_date-1));
+                                                var updated_f = new Date(futuredate);
+                                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+                                            }
+                                            //var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd);
+                                            var now_date = new Date();
+                                            var numberOfDaysToAdd = 0;
+                                            var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd);
+                                            var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
 
-							if(futuredate < nowdate){
-								// console.log('less');
-							status = '<span class="label label-danger">Overdue - Expedite Review</span>';
-			    			submittal_past_due++;
-							}
+                                            if(futuredate < nowdate){
+                                                    // console.log('less');
+                                            status = '<span class="label label-danger">Overdue - Expedite Review</span>';
+                                            submittal_past_due++;
+                                            }
 			    			
 				    	}
 				    	else {
 
-                             var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-							var future_date = new Date(val.sr_respond_date);
-							var futuredate = '';
-							if (  submittal_days_type == 1 ) {
-								//console.log("cal 1");
-						        futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
-							}
-							else {
-								//console.log("cal 2");
-                                futuredate = addWorkDays(sr_respond_date , (val.sr_respond_date-1));
-                                var updated_f = new Date(futuredate);
-                               futuredate = updated_f.setDate(updated_f.getDate() + 0); 
-							}
+                                                var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+                                                var future_date = new Date(val.sr_respond_date);
+                                                var futuredate = '';
+                                                if (  submittal_days_type == 1 ) {
+                                                        //console.log("cal 1");
+                                                futuredate = future_date.setDate(future_date.getDate() + submittal_due_date); 
+                                                }
+                                                else {
+                                                        //console.log("cal 2");
+                        futuredate = addWorkDays(sr_respond_date , (val.sr_respond_date-1));
+                        var updated_f = new Date(futuredate);
+                       futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+                                                    }
 						//	var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd);
 							var now_date = new Date();
 							var numberOfDaysToAdd = 0;
@@ -1268,7 +1269,7 @@ $(document).ready(function() {
 			    // Foreach Loop 
 			    var count = 1;
 			    var counts = 1;
-			    jQuery.each( data.data, function( i, val ) {
+			    jQuery.each( data.data, function( i, val ) { 
                                 if(val.pcd_status=="complete")
                                     r_cor_complete++;
                                 else if(val.pcd_status=="past_due")
@@ -1323,12 +1324,10 @@ $(document).ready(function() {
 			        }else if(val.pcd_approved_by_cm!="0000-00-00") {
                                     var pcd_approved_by_cm = val.pcd_approved_by_cm;
                                     var pcd_denied_by_cm = '';
-                                    
                                 }
                                 else if(val.pcd_denied_by_cm!="0000-00-00") {
                                     var pcd_denied_by_cm = val.pcd_denied_by_cm;
                                     var pcd_approved_by_cm = '';
-                                    
                                 }
 			        else {
                                     var pcd_denied_by_cm = '';
@@ -1415,6 +1414,49 @@ $(document).ready(function() {
                                         ]).draw( false );  
                                     counts++;
                                 }else{
+                                    
+                                    if((val.pcd_approved_by_cm == false || 
+                                        val.pcd_approved_by_cm == "0000-00-00") && 
+                                        (val.pcd_approved_by_owner == false || 
+                                        val.pcd_approved_by_owner == "0000-00-00") &&
+                                        (val.pcd_denied_by_owner == false || 
+                                        val.pcd_denied_by_owner == "0000-00-00") &&
+                                        (val.pcd_denied_by_cm == false || 
+                                        val.pcd_denied_by_cm == "0000-00-00")
+                                        ){
+			                var oneDay = 24*60*60*1000;
+			                var future_date = new Date(val.pcd_timestamp);
+			                var futuredate = '';
+                                        if( change_order_days_type == 1 ) {
+                                            futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
+                                        }
+                                        else{
+                                            futuredate = addWorkDays(change_order_due_date , (future_date));
+                                            var updated_f = new Date(futuredate);
+                                            futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+                                        }
+                                        var now_date = new Date();
+			                var nowdate = now_date.setDate(now_date.getDate()); 
+			                var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
+			                if(val.pcd_status=="past_due"){
+			                    var potential_status = '<span class="label label-danger">PAST DUE</span>';
+			                }
+			                else {
+			                    seconds = Math.floor((futuredate - (nowdate))/1000);
+			                    minutes = Math.floor(seconds/60);
+			                    hours = Math.floor(minutes/60);
+			                    days = Math.floor(hours/24);
+			                    hours1 = hours-(days*24);
+			                    minutes1 = minutes-(days*24*60)-(hours1*60);
+			                    seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
+			                    var potential_status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
+			                }
+			            }
+			            else {
+			                    var potential_status = '<span class="label label-success">APPROVED</span>';
+			                    
+			            }
+                                    
                                     if(val.pcd_price)
                                         var pcd_price = ReplaceNumberWithCommas(val.pcd_price);
                                     else
@@ -1438,83 +1480,12 @@ $(document).ready(function() {
                                        rfi_final,
 			               val.currency_symbol +' '+  pcd_price,
 			               val.pcd_days,
-			               status_cm + status_owner+approved_status,
+			               status_cm + status_owner+approved_status+potential_status,
 			            ]).draw( false );
 			            count++;  
 			        }
 			        else {
-			            console.log(val.pcd_approved_by_cm);
-			            console.log(val.pcd_approved_by_owner);
-			            console.log("change order !!");
-			            console.log(val);
-			            if((val.pcd_approved_by_cm == false || 
-                                        val.pcd_approved_by_cm == "0000-00-00") && 
-                                        (val.pcd_approved_by_owner == false || 
-                                        val.pcd_approved_by_owner == "0000-00-00") &&
-                                        (val.pcd_denied_by_owner == false || 
-                                        val.pcd_denied_by_owner == "0000-00-00") &&
-                                        (val.pcd_denied_by_cm == false || 
-                                        val.pcd_denied_by_cm == "0000-00-00")
-                                        ){
-			                var oneDay = 24*60*60*1000;
-			                 
-			                console.log('change order :' + change_order_days_type);
-			                console.log('change order date :' + change_order_due_date);
-              
-			                var future_date = new Date(val.pcd_timestamp);
-			                console.log("future Date !!");
-			                console.log(future_date);
-			                var numberOfDaysToAdd = 10;
-                                        var futuredate = '';
-                                        console.log();
-                                        if( change_order_days_type == 1 ) {
-                                            console.log("cal 1");
-                                            futuredate = future_date.setDate(future_date.getDate() + change_order_due_date); 
-                                        }
-                                        else{
-                                            console.log("cal 2");
-                                            futuredate = addWorkDays(change_order_due_date , (future_date));
-                                            var updated_f = new Date(futuredate);
-                                            futuredate = updated_f.setDate(updated_f.getDate() + 0); 
-                                        }
-                                        console.log("updated future Date !!");
-
-                                        console.log("updated : "+ futuredate);
-			              //  var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
-			                //console.log("updated : "+ futuredate);
-			                var now_date = new Date();
-			                var numberOfDaysToAdd = 0;
-			                var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd); 
-			                // console.log(future_date);
-			                // console.log(now_date);
-			               //  console.log("updated last "+futuredate);
-			                 //console.log("now "+nowdate);
-			                var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
-//alert(futuredate);
-			                if(futuredate < nowdate){
-			                    // console.log('less');
-			                    var potential_status = '<span class="label label-danger">PAST DUE</span>';
-			                    //alert(val.pcd_id);
-			                }
-			                else {
-			                    // console.log('greater');
-			                    seconds = Math.floor((futuredate - (nowdate))/1000);
-			                    minutes = Math.floor(seconds/60);
-			                    hours = Math.floor(minutes/60);
-			                    days = Math.floor(hours/24);
-			                    
-			                    hours1 = hours-(days*24);
-			                    minutes1 = minutes-(days*24*60)-(hours1*60);
-			                    seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
-
-			                    var potential_status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
-			                    
-			                }
-			            }
-			            else {
-			                    var potential_status = '<span class="label label-success">APPROVED</span>';
-			                    
-			            }
+			            
 
 			            
 
