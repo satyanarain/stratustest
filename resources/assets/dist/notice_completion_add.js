@@ -228,7 +228,7 @@ $(document).ready(function() {
         }
         
         //alert(improvement_type);return false;
-        //var date_noc_filed      = $("#date_noc_filed").val();
+        var date_signed      = $("#date_signed").val();
         var project_completion_date = $("#project_completion_date").val();
         // Validation Certificate
         var html = '';
@@ -726,7 +726,7 @@ $(document).ready(function() {
                         "noc_potential" : noc_potential,
                         "noc_project_id" : upload_project_id,
                         "noc_file_path" : upload_doc_id,
-                        //"date_noc_filed" : date_noc_filed,
+                        "date_signed" : date_signed,
                         "project_completion_date" : project_completion_date,
                         "improvement_type" : improvement_type,
                         "signatory_arr"    : signatory_arr,
@@ -805,7 +805,7 @@ $(document).ready(function() {
                     $("#noc_con_text_4").removeAttr('value');
                     $("#noc_con_text_5").removeAttr('value');
                     $("#noc_con_text_6").removeAttr('value');
-                    //$("#date_noc_filed").removeAttr('value');
+                    $("#date_signed").removeAttr('value');
                     $("#project_completion_date").removeAttr('value');
                     $("select#project_type_dropdown")[0].selectedIndex = 0;
                     $(".first_button").text('Save Another');

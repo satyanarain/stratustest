@@ -475,6 +475,12 @@
                   if(upload_type == "upload_doc_id_adv_bid"){
                     $("#upload_doc_id_adv_bid").val(data.description)
                   }
+                  if(upload_type == "recorded_doc_id"){
+                    $("#recorded_doc_id").val(data.description)
+                  }
+                  if(upload_type == "signed_noc_id"){
+                    $("#signed_noc_id").val(data.description)
+                  }
                   if(upload_type == "upload_doc_id_notice_invite"){
                     $("#upload_doc_id_notice_invite").val(data.description)
                   }

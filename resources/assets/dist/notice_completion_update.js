@@ -104,10 +104,15 @@ $(document).ready(function() {
                 status = "deactive";
             }
             $('#status').val(status);
+            
             if(data.data.date_noc_filed!='' && data.data.date_noc_filed!='0000-00-00')
                 $('#date_noc_filed').val(data.data.date_noc_filed);
+            if(data.data.date_signed!='' && data.data.date_signed!='0000-00-00')
+                $('#date_signed').val(data.data.date_signed);
             if(data.data.project_completion_date!='' && data.data.project_completion_date!='0000-00-00')
                 $('#project_completion_date').val(data.data.project_completion_date);
+            if(data.data.noc_file_path)
+                $('#signed_noc_id').val(data.data.noc_file_path);
             //alert(data.data.improvement_type);
             $("select#project_type_dropdown").val(data.data.improvement_type);
             
@@ -144,17 +149,25 @@ $('#update_notice_completion_form').click(function(e) {
     var token                   = localStorage.getItem('u_token');
     var token = localStorage.getItem('u_token');
     var improvement_type    = $("#project_type_dropdown").val();
-    //var date_noc_filed      = $("#date_noc_filed").val();
+    var date_noc_filed      = $("#date_noc_filed").val();
     var project_completion_date = $("#project_completion_date").val();
+    var date_recorded       = $("#date_recorded").val();
+    var recorded_doc_id     = $("#recorded_doc_id").val();
+    var date_signed         = $("#date_signed").val();
+    var signed_noc_id       = $("#signed_noc_id").val();
     jQuery.ajax({
         url: baseUrl + "notice-completion/"+noc_id+"/update",
         type: "POST",
         data: {
             "status"            : status,
             "project_id"        : project_id,
-            //"date_noc_filed" : date_noc_filed,
+            "date_noc_filed" : date_noc_filed,
             "project_completion_date" : project_completion_date,
-            "improvement_type" : improvement_type
+            "improvement_type" : improvement_type,
+            "date_recorded"     : date_recorded,
+            "recorded_doc_id"   : recorded_doc_id,
+            "date_signed"       : date_signed,
+            "signed_noc_id"     : signed_noc_id,
         },
         headers: {
             "x-access-token": token

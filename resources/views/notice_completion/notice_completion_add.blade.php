@@ -50,7 +50,17 @@
 </div>
 <div class="clearfix"></div>
                               <div class="col-sm-6 nopadleft">
-                                 <label class="upload_exist" >Upload recorded Notice of Completion</label>
+                                 <label class="upload_exist">Date signed</label>
+                                  <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
+                                        <input type="text" readonly="" value="" size="16" class="form-control"  id="date_signed">
+                                          <span class="input-group-btn add-on">
+                                            <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                                          </span>
+                                    </div>
+                                  
+                              </div>
+                              <div class="col-sm-6 nopadleft">
+                                 <label class="upload_exist" >Upload Signed Notice of Completion</label>
                                   <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone" class="upload_exist"  style="display: block;">
                                       <input type="hidden" name="document_path" value="/uploads/notice_completion/">
                                   </form>
