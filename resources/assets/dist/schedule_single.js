@@ -52,57 +52,12 @@
 	        }
 	    })
 	    
-		// Get Selected Agency
-	    jQuery.ajax({
-	    url: baseUrl + "/"+project_id+"/default_contractor",
-	        type: "GET",
-	        headers: {
-	          "x-access-token": token
-	        },
-	        contentType: "application/json",
-	        cache: false
-	    })
-	    .done(function(data, textStatus, jqXHR) {
-	        // console.log(data.data);
-	        window.agency_id = data.data[0].pna_contactor_name;
-	        // console.log(agency_id);
-	        $("#company_name").val(parseInt(agency_id));
-	        // Select Company Detail for PDF
-	        jQuery.ajax({
-	            url: baseUrl + "firm-name/"+agency_id,
-	                type: "GET",
-	                headers: {
-	                  "Content-Type": "application/json",
-	                  "x-access-token": token
-	                },
-	                contentType: "application/json",
-	                cache: false
-	            })
-	        .done(function(data, textStatus, jqXHR) {
-	            $('#contractor_name').text(data.data.f_name);
-	        })
-	    })
-	    .fail(function(jqXHR, textStatus, errorThrown) {
-	        console.log("HTTP Request Failed");
-	        var response = jqXHR.responseJSON.code;
-	        console.log(response);
-	        if(response == 403){
-	            window.location.href = baseUrl + "403";
-	        }
-	        else if(response == 404){
-	           $(".loading_data").hide();
-	        }
-	        else {
-	            window.location.href = baseUrl + "500";
-	        }
-	    }); 
-
-
+	
 
 
 	    // Select Single Record
 		jQuery.ajax({
-		url: baseUrl +"build_drawings/"+schedule_id,
+		url: baseUrl +"schedule/"+schedule_id,
 		    type: "GET",
 		    headers: {
 		      "x-access-token": token
@@ -113,36 +68,15 @@
 		.done(function(data, textStatus, jqXHR) {
 		    console.log(data.data);
 		    // Foreach Loop 
-		    	
-				var status = data.data.schedule_status;
-				if(status == 'active'){
-		    	status = '<span class="label label-success">Active</span>';
-			    }
-			    else {
-			    	status = '<span class="label label-danger">Inactive</span>';
-			    }
-			    $('#built_status').html(status);
-
-			  	
-			  	
-
-			  	
-			  	
-
-			  	
-
-			  	var custom_cert_path = data.data.doc_path;
-                var custom_cert_path_value;
-                if(custom_cert_path == null){
-                    custom_cert_path_value = '-';
-                }
-                else {
-                    custom_cert_path_value = '<a href="http://apps.groupdocs.com/document-viewer/embed/'+custom_cert_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf.svg" width="40"/></a>';
-                	  var file_iframe_value = '<iframe src="http://apps.groupdocs.com/document-annotation2/embed/'+custom_cert_path+'" frameborder="0" width="100%" height="800"></iframe>';
-                	 //var file_iframe_value = '<iframe src="https://apps.groupdocs.com/document-viewer/Embed/'+custom_cert_path+'?quality=50&use_pdf=False&download=False&print=False&signature=5Xpc7qsFKjmJoHfRcXxUus8Tqn0" frameborder="0" width="100%" height="800"></iframe>';
-                }
-                $('#schedule').html(custom_cert_path_value);
-                $('#review_document').html(file_iframe_value);
+                        var custom_cert_path = data.data.doc_path;
+                        if(custom_cert_path == null){
+                            custom_cert_path_value = '-';
+                        }
+                        else {
+                            var file_iframe_value = '<iframe src="'+baseUrl+custom_cert_path+'" frameborder="0" width="100%" height="800"></iframe>';
+                        }
+                      
+                        $('#review_document').html(file_iframe_value);
 			  	
 		  
 		    $(".loading_data").hide();

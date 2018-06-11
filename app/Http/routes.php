@@ -887,7 +887,7 @@ Route::get('dashboard/{project_id}/built_drawing/{acceptance_letter_id}', functi
     -------------------------------------------------------------------------- */
 Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('schedule/add', 'Projects\ScheduleController@add_schedule');
-    Route::post('schedule/{pbd_id}/update', 'Projects\ScheduleController@update_schedule');
+    Route::post('schedule/{schedule_id}/update', 'Projects\ScheduleController@update_schedule');
     Route::get('schedule/{pbd_id}', 'Projects\ScheduleController@get_schedule');
     Route::get('{project_id}/schedule', 'Projects\ScheduleController@get_schedule_project');
 });
