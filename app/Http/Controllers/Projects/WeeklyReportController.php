@@ -43,10 +43,10 @@ class WeeklyReportController extends Controller {
       $query = DB::table('projects')
       ->select()
       ->where('p_status', '=', 'active')
-      ->where('p_status', '!=', 'completed')
-       ->where('p_id', '=', '6')       
+      //->where('p_status', '!=', 'completed')
+       //->where('p_id', '=', '6')       
       ->get();
-        echo '<pre>';print_r($query);die;
+      //echo '<pre>';print_r($query);die;
       if(count($query) < 1)
       {
         $result = array('code'=>404, "description"=>"No Records Found");
@@ -54,7 +54,7 @@ class WeeklyReportController extends Controller {
       }
       else
       {
-          echo '<pre>';
+          //echo '<pre>';
           foreach ($query as $project) {
 
           $current_date     = date('Y-m-d');
@@ -66,7 +66,7 @@ class WeeklyReportController extends Controller {
             //->orderBy('pnp_start_date','DESC')
             ->orderBy('pnp_id','ASC')
             ->first();
-            echo '<pre>';print_r($project_notice_proceed);
+            //echo '<pre>';print_r($project_notice_proceed);
             if($project_notice_proceed)
             {
             echo "project : ".$project_id,"</br>"; 
