@@ -46,6 +46,7 @@ class WeeklyReportController extends Controller {
       ->where('p_status', '!=', 'completed')
        ->where('p_id', '=', '6')       
       ->get();
+        echo '<pre>';print_r($query);die;
       if(count($query) < 1)
       {
         $result = array('code'=>404, "description"=>"No Records Found");
