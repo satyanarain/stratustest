@@ -934,7 +934,7 @@ class SubmittalsController extends Controller {
             $query = DB::table('project_submittal_review')
                     ->leftJoin('project_submittals', 'project_submittals.sub_id', '=', 'project_submittal_review.sr_submittal_id')
                     ->leftJoin('users', 'project_submittals.sub_user_id', '=', 'users.id')
-                    ->select('project_submittal_review.*','users.*')
+                    ->select('project_submittal_review.*','users.*','project_submittals.*')
                     ->where('sr_project_id', '=', $project->p_id)
 //            ->where(function($query){
 //                    $query->where('sr_review_type', '=', 'make_corrections_noted')
@@ -982,8 +982,8 @@ class SubmittalsController extends Controller {
                         continue;
                     }else{
                         $project_id           = $project->p_id;
-                        echo '<pre>';print_r($review);die;
-                        echo $notification_title   = 'Submittal # '.$review->submittal_number.' is overdue in Project: ' .$project->p_name;
+                        //echo '<pre>';print_r($review);die;
+                        $notification_title   = 'Submittal # '.$review->submittal_number.' is overdue in Project: ' .$project->p_name;
                         $url                  = App::make('url')->to('/');
                         $link                 = "/dashboard/".$project->p_id."/submittal_review";
                         $date                 = date("M d, Y h:i a");
