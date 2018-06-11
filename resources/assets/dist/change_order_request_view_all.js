@@ -209,7 +209,9 @@ $(document).ready(function() {
             }
             
             if(val.pcd_price){var disp_price=val.pcd_price;}else{var disp_price=val.pcd_unit_number*val.pcd_unit_price;}
-            if((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") && (val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00")){
+            if(val.pcd_status=="past_due"){
+                var approved_status = '';
+            }else if((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") && (val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00")){
                 var approved_status = '<span class="label label-success">APPROVED</span>';
             }else if((val.pcd_denied_by_cm != null && val.pcd_denied_by_cm != "0000-00-00") && (val.pcd_denied_by_owner != null && val.pcd_denied_by_owner != "0000-00-00")){
                 var approved_status = '<span class="label label-danger">DENIED</span>';
