@@ -1482,7 +1482,7 @@ $(document).ready(function() {
                                        rfi_final,
 			               val.currency_symbol +' '+  pcd_price,
 			               val.pcd_days,
-			               status_cm + status_owner+approved_status+potential_status,
+			               status_cm + status_owner+potential_status,
 			            ]).draw( false );
 			            count++;  
 			        }
