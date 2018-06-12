@@ -39,7 +39,7 @@ $(document).ready(function() {
             status = '<span class="label label-danger">Inactive</span>';
         }
 
-        $('#cor_number').text(data.data.pco_number)
+        $('#cor_number').text(data.data.pcd_number)
         $('#cor_generated_by').text(data.data.agency_name)
         $('#owner_rejection_comment,#owner_rejection_comment1').val(data.data.owner_rejection_comment);
         $('#cm_rejection_comment,#cm_rejection_comment1').val(data.data.cm_rejection_comment);

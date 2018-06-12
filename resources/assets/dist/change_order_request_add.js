@@ -366,9 +366,9 @@ $(document).ready(function() {
             cache: false
         })
         .done(function(data, textStatus, jqXHR) {
-            console.log(data.data.pco_number);
-            var new_cor_num = parseInt(data.data.pco_number)+1;
-            // var new_cor_num = .val(parseInt(data.data.pco_number+1));
+            console.log(data.data.pcd_number);
+            var new_cor_num = parseInt(data.data.pcd_number)+1;
+            // var new_cor_num = .val(parseInt(data.data.pcd_number+1));
             $("#cor_new_number").val(new_cor_num);
             $(".cor_new_number").text("# "+ new_cor_num);
             $(".loading_data").hide();
@@ -766,6 +766,8 @@ $(document).ready(function() {
                         }
                     }
                     //console.log(signatory_arr);
+                if(signatory_arr.length)
+                {
                     jQuery.ajax({
                         url: baseUrl+"docusign_change_order_request_send",
                         type: "POST",
@@ -822,7 +824,35 @@ $(document).ready(function() {
                             $("#alert_message").hide()
                         },5000)
                     })
-                
+                }else{
+                       $("#alert_message").show();
+                        $('.loading-submit').hide();
+                        html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New change order request added successfully!</div></div>';
+                        $("#alert_message").html(html);
+                        $('input[name="item_description[]"]').removeAttr('value');
+                        $('input[name="item_price[]"]').removeAttr('value');
+                        $('input[name="item_unit_quantity[]"]').removeAttr('value');
+                        $('input[name="item_unit_price[]"]').removeAttr('value');
+                        $('input[name="item_request_time[]"]').removeAttr('value');
+                        $('input[name="upload_doc_id[]"]').removeAttr('value');
+                        $('input[type="checkbox"]').attr('checked', false);
+                        $('input[name="cm_name"]').removeAttr('value');
+                        $('input[name="cm_email"]').removeAttr('value');
+                        $('input[name="owner_name"]').removeAttr('value');
+                        $('input[name="owner_email"]').removeAttr('value');
+                        $(".remove_file_drop").trigger("click");
+                        $(".first_button").hide();
+                        $(".another_button").show();
+                        $('.add_extra_panel').remove();
+
+                        $('html, body').animate({
+                            scrollTop: $(".page-head").offset().top
+                        }, 'fast')
+                        setTimeout(function(){
+                            $("#alert_message").hide()
+                        },5000)
+                        get_new_cor_data(); 
+                }
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
                 console.log("HTTP Request Failed");

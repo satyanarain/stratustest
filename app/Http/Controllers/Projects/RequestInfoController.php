@@ -127,22 +127,30 @@ class RequestInfoController extends Controller {
                 $order_file_path = $file_path;
                 $is_potential = 1;
                 $pcd_rfi = '[]';
-                //$order_parent_cor
-                //$order_project_id
-                //$order_user_id
+                $latest_cor = DB::table('project_change_order_request_detail')
+                ->select()
+                ->where('pcd_project_id', '=', $project_id)
+                ->where('is_potential','=',1)
+                ->orderBy('pcd_number', 'desc')
+                ->first();
+                if($latest_cor)
+                    $latest_cor_no = $latest_cor->pcd_number+1;
+                else
+                    $latest_cor_no = 1;
+                
                 $query = DB::table('project_change_order_request_detail')
-                ->insert(['pcd_approved_by_cm'=>'0000-00-00','pcd_approved_by_owner'=>'0000-00-00','pcd_denied_by_cm'=>'0000-00-00','pcd_denied_by_owner'=>'0000-00-00','pcd_status'=>'pending','pcd_rfi'=>$pcd_rfi,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'is_potential' => $is_potential, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
+                ->insert(['pcd_number'=>$latest_cor_no,'pcd_approved_by_cm'=>'0000-00-00','pcd_approved_by_owner'=>'0000-00-00','pcd_denied_by_cm'=>'0000-00-00','pcd_denied_by_owner'=>'0000-00-00','pcd_status'=>'pending','pcd_rfi'=>$pcd_rfi,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'is_potential' => $is_potential, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
                 $rir_id = DB::getPdo()->lastInsertId();
                 $project = DB::table('projects')
                     ->select('projects.*')
                     ->where('p_id', '=', $project_id)
                     ->first();
                 $project_id           = $project_id;
-                $notification_title   = 'New potential change order request item has been added for your review in Project: ' .$project->p_name;
+                $notification_title   = 'New potential change order request # '.$latest_cor_no.' has been added for your review in Project: ' .$project->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$project_id."/change_order_request_review/".$rir_id."/update";
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'New potential change order request item has been added for your review in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'New potential change order request # '.$latest_cor_no.' has been added for your review in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                 if($request['cm_email'])
                 {
                     $query = DB::table('project_reviewer')

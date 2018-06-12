@@ -112,55 +112,55 @@ use ProjectImprovement;
             }
             else
             {
-              $project_id = $order_project_id;
-              // Start Check User Permission and send notification and email  
-              // Get Project Users
-              $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
-
-              // Check User Project Permission  
-              foreach ($check_project_users as $check_project_user) {
-                // Check User Permission Parameter 
-                $user_id              = $check_project_user->id;
-                $permission_key       = 'cor_view_all';
-                // Notification Parameter
-                $project_id           = $project_id;
-                $notification_title   = 'New change order request # '.$order_number.' added in Project: ' .$check_project_user->p_name;
-                $url                  = App::make('url')->to('/');
-                $link                 = "/dashboard/".$project_id."/change_order_request";
-                $date                 = date("M d, Y h:i a");
-                $email_description    = 'A new change order request # '.$order_number.' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
-
-                $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
-                if(count($check_single_user_permission) < 1){
-                  continue;
-                }
-                else {
-                    $notification_key     = 'change_orders';
-                    $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);
-                    if(count($check_project_user_notification) < 1){
-                      continue;
-                    }else{
-                        // Send Notification to users
-                        $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
-
-                         $user_detail = array(
-                           'id'              => $check_project_user->id,
-                           'name'            => $check_project_user->username,
-                           'email'           => $check_project_user->email,
-                           'link'            => $link,
-                           'date'            => $date,
-                           'project_name'    => $check_project_user->p_name,
-                           'title'           => $notification_title,
-                           'description'     => $email_description
-                         );
-                         $user_single = (object) $user_detail;
-                         Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-                             $message->from('no-reply@sw.ai', 'StratusCM');
-                             $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-                         });
-                    }
-                }
-              } // End Foreach
+//              $project_id = $order_project_id;
+//              // Start Check User Permission and send notification and email  
+//              // Get Project Users
+//              $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
+//
+//              // Check User Project Permission  
+//              foreach ($check_project_users as $check_project_user) {
+//                // Check User Permission Parameter 
+//                $user_id              = $check_project_user->id;
+//                $permission_key       = 'cor_view_all';
+//                // Notification Parameter
+//                $project_id           = $project_id;
+//                $notification_title   = 'New change order request # '.$order_number.' added in Project: ' .$check_project_user->p_name;
+//                $url                  = App::make('url')->to('/');
+//                $link                 = "/dashboard/".$project_id."/change_order_request";
+//                $date                 = date("M d, Y h:i a");
+//                $email_description    = 'A new change order request # '.$order_number.' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+//
+//                $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+//                if(count($check_single_user_permission) < 1){
+//                  continue;
+//                }
+//                else {
+//                    $notification_key     = 'change_orders';
+//                    $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);
+//                    if(count($check_project_user_notification) < 1){
+//                      continue;
+//                    }else{
+//                        // Send Notification to users
+//                        $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
+//
+//                         $user_detail = array(
+//                           'id'              => $check_project_user->id,
+//                           'name'            => $check_project_user->username,
+//                           'email'           => $check_project_user->email,
+//                           'link'            => $link,
+//                           'date'            => $date,
+//                           'project_name'    => $check_project_user->p_name,
+//                           'title'           => $notification_title,
+//                           'description'     => $email_description
+//                         );
+//                         $user_single = (object) $user_detail;
+//                         Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+//                             $message->from('no-reply@sw.ai', 'StratusCM');
+//                             $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+//                         });
+//                    }
+//                }
+//              } // End Foreach
               // End Check User Permission and send notification and email 
 
               $result = array('change_order_id'=>$change_order_id,'description'=>"Add change order request successfully",'code'=>200);
@@ -195,6 +195,16 @@ use ProjectImprovement;
       //   return response()->json($result, 403);
       // } 
       // else { 
+        $latest_cor = DB::table('project_change_order_request_detail')
+                ->select('project_change_order_request_detail.pcd_number')
+                ->where('pcd_project_id', '=', $request['order_project_id'])
+                ->where('is_potential','=',0)
+                ->orderBy('pcd_number', 'desc')
+                ->first();
+        if($latest_cor)
+            $latest_cor_no = $latest_cor->pcd_number+1;
+        else
+            $latest_cor_no = 1;
         $order_description        = $request['order_description'];
         $order_price              = $request['order_price'];
         $order_unit_price         = $request['order_unit_price'];
@@ -252,7 +262,7 @@ use ProjectImprovement;
         {
             
             $query = DB::table('project_change_order_request_detail')
-            ->insert(['pcd_status'=>"pending",'pcd_denied_by_owner'=>$pcd_denied_by_owner,'pcd_denied_by_cm'=>$pcd_denied_by_cm,'pcd_approved_by_owner'=>$pcd_approved_by_owner,'pcd_approved_by_cm'=>$pcd_approved_by_cm,'docusign_status'=>$docusign_status,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
+            ->insert(['pcd_number'=>$latest_cor_no,'pcd_status'=>"pending",'pcd_denied_by_owner'=>$pcd_denied_by_owner,'pcd_denied_by_cm'=>$pcd_denied_by_cm,'pcd_approved_by_owner'=>$pcd_approved_by_owner,'pcd_approved_by_cm'=>$pcd_approved_by_cm,'docusign_status'=>$docusign_status,'pcd_description' => $order_description, 'pcd_price' => $order_price, 'pcd_unit_number' => $order_unit_number, 'pcd_unit_price' => $order_unit_price, 'pcd_days' => $order_days, 'pcd_file_path' => $order_file_path, 'pcd_rfi' => $order_rfi, 'pcd_parent_cor' => $order_parent_cor, 'pcd_project_id' => $order_project_id, 'pcd_user_id' => $order_user_id]);
             $pcd_id = DB::getPdo()->lastInsertId();
             if(count($query) < 1)
             {
@@ -266,11 +276,11 @@ use ProjectImprovement;
                 ->where('p_id', '=', $order_project_id)
                 ->first();
                 $project_id           = $order_project_id;
-                $notification_title   = 'New change order request item has been added for your review in Project: ' .$project->p_name;
+                $notification_title   = 'New change order request item # '.$latest_cor_no.' has been added for your review in Project: ' .$project->p_name;
                 $url                  = App::make('url')->to('/');
                 $link                 = "/dashboard/".$order_project_id."/change_order_request_review/".$pcd_id."/update";
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'A new change order request item has been added for your review in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'A new change order request item # '.$latest_cor_no.' has been added for your review in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                 if($request['cm_email'])
                 {
                     $query = DB::table('project_reviewer')
@@ -309,6 +319,54 @@ use ProjectImprovement;
                         $message->to($user_single->email, $user_single->name)->subject($user_single->title);
                     });
                 }
+                
+                $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($order_project_id);
+              // Check User Project Permission  
+              foreach ($check_project_users as $check_project_user) {
+                // Check User Permission Parameter 
+                $user_id              = $check_project_user->id;
+                $permission_key       = 'cor_view_all';
+                // Notification Parameter
+                $project_id           = $order_project_id;
+                $notification_title   = 'New change order request # '.$latest_cor_no.' added in Project: ' .$check_project_user->p_name;
+                $url                  = App::make('url')->to('/');
+                $link                 = "/dashboard/".$order_project_id."/change_order_request";
+                $date                 = date("M d, Y h:i a");
+                $email_description    = 'A new change order request # '.$latest_cor_no.' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+
+                $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($order_project_id, $user_id, $permission_key);
+                if(count($check_single_user_permission) < 1){
+                  continue;
+                }
+                else {
+                    $notification_key     = 'change_orders';
+                    $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($order_project_id,$user_id,$notification_key);
+                    if(count($check_project_user_notification) < 1){
+                      continue;
+                    }else{
+                        // Send Notification to users
+                        $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $order_project_id, $check_single_user_permission[0]->pup_user_id);
+
+                         $user_detail = array(
+                           'id'              => $check_project_user->id,
+                           'name'            => $check_project_user->username,
+                           'email'           => $check_project_user->email,
+                           'link'            => $link,
+                           'date'            => $date,
+                           'project_name'    => $check_project_user->p_name,
+                           'title'           => $notification_title,
+                           'description'     => $email_description
+                         );
+                         $user_single = (object) $user_detail;
+                         Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                             $message->from('no-reply@sw.ai', 'StratusCM');
+                             $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                         });
+                    }
+                }
+              } // End Foreach
+              
+              
                 $result = array('pcd_id'=>$pcd_id,'description'=>"Add change order request successfully",'code'=>200);
                 return response()->json($result, 200);
             }
@@ -425,6 +483,7 @@ use ProjectImprovement;
         $pcd_price                = $request['pcd_price'];
         $change_order_day         = $request['change_order_day'];
         $pco_number               = $request['pco_number'];
+        $latest_cor_no            = $request['pco_number'];
         $denied_by_owner          = $request['denied_by_owner'];
         $denied_by_cm             = $request['denied_by_cm'];
         $order_rfi                = $request['order_rfi'];
@@ -438,9 +497,34 @@ use ProjectImprovement;
         }
         if($request['remove_potential']==1)
         {
+            $latest_cor = DB::table('project_change_order_request_detail')
+                ->select('project_change_order_request_detail.pcd_number')
+                ->where('pcd_project_id', '=', $project_id)
+                ->where('is_potential','=',0)
+                ->orderBy('pcd_number', 'desc')
+                ->first();
+            if($latest_cor)
+                $latest_cor_no = $latest_cor->pcd_number+1;
+            else
+                $latest_cor_no = 1;
             $query = DB::table('project_change_order_request_detail')
             ->where('pcd_id', '=', $pcd_id)
              ->update(['is_potential' => 0]);
+            $potential_cors = DB::table('project_change_order_request_detail')
+                ->select('*')
+                ->where('pcd_project_id', '=', $project_id)
+                ->where('is_potential','=',1)
+                ->where('pcd_id','>',$pcd_id)
+                ->orderBy('pcd_id', 'asc')
+                ->get();
+            //print_r($potential_cors);die;
+            foreach($potential_cors as $cors)
+            {
+                $pcd_number = $cors->pcd_number-1;
+                $query = DB::table('project_change_order_request_detail')
+                    ->where('pcd_id', '=', $cors->pcd_id)
+                    ->update(['pcd_number'=>$pcd_number]);
+            }
         }
         $information = array(
             "approved_by_cm"      => $approved_by_cm,
@@ -463,7 +547,7 @@ use ProjectImprovement;
         {
             $query = DB::table('project_change_order_request_detail')
             ->where('pcd_id', '=', $pcd_id)
-             ->update(['pcd_rfi' => $order_rfi,'pcd_status'=>$request['pcd_status'],'owner_rejection_comment'=>$request['owner_rejection_comment'],'cm_rejection_comment'=>$request['cm_rejection_comment'],'pcd_denied_by_cm'=>$denied_by_cm,'pcd_denied_by_owner'=>$denied_by_owner,'pcd_unit_number' => $pcd_unit_number,'pcd_unit_price' => $pcd_unit_price,'pcd_price' => $pcd_price,'pcd_description' => $cor_description,'pcd_days' => $change_order_day,'pcd_approved_by_cm' => $approved_by_cm, 'pcd_approved_by_owner' => $approved_by_owner, 'pcd_user_id' => $user_id]);
+             ->update(['pcd_number'=>$latest_cor_no,'pcd_rfi' => $order_rfi,'pcd_status'=>$request['pcd_status'],'owner_rejection_comment'=>$request['owner_rejection_comment'],'cm_rejection_comment'=>$request['cm_rejection_comment'],'pcd_denied_by_cm'=>$denied_by_cm,'pcd_denied_by_owner'=>$denied_by_owner,'pcd_unit_number' => $pcd_unit_number,'pcd_unit_price' => $pcd_unit_price,'pcd_price' => $pcd_price,'pcd_description' => $cor_description,'pcd_days' => $change_order_day,'pcd_approved_by_cm' => $approved_by_cm, 'pcd_approved_by_owner' => $approved_by_owner, 'pcd_user_id' => $user_id]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
@@ -484,11 +568,11 @@ use ProjectImprovement;
                 // Notification Parameter
                 
                 $project_id           = $project_id;
-                $notification_title   = 'Change order # '.$pco_number.' has been '.$job_type.' in Project: ' .$check_project_user->p_name;
+                $notification_title   = 'Change order # '.$latest_cor_no.' has been '.$job_type.' in Project: ' .$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'Change order # '.$pco_number.' has been '.$job_type.' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'Change order # '.$latest_cor_no.' has been '.$job_type.' in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                 $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                 if(count($check_single_user_permission) < 1){
@@ -792,10 +876,11 @@ public function get_change_order_request_weeklyreport(Request $request, $project
   */
   public function get_new_change_order_number(Request $request, $project_id)
   {
-      $query = DB::table('project_change_order_request')
+      $query = DB::table('project_change_order_request_detail')
       ->select()
-      ->where('pco_project_id', '=', $project_id)
-      ->orderBy('pco_number', 'desc')
+      ->where('pcd_project_id', '=', $project_id)
+      ->where('is_potential','=',0)
+      ->orderBy('pcd_number', 'desc')
       ->first();
 
       if(count($query) < 1)
@@ -1271,11 +1356,11 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                         continue;
                     }else{
                         $project_id           = $project->p_id;
-                        $notification_title   = 'Change order request is overdue in Project: ' .$project->p_name;
+                        $notification_title   = 'Change order request # '.$review->pcd_number.' is overdue in Project: ' .$project->p_name;
                         $url                  = App::make('url')->to('/');
                         $link                 = "/dashboard/".$project->p_id."/change_order_request";
                         $date                 = date("M d, Y h:i a");
-                        $email_description    = 'Change order request is overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $email_description    = 'Change order request # '.$review->pcd_number.' is overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
                         $user_detail = array(
                             'id'              => $review->id,
                             'name'            => $review->username,

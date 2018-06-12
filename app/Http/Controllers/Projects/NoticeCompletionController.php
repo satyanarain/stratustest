@@ -658,7 +658,7 @@ class NoticeCompletionController extends Controller {
   {
       try
       {
-        echo '<pre>';
+        //echo '<pre>';
         $projects = DB::table('projects')
         ->select()
         ->where('p_status', '=', 'active')
@@ -666,77 +666,46 @@ class NoticeCompletionController extends Controller {
          //print_r($projects);die;
         foreach($projects as $project)
         {
-            echo $yesterday = date("Y-m-d", strtotime( '-1 days') );die;
+            $yesterday = date("Y-m-d", strtotime( '-1 days') );
             $query = DB::table('project_notice_of_completion')
                     ->leftJoin('users', 'project_notice_of_completion.noc_user_id', '=', 'users.id')
                     ->select('project_notice_of_completion.*','users.*')
                     ->where('noc_project_id', '=', $project->p_id)
-                    //->whereRaw("DAY(noc_timestamp) = '" . Carbon::yesterday()->format('Y-m-d') . "'")
-                    //->where('noc_timestamp','=', Carbon::yesterday())
                     ->whereDate('noc_timestamp','=', $yesterday)
+                    ->where('recorded_doc_id', '=', '')
                     ->get();
-            print_r($query);die;
+            //print_r($query);die;
             $user =  (array) $query;
             if(count($query) < 1)
             {
               $result = array('code'=>404,"description"=>"No Records Found");
             }else{
                 foreach ($query as $key => $review) {
-                    $reg_time = $review->sr_timestamp;
-                    $reg_date = strtotime($reg_time);
-                    $date = date_create($reg_time);
-                    date_add($date, date_interval_create_from_date_string(($days-1).'days'));
-                    if($project->submittal_days_type==1){
-                        $plus_time = date_format($date, 'Y-m-d H:i:s');
-                    }else{
-                        $plus_time = date ( 'Y-m-d H:i:s' , strtotime ( $reg_time.'+'.($days-1).' weekdays' ) );
+                    $project_id           = $project->p_id;
+                    $notification_title   = 'Please upload Recorded NOC in Project: ' .$project->p_name;
+                    $url                  = App::make('url')->to('/');
+                    $link                 = "/dashboard/".$project->p_id."/notice_completion/".$review->noc_id."/update";
+                    $date                 = date("M d, Y h:i a");
+                    $email_description    = 'Please upload Recorded NOC in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $user_detail = array(
+                        'id'              => $review->id,
+                        'name'            => $review->username,
+                        'email'           => $review->email,
+                        'link'            => $link,
+                        'date'            => $date,
+                        'project_name'    => $project->p_name,
+                        'title'           => $notification_title,
+                        'description'     => $email_description
+                    );
+                    $user_single = (object) $user_detail;
+                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                        $message->from('no-reply@sw.ai', 'StratusCM');
+                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                    });
+                    if(count($review) < 1)
+                    {
+                      $result = array('code'=>404, "description"=>"No Records Found");
                     }
-                    $plus_date = strtotime($plus_time);
-                    $current_date = time();
-                    if($current_date >= $plus_date){
-                        $review1 = DB::table('project_submittal_review')
-                        ->where('sr_id', '=', $review->sr_id)
-                        ->update(['sr_review_type' => 'past_due']);
-
-                        $notification_key     = 'past_due';
-                        $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project->p_id,$review->sr_user_id,$notification_key);
-                        if(count($check_project_user_notification) < 1){
-                            continue;
-                        }else{
-                            $project_id           = $project->p_id;
-                            //echo '<pre>';print_r($review);die;
-                            $notification_title   = 'Submittal # '.$review->submittal_number.' is overdue in Project: ' .$project->p_name;
-                            $url                  = App::make('url')->to('/');
-                            $link                 = "/dashboard/".$project->p_id."/submittal_review";
-                            $date                 = date("M d, Y h:i a");
-                            $email_description    = 'Submittal # '.$review->submittal_number.' is overdue in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
-                            $user_detail = array(
-                                'id'              => $review->id,
-                                'name'            => $review->username,
-                                'email'           => $review->email,
-                                'link'            => $link,
-                                'date'            => $date,
-                                'project_name'    => $project->p_name,
-                                'title'           => $notification_title,
-                                'description'     => $email_description
-                            );
-                            $user_single = (object) $user_detail;
-                            Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-                                $message->from('no-reply@sw.ai', 'StratusCM');
-                                $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-                            });
-                        }
-
-                        if(count($review) < 1)
-                        {
-                          $result = array('code'=>404, "description"=>"No Records Found");
-                          //return response()->json($result, 404);
-                        }
-                        else {
-
-                        }
-
-                      }
                 }
             }
         }

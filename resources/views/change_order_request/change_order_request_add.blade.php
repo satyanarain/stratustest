@@ -187,6 +187,7 @@
                     <div class="form-group col-md-3">
                         <label for="">Signatory: Contact Role</label>
                         <select class="form-control" name="signatory_role[]">
+                            <option value="">Select Role</option>
                             <option value="owner">Owner</option>
                             <option value="contractor">Contractor</option>
                             <option value="accountant">Fund Rep.</option>
