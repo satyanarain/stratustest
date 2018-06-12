@@ -342,7 +342,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('notice-completion/{noc_id}', 'Projects\NoticeCompletionController@get_notice_completion');
     Route::get('{project_id}/notice-completion', 'Projects\NoticeCompletionController@get_notice_completion_project');
 });
-
+Route::get('send_overdue_noc_notification', 'Projects\NoticeCompletionController@send_overdue_noc_notification');
 /**** NOTICE OF COMPLETION ****/
 Route::get('dashboard/{project_id}/notice_completion/add', function () {
     return view('/notice_completion/notice_completion_add');

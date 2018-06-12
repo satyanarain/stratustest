@@ -96,11 +96,11 @@
 
 				var status = val.noc_status;
 				if(status == 'active'){
-		    	status = '<span class="label label-success">Pending</span>';
-			    }
-			    else {
-			    	status = '<span class="label label-danger">Complete</span>';
-			    }
+                                    status = '<span class="label label-success">Pending</span>';
+                                }
+                                else {
+                                    status = '<span class="label label-danger">Complete</span>';
+                                }
 			  	
 			  	var noc_path = val.doc_path;
 			  	var noc_path_value;
@@ -115,6 +115,14 @@
 //			  			noc_path_value = '<td><a href="'+baseUrl+'404" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a></td>';
 //			  		}
 			  	}
+                                var recorded_doc = val.recorded_doc;
+			  	var recorded_doc_value;
+			  	if(recorded_doc == null){
+			  		recorded_doc_value = '-';
+			  	}
+			  	else {
+        	  			recorded_doc_value = '<a href="'+baseUrl+val.recorded_doc+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+        		  	}
                             if(val.date_noc_filed!='' && val.date_noc_filed!='0000-00-00')    
                                 var date_noc_filed = val.date_noc_filed;
                             else
@@ -124,6 +132,14 @@
                                 var project_completion_date = val.project_completion_date;
                             else
                                 var project_completion_date = '';
+                            if(val.date_signed!='' && val.date_signed!='0000-00-00')    
+                                var date_signed = val.date_signed;
+                            else
+                                var date_signed = '';
+                            if(val.date_recorded!='' && val.date_recorded!='0000-00-00')    
+                                var date_recorded = val.date_recorded;
+                            else
+                                var date_recorded = '';
                             
 			  var t = $('#view_users_table').DataTable();
 				t.row.add( [
@@ -131,8 +147,11 @@
                            val.improvement_type,
                            //date_noc_filed,
                            project_completion_date,
-		           noc_path_value,
-                   status,
+		           date_signed,
+                           noc_path_value,
+                           date_recorded,
+                           recorded_doc_value,
+                            status,
 		           update_permission
 		       	]).draw( false );
 		       	count++;

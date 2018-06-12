@@ -30,15 +30,25 @@
                                   <section class="panel">
                                   
                                       <!-- <div class="tab-parent" style="overflow-x:scroll;"> -->
-                                      <table class="table table-striped m-t-20 custom-grid table-bordered" id="view_users_table">
+                                      <table style="width: 100%;" class="table table-striped m-t-20 custom-grid table-bordered" id="view_users_table">
                                           <thead>
                                           <tr>
+                                              <th></th>
+                                              <th></th>
+                                              <th></th>
+                                              <th style="text-align: center" colspan="2">NOC-Signed</th>
+                                              <th style="text-align: center" colspan="2">NOC-Recorded</th>
+                                              <th></th>
+                                              <th></th>
+                                          </tr>
+                                          <tr>
                                               <th>No #</th>
-                                              <th>Improvement Type</th>
-<!--                                              <th>Date Filed on</th>-->
-                                              <th>Date Project Complete/Substantially Complete</th>
-                                              <th>Notice of Completion</th>
-                                              <!-- <th>Document</th> -->
+                                              <th style="width: 10%;">Improvement<br> Type</th>
+                                              <th style="width: 15%;">Date Project Complete/<br>Substantially Complete</th>
+                                              <th>Date</th>
+                                              <th>PDF</th>
+                                              <th>Date</th>
+                                              <th>PDF</th>
                                               <th>Status</th>
                                               <th>Action</th>
                                           </tr>

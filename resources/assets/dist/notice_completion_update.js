@@ -107,12 +107,16 @@ $(document).ready(function() {
             
             if(data.data.date_noc_filed!='' && data.data.date_noc_filed!='0000-00-00')
                 $('#date_noc_filed').val(data.data.date_noc_filed);
+            if(data.data.date_recorded!='' && data.data.date_recorded!='0000-00-00')
+                $('#date_recorded').val(data.data.date_recorded);
             if(data.data.date_signed!='' && data.data.date_signed!='0000-00-00')
                 $('#date_signed').val(data.data.date_signed);
             if(data.data.project_completion_date!='' && data.data.project_completion_date!='0000-00-00')
                 $('#project_completion_date').val(data.data.project_completion_date);
             if(data.data.noc_file_path)
                 $('#signed_noc_id').val(data.data.noc_file_path);
+            if(data.data.recorded_doc_id)
+                $('#recorded_doc_id').val(data.data.recorded_doc_id);
             //alert(data.data.improvement_type);
             $("select#project_type_dropdown").val(data.data.improvement_type);
             
