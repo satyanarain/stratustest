@@ -120,6 +120,9 @@ $(document).ready(function() {
         .done(function(data, textStatus, jqXHR) {
             // console.log(data.data);
             $("#submittal_number_exist").empty();
+            $("#submittal_number_exist").append(
+                        '<option value="">Select Submittal Number</option>'
+                    )
             jQuery.each(data.data, function( i, val ) {
                 // console.log(val);
                 if(val.sub_exist_parent == 0){
