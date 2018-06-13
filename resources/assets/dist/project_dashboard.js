@@ -1408,7 +1408,7 @@ $(document).ready(function() {
                                         var pcd_price = ReplaceNumberWithCommas(val.pcd_unit_number*val.pcd_unit_price);
                                     t.row.add([
                                            //counts, // val.pcd_parent_cor,
-                                           val.pco_number,
+                                           val.pcd_number,
                                            val.agency_name,
                                            val.pco_date,
                                            descr,
@@ -1474,7 +1474,7 @@ $(document).ready(function() {
 			            var t = $('#request_change_order').DataTable();
 			            t.row.add([
 			               //count, // val.pcd_parent_cor,
-                                       val.pco_number,
+                                       val.pcd_number,
 			               val.agency_name,
 			               val.pco_date,
 			               descr,
@@ -1535,7 +1535,7 @@ $(document).ready(function() {
                                             var pcd_price = ReplaceNumberWithCommas(val.pcd_unit_number*val.pcd_unit_price);
                                         t.row.add([
 			                   //count, // val.pcd_parent_cor,
-                                           val.pco_number,
+                                           val.pcd_number,
 			                   val.agency_name,
 			                   val.pco_date,
 			                   descr,
