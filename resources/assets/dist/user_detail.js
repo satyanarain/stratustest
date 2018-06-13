@@ -44,7 +44,8 @@ $(document).ready(function() {
 
             var role = data.data.role;
             $('#role').text('App '+role);
-
+            if(data.data.user_role)
+                $('#user_role').text(data.data.user_role);
 
             var position_title = data.data.position_title;
             if(position_title == null){

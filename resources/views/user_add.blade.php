@@ -87,14 +87,15 @@
                                     <div class="clearfix"></div>
                                     <div class="col-md-6">
                                             <input type="hidden" class="form-control user_type_value" id="role">
-                                        <!-- <label>User Type <span class="text-danger">*</span></label>
-                                        <select class="form-control" id="role">
-                                            <option value="owner" class="owner_class">Owner</option>
-                                            <option value="manager">Manager</option>
-                                            <option value="contractor">Contractor</option>
-                                            <option value="engineer">Engineer</option>
-                                            <option value="surveyor">Surveyor</option>
-                                        </select> -->
+                                         <label>User Type <span class="text-danger">*</span></label>
+                                        <select class="form-control" id="user_role">
+                                            <option value="">Select User Type</option>
+<!--                                            <option value="owner" class="owner_class">Owner</option>-->
+                                            <option value="Construction Manager">Construction Manager</option>
+                                            <option value="Contractor">Contractor</option>
+                                            <option value="Engineer">Engineer</option>
+                                            <option value="Surveyor">Surveyor</option>
+                                        </select>
                                     </div>
                                     <div class="clearfix"></div>
 

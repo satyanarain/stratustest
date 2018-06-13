@@ -95,7 +95,7 @@ class UserController extends Controller {
             $query = DB::table('users')
             ->leftJoin('project_firm', 'users.company_name', '=', 'project_firm.f_id')
             ->leftJoin('users as user_parent', 'users.user_parent', '=', 'user_parent.id')
-            ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'project_firm.f_name as agency_name', 'users.phone_number', 'users.position_title', 'users.status', 'users.role', 'user_parent.username as user_parent','users.user_image_path')
+            ->select('users.user_role','users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'project_firm.f_name as agency_name', 'users.phone_number', 'users.position_title', 'users.status', 'users.role', 'user_parent.username as user_parent','users.user_image_path')
             ->orderBy('users.id', 'asc')
             ->get();
           }
@@ -103,7 +103,7 @@ class UserController extends Controller {
             $query = DB::table('users')
             ->leftJoin('project_firm', 'users.company_name', '=', 'project_firm.f_id')
             ->leftJoin('users as user_parent', 'users.user_parent', '=', 'user_parent.id')
-            ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'project_firm.f_name as agency_name', 'users.phone_number', 'users.position_title', 'users.status', 'users.role', 'user_parent.username as user_parent','users.user_image_path')
+            ->select('users.user_role','users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'project_firm.f_name as agency_name', 'users.phone_number', 'users.position_title', 'users.status', 'users.role', 'user_parent.username as user_parent','users.user_image_path')
             ->where('users.user_parent', '=', $user_id)
             ->orderBy('users.id', 'asc')
             ->get(); 
@@ -143,7 +143,7 @@ class UserController extends Controller {
            $query = DB::table('users')
             // ->leftJoin('project_contact', 'users.id', '=', 'project_contact.c_user_id')
             // ->leftJoin('projects', 'users.project_id', '=', 'projects.p_id')
-            ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role','users.password_changed')
+            ->select('users.user_role','users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role','users.password_changed')
             ->where('id', '=', $u_id)
             ->first();
 
@@ -208,7 +208,7 @@ class UserController extends Controller {
             // ->leftJoin('projects', 'users.project_id', '=', 'projects.p_id')
            
             ->leftJoin('project_firm', 'users.company_name', '=', 'project_firm.f_id')
-            ->select('project_firm.f_name as company_name', 'users.id', 'users.email', 'users.username', 'users.first_name', 'users.company_name as company_id', 'users.last_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role','users.user_image_path')
+            ->select('project_firm.f_name as company_name','users.user_role', 'users.id', 'users.email', 'users.username', 'users.first_name', 'users.company_name as company_id', 'users.last_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role','users.user_image_path')
             ->where('id', '=', $u_id)
             ->first();
 
@@ -534,7 +534,7 @@ class UserController extends Controller {
         // ->select('id', 'email', 'username', 'first_name', 'last_name', 'company_name', 'phone_number', 'status', 'project_id', 'projects.p_name as project_name', 'role')
         // ->leftJoin('project_contact', 'users.id', '=', 'project_contact.c_user_id')
         ->leftJoin('project_firm', 'users.company_name', '=', 'project_firm.f_id')
-        ->select('users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'users.phone_number', 'project_firm.f_name', 'users.status', 'users.position_title', 'users.role','users.user_image_path')
+        ->select('users.id','users.user_role', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.company_name', 'users.phone_number', 'project_firm.f_name', 'users.status', 'users.position_title', 'users.role','users.user_image_path')
 
         ->where('id', '=', $u_id)
         ->first();
@@ -589,7 +589,7 @@ class UserController extends Controller {
         $role               = $request['role'];
         $status             = $request['status'];
         $position_title     = $request['position_title'];
-        // $user_role          = $request['user_role'];
+        $user_role          = $request['user_role'];
         $password           = $request['password'];
         // $project_id         = $request['project_id'];
         $confirm_password   = $request['confirm_password'];
@@ -642,7 +642,7 @@ class UserController extends Controller {
             $user = DB::table('users')
             ->where('id', '=', $u_id)
             // ->update(['first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'phone_number' => $phone_number, 'username' => $username, 'position_title' => $position_title, 'email' => $email, 'password' => $password, 'status' => $status, 'role' => $role]);
-            ->update(['first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'phone_number' => $phone_number, 'position_title' => $position_title, 'password' => $password, 'status' => $status, 'role' => $role,'user_image_path' => $user_image_path]);
+            ->update(['first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'phone_number' => $phone_number, 'position_title' => $position_title, 'password' => $password, 'status' => $status, 'role' => $role,'user_image_path' => $user_image_path,'user_role'=>$user_role]);
 
             // $user = DB::table('project_contact')
             // ->where('c_user_id', '=', $u_id)
@@ -700,7 +700,7 @@ class UserController extends Controller {
        // $role               = $request['role'];
        // $status             = $request['status'];
        // $position_title     = $request['position_title'];
-        // $user_role          = $request['user_role'];
+        $user_role            = $request['user_role'];
        // $password           = $request['password'];
         // $project_id         = $request['project_id'];
        // $confirm_password   = $request['confirm_password'];
@@ -753,7 +753,7 @@ class UserController extends Controller {
             $user = DB::table('users')
             ->where('id', '=', $u_id)
             // ->update(['first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'phone_number' => $phone_number, 'username' => $username, 'position_title' => $position_title, 'email' => $email, 'password' => $password, 'status' => $status, 'role' => $role]);
-            ->update(['first_name' => $first_name, 'last_name' => $last_name, 'phone_number' => $phone_number,'email' => $email, 'username' => $username, 'user_image_path' => $user_image_path]);
+            ->update(['first_name' => $first_name, 'last_name' => $last_name, 'phone_number' => $phone_number,'email' => $email, 'username' => $username, 'user_image_path' => $user_image_path,'user_role'=>$user_role]);
 
             // $user = DB::table('project_contact')
             // ->where('c_user_id', '=', $u_id)
@@ -852,7 +852,7 @@ class UserController extends Controller {
         $role             = $request['role'];
         $status           = 0;
         $user_id_owner    = Auth::user()->id;
-        // $user_role    = $request['user_role'];
+        $user_role    = $request['user_role'];
         // $project_id   = $request['project_id'];
         $user_image_path = $request['user_image_path'];
         
@@ -895,7 +895,7 @@ class UserController extends Controller {
         }
         else
         {
-            $user = User::create(['username' => $username, 'email' => $email, 'password' => $password, 'first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'position_title' => $position, 'status' => $status, 'role' => $role, 'user_parent' => $user_id_owner,'user_image_path' => $user_image_path]);
+            $user = User::create(['username' => $username, 'email' => $email, 'password' => $password, 'first_name' => $first_name, 'last_name' => $last_name, 'company_name' => $company_name, 'position_title' => $position, 'status' => $status, 'role' => $role, 'user_parent' => $user_id_owner,'user_image_path' => $user_image_path,'user_role'=>$user_role]);
             $lastInsert_id =  $user->id;
             
             $email_verification = sha1($lastInsert_id);

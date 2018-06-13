@@ -97,14 +97,15 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 hide_user role_admin_hide">
-                                        <!-- <label>User Type</label>
-                                        <select class="form-control user_role" id="role">
-                                            <option value="owner" class="owner_class">Owner</option>
-                                            <option value="manager">Manager</option>
-                                            <option value="contractor">Contractor</option>
-                                            <option value="engineer">Engineer</option>
-                                            <option value="surveyor">Surveyor</option>
-                                        </select> -->
+                                        <label>User Type</label>
+                                        <select class="form-control user_role" id="user_role">
+                                            <option value="">Select User Type</option>
+<!--                                            <option value="owner" class="owner_class">Owner</option>-->
+                                            <option value="Construction Manager">Construction Manager</option>
+                                            <option value="Contractor">Contractor</option>
+                                            <option value="Engineer">Engineer</option>
+                                            <option value="Surveyor">Surveyor</option>
+                                        </select>
                                         <input type="hidden" class="form-control user_type_value" id="role">
                                     </div>
                                    <!--  <div class="col-md-6 hide_user">

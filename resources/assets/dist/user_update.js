@@ -14,7 +14,7 @@ $('#update_profile_form').click(function(e) {
     var cpass 			= $('#cpass').val();
     var role 			= $('#role').val();
     var position_title        = $('#position').val();
-    // var user_role       = $('#user_role').val();
+    var user_role               = $('#user_role').val();
     // var project_id 		= $('#project_name').val();
     var user_image_path =    $("#user_image_path").val();
     if(user_image_path!="")
@@ -39,7 +39,7 @@ $('#update_profile_form').click(function(e) {
             "password" : pass,
             "role" : role,
             "position_title" : position_title,
-            // "user_role" : user_role,
+            "user_role" : user_role,
             // "project_id" : project_id,
             "status" : status,
             "user_image_path" : user_image_path,
@@ -374,7 +374,8 @@ $(document).ready(function() {
 			    }
 			    $('.user_status').val(data.data.status);
                 // $('#project_name').val(data.data.project_id);
-                $('#user_role').val(data.data.user_type);
+                //alert(data.data.user_role);
+                $('#user_role').val(data.data.user_role);
                 
                 $(".loading_data").hide();
                 $("#update_profile_form").show();

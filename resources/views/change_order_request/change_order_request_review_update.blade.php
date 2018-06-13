@@ -163,7 +163,7 @@
                 <!-- </label> -->
             </div>
         </div>
-
+        <input type="hidden" id="is_potential" value="0" name="is_potential">                                                    
         <div class="form-group owner_review_section" style="display: none;">
             <div class="col-lg-12">
                 <h2>COR Review by Owner</h2>

@@ -36,6 +36,7 @@
                                                    <tr><th>Company Name</th><td><span id="cname"></span></td></tr>
                                                    <tr><th>Position / Title</th><td><span id="position"></span></td></tr>
                                                    <tr><th>Role</th><td><span id="role"></span></td></tr>
+                                                   <tr><th>User Type</th><td><span id="user_role"></span></td></tr>
                                                    <tr><th>Account Status</th><td><span id="status"></span></td></tr>
                                                    <tr><th>User Contacts</th><td><span id="phone_setting"></span></td></tr>
                                                    <tr><th>User Image</th><td><span id="user_image_path"></span></td></tr>

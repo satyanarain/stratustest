@@ -38,7 +38,10 @@ $(document).ready(function() {
         else {
             status = '<span class="label label-danger">Inactive</span>';
         }
-
+        if(data.data.is_potential==1)
+            $("#is_potential").val(1);
+        else
+            $("#is_potential").val(0);
         $('#cor_number').text(data.data.pcd_number)
         $('#cor_generated_by').text(data.data.agency_name)
         $('#owner_rejection_comment,#owner_rejection_comment1').val(data.data.owner_rejection_comment);
@@ -418,6 +421,7 @@ function getFormattedPartTime(partTime){
         rfi_details.push({
             "rfi_detail_item"     :  JSON.stringify(rfi_detail)
         });
+        var is_potential = $("#is_potential").val();
         jQuery.ajax({
             url: baseUrl + "change_order_request_item/"+item_id+"/update",
             type: "POST",
@@ -438,6 +442,7 @@ function getFormattedPartTime(partTime){
                 "cm_rejection_comment"  : cm_rejection_comment,
                 "pcd_status"            : pcd_status,
                 "order_rfi"             : rfi_details[0]['rfi_detail_item'],
+                "is_potential"          : is_potential,
             },
             headers: {
               "x-access-token": token

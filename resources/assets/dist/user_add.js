@@ -142,7 +142,7 @@ $(document).ready(function()
         var user_image_path =    $("#user_image_path").val();
         var phone          = $('#pnum').val();
         var position       = $('#position').val();
-	    // var user_role       = $('#user_role').val();
+	var user_role       = $('#user_role').val();
         // var project_id      = $('#project_name').val();
 	    var role           = $('#role').val();
         var token          = localStorage.getItem('u_token');
@@ -237,7 +237,7 @@ $(document).ready(function()
                 "position"      : position,
                 "role"          : role,
                 // "project_id" : project_id,
-                // "user_role" : user_role,
+                "user_role" : user_role,
                 "user_image_path" : user_image_path
             },
             headers: {

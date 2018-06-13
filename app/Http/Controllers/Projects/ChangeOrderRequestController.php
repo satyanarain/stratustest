@@ -495,7 +495,7 @@ use ProjectImprovement;
             $job_type   =   'updated';
             $link       = "/dashboard/".$project_id."/change_order_request_review/".$pcd_id."/update";
         }
-        if($request['remove_potential']==1)
+        if($request['remove_potential']==1 && $request['is_potential']==1)
         {
             $latest_cor = DB::table('project_change_order_request_detail')
                 ->select('project_change_order_request_detail.pcd_number')
