@@ -1366,18 +1366,23 @@ $(document).ready(function() {
                                 {
                                     var oneDay = 24*60*60*1000;
                                     var future_date = new Date(val.pcd_timestamp);
-                                    var numberOfDaysToAdd = 5;
-                                    var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
+                                    var futuredate = '';
+                                    if( val.change_order_days_type == 1 ) {
+                                        futuredate = future_date.setDate(future_date.getDate() + val.change_order_due_date); 
+                                    }
+                                    else{
+                                        futuredate = addWorkDays(val.change_order_due_date , (future_date));
+                                        var updated_f = new Date(futuredate);
+                                        futuredate = updated_f.setDate(updated_f.getDate() + 0); 
+                                    }
+                
+                                    
                                     var now_date = new Date();
-                                    var numberOfDaysToAdd = 0;
-                                    var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd); 
-                                    // console.log(future_date);
-                                    // console.log(now_date);
-                                    // console.log(futuredate);
-                                    // console.log(nowdate);
+                                  
+                                    var nowdate = now_date.setDate(now_date.getDate()); 
                                     var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
 
-                                    if(futuredate < nowdate){
+                                    if(val.pcd_status=="past_due"){
                                         // console.log('less');
                                         var potential_status = '<span class="label label-danger">PAST DUE</span>';
                                         var action_button = "";
@@ -1393,7 +1398,7 @@ $(document).ready(function() {
                                         minutes1 = minutes-(days*24*60)-(hours1*60);
                                         seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
 
-                                        var potential_status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
+                                        var potential_status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
                                         
                                     }
                                     var t = $('#potential_change_order').DataTable();

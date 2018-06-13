@@ -250,64 +250,7 @@ $(document).ready(function() {
 //            .fail(function(jqXHR, textStatus, errorThrown) {
 //                var owner_rejection_comment = '';
 //            });
-        
-            if(parseInt(val.is_potential)==1)
-            {
-                var oneDay = 24*60*60*1000;
-                var future_date = new Date(val.pcd_timestamp);
-                var numberOfDaysToAdd = 5;
-                var futuredate = future_date.setDate(future_date.getDate() + numberOfDaysToAdd); 
-                var now_date = new Date();
-                var numberOfDaysToAdd = 0;
-                var nowdate = now_date.setDate(now_date.getDate() + numberOfDaysToAdd); 
-                // console.log(future_date);
-                // console.log(now_date);
-                // console.log(futuredate);
-                // console.log(nowdate);
-                var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
-
-                if(futuredate < nowdate){
-                    // console.log('less');
-                    var potential_status = '<span class="label label-danger">PAST DUE</span>';
-                    //var action_button = "";
-                    var action_button = update_permission ;
-                }
-                else {
-                    // console.log('greater');
-                    seconds = Math.floor((futuredate - (nowdate))/1000);
-                    minutes = Math.floor(seconds/60);
-                    hours = Math.floor(minutes/60);
-                    days = Math.floor(hours/24);
-                    
-                    hours1 = hours-(days*24);
-                    minutes1 = minutes-(days*24*60)-(hours1*60);
-                    seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
-
-                    var potential_status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
-                    var action_button = update_permission ;
-                }
-                var t = $('#potential_change_order').DataTable();
-                
-                t.row.add([
-                       //counts, // val.pcd_parent_cor,
-                       val.pcd_number,
-                       val.agency_name,
-                       val.pco_date,
-                       val.pcd_description,
-                       val.currency_symbol +''+  ReplaceNumberWithCommas(disp_price),
-                       val.pcd_days,
-                       status_cm + status_owner+potential_status,
-                       action_button
-                    ]).draw( false );  
-                                                t.on( 'order.dt search.dt', function () {
-                                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-                                    cell.innerHTML = i+1;
-                                } );
-                            } ).draw();
-                counts++;
-            }else{
-                
-                var oneDay = 24*60*60*1000;
+            var oneDay = 24*60*60*1000;
                 var future_date = new Date(val.pcd_timestamp);
                 var futuredate = '';
                 if( val.change_order_days_type == 1 ) {
@@ -342,6 +285,31 @@ $(document).ready(function() {
                     var potential_status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
                     var action_button = update_permission ;
                 }
+            if(parseInt(val.is_potential)==1)
+            {
+                
+                var t = $('#potential_change_order').DataTable();
+                
+                t.row.add([
+                       //counts, // val.pcd_parent_cor,
+                       val.pcd_number,
+                       val.agency_name,
+                       val.pco_date,
+                       val.pcd_description,
+                       val.currency_symbol +''+  ReplaceNumberWithCommas(disp_price),
+                       val.pcd_days,
+                       status_cm + status_owner+potential_status,
+                       action_button
+                    ]).draw( false );  
+                                                t.on( 'order.dt search.dt', function () {
+                                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                                    cell.innerHTML = i+1;
+                                } );
+                            } ).draw();
+                counts++;
+            }else{
+                
+                
                 
                 
                 if(val.pcd_rfi == '[]'){
