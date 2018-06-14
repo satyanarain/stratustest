@@ -67,6 +67,8 @@ $(document).ready(function() {
     })
     .done(function(data, textStatus, jqXHR) {
         $('#month_name').text(data.data[0].ppq_month_name);
+        if(data.data[0].approval_status=="Approved")
+            $("#approval_status").attr('checked',true);
     })
     
     jQuery.ajax({
@@ -237,4 +239,56 @@ $(document).ready(function() {
 //                window.location.href = baseUrl + "500";
 //            }
 //        })
+
+
+
+    $('#approval_status').click(function () {
+        //e.preventDefault();
+        $('.loading_data').show();
+        var token  = localStorage.getItem('u_token');
+        if($(this).prop("checked"))
+            var approval_status = "Approved";
+        else
+            var approval_status = "Pending";
+        //console.log(id);
+        var r = confirm("Are you sure to approve this report?");
+        if (r == true) {
+            jQuery.ajax({
+                url: baseUrl + "dashboard/"+project_id+"/payment_quantity_verification/"+report_id+"/update_approval_status",
+                type: "POST",
+                data: {
+                    "report_id"         : report_id,
+                    "approval_status"   : approval_status,
+                },
+                headers: {
+                  "x-access-token": token
+                },
+                contentType: "application/x-www-form-urlencoded",
+                cache: false
+            })
+            .done(function(data, textStatus, jqXHR) {
+                console.log(data);
+                $('.loading_data').hide();
+                $("#alert_message").fadeIn(1000);
+                $('.loading-submit').hide();
+                html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">Payment quantity verification report updated successfully!</div></div>';
+                $("#alert_message").html(html);
+                setTimeout(function()
+                {
+                    $("#alert_message").hide();
+                },5000)
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("HTTP Request Failed");
+                // var response = jqXHR.responseJSON.code;
+                console.log(jqXHR.responseJSON);
+                $('.loading_data').hide();
+            }); 
+        } else {
+            $('.loading_data').hide();
+            return false;
+        }
+        
+    });
+
 });

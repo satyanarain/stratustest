@@ -30,7 +30,12 @@
                                   <section class="panel">
                                       <div id="alert_message"></div>
                                   <h4>Contractor: <span id="contractor_name"></span></h4>
-                                  <h4 class="no-mar">Adjust Quantities As Necessary (Adjust all quantities that apply)</h4>
+                                  <h4 class="no-mar">Adjust Quantities As Necessary (Adjust all quantities that apply)
+                                      <div style="float: right;width: 250px;">
+                                          <input style="width: 40px;float: left;" class="form-control" type="checkbox" name="approval_status" id="approval_status">
+                                          <label style="width: 200px; float: left; margin-top: 4px;" class="btn btn-info approval_status_label" for="approval_status">APPROVE FOR PERIOD</label>
+                                      </div>
+                                  </h4>
 
                                       <div class="tab-parent" style="overflow-x:scroll;">
                                       <table class="table table-striped m-t-20 custom-grid">

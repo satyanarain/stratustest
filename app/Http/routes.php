@@ -699,7 +699,7 @@ Route::get('dashboard/{project_id}/contract_item_qty', function () {
     -------------------------------------------------------------------------- */
 Route::get('daily-cron-report-generate', 'Projects\DailyReportController@daily_cron_report_generate');
 Route::get('docusign-download-document', 'Projects\DocusignController@download_documents');
-Route::get('download_noa', 'Projects\DocusignController@download_noa');
+Route::get('download_docusign_documents', 'Projects\DocusignController@download_docusign_documents');
 
 Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('daily-report/add', 'Projects\DailyReportController@add_daily_report');
@@ -957,6 +957,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('{project_id}/quantity-verification-report', 'Projects\PaymentQuantityVerificationController@get_quantity_verification_report');
     Route::get('{project_id}/quantity-verification-complete-report', 'Projects\PaymentQuantityVerificationController@get_quantity_verification_complete_report');
     Route::get('quantity-verification-report-name/{report_id}', 'Projects\PaymentQuantityVerificationController@get_quantity_verification_report_name');
+    Route::post('dashboard/{project_id}/payment_quantity_verification/{report_id}/update_approval_status', 'Projects\PaymentQuantityVerificationController@update_approval_status');
     Route::post('dashboard/{project_id}/payment_quantity_verification/{report_id}/update', 'Projects\PaymentQuantityVerificationController@update_payment_quantity_verification');
     //Route::get('dashboard/{project_id}/payment_quantity_verification/{report_id}', 'Projects\PaymentApplicationController@get_payment_application_detail_report');
 });

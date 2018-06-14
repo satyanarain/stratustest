@@ -85,6 +85,7 @@ $(document).ready(function() {
                 t.row.add([
                     count, //val.ppq_id,
                     val.ppq_month_name,
+                    val.approval_status,
                     '<a href="'+baseUrl+'dashboard/'+val.ppq_project_id+'/payment_quantity_verification/'+val.ppq_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>'
                     +'<a href="'+baseUrl+'dashboard/'+val.ppq_project_id+'/payment_quantity_verification/'+val.ppq_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>'
                 ]).draw( false );

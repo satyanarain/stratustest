@@ -31,6 +31,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Report Date</th>
+                                    <th>Approval Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

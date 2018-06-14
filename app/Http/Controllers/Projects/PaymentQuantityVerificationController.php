@@ -65,7 +65,7 @@ class PaymentQuantityVerificationController extends Controller {
           $project_id    = $project->p_id;
           // echo '<br/>';
 
-          $query = ProjectPaymentQuantityVerification::create(['ppq_month_name' => $month_name, 'ppq_project_id' => $project_id]);
+          $query = ProjectPaymentQuantityVerification::create(['ppq_month_name' => $month_name, 'ppq_project_id' => $project_id,'approval_status'=>'Pending']);
           $item_inserted_id = $query->id;
 
           $query_project = ProjectPaymentApplication::create(['ppa_month_name' => $month_name, 'ppa_project_id' => $project_id]);
@@ -587,5 +587,26 @@ class PaymentQuantityVerificationController extends Controller {
           return response()->json(['error' => 'Something is wrong'], 500);
         }
     }
-
+    
+    public function update_approval_status(Request $request, $project_id, $report_id)
+    {
+        $approval_status       = $request['approval_status'];
+        $project_id             = $request['project_id'];
+        $user_id                = Auth::user()->id;
+        $user_id = Auth::user()->id;
+        
+        $query = DB::table('project_payment_quantity_verification')
+        ->where('ppq_id', '=', $report_id)
+        ->update(['approval_status' => $approval_status]);
+        if(count($query) < 1)
+        {
+          $result = array('code'=>400, "description"=>"No records found");
+          return response()->json($result, 400);
+        }
+        else
+        {
+          $result = array('data'=>$query,'code'=>200);
+          return response()->json($result, 200);
+        }
+    }
 }

@@ -13,7 +13,7 @@ class ProjectPaymentQuantityVerification extends Authenticatable
     protected $table = 'project_payment_quantity_verification';
 
     protected $fillable = [
-        'ppq_id', 'ppq_month_name', 'ppq_project_id', 'ppq_timestamp'
+        'ppq_id', 'ppq_month_name', 'ppq_project_id','approval_status' ,'ppq_timestamp'
     ];
 
 
