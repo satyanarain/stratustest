@@ -2,7 +2,7 @@ var host = window.location.host;
 if(host=="demo.com")
     baseUrl = "http://demo.com/";
 else
-    baseUrl = "http://app.stratuscm.com/";
+    baseUrl = "https://app.stratuscm.com/";
 //baseUrl = "http://stratuscm-live.us-west-2.elasticbeanstalk.com/";
 $(document).ready(function() {
 
