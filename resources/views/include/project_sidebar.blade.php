@@ -217,6 +217,6 @@
             </div>
         </div>
         <!-- sidebar left end-->
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
 <script src="{{ url('/resources/assets/dist/project_sidebar.js') }}"></script>
