@@ -605,7 +605,7 @@ class DocusignController extends Controller {
         $postedXml = @file_get_contents('php://input');
         $xml = simplexml_load_string($postedXml);
         $file = fopen(base_path()."/uploads/notice_award/test.txt","w");
-        echo fwrite($file,"Hello World. Testing!");
+        echo fwrite($file,$xml);
         fclose($file);
 die;
         print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
