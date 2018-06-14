@@ -601,7 +601,17 @@ class DocusignController extends Controller {
     }
     
     public function download_docusign_documents(Request $request) {
+        
         $postedXml = @file_get_contents('php://input');
+        $xml = simplexml_load_string($postedXml);
+        print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
+        $file_upload_path1 = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name. '.xml';
+        file_put_contents(base_path().$file_upload_path1, $xml->asXML());
+        $file_upload_path = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
+        
+        file_put_contents(base_path().$file_upload_path, base64_decode((string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
+        
+        
         
 //        $xml = simplexml_load_string($k);
 //        echo '<pre>';print_r($xml);
@@ -609,12 +619,12 @@ class DocusignController extends Controller {
 //        echo $envelope_id = $xml->EnvelopeStatus->EnvelopeID;die;
 //        $file_upload_path = "/uploads/noa.txt";
 //        file_put_contents(base_path().$file_upload_path, $xml);
-        $xml = simplexml_load_string($postedXml);
-        print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
-        file_put_contents($xml->EnvelopeStatus->EnvelopeID . '.xml', $xml->asXML());
-        $file_upload_path = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
-        
-        file_put_contents(base_path().$file_upload_path, base64_decode((string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
+//        $xml = simplexml_load_string($postedXml);
+//        print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
+//        file_put_contents($xml->EnvelopeStatus->EnvelopeID . '.xml', $xml->asXML());
+//        $file_upload_path = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
+//        
+//        file_put_contents(base_path().$file_upload_path, base64_decode((string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
         
         //file_put_contents(base_path().$file_upload_path, $data);
         
@@ -660,4 +670,6 @@ class DocusignController extends Controller {
 //        //echo file_put_contents($path, $base_64);
 //        chmod("$path", 0777);
     }
+    
+    
 }
