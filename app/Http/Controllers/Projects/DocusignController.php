@@ -603,10 +603,10 @@ class DocusignController extends Controller {
     public function download_docusign_documents(Request $request) {
         
         $postedXml = @file_get_contents($request->getContent());
-//        $file = fopen(base_path()."/uploads/notice_award/test.txt","a+");
-//       
-//        echo fwrite($file,'jha');
-//        fclose($file);
+        $file = fopen(base_path()."/uploads/notice_award/test.txt","a+");
+       
+        echo fwrite($file,$request->getContent());
+        fclose($file);
         if( ! empty( $postedXml ) ) {
             $xml = simplexml_load_string($postedXml);
             //print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
