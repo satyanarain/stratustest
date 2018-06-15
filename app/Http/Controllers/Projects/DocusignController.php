@@ -603,7 +603,7 @@ class DocusignController extends Controller {
     public function download_docusign_documents(Request $request) {
         
         $postedXml = @file_get_contents($request->getContent());
-        $file = fopen("test.txt","a+");
+        $file = fopen(base_path()."/uploads/notice_award/test.txt","a+");
        
         echo fwrite($file,'jha');
         fclose($file);
@@ -616,7 +616,7 @@ class DocusignController extends Controller {
                     ->select('project_notice_award.*')
                     ->where('pna_envelope_id', '=',$envelopeId)
                     ->first();
-            $file = fopen("test.txt","a+");
+            $file = fopen(base_path()."/uploads/notice_award/test.txt","a+");
             fwrite($file,$envelopeId.'-----');
             echo fwrite($file,$award);
             fclose($file);
