@@ -615,43 +615,7 @@ class DocusignController extends Controller {
             $file_upload_path =  "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
             file_put_contents(base_path().$file_upload_path, base64_decode ( (string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
                 
-            $envelopeId = $xml->EnvelopeStatus->EnvelopeID;
-            $award = DB::table('project_notice_award')
-                    ->select('project_notice_award.*')
-                    ->where('pna_envelope_id', '=',$envelopeId)
-                    ->first();
-//            $file = fopen(base_path()."/uploads/notice_award/test.txt","a+");
-//            fwrite($file,$envelopeId.'-----');
-//            echo fwrite($file,$award);
-//            fclose($file);
-            if($award)
-            {
-                $doc_id = $award->pna_notice_path;
-                $pna_id = $award->pna_id;
-                $file_upload_path = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
-                file_put_contents(base_path().$file_upload_path, base64_decode ( (string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
-                if($doc_id>0){
-                    $query = DB::table('documents')
-                    ->where('doc_id', '=', $doc_id)
-                    ->update(['doc_path' => $file_upload_path]);
-                    $query = DB::table('project_notice_award')
-                    ->where('pna_id', '=', $pna_id)
-                    ->update(['pna_docusign_status' => "complete"]);
-                }else{
-                    $information = array(
-                    "doc_status"     => "active",
-                    "doc_project_id" => $award->pna_project_id,
-                    "doc_user_id"    => 0,
-                    "doc_name"       => $file_upload_path,
-                    "doc_path"       => $file_upload_path,
-                    );
-                    $doc_id = DB::table('documents')->insertGetId($information);
-                    $query = DB::table('project_notice_award')
-                    ->where('pna_id', '=', $pna_id)
-                    ->update(['pna_docusign_status' => "complete",'pna_notice_path'=>$doc_id]);
-                }
-                
-            }
+            
         }
 
     }
