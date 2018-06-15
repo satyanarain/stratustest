@@ -602,13 +602,13 @@ class DocusignController extends Controller {
     
     public function download_docusign_documents(Request $request) {
         
-        $file = fopen(base_path()."/uploads/notice_award/test.txt","a+");
+        //$file = fopen(base_path()."/uploads/notice_award/test.txt","a+");
         
 
-        $postedXml = file_get_contents($request->getContent()) or
-        fwrite($file,"Failed opening file: error was ".$php_errormsg);
-        fwrite($file,"Failed opening file: error was ".$request->getContent());
-        fclose($file);
+        $postedXml = @file_get_contents($request->getContent());
+//        fwrite($file,"Failed opening file: error was ".$php_errormsg);
+//        fwrite($file,"Failed opening file: error was ".$request->getContent());
+//        fclose($file);
         //die(base_path());
         //$postedXml = @file_get_contents(base_path()."/uploads/notice_award/".'data.xml');
         
