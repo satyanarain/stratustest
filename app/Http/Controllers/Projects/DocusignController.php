@@ -610,7 +610,11 @@ class DocusignController extends Controller {
         if( ! empty( $postedXml ) ) {
             $xml = simplexml_load_string($postedXml);
             //print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
-            //file_put_contents($xml->EnvelopeStatus->EnvelopeID . '.xml', $xml->asXML());
+            $file_upload_path1 = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID . '.xml';
+            file_put_contents(base_path().$file_upload_path1, $xml->asXML());
+            $file_upload_path =  "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
+            file_put_contents(base_path().$file_upload_path, base64_decode ( (string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
+                
             $envelopeId = $xml->EnvelopeStatus->EnvelopeID;
             $award = DB::table('project_notice_award')
                     ->select('project_notice_award.*')
