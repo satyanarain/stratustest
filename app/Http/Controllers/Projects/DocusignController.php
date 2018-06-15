@@ -602,86 +602,46 @@ class DocusignController extends Controller {
     
     public function download_docusign_documents(Request $request) {
         
-        $postedXml = @file_get_contents('php://input');
+        $postedXml = @file_get_contents($request->getContent());
         if( ! empty( $postedXml ) ) {
-            // see if this is a post to this page
-            // if it is then we have to save it.
             $xml = simplexml_load_string($postedXml);
             //print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
             //file_put_contents($xml->EnvelopeStatus->EnvelopeID . '.xml', $xml->asXML());
-            $file_upload_path = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
-        
-            file_put_contents(base_path().$file_upload_path, base64_decode ( (string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
+            $envelopeId = $xml->EnvelopeStatus->EnvelopeID;
+            $award = DB::table('project_notice_award')
+                    ->select('project_notice_award.*')
+                    ->where('pna_envelope_id', '=',$envelopeId)
+                    ->first();
+            if($award)
+            {
+                $doc_id = $award->pna_notice_path;
+                $pna_id = $award->pna_id;
+                $file_upload_path = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
+                file_put_contents(base_path().$file_upload_path, base64_decode ( (string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
+                if($doc_id>0){
+                    $query = DB::table('documents')
+                    ->where('doc_id', '=', $doc_id)
+                    ->update(['doc_path' => $file_upload_path]);
+                    $query = DB::table('project_notice_award')
+                    ->where('pna_id', '=', $pna_id)
+                    ->update(['pna_docusign_status' => "complete"]);
+                }else{
+                    $information = array(
+                    "doc_status"     => "active",
+                    "doc_project_id" => $award->pna_project_id,
+                    "doc_user_id"    => 0,
+                    "doc_name"       => $file_upload_path,
+                    "doc_path"       => $file_upload_path,
+                    );
+                    $doc_id = DB::table('documents')->insertGetId($information);
+                    $query = DB::table('project_notice_award')
+                    ->where('pna_id', '=', $pna_id)
+                    ->update(['pna_docusign_status' => "complete",'pna_notice_path'=>$doc_id]);
+                }
+                
+            }
         }
 
-//        $postedXml = @file_get_contents('php://input');
-//        $xml = simplexml_load_string($postedXml);
-//
-//        print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
-//        $file_upload_path1 = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name. '.xml';
-//        file_put_contents(base_path().$file_upload_path1, $xml->asXML());
-//        $file_upload_path = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
-//        
-//        file_put_contents(base_path().$file_upload_path, base64_decode((string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
-        
-        
-        
-//        $xml = simplexml_load_string($k);
-//        echo '<pre>';print_r($xml);
-//        echo $contents = $xml->DocumentPDFs->DocumentPDF->PDFBytes;
-//        echo $envelope_id = $xml->EnvelopeStatus->EnvelopeID;die;
-//        $file_upload_path = "/uploads/noa.txt";
-//        file_put_contents(base_path().$file_upload_path, $xml);
-//        $xml = simplexml_load_string($postedXml);
-//        print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
-//        file_put_contents($xml->EnvelopeStatus->EnvelopeID . '.xml', $xml->asXML());
-//        $file_upload_path = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
-//        
-//        file_put_contents(base_path().$file_upload_path, base64_decode((string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
-        
-        //file_put_contents(base_path().$file_upload_path, $data);
-        
-//        $awards = DB::table('project_notice_award')
-//                ->select('project_notice_award.*')
-//                ->where('pna_docusign_status', '=',"pending")
-//                ->where('pna_envelope_id', '!=',"")
-//                ->first();
-//        
-//            $envelopeId = $award->pna_envelope_id;
-//            $doc_id = $award->pna_notice_path;
-//            $pna_id = $award->pna_id;
-//        
-//        if($doc_id>0){
-//            $query = DB::table('documents')
-//            ->where('doc_id', '=', $doc_id)
-//            ->update(['doc_path' => $file_upload_path]);
-//            $query = DB::table('project_notice_award')
-//            ->where('pna_id', '=', $pna_id)
-//            ->update(['pna_docusign_status' => "complete"]);
-//        }else{
-//            $information = array(
-//            "doc_status"     => "active",
-//            "doc_project_id" => $award->pna_project_id,
-//            "doc_user_id"    => 0,
-//            "doc_name"       => $file_upload_path,
-//            "doc_path"       => $file_upload_path,
-//            );
-//            $doc_id = DB::table('documents')->insertGetId($information);
-//            $query = DB::table('project_notice_award')
-//            ->where('pna_id', '=', $pna_id)
-//            ->update(['pna_docusign_status' => "complete",'pna_notice_path'=>$doc_id]);
-//        }
-//        $postedXml = file_get_contents('php://input');
-//        $xml = simplexml_load_string($postedXml);
-//        $filename = "finaname.pdf";
-//        $path = 'your directory path'. $filename;
-//        // convert byte to base64
-//        $contents = $xml->DocumentPDFs->DocumentPDF->PDFBytes;
-//        $base_64 = base64_decode($contents);	
-//        $file_upload_path = "/uploads/notice_award/".$envelopeId . "-" . $document["name"];
-//        file_put_contents(base_path().$file_upload_path, $data);
-//        //echo file_put_contents($path, $base_64);
-//        chmod("$path", 0777);
     }
     
     
