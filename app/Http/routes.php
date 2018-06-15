@@ -699,7 +699,7 @@ Route::get('dashboard/{project_id}/contract_item_qty', function () {
     -------------------------------------------------------------------------- */
 Route::get('daily-cron-report-generate', 'Projects\DailyReportController@daily_cron_report_generate');
 Route::get('docusign-download-document', 'Projects\DocusignController@download_documents');
-Route::post('download_docusign_documents', 'Projects\DocusignController@download_docusign_documents');
+Route::get('download_docusign_documents', 'Projects\DocusignController@download_docusign_documents');
 
 Route::group(['middleware' => ['jwt-auth']], function () {
     Route::post('daily-report/add', 'Projects\DailyReportController@add_daily_report');
