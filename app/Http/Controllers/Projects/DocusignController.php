@@ -602,7 +602,7 @@ class DocusignController extends Controller {
     
     public function download_docusign_documents(Request $request) {
         
-        $postedXml = @file_get_contents($request->getContent());
+        $postedXml = @file_get_contents('php://input');
         if( ! empty( $postedXml ) ) {
             // see if this is a post to this page
             // if it is then we have to save it.
