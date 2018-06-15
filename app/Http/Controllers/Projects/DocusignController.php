@@ -602,23 +602,16 @@ class DocusignController extends Controller {
     
     public function download_docusign_documents(Request $request) {
         
-        $postedXml = @file_get_contents($request->getContent());
-        $file = fopen(base_path()."/uploads/notice_award/test.txt","a+");
-       
-        echo fwrite($file,$request->getContent());
-        fclose($file);
-        if( ! empty( $postedXml ) ) {
+        //$postedXml = @file_get_contents($request->getContent());
+        $postedXml = @file_get_contents('data.xml');
+        
+        if(!empty($postedXml)){
             $xml = simplexml_load_string($postedXml);
             //print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
             $file_upload_path1 = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID . '.xml';
             file_put_contents(base_path().$file_upload_path1, $xml->asXML());
             $file_upload_path =  "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
             file_put_contents(base_path().$file_upload_path, base64_decode ( (string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
-                
-            
         }
-
     }
-    
-    
 }
