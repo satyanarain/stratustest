@@ -603,17 +603,26 @@ class DocusignController extends Controller {
     public function download_docusign_documents(Request $request) {
         
         $postedXml = @file_get_contents('php://input');
-        $xml = simplexml_load_string($postedXml);
-//        $file = fopen(base_path()."/uploads/notice_award/test.txt","w");
-//        echo fwrite($file,$xml);
-//        fclose($file);
-//die;
-        print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
-        $file_upload_path1 = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name. '.xml';
-        file_put_contents(base_path().$file_upload_path1, $xml->asXML());
-        $file_upload_path = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
+        if( ! empty( $postedXml ) ) {
+            // see if this is a post to this page
+            // if it is then we have to save it.
+            $xml = simplexml_load_string($postedXml);
+            //print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
+            //file_put_contents($xml->EnvelopeStatus->EnvelopeID . '.xml', $xml->asXML());
+            $file_upload_path = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
         
-        file_put_contents(base_path().$file_upload_path, base64_decode((string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
+            file_put_contents(base_path().$file_upload_path, base64_decode ( (string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
+        }
+
+//        $postedXml = @file_get_contents('php://input');
+//        $xml = simplexml_load_string($postedXml);
+//
+//        print 'Got Envelope ID: ' . $xml->EnvelopeStatus->EnvelopeID . '<br/>';
+//        $file_upload_path1 = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name. '.xml';
+//        file_put_contents(base_path().$file_upload_path1, $xml->asXML());
+//        $file_upload_path = "/uploads/notice_award/".$xml->EnvelopeStatus->EnvelopeID."-".$xml->DocumentPDFs->DocumentPDF->Name;
+//        
+//        file_put_contents(base_path().$file_upload_path, base64_decode((string)$xml->DocumentPDFs->DocumentPDF->PDFBytes));
         
         
         
