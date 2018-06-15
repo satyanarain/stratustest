@@ -612,6 +612,10 @@ class DocusignController extends Controller {
                     ->select('project_notice_award.*')
                     ->where('pna_envelope_id', '=',$envelopeId)
                     ->first();
+            $file = fopen("test.txt","a+");
+            fwrite($file,$envelopeId.'-----');
+            echo fwrite($file,$award);
+            fclose($file);
             if($award)
             {
                 $doc_id = $award->pna_notice_path;
