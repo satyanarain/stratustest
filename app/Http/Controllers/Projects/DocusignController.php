@@ -602,7 +602,7 @@ class DocusignController extends Controller {
     
     public function download_docusign_documents(Request $request) {
         
-        $postedXml = @file_get_contents($request->getContent());
+        $postedXml = @file_get_contents($request);
         //die(base_path());
         //$postedXml = @file_get_contents(base_path()."/uploads/notice_award/".'data.xml');
         
