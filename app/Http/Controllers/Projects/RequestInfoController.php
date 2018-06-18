@@ -1184,7 +1184,7 @@ class RequestInfoController extends Controller {
                     }
                     
                     
-                    $result = array('description'=>'Update Status successfully','code'=>200);
+                    //$result = array('description'=>'Update Status successfully','code'=>200);
                     //return response()->json($result, 200);
                   }
                   else {
@@ -1193,7 +1193,9 @@ class RequestInfoController extends Controller {
                   }
                 }
             }
-        } 
+        }
+        $result = array('description'=>'RFI status updated successfully','code'=>200);
+        return response()->json($result, 200);
     }
         catch(Exception $e)
         {

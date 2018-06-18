@@ -1023,7 +1023,7 @@ class SubmittalsController extends Controller {
                 }
             }
         }
-        $result = array('description'=>'Update Status successfully','code'=>200);
+        $result = array('description'=>'Submittal status updated successfully','code'=>200);
         return response()->json($result, 200);
         }
         catch(Exception $e)

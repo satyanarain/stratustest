@@ -1309,6 +1309,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
         $projects = DB::table('projects')
         ->select()
         ->where('p_status', '=', 'active')
+        ->where('p_id', '=', '8')        
         ->get();
         foreach($projects as $project)
         {
@@ -1376,7 +1377,7 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                             $message->from('no-reply@sw.ai', 'StratusCM');
                             $message->to($user_single->email, $user_single->name)->subject($user_single->title);
                         });
-                        $result = array('description'=>'Update Status successfully','code'=>200);
+                        //$result = array('description'=>'Update Status successfully','code'=>200);
                     }
                     //return response()->json($result, 200);
                   }
@@ -1386,7 +1387,9 @@ public function get_change_order_request_weeklyreport(Request $request, $project
                   }
                 }
             }
-        } 
+        }
+        $result = array('description'=>'Change order status updated successfully','code'=>200);
+        return response()->json($result, 200);
     }
         catch(Exception $e)
         {
