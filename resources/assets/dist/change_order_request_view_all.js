@@ -282,7 +282,7 @@ $(document).ready(function() {
                     minutes1 = minutes-(days*24*60)-(hours1*60);
                     seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
 
-                    var potential_status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
+                    var potential_status = "<span class='label label-warning'>"+parseInt(days+1) +" Days Left to Respond</span>";
                     var action_button = update_permission ;
                 }
             if(parseInt(val.is_potential)==1)

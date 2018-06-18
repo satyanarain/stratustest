@@ -967,7 +967,7 @@ $(document).ready(function() {
                                                         minutes1 = minutes-(days*24*60)-(hours1*60);
                                                         seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
                                                         //var status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
-                                                        var status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
+                                                        var status = "<span class='label label-warning'>"+parseInt(days+1) +" Days Left to Respond</span>";
                                                     }
 						}
 						else {
@@ -1398,7 +1398,7 @@ $(document).ready(function() {
                                         minutes1 = minutes-(days*24*60)-(hours1*60);
                                         seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
 
-                                        var potential_status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
+                                        var potential_status = "<span class='label label-warning'>"+parseInt(days+1) +" Days Left to Respond</span>";
                                         
                                     }
                                     var t = $('#potential_change_order').DataTable();
@@ -1456,7 +1456,7 @@ $(document).ready(function() {
 			                    hours1 = hours-(days*24);
 			                    minutes1 = minutes-(days*24*60)-(hours1*60);
 			                    seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
-			                    var potential_status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
+			                    var potential_status = "<span class='label label-warning'>"+parseInt(days+1) +" Days Left to Respond</span>";
 			                }
 			            }
 			            else {

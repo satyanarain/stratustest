@@ -147,7 +147,7 @@
                                                 // console.log(date_future);
                                                 // 	console.log(date_now);
                                                 //var status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
-                                                var status = "<span class='label label-warning'>"+days +" Days Left to Respond</span>";
+                                                var status = "<span class='label label-warning'>"+parseInt(days+1)+" Days Left to Respond</span>";
                                             }
                                     }
                                     else {
