@@ -663,7 +663,7 @@ class NoticeCompletionController extends Controller {
         ->select()
         ->where('p_status', '=', 'active')
         ->get();
-         //print_r($projects);die;
+         print_r($projects);die;
         foreach($projects as $project)
         {
             DB::enableQueryLog();
