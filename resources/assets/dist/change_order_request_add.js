@@ -37,6 +37,9 @@ $(document).ready(function() {
         if(data.data.f_name)
             $('#jurisdiction').val(data.data.f_name);
         $('#project_name').val(project_name);
+        
+        window.p_lead_agency = data.data.p_lead_agency;
+        //window.localStorage.setItem("p_lead_agency", data.data.p_lead_agency);    
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
@@ -103,7 +106,7 @@ $(document).ready(function() {
         });
 
         get_new_cor_data();
-
+        
 
         jQuery.ajax({
         url: baseUrl +project_id+"/request-information",
@@ -157,10 +160,12 @@ $(document).ready(function() {
                             <label for="">Signatory: Contact Role</label>\n\
                             <select class="form-control" name="signatory_role[]">\n\
                             <option value="owner">Owner</option>\n\
-                            <option value="contractor">Contractor</option>\n\
-                            <option value="accountant">Fund Rep.</option>\n\
-                            <option value="jurisdiction">Jurisdiction Rep.</option>\n\
-                            <option value="construction_manager">Construction Manager</option>\n\
+                            <option value="contractor">Contractor</option>';
+                            if(parseInt(window.p_lead_agency)>0){
+                                html += '<option value="accountant">Fund Rep.</option>\n\
+                                        <option value="jurisdiction">Jurisdiction Rep.</option>';
+                            }
+                            html += '<option value="construction_manager">Construction Manager</option>\n\
                         </select>\n\
                         </div>\n\
                         <div class="form-group col-md-3" style="padding-top: 25px;">\n\
@@ -173,7 +178,11 @@ $(document).ready(function() {
             $("#signatory_counter").val(signatory_counter);
             return;
         });
-
+        if(parseInt(window.p_lead_agency)>0){}else
+        {
+            $(".form-control option[value='accountant']").remove();
+            $(".form-control option[value='jurisdiction']").remove();
+        }
     }, 1000);  
 });
 
