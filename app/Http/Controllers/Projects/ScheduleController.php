@@ -83,8 +83,62 @@ class ScheduleController extends Controller {
             }
             else
             {
-              $result = array('description'=>"Add built drawing successfully",'code'=>200);
-              return response()->json($result, 200);
+                $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
+                // Check User Project Permission  
+                foreach ($check_project_users as $check_project_user) {
+                // Check User Permission Parameter 
+                $user_id              = $check_project_user->id;
+                $permission_key       = 'schedule_add';
+                // Notification Parameter
+                $project_id           = $project_id;
+                $schedule_count = DB::table('project_schedule')
+                    ->select('schedule_id')
+                    ->where('schedule_project_id', '=', $project_id)
+                    ->count();
+                //print($schedule_count);die;
+                $url                  = App::make('url')->to('/');
+                $link                 = "/dashboard/".$project_id."/schedule";
+                $date                 = date("M d, Y h:i a");
+                if($schedule_count>1){
+                    $notification_title   = 'A new revised schedule has been uploaded in Project: ' .$check_project_user->p_name;
+                    $email_description    = 'A new revised schedule has been uploaded in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                }else{
+                    $notification_title   = 'A new schedule has been uploaded in Project: ' .$check_project_user->p_name;
+                    $email_description    = 'A new schedule has been uploaded in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                }
+                $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+                if(count($check_single_user_permission) < 1){
+                  continue;
+                }
+                else {
+                    $notification_key     = 'schedule';
+                    $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);
+                    if(count($check_project_user_notification) < 1){
+                      continue;
+                    }else{  
+                        // Send Notification to users
+                        $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
+
+                        $user_detail = array(
+                          'id'              => $check_project_user->id,
+                          'name'            => $check_project_user->username,
+                          'email'           => $check_project_user->email,
+                          'link'            => $link,
+                          'date'            => $date,
+                          'project_name'    => $check_project_user->p_name,
+                          'title'           => $notification_title,
+                          'description'     => $email_description
+                        );
+                        $user_single = (object) $user_detail;
+                        Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                            $message->from('no-reply@sw.ai', 'StratusCM');
+                            $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                        });
+                    }
+                }
+              } // End Foreach
+                $result = array('description'=>"Add built drawing successfully",'code'=>200);
+                return response()->json($result, 200);
             }
         }
       }

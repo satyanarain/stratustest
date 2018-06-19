@@ -812,6 +812,10 @@
                         <label for="meeting_minutes">Meeting Minutes</label><br>
                         <input type="checkbox" name="notification_key[]" id="meeting_minutes" value="meeting_minutes">
                     </div>
+                    <div class="form-group col-md-3">
+                        <label for="past_due">Schedule</label><br>
+                        <input type="checkbox" name="notification_key[]" id="schedule" value="schedule">
+                    </div>
                     
                     <div class="clearfix"></div>
                     <h3 style="border-bottom:1px solid red">Post Construction</h3>
@@ -833,6 +837,7 @@
                         <label for="past_due">Past Due</label><br>
                         <input type="checkbox" name="notification_key[]" id="past_due" value="past_due">
                     </div>
+                    
                     
                     
                     <?php //}?>
