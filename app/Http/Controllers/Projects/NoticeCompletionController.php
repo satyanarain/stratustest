@@ -680,6 +680,7 @@ class NoticeCompletionController extends Controller {
             $user =  (array) $query;
             if(count($query) < 1)
             {
+                continue;  
               $result = array('code'=>404,"description"=>"No Records Found");
             }else{
                 foreach ($query as $key => $review) {
