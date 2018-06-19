@@ -674,7 +674,7 @@ class NoticeCompletionController extends Controller {
                     ->whereDate('noc_timestamp','=', $yesterday)
                     ->where('recorded_doc_id', '=', '')
                     ->get();
-            //print_r($query);die;
+            print_r($query);die;
             $user =  (array) $query;
             if(count($query) < 1)
             {
