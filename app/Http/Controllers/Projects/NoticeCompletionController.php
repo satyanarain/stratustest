@@ -676,7 +676,7 @@ class NoticeCompletionController extends Controller {
                     ->where('recorded_doc_id', '=', '')
                     ->get();
             dd(DB::getQueryLog());
-            print_r($query);die;
+            print_r($query);
             $user =  (array) $query;
             if(count($query) < 1)
             {
