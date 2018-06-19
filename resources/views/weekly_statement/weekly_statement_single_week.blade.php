@@ -26,7 +26,7 @@
                                             <!-- <img src="{{ url('/resources/assets/img/login_logo.png') }}" alt=""> -->
                                         </div>
                                         <div class="col-md-6">
-                                            <h4 class="pull-right">WEEKLY DAY</h4>
+                                            <h4 class="pull-right">WORKING DAY</h4>
                                         </div>
                                         <div class="col-md-12">
                                             <h3 style="text-align:center;">WEEKLY STATEMENT OF CONTRACT DAYS</h3>
