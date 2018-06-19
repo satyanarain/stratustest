@@ -666,7 +666,7 @@ class NoticeCompletionController extends Controller {
          //echo '<pre>';print_r($projects);die;
         foreach($projects as $project)
         {
-            DB::enableQueryLog();
+            //DB::enableQueryLog();
             $yesterday = date("Y-m-d", strtotime( '-1 days') );
             $query = DB::table('project_notice_of_completion')
                     ->leftJoin('users', 'project_notice_of_completion.noc_user_id', '=', 'users.id')
@@ -675,8 +675,8 @@ class NoticeCompletionController extends Controller {
                     ->whereDate('noc_timestamp','=', $yesterday)
                     ->where('recorded_doc_id', '=', '')
                     ->get();
-            dd(DB::getQueryLog());
-            print_r($query);
+            //dd(DB::getQueryLog());
+            //print_r($query);
             $user =  (array) $query;
             if(count($query) < 1)
             {
