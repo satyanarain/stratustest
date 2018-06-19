@@ -77,7 +77,7 @@
                                 <div class="value white">
                                     <h4>Total Contract: <span style="float: right;" id="total_contract_amount"></span></h4>
                                     <h4>Billings to Date: <span style="float: right;" id="billings_to_date"></span></h4>
-                                    <h4>Prior Billings: <span style="float: right;" id="prior_billings"></span></h4>
+                                    <h4>Prior Billings: <span style="float: right;font-weight: bold;" id="prior_billings"></span></h4>
                                     <h4>Total Billing: <span style="float: right;" id="total_billings"></span></h4>
                                     <h4>Contract Balance Remaining: <span style="float: right;" id="contract_bal_remaining"></span></h4>
                                 </div>

@@ -596,6 +596,35 @@ class ProjectController extends Controller {
         $info['remaining_days'] = $info['revised_contract_date']-$info['contract_days_charged'];
     else
         $info['remaining_days'] = '';
+    
+    $query5 = DB::table('project_payment_application')
+	->select('project_payment_application.*')
+	->where('ppa_project_id', '=', $project_id)
+	->orderBy('ppa_id', 'desc')
+    	->first();
+    if($query5)
+    {
+        $query6 = DB::table('project_payment_application_detail')
+                    ->leftJoin('project_bid_items', 'project_payment_application_detail.ppd_item_id', '=', 'project_bid_items.pbi_id')
+                    ->select('project_payment_application_detail.*', 'project_bid_items.*')
+                    ->where('ppd_report_id', '=', $query5->ppa_id)
+                    ->get();
+        $prior_billings = 0;
+        $billings_to_date = 0;
+        foreach($query6 as $row){
+            $prior_billings += $row->ppd_previous_qty * $row->pbi_item_unit_price;
+            $billings_to_date += $row->ppd_month_qty * $row->pbi_item_unit_price;
+        }
+        $info['billings_to_date'] = $billings_to_date;
+        $info['prior_billings'] = $prior_billings;
+        $info['total_billings'] = $billings_to_date+$prior_billings;
+        $info['contract_bal_remaining'] = $info['total_contract_amount']-$info['total_billings'];
+    }else{
+        $info['billings_to_date'] = 0;
+        $info['prior_billings'] = 0;
+        $info['total_billings'] = 0;
+        $info['contract_bal_remaining'] = $info['total_contract_amount']-$info['total_billings'];
+    }
     //echo '<pre>';print_r($query3);
     //print_r($info);
     $result = array('data'=>$info,'code'=>200);

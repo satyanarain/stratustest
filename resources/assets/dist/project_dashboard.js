@@ -117,6 +117,22 @@ $(document).ready(function() {
                         $('#remaining_days').text(data.data.remaining_days);
                     else
                         $('#remaining_days').text(0);
+                    if(data.data.billings_to_date)
+                        $('#billings_to_date').text('$ '+ReplaceNumberWithCommas(data.data.billings_to_date));
+                    else
+                        $('#billings_to_date').text(0);
+                    if(data.data.prior_billings)
+                        $('#prior_billings').text('$ '+ReplaceNumberWithCommas(data.data.prior_billings));
+                    else
+                        $('#prior_billings').text(0);
+                    if(data.data.total_billings)
+                        $('#total_billings').text('$ '+ReplaceNumberWithCommas(data.data.total_billings));
+                    else
+                        $('#total_billings').text(0);
+                    if(data.data.contract_bal_remaining)
+                        $('#contract_bal_remaining').text('$ '+ReplaceNumberWithCommas(data.data.contract_bal_remaining));
+                    else
+                        $('#contract_bal_remaining').text(0);
                     
                     $('.loading_project_detail').remove();
 		})

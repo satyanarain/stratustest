@@ -107,7 +107,7 @@ $(document).ready(function() {
                     val.pbi_item_unit,
                     '<span class="total_contract_qty'+val.pbi_item_qty+'">'+parseInt(val.pbi_item_qty)+'</span>',
                     total_use_qty,
-                    '<input type="text" value="'+val.pqv_previous_qty+'" name="pqv_previous_qty" id="pqv_previous_qty'+val.pqv_id+'">',
+                    val.pqv_previous_qty+'<input type="hidden" value="'+val.pqv_previous_qty+'" name="pqv_previous_qty" id="pqv_previous_qty'+val.pqv_id+'">',
                     '<input type="text" value="'+val.pqv_month_qty+'" name="pqv_month_qty" id="pqv_month_qty'+val.pqv_id+'">',
                     '<input type="button" class="btn update_report" report_id="'+val.pqv_id+'" value="Update">'
                 ]).draw( false );
