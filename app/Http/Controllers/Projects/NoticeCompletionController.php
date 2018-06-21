@@ -672,7 +672,7 @@ class NoticeCompletionController extends Controller {
                         ->leftJoin('users', 'project_notice_of_completion.noc_user_id', '=', 'users.id')
                         ->select('project_notice_of_completion.*','users.*')
                         ->where('noc_project_id', '=', $project->p_id)
-                        ->whereDate('noc_timestamp','=', $yesterday)
+                        //->whereDate('noc_timestamp','=', $yesterday)
                         ->where('recorded_doc_id', '=', '')
                         ->get();
                 //dd(DB::getQueryLog());
