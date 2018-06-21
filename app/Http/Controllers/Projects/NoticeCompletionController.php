@@ -656,64 +656,64 @@ class NoticeCompletionController extends Controller {
   */
   public function send_overdue_noc_notification(Request $request)
   {
-      try
-      {
-        //echo '<pre>';
-        $projects = DB::table('projects')
-        ->select()
-        ->where('p_status', '=', 'active')
-        ->get();
-         //echo '<pre>';print_r($projects);die;
-        foreach($projects as $project)
+        try
         {
-            //DB::enableQueryLog();
-            $yesterday = date("Y-m-d", strtotime( '-1 days') );
-            $query = DB::table('project_notice_of_completion')
-                    ->leftJoin('users', 'project_notice_of_completion.noc_user_id', '=', 'users.id')
-                    ->select('project_notice_of_completion.*','users.*')
-                    ->where('noc_project_id', '=', $project->p_id)
-                    ->whereDate('noc_timestamp','=', $yesterday)
-                    ->where('recorded_doc_id', '=', '')
-                    ->get();
-            //dd(DB::getQueryLog());
-            //print_r($query);
-            $user =  (array) $query;
-            if(count($query) < 1)
+            //echo '<pre>';
+            $projects = DB::table('projects')
+            ->select()
+            ->where('p_status', '=', 'active')
+            ->get();
+             //echo '<pre>';print_r($projects);die;
+            foreach($projects as $project)
             {
-                continue;  
-              $result = array('code'=>404,"description"=>"No Records Found");
-            }else{
-                foreach ($query as $key => $review) {
-                    $project_id           = $project->p_id;
-                    $notification_title   = 'Please upload Recorded NOC in Project: ' .$project->p_name;
-                    $url                  = App::make('url')->to('/');
-                    $link                 = "/dashboard/".$project->p_id."/notice_completion/".$review->noc_id."/update";
-                    $date                 = date("M d, Y h:i a");
-                    $email_description    = 'Please upload Recorded NOC in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
-                    $user_detail = array(
-                        'id'              => $review->id,
-                        'name'            => $review->username,
-                        'email'           => $review->email,
-                        'link'            => $link,
-                        'date'            => $date,
-                        'project_name'    => $project->p_name,
-                        'title'           => $notification_title,
-                        'description'     => $email_description
-                    );
-                    $user_single = (object) $user_detail;
-                    Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-                        $message->from('no-reply@sw.ai', 'StratusCM');
-                        $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-                    });
-                    if(count($review) < 1)
-                    {
-                      $result = array('code'=>404, "description"=>"No Records Found");
+                //DB::enableQueryLog();
+                $yesterday = date("Y-m-d", strtotime( '-1 days') );
+                $query = DB::table('project_notice_of_completion')
+                        ->leftJoin('users', 'project_notice_of_completion.noc_user_id', '=', 'users.id')
+                        ->select('project_notice_of_completion.*','users.*')
+                        ->where('noc_project_id', '=', $project->p_id)
+                        ->whereDate('noc_timestamp','=', $yesterday)
+                        ->where('recorded_doc_id', '=', '')
+                        ->get();
+                //dd(DB::getQueryLog());
+                print_r($query);
+                $user =  (array) $query;
+                if(count($query) < 1)
+                {
+                    continue;  
+                  $result = array('code'=>404,"description"=>"No Records Found");
+                }else{
+                    foreach ($query as $key => $review) {
+                        $project_id           = $project->p_id;
+                        $notification_title   = 'Please upload Recorded NOC in Project: ' .$project->p_name;
+                        $url                  = App::make('url')->to('/');
+                        $link                 = "/dashboard/".$project->p_id."/notice_completion/".$review->noc_id."/update";
+                        $date                 = date("M d, Y h:i a");
+                        $email_description    = 'Please upload Recorded NOC in Project: <strong>'.$project->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $user_detail = array(
+                            'id'              => $review->id,
+                            'name'            => $review->username,
+                            'email'           => $review->email,
+                            'link'            => $link,
+                            'date'            => $date,
+                            'project_name'    => $project->p_name,
+                            'title'           => $notification_title,
+                            'description'     => $email_description
+                        );
+                        $user_single = (object) $user_detail;
+                        Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                            $message->from('no-reply@sw.ai', 'StratusCM');
+                            $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                        });
+                        if(count($review) < 1)
+                        {
+                          $result = array('code'=>404, "description"=>"No Records Found");
+                        }
                     }
                 }
             }
-        }
-        $result = array('description'=>'Update Status successfully','code'=>200);
-        return response()->json($result, 200);
+            $result = array('description'=>'Notification sent successfully','code'=>200);
+            return response()->json($result, 200);
         }
         catch(Exception $e)
         {

@@ -59,7 +59,7 @@ $('.add_schedule').click(function(e) {
     
     var file_path               = $('#upload_doc_id').val();
     var project_id              = $('#upload_project_id').val();
-    
+    var date_of_schedule        = $('#date_of_schedule').val();
     var token                   = localStorage.getItem('u_token');
         jQuery.ajax({
             url: baseUrl + "schedule/add",
@@ -67,6 +67,7 @@ $('.add_schedule').click(function(e) {
             data: {
                 "file_path"         : file_path,
                 "project_id"        : project_id,
+                "date_of_schedule"  : date_of_schedule,
             },
             headers: {
                 "x-access-token": token
@@ -84,6 +85,7 @@ $('.add_schedule').click(function(e) {
             html = '<div id="toast-container" class="toast-top-right" aria-live="polite" role="alert" style="margin-top:50px;"><div class="toast toast-success">New schedule added successfully!</div></div>';
             $("#alert_message").html(html);
             $("#upload_doc_id").removeAttr('value');
+            $("#date_of_schedule").removeAttr('value');
             $(".remove_file_drop").trigger("click");
             $(".first_button").hide();
             $(".another_button").show();

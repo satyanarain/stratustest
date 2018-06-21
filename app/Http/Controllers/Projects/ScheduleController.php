@@ -44,6 +44,7 @@ class ScheduleController extends Controller {
         $built_filed_on = date("Y-m-d h:i:s");
         $user_id      = Auth::user()->id;
         $status       = 'active';
+        $date_of_schedule = $request['date_of_schedule'];
     // Check User Permission Parameter 
     $user_id = Auth::user()->id;
     $permission_key = 'schedule_add';
@@ -74,7 +75,7 @@ class ScheduleController extends Controller {
         else
         {
              $query = DB::table('project_schedule')
-            ->insertGetId(['schedule_filed_on'=>$built_filed_on,'schedule_file_path' => $file_path, 'schedule_project_id' => $project_id, 'schedule_user_id' => $user_id, 'schedule_status' => $status]);
+            ->insertGetId(['date_of_schedule'=>$date_of_schedule,'schedule_filed_on'=>$built_filed_on,'schedule_file_path' => $file_path, 'schedule_project_id' => $project_id, 'schedule_user_id' => $user_id, 'schedule_status' => $status]);
 
             if(count($query) < 1)
             {

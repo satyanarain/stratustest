@@ -98,7 +98,7 @@
                                     custom_cert_path_value = '-';
                                 }
                                 else {
-                                    custom_cert_path_value = '<a href="'+custom_cert_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf.svg" width="40"/></a>';
+                                    custom_cert_path_value = '<a href="'+custom_cert_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
                                 }
 				var status = val.schedule_status;
 				if(status == 'active'){
@@ -118,9 +118,14 @@
                                     var schedule_filed_on = val.schedule_filed_on;
                                 else
                                     schedule_filed_on = '';
+                                if(val.date_of_schedule!=="0000-00-00")
+                                    var date_of_schedule = val.date_of_schedule;
+                                else
+                                    date_of_schedule = '';
                                 var t = $('#view_users_table').DataTable();
 				t.row.add( [
 		           count, // val.schedule_id,
+                           date_of_schedule,
                            custom_cert_path_value,
                            status,
 		           update_permission + view_single

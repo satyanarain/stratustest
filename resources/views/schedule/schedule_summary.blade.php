@@ -32,6 +32,7 @@
                                           <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th>Date</th>
                                                 <th>Schedule</th>
                                                 <th>Status</th>
                                                 <th>Action</th>

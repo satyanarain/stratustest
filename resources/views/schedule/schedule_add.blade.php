@@ -58,9 +58,17 @@
                                     </div>
                                 </div> -->
                                 <div id="alert_message"></div>
-
                                 
-
+                                
+                                <div class="col-sm-6">
+                                    <label>Report Date  <span class="text-danger">*</span></label>
+                                    <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
+                                            <input type="text" readonly="" value="" size="16" class="form-control"  id="date_of_schedule">
+                                              <span class="input-group-btn add-on">
+                                                <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                                              </span>
+                                        </div>
+                                </div>
                                 <div class="col-sm-6">
                                     <label>Upload New Schedule <span class="text-danger">*</span></label>
                                     <section class="panel" id="upload_performance">
@@ -78,7 +86,7 @@
                                 <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $project_id; ?>">
 
                                 </div>
-
+                                
                                 <div class="form-group col-md-12 nopadleft">
 <!--                                    <a data-href="{{ url('/dashboard/'.$project_id.'/schedule') }}" class="btn btn-info back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
                                     <a href="{{ url('/dashboard/'.$project_id.'/schedule') }}" class="btn btn-info btn_back" onclick="return checkFormFilled('btn_back')">Back</a>
