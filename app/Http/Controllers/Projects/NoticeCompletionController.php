@@ -663,7 +663,7 @@ class NoticeCompletionController extends Controller {
             ->select()
             ->where('p_status', '=', 'active')
             ->get();
-            echo '<pre>';print_r($projects);
+            //echo '<pre>';print_r($projects);
             foreach($projects as $project)
             {
                 //DB::enableQueryLog();
@@ -676,7 +676,7 @@ class NoticeCompletionController extends Controller {
                         ->where('recorded_doc_id', '=', '')
                         ->get();
                 //dd(DB::getQueryLog());
-                echo '<pre>';print_r($query);
+                //echo '<pre>';print_r($query);
                 $user =  (array) $query;
                 if(count($query) < 1)
                 {
@@ -701,11 +701,11 @@ class NoticeCompletionController extends Controller {
                             'description'     => $email_description
                         );
                         $user_single = (object) $user_detail;
-                        print_r($user_single);
-//                        Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-//                            $message->from('no-reply@sw.ai', 'StratusCM');
-//                            $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-//                        });
+                        //print_r($user_single);
+                        Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                            $message->from('no-reply@sw.ai', 'StratusCM');
+                            $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                        });
                         if(count($review) < 1)
                         {
                           $result = array('code'=>404, "description"=>"No Records Found");
