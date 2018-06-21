@@ -537,14 +537,14 @@ class ProjectController extends Controller {
     $total1 = 0;
     $count1 = 0;
     foreach($query1 as $row){
-        if(($row->pcd_approved_by_cm!=null && $row->pcd_approved_by_cm!="0000-00-00") && ($row->pcd_approved_by_owner!=null && $row->pcd_approved_by_owner!="0000-00-00"))
+        if(($row->pcd_approved_by_cm!="0000-00-00") && ($row->pcd_approved_by_owner!="0000-00-00"))
         {
             $count++;
             if($row->pcd_unit_number)
                 $total += $row->pcd_unit_number * $row->pcd_unit_price;
             else
                 $total += $row->pcd_price;
-        }else{
+        }elseif($row->pcd_status=="pending"){
             $count1++;
             if($row->pcd_unit_number)
                 $total1 += $row->pcd_unit_number * $row->pcd_unit_price;
