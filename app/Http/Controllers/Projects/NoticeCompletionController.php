@@ -701,10 +701,11 @@ class NoticeCompletionController extends Controller {
                             'description'     => $email_description
                         );
                         $user_single = (object) $user_detail;
-                        Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-                            $message->from('no-reply@sw.ai', 'StratusCM');
-                            $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-                        });
+                        print_r($user_single);
+//                        Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+//                            $message->from('no-reply@sw.ai', 'StratusCM');
+//                            $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+//                        });
                         if(count($review) < 1)
                         {
                           $result = array('code'=>404, "description"=>"No Records Found");
