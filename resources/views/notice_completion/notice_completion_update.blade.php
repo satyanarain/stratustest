@@ -61,14 +61,16 @@
                                     </div>        
                                     
                                     <div class="form-group col-md-12"><span class="label label-inverse"><b>Signed Notice of Completion</b></span></div>
-                                    <div class="form-group col-sm-6">
+                                    
+                                   <div class="form-group col-sm-6">
                                         <label class="upload_exist">Date signed</label>
-                                         <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
+                                        <input type="text" readonly="" size="16" class="form-control"  id="date_signed">
+<!--                                         <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
                                                <input type="text" readonly="" value="" size="16" class="form-control"  id="date_signed">
                                                  <span class="input-group-btn add-on">
                                                    <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
                                                  </span>
-                                           </div>
+                                           </div>-->
 
                                      </div>
                                     <div class="form-group col-sm-6">

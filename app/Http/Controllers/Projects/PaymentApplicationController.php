@@ -62,7 +62,8 @@ class PaymentApplicationController extends Controller {
           else {
             $query = DB::table('project_payment_application')
             ->leftJoin('projects', 'project_payment_application.ppa_project_id', '=', 'projects.p_id')
-            ->select('project_payment_application.*', 'projects.*')
+            ->leftJoin('documents', 'project_payment_application.ppa_invoice_doc_id', '=', 'documents.doc_id')
+            ->select('project_payment_application.*', 'projects.p_id','projects.p_name','documents.doc_path')
             ->where('ppa_project_id', '=', $project_id)
             ->orderBy('project_payment_application.ppa_id','ASC')
             ->get();
@@ -107,7 +108,9 @@ class PaymentApplicationController extends Controller {
           // else {
             $query = DB::table('project_payment_application_detail')
             ->leftJoin('project_bid_items', 'project_payment_application_detail.ppd_item_id', '=', 'project_bid_items.pbi_id')
-            ->select('project_payment_application_detail.*', 'project_bid_items.*')
+            ->leftJoin('project_payment_application', 'project_payment_application.ppa_id', '=', 'project_payment_application_detail.ppd_report_id')
+            ->leftJoin('documents', 'project_payment_application.ppa_invoice_doc_id', '=', 'documents.doc_id')
+            ->select('project_payment_application_detail.*', 'project_bid_items.*','documents.doc_path','project_payment_application.*')
             ->where('ppd_report_id', '=', $report_id)
             ->get();
             if(count($query) < 1)
@@ -227,4 +230,49 @@ class PaymentApplicationController extends Controller {
         }
     }
 
+    /*
+  --------------------------------------------------------------------------
+   Update payment application
+  --------------------------------------------------------------------------
+  */
+  public function update_payment_application(Request $request, $report_id)
+  {
+    try
+    {
+        $project_id   = $request['project_id'];
+        $user_id      = Auth::user()->id;
+        $ppa_invoice_date  = $request['ppa_invoice_date'];
+        $ppa_invoice_no  = $request['ppa_invoice_no'];
+        $ppa_invoice_doc_id  = $request['ppa_invoice_doc_id'];
+        
+        // Check User Permission Parameter 
+        $user_id = Auth::user()->id;
+        $permission_key = 'payment_application_view_all';
+        $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
+        if(count($check_single_user_permission) < 1){
+          $result = array('code'=>403, "description"=>"Access Denies");
+          return response()->json($result, 403);
+        }
+      else {
+          $query = DB::table('project_payment_application')
+          ->where('ppa_id', '=', $report_id)
+          ->update(['paid'=>$request['paid'],'ppa_invoice_date'=>$ppa_invoice_date,'ppa_invoice_no'=>$ppa_invoice_no,'ppa_invoice_doc_id'=>$ppa_invoice_doc_id]);
+          if(count($query) < 1)
+          {
+            $result = array('code'=>400, "description"=>"No records found");
+            return response()->json($result, 400);
+          }
+          else
+          {
+            $result = array('data'=>$query,'code'=>200);
+            return response()->json($result, 200);
+          }
+        
+      }
+    }
+    catch(Exception $e)
+    {
+      return response()->json(['error' => 'Something is wrong'], 500);
+    }
+  }
 }

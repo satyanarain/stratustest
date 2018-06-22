@@ -31,7 +31,7 @@
 
                                           <thead>
                                           <tr>
-                                              <th>Bid Item</th>
+                                              <th>Contract Item</th>
                                               <th>Description</th>
                                               <th>Unit</th>
                                               <th>QTY</th>

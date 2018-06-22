@@ -80,11 +80,26 @@ $(document).ready(function() {
             // Foreach Loop
             var count = 1;
             jQuery.each( data.data, function( i, val ) {
+                var doc_path = val.doc_path;
+                var doc_path_value;
+                if(doc_path == null){
+                    doc_path_value = '';
+                }
+                else {
+                    doc_path_value = '<td><a href="'+baseUrl+val.doc_path+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" alt="'+val.doc_path+'" width="40"/></a></td>';
+                                        
+                }
+                var action = '<a href="'+baseUrl+'dashboard/'+val.ppa_project_id+'/payment_application/'+val.ppa_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>';
+                action+='<a href="'+baseUrl+'dashboard/'+val.ppa_project_id+'/payment_application/'+val.ppa_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
                 var t = $('#view_users_table').DataTable();
                 t.row.add([
                     count, // val.ppa_id,
                     val.ppa_month_name,
-                    '<a href="'+baseUrl+'dashboard/'+val.ppa_project_id+'/payment_application/'+val.ppa_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>'
+                    val.ppa_invoice_no,
+                    ReplaceNumberWithCommas(val.ppa_amount),
+                    val.paid,
+                    doc_path_value,
+                    action,
                 ]).draw( false );
                 count++;
             });

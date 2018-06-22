@@ -76,18 +76,20 @@ $(document).ready(function() {
                     }
                 ]
             });
-
+            
             $("#view_users_table_wrapper tbody tr").hide();
             // Foreach Loop
             var count = 1;
             jQuery.each( data.data, function( i, val ) {
+                var action = '<a href="'+baseUrl+'dashboard/'+val.ppq_project_id+'/payment_quantity_verification/'+val.ppq_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>';
+            if(val.approval_status=="Pending")
+                        action+='<a href="'+baseUrl+'dashboard/'+val.ppq_project_id+'/payment_quantity_verification/'+val.ppq_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
                 var t = $('#view_users_table').DataTable();
                 t.row.add([
                     count, //val.ppq_id,
                     val.ppq_month_name,
                     val.approval_status,
-                    '<a href="'+baseUrl+'dashboard/'+val.ppq_project_id+'/payment_quantity_verification/'+val.ppq_id+'" class="btn btn-info btn-xs tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" style="margin-right:5px;"><i class="fa fa-search"></i></a>'
-                    +'<a href="'+baseUrl+'dashboard/'+val.ppq_project_id+'/payment_quantity_verification/'+val.ppq_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>'
+                    action,
                 ]).draw( false );
                 count++;
             });

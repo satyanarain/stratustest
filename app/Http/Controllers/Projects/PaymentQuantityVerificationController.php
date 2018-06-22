@@ -68,8 +68,8 @@ class PaymentQuantityVerificationController extends Controller {
           $query = ProjectPaymentQuantityVerification::create(['ppq_month_name' => $month_name, 'ppq_project_id' => $project_id,'approval_status'=>'Pending']);
           $item_inserted_id = $query->id;
 
-          $query_project = ProjectPaymentApplication::create(['ppa_month_name' => $month_name, 'ppa_project_id' => $project_id]);
-          $payment_application_inserted_id = $query_project->id;
+          //$query_project = ProjectPaymentApplication::create(['ppa_month_name' => $month_name, 'ppa_project_id' => $project_id]);
+          //$payment_application_inserted_id = $query_project->id;
 
           // GET DAILY QUANTITY TOTAL
           $fetch_daily_quantity = DB::table('project_daily_quantity_completed')
@@ -124,8 +124,8 @@ class PaymentQuantityVerificationController extends Controller {
               $add_project = DB::table('project_payment_quantity_verification_detail')
               ->insert(['pqv_item_id' => $item_id, 'pqv_previous_qty' => $previous_quantity, 'pqv_month_qty' => $month_qty, 'pqv_latest_qty' => $latest_qty, 'pqv_report_id' => $item_inserted_id, 'pqv_project_id' => $project_id]);
 
-              $add_project_payment_application = DB::table('project_payment_application_detail')
-              ->insert(['ppd_item_id' => $item_id, 'ppd_previous_qty' => $previous_quantity, 'ppd_month_qty' => $month_qty, 'ppd_report_id' => $payment_application_inserted_id, 'ppd_project_id' => $project_id]);
+              //$add_project_payment_application = DB::table('project_payment_application_detail')
+              //->insert(['ppd_item_id' => $item_id, 'ppd_previous_qty' => $previous_quantity, 'ppd_month_qty' => $month_qty, 'ppd_report_id' => $payment_application_inserted_id, 'ppd_project_id' => $project_id]);
 
               if(count($add_project) < 1)
               {
@@ -591,7 +591,6 @@ class PaymentQuantityVerificationController extends Controller {
     public function update_approval_status(Request $request, $project_id, $report_id)
     {
         $approval_status       = $request['approval_status'];
-        $project_id             = $request['project_id'];
         $user_id                = Auth::user()->id;
         $user_id = Auth::user()->id;
         
@@ -605,8 +604,61 @@ class PaymentQuantityVerificationController extends Controller {
         }
         else
         {
-          $result = array('data'=>$query,'code'=>200);
-          return response()->json($result, 200);
+            $report = DB::table('project_payment_quantity_verification')
+            ->select('project_payment_quantity_verification.*')
+            ->where('ppq_id', '=', $report_id)
+            ->first();
+            
+            $query_project = ProjectPaymentApplication::create(['ppa_month_name' => $report->ppq_month_name, 'ppa_project_id' => $report->ppq_project_id]);
+            $payment_application_inserted_id = $query_project->id;
+            
+            $pay_apps = DB::table('project_payment_quantity_verification_detail')
+            ->select('project_payment_quantity_verification_detail.*')
+            ->where('pqv_report_id', '=', $report_id)
+            ->get();
+            $ppa_amount = 0;
+            
+            foreach($pay_apps as $pay_app)
+            {
+                $item = DB::table('project_bid_items')
+                    ->select('pbi_item_unit_price')
+                    ->where('pbi_id', '=', $pay_app->pqv_item_id)
+                    ->first();
+                $ppa_amount += $item->pbi_item_unit_price*$pay_app->pqv_month_qty;
+                $add_project_payment_application = DB::table('project_payment_application_detail')
+              ->insert(['ppd_item_id' => $pay_app->pqv_item_id, 'ppd_previous_qty' => $pay_app->pqv_previous_qty, 'ppd_month_qty' => $pay_app->pqv_month_qty, 'ppd_report_id' => $payment_application_inserted_id, 'ppd_project_id' => $project_id]);
+            }
+            $query = DB::table('project_payment_application')
+                        ->where('ppa_id', '=', $payment_application_inserted_id)
+                        ->update(['ppa_amount' => $ppa_amount]);
+            $project = DB::table('projects')
+                        ->leftJoin('users', 'projects.p_user_id', '=', 'users.id')
+                        ->select('projects.*','users.*')
+                        ->where('p_id', '=', $project_id)
+                        ->first();  
+            $notification_title   = 'The pay application is ready for your review and approval in project '.$project->p_name.'. Please complete at your earliest convenience so the owner can process for payment.';
+            $url                  = App::make('url')->to('/');
+            $link                 = "/dashboard/".$project->p_id."/payment_application_monthly";
+            $date                 = date("M d, Y h:i a");
+            $email_description    = 'The pay application is ready for your review and approval in project <strong>'.$project->p_name.'</strong>. Please complete at your earliest convenience so the owner can process for payment. <a href="'.$url.$link.'"> Click Here to see </a>';
+            $user_detail = array(
+                'id'              => $project->id,
+                'name'            => $project->username,
+                'email'           => $project->email,
+                'link'            => $link,
+                'date'            => $date,
+                'project_name'    => $project->p_name,
+                'title'           => $notification_title,
+                'description'     => $email_description
+            );
+            $user_single = (object) $user_detail;
+            //print_r($user_single);
+            Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                $message->from('no-reply@sw.ai', 'StratusCM');
+                $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+            });
+            $result = array('data'=>$query,'code'=>200);
+            return response()->json($result, 200);
         }
     }
 }

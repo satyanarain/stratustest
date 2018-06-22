@@ -343,6 +343,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('{project_id}/notice-completion', 'Projects\NoticeCompletionController@get_notice_completion_project');
 });
 Route::get('send_overdue_noc_notification', 'Projects\NoticeCompletionController@send_overdue_noc_notification');
+Route::get('send_pay_quantity_verification_notification', 'Projects\NotificationController@send_pay_quantity_verification_notification');
 /**** NOTICE OF COMPLETION ****/
 Route::get('dashboard/{project_id}/notice_completion/add', function () {
     return view('/notice_completion/notice_completion_add');
@@ -936,6 +937,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('{project_id}/payment-application-complete-report', 'Projects\PaymentApplicationController@get_payment_application_complete_report');
     Route::get('payment-application-detail-report/{report_id}', 'Projects\PaymentApplicationController@get_payment_application_detail_report');
     Route::get('payment-application-report-name/{report_id}', 'Projects\PaymentApplicationController@get_payment_application_report_name');
+    Route::post('payment-application-report-name/{report_id}/update', 'Projects\PaymentApplicationController@update_payment_application');
 });
 /**** PAYMENT APPLICATION VIEW ****/
 Route::get('dashboard/{project_id}/payment_application_monthly', function () {
@@ -946,6 +948,9 @@ Route::get('dashboard/{project_id}/payment_application_complete', function () {
 });
 Route::get('dashboard/{project_id}/payment_application/{report_id}', function () {
     return view('payment_application/payment_application_single');
+});
+Route::get('dashboard/{project_id}/payment_application/{report_id}/update', function () {
+    return view('/payment_application/payment_application_update');
 });
 
 /*  --------------------------------------------------------------------------

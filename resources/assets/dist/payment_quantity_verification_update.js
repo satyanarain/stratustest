@@ -66,6 +66,8 @@ $(document).ready(function() {
         cache: false
     })
     .done(function(data, textStatus, jqXHR) {
+        if(data.data[0].approval_status=="Approved")
+                window.location.href = baseUrl + "dashboard/"+project_id+"/payment_quantity_verification_monthly";
         $('#month_name').text(data.data[0].ppq_month_name);
         if(data.data[0].approval_status=="Approved")
             $("#approval_status").attr('checked',true);
@@ -276,6 +278,7 @@ $(document).ready(function() {
                 setTimeout(function()
                 {
                     $("#alert_message").hide();
+                    window.location.href = baseUrl + "dashboard/"+project_id+"/payment_quantity_verification_monthly";
                 },5000)
             })
             .fail(function(jqXHR, textStatus, errorThrown) {

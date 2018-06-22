@@ -623,4 +623,71 @@ class NotificationController extends Controller {
         //print_r($request);
         die;
     }
+    
+    
+  public function send_pay_quantity_verification_notification(Request $request)
+  {
+        try
+        {
+            //echo '<pre>';
+            $projects = DB::table('projects')
+            ->select()
+            ->where('p_status', '=', 'active')
+            ->get();
+            //echo '<pre>';print_r($projects);die;
+            foreach($projects as $project)
+            {
+                $project_id           = $project->p_id;
+                //echo '<pre>';print_r($project);die;
+                
+                //DB::enableQueryLog();
+                if($project->pqv_notification_date==date("d"))
+                {
+                    $cms = DB::table('project_contact')
+                            ->leftJoin('users', 'project_contact.c_user_id', '=', 'users.id')
+                            ->select('users.*')
+                            ->where('project_contact.c_project_id', '=', $project_id)
+                            ->where('users.user_role', '=', "Construction Manager")
+                            ->get();
+                    foreach($cms as $cm)
+                    {       
+                        $notification_title   = 'Your verification of pay quantities in project '.$project->p_name.' needs your review and approval before final invoicing so said pay period can be generated.';
+                        $url                  = App::make('url')->to('/');
+                        $link                 = "/dashboard/".$project->p_id."/payment_quantity_verification_monthly";
+                        $date                 = date("M d, Y h:i a");
+                        $email_description    = 'Your verification of pay quantities in project <strong>'.$project->p_name.'</strong> needs your review and approval before final invoicing so said pay period can be generated. <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $user_detail = array(
+                            'id'              => $cm->id,
+                            'name'            => $cm->username,
+                            'email'           => $cm->email,
+                            'link'            => $link,
+                            'date'            => $date,
+                            'project_name'    => $project->p_name,
+                            'title'           => $notification_title,
+                            'description'     => $email_description
+                        );
+                        $user_single = (object) $user_detail;
+                        print_r($user_single);
+                        Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                            $message->from('no-reply@sw.ai', 'StratusCM');
+                            $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                        });
+                        if(count($review) < 1)
+                        {
+                          $result = array('code'=>404, "description"=>"No Records Found");
+                        }
+                    }
+                }
+            }
+            $result = array('description'=>'Notification sent successfully','code'=>200);
+            return response()->json($result, 200);
+        }
+        catch(Exception $e)
+        {
+          return response()->json(['error' => 'Something is wrong'], 500);
+        }
+  }
+  
+  
+    
 }

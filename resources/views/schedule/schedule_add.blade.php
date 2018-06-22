@@ -61,7 +61,7 @@
                                 
                                 
                                 <div class="col-sm-6">
-                                    <label>Report Date  <span class="text-danger">*</span></label>
+                                    <label>Schedule Date  <span class="text-danger">*</span></label>
                                     <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
                                             <input type="text" readonly="" value="" size="16" class="form-control"  id="date_of_schedule">
                                               <span class="input-group-btn add-on">

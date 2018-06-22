@@ -32,6 +32,10 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Report Name</th>
+                                                    <th>Invoice #</th>
+                                                    <th>Amount</th>
+                                                    <th>Paid</th>
+                                                    <th>PDF</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
