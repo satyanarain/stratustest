@@ -122,7 +122,7 @@
             var change_order_due_date = data.data.change_order_due_date;
             $('#change_order_due_date').val(change_order_due_date);
             $('#pqv_notification_date').val(data.data.pqv_notification_date);
-            $('#pay_app_notification_date').val(data.data.pay_app_notification_date);
+            //$('#pay_app_notification_date').val(data.data.pay_app_notification_date);
             var change_order_days_type = data.data.change_order_days_type;
             $('#change_order_days_type').val(change_order_days_type);
 
@@ -213,7 +213,7 @@
         var change_order_days_type      = $('#change_order_days_type').val();
         // var project_terms       = $("input[name='project_terms']:checked"). val();
         var pqv_notification_date       = $('#pqv_notification_date').val();
-        var pay_app_notification_date   = $('#pay_app_notification_date').val();
+        //var pay_app_notification_date   = $('#pay_app_notification_date').val();
         
         var token = localStorage.getItem('u_token');
         project_type = JSON.stringify(project_type);
@@ -241,7 +241,7 @@
                 "change_order_due_date" : change_order_due_date,
                 "change_order_days_type" : change_order_days_type,
                 "pqv_notification_date" : pqv_notification_date,
-                "pay_app_notification_date" : pay_app_notification_date,
+                //"pay_app_notification_date" : pay_app_notification_date,
             },
             headers: {
               "x-access-token": token

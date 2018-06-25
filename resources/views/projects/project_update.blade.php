@@ -240,7 +240,7 @@
                                            </select></td>
                                        <td> </td>
                                      </tr>
-                                     <tr>
+<!--                                     <tr>
                                        <td>Pay Applications <span class="text-danger">*</span></td>
                                        <td><select id="pay_app_notification_date" name="pay_app_notification_date">
                                                <?php 
@@ -249,7 +249,7 @@
                                                ?>
                                            </select></td>
                                        <td></td>
-                                     </tr>
+                                     </tr>-->
                                    </table>
                                  </div>
 
