@@ -570,6 +570,7 @@ class ProjectController extends Controller {
     $query3 = DB::table('project_weekly_reports')
 	->select('project_weekly_reports.*')
 	->where('pwr_project_id', '=', $project_id)
+        ->where('pwr_report_status','=','complete')
 	->orderBy('pwr_id', 'desc')
     	->first();
     if($query3)
