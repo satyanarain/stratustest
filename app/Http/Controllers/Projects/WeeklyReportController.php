@@ -255,11 +255,10 @@ class WeeklyReportController extends Controller {
                 $notification_title   = "Weekly report # ".$report_id." updated in Project: ".$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
                 if($report_type=="calendar_day"){
-                    $link                 = "/dashboard/".$project_id."/weekly_statement/".$report_id.'/update';
+                    $link                 = "/dashboard/".$project_id."/weekly_statement/".$report_id;
                   }else{
-                    $link                 = "/dashboard/".$project_id."/weekly_statement_week/".$report_id.'/update';
+                    $link                 = "/dashboard/".$project_id."/weekly_statement_week/".$report_id;
                   }
-                $link                 = "/dashboard/".$project_id."/weekly_statement/".$report_id;
                 $date                 = date("M d, Y h:i a");
                 $email_description    = 'A weekly report # '.$report_id.' has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
