@@ -103,7 +103,7 @@
             <td id="" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align: right; vertical-align: middle;">Working Days Previously Reported::</td>
+            <td colspan="2" style="text-align: right; vertical-align: middle;">Working Days Previously Reported:</td>
             <td id="calendar_previous_days_app_calender" style="text-align: center; font-weight: 600; vertical-align: middle;">0</td>
             
             <td id="" style="text-align: center; font-weight: 600; vertical-align: middle;"></td>
