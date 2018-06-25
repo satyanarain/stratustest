@@ -544,7 +544,7 @@ class ProjectController extends Controller {
                 $total += $row->pcd_unit_number * $row->pcd_unit_price;
             else
                 $total += $row->pcd_price;
-        }elseif($row->pcd_status=="pending"){
+        }elseif($row->pcd_status=="pending" || $row->pcd_status=="past_due"){
             $count1++;
             if($row->pcd_unit_number)
                 $total1 += $row->pcd_unit_number * $row->pcd_unit_price;
