@@ -159,6 +159,7 @@ $(document).ready(function() {
         $('#time_extension').val(data.data.pwr_time_extension);
         $('#remark_report').val(data.data.pwr_remarks);
         $('#type_name').val(data.data.pwr_type_name);
+        $('#report_type').val(data.data.report_type);
     })
     .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
@@ -703,7 +704,8 @@ $('#update_weekly_report').click(function(e) {
             "days_previous_report_app_calender"       : $('#days_previous_report_app_calender').val(),
             "days_previous_report_app_non_calender"       : $('#days_previous_report_app_non_calender').val(),
             "remark_report"        : remark_report,
-            "type_name"            : type_name
+            "type_name"            : type_name,
+            "report_type"           : $('#report_type').val(),
         },
         headers: {
             "x-access-token": token

@@ -115,8 +115,12 @@ class WeeklyReportController extends Controller {
               $project_id           = $project_id;
               $notification_title   = "Weekly report added in Project: " .$check_project_user->p_name;
               $url                  = App::make('url')->to('/');
-              $link                 = "/dashboard/".$project_id."/weekly_statement/".$add_weekly_report->id.'/update';
-              $date                 = date("M d, Y h:i a");
+              if($project_notice_proceed->pnp_cal_day=="calendar_day"){
+                $link                 = "/dashboard/".$project_id."/weekly_statement/".$add_weekly_report->id.'/update';
+              }else{
+                $link                 = "/dashboard/".$project_id."/weekly_statement_week/".$add_weekly_report->id.'/update';
+              }
+            $date                 = date("M d, Y h:i a");
               $email_description    = 'A weekly report has been added for week ending: '.$current_date.' in Project: <strong>'.$check_project_user->p_name.'</strong>. <a href="'.$url.$link.'"> Click Here to see </a>';
 
               $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
@@ -196,7 +200,7 @@ class WeeklyReportController extends Controller {
           $days_this_report_app_non_calender              = $request['days_this_report_app_non_calender'];
           $days_previous_report_app_calender              = $request['days_previous_report_app_calender'];
           $days_previous_report_app_non_calender              = $request['days_previous_report_app_non_calender'];
-
+          $report_type              = $request['report_type'];
       // Check User Permission Parameter 
       $user_id = Auth::user()->id;
       $permission_key = 'weekly_report_update';
@@ -250,6 +254,11 @@ class WeeklyReportController extends Controller {
                 //$notification_title   = "Update Weekly report # ".$report_id." in Project: " .$check_project_user->p_name;
                 $notification_title   = "Weekly report # ".$report_id." updated in Project: ".$check_project_user->p_name;
                 $url                  = App::make('url')->to('/');
+                if($report_type=="calendar_day"){
+                    $link                 = "/dashboard/".$project_id."/weekly_statement/".$add_weekly_report->id.'/update';
+                  }else{
+                    $link                 = "/dashboard/".$project_id."/weekly_statement_week/".$add_weekly_report->id.'/update';
+                  }
                 $link                 = "/dashboard/".$project_id."/weekly_statement/".$report_id;
                 $date                 = date("M d, Y h:i a");
                 $email_description    = 'A weekly report # '.$report_id.' has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';

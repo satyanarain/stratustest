@@ -75,7 +75,7 @@
         <p style="margin: 0px;"><strong>Report No:</strong> <span id="report_id"></span></p>
         <p><strong>Week Ending:</strong> <span id="week_ending"></span></p>
     </div>
-
+    <input type="hidden" name="report_type" id="report_type">                                    
     <table class="table">
         <thead>
         <tr>
