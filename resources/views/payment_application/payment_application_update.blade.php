@@ -57,7 +57,7 @@
                                          <div class="clearfix"></div>
                                      </div>
                                     <div class="col-sm-6">
-                                       <label class="upload_exist" >Upload Recorded Notice of Completion</label>
+                                       <label class="upload_exist" >Upload Invoice Document</label>
                                         <form id="my-awesome-dropzone1" action="{{ url('/document/uploadFiles') }}" class="dropzone" class="upload_exist"  style="display: block;">
                                             <input type="hidden" name="document_path" value="/uploads/payapps/">
                                         </form>

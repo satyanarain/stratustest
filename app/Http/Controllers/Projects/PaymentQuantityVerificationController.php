@@ -636,11 +636,11 @@ class PaymentQuantityVerificationController extends Controller {
                         ->select('projects.*','users.*')
                         ->where('p_id', '=', $project_id)
                         ->first();  
-            $notification_title   = 'The pay application is ready for your review and approval in project '.$project->p_name.'. Please complete at your earliest convenience so the owner can process for payment.';
+            $notification_title   = 'The pay application for '.$report->ppq_month_name.' is ready for your review and approval in project '.$project->p_name.'.';
             $url                  = App::make('url')->to('/');
             $link                 = "/dashboard/".$project->p_id."/payment_application_monthly";
             $date                 = date("M d, Y h:i a");
-            $email_description    = 'The pay application is ready for your review and approval in project <strong>'.$project->p_name.'</strong>. Please complete at your earliest convenience so the owner can process for payment. <a href="'.$url.$link.'"> Click Here to see </a>';
+            $email_description    = 'The pay application for '.$report->ppq_month_name.' is ready for your review and approval in project <strong>'.$project->p_name.'</strong>. Please complete at your earliest convenience so the Owner can process for payment. <a href="'.$url.$link.'"> Click Here to see </a>';
             $user_detail = array(
                 'id'              => $project->id,
                 'name'            => $project->username,
