@@ -197,7 +197,7 @@
         <p><em>* Do not count a "Calendar" day for the Notice to Proceed ("NTP") date.  Holiday's are counted as a Calendar day on the "Calendar Statement" </em></p>
         <p><em>1. When recording nonworking days due to weather, state the reason why the day is unworkable when the weather description itself does not adequately describe conditions.  For example, "clear-wet grade" to describe conditions when the weather is clear, but the grade is too wet to work.  Do not list days merely as "unworkable", but describe thoroughly (i.e. "muddy and wet conditions".  Weather days are noted with a "0" in this column and entered as a "1" in the "Rain Days | Weather" column.</em></p>
         <p><em>2. Enter days on which no productive work has been performed on the controlling operation(s) for reasons other than weather.  Noted with a "1" for a qualified non-working day or a "0" if it does not.</em></p>
-        <p><em>3. Type in a "1" for any and all days that are due to weather conditions (i.e. "rain" days).  These days do not get added to the total "Calendar" days for the scope of work being performed, but only extends the completion date (line item 13) by said number of "Rain days | Weather".</em></p>
+        <p><em>3. Type in a "1" for any and all days that are due to weather conditions (i.e. "rain" days).  These days do not get added to the total "Calendar" days for the scope of work being performed, but only extends the completion date by said number of "Rain days | Weather".</em></p>
         <p><em>4. List the numbered change order that is providing the time extension(s) (i.e. if change order number 1, type in "1.0").</em></p>
     </div>
        <div class="col-sm-12">
