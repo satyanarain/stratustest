@@ -128,7 +128,7 @@
                            date_of_schedule,
                            custom_cert_path_value,
                            status,
-		           update_permission + view_single
+		           view_single+update_permission
 		       	]).draw( false );
 		       	count++;
 			});

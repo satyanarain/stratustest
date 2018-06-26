@@ -48,7 +48,7 @@
 <!--                                        <a data-href="{{ url('/dashboard/'.$project_id.'/schedule') }}" class="btn btn-info sub-btn back_button" data-toggle="modal" data-target="#confirm-back">Back</a>-->
                                         <a href="{{ url('/dashboard/'.$project_id.'/schedule') }}" class="btn btn-info sub-btn btn_back1">Back</a>
                                         <button type="submit" class="btn btn-info sub-btn" id="update_built_form">Save</button>
-                                        <a href="{{ url('/dashboard/'.$project_id.'/notice_completion') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
+<!--                                        <a href="{{ url('/dashboard/'.$project_id.'/notice_completion') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>-->
                                         <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
                                     </div>
 
