@@ -540,16 +540,24 @@ class ProjectController extends Controller {
         if(($row->pcd_approved_by_cm!="0000-00-00") && ($row->pcd_approved_by_owner!="0000-00-00"))
         {
             $count++;
-            if($row->pcd_unit_number)
+            if($row->pcd_unit_number && $row->pcd_days>=0)
                 $total += $row->pcd_unit_number * $row->pcd_unit_price;
-            else
+            elseif($row->pcd_unit_number && $row->pcd_days<0)
+                $total -= $row->pcd_unit_number * $row->pcd_unit_price;
+            elseif($row->pcd_price && $row->pcd_days>=0)
                 $total += $row->pcd_price;
+            elseif($row->pcd_price && $row->pcd_days<0)
+                $total -= $row->pcd_price;
         }elseif($row->pcd_status=="pending" || $row->pcd_status=="past_due"){
             $count1++;
-            if($row->pcd_unit_number)
+            if($row->pcd_unit_number && $row->pcd_days>=0)
                 $total1 += $row->pcd_unit_number * $row->pcd_unit_price;
-            else
+            elseif($row->pcd_unit_number && $row->pcd_days<0)
+                $total1 -= $row->pcd_unit_number * $row->pcd_unit_price;
+            elseif($row->pcd_price && $row->pcd_days>=0)
                 $total1 += $row->pcd_price;
+            elseif($row->pcd_price && $row->pcd_days<0)
+                $total1 -= $row->pcd_price;
         }
     }
     $info['total_change_order_count'] = $count;

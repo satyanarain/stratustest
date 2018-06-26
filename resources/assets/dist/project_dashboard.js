@@ -1369,9 +1369,9 @@ $(document).ready(function() {
 			        }
                                 if(val.pcd_status=="past_due"){
                                     var approved_status = '';
-                                }else if((val.pcd_approved_by_cm != null && val.pcd_approved_by_cm != "0000-00-00") && (val.pcd_approved_by_owner != null && val.pcd_approved_by_owner != "0000-00-00")){
+                                }else if(val.pcd_approved_by_cm != "0000-00-00" && val.pcd_approved_by_owner != "0000-00-00"){
                                     var approved_status = '<span class="label label-success">APPROVED</span>';
-                                }else if((val.pcd_denied_by_cm != null && val.pcd_denied_by_cm != "0000-00-00") && (val.pcd_denied_by_owner != null && val.pcd_denied_by_owner != "0000-00-00")){
+                                }else if(val.pcd_denied_by_cm != "0000-00-00" || val.pcd_denied_by_owner != "0000-00-00"){
                                     var approved_status = '<span class="label label-danger">DENIED</span>';
                                 }else{
                                     var approved_status = '';
@@ -1438,15 +1438,15 @@ $(document).ready(function() {
                                     counts++;
                                 }else{
                                     
-                                    if((val.pcd_approved_by_cm == false || 
-                                        val.pcd_approved_by_cm == "0000-00-00") && 
-                                        (val.pcd_approved_by_owner == false || 
-                                        val.pcd_approved_by_owner == "0000-00-00") &&
-                                        (val.pcd_denied_by_owner == false || 
-                                        val.pcd_denied_by_owner == "0000-00-00") &&
-                                        (val.pcd_denied_by_cm == false || 
-                                        val.pcd_denied_by_cm == "0000-00-00")
-                                        ){
+//                                    if((val.pcd_approved_by_cm == false || 
+//                                        val.pcd_approved_by_cm == "0000-00-00") && 
+//                                        (val.pcd_approved_by_owner == false || 
+//                                        val.pcd_approved_by_owner == "0000-00-00") &&
+//                                        (val.pcd_denied_by_owner == false || 
+//                                        val.pcd_denied_by_owner == "0000-00-00") &&
+//                                        (val.pcd_denied_by_cm == false || 
+//                                        val.pcd_denied_by_cm == "0000-00-00")
+//                                        ){
 			                var oneDay = 24*60*60*1000;
 			                var future_date = new Date(val.pcd_timestamp);
 			                var futuredate = '';
@@ -1463,7 +1463,9 @@ $(document).ready(function() {
 			                var diffDays = Math.round(Math.abs((future_date.getTime() - now_date.getTime())/(oneDay)));
 			                if(val.pcd_status=="past_due"){
 			                    var potential_status = '<span class="label label-danger">PAST DUE</span>';
-			                }
+			                }else if((val.pcd_approved_by_cm != "0000-00-00" || val.pcd_denied_by_cm != "0000-00-00") && (val.pcd_approved_by_owner != "0000-00-00" || val.pcd_denied_by_owner != "0000-00-00")){
+                                            var potential_status = '';
+                                        }
 			                else {
 			                    seconds = Math.floor((futuredate - (nowdate))/1000);
 			                    minutes = Math.floor(seconds/60);
@@ -1474,11 +1476,11 @@ $(document).ready(function() {
 			                    seconds1 = seconds-(days*24*60*60)-(hours1*60*60)-(minutes1*60);
 			                    var potential_status = "<span class='label label-warning'>"+parseInt(days+1) +" Days Left to Respond</span>";
 			                }
-			            }
-			            else {
-			                    var potential_status = '<span class="label label-success">APPROVED</span>';
-			                    
-			            }
+			            //}
+//			            else {
+//			                    var potential_status = '<span class="label label-success">diAPPROVED</span>';
+//			                    
+//			            }
                                     
                                     if(val.pcd_price)
                                         var pcd_price = ReplaceNumberWithCommas(val.pcd_price);
@@ -1503,7 +1505,7 @@ $(document).ready(function() {
                                        rfi_final,
 			               val.currency_symbol +' '+  pcd_price,
 			               val.pcd_days,
-			               status_cm + status_owner+potential_status,
+			               status_cm + status_owner+approved_status+potential_status,
 			            ]).draw( false );
 			            count++;  
 			        }

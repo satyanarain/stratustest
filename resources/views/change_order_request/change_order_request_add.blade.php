@@ -104,7 +104,7 @@
             <div class="form-group clearfix m-b-40">
                 <label class="nopadleft col-sm-6 control-label mt-6">Total Requested Time in Days <span class="text-danger">*</span></label>
                 <div class="col-sm-6 nopadleft">
-                    <input type="text" class="form-control" name="item_request_time[]" placeholder="Days"  onkeypress="return isNumber(event)">
+                    <input type="text" class="form-control" name="item_request_time[]" placeholder="Days"  onkeypress="return isNumber1(event)">
                 </div>
             </div>
 
@@ -250,6 +250,15 @@
                 $('#'+id+' .item_unit').show();
             }
         });
+        function isNumber1(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            //alert(charCode);
+            if ((charCode >=48 && charCode <=57) || charCode === 45) {
+                return true;
+            }
+            return false;
+        }
    // });
 </script>
 @include('include/footer')
