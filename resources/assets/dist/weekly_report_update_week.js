@@ -531,14 +531,10 @@ $('#update_weekly_report').click(function(e) {
   $('.loading-submit').show();
     e.preventDefault();
     var project_id          = $('#project_id').val();
-    var time_extension          = 0;
+    var time_extension          = $('#time_extension').val();
     var remark_report           = $('#remark_report').val();
     var type_name               = $('#type_name').val();
     var token                   = localStorage.getItem('u_token');
-    console.log(time_extension);
-    console.log(remark_report);
-    console.log(type_name);
-
     var is_error = false;
 
     var html;
@@ -651,14 +647,10 @@ $('#update_weekly_report').click(function(e) {
         data: {
             "project_id"           : project_id,
             "time_extension"       : time_extension,
-//            "days_this_report_app_calender"       : $('#days_this_report_app_calender').val(),
-//            "days_this_report_app_non_calender"       : $('#days_this_report_app_non_calender').val(),
-//            "days_previous_report_app_calender"       : $('#days_previous_report_app_calender').val(),
-//            "days_previous_report_app_non_calender"       : $('#days_previous_report_app_non_calender').val(),
-            "days_this_report_app_calender"       : 0,
-            "days_this_report_app_non_calender"       : 0,
-            "days_previous_report_app_calender"       : 0,
-            "days_previous_report_app_non_calender"       : 0,
+            "days_this_report_app_calender"       : $('#days_this_report_app_calender').val(),
+            "days_this_report_app_non_calender"       : $('#days_this_report_app_non_calender').val(),
+            "days_previous_report_app_calender"       : $('#days_previous_report_app_calender').val(),
+            "days_previous_report_app_non_calender"       : $('#days_previous_report_app_non_calender').val(),
             "remark_report"        : remark_report,
             "type_name"            : type_name,
             "report_type"           : $('#report_type').val(),
