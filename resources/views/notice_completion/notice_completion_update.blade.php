@@ -60,9 +60,11 @@
                                         </select>
                                     </div>        
                                     
-                                    <div class="form-group col-md-12"><span class="label label-inverse"><b>Signed Notice of Completion</b></span></div>
+                                    
                                     
                                    <div class="form-group col-sm-6">
+                                       <div class="form-group col-sd-12"><span class="label label-inverse"><b>Signed Notice of Completion</b></span></div>
+                                       <div class="form-group col-sd-12">
                                         <label class="upload_exist">Date signed</label>
                                         <input type="text" readonly="" size="16" class="form-control"  id="date_signed">
 <!--                                         <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
@@ -71,7 +73,19 @@
                                                    <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
                                                  </span>
                                            </div>-->
+                                       </div>
+                                            <div class="clearfix"></div>
+                                           <div class="form-group col-sd-12"><span class="label label-inverse"><b>Recorded Notice of Completion</b></span></div>
+                                           <div class="col-sd-12">
+                                                <label class="upload_exist">Date Recorded</label>
+                                                 <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
+                                                       <input type="text" readonly="" value="" size="16" class="form-control"  id="date_recorded">
+                                                         <span class="input-group-btn add-on">
+                                                           <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                                                         </span>
+                                                   </div>
 
+                                             </div>
                                      </div>
                                     <div class="form-group col-sm-6">
 <!--                                       <label class="upload_exist" >Upload Signed Notice of Completion</label>
@@ -82,26 +96,19 @@
                                         <input type="hidden" name="signed_noc_id" id="signed_noc_id" value="">
                                         <input type="hidden" name="standard_upload" id="upload_doc_meta" value="notice_completion">
                                         <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $project_id; ?>">
-                                    </div>
-                                    
-                                    <div class="form-group col-md-12"><span class="label label-inverse"><b>Recorded Notice of Completion</b></span></div>
-                                    <div class="col-sm-6">
-                                        <label class="upload_exist">Date Recorded</label>
-                                         <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
-                                               <input type="text" readonly="" value="" size="16" class="form-control"  id="date_recorded">
-                                                 <span class="input-group-btn add-on">
-                                                   <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
-                                                 </span>
-                                           </div>
-
-                                     </div>
-                                    <div class="col-sm-6">
-                                       <label class="upload_exist" >Upload Recorded Notice of Completion</label>
+                                        
+                                        <label class="upload_exist" >Upload Recorded Notice of Completion</label>
                                         <form id="my-awesome-dropzone1" action="{{ url('/document/uploadFiles') }}" class="dropzone" class="upload_exist"  style="display: block;">
                                             <input type="hidden" name="document_path" value="/uploads/notice_completion/">
                                         </form>
                                         <input type="hidden" name="upload_type" id="upload_type" value="single_upload">
                                         <input type="hidden" name="recorded_doc_id" id="recorded_doc_id" value="">
+                                    </div>
+                                    
+                                    
+                                    
+                                    <div class="col-sm-6">
+                                       
                                         
                                     </div>
                                     <div class="clearfix"></div>

@@ -582,15 +582,15 @@ class ProjectController extends Controller {
 	->orderBy('pwr_id', 'desc')
     	->first();
     if($query3)
-        $info['contract_days_added'] = $query3->days_this_report_app_calender+$query3->days_previous_report_app_calender;
+        $info['contract_days_added'] = $query3->days_this_report_app_calender+$query3->days_this_report_app_non_calender+$query3->days_previous_report_app_calender+$query3->days_previous_report_app_non_calender;
     else
         $info['contract_days_added'] = 0;
     if($query2 && $query3)
-        $info['revised_contract_date'] = $query2->pnp_duration+$query3->days_this_report_app_calender+$query3->days_previous_report_app_calender;
+        $info['revised_contract_date'] = $query2->pnp_duration+$query3->days_this_report_app_calender+$query3->days_this_report_app_non_calender+$query3->days_previous_report_app_calender+$query3->days_previous_report_app_non_calender;
     elseif($query2)
         $info['revised_contract_date'] = $query2->pnp_duration;
     elseif($query3)
-        $info['revised_contract_date'] = $query3->days_this_report_app_calender+$query3->days_previous_report_app_calender;
+        $info['revised_contract_date'] = $query3->days_this_report_app_calender+$query3->days_this_report_app_non_calender+$query3->days_previous_report_app_calender+$query3->days_previous_report_app_non_calender;
     else
         $info['revised_contract_date'] = '';
     $query4 = DB::table('project_weekly_reports_days')
