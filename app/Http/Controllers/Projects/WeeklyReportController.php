@@ -390,7 +390,7 @@ class WeeklyReportController extends Controller {
       // } 
       // else {
         $query = DB::table('project_weekly_reports')
-->leftJoin('projects', 'project_weekly_reports.pwr_project_id', '=', 'projects.p_id')
+        ->leftJoin('projects', 'project_weekly_reports.pwr_project_id', '=', 'projects.p_id')
         ->select('project_weekly_reports.*', 'projects.*')
         ->where('pwr_id', '=', $report_id)
         ->first();
