@@ -134,7 +134,7 @@
             <td ></td>
         </tr>
  
-        <tr style="display: none">
+        <tr>
             <td colspan="2" style="vertical-align: middle;">5. <strong>Add:</strong> Time Extension / Change Orders <sup>4</sup> <span style="float: right;">Co No.:</span></td>
             <td><input type="text" class="form-control" id="time_extension"></td>
             <td></td>

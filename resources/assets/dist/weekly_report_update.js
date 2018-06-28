@@ -378,7 +378,12 @@ $(document).ready(function() {
         else
             total_day_approved_app_non_calender1 = 0;
         
-        $('#revised_total_calender').text(total_day_approved_app_non_calender1+notice_to_proceed_duration_day1+total_day_approved_app_calender1);
+        if(parseInt($('#time_extension').val()))
+            var time_extension = parseInt($('#time_extension').val());
+        else
+            var time_extension = 0;
+        
+        $('#revised_total_calender').text(time_extension+total_day_approved_app_non_calender1+notice_to_proceed_duration_day1+total_day_approved_app_calender1);
     ///console.log(total_day_approved_app_non_calender1+notice_to_proceed_duration_day1+total_day_approved_app_calender1);
 
         // Calendar day charged
@@ -415,7 +420,7 @@ $(document).ready(function() {
             var total_day_approved_app_calender1 = 0;
         var total_day_approved_app_non_calender1 = parseInt($('#total_day_approved_app_non_calender').text());
         var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
-        var total_days_plus = (parseInt(total_day_approved_app_calender1)+total_day_approved_app_non_calender1+day_due_to_rain1);
+        var total_days_plus = (time_extension+parseInt(total_day_approved_app_calender1)+total_day_approved_app_non_calender1+day_due_to_rain1);
         var result = new Date(date_final);
         if(result.getDate())
         {
@@ -503,7 +508,11 @@ $('#calendar_week_days').on('input', function() {
     var notice_to_proceed_duration_day1 = parseInt($('#notice_to_proceed_duration_day').text());
     var total_day_approved_app_calender1 = parseInt($('#total_day_approved_app_calender').text());
     var total_day_approved_app_non_calender1 = parseInt($('#total_day_approved_app_non_calender').text());
-    $('#revised_total_calender').text(parseInt(total_day_approved_app_non_calender1)+parseInt(notice_to_proceed_duration_day1)+parseInt(total_day_approved_app_calender1));
+    if(parseInt($('#time_extension').val()))
+            var time_extension = parseInt($('#time_extension').val());
+        else
+            var time_extension = 0;
+    $('#revised_total_calender').text(time_extension+parseInt(total_day_approved_app_non_calender1)+parseInt(notice_to_proceed_duration_day1)+parseInt(total_day_approved_app_calender1));
 
     // Calendar day charged
     $('#calendar_day_charged_app_calender').text(parseInt($('#calendar_total_days_app_calender').text()));
@@ -546,7 +555,7 @@ $('#calendar_week_days').on('input', function() {
         var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
     else
         var day_due_to_rain1 = 0;
-    var total_days_plus = (total_day_approved_app_calender1+total_day_approved_app_non_calender1+day_due_to_rain1);
+    var total_days_plus = (time_extension+total_day_approved_app_calender1+total_day_approved_app_non_calender1+day_due_to_rain1);
     var result = new Date(date_final);
     if(result.getFullYear())
     {
@@ -825,6 +834,29 @@ $('#create_weekly_report').click(function () {
 
 });
 
+$('#time_extension').on('input', function() {
+     var calendar_total_days_app_raily_day_new = parseInt($('#calendar_total_days_app_raily_day').text());
+    var notice_to_proceed_duration_day_new = parseInt($('#notice_to_proceed_duration_day').text());
+    var time_extension = parseInt($('#time_extension').val());  
+    $('#revised_total_calender').text(notice_to_proceed_duration_day_new+calendar_total_days_app_raily_day_new+time_extension);
+    var revised_total_calender = parseInt($('#revised_total_calender').text());
+    var calendar_day_charged_app_calender = parseInt($('#calendar_day_charged_app_calender').text());
+    var calendar_day_charged_app_non_calender = parseInt($('#calendar_day_charged_app_non_calender').text());
+    $('#revised_calendar_day_remaining').text(revised_total_calender-calendar_day_charged_app_calender-calendar_day_charged_app_non_calender);
+    
+    var date_final = $('#computed_completion_date').text();
+    var result = new Date(date_final);
+    if(result.getDate())
+    {
+        result.setDate(result.getDate() + time_extension);
+        var revised_completion_date = $.datepicker.formatDate('yy-mm-dd', new Date(result));
+        if(revised_completion_date!="NaN-NaN-NaN")
+            $('#revised_completion_date').text(revised_completion_date);
+    }else{
+        $('#revised_completion_date').text('');
+    }
+})
+
 
 function checkvalue( e ) {
         console.log(e);
@@ -916,7 +948,11 @@ function checkvalue1( e ){
     
     var total_day_approved_app_non_calender = parseInt($('#total_day_approved_app_non_calender').html());
     var notice_to_proceed_duration_day = parseInt($('#notice_to_proceed_duration_day').html());
-    var revised_total_calender = parseInt(total_day_approved_app_calender)+parseInt(total_day_approved_app_non_calender)+parseInt(notice_to_proceed_duration_day);
+    if(parseInt($('#time_extension').val()))
+            var time_extension = parseInt($('#time_extension').val());
+        else
+            var time_extension = 0;
+    var revised_total_calender = parseInt(time_extension+total_day_approved_app_calender)+parseInt(total_day_approved_app_non_calender)+parseInt(notice_to_proceed_duration_day);
     $("#revised_total_calender").text(revised_total_calender);
     
     var calendar_day_charged_app_calender = parseInt($('#calendar_day_charged_app_calender').html());
@@ -926,7 +962,7 @@ function checkvalue1( e ){
     
     var date_final = $('#computed_completion_date').text();
     var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
-    var total_days_plus = (parseInt(total_day_approved_app_calender)+total_day_approved_app_non_calender+day_due_to_rain1);
+    var total_days_plus = (time_extension+parseInt(total_day_approved_app_calender)+total_day_approved_app_non_calender+day_due_to_rain1);
     var result = new Date(date_final);
         if(result.getDate())
         {

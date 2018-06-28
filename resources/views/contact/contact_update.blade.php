@@ -540,12 +540,20 @@
                                 <input type="checkbox" class="read_only" name="permission_key[]" id="payment_quantity_verification_view_all" value="payment_quantity_verification_view_all">
                                 <label>Read only</label>
                         </div>
+                        <div class="col-sm-3 nopadleft">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="payment_quantity_verification_update" value="payment_quantity_verification_update">
+                                <label>Edit</label>
+                        </div>
                         <div class="clearfix"></div>
 
                         <h4>Payment Application</h4>
                         <div class="col-sm-3 nopadleft">
                                 <input type="checkbox" class="read_only" name="permission_key[]" id="payment_application_view_all" value="payment_application_view_all">
                                 <label>Read only</label>
+                        </div>
+                        <div class="col-sm-3 nopadleft">
+                                <input type="checkbox" class="non_read_only" name="permission_key[]" id="payment_application_update" value="payment_application_update">
+                                <label>Edit</label>
                         </div>
                         <div class="clearfix"></div>
 

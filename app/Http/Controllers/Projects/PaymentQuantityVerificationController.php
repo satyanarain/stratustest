@@ -536,7 +536,7 @@ class PaymentQuantityVerificationController extends Controller {
             //$status               = $request['status'];
             // Check User Permission Parameter 
             $user_id = Auth::user()->id;
-            $permission_key = 'meeting_minutes_update';
+            $permission_key = 'payment_quantity_verification_update';
             $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
             if(count($check_single_user_permission) < 1){
               $result = array('code'=>403, "description"=>"Access Denies");

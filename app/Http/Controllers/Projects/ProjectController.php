@@ -576,23 +576,18 @@ class ProjectController extends Controller {
     else
         $info['original_contract_date'] = '';
     $query3 = DB::table('project_weekly_reports')
-	->select('project_weekly_reports.*')
+	->select(DB::raw('SUM(pwr_time_extension) as pwr_time_extension'))
 	->where('pwr_project_id', '=', $project_id)
         ->where('pwr_report_status','=','complete')
 	->orderBy('pwr_id', 'desc')
-    	->first();
+    	->get();
     if($query3)
-        $info['contract_days_added'] = $query3->days_this_report_app_calender+$query3->days_this_report_app_non_calender+$query3->days_previous_report_app_calender+$query3->days_previous_report_app_non_calender;
+        $info['contract_days_added'] = $query3[0]->pwr_time_extension;
     else
         $info['contract_days_added'] = 0;
-    if($query2 && $query3)
-        $info['revised_contract_date'] = $query2->pnp_duration+$query3->days_this_report_app_calender+$query3->days_this_report_app_non_calender+$query3->days_previous_report_app_calender+$query3->days_previous_report_app_non_calender;
-    elseif($query2)
-        $info['revised_contract_date'] = $query2->pnp_duration;
-    elseif($query3)
-        $info['revised_contract_date'] = $query3->days_this_report_app_calender+$query3->days_this_report_app_non_calender+$query3->days_previous_report_app_calender+$query3->days_previous_report_app_non_calender;
-    else
-        $info['revised_contract_date'] = '';
+    
+    $info['revised_contract_date'] = $info['original_contract_date']+$info['contract_days_added'];
+    
     $query4 = DB::table('project_weekly_reports_days')
         ->select(DB::raw('SUM(pwrd_approved_calender_day) as contract_days_charged'))
         ->where('pwrd_project_id', '=', $project_id)

@@ -247,7 +247,7 @@ class PaymentApplicationController extends Controller {
         
         // Check User Permission Parameter 
         $user_id = Auth::user()->id;
-        $permission_key = 'payment_application_view_all';
+        $permission_key = 'payment_application_update';
         $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
         if(count($check_single_user_permission) < 1){
           $result = array('code'=>403, "description"=>"Access Denies");

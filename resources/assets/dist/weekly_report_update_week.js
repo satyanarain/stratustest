@@ -417,9 +417,10 @@ $(document).ready(function() {
         $('#calendar_day_charged_app_calender').text(parseInt($('#calendar_total_days_app_calender').text()));
         $('#calendar_day_charged_app_non_calender').text(parseInt(0));
         var day_due_to_rain1 = parseInt($('#day_due_to_rain').text());
-         var calendar_total_days_app_raily_day_new = parseInt($('#calendar_total_days_app_raily_day').text());
-          var notice_to_proceed_duration_day_new = parseInt($('#notice_to_proceed_duration_day').text());
-          $('#revised_contract_working_days').text(notice_to_proceed_duration_day_new+calendar_total_days_app_raily_day_new);
+        var calendar_total_days_app_raily_day_new = parseInt($('#calendar_total_days_app_raily_day').text());
+        var notice_to_proceed_duration_day_new = parseInt($('#notice_to_proceed_duration_day').text());
+        var time_extension = parseInt($('#time_extension').val());  
+        $('#revised_contract_working_days').text(notice_to_proceed_duration_day_new+calendar_total_days_app_raily_day_new+time_extension);
         // Revised Calendar Days Remaining in Contract
         var revised_total_calender1 = parseInt($('#revised_contract_working_days').text());
         var calendar_day_charged_app_calender1 = parseInt($('#calendar_day_charged_app_calender').text());
@@ -774,6 +775,15 @@ $('#create_weekly_report').click(function () {
 
 });
 
+$('#time_extension').on('input', function() {
+    var calendar_total_days_app_raily_day_new = parseInt($('#calendar_total_days_app_raily_day').text());
+    var notice_to_proceed_duration_day_new = parseInt($('#notice_to_proceed_duration_day').text());
+    var time_extension = parseInt($('#time_extension').val());  
+    $('#revised_contract_working_days').text(notice_to_proceed_duration_day_new+calendar_total_days_app_raily_day_new+time_extension);
+    var revised_total_calender1 = parseInt($('#revised_contract_working_days').text());
+    var calendar_day_charged_app_calender1 = parseInt($('#calendar_day_charged_app_calender').text());
+    $('#revised_calendar_day_remaining').text(revised_total_calender1-calendar_day_charged_app_calender1);
+})
 
 function checkvalue( e ) {
         

@@ -15,7 +15,7 @@ $(document).ready(function() {
     //alert(project_id);
     // Check Permission
     var check_user_access = JSON.parse(localStorage.getItem("access_permission"));
-    var check_permission = jQuery.inArray("preliminary_update", check_user_access );
+    var check_permission = jQuery.inArray("payment_quantity_verification_update", check_user_access );
     console.log(check_permission);
     if(check_permission < 1){
         window.location.href = baseUrl + "403";
