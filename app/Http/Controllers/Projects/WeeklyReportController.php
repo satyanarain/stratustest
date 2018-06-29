@@ -44,7 +44,7 @@ class WeeklyReportController extends Controller {
       ->select()
       ->where('p_status', '=', 'active')
       //->where('p_status', '!=', 'completed')
-      //->where('p_id', '=', '1')       
+      ->where('p_id', '=', '4')       
       ->get();
       //echo '<pre>';print_r($query);die;
       if(count($query) < 1)
@@ -84,7 +84,7 @@ class WeeklyReportController extends Controller {
              echo $countDays;
             //  die();
              
-            //DB::enableQueryLog();
+            DB::enableQueryLog();
              $start_month_date     = date('Y-m-d H:i:s', strtotime($current_date . ' -7 day')); 
              $corders = DB::table('project_change_order_request_detail')
                 ->select('project_change_order_request_detail.pcd_days')
@@ -94,9 +94,9 @@ class WeeklyReportController extends Controller {
                 ->whereBetween('pcd_timestamp', [$start_month_date, $current_date])
                  ->orderBy('pcd_timestamp','DESC')
                 ->get();
-            //dd(DB::getQueryLog());
+            dd(DB::getQueryLog());
             $pwr_time_extension = 0;
-            //print_r($corders);die;
+            print_r($corders);die;
             foreach($corders as $corder)
                 $pwr_time_extension += $corder->pcd_days;
             //echo 'pwr_time_extension---'.$pwr_time_extension.'---pwr_time_extension';die;
