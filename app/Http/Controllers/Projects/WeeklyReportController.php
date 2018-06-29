@@ -84,22 +84,22 @@ class WeeklyReportController extends Controller {
              echo $countDays;
             //  die();
              
-            DB::enableQueryLog();
+            //DB::enableQueryLog();
              $start_month_date     = date('Y-m-d H:i:s', strtotime($current_date . ' -7 day')); 
              $corders = DB::table('project_change_order_request_detail')
                 ->select('project_change_order_request_detail.pcd_days')
                 ->where('pcd_approved_by_cm', '!=', '0000-00-00')
                 ->where('pcd_approved_by_owner', '!=', '0000-00-00')
                 ->where('pcd_project_id', '=', $project_id)
-                ->whereBetween('pcd_timestamp', [$start_month_date, $current_date])
+                ->where('pcd_timestamp','>=', $start_month_date)
                  ->orderBy('pcd_timestamp','DESC')
                 ->get();
-            dd(DB::getQueryLog());
+            //dd(DB::getQueryLog());
             $pwr_time_extension = 0;
-            print_r($corders);die;
+            //print_r($corders);die;
             foreach($corders as $corder)
                 $pwr_time_extension += $corder->pcd_days;
-            //echo 'pwr_time_extension---'.$pwr_time_extension.'---pwr_time_extension';die;
+            echo 'pwr_time_extension---'.$pwr_time_extension.'---pwr_time_extension';die;
              
             $add_weekly_report = ProjectWeeklyReports::create(['pwr_time_extension'=>$pwr_time_extension,'pwr_project_id' => $project_id, 'pwr_week_ending' => $current_date, 'pwr_status' => 'active', 'pwr_status' => 'incomplete', 'report_type' => $project_notice_proceed->pnp_cal_day]);
             
