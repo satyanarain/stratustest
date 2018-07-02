@@ -286,6 +286,7 @@ $(document).ready(function()
                 $("#uname").removeAttr('value');
                 $("#email").removeAttr('value');
                 $("#pnum").removeAttr('value');
+                $("#user_role").removeAttr('value');
                 $("#company_name").removeAttr('value');
                 $("#fname").removeAttr('value');
                 $("#lname").removeAttr('value');

@@ -805,6 +805,10 @@
                         <input type="checkbox" name="notification_key[]" id="underground_service_alert" value="underground_service_alert">
                     </div>
                     <div class="form-group col-md-3">
+                        <label for="pay_applications">Pay Quantity Verification</label><br>
+                        <input type="checkbox" name="notification_key[]" id="pay_quantity_verification" value="pay_quantity_verification">
+                    </div>
+                    <div class="form-group col-md-3">
                         <label for="pay_applications">Pay Applications</label><br>
                         <input type="checkbox" name="notification_key[]" id="pay_applications" value="pay_applications">
                     </div>

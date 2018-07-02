@@ -261,7 +261,7 @@
         <a href="{{ url('/dashboard/'.$project_id.'/weekly_statement') }}" class="btn btn-info sub-btn btn_back1">Back</a>
         <button type="submit" id="update_weekly_report" class="btn btn-info sub-btn">Save</button>
         <!-- <a id="create_weekly_report" class="btn btn-info sub-btn">Create PDF</a> -->
-        <a href="{{ url('/dashboard/'.$project_id.'/bid_documents') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>
+<!--        <a href="{{ url('/dashboard/'.$project_id.'/bid_documents') }}" class="btn btn-info sub-btn continue_button" onclick="return checkFormFilled('continue_button')">Next Screen</a>-->
         <p class="loading-submit" style="display: none;">Loading<span>.</span><span>.</span><span>.</span></p>
     </div>
                             </div><!-- Row Close -->

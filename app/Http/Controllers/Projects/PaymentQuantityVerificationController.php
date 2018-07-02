@@ -193,7 +193,7 @@ class PaymentQuantityVerificationController extends Controller {
                 continue;
               }
               else {
-                    $notification_key     = 'pay_applications';
+                    $notification_key     = 'pay_quantity_verification';
                     $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($project_id,$user_id,$notification_key);
                     if(count($check_project_user_notification) < 1){
                       continue;

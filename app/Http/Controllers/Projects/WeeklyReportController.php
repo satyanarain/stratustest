@@ -44,7 +44,7 @@ class WeeklyReportController extends Controller {
       ->select()
       ->where('p_status', '=', 'active')
       //->where('p_status', '!=', 'completed')
-      ->where('p_id', '=', '4')       
+      //->where('p_id', '=', '4')       
       ->get();
       //echo '<pre>';print_r($query);die;
       if(count($query) < 1)
@@ -57,7 +57,8 @@ class WeeklyReportController extends Controller {
           //echo '<pre>';
           foreach ($query as $project) {
 
-          $current_date     = date('Y-m-d H:i:s');
+          $current_date     = date('Y-m-d');
+          $current_date_time     = date('Y-m-d H:i:s');
           $project_id       = $project->p_id;
 
             $project_notice_proceed = DB::table('project_notice_proceed')
@@ -85,7 +86,7 @@ class WeeklyReportController extends Controller {
             //  die();
              
             //DB::enableQueryLog();
-             $start_month_date     = date('Y-m-d H:i:s', strtotime($current_date . ' -7 day')); 
+             $start_month_date     = date('Y-m-d H:i:s', strtotime($current_date_time . ' -7 day')); 
              $corders = DB::table('project_change_order_request_detail')
                 ->select('project_change_order_request_detail.pcd_days')
                 ->where('pcd_approved_by_cm', '!=', '0000-00-00')
@@ -99,7 +100,7 @@ class WeeklyReportController extends Controller {
             //print_r($corders);die;
             foreach($corders as $corder)
                 $pwr_time_extension += $corder->pcd_days;
-            echo 'pwr_time_extension---'.$pwr_time_extension.'---pwr_time_extension';die;
+            //echo 'pwr_time_extension---'.$pwr_time_extension.'---pwr_time_extension';die;
              
             $add_weekly_report = ProjectWeeklyReports::create(['pwr_time_extension'=>$pwr_time_extension,'pwr_project_id' => $project_id, 'pwr_week_ending' => $current_date, 'pwr_status' => 'active', 'pwr_status' => 'incomplete', 'report_type' => $project_notice_proceed->pnp_cal_day]);
             

@@ -49,16 +49,58 @@
   <a href="{{ url('/resources/assets/pdf/Notice_of_Completion_Blank_Template.pdf') }}" class="btn btn-info sub-btn" target="_blank" style="float: right;">Print Blank NOC FORM</a>
 </div>
 <div class="clearfix"></div>
-                              <div class="col-sm-6 nopadleft">
-                                 <label class="upload_exist">Date signed</label>
-                                  <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
-                                        <input type="text" readonly="" value="" size="16" class="form-control"  id="date_signed">
-                                          <span class="input-group-btn add-on">
-                                            <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
-                                          </span>
+                                <div class="col-sm-6 nopadleft">
+                                    <div class="form-group">
+                                        <div class="col-sm-12 nopadleft">
+                                            <label class="upload_exist">Date signed</label>
+                                            <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
+                                                  <input type="text" readonly="" value="" size="16" class="form-control"  id="date_signed">
+                                                    <span class="input-group-btn add-on">
+                                                      <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                                                    </span>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-sm-12 nopadleft m-t-20" id="potential_claimants" style="display: block;">
+                                        <div class="form-group clearfix">
+                                        <label class="nopadleft col-lg-12 col-sm-12 control-label mt-6">
+                                          Would you like to provide a copy of the NOC to all potential claimants?
+                                        </label>
+                                          <label class="radio-inline">
+                                            <input type="radio" name="noc_potential" id="noc_potential" value="yes"> Yes
+                                          </label><br/>
+                                          <label class="radio-inline">
+                                            <input type="radio" name="noc_potential" id="noc_potential" value="no"> No
+                                          </label>
+                                        </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="form-group col-sm-12">
+            <!--                                <label for="project_type">Improvement Type <span class="text-danger">*</span></label>-->
+                                            <div class="loading_data" style="text-align: center;">
+                                                <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
+                                             </div>
+                                             <span class="project_type"></span><br/>
+                                             <span class="sub-title">Select improvement type if you want to change</span>
+                                            <button class="label label-warning add-impvtypes" style="margin-bottom: 5px;">Add New Improvement Type</button>
+                                            <div id="project_type_selected" style=""></div>
+                                            <select class="form-control project_type_dropdown" id="project_type_dropdown" placeholder="Select Improvement Type">
+                                                <option>Select Improvement Type</option>
+                                            </select>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="form-group col-sm-12" style="margin-top: 33px;">
+                                            <label>Date Project Complete/Substantially Complete<span class="text-danger">*</span></label>
+                                            <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
+                                                    <input type="text" readonly="" value="" size="16" class="form-control"  id="project_completion_date">
+                                                      <span class="input-group-btn add-on">
+                                                        <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                                                      </span>
+                                                </div>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                  
-                              </div>
+                                </div>
                               <div class="col-sm-6 nopadleft">
                                  <label class="upload_exist" >Upload Signed Notice of Completion</label>
                                   <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone" class="upload_exist"  style="display: block;">
@@ -389,43 +431,9 @@
                             </div><!--      ##notice-addForm       -->
                             <div class="clearfix"></div>
 
-                            <div class="col-sm-12 nopadleft m-t-20" id="potential_claimants" style="display: block;">
-                              <div class="form-group clearfix">
-                                  <label class="nopadleft col-lg-12 col-sm-12 control-label mt-6">
-                                  Would you like to provide a copy of the NOC to all potential claimants?
-                                  </label>
-    <label class="radio-inline">
-      <input type="radio" name="noc_potential" id="noc_potential" value="yes"> Yes
-    </label><br/>
-    <label class="radio-inline">
-      <input type="radio" name="noc_potential" id="noc_potential" value="no"> No
-    </label>
-                              </div>
-                            </div>
                             
-                            <div class="form-group col-md-6">
-<!--                                <label for="project_type">Improvement Type <span class="text-danger">*</span></label>-->
-                                <div class="loading_data" style="text-align: center;">
-                                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
-                                 </div>
-                                 <span class="project_type"></span><br/>
-                                 <span class="sub-title">Select improvement type if you want to change</span>
-                                <button class="label label-warning add-impvtypes" style="margin-bottom: 5px;">Add New Improvement Type</button>
-                                <div id="project_type_selected" style=""></div>
-                                <select class="form-control project_type_dropdown" id="project_type_dropdown" placeholder="Select Improvement Type">
-                                    <option>Select Improvement Type</option>
-                                </select>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="form-group col-md-6" style="margin-top: 33px;">
-                                <label>Date Project Complete/Substantially Complete<span class="text-danger">*</span></label>
-                                <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
-                                        <input type="text" readonly="" value="" size="16" class="form-control"  id="project_completion_date">
-                                          <span class="input-group-btn add-on">
-                                            <button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
-                                          </span>
-                                    </div>
-                            </div>
+                            
+                            
                             
 <!--                            <div class="form-group col-md-6" style="margin-top: 33px;">
                                 <label>Date Filed on <span class="text-danger">*</span></label>
