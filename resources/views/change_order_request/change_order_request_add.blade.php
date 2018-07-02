@@ -85,7 +85,7 @@
                 <div id="item_price_1">
                     <div class="item_price" style="display: none;">
                         <div class="col-lg-12 nopadleft">
-                            <input type="text" class="form-control m-b-10" name="item_price[]" placeholder="$X"  onkeypress="return isNumber(event)">
+                            <input type="text" class="form-control m-b-10" name="item_price[]" placeholder="$X"  onkeypress="return isNumber1(event)">
                         </div>
                     </div>
                     <!-- <span class="nopadleft col-lg-1 control-label mt-6 text-center">OR</span> -->
