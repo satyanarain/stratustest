@@ -69,7 +69,7 @@ $(document).ready(function()
             )
             }
             $(".loading_data").remove();
-            alert("You can't add new user, first add company name!");
+            alert("You can't add a new user, first add a company name.");
             $("#s2id_project_name").show();
             // window.location.href = baseUrl + "404";
         }

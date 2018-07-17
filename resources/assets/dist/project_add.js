@@ -260,8 +260,8 @@ $(document).ready(function() {
             $('.loading-submit').hide();
             var responseText, html;
             responseText = JSON.parse(jqXHR.responseText);
-            console.log(responseText.data);
-            console.log(responseText.data.p_number[0]);
+            //console.log(responseText.data);
+            //console.log(responseText.data.p_number[0]);
             $('html, body').animate({
                 scrollTop: $(".page-head").offset().top
             }, 'fast')
