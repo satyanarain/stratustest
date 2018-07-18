@@ -904,7 +904,7 @@ class UserController extends Controller {
             ->update(['email_verification' => $email_verification]);
             $information['email_verification'] = $email_verification;
             if($role == 'owner'){
-              $default_improvement_type = array("Mobilization and Site Preparation", "Rough Grading", "Structural Retaining Walls", "Erosion Control", "Habitat Mitigation", "Storm Drainage", "Sanitary Sewer", "Domestic Water Systems", "Reclaimed Water Systems", "Street Improvements", "Signalization", "Street Lights", "Dry Utilities", "Landscape & Irrigation", "Entry Monuements", "Walls & Fencing", "Bridges");
+              $default_improvement_type = array("Mobilization and Site Preparation", "Rough Grading", "Structural Retaining Walls", "Erosion Control", "Habitat Mitigation", "Storm Drainage", "Sanitary Sewer", "Domestic Water Systems", "Reclaimed Water Systems", "Street Improvements", "Signalization", "Street Lights", "Dry Utilities", "Landscape & Irrigation", "Entry Monuments", "Walls & Fencing", "Bridges");
 
               foreach ($default_improvement_type as $single_improvement_type) {
                   // echo $single_improvement_type;

@@ -57,7 +57,7 @@
                 </div>
                 <span id="company_name_lead"></span><br/>
                 <span class="sub-title">Select lead agency if you want to change</span>
-                <select class="form-control" name="company_name" id="agency_name">
+                <select class="form-control" name="company_name" id="agency_name" style="margin-top: 8px;">
                 <!-- <select class="form-control" id="company_name"> -->
                 </select>
             </div>
