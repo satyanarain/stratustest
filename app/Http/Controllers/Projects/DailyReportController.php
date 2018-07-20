@@ -143,9 +143,9 @@ class DailyReportController extends Controller {
 
           // $area_temp = round($response_temp[0]["Temperature"]["Metric"]["Value"]);
           $area_temp = ''; //round($response_temp[0]["Temperature"]["Metric"]["Value"]);
-        $add_project=1;
-//          $add_project = DB::table('project_daily_report')
-//          ->insert(['pdr_date' => $report_date, 'pdr_weather' => $area_temp, 'pdr_perform_work_day' => null, 'pdr_material_delivery' => null, 'pdr_milestone_completed' => null, 'pdr_picture_video' => null, 'pdr_project_id' => $project_id]);
+        
+          $add_project = DB::table('project_daily_report')
+          ->insert(['pdr_date' => $report_date, 'pdr_weather' => $area_temp, 'pdr_perform_work_day' => null, 'pdr_material_delivery' => null, 'pdr_milestone_completed' => null, 'pdr_picture_video' => null, 'pdr_project_id' => $project_id]);
           if(count($add_project) < 1)
           {
             $result = array('code'=>400, "description"=>"No records found");
@@ -180,8 +180,8 @@ class DailyReportController extends Controller {
                 $notification_status  = '1';
                 $sender_user_id       = '1';// Auth::user()->id;
 
-//                $query = DB::table('project_notifications')
-//                ->insert(['pn_description' => $notification_title, 'pn_link' => $link, 'pn_status' => $notification_status, 'pn_project_id' => $project_id, 'pn_sender_user_id' => $sender_user_id, 'pn_receiver_user_id' => $check_single_user_permission[0]->pup_user_id]);
+                $query = DB::table('project_notifications')
+                ->insert(['pn_description' => $notification_title, 'pn_link' => $link, 'pn_status' => $notification_status, 'pn_project_id' => $project_id, 'pn_sender_user_id' => $sender_user_id, 'pn_receiver_user_id' => $check_single_user_permission[0]->pup_user_id]);
              
                 $user_detail = array(
                   'id'              => $check_project_user->id,
@@ -193,12 +193,11 @@ class DailyReportController extends Controller {
                   'title'           => $notification_title,
                   'description'     => $email_description
                 );
-                echo '<pre>';print_r($user_detail);
                 $user_single = (object) $user_detail;
-//                Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
-//                    $message->from('no-reply@sw.ai', 'StratusCM');
-//                    $message->to($user_single->email, $user_single->name)->subject($user_single->title);
-//                });
+                Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                    $message->from('no-reply@sw.ai', 'StratusCM');
+                    $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                });
               }
 
             } // End Foreach
