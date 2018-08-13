@@ -51,8 +51,9 @@
                                         <label for="lname">Last Name <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="lname">
                                     </div>
-                                    <div class="input_fields_wrap">
-                                    <div class="col-md-6 append">
+                                    
+                                    <div class="form-group col-md-6 append">
+                                        <div class="input_fields_wrap">
                                         <div class="form-group">
                                             <label for="pnum">Phone Number <span class="text-danger">*</span></label>
                                             <a href="#" class="add_field_button btn btn-success m-b-10 pull-right">Add Phone</a>
@@ -72,7 +73,24 @@
                                             <input type="text" class="form-control" id="pnum_1" name="phone_num[]">
                                         </div>
                                         </div>
-                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control user_type_value" id="role">
+                                         <label>User Type <span class="text-danger">*</span></label>
+                                        <select class="form-control" id="user_role">
+                                            <option value="">Select User Type</option>
+<!--                                            <option value="owner" class="owner_class">Owner</option>-->
+                                            <option value="Construction Manager">Construction Manager</option>
+                                            <option value="Contractor">Contractor</option>
+                                            <option value="Engineer">Engineer</option>
+                                            <option value="Surveyor">Surveyor</option>
+                                            <option value="Agency">Agency</option>
+                                            <option value="Owner">Owner</option>
+                                            <option value="Consultant">Consultant</option>
+                                            
+                                        </select>
+                                        </div>
+                                        </div>
+                                    <div class="form-group col-sm-6">
                                         <label for="standard_name">Upload User Image</label>
                                         <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                             <input type="hidden" name="document_path" value="/uploads/users/">
@@ -83,19 +101,10 @@
                                             
                                         </div>
                                     </div>
-                                    </div>
+                                   
                                     <div class="clearfix"></div>
                                     <div class="col-md-6">
-                                            <input type="hidden" class="form-control user_type_value" id="role">
-                                         <label>User Type <span class="text-danger">*</span></label>
-                                        <select class="form-control" id="user_role">
-                                            <option value="">Select User Type</option>
-<!--                                            <option value="owner" class="owner_class">Owner</option>-->
-                                            <option value="Construction Manager">Construction Manager</option>
-                                            <option value="Contractor">Contractor</option>
-                                            <option value="Engineer">Engineer</option>
-                                            <option value="Surveyor">Surveyor</option>
-                                        </select>
+                                            
                                     </div>
                                     <div class="clearfix"></div>
 

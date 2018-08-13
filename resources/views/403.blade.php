@@ -63,7 +63,7 @@
             <h2 class="purple-bg">Access Denied</h2>
         </div>
         <p>You don't have permission to view this page, please contact your system administrator to request access</p>
-        <a href="{{ url('/') }}" class="back-btn">Back to Home</a>
+        <a href="{{ url('/') }}" class="back-btn" style="padding-right: 60px;">Back to Home</a>
     </section>
 
 </div>

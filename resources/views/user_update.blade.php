@@ -77,15 +77,33 @@
 
                                     <input type="hidden" class="form-control role_normal_hide user_role" id="role">
                                     <input type="hidden" class="form-control role_normal_hide user_status" id="status">
-                                    <div class="col-md-6 hide_user role_admin_hide">
-                                        <label>Status</label>
+                                    <div class="form-group col-md-6">
+                                    <div class="hide_user role_admin_hide">
+                                        <label for="status">Status</label>
                                         <select class="form-control user_status" id="status">
                                             <option value="1">Verified</option>
                                             <option value="0">Unverifed</option>
                                             <option value="2">Suspended</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6">
+                                        <div class="clearfix"></div>
+                                    <div class="form-group hide_user role_admin_hide">
+                                        <label for="user_role" style="margin-top: 10px;">User Type</label>
+                                        <select class="form-control user_role" id="user_role">
+                                            <option value="">Select User Type</option>
+<!--                                            <option value="owner" class="owner_class">Owner</option>-->
+                                            <option value="Construction Manager">Construction Manager</option>
+                                            <option value="Contractor">Contractor</option>
+                                            <option value="Engineer">Engineer</option>
+                                            <option value="Surveyor">Surveyor</option>
+                                            <option value="Agency">Agency</option>
+                                            <option value="Owner">Owner</option>
+                                            <option value="Consultant">Consultant</option>
+                                        </select>
+                                        <input type="hidden" class="form-control user_type_value" id="role">
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <label for="standard_name">User Image <span class="text-danger">*</span><span id="old_image_link"></span><input type="hidden" id="old_image_path"></span> </label>
                                         <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                             <input type="hidden" name="document_path" value="/uploads/users/">
@@ -96,18 +114,7 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="col-md-6 hide_user role_admin_hide">
-                                        <label>User Type</label>
-                                        <select class="form-control user_role" id="user_role">
-                                            <option value="">Select User Type</option>
-<!--                                            <option value="owner" class="owner_class">Owner</option>-->
-                                            <option value="Construction Manager">Construction Manager</option>
-                                            <option value="Contractor">Contractor</option>
-                                            <option value="Engineer">Engineer</option>
-                                            <option value="Surveyor">Surveyor</option>
-                                        </select>
-                                        <input type="hidden" class="form-control user_type_value" id="role">
-                                    </div>
+                                    
                                    <!--  <div class="col-md-6 hide_user">
                                         <label>Project</label>
                                         <div class="loading_data" style="text-align: center;">

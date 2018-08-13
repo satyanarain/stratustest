@@ -51,8 +51,8 @@
       <div id="email_verified" style="display: none;">
         <h2 class="form-heading">YOUR PASSWORD HAS BEEN SUCCESSFULLY CHANGED.</h2>
         <div class="container log-row">
-            <form class="form-signin">
-                <div class="login-wrap">
+            <form class="form-signin1">
+                <div class="login-wrap" style="max-width: 330px;margin: 50px auto 0;">
                     <a href="{{ url('/') }}" class="btn btn-lg btn-success btn-block">Back to Login</a>
                 </div>
             </form>

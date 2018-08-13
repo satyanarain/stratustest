@@ -678,6 +678,7 @@ class NoticeAwardController extends Controller {
 //          ->leftJoin('users', 'project_notice_award.pna_user_id', '=', 'users.id')
           ->select('project_firm.f_name as agency_name','project_notice_award.*')
           ->where('project_notice_award.pna_project_id', '=', $project_id)
+          ->where('project_notice_award.pna_status', '=', 'active')
           ->groupBy('project_notice_award.pna_id')
           ->orderBy('project_notice_award.pna_id','ASC')
           ->get();
