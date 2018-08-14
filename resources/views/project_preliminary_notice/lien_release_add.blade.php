@@ -130,7 +130,7 @@
                     <strong>Under Contract with: </strong><span id="u_c_w"></span><br/>
                     <strong>In the Amount of: </strong><span id="i_t_a_o"></span><br/>
                     <strong>Direct Contractor: </strong><span id="d_c"></span><br/>
-                    <strong>Date of Notice was Signed: </strong><span id="d_o_n_w_s"></span><br/>
+                    <strong>Date Notice was Signed: </strong><span id="d_o_n_w_s"></span><br/>
                     <strong>Postmarked Date: </strong><span id="p_d"></span><br/>
 
                 </div>

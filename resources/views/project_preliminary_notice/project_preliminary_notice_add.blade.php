@@ -84,7 +84,7 @@
 
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="name_of_report">  Date of Notice was Signed </label>
+                                        <label for="name_of_report">  Date Notice was Signed </label>
                                         <div data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-date=""  class="input-append date dpYears">
                                             <input type="text" readonly="" value="<?php //echo date("Y-m-d"); ?>" size="16" class="form-control"  id="date_of_notice_signed">
                                                 <span class="input-group-btn add-on">
@@ -147,7 +147,7 @@
                     <strong>Under Contract with: </strong><span id="u_c_w"></span><br/>
                     <strong>In the Amount of: </strong><span id="i_t_a_o"></span><br/>
                     <strong>Direct Contractor: </strong><span id="d_c"></span><br/>
-                    <strong>Date of Notice was Signed: </strong><span id="d_o_n_w_s"></span><br/>
+                    <strong>Date Notice was Signed: </strong><span id="d_o_n_w_s"></span><br/>
                     <strong>Postmarked Date: </strong><span id="p_d"></span><br/>
 
                 </div>

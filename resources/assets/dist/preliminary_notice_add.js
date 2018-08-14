@@ -192,7 +192,7 @@ $('.add_preliminary_notice').click(function(e)
         is_error = true;
     }
     if(date_of_notice_signed == ''){
-        html += '<li>Date of Notice was Signed is invalid.</li>';
+        html += '<li>Date Notice was Signed is invalid.</li>';
         is_error = true;
     }
     if(post_marked_date == ''){

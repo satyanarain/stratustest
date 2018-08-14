@@ -125,7 +125,7 @@
 	        .done(function(data, textStatus, jqXHR) {
 	            console.log(data.data.cur_symbol);
 	            $('.project_currency').text(data.data.cur_symbol+' ');
-	            $('#rfi_additional_currency').text(data.data.cur_symbol+' ');
+	            //$('#rfi_additional_currency').text(data.data.cur_symbol+' ');
 	        })
 	    })
 
@@ -165,28 +165,30 @@
 	    	$('#rfi_date').text(rfi_date);
 
 	    	if(data.data.ri_additional_cost == null){
-	    		var ri_additional_cost = ' - ';
+	    		var ri_additional_cost = '';
 	    	}else if(data.data.ri_additional_cost=="no"){
-                    var ri_additional_cost = '<span class="label label-default">No</span>';
+                        var ri_additional_cost = '<span class="label label-default">No</span>';
                 }else {
 	    		var ri_additional_cost = '<span class="label label-default">Yes</span>';
 	    	}
-	    	if(data.data.ri_additional_cost_amount == null){
-	    		var ri_additional_cost_amount = ' - ';
+	    	if(data.data.ri_additional_cost_amount == null || ri_additional_cost=="no"){
+	    		var ri_additional_cost_amount = '';
 	    	}
 	    	else {
-	    		var ri_additional_cost_amount = data.data.ri_additional_cost_amount;
+	    		var ri_additional_cost_amount = '$ '+data.data.ri_additional_cost_amount;
 	    	}
 	    	if(data.data.ri_additional_day == null){
-	    		var ri_additional_day = ' - ';
+	    		var ri_additional_day = '';
 	    	}
 	    	else if(data.data.ri_additional_day=="no"){
 	    		var ri_additional_day = '<span class="label label-default">No</span>';
 	    	}else{
                     var ri_additional_day = '<span class="label label-default">Yes</span>';
                 }
-	    	if(data.data.ri_additional_day_add == null){
-	    		var ri_additional_day_add = ' - ';
+                //alert(data.data.ri_additional_day_add);
+                //alert(ri_additional_day);
+	    	if(data.data.ri_additional_day_add == null || data.data.ri_additional_day=="no"){
+	    		var ri_additional_day_add = '';
 	    	}
 	    	else {
 	    		var ri_additional_day_add = data.data.ri_additional_day_add;
@@ -196,7 +198,8 @@
 		    $('#rfi_request').text(data.data.ri_question_request);
 		    $('#rfi_suggestion').text(data.data.ri_question_proposed);
 		    $('#rfi_additional_cost').html(ri_additional_cost);
-		    $('#rfi_additional_amount').text(ReplaceNumberWithCommas(ri_additional_cost_amount));
+                    if(data.data.ri_additional_cost=="yes")
+                        $('#rfi_additional_amount').text(ReplaceNumberWithCommas(ri_additional_cost_amount));
 		    $('#rfi_additional_days').html(ri_additional_day +' '+ri_additional_day_add);
 		    $('#rfi_documents').html(file_path_value);
 		    $('#rfi_user_detail').html(data.data.rfi_user_firstname+' '+data.data.rfi_user_lastname+'<br/>'+data.data.rfi_user_email+'<br/>'+data.data.rfi_user_role);
