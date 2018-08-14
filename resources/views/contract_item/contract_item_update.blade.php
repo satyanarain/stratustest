@@ -57,7 +57,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="item_qty">Quantity <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="item_qty" onkeypress="return isNumber(event)">
+            <input type="text" class="form-control" id="item_qty" onkeypress="return isPrice(event)">
         </div>
         <div class="form-group col-md-6">
             <label for="item_unit_price">Unit Price <span class="text-danger">*</span></label>
