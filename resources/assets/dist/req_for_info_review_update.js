@@ -171,8 +171,8 @@
                 }else {
 	    		var ri_additional_cost = '<span class="label label-default">Yes</span>';
 	    	}
-	    	if(data.data.ri_additional_cost_amount == null){
-	    		var ri_additional_cost_amount = ' - ';
+	    	if(data.data.ri_additional_cost_amount == null || ri_additional_cost=="no"){
+	    		var ri_additional_cost_amount = '';
 	    	}
 	    	else {
 	    		var ri_additional_cost_amount = data.data.ri_additional_cost_amount;
@@ -185,8 +185,8 @@
 	    	}else{
                     var ri_additional_day = '<span class="label label-default">Yes</span>';
                 }
-	    	if(data.data.ri_additional_day_add == null){
-	    		var ri_additional_day_add = ' - ';
+	    	if(data.data.ri_additional_day_add == null || ri_additional_day=="no"){
+	    		var ri_additional_day_add = '';
 	    	}
 	    	else {
 	    		var ri_additional_day_add = data.data.ri_additional_day_add;
