@@ -282,7 +282,7 @@ $(document).ready(function() {
                 }
                 if($("#company_name").length > 0) {
                     var ele_name = '#company_name';
-                    var selected = $('#company_name').val();
+                    var selected1 = $('#company_name').val();
                     $(ele_name).empty();
                     jQuery.each(data.data, function( i, val ) {
                         if(val.f_status == 'active'){
@@ -300,12 +300,12 @@ $(document).ready(function() {
                             '<option style="font-weight:bold;">Add New Company</option>'
                         )
                     }
-                    if(selected)
-                        $('#company_name').val(selected);
+                    if(selected1)
+                        $('#company_name').val(selected1);
                 }
                 if($("#company_name_two").length > 0) {
                     var ele_name = '#company_name_two';
-                    var selected = $('#company_name_two').val();
+                    var selected2 = $('#company_name_two').val();
                     $(ele_name).empty();
                     jQuery.each(data.data, function( i, val ) {
                         if(val.f_status == 'active'){
@@ -323,8 +323,8 @@ $(document).ready(function() {
                             '<option style="font-weight:bold;">Add New Company</option>'
                         )
                     }
-                    if(selected)
-                        $('#company_name_two').val(selected);
+                    if(selected2)
+                        $('#company_name_two').val(selected2);
                 }
                 if($("#agency_name").length > 0){
                     jQuery.ajax({
@@ -337,7 +337,7 @@ $(document).ready(function() {
                         cache: false
                         })
                     .done(function(data, textStatus, jqXHR) {
-                        var selected = $('#agency_name').val();
+                        var selected3 = $('#agency_name').val();
                         $('#agency_name').empty();
                         jQuery.each(data.data, function( i, val ) {
                             if(val.f_status == 'active'){
@@ -352,7 +352,7 @@ $(document).ready(function() {
                                 '<option style="font-weight:bold;">Add New Agency</option>'
                             )
                         }
-                        $('#agency_name').val(selected);
+                        $('#agency_name').val(selected3);
                         $(".loading_data").remove();
                         $(".company_name").show();
                         $('#add-company').modal('hide');
@@ -398,7 +398,7 @@ $(document).ready(function() {
                 }
                 if($(".subcontractor_work_detail").length > 0) {
                     var ele_name = '.subcontractor_work_detail';
-                    var selected = $('.subcontractor_work_detail').val();
+                    var selected4 = $('.subcontractor_work_detail').val();
                     $(ele_name).empty();
                     $(ele_name).append('<option value="">Select Subcontractor</option>');
                     jQuery.each(data.data, function( i, val ) {
@@ -417,12 +417,12 @@ $(document).ready(function() {
                             '<option style="font-weight:bold;">Add New Subcontractor</option>'
                         )
                     }
-                    if(selected)
-                        $('.subcontractor_work_detail').val(selected);
+                    if(selected4)
+                        $('.subcontractor_work_detail').val(selected4);
                 }
                 if($("#name_claimant").length > 0) {
                     var ele_name = '#name_claimant';
-                    var selected = $('#name_claimant').val();
+                    var selected5 = $('#name_claimant').val();
                     $(ele_name).empty();
                     jQuery.each(data.data, function( i, val ) {
                         if(val.f_status == 'active'){
@@ -440,12 +440,12 @@ $(document).ready(function() {
                             '<option style="font-weight:bold;">Add New Company</option>'
                         )
                     }
-                    if(selected)
-                        $('#name_claimant').val(selected);
+                    if(selected5)
+                        $('#name_claimant').val(selected5);
                 }
                 if($("#name_customer").length > 0) {
                     var ele_name = '#name_customer';
-                    var selected = $('#name_customer').val();
+                    var selected6 = $('#name_customer').val();
                     $(ele_name).empty();
                     jQuery.each(data.data, function( i, val ) {
                         if(val.f_status == 'active'){
@@ -463,12 +463,12 @@ $(document).ready(function() {
                             '<option style="font-weight:bold;">Add New Company</option>'
                         )
                     }
-                    if(selected)
-                        $('#name_customer').val(selected);
+                    if(selected6)
+                        $('#name_customer').val(selected6);
                 }
                 if($("#owner_name").length > 0) {
                     var ele_name = '#owner_name';
-                    var selected = $('#owner_name').val();
+                    var selected7 = $('#owner_name').val();
                     $(ele_name).empty();
                     jQuery.each(data.data, function( i, val ) {
                         if(val.f_status == 'active'){
@@ -486,8 +486,8 @@ $(document).ready(function() {
                             '<option style="font-weight:bold;">Add New Company</option>'
                         )
                     }
-                    if(selected)
-                        $('#owner_name').val(selected);
+                    if(selected7)
+                        $('#owner_name').val(selected7);
                 }
                 $(".loading_data").remove();
                 $(".company_name").show();
