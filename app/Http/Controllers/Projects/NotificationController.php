@@ -480,6 +480,48 @@ class NotificationController extends Controller {
                 });
             }
         }
+        
+        /*--------------------------------------Pre--Bidding Notice inviting bids----------------------------------------------------*/
+        
+        
+        $bids = DB::table('project_bid_documents')
+        ->leftJoin('projects', 'project_bid_documents.bd_project_id', '=', 'projects.p_id')
+        ->leftJoin('users', 'project_bid_documents.bd_user_id', '=', 'users.id')
+        ->select('project_bid_documents.*', 'project_bid_documents.bd_id as bd_id', 'project_bid_documents.bd_status as bd_status',
+        'projects.*',
+        'users.username', 'users.email', 'users.first_name', 'users.last_name as user_lastname','users.id as user_id', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
+        ->whereRaw('date(project_bid_documents.bd_invite_date) = ?',[date('Y-m-d')])
+        ->get();
+        foreach($bids as $check_project_user)
+        {
+            $notification_key     = 'bidding';
+            $check_project_user_notification = app('App\Http\Controllers\Projects\PermissionController')->check_project_user_notification($check_project_user->p_id,$check_project_user->user_id,$notification_key);
+            if(count($check_project_user_notification) < 1){
+              continue;
+            }else{
+                $project_id           = $check_project_user->p_id;
+                $notification_title   = 'Accepting Bid for ' .$check_project_user->p_name.' Project starts today.';
+                $url                  = App::make('url')->to('/'); 
+                $link                 = "/dashboard/".$project_id."/bid_documents/".$check_project_user->bd_id;
+                $date                 = date("M d, Y h:i a");
+                $email_description    = 'Accepting Bid for the <strong>'.$check_project_user->p_name.'</strong> Project starts today. <a href="'.$url.$link.'"> Click Here to see </a>';
+                $user_detail = array(
+                  'id'              => $check_project_user->bd_id,
+                  'name'            => $check_project_user->username,
+                  'email'           => $check_project_user->email,
+                  'link'            => $link,
+                  'date'            => $date,
+                  'project_name'    => $check_project_user->p_name,
+                  'title'           => $notification_title,
+                  'description'     => $email_description
+                );
+                $user_single = (object) $user_detail;
+                Mail::send('emails.send_notification',['user' => $user_single], function ($message) use ($user_single) {
+                    $message->from('no-reply@sw.ai', 'StratusCM');
+                    $message->to($user_single->email, $user_single->name)->subject($user_single->title);
+                });
+            }
+        }
 //        
         /*------------------------------During Construction-------RFIs------------------------------------------*/
         
