@@ -1,6 +1,7 @@
 $(document).ready(function() {
     // Get login user profile data
-    $(".company_name").hide();
+    $("#name_claimant").hide();
+    $("#name_customer").hide();
     var url = $(location).attr('href').split( '/' );
     project_id = url[ url.length - 3]; // projects
     var role = localStorage.getItem('u_role');
@@ -121,7 +122,7 @@ $('.add_unconditional_finals').click(function(e)
     var name_claimant           = $('#name_claimant').val();
     var name_customer           = $('#name_customer').val();
     var job_location            = $('#job_location').val();
-    var owner_name              = $('#agency_name').val();
+    var owner_name              = $('#owner_name').val();
     var unconditional_finals    = $('#upload_single_doc_id').val();
    
     if($('#disputed_claim_amount_yes').is(":checked"))
@@ -158,7 +159,7 @@ $('.add_unconditional_finals').click(function(e)
                         "name_of_claimant"          :   $("#name_claimant option:selected").text(),
                         "name_of_customer"          :   $("#name_customer option:selected").text(),
                         "job_location"              :   $("#job_location").val(),
-                        "owner"                     :   $("#agency_name option:selected").text(),
+                        "owner"                     :   $("#owner_name option:selected").text(),
                         "disputed_claim_amount"     :   $("#disputed_claim_amount").val(),
                     });
     }
@@ -240,7 +241,7 @@ $('.add_unconditional_finals').click(function(e)
         $("#alert_message").html(html);
         $("#name_claimant").val('');
         $("#name_customer").val('');
-        $("#agency_name").val('');
+        $("#owner_name").val('');
         $(".first_button").text('Save Another');
         $('html, body').animate({
             scrollTop: $(".page-head").offset().top
@@ -273,7 +274,7 @@ $('.add_unconditional_finals').click(function(e)
 
 })
 
-$('.company_name,#agency_name').change(function(){
+$('#name_claimant,#name_customer,#owner_name').change(function(){
         var company = $(this).val();
         if(company=="Add New Company" || company=="Add New Agency")
         {
@@ -297,12 +298,18 @@ $('.company_name,#agency_name').change(function(){
         .done(function(data, textStatus, jqXHR) {
         // console.log(data);
         // Foreach Loop 
-        $(".company_name").append(
+        $("#name_claimant").append(
+            '<option value="">Select Company</option>'
+        )
+        $("#name_customer").append(
             '<option value="">Select Company</option>'
         )
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status == 'active'){
-                $(".company_name").append(
+                $("#name_claimant").append(
+                    '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                )
+                $("#name_customer").append(
                     '<option value="'+val.f_id+'">'+val.f_name+'</option>'
                 )
             }else {
@@ -312,13 +319,17 @@ $('.company_name,#agency_name').change(function(){
         var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
         console.log(add_company_on_fly_permission+'company_fly');
         if(add_company_on_fly_permission>0 || role=="owner"){
-        $(".company_name").append(
+        $("#name_claimant").append(
+            '<option style="font-weight:bold;">Add New Company</option>'
+        )
+        $("#name_customer").append(
             '<option style="font-weight:bold;">Add New Company</option>'
         )}
         // $( "h2" ).appendTo( $( ".container" ) );
        
         $(".loading_data").remove();
-        $(".company_name").show();
+        $("#name_claimant").show();
+        $("#name_customer").show();
     })
         .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");
@@ -352,12 +363,12 @@ $('.company_name,#agency_name').change(function(){
         .done(function(data, textStatus, jqXHR) {
         // console.log(data);
         // Foreach Loop 
-        $("#agency_name").append(
+        $("#owner_name").append(
             '<option value="">Select Company</option>'
         )
         jQuery.each(data.data, function( i, val ) {
             if(val.f_status == 'active'){
-                $("#agency_name").append(
+                $("#owner_name").append(
                     '<option value="'+val.f_id+'">'+val.f_name+'</option>'
                 )
             }else {
@@ -367,13 +378,13 @@ $('.company_name,#agency_name').change(function(){
         var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
         console.log(add_company_on_fly_permission+'company_fly');
         if(add_company_on_fly_permission>0 || role=="owner"){
-        $("#agency_name").append(
+        $("#owner_name").append(
             '<option style="font-weight:bold;">Add New Company</option>'
         )}
         // $( "h2" ).appendTo( $( ".container" ) );
        
         $(".loading_data").remove();
-        $("#agency_name").show();
+        $("#owner_name").show();
     })
         .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("HTTP Request Failed");

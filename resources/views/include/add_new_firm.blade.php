@@ -282,6 +282,7 @@ $(document).ready(function() {
                 }
                 if($("#company_name").length > 0) {
                     var ele_name = '#company_name';
+                    var selected = $('#company_name').val();
                     $(ele_name).empty();
                     jQuery.each(data.data, function( i, val ) {
                         if(val.f_status == 'active'){
@@ -299,9 +300,12 @@ $(document).ready(function() {
                             '<option style="font-weight:bold;">Add New Company</option>'
                         )
                     }
+                    if(selected)
+                        $('#company_name').val(selected);
                 }
                 if($("#company_name_two").length > 0) {
                     var ele_name = '#company_name_two';
+                    var selected = $('#company_name_two').val();
                     $(ele_name).empty();
                     jQuery.each(data.data, function( i, val ) {
                         if(val.f_status == 'active'){
@@ -319,6 +323,8 @@ $(document).ready(function() {
                             '<option style="font-weight:bold;">Add New Company</option>'
                         )
                     }
+                    if(selected)
+                        $('#company_name_two').val(selected);
                 }
                 if($("#agency_name").length > 0){
                     jQuery.ajax({
@@ -331,6 +337,7 @@ $(document).ready(function() {
                         cache: false
                         })
                     .done(function(data, textStatus, jqXHR) {
+                        var selected = $('#agency_name').val();
                         $('#agency_name').empty();
                         jQuery.each(data.data, function( i, val ) {
                             if(val.f_status == 'active'){
@@ -345,6 +352,7 @@ $(document).ready(function() {
                                 '<option style="font-weight:bold;">Add New Agency</option>'
                             )
                         }
+                        $('#agency_name').val(selected);
                         $(".loading_data").remove();
                         $(".company_name").show();
                         $('#add-company').modal('hide');
@@ -390,6 +398,7 @@ $(document).ready(function() {
                 }
                 if($(".subcontractor_work_detail").length > 0) {
                     var ele_name = '.subcontractor_work_detail';
+                    var selected = $('.subcontractor_work_detail').val();
                     $(ele_name).empty();
                     $(ele_name).append('<option value="">Select Subcontractor</option>');
                     jQuery.each(data.data, function( i, val ) {
@@ -408,9 +417,78 @@ $(document).ready(function() {
                             '<option style="font-weight:bold;">Add New Subcontractor</option>'
                         )
                     }
+                    if(selected)
+                        $('.subcontractor_work_detail').val(selected);
                 }
-                // $( "h2" ).appendTo( $( ".container" ) );
-       
+                if($("#name_claimant").length > 0) {
+                    var ele_name = '#name_claimant';
+                    var selected = $('#name_claimant').val();
+                    $(ele_name).empty();
+                    jQuery.each(data.data, function( i, val ) {
+                        if(val.f_status == 'active'){
+                            $(ele_name).append(
+                                '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                            )
+                        }else {
+
+                        }
+                    });
+                    var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+                    console.log(add_company_on_fly_permission+'company_fly');
+                    if(add_company_on_fly_permission>0 || role=="owner" || role=="admin"){
+                        $(ele_name).append(
+                            '<option style="font-weight:bold;">Add New Company</option>'
+                        )
+                    }
+                    if(selected)
+                        $('#name_claimant').val(selected);
+                }
+                if($("#name_customer").length > 0) {
+                    var ele_name = '#name_customer';
+                    var selected = $('#name_customer').val();
+                    $(ele_name).empty();
+                    jQuery.each(data.data, function( i, val ) {
+                        if(val.f_status == 'active'){
+                            $(ele_name).append(
+                                '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                            )
+                        }else {
+
+                        }
+                    });
+                    var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+                    console.log(add_company_on_fly_permission+'company_fly');
+                    if(add_company_on_fly_permission>0 || role=="owner" || role=="admin"){
+                        $(ele_name).append(
+                            '<option style="font-weight:bold;">Add New Company</option>'
+                        )
+                    }
+                    if(selected)
+                        $('#name_customer').val(selected);
+                }
+                if($("#owner_name").length > 0) {
+                    var ele_name = '#owner_name';
+                    var selected = $('#owner_name').val();
+                    $(ele_name).empty();
+                    jQuery.each(data.data, function( i, val ) {
+                        if(val.f_status == 'active'){
+                            $(ele_name).append(
+                                '<option value="'+val.f_id+'">'+val.f_name+'</option>'
+                            )
+                        }else {
+
+                        }
+                    });
+                    var add_company_on_fly_permission = jQuery.inArray("project_add_company_on_fly", check_user_access );
+                    console.log(add_company_on_fly_permission+'company_fly');
+                    if(add_company_on_fly_permission>0 || role=="owner" || role=="admin"){
+                        $(ele_name).append(
+                            '<option style="font-weight:bold;">Add New Company</option>'
+                        )
+                    }
+                    if(selected)
+                        $('#owner_name').val(selected);
+                }
                 $(".loading_data").remove();
                 $(".company_name").show();
                 $('#add-company').modal('hide');

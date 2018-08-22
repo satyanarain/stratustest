@@ -462,7 +462,7 @@ class NotificationController extends Controller {
                 $url                  = App::make('url')->to('/'); 
                 $link                 = "/dashboard/".$project_id."/bid_documents/".$check_project_user->bd_id;
                 $date                 = date("M d, Y h:i a");
-                $email_description    = 'The Bid for the <strong>'.$check_project_user->p_name.'</strong> Project starts today. <a href="'.$url.$link.'"> Click Here to see </a>';
+                $email_description    = 'The Bid Opening for the <strong>'.$check_project_user->p_name.'</strong> Project starts today. <a href="'.$url.$link.'"> Click Here to see </a>';
                 $user_detail = array(
                   'id'              => $check_project_user->bd_id,
                   'name'            => $check_project_user->username,

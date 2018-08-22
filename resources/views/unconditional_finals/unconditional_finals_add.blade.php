@@ -73,13 +73,13 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="name_of_report">Name of Claimant <span class="text-danger">*</span></label>
-                                        <select class="form-control company_name" id="name_claimant" ></select>
+                                        <select class="form-control" id="name_claimant" ></select>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label for="name_of_report">Name of Customer <span class="text-danger">*</span></label>
 
-                                        <select class="form-control company_name" id="name_customer" ></select>
+                                        <select class="form-control" id="name_customer" ></select>
 
                                     </div>
 
@@ -90,7 +90,7 @@
 
                                     <div class="form-group col-md-12">
                                         <label for="name_of_report">Owner <span class="text-danger">*</span></label>
-                                        <select class="form-control " id="agency_name" ></select>
+                                        <select class="form-control " id="owner_name" ></select>
 
                                     </div>
                                    <div class="form-group disputed_claim_amount_checkbox">
