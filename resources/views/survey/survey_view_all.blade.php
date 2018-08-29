@@ -38,7 +38,7 @@
                             <th>Survey Cut Sheets</th>
                             <th>Survey Status</th>
                             <th>Survey Review Status</th>
-                            <th>Action</th>
+                            <th width="10%">Action</th>
                         </tr>
                         </thead>
                         
