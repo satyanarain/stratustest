@@ -1604,4 +1604,43 @@ Mail::send('emails.reset_password_request', ['user' => $user_single], function (
           return response()->json(['error' => 'Something is wrong'], 500);
         } 
      }
+     
+     public function survey_contact_person(Request $request,$project_id) {
+         try
+        {
+            //echo $project_id;die;
+             $owner = DB::table('projects')
+            ->select('p_user_id')
+            ->where('p_id', '=', $project_id)
+            ->first();
+            //print_r($owner);die;
+            $owner_id = $owner->p_user_id;
+            $surveyor = DB::table('users')
+            ->leftJoin('users_details', 'users.id', '=', 'users_details.user_id')
+            ->select('first_name','last_name','users_details.*')
+            ->where('users.user_parent', '=', $owner_id)
+            ->where('users.user_role', '=', 'Surveyor')
+            //->where('users_details.u_phone_type', '=', 'mobile')
+            ->first(); 
+          //print_r($surveyor);
+
+          if(count($surveyor) < 1)
+          {
+              // $data = array('data' =>  $result);  
+              $result = array('code'=>404,"description"=>"No Records Found");
+              return $result = response()->json($result, 404);
+          }
+          else
+          {
+              // $data = array('data' =>  $result);  
+              $result = array('code'=>200, "data"=>$surveyor);
+              return $result = response()->json($result, 200);
+          }
+        
+      }
+      catch(Exception $e)
+      {
+        return response()->json(['error' => 'Something is wrong'], 500);
+      }
+     }
 }

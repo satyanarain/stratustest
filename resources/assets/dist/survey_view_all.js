@@ -171,14 +171,16 @@
 				// var year = date.getFullYear();
 				//var request_date = year + '-' + month + '-' + day;
 				var request_date = val.sur_date; // formatDate;
-
-				// var date = new Date(val.sur_request_completion_date.replace(' ', 'T'));
-    //             var formatDate = $.datepicker.formatDate('yy-mm-dd', date);
-				// var day = date.getDate();
-				// var month = date.getMonth();
-				// var year = date.getFullYear();
+                                
+				 var d = new Date(val.sur_request_completion_date.replace(' ', 'T'));
+                                 //var formatDate = $.datepicker.formatDate('yy-mm-dd', date);
+				 //var day = date.getDate();
+				 //var month = date.getMonth()+1;
+				 //var year = date.getFullYear();
 				//var completion_date = year + '-' + month + '-' + day;
-				var completion_date = val.sur_request_completion_date; //formatDate;
+                                var completion_date = d.getFullYear() + "-" +("0"+(d.getMonth()+1)).slice(-2) + "-" +("0" + d.getDate()).slice(-2) + " "
+     + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+				//var completion_date = val.sur_request_completion_date; //formatDate;
                                 var survey_rew_path = val.survey_rew_path;
                                 if(survey_rew_path == null){
 			  	 	var	survey_rew_path_value = '-';

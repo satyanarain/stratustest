@@ -153,17 +153,13 @@
 <div id="pdf_content" style="display:none;">
     <table width="90%" cellpadding="0" align="center" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:13px;">
     <tr>
-       <td><img src="http://ec2-34-236-61-80.compute-1.amazonaws.com/resources/assets/img/pdf-logo.jpg" alt="" /></td>
+       <td></td>
        <td style="font-size:25px;"><b><i>Survey Request For:</i></b></td>
    </tr>
    
    <tr>
        <td valign="top">
-           <table width="100%" cellpadding="5" cellspacing="0" border="0">
-               <tr><td><b>1151 Duryea Ave.</b></td></tr>
-               <tr><td><b>Irvine, CA 92614</b></td></tr>
-               <tr><td><b>Tel: 949.988.3270</b></td></tr>
-           </table>    
+              
        </td>
        <td valign="top" width="40%">
            <table width="100%" cellpadding="10" cellspacing="0" border="0">
@@ -180,7 +176,7 @@
            <tr>
                <td width="50" rowspan="4" valign="top"><b>From</b>:</td>
                <td width="70">Contact Person:</td>
-               <td style="border-bottom:1px solid #000;"></td>    
+               <td style="border-bottom:1px solid #000;" id="pdf_gen_req_contact_person"></td>    
                <td width="90">Day requested:</td>
                <td style="border-bottom:1px solid #000;" id="pdf_gen_req_comp_date">&nbsp;</td>
            </tr>
@@ -198,7 +194,7 @@
            </tr>
            <tr>
                <td>Phone Numer:</td>
-               <td style="border-bottom:1px solid #000;">&nbsp;</td>
+               <td style="border-bottom:1px solid #000;" id="pdf_gen_req_contact_number">&nbsp;</td>
                <td>JOBSITE FAX NO.:</td>
                <td style="border-bottom:1px solid #000;">&nbsp;</td>
            </tr>

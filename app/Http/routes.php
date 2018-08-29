@@ -104,6 +104,7 @@ Route::group(['middleware' => ['jwt-auth']], function () {
     Route::get('users/{userid}/suspend', 'Users\UserController@user_suspend');
     Route::post('users/add', 'Users\UserController@add_user');
     Route::get('users', 'Users\UserController@get_users');
+    Route::get('{project_id}/survey_contact_person', 'Users\UserController@survey_contact_person');
     Route::get('check-reviewer-permission/{project_id}/{item_id}/{type}/{designation}', 'Projects\ChangeOrderRequestController@check_reviewer_permission');
 });
 

@@ -105,7 +105,39 @@ $(document).ready(function() {
             window.location.href = baseUrl + "500";
         }
     });
+    
+    // Get Selected Agency
+    jQuery.ajax({
+    url: baseUrl + "/"+project_id+"/survey_contact_person",
+        type: "GET",
+        headers: {
+          "x-access-token": token
+        },
+        contentType: "application/json",
+        cache: false
+    })
+    .done(function(data, textStatus, jqXHR) {
+        $("#pdf_gen_req_contact_person").html(data.data.first_name+' '+data.data.last_name);
+        $("#pdf_gen_req_contact_number").html(data.data.u_phone_detail);
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("HTTP Request Failed");
+        var response = jqXHR.responseJSON.code;
+        console.log(response);
+        if(response == 403){
+            // window.location.href = baseUrl + "403";
+        }
+        else if(response == 404){
+            // alert('faizan');
+            // window.location.href = baseUrl + "404";
+            $(".loading_data").hide();
+        }
+        else {
+            window.location.href = baseUrl + "500";
+        }
+    });
 
+    
     // Bid Total Amount
     jQuery.ajax({
     url: baseUrl+"/"+project_id+"/bid-items-total",

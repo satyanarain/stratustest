@@ -130,13 +130,14 @@
 			// var month = date.getMonth();
 			// var year = date.getFullYear();
 			var survey_date = data.data.sur_date; // year + '-' + month + '-' + day;
-
+                        var d = new Date(data.data.sur_request_completion_date.replace(' ', 'T'));
 			// var date = new Date(data.data.sur_request_completion_date.replace(' ', 'T'));
 			// var day = date.getDate();
 			// var month = date.getMonth();
 			// var year = date.getFullYear();
-			var sur_request_completion_date = data.data.sur_request_completion_date; //year + '-' + month + '-' + day;
-
+			//var sur_request_completion_date = data.data.sur_request_completion_date; //year + '-' + month + '-' + day;
+                        var sur_request_completion_date = d.getFullYear() + "-" +("0"+(d.getMonth()+1)).slice(-2) + "-" +("0" + d.getDate()).slice(-2) + " "
+     + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
 		    $('.survey_number').text(data.data.sur_number);
 		    $('#survey_date').text(survey_date);
 		    $('#survey_description').text(data.data.sur_description);
