@@ -76,7 +76,17 @@
                             <select class="form-control" id="firm_type" name="firm_type">
                             </select>
                         </div>
-                        <div class="form-group col-md-6">
+                        <?php if(Route::getCurrentRoute()->getPath()=="dashboard/{project_id}/unconditional_finals/add"){?>
+                            <div class="form-group col-md-6" style="display:none;">
+                            <label for="company_type">Company/Agency <span class="text-danger">*</span></label>
+                            <select class="form-control" id="company_type" name="company_type">
+                                <option value="">Select</option>
+                                <option value="f" selected="selected">Company</option>
+                                <option value="a">Agency</option>
+                            </select>
+                        </div>
+                        <?php }else{?>
+                            <div class="form-group col-md-6">
                             <label for="company_type">Company/Agency <span class="text-danger">*</span></label>
                             <select class="form-control" id="company_type" name="company_type">
                                 <option value="">Select</option>
@@ -84,6 +94,7 @@
                                 <option value="a">Agency</option>
                             </select>
                         </div>
+                        <?php }?>
                             <input type="hidden" id="project_latitude" value="33.7174708">
                             <input type="hidden" id="project_longitude" value="-117.83114280000001">
                         <div class="clearfix"></div>

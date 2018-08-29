@@ -32,7 +32,7 @@
                             <!-- <th>#</th> -->
                             <th>Survey #</th>
                             <th>Date of Request</th>
-                            <th width="30%">Description of Request</th>
+                            <th width="25%">Description of Request</th>
                             <th>Requested Completion By</th>
                             <th>Survey Document</th>
                             <th>Survey Cut Sheets</th>

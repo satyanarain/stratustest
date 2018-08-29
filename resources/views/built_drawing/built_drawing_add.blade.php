@@ -118,14 +118,14 @@
                                     <label>Upload New As Built <span class="text-danger">*</span></label>
                                     <section class="panel" id="upload_performance">
                                         <div class="panel-body nopadleft">
-                                            <form id="my-awesome-dropzone" action="{{ url('/group_doc/index.php') }}" class="dropzone">
+                                            <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                 <input type="hidden" name="document_path" value="/uploads/built_drawing/">
                                             </form>
                                         </div>
                                     </section>
 
 
-                                <input type="hidden" name="upload_type" id="upload_type" value="single_upload">
+<!--                                <input type="hidden" name="upload_type" id="upload_type" value="single_upload">-->
                                 <input type="hidden" name="standard_doc_id" id="upload_doc_id" value="">
                                 <input type="hidden" name="standard_upload" id="upload_doc_meta" value="built_drawing">
                                 <input type="hidden" name="standard_upload" id="upload_project_id" value="<?php echo $project_id; ?>">
@@ -155,6 +155,6 @@
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="{{ url('/resources/assets/js/jquery-1.10.2.min.js?v=1.0') }}"></script>
 <script src="{{ url('/resources/assets/dist/api_url.js?v=1.0') }}"></script>
-<script src="{{ url('/resources/assets/js/dropzone_groupdoc.js?v=1.0') }}"></script>
+<script src="{{ url('/resources/assets/js/dropzone.js') }}"></script>
 <script src="{{ url('/resources/assets/dist/built_drawings_add.js?v=1.0') }}"></script>
 @include('include/footer')
