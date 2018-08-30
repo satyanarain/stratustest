@@ -136,8 +136,7 @@
 			// var month = date.getMonth();
 			// var year = date.getFullYear();
 			//var sur_request_completion_date = data.data.sur_request_completion_date; //year + '-' + month + '-' + day;
-                        var sur_request_completion_date = d.getFullYear() + "-" +("0"+(d.getMonth()+1)).slice(-2) + "-" +("0" + d.getDate()).slice(-2) + " "
-     + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+                        var sur_request_completion_date = formatAMPM(d);
 		    $('.survey_number').text(data.data.sur_number);
 		    $('#survey_date').text(survey_date);
 		    $('#survey_description').text(data.data.sur_description);
@@ -217,3 +216,15 @@
 		    }
 		}) 
     });
+    
+    function formatAMPM(d) {
+  var hours = d.getHours();
+  var minutes = d.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = ("0" + hours).slice(-2) + ':' + ("0" + minutes).slice(-2) + ' ' + ampm;
+  return d.getFullYear() + "-" +("0"+(d.getMonth()+1)).slice(-2) + "-" +("0" + d.getDate()).slice(-2) + "  "
+     +strTime;
+} 
