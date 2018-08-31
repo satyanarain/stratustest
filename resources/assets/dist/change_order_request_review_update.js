@@ -88,7 +88,7 @@ $(document).ready(function() {
             if(data.data.pcd_unit_number)
                 $('#cor_unit_number').text(data.data.pcd_unit_number)
             if(data.data.pcd_unit_price)
-                $('#cor_unit_price').text(data.data.pcd_unit_price)
+                $('#cor_unit_price').text(Number(data.data.pcd_unit_price).toFixed('2'))
         }else{
             $("#total_requested_cost").html('<input type="radio" class="total_requested_cost" name="total_requested_cost" id="total_requested_cost_price" value="price">Enter Price&nbsp;\n\
             <input checked type="radio" class="total_requested_cost" id="total_requested_cost_unit" name="total_requested_cost" value="unit">Enter Unit');
@@ -97,7 +97,7 @@ $(document).ready(function() {
             else
                 $("#cor_unit_number").html('<input class="form-control" type="text" name="pcd_unit_number" id="pcd_unit_number">');
             if(data.data.pcd_unit_price)
-                $("#cor_unit_price").html('<input class="form-control" type="text" name="pcd_unit_price" id="pcd_unit_price" value="'+data.data.pcd_unit_price+'">');
+                $("#cor_unit_price").html('<input class="form-control" type="text" name="pcd_unit_price" id="pcd_unit_price" value="'+Number(data.data.pcd_unit_price).toFixed('2')+'">');
             else
                 $("#cor_unit_price").html('<input class="form-control" type="text" name="pcd_unit_price" id="pcd_unit_price">');
             $('#cor_amount').text(parseInt(data.data.pcd_unit_number)*parseInt(data.data.pcd_unit_price))
@@ -125,8 +125,8 @@ $(document).ready(function() {
         }
         $("#review_document").html(request_bid_iframe_value);
 
-        $('#cor_file').html(request_bid_path_value)
-        $('#cor_status').html(status)
+        $('#cor_file').html(request_bid_path_value);
+        $('#change_order_status').val(data.data.change_order_status)
 
         if(data.data.pcd_approved_by_owner != "0000-00-00"){
             //$("#approved_owner").attr('enabled');
@@ -422,6 +422,7 @@ function getFormattedPartTime(partTime){
             "rfi_detail_item"     :  JSON.stringify(rfi_detail)
         });
         var is_potential = $("#is_potential").val();
+        var change_order_status = $("#change_order_status").val();
         jQuery.ajax({
             url: baseUrl + "change_order_request_item/"+item_id+"/update",
             type: "POST",
@@ -443,6 +444,7 @@ function getFormattedPartTime(partTime){
                 "pcd_status"            : pcd_status,
                 "order_rfi"             : rfi_details[0]['rfi_detail_item'],
                 "is_potential"          : is_potential,
+                "change_order_status"   : change_order_status,
             },
             headers: {
               "x-access-token": token

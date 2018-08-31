@@ -220,6 +220,7 @@
                     })
                     .fail(function(jqXHR, textStatus, errorThrown) {
                         $(".cm_review_section").hide();
+                        $("#submit_req_review_form").hide();
                     });
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {

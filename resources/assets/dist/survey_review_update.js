@@ -148,7 +148,7 @@
                         var sur_request_completion_date = formatAMPM(d);
 
 		    $('#survey_number').text(data.data.sur_number);
-		    $('#survey_request').val(data.data.sur_number);
+		    //$('#survey_request').val(data.data.sur_number);
 		    $('#survey_date').text(survey_date);
 		    $('#survey_description').text(data.data.sur_description);
 		    $('#survey_req_date').text(sur_request_completion_date);

@@ -103,7 +103,9 @@
 		    }
 		    $('#status').val(status);
 		    $('#survey_number').text(data.data.sur_number);
-                    $('#survey_completion_date').val(data.data.sur_request_completion_date);
+                    var d = new Date(data.data.sur_request_completion_date.replace(' ', 'T'));
+                    
+                    $('#survey_completion_date').val(formatAMPM(d));
 		    $("#update_survey_form").show();
 		    $(".loading_data").hide();
 		})
@@ -185,3 +187,15 @@
                 $("#alert_message").html(html);
         })
     });
+    
+    function formatAMPM(d) {
+  var hours = d.getHours();
+  var minutes = d.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = ("0" + hours).slice(-2) + ':' + ("0" + minutes).slice(-2) + ' ' + ampm;
+  return d.getFullYear() + "-" +("0"+(d.getMonth()+1)).slice(-2) + "-" +("0" + d.getDate()).slice(-2) + "  "
+     +strTime;
+} 

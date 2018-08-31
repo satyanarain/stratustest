@@ -487,6 +487,7 @@ use ProjectImprovement;
         $denied_by_owner          = $request['denied_by_owner'];
         $denied_by_cm             = $request['denied_by_cm'];
         $order_rfi                = $request['order_rfi'];
+        $change_order_status      = $request['change_order_status'];
         if($approved_by_cm || $approved_by_owner || $denied_by_cm || $denied_by_owner)
         {
             $job_type   =   'reviewed';
@@ -547,7 +548,7 @@ use ProjectImprovement;
         {
             $query = DB::table('project_change_order_request_detail')
             ->where('pcd_id', '=', $pcd_id)
-             ->update(['pcd_number'=>$latest_cor_no,'pcd_rfi' => $order_rfi,'pcd_status'=>$request['pcd_status'],'owner_rejection_comment'=>$request['owner_rejection_comment'],'cm_rejection_comment'=>$request['cm_rejection_comment'],'pcd_denied_by_cm'=>$denied_by_cm,'pcd_denied_by_owner'=>$denied_by_owner,'pcd_unit_number' => $pcd_unit_number,'pcd_unit_price' => $pcd_unit_price,'pcd_price' => $pcd_price,'pcd_description' => $cor_description,'pcd_days' => $change_order_day,'pcd_approved_by_cm' => $approved_by_cm, 'pcd_approved_by_owner' => $approved_by_owner, 'pcd_user_id' => $user_id]);
+             ->update(['change_order_status'=>$change_order_status,'pcd_number'=>$latest_cor_no,'pcd_rfi' => $order_rfi,'pcd_status'=>$request['pcd_status'],'owner_rejection_comment'=>$request['owner_rejection_comment'],'cm_rejection_comment'=>$request['cm_rejection_comment'],'pcd_denied_by_cm'=>$denied_by_cm,'pcd_denied_by_owner'=>$denied_by_owner,'pcd_unit_number' => $pcd_unit_number,'pcd_unit_price' => $pcd_unit_price,'pcd_price' => $pcd_price,'pcd_description' => $cor_description,'pcd_days' => $change_order_day,'pcd_approved_by_cm' => $approved_by_cm, 'pcd_approved_by_owner' => $approved_by_owner, 'pcd_user_id' => $user_id]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");

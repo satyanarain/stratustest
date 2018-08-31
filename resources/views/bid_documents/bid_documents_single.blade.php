@@ -36,19 +36,19 @@
                                     <tr>
                                         <th scope="row">Notice Inviting Bids Date</th>
                                         <td id="notice_invite_date"></td>
-                                        <th scope="row">Notice Inviting Bids</th>
+                                        <th scope="row">Notice Inviting Bids Document</th>
                                         <td id="notice_invite_bid_path"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Date of Bid Opening</th>
                                         <td id="date_bid_opening"></td>
-                                        <th scope="row">Detailed Bid Results by Item</th>
+                                        <th scope="row">Detailed Bid Results by Item Document</th>
                                         <td id="detail_result_path"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Low Bidder’s Name</th>
                                         <td id="low_bidder_name"></td>
-                                        <th scope="row">Successful Bidder’s Proposal</th>
+                                        <th scope="row">Successful Bidder’s Proposal Document</th>
                                         <td id="sucessful_bidder_proposal_path"></td>
                                     </tr>
                                 </tbody>

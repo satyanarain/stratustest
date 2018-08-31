@@ -74,7 +74,7 @@
                                         <td colspan="2" width="50%" id="review_responsible"></td>
                                     </tr>
                                     <tr>
-                                        <th colspan="2">Survey Request # </th>
+                                        <th colspan="2">Hours worked by Survey Crew </th>
                                         <td colspan="2" id="review_request_number"></td>
                                     </tr>
                                     <tr>

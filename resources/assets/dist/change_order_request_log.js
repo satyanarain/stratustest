@@ -117,7 +117,7 @@ $(document).ready(function() {
             else {
                 var pcd_approved_by_owner = val.pcd_approved_by_owner;
             }
-            if(val.pcd_price){var disp_price=val.pcd_price;}else{var disp_price=val.pcd_unit_number*val.pcd_unit_price;}
+            if(val.pcd_price){var disp_price=Number(val.pcd_price).toFixed('2');}else{var disp_price=Number(val.pcd_unit_number*val.pcd_unit_price).toFixed('2');}
             if(val.pcd_approved_by_cm == null || val.pcd_approved_by_cm == "0000-00-00" || val.pcd_approved_by_owner == null || val.pcd_approved_by_owner == "0000-00-00"){
                 var approved_status = '';
             }else{

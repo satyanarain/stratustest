@@ -99,7 +99,7 @@
 
                                                             <div class="response_survey_div">
                                                                 <div class="form-group">
-                                                                    <label>Survey Request # : </label>
+                                                                    <label>Hours worked by Survey Crew : </label>
                                                                     <input type="text" class="form-control" id="survey_request">
                                                                 </div>
 

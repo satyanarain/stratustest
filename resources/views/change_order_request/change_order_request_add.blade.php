@@ -85,7 +85,7 @@
                 <div id="item_price_1">
                     <div class="item_price" style="display: none;">
                         <div class="col-lg-12 nopadleft">
-                            <input type="text" class="form-control m-b-10" name="item_price[]" placeholder="$X"  onkeypress="return isNumber1(event)">
+                            <input type="text" class="form-control m-b-10" name="item_price[]" placeholder="$X"  onkeypress="return isPrice(event)">
                         </div>
                     </div>
                     <!-- <span class="nopadleft col-lg-1 control-label mt-6 text-center">OR</span> -->
@@ -95,7 +95,7 @@
                         </div>
                         <span class="nopadleft col-lg-2 control-label mt-6 text-center">at</span>
                         <div class="col-lg-5 nopadleft">
-                            <input type="text" class="form-control" name="item_unit_price[]" placeholder="$/Unit"  onkeypress="return isNumber(event)">
+                            <input type="text" class="form-control" name="item_unit_price[]" placeholder="$/Unit"  onkeypress="return isPrice(event)">
                         </div>
                     </div>
                 </div><!-- close -->
@@ -258,6 +258,17 @@
                 return true;
             }
             return false;
+        }
+        function isPrice(evt)
+        {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if(charCode==46)
+                return true;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
         }
    // });
 </script>

@@ -49,6 +49,7 @@
 <!--                                              <th>Owner Rejection Comment</th>-->
                                               <th class="project_currency" style="width: 10%"></th>
                                               <th>Days</th>
+                                              <th>Review Status</th>
                                               <th>Status</th>
                                               <th>Action</th>
                                           </tr>
@@ -77,6 +78,7 @@
 <!--                                              <th>Referenced RFI</th>-->
                                               <th class="project_currency" style="width: 10%"></th>
                                               <th>Days</th>
+                                              <th>Review Status</th>
                                               <th>Status</th>
                                               <th>Action</th>
                                           </tr>

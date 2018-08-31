@@ -174,7 +174,7 @@ $(document).ready(function() {
                 var update_permission = '<a href="'+baseUrl+'dashboard/'+project_id+'/change_order_request_review/'+val.pcd_id+'/update" class="btn btn-primary btn-xs tooltips hide_update_permission" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>';
             }
 
-            var status = val.pco_status;
+            var status = val.change_order_status;
             if(status == 'active'){
             status = '<span class="label label-success">Active</span>';
             }
@@ -208,7 +208,7 @@ $(document).ready(function() {
                 var pcd_denied_by_owner = '';
             }
             
-            if(val.pcd_price){var disp_price=val.pcd_price;}else{var disp_price=val.pcd_unit_number*val.pcd_unit_price;}
+            if(val.pcd_price){var disp_price=Number(val.pcd_price).toFixed('2');}else{var disp_price=Number(val.pcd_unit_number*val.pcd_unit_price).toFixed('2');}
             if(val.pcd_approved_by_cm != "0000-00-00" && val.pcd_approved_by_owner != "0000-00-00"){
                 var approved_status = '<span class="label label-success">APPROVED</span>';
             }else if(val.pcd_denied_by_cm != "0000-00-00" || val.pcd_denied_by_owner != "0000-00-00"){
@@ -299,6 +299,7 @@ $(document).ready(function() {
                        val.currency_symbol +''+  ReplaceNumberWithCommas(disp_price),
                        val.pcd_days,
                        status_cm + status_owner+potential_status,
+                       status,
                        action_button
                     ]).draw( false );  
                                                 t.on( 'order.dt search.dt', function () {
@@ -332,7 +333,7 @@ $(document).ready(function() {
                        val.currency_symbol +''+  ReplaceNumberWithCommas(disp_price),
                        val.pcd_days,
                        status_cm + status_owner+approved_status+potential_status,
-                       //status,
+                       status,
                        update_permission
                     ]).draw( false );
                                                 t.on( 'order.dt search.dt', function () {
@@ -385,6 +386,7 @@ $(document).ready(function() {
                        price,
                        val.pcd_days,
                        status_cm + status_owner+approved_status+potential_status,
+                       status,
                        action_button
                     ]).draw( false );  
                                                 t.on( 'order.dt search.dt', function () {

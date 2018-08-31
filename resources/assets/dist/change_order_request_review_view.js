@@ -82,7 +82,7 @@ $(document).ready(function() {
             $("#total_requested_cost").html('Per Unit Cost');
             $("#cor_unit_number").html(data.data.pcd_unit_number);
             $("#cor_unit_price").html(data.data.pcd_unit_price);
-            var cor_amount = parseInt(data.data.pcd_unit_number)*parseInt(data.data.pcd_unit_price);
+            var cor_amount = Number(parseInt(data.data.pcd_unit_number)*parseInt(data.data.pcd_unit_price)).toFixed('2');
             $('#cor_amount').text(cor_amount)
         }
         //$('#cor_unit_number').text(data.data.pcd_unit_number)

@@ -51,6 +51,15 @@
                                                         <table class="table table-striped custom-grid">
                                                             <tbody>
                                                                 <tr>
+                                                                    <th>Status:</th>
+                                                                    <td> 
+                                                                        <select class="form-control" id="change_order_status">
+                                                                            <option value="active">Active</option>
+                                                                            <option value="deactive">Inactive</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
                                                                     <th>COR #:</th>
                                                                     <td id="cor_number"></td>
                                                                 </tr>
@@ -114,10 +123,10 @@
                                                                     <th>Item File</th>
                                                                     <td id="cor_file"></td>
                                                                 </tr>
-                                                                <tr>
+<!--                                                                <tr>
                                                                     <th>Status</th>
                                                                     <td id="cor_status"></td>
-                                                                </tr>
+                                                                </tr>-->
                                                                 <tr class="rfi_available">
                                                                     <th>RFI Detail:</th>
                                                                     <td id="cor_rfi_detail">
