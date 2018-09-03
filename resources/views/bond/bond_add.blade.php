@@ -342,13 +342,27 @@ $("input[name='upload_maintenance']").click(function(){
 $("#my-awesome-dropzone").click(function() {
   $("#upload_type").val("certificate_general_libility");
 });
+$("#my-awesome-dropzone").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("certificate_general_libility");
+});
 $("#my-awesome-dropzone1").click(function() {
   $("#upload_type").val("certificate_work_compensation");
+});
+$("#my-awesome-dropzone1").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("certificate_work_compensation");
 });
 $("#my-awesome-dropzone2").click(function() {
   $("#upload_type").val("certificate_auto_liability");
 });
-
+$("#my-awesome-dropzone2").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("certificate_auto_liability");
+});
 $('#performance_bond_yes').change(function() {
     if($(this).is(":checked")) {
         $('.upload_doc_panel_performance').css("display", "block");

@@ -142,8 +142,18 @@
 $("#my-awesome-dropzone").click(function() {
   $("#upload_type").val("signed_noc_id");
 });
+$("#my-awesome-dropzone").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("signed_noc_id");
+});
 $("#my-awesome-dropzone1").click(function() {
   $("#upload_type").val("recorded_doc_id");
+});
+$("#my-awesome-dropzone1").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("recorded_doc_id");
 });
 </script>
 <script src="{{ url('/resources/assets/dist/notice_completion_update.js') }}"></script>

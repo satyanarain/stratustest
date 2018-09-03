@@ -41,7 +41,7 @@
                             <th>Date Responded</th>
                             <!-- <th>Date status</th> -->
                             <th>Status</th>
-                            <th>Action</th>
+                            <th width="10%">Action</th>
                         </tr>
                         </thead>
                         

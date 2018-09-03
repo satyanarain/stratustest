@@ -117,7 +117,7 @@
 						else {
 							console.log('greater');
 							//var status = '<span class="label label-danger">PAST DUE</span>';
-                                                        var status = '<span class="label label-danger">PASSED</span>';
+                                                        var status = '<span class="label label-danger">PAST DUE</span>';
 						}
 
 						// var status = ' pending '
@@ -125,7 +125,7 @@
 			    }
 			    else if(status == 'past_due'){
                                 //status = '<span class="label label-danger">PAST DUE</span>';
-                                status = '<span class="label label-danger">PASSED</span>';
+                                status = '<span class="label label-danger">PAST DUE</span>';
 			    }
 			    else if(status == 'completed'){
 		    	status = '<span class="label label-success">COMPLETED</span>'

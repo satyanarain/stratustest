@@ -522,14 +522,34 @@
 $("#my-awesome-dropzone").click(function() {
   $("#upload_type").val("certificate_general_libility");
 });
+$("#my-awesome-dropzone").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("certificate_general_libility");
+});
 $("#my-awesome-dropzone1").click(function() {
   $("#upload_type").val("certificate_work_compensation");
+});
+$("#my-awesome-dropzone1").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("certificate_work_compensation");
 });
 $("#my-awesome-dropzone2").click(function() {
   $("#upload_type").val("certificate_auto_liability");
 });
+$("#my-awesome-dropzone2").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("certificate_auto_liability");
+});
 $("#my-awesome-dropzone3").click(function() {
   $("#upload_type").val("certificate_auto_umbrella");
+});
+$("#my-awesome-dropzone3").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("certificate_auto_umbrella");
 });
 // $("#my-awesome-dropzone4").click(function() {
 //   $("#upload_type").val("multiple_upload");

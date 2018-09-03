@@ -241,16 +241,35 @@
 $("#my-awesome-dropzone").click(function() {
   $("#upload_type").val("upload_doc_id_adv_bid");
 });
+$("#my-awesome-dropzone").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("upload_doc_id_adv_bid");
+});
 $("#my-awesome-dropzone1").click(function() {
   $("#upload_type").val("upload_doc_id_notice_invite");
+});
+$("#my-awesome-dropzone1").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("upload_doc_id_notice_invite");
 });
 $("#my-awesome-dropzone2").click(function() {
   $("#upload_type").val("upload_doc_id_bid_result");
 });
+$("#my-awesome-dropzone2").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("upload_doc_id_bid_result");
+});
 $("#my-awesome-dropzone3").click(function() {
   $("#upload_type").val("upload_doc_id_success_bidder");
 });
-
+$("#my-awesome-dropzone3").on("drop", function(event) {
+    event.preventDefault();  
+    event.stopPropagation();
+    $("#upload_type").val("upload_doc_id_success_bidder");
+});
 
 // $('#bid_advertisement_yes').change(function() {
 //     if($(this).is(":checked")) {

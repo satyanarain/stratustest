@@ -38,7 +38,7 @@
                                                 <th>Engineer’s As Built</th>
                                                 <th>Changes to Plans?</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
+                                                <th width="10%">Action</th>
                                             </tr>
                                           </thead>
                                           <tbody>
