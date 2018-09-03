@@ -40,15 +40,15 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Company</th>
-                                        <th>140 – <br/>PW Contractor Award Info</th>
-                                        <th>142 – <br/>Request for Dispatch of Apprentice</th>
-                                        <th>Fringe Benefit Statement</th>
-                                        <th>CAC-2 <br/>(not required if Union)</th>
-                                        <th>Weekly Certified Payroll Reports<br/>/Statement of Compliance</th>
-                                        <th>Statement of Non-Performance</th>
+                                        <th>140 – <br/>PW Contractor<br>Award Info</th>
+                                        <th>142 – <br/>Request for<br>Dispatch of<br>Apprentice</th>
+                                        <th>Fringe Benefit<br>Statement</th>
+                                        <th>CAC-2 <br/>(not required<br>if Union)</th>
+                                        <th>Weekly Certified <br>Payroll Reports<br/>/Statement of <br>Compliance</th>
+                                        <th>Statement of <br/>Non-Performance</th>
                                         <th>Uploaded to <br/>DIR’s website</th>
                                         <th>Status</th>
-                                        <th width="20%">Action</th>
+                                        <th style="width:102px !important;">Action</th>
                                     </tr>
                                   </thead>
                                   <tbody>
