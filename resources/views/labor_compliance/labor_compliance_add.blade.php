@@ -147,7 +147,7 @@
                                             </label><br/>
                                             <section class="panel upload_doc_panel" id="upload_div">
                                                 <div class="panel-body" style="padding: 0px;">
-                                                    <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
+                                                    <form id="my-awesome-dropzone" labor="upload_doc_id_1" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                         <input type="hidden" name="document_path" value="/uploads/labor_compliance/">
                                                     </form>
 <input type="hidden" name="upload_type" id="upload_type" value="multiple_upload">
@@ -178,7 +178,7 @@
                                             </label><br/>
                                             <section class="panel upload_doc_panel" id="upload_div">
                                                 <div class="panel-body" style="padding: 0px;">
-                                                    <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
+                                                    <form id="my-awesome-dropzone" labor="upload_doc_id_2" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                         <input type="hidden" name="document_path" value="/uploads/labor_compliance/">
                                                     </form>
 <input type="hidden" name="upload_type" id="upload_type" value="multiple_upload">
@@ -209,7 +209,7 @@
                                             </label><br/>
                                             <section class="panel upload_doc_panel" id="upload_div">
                                                 <div class="panel-body" style="padding: 0px;">
-                                                    <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
+                                                    <form id="my-awesome-dropzone" labor="upload_doc_id_3" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                         <input type="hidden" name="document_path" value="/uploads/labor_compliance/">
                                                     </form>
 <input type="hidden" name="upload_type" id="upload_type" value="multiple_upload">
@@ -240,7 +240,7 @@
                                             </label><br/>
                                             <section class="panel upload_doc_panel" id="upload_div">
                                                 <div class="panel-body" style="padding: 0px;">
-                                                    <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
+                                                    <form id="my-awesome-dropzone" labor="upload_doc_id_4" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                         <input type="hidden" name="document_path" value="/uploads/labor_compliance/">
                                                     </form>
 <input type="hidden" name="upload_type" id="upload_type" value="multiple_upload">
@@ -280,7 +280,7 @@
                                             </label><br/>
                                             <section class="panel upload_doc_panel" id="upload_div">
                                                 <div class="panel-body" style="padding: 0px;">
-                                                    <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
+                                                    <form id="my-awesome-dropzone" labor="upload_doc_id_5" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                         <input type="hidden" name="document_path" value="/uploads/labor_compliance/">
                                                     </form>
 <input type="hidden" name="upload_type" id="upload_type" value="multiple_upload">
@@ -298,7 +298,7 @@
                                             </label><br/>
                                             <section class="panel upload_doc_panel" id="upload_div">
                                                 <div class="panel-body" style="padding: 0px;">
-                                                    <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
+                                                    <form id="my-awesome-dropzone" labor="upload_doc_id_6" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                         <input type="hidden" name="document_path" value="/uploads/labor_compliance/">
                                                     </form>
                                             <input type="hidden" name="upload_type" id="upload_type" value="multiple_upload">
@@ -350,7 +350,7 @@
                                             </label><br/>
                                             <section class="panel upload_doc_panel" id="upload_div">
                                                 <div class="panel-body" style="padding: 0px;">
-                                                    <form id="my-awesome-dropzone" action="{{ url('/document/uploadFiles') }}" class="dropzone">
+                                                    <form id="my-awesome-dropzone" labor="upload_doc_id_7" action="{{ url('/document/uploadFiles') }}" class="dropzone">
                                                         <input type="hidden" name="document_path" value="/uploads/labor_compliance/">
                                                     </form>
                                             <input type="hidden" name="upload_type" id="upload_type" value="multiple_upload">
@@ -414,7 +414,15 @@
         console.log(localStorage.getItem("upload_doc_id"));
         return;
     });
-
+    $(".dropzone").on("drop", function(event) {
+        var id = $(this).attr("labor");
+        event.preventDefault();  
+        event.stopPropagation();
+        window.localStorage.setItem("upload_doc_id", id);
+        console.log(localStorage.getItem("upload_doc_id"));
+        //$("#upload_type").val("certificate_work_compensation");
+        return;
+    });
     $('#140_option_show').change(function() {
         if($(this).is(":checked")) {
             $('#140_div_show').css("display", "block");
