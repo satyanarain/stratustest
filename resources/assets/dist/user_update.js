@@ -65,10 +65,11 @@ $('#update_profile_form').click(function(e) {
                 },
                 contentType: 'application/json',
                 cache: true
-            })
-            var inp_phone_num = document.getElementsByName('phone_num[]');
-            var inp_phone_type = document.getElementsByName('phone_type[]');
-            for (var i = 0; i <inp_phone_num.length; i++) {
+            }).done(function(data, textStatus, jqXHR)
+            {
+                var inp_phone_num = document.getElementsByName('phone_num[]');
+                var inp_phone_type = document.getElementsByName('phone_type[]');
+                for (var i = 0; i <inp_phone_num.length; i++) {
                 var inp_phone_type_value=inp_phone_type[i];
                 var inp_phone_num_value =inp_phone_num[i];
                 var phone_type =  inp_phone_type_value.value;
@@ -91,7 +92,7 @@ $('#update_profile_form').click(function(e) {
                     cache: true
                 })
             }
-
+            })
             // html = '<div class="alert alert-block alert-success fade in">Profile updated!</div>';
             // $("#updateuserinfo").html(html);
             $('html, body').animate({
