@@ -89,7 +89,7 @@
 		    $('#status').val(status);
                     $('#submittal_version_number').val(data.data.sub_number);
                     $('#submittal_number').val(data.data.submittal_number);
-		    $('#review_detail').val(data.data.sr_review);
+		    //$('#review_detail').val(data.data.sr_review);
 
 		    var document_link = data.data.submittal_path;
 		    if(document_link == null){
@@ -125,11 +125,12 @@
     });
 
 
-    $('#update_submittal_review_form').submit(function(e) {
+    $('#submit_submittal_form').click(function(e) {
         e.preventDefault();
         $('.loading-submit').show();
         var status               	= $('#status').val();
-        var review_detail               = $('#review_detail').val();
+        //var review_detail               = $('#review_detail').val();
+        var sr_review_document          = $('#upload_doc_id').val();
         var respond_date           	= $('#respond_date').val();
         var project_id                  = $('#upload_project_id').val();
         var submittal_version_number    = $('#submittal_version_number').val();
@@ -144,7 +145,8 @@
             data: {
                 "submittal_id"				: submittal_id,
                 "submittal_review_type"		: status,
-                "submittal_review"  		: review_detail,
+                //"submittal_review"  		: review_detail,
+                "sr_review_document"            : sr_review_document,
                 "respond_date"  		: respond_date,
                 "project_id"        		: project_id,
                 "submittal_version_number"      : submittal_version_number,

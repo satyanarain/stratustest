@@ -368,6 +368,19 @@ class LaborComplianceController extends Controller {
                 // $approval   = $request['approval'];
                 $status     = $request['status'];
                 $project_id = $request['project_id'];
+                $plc_140                = $request['140'];
+                $plc_140_date           = $request['140_date'];
+                $plc_142                = $request['142'];
+                $plc_142_date           = $request['142_date'];
+                $plc_fringe             = $request['fringe'];
+                $plc_fringe_date        = $request['fringe_date'];
+                $plc_cac2               = $request['cac2'];
+                $plc_cac2_date          = $request['cac2_date'];
+                $plc_cpr                = $request['cpr'];
+                $plc_cpr_date           = $request['cpr_date'];
+                $plc_compliance         = $request['compliance'];
+                $doc_nonperformance     = $request['doc_nonperformance'];
+                $plc_compliance_date    = $request['compliance_date'];
                 $user_id    = Auth::user()->id;
             // Check User Permission Parameter 
             $user_id = Auth::user()->id;
@@ -406,7 +419,23 @@ class LaborComplianceController extends Controller {
                 {
                     $query = DB::table('project_labor_compliance')
                         ->where('plc_id', '=', $plc_id)
-                        ->update(['plc_status' => $status, 'plc_project_id' => $project_id, 'plc_user_id' => $user_id]);
+                        ->update(['plc_140' => $plc_140, 'plc_140_date' => $plc_140_date, 'plc_142' => $plc_142, 'plc_142_date' => $plc_142_date, 'plc_fringe' => $plc_fringe, 'plc_fringe_date' => $plc_fringe_date, 'plc_cac2' => $plc_cac2, 'plc_cac2_date' => $plc_cac2_date, 'plc_cpr' => $plc_cpr, 'plc_cpr_date' => $plc_cpr_date, 'plc_compliance' => $plc_compliance,'plc_compliance_non_performance'=>$doc_nonperformance, 'plc_compliance_date' => $plc_compliance_date,'plc_status' => $status, 'plc_project_id' => $project_id, 'plc_user_id' => $user_id]);
+                    $doc_attached = "<br><br>Documents added in Labor Compliance are :- <br>";
+                    if($plc_140)
+                        $doc_attached.="140 – PW Contractor Award Info<br>";
+                    if($plc_142)
+                        $doc_attached.="142 – Request for Dispatch of Apprentice<br>";
+                    if($plc_fringe)
+                        $doc_attached.="Fringe Benefit Statement<br>";
+                    if($plc_cac2)
+                        $doc_attached.="CAC-2<br>";
+                    if($plc_cpr)
+                        $doc_attached.="Weekly Certified Payroll Reports<br>";
+                    if($plc_compliance)
+                        $doc_attached.="Statement of Compliance<br>";
+                    if($doc_nonperformance)
+                        $doc_attached.="Statement of Non Performance";
+
                     if(count($query) < 1)
                     {
                         $result = array('code'=>400, "description"=>"No records found");
@@ -430,7 +459,7 @@ class LaborComplianceController extends Controller {
                         $url                  = App::make('url')->to('/');
                         $link                 = "/dashboard/".$project_id."/labor_compliance/".$plc_id;
                         $date                 = date("M d, Y h:i a");
-                        $email_description    = 'A labor compliance document has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                        $email_description    = 'A labor compliance document has been updated in Project: <strong>'.$check_project_user->p_name.'</strong>'.$doc_attached.'<br> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                         $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                         if(count($check_single_user_permission) < 1){

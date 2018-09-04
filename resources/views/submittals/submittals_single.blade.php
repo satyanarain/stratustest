@@ -78,12 +78,14 @@
                             <thead>
                                 <th>Review</th>
                                 <th>Review Status</th>
+                                <th>Review Document</th>
                                 <th>Review Date</th>
                                 <th>User</th>
                             </thead>
                             <tbody>
                                 <td id="review"></td>
                                 <td id="review_status"></td>
+                                <td id="submittal_reviewed"></td>
                                 <td id="review_date"></td>
                                 <td id="review_user"></td>
                             </tbody>

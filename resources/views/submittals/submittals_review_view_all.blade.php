@@ -29,6 +29,9 @@
 <!--                            <th>S. No.</th>-->
                             <th>Submittal #</th>
                             <th>Submittal Name</th>
+                            <th>Reviewed On</th>
+                            <th>Submittal Uploaded</th>
+                            <th>Submittal Response</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>

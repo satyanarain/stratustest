@@ -387,10 +387,11 @@ class SubmittalsController extends Controller {
         $query = DB::table('project_submittals')
 ->leftJoin('documents as submittal_path', 'project_submittals.sub_additional_path', '=', 'submittal_path.doc_id')
 ->leftJoin('project_submittal_review', 'project_submittals.sub_id', '=', 'project_submittal_review.sr_submittal_id')
+->leftJoin('documents as submittal_reviewed', 'project_submittal_review.sr_review_document', '=', 'submittal_reviewed.doc_id')
 ->leftJoin('projects', 'project_submittals.sub_project_id', '=', 'projects.p_id')
 ->leftJoin('users', 'project_submittals.sub_user_id', '=', 'users.id')
 ->leftJoin('users as review_user', 'project_submittal_review.sr_user_id', '=', 'review_user.id')
-        ->select('submittal_path.doc_path as submittal_path',  
+        ->select('submittal_reviewed.doc_path as submittal_reviewed','submittal_path.doc_path as submittal_path',  
           'project_submittals.*', 'projects.*', 'project_submittal_review.*',
           'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role', 
           'review_user.username as review_username', 'review_user.email as review_email', 'review_user.first_name as review_firstname', 'review_user.last_name as review_lastname', 'review_user.phone_number as review_phonenumber', 'review_user.position_title as review_positiontitle')
@@ -578,7 +579,8 @@ class SubmittalsController extends Controller {
       // } 
       // else {
         $submittal_id                       = $request['submittal_id'];
-        $submittal_review                   = $request['submittal_review'];
+        //$submittal_review                   = $request['submittal_review'];
+        $sr_review_document                 = $request['sr_review_document'];
         $submittal_review_type              = $request['submittal_review_type'];
         $respond_date                       = $request['respond_date'];
         // $submittal_additional_cost          = $request['submittal_additional_cost'];
@@ -600,7 +602,7 @@ class SubmittalsController extends Controller {
       else {
         $information = array(
             "submittal_id"              => $submittal_id,
-            "submittal_review"          => $submittal_review,
+            //"submittal_review"          => $submittal_review,
             "submittal_review_type"     => $submittal_review_type,
             "respond_date"              => $respond_date,
             // "submittal_additional_cost" => $submittal_additional_cost,
@@ -612,7 +614,7 @@ class SubmittalsController extends Controller {
 
         $rules = [
             'submittal_id'              => 'required|numeric',
-            'submittal_review'          => 'required',
+            //'submittal_review'          => 'required',
             'submittal_review_type'     => 'required',
             'respond_date'              => 'required',
             // 'submittal_additional_cost' => 'required',
@@ -631,7 +633,7 @@ class SubmittalsController extends Controller {
             $query = DB::table('project_submittal_review')
             ->where('sr_id', '=', $sr_id)
             // ->update(['sr_submittal_id' => $submittal_id, 'sr_review' => $submittal_review, 'sr_review_type' => $submittal_review_type, 'sr_additional_cost' => $submittal_additional_cost, 'sr_additional_cost_currency' => $submittal_additional_cost_currency, 'sr_additional_cost_amount' => $submittal_additional_cost_amount, 'sr_additional_day' => $submittal_additional_day, 'sr_additional_day_add' => $submittal_additional_day_add, 'sr_project_id' => $project_id, 'sr_user_id' => $user_id, 'sr_status' => $status]);
-            ->update(['sr_submittal_id' => $submittal_id, 'sr_review' => $submittal_review, 'sr_respond_date' => $respond_date, 'sr_review_type' => $submittal_review_type, 'sr_project_id' => $project_id, 'sr_user_id' => $user_id, 'sr_status' => $status]);
+            ->update(['sr_submittal_id' => $submittal_id, 'sr_review_document' => $sr_review_document, 'sr_respond_date' => $respond_date, 'sr_review_type' => $submittal_review_type, 'sr_project_id' => $project_id, 'sr_user_id' => $user_id, 'sr_status' => $status]);
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
@@ -774,11 +776,13 @@ class SubmittalsController extends Controller {
       }
       else {
           $query = DB::table('project_submittal_review')
-->leftJoin('project_submittals as submittal', 'project_submittal_review.sr_submittal_id', '=', 'submittal.sub_id')
+            ->leftJoin('project_submittals as submittal', 'project_submittal_review.sr_submittal_id', '=', 'submittal.sub_id')
+            ->leftJoin('documents as submittal_path', 'submittal.sub_additional_path', '=', 'submittal_path.doc_id')
+            ->leftJoin('documents as submittal_reviewed', 'project_submittal_review.sr_review_document', '=', 'submittal_reviewed.doc_id')    
 // ->leftJoin('currency', 'project_submittal_review.sr_additional_cost_currency', '=', 'currency.cur_id')
 ->leftJoin('projects', 'project_submittal_review.sr_project_id', '=', 'projects.p_id')
 ->leftJoin('users', 'project_submittal_review.sr_user_id', '=', 'users.id')
-        ->select('submittal.*', 'project_submittal_review.*', 'projects.*', 
+        ->select('submittal_reviewed.doc_path as submittal_reviewed','submittal_path.doc_path as submittal_path','submittal.*', 'project_submittal_review.*', 'projects.*', 
           'users.username as user_name', 'users.email as user_email', 'users.first_name as user_firstname', 'users.last_name as user_lastname', 'users.company_name as user_company', 'users.phone_number as user_phonenumber', 'users.status as user_status', 'users.role as user_role')
           ->where('sr_project_id', '=', $submittal_id)
           ->orderBy('submittal.sub_id', 'asc')

@@ -89,6 +89,15 @@
 		    	status = '<span class="label label-warning">Pending</span>';
 		    }
 		    $('#review_status').html(status);
+                    var submittal_path = data.data.submittal_reviewed;
+                    var sub_additional_path_value;
+                    if(submittal_path == null){
+                            sub_additional_path_value = '-';
+                    }
+                    else {
+                            sub_additional_path_value = '<a target="_blank" href="'+baseUrl+data.data.submittal_reviewed+'"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+                    }
+                    $('#submittal_reviewed').html(sub_additional_path_value);        
 		    if(data.data.sr_review == null){
 		    	$('#review').text('');
 		    }

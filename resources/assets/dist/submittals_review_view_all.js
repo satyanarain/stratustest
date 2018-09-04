@@ -132,7 +132,29 @@
 				  else {
 				  	sub_num = val.sub_exist_parent+' R '+ val.sub_rev_number;
 				  }
-			  
+                            var submittal_path = val.submittal_path;
+                            var sub_additional_path_value;
+                            if(submittal_path == null){
+                                    sub_additional_path_value = '-';
+                            }
+                            else {
+                                    sub_additional_path_value = '<a target="_blank" href="'+baseUrl+val.submittal_path+'"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+                            }
+                            var submittal_reviewed = val.submittal_reviewed;
+                            var sub_reviewed_path_value;
+                            if(submittal_reviewed == null){
+                                    sub_reviewed_path_value = '-';
+                            }
+                            else {
+                                    sub_reviewed_path_value = '<a target="_blank" href="'+baseUrl+val.submittal_reviewed+'"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+                            }
+                            var d = new Date(val.sr_timestamp.replace(' ', 'T'));
+//                            var formatDate = $.datepicker.formatDate('yy-mm-dd', date);
+//                            var day = date.getDate();
+//                            var month = date.getMonth()+1;
+//                            var year = date.getFullYear();
+//                            var respond_date = year + '-' + month + '-' + day;
+                            var respond_date = formatAMPM(d);
 			  var t = $('#view_users_table').DataTable();
 				if(val.sub_review_type == 'yes'){
                                     var cus_css = '';
@@ -141,7 +163,11 @@
 			  		t.row.add( [
 //                                    '<span style="'+cus_css+'">'+(i+1)+'</span>',
                                     '<span style="'+cus_css+'">'+sub_num+'</span>',
+                                    
                                     '<span style="'+cus_css+'">'+val.sub_description+'</span>',
+                                    respond_date,
+                                    sub_additional_path_value,
+                                    sub_reviewed_path_value,
 			           status,
 			           update_permission
 			       	]).draw( false );
@@ -151,6 +177,9 @@
 			           //i+1,
                                    sub_num,
                                    val.sub_description,
+                                   respond_date,
+                                   sub_additional_path_value,
+                                   sub_reviewed_path_value,
 			           status,
 			           update_permission
 			       	]).draw( false );
@@ -185,3 +214,15 @@
 		}); 
 
     });
+    
+    function formatAMPM(d) {
+  var hours = d.getHours();
+  var minutes = d.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = ("0" + hours).slice(-2) + ':' + ("0" + minutes).slice(-2) + ' ' + ampm;
+  return d.getFullYear() + "-" +("0"+(d.getMonth()+1)).slice(-2) + "-" +("0" + d.getDate()).slice(-2) + "  "
+     +strTime;
+}
