@@ -75,17 +75,23 @@
 		    else {
 		    	status = "deactive";
 		    }
-                    $('#date_140').val(data.data.plc_140_date);
+                    if(data.data.plc_140_date!='0000-00-00')
+                        $('#date_140').val(data.data.plc_140_date);
                     $('#upload_doc_id_1').val(data.data.plc_140);
-                    $('#date_142').val(data.data.plc_142_date);
+                    if(data.data.plc_142_date!='0000-00-00')
+                        $('#date_142').val(data.data.plc_142_date);
                     $('#upload_doc_id_2').val(data.data.plc_142);
-                    $('#fringe_date').val(data.data.plc_fringe_date);
+                    if(data.data.plc_fringe_date!='0000-00-00')
+                        $('#fringe_date').val(data.data.plc_fringe_date);
                     $('#upload_doc_id_3').val(data.data.plc_fringe);
-                    $('#cac2_date').val(data.data.plc_cac2_date);
+                    if(data.data.plc_cac2_date!='0000-00-00')
+                        $('#cac2_date').val(data.data.plc_cac2_date);
                     $('#upload_doc_id_4').val(data.data.plc_cac2);
-                    $('#weekly_date').val(data.data.plc_cpr_date);
+                    if(data.data.plc_cpr_date!='0000-00-00')
+                        $('#weekly_date').val(data.data.plc_cpr_date);
                     $('#upload_doc_id_5').val(data.data.plc_cpr);
-                    $('#compliance_date').val(data.data.plc_compliance_date);
+                    if(data.data.plc_compliance_date!='0000-00-00')
+                        $('#compliance_date').val(data.data.plc_compliance_date);
                     $('#upload_doc_id_6').val(data.data.plc_compliance);
                     $('#upload_doc_id_7').val(data.data.plc_compliance_non_performance);
 		    $('#status').val(status);
