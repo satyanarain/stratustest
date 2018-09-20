@@ -85,7 +85,7 @@
 				// Check Update Permission
 				var check_permission = jQuery.inArray("submittal_review_update", check_user_access );
 				console.log(check_permission);
-				if(check_permission < 1){
+				if(check_permission < 1 || val.sr_review_type!="pending"){
 					var update_permission = '';
 				}
 				else {
