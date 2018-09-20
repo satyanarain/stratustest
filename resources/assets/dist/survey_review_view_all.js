@@ -104,12 +104,44 @@
 
 				var status = val.sr_review_status;
 				var check_expedited = val.sur_request_expedited;
+                                alert(val.rir_review_respond);
 				if(status == 'pending'){
-					if(check_expedited == 'yes'){
-						status = '<span class="label label-danger">PENDING – EXPEDITED REVIEW</span>';
-					}
-					else {
-		    			status = '<span class="label label-warning">PENDING</span>';
+//					if(check_expedited == 'yes'){
+//						status = '<span class="label label-danger">PENDING – EXPEDITED REVIEW</span>';
+//					}
+//					else {
+//		    			status = '<span class="label label-warning">PENDING</span>';
+//					}
+                                        if(val.sr_review_status == 'pending' && val.rir_review_respond == null){
+						var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+						var firstDate = new Date();
+						var secondDate = new Date(val.sur_request_completion_date);
+						var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+						if(firstDate.getTime() < secondDate.getTime()){
+							console.log('less');
+							seconds = Math.floor((secondDate - (firstDate))/1000);
+							minutes = Math.floor(seconds/60);
+						    hours = Math.floor(minutes/60);
+						    days = Math.floor(hours/24);
+							// console.log(hours);
+							hours1 = hours-(days*24);
+							minutes1 = minutes-(days*24*60)-(hours1*60);
+                                                        seconds = seconds-(days*24*60*60)-(hours*60*60)-(minutes1*60);
+							//var status = "<span class='label label-warning'>"+days +" Days " + hours1 + " Hours " + minutes1 + " Minutes Left to Respond</span>";
+							if(check_expedited == 'yes'){
+                                                            status = '<span class="label label-danger">PENDING – EXPEDITED REVIEW</span>';
+                					}
+                					else {
+                                                            status = '<span class="label label-warning">PENDING</span>';
+                					}
+						}
+						else {
+							console.log('greater');
+							//var status = '<span class="label label-danger">PAST DUE</span>';
+                                                        var status = '<span class="label label-danger">PAST DUE</span>';
+						}
+
+						// var status = ' pending '
 					}
 			    }
 			    else if(status == 'past_due'){

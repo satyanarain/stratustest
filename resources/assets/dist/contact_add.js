@@ -25,7 +25,7 @@
 		    	e.preventDefault();
 		        var id = $(this).attr("id");
 		        // alert(id);    
-		        var r = confirm("are you sure you want to add this user?");alert(window.project_name);return false;
+		        var r = confirm("are you sure you want to add this user?");
 				if (r == true) {
 					$('.loading_data').show();
 					jQuery.ajax({
