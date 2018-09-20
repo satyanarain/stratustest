@@ -888,7 +888,8 @@ class UserController extends Controller {
             "position"      => 'required',
             "role"          => 'required',
         ];
-        $validator = Validator::make($information, $rules);
+        $messages = array( 'unique' => 'Username already exists in the system' );
+        $validator = Validator::make($information, $rules,$messages);
         if ($validator->fails()) 
         {
             return $result = response()->json(["data" => $validator->messages()],400);
