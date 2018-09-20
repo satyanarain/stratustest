@@ -431,6 +431,8 @@ $(document).ready(function() {
         var monthName = monthNames[date.getMonth()];
         var completion_hour = date.getHours(); 
         var ampm = completion_hour >= 12 ? 'pm' : 'am';
+        if(completion_hour>12)
+            completion_hour-=12;
         var completion_time = date.getMinutes()
         $('#pdf_gen_req_comp_date').text(dayName+', '+monthName+' '+completion_day+', '+completion_year);
         $('#pdf_gen_req_comp_time').text(completion_hour+':'+completion_time+' '+ampm);

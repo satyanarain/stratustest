@@ -78,7 +78,7 @@
 		    	status = '<span class="label label-success">Make Corrections</span>';
 			    }
 			    else if(status == 'revise_resubmit'){
-		    	status = '<span class="label label-success">Revise & Resubmit</span>';
+		    	status = '<span class="label label-warning">Revise & Resubmit</span>';
 			    }
 			    else if(status == 'rejected'){
 		    	status = '<span class="label label-success">Rejected</span>';

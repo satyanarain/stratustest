@@ -104,7 +104,7 @@
 
 				var status = val.sr_review_status;
 				var check_expedited = val.sur_request_expedited;
-                                alert(val.rir_review_respond);
+                                //alert(val.rir_review_respond);
 				if(status == 'pending'){
 //					if(check_expedited == 'yes'){
 //						status = '<span class="label label-danger">PENDING – EXPEDITED REVIEW</span>';

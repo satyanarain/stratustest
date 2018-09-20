@@ -61,7 +61,7 @@
                                         <select class="form-control" id="status">
                                             <option value="no_exception">No Exception</option>
                                             <option value="make_corrections_noted">Make Corrections Noted</option>
-                                            <option value="revise_resubmit">Revise Resubmit</option>
+                                            <option value="revise_resubmit">Revise & Resubmit</option>
                                             <option value="rejected">Rejected</option>
                                         </select>
                                     </div>
