@@ -131,7 +131,8 @@ class BuiltDrawingsController extends Controller {
                           if(count($check_project_user_notification) < 1){
                             continue;
                           }else{
-                               echo $check_project_user->email;
+                                echo '<pre>';print_r($check_project_user);die;
+                                echo $check_project_user->email;
                               // Send Notification to users
                               $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
 
