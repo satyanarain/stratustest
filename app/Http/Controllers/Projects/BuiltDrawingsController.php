@@ -100,10 +100,11 @@ class BuiltDrawingsController extends Controller {
               // Start Check User Permission and send notification and email  
               // Get Project Users
               $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
-              //echo '<pre>';print_r($check_project_users);die;
+              //echo '<pre>';print_r($check_project_users);
               // Check User Project Permission  
               foreach ($check_project_users as $check_project_user) {
-               $check_engineer =  strpos(strtolower($check_project_user->ct_name), 'engineer');
+                $check_engineer = '';
+                $check_engineer =  strpos(strtolower($check_project_user->ct_name), 'engineer');
                 //echo '<pre>';print_r($check_project_user);die;
                 if($check_engineer>=0)
                 {
@@ -131,8 +132,8 @@ class BuiltDrawingsController extends Controller {
                           if(count($check_project_user_notification) < 1){
                             continue;
                           }else{
-                                echo '<pre>';print_r($check_project_user);die;
-                                echo $check_project_user->email;
+                                //echo '<pre>';print_r($check_project_user);
+                                //echo $check_project_user->email;
                               // Send Notification to users
                               $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
 
@@ -157,7 +158,7 @@ class BuiltDrawingsController extends Controller {
                 //die('ooo');
               } // End Foreach
               // End Check User Permission and send notification and email 
-
+              
               $result = array('description'=>"Add built drawing successfully",'code'=>200);
               return response()->json($result, 200);
             }
