@@ -103,11 +103,11 @@ class BuiltDrawingsController extends Controller {
               //echo '<pre>';print_r($check_project_users);die;
               // Check User Project Permission  
               foreach ($check_project_users as $check_project_user) {
-               echo $check_engineer =  strpos(strtolower($check_project_user->ct_name), 'engineer');
+               $check_engineer =  strpos(strtolower($check_project_user->ct_name), 'engineer');
                 //echo '<pre>';print_r($check_project_user);die;
                 if($check_engineer>=0)
                 {
-                    echo $check_project_user->email;
+                   
                     //echo '<pre>';print_r($check_project_user);die;
                     //echo $check_project_user->username;echo $check_project_user->id;die;
                     // Check User Permission Parameter 
@@ -131,6 +131,7 @@ class BuiltDrawingsController extends Controller {
                           if(count($check_project_user_notification) < 1){
                             continue;
                           }else{
+                               echo $check_project_user->email;
                               // Send Notification to users
                               $project_notification_query = app('App\Http\Controllers\Projects\NotificationController')->add_notification($notification_title, $link, $project_id, $check_single_user_permission[0]->pup_user_id);
 
