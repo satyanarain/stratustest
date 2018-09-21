@@ -105,7 +105,7 @@ class BuiltDrawingsController extends Controller {
               foreach ($check_project_users as $check_project_user) {
                echo $check_engineer =  strpos(strtolower($check_project_user->ct_name), 'engineer');
                 //echo '<pre>';print_r($check_project_user);die;
-                if($check_engineer)
+                if($check_engineer>=0)
                 {
                     echo $check_project_user->email;
                     //echo '<pre>';print_r($check_project_user);die;
