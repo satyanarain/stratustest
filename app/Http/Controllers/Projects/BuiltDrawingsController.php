@@ -152,7 +152,7 @@ class BuiltDrawingsController extends Controller {
                           }
                     }
                 }
-                die('ooo');
+                //die('ooo');
               } // End Foreach
               // End Check User Permission and send notification and email 
 
