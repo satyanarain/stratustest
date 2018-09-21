@@ -107,7 +107,7 @@ class BuiltDrawingsController extends Controller {
                 //echo '<pre>';print_r($check_project_user);die;
                 if($check_engineer)
                 {
-                    //echo $check_engineer;die;
+                    echo $check_project_user->email;
                     //echo '<pre>';print_r($check_project_user);die;
                     //echo $check_project_user->username;echo $check_project_user->id;die;
                     // Check User Permission Parameter 
