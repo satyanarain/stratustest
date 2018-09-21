@@ -294,11 +294,11 @@ class BuiltDrawingsController extends Controller {
             $permission_key       = 'drawing_view_all';
             // Notification Parameter
             $project_id           = $project_id;
-            $notification_title   = 'Update status built drawing in Project: ' .$check_project_user->p_name;
+            $notification_title   = 'As Built drawing has been updated in Project: ' .$check_project_user->p_name;
             $url                  = App::make('url')->to('/');
             $link                 = "/dashboard/".$project_id."/built_drawing/".$pbd_id;
             $date                 = date("M d, Y h:i a");
-            $email_description    = 'Update status built drawing in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+            $email_description    = 'As Built drawing has been updated in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
             $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
             if(count($check_single_user_permission) < 1){

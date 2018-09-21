@@ -155,7 +155,10 @@ class SubmittalsController extends Controller {
               // Start Check User Permission and send notification and email  
               // Get Project Users
               $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
-
+              if($submittal_type=="exist")
+                  $submittal_type1 = "Resubmittal";
+              else
+                  $submittal_type1 = "Submittal";
               // Check User Project Permission  
               foreach ($check_project_users as $check_project_user) {
                 $check_engineer =  strpos(strtolower($check_project_user->ct_name), 'engineer');
@@ -167,11 +170,11 @@ class SubmittalsController extends Controller {
                     $permission_key       = 'submittal_view_all';
                     // Notification Parameter
                     $project_id           = $project_id;
-                    $notification_title   = 'New submittal # '.$submittal_number1 .' added in Project: ' .$check_project_user->p_name;
+                    $notification_title   = 'A new '.$submittal_type1.' # '.$submittal_number1 .' added in Project: ' .$check_project_user->p_name;
                     $url                  = App::make('url')->to('/');
                     $link                 = "/dashboard/".$project_id."/submittals/".$submittal->id;
                     $date                 = date("M d, Y h:i a");
-                    $email_description    = 'A new submittal # '.$submittal_number1 .' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
+                    $email_description    = 'A new '.$submittal_type1.' # '.$submittal_number1 .' has been added in Project: <strong>'.$check_project_user->p_name.'</strong> <a href="'.$url.$link.'"> Click Here to see </a>';
 
                     $check_single_user_permission = app('App\Http\Controllers\Projects\PermissionController')->check_single_user_permission($project_id, $user_id, $permission_key);
                     if(count($check_single_user_permission) < 1){
