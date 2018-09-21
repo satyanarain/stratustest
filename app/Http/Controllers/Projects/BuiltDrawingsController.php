@@ -104,7 +104,7 @@ class BuiltDrawingsController extends Controller {
               // Check User Project Permission  
               foreach ($check_project_users as $check_project_user) {
                 $check_engineer =  strpos(strtolower($check_project_user->ct_name), 'engineer');
-                echo '<pre>';print_r($check_project_user);die;
+                //echo '<pre>';print_r($check_project_user);die;
                 if($check_engineer)
                 {
                     //echo $check_engineer;die;
