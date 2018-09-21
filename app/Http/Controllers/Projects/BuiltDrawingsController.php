@@ -100,7 +100,7 @@ class BuiltDrawingsController extends Controller {
               // Start Check User Permission and send notification and email  
               // Get Project Users
               $check_project_users = app('App\Http\Controllers\Projects\PermissionController')->check_project_user($project_id);
-
+              echo '<pre>';print_r($check_project_users);die;
               // Check User Project Permission  
               foreach ($check_project_users as $check_project_user) {
                 $check_engineer =  strpos(strtolower($check_project_user->ct_name), 'engineer');
