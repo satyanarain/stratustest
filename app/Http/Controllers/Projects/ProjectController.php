@@ -622,12 +622,12 @@ class ProjectController extends Controller {
         $info['billings_to_date'] = $billings_to_date;
         $info['prior_billings'] = $prior_billings;
         $info['total_billings'] = $billings_to_date+$prior_billings;
-        $info['contract_bal_remaining'] = $info['total_contract_amount']-$info['total_billings'];
+        $info['contract_bal_remaining'] = $info['total_contract_amount']-$info['total_billings'].'.00';
     }else{
         $info['billings_to_date'] = 0;
         $info['prior_billings'] = 0;
         $info['total_billings'] = 0;
-        $info['contract_bal_remaining'] = $info['total_contract_amount']-$info['total_billings'];
+        $info['contract_bal_remaining'] = $info['total_contract_amount']-$info['total_billings'].'.00';
     }
     //echo '<pre>';print_r($query3);
     //print_r($info);
