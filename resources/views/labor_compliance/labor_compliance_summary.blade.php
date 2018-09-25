@@ -28,11 +28,11 @@
                                        <img src="{{ url('/resources/assets/img/loading.svg') }}" alt="" />
                                     </div>
                                 <div class="form-group clearfix">
-                                    <label class="nopadleft col-xs-6 col-sm-12 control-label">Contractor: <span id="contractor_name" style="font-weight: bold;"></span></label>
+                                    <label class="nopadleft col-xs-6 col-sm-12 control-label">Contractor: <span id="contractor_name"></span></label>
                                 </div>
 
                                 <div class="form-group clearfix">
-                                        <label class="nopadleft col-xs-6 col-sm-12 control-label">Wage Determination: <span id="wage_determination" style="font-weight: bold;"></span></label>
+                                        <label class="nopadleft col-xs-6 col-sm-12 control-label">Wage Determination: <span id="wage_determination"></span></label>
                                     </div>
 
                                 <table class="table convert-data-table data-table custom-grid table-bordered table_scroll_x_axis" id="view_users_table">

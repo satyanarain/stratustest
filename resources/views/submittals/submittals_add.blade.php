@@ -75,7 +75,7 @@
 
         <div class="col-md-6 nopadleft complete_box" style="display:none;">
             <div class="form-group col-md-12 submittal" style="display:none;">
-                <label>Submittal #: <strong><span id="submittal_number_text"></span>
+                <label>Submittal: <strong>#<span id="submittal_number_text"></span>
                 <input type="hidden" id="submittal_number" value=""></strong></label>
             </div>
 

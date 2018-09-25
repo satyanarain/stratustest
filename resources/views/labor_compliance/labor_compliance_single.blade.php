@@ -28,7 +28,7 @@
                             <div class="panel-body clearfix">
                                 <div class="col-md-12 nopadleft">
                                     <div class="form-group clearfix">
-                                        <label class="nopadleft col-xs-6 col-sm-12 control-label">Contractor: <span id="contractor_name" style="font-weight: bold;"></span></label>
+                                        <label class="nopadleft col-xs-6 col-sm-12 control-label">Contractor: <span id="contractor_name"></span></label>
                                     </div>
                                   
                                 <!--     <div class="form-group clearfix">

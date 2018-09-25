@@ -66,11 +66,11 @@
 
         <div class="col-md-6 nopadleft">
             <div class="form-group col-md-12 submittal">
-                <label>Survey Request:# <strong>
+                <label>Survey Request: <strong>
                     <div class="loading_data" style="text-align: center;">
                        <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                     </div>
-                    <span id="survey_number"></span>
+                    #<span id="survey_number"></span>
                 </label>
             </div>
 
