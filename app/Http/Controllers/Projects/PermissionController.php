@@ -44,7 +44,7 @@ class PermissionController extends Controller {
           ->leftJoin('projects', 'project_contact.c_project_id', '=', 'projects.p_id')
           ->leftJoin('project_firm', 'project_firm.f_id', '=', 'users.company_name')
           ->leftJoin('company_type', 'company_type.ct_id', '=', 'project_firm.f_type')
-          ->select('company_type.*','projects.*', 'users.id', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role')
+          ->select('company_type.*','projects.*', 'users.id','users.user_role', 'users.email', 'users.username', 'users.first_name', 'users.last_name', 'users.phone_number', 'users.status', 'users.position_title', 'users.role')
           ->where('project_contact.c_project_id', '=', $project_id)
           // ->whereIn('users.role', ['manager', 'contractor'])
           ->where('users.status', '!=', 2)

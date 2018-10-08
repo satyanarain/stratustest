@@ -188,19 +188,21 @@
 		    	}
                         
                         if(data.data.additional_information == null){
-			    	$('#review_additional_information').text(' - ');
+			    	$('.review_additional_information').remove();
 		    	}
 		    	else {
 			    	$('#review_additional_information').text(data.data.additional_information);
 		    	}
                         var additional_document_file = data.data.additional_document_file;
                         if(additional_document_file == null){
-                            var additional_document_path_value = '-';
+                            //var additional_document_path_value = '-';
+                            $('.review_additional_document').remove();
                         }
                         else {
                             var additional_document_path_value = '<a href="'+baseUrl+data.data.additional_document_file+'" target="_blank"><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40"/></a>';
+                            $('#review_additional_document').html(additional_document_path_value);
                         }
-                        $('#review_additional_document').html(additional_document_path_value);
+                        
                         if(data.data.rir_additional_cost == null){
                             var rir_additional_cost = '  ';
 		    	}

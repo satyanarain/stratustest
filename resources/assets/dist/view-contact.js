@@ -51,7 +51,7 @@ $(document).ready(function() {
 
             var company_name = data.data.company_name;
             $('#cname').text(company_name);
-
+            $('#position_title').text(data.data.position_title);
 
 
             var role = data.data.role;

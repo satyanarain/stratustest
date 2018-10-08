@@ -31,6 +31,7 @@
                                         <tr><th>First Name</th><td><span id="firstname"></span></td></tr>
                                         <tr><th>Last Name</th><td><span id="lastname"></span></td></tr>
                                         <tr><th>Company Name</th><td><span id="cname"></span></td></tr>
+                                        <tr><th>Position/Title</th><td><span id="position_title"></span></td></tr>
                                         <tr><th>Role</th><td><span id="role"></span></td></tr>
                                         <tr><th>Account Status</th><td><span id="status"></span></td></tr>
                                         <tr><th>User Contacts</th><td><span id="phone_setting"></span></td></tr>

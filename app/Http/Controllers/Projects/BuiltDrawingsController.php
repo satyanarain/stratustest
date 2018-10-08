@@ -87,9 +87,9 @@ class BuiltDrawingsController extends Controller {
         }
         else
         {
-             $query = DB::table('project_built_drawing')
-            ->insertGetId(['pbd_filed_on'=>$built_filed_on,'pbd_description' => $description, 'pbd_file_path' => $file_path, 'pbd_project_id' => $project_id, 'pbd_user_id' => $user_id, 'pbd_status' => $status]);
-
+             //$query = DB::table('project_built_drawing')
+            //->insertGetId(['pbd_filed_on'=>$built_filed_on,'pbd_description' => $description, 'pbd_file_path' => $file_path, 'pbd_project_id' => $project_id, 'pbd_user_id' => $user_id, 'pbd_status' => $status]);
+$query=1;
             if(count($query) < 1)
             {
               $result = array('code'=>400, "description"=>"No records found");
@@ -104,7 +104,7 @@ class BuiltDrawingsController extends Controller {
               // Check User Project Permission  
               foreach ($check_project_users as $check_project_user) {
                 $check_engineer = '';
-                $check_engineer =  strpos(strtolower($check_project_user->ct_name), 'engineer');
+                $check_engineer =  strpos(strtolower($check_project_user->user_role), 'engineer');
                 //echo '<pre>';print_r($check_project_user);die;
                 if($check_engineer>=0)
                 {

@@ -81,11 +81,11 @@
                                         <th colspan="2">Additional Information Request</th>
                                         <td colspan="2" id="review_additional_info"></td>
                                     </tr>
-                                    <tr>
+                                    <tr class="review_additional_information">
                                         <th colspan="2">Additional Information Provided</th>
                                         <td colspan="2" id="review_additional_information"></td>
                                     </tr>
-                                    <tr>
+                                    <tr class="review_additional_document">
                                         <th colspan="2">Additional Document</th>
                                         <td colspan="2" id="review_additional_document"></td>
                                     </tr>

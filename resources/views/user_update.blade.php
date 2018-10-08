@@ -95,6 +95,7 @@
                                             <option value="Construction Manager">Construction Manager</option>
                                             <option value="Contractor">Contractor</option>
                                             <option value="Engineer">Engineer</option>
+                                            <option value="Engineer of Record">Engineer of Record</option>
                                             <option value="Surveyor">Surveyor</option>
                                             <option value="Agency">Agency</option>
                                             <option value="Owner">Owner</option>
