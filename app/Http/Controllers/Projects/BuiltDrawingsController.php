@@ -105,11 +105,12 @@ class BuiltDrawingsController extends Controller {
               foreach ($check_project_users as $check_project_user) {
                 $check_engineer = '';
                 $check_engineer =  strpos(strtolower($check_project_user->user_role), 'engineer');
-                echo '<pre>';print_r($check_project_user);
-                echo $check_engineer;
-                if($check_engineer>=0)
+                //echo '<pre>';print_r($check_project_user);
+                //echo $check_engineer;
+                //if($check_engineer && intval($check_engineer)>=0)
+                if(strpos(strtolower($check_project_user->user_role), 'engineer')!== false)
                 {
-                   
+                   echo $check_project_user->username;
                     //echo '<pre>';print_r($check_project_user);die;
                     //echo $check_project_user->username;echo $check_project_user->id;die;
                     // Check User Permission Parameter 
@@ -156,10 +157,10 @@ class BuiltDrawingsController extends Controller {
                           }
                     }
                 }
-                die('ooo');
+                //die('ooo');
               } // End Foreach
               // End Check User Permission and send notification and email 
-              
+              die('ooo');
               $result = array('description'=>"Add built drawing successfully",'code'=>200);
               return response()->json($result, 200);
             }
