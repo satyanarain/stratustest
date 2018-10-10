@@ -90,7 +90,7 @@
                 <div class="loading_data1" style="text-align: center;">
                    <img src="{{ url('/resources/assets/img/loading_bar.gif') }}" alt=""/>
                 </div>
-                <label>Submittal #: <strong><span id="resubmittal_value"></span> R <span id="submittal_revision_number"></span></strong></label>
+                <label>Submittal: <strong>#<span id="resubmittal_value"></span> R <span id="submittal_revision_number"></span></strong></label>
             </div>
 
             <div class="form-group col-md-12">

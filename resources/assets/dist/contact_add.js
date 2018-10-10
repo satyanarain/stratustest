@@ -24,8 +24,9 @@
 		  	$("body").delegate(".add_contact_project", "click", function(e) {
 		    	e.preventDefault();
 		        var id = $(this).attr("id");
-		        // alert(id);    
-		        var r = confirm("are you sure you want to add this user?");
+                        var contact_name = $(this).attr("contact_name");
+		        //alert(id);return false;    
+		        var r = confirm("Are you sure you want to add "+contact_name+" into project "+window.project_name+"?");
 				if (r == true) {
 					$('.loading_data').show();
 					jQuery.ajax({
@@ -161,7 +162,7 @@
 				           val.first_name+' '+val.last_name,
 				           val.email+'<br/>'+ phone,
 				           val.company_name,
-				           '<a id="'+val.id+'" href="" class="btn btn-primary btn-xs tooltips add_contact_project" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-plus"></i> Add to project</a>'
+				           '<a id="'+val.id+'" contact_name="'+val.first_name+' '+val.last_name+'" href="" class="btn btn-primary btn-xs tooltips add_contact_project" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-plus"></i> Add to project</a>'
 				        ]).draw( false );
 				        count++;
 					  // }
