@@ -28,7 +28,7 @@
                             <table class="table table-striped">
                                 <tbody>
                                     <tr>
-                                        <th width="25%">Submittal #:</th>
+                                        <th width="25%">Submittal :</th>
                                         <td width="25%" id="submittal_number"></td>
                                         <th width="25%">Date of Submittal</th>
                                         <td width="25%" id="submittal_date"></td>
