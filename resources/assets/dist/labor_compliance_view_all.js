@@ -258,17 +258,78 @@
 			  	else {
 			  		var dir_checkbox = '<label class="checkbox-custom check-success"><input type="checkbox" value=" " class="checkbox_dir" id="'+val.plc_id+'"><label for="'+val.plc_id+'"></label></label>';
 			  	}
-
+                                var doc_140 = val.doc_140;
+                                var doc_140_value;
+                                if(doc_140 == null){
+                                    doc_140_value = ' --- ';
+                                }
+                                else {
+                                    doc_140_value = '<a href="'+baseUrl+val.doc_140+'" target="_blank" ><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40" /></a>';
+                                }
+                                var doc_142 = val.doc_142;
+                                var doc_142_value;
+                                if(doc_142 == null){
+                                    doc_142_value = ' --- ';
+                                }
+                                else {
+                                    doc_142_value = '<a href="'+baseUrl+val.doc_142+'" target="_blank" ><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40" /></a>';
+                                }
+                                var doc_fringe = val.fringe_doc;
+                                var doc_fringe_value;
+                                if(doc_fringe == null){
+                                    doc_fringe_value = ' --- ';
+                                }
+                                else {
+                                    doc_fringe_value = '<a href="'+baseUrl+val.fringe_doc+'" target="_blank" ><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40" /></a>';
+                                }
+                                var doc_cac2 = val.cac2_doc;
+                                var doc_cac2_value;
+                                if(doc_cac2 == null){
+                                    doc_cac2_value = ' --- ';
+                                }
+                                else {
+                                    doc_cac2_value = '<a href="'+baseUrl+val.cac2_doc+'" target="_blank" ><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40" /></a>';
+                                }
+                                var doc_cpr = val.cpr_doc;
+                                var doc_cpr_value;
+                                if(doc_cpr == null){
+                                    doc_cpr_value = ' --- ';
+                                }
+                                else if(val.cpr_doc){
+                                    doc_cpr_value = '<a href="'+baseUrl+val.cpr_doc+'" target="_blank" ><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40" /></a>';
+                                }
+                                var doc_compliance = val.compliance;
+                                var doc_compliance_value;
+                                if(doc_compliance == null){
+                                    doc_compliance_value = ' --- ';
+                                }
+                                else if(val.compliance){
+                                    doc_compliance_value = '<a href="'+baseUrl+val.compliance+'" target="_blank" ><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40" /></a>';
+                                }
+                                var doc_nonperformance_compliance = val.compliance_non_performance;
+                                var doc_nonperformance_compliance_value;
+                                if(doc_nonperformance_compliance == null){
+                                    doc_nonperformance_compliance_value = ' --- ';
+                                }
+                                else {
+                                    doc_nonperformance_compliance_value = '<a href="'+baseUrl+val.compliance_non_performance+'" target="_blank" ><img src="'+baseUrl+'resources/assets/img/pdf_icon.png" width="40" /></a>';
+                                }
 			  var t = $('#view_users_table').DataTable();
 				t.row.add( [
 		           count, // val.plc_id,
 		           val.f_name,
-		           plc_140_date, // doc_140_value,
-		           plc_142_date, // doc_142_value,
-                   plc_fringe_date,
-                   plc_cac2_date,
-                   plc_cpr_date,
-                   plc_compliance_date,
+		           //plc_140_date, // doc_140_value,
+                           doc_140_value,
+		           //plc_142_date, // doc_142_value,
+                           doc_142_value,
+                   //plc_fringe_date,
+                   doc_fringe_value,
+                   //plc_cac2_date,
+                   doc_cac2_value,
+                   //plc_cpr_date,
+                   doc_cpr_value+doc_compliance_value,
+                   //plc_compliance_date,
+                   doc_nonperformance_compliance_value,
                    dir_checkbox,
 		           status,
 		           single_view+update_permission

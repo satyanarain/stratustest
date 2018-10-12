@@ -780,6 +780,7 @@ $url = $response["url"];
              ->where('pnp_project_id', '=', $project_id)
           ->where('pnp_cal_day', '=', $type)
           ->where('pnp_cal_day', '=', $type)
+          ->where('pnp_status', '=', 'active')        
           ->first();
           if(count($query) < 1)
           {
